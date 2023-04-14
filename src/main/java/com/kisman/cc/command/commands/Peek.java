@@ -27,13 +27,13 @@ public class Peek extends Command {
 
     public void runCommand(String s, String[] args) {
         try {
-            if(!args[0].equalsIgnoreCase("book") || !args[0].equalsIgnoreCase("shulker")) {
+            if(!args[0].equalsIgnoreCase("book") && !args[0].equalsIgnoreCase("shulker")) {
                 ChatUtils.error("Usage: " + getSyntax());
 
                 return;
             }
 
-            boolean book = (args.length > 0 && args[0].equals("book")) ? true : false;
+            boolean book = args[0].equals("book");
 
             double distance = 0;
             ItemStack stack = null;

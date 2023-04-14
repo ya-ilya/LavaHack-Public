@@ -1332,16 +1332,16 @@ public class RenderUtil {
 
     public static void GLPost(boolean depth, boolean texture, boolean clean, boolean bind, boolean override) {
         GlStateManager.depthMask((boolean)true);
-        if (override == false) {
+        if (!override) {
             GL11.glDisable((int)2848);
         }
-        if (bind != false) {
+        if (bind) {
             GL11.glEnable((int)2929);
         }
-        if (clean != false) {
+        if (clean) {
             GL11.glEnable((int)3553);
         }
-        if (texture == false) {
+        if (!texture) {
             GL11.glDisable((int)3042);
         }
         if (!depth) return;

@@ -217,10 +217,7 @@ public class SelfCityESP extends Module {
 
         // west
         pos = playerPos.west();
-        if(surroundBlockCheck(pos))
-            return false;
-
-        return true;
+        return !surroundBlockCheck(pos);
     }
 
     public boolean surroundBlockCheck(BlockPos pos){

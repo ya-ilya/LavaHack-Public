@@ -54,7 +54,7 @@ public class BlockUtil2 {
         if (!mc.world.getBlockState(position).getBlock().isReplaceable(mc.world, position)) return false;
         if (entityCheck) {
             for (Entity entity : mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(position))) {
-                if (entity instanceof EntityItem || entity instanceof EntityXPOrb || entity instanceof EntityEnderCrystal && ignoreCrystals != false) continue;
+                if (entity instanceof EntityItem || entity instanceof EntityXPOrb || entity instanceof EntityEnderCrystal && ignoreCrystals) continue;
                 return false;
             }
         }

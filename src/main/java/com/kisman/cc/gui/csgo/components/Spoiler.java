@@ -93,7 +93,7 @@ public class Spoiler extends AbstractComponent {
         return opened && contentPane.mousePressed(button, x, y, offscreen);
     }
 
-    public boolean isToggled() {return mod != null ? mod.isToggled() : false;}
+    public boolean isToggled() {return mod != null && mod.isToggled();}
     public String getTitle() {return title;}
 
     public void setTitle(String title) {

@@ -137,10 +137,10 @@ public class CrystalUtils {
             int z = mc.player.getPosition().getZ() - (int)range;
             while ((float)z <= (float) mc.player.getPosition().getZ() + range) {
                 int y;
-                int n = y = sphere != false ? mc.player.getPosition().getY() - (int)range : mc.player.getPosition().getY();
+                int n = y = sphere ? mc.player.getPosition().getY() - (int)range : mc.player.getPosition().getY();
                 while ((float)y < (float) mc.player.getPosition().getY() + range) {
                     double distance = ( mc.player.getPosition().getX() - x) * (mc.player.getPosition().getX() - x) + (mc.player.getPosition().getZ() - z) * (mc.player.getPosition().getZ() - z) + (sphere != false ? (mc.player.getPosition().getY() - y) * (mc.player.getPosition().getY() - y) : 0);
-                    if (distance < (double)(range * range) && (hollow == false || distance >= ((double)range - Double.longBitsToDouble(Double.doubleToLongBits(638.4060856917202) ^ 0x7F73F33FA9DAEA7FL)) * ((double)range - Double.longBitsToDouble(Double.doubleToLongBits(13.015128470890444) ^ 0x7FDA07BEEB3F6D07L)))) {
+                    if (distance < (double)(range * range) && (!hollow || distance >= ((double)range - Double.longBitsToDouble(Double.doubleToLongBits(638.4060856917202) ^ 0x7F73F33FA9DAEA7FL)) * ((double)range - Double.longBitsToDouble(Double.doubleToLongBits(13.015128470890444) ^ 0x7FDA07BEEB3F6D07L)))) {
                         blocks.add(new BlockPos(x, y, z));
                     }
                     ++y;

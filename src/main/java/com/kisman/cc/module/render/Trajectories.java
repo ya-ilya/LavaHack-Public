@@ -24,6 +24,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL32;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -294,19 +295,17 @@ public class Trajectories extends Module {
         }
 
         private float getInitialVelocity() {
-            switch (this.throwableType) {
-                case ARROW:
-                    int useDuration = this.shooter.getHeldItem(EnumHand.MAIN_HAND).getItem().getMaxItemUseDuration(this.shooter.getHeldItem(EnumHand.MAIN_HAND)) - this.shooter.getItemInUseCount();
-                    float velocity = (float) useDuration / 20.0F;
-                    velocity = (velocity * velocity + velocity * 2.0F) / 3.0F;
-                    if (velocity > 1.0F) {
-                        velocity = 1.0F;
-                    }
+            if (Objects.requireNonNull(this.throwableType) == ThrowableType.ARROW) {
+                int useDuration = this.shooter.getHeldItem(EnumHand.MAIN_HAND).getItem().getMaxItemUseDuration(this.shooter.getHeldItem(EnumHand.MAIN_HAND)) - this.shooter.getItemInUseCount();
+                float velocity = (float) useDuration / 20.0F;
+                velocity = (velocity * velocity + velocity * 2.0F) / 3.0F;
+                if (velocity > 1.0F) {
+                    velocity = 1.0F;
+                }
 
-                    return (velocity * 2.0f) * throwableType.getVelocity();
-                default:
-                    return throwableType.getVelocity();
+                return (velocity * 2.0f) * throwableType.getVelocity();
             }
+            return throwableType.getVelocity();
         }
 
         private float getGravityVelocity() {

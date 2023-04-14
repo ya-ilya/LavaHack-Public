@@ -156,9 +156,7 @@ public class StringButton extends Component {
     }
 
     private boolean isMouseOnButton(int x, int y) {
-        if(x > this.b.parent.x && x < this.b.parent.x + 88 && y > this.b.parent.y + offset && y < this.b.parent.y + 12 + offset) return true;
-
-        return false;
+        return x > this.b.parent.x && x < this.b.parent.x + 88 && y > this.b.parent.y + offset && y < this.b.parent.y + 12 + offset;
     }
 
     private void setString(String newString) {

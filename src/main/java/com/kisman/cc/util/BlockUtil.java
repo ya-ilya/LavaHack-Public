@@ -40,7 +40,7 @@ public class BlockUtil {
     public static boolean canBlockBeBroken(final BlockPos pos) {
         final IBlockState blockState = mc.world.getBlockState(pos);
         final Block block = blockState.getBlock();
-        return block.getBlockHardness(blockState, mc.world, pos) != -1;
+        return block.blockHardness != -1;
     }
 
     public static int isPositionPlaceable(final BlockPos pos, final boolean rayTrace) {

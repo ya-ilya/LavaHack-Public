@@ -86,7 +86,6 @@ public class InventoryUtil {
 
     public static boolean canHarvestBlock(Block block, BlockPos pos, ItemStack stack) {
         IBlockState state = mc.world.getBlockState(pos);
-        state = state.getBlock().getActualState(state, mc.world, pos);
         if (state.getMaterial().isToolNotRequired()) return true;
         String tool = block.getHarvestTool(state);
         if (stack.isEmpty() || tool == null) return mc.player.canHarvestBlock(state);

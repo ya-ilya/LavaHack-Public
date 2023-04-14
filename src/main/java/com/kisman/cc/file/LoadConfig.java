@@ -64,7 +64,11 @@ public class LoadConfig {
         InputStream inputStream = Files.newInputStream(Paths.get(moduleLocation + module.getName() + ".json"));
         JsonObject moduleObject;
 
-        try {moduleObject = new JsonParser().parse(new InputStreamReader(inputStream)).getAsJsonObject();} catch (java.lang.IllegalStateException e) {return;}
+        try {
+            moduleObject = JsonParser.parseReader(new InputStreamReader(inputStream)).getAsJsonObject();
+        } catch (java.lang.IllegalStateException e) {
+            return;
+        }
 
         if (moduleObject.get("Module") == null) return;
 
@@ -101,7 +105,7 @@ public class LoadConfig {
         if (!Files.exists(Paths.get(enabledLocation + "Toggle.json"))) return;
 
         InputStream inputStream = Files.newInputStream(Paths.get(enabledLocation + "Toggle.json"));
-        JsonObject moduleObject = new JsonParser().parse(new InputStreamReader(inputStream)).getAsJsonObject();
+        JsonObject moduleObject = JsonParser.parseReader(new InputStreamReader(inputStream)).getAsJsonObject();
 
         if (moduleObject.get("Modules") == null) return;
 
@@ -122,7 +126,7 @@ public class LoadConfig {
         if (!Files.exists(Paths.get(enabledLocation + "Visible" + ".json"))) return;
 
         InputStream inputStream = Files.newInputStream(Paths.get(enabledLocation + "Visible" + ".json"));
-        JsonObject moduleObject = new JsonParser().parse(new InputStreamReader(inputStream)).getAsJsonObject();
+        JsonObject moduleObject = JsonParser.parseReader(new InputStreamReader(inputStream)).getAsJsonObject();
 
         if (moduleObject.get("Modules") == null) return;
 
@@ -137,13 +141,13 @@ public class LoadConfig {
         inputStream.close();
     }
 
-    private static void  loadEnabledHudModules() throws IOException {
+    private static void loadEnabledHudModules() throws IOException {
         String enabledLocation = Kisman.fileName + Kisman.mainName;
 
         if (!Files.exists(Paths.get(enabledLocation + "HudToggle" + ".json"))) return;
 
         InputStream inputStream = Files.newInputStream(Paths.get(enabledLocation + "HudToggle" + ".json"));
-        JsonObject moduleObject = new JsonParser().parse(new InputStreamReader(inputStream)).getAsJsonObject();
+        JsonObject moduleObject = JsonParser.parseReader(new InputStreamReader(inputStream)).getAsJsonObject();
 
         if (moduleObject.get("Modules") == null) return;
 
@@ -166,7 +170,7 @@ public class LoadConfig {
         if (!Files.exists(Paths.get(enabledLocation + "BindModes" + ".json"))) return;
 
         InputStream inputStream = Files.newInputStream(Paths.get(enabledLocation + "BindModes" + ".json"));
-        JsonObject moduleObject = new JsonParser().parse(new InputStreamReader(inputStream)).getAsJsonObject();
+        JsonObject moduleObject = JsonParser.parseReader(new InputStreamReader(inputStream)).getAsJsonObject();
 
         if (moduleObject.get("Modules") == null) return;
 
@@ -191,7 +195,11 @@ public class LoadConfig {
         InputStream inputStream = Files.newInputStream(Paths.get(Kisman.fileName + Kisman.hudName + module.getName() + ".json"));
         JsonObject moduleObject;
 
-        try {moduleObject = new JsonParser().parse(new InputStreamReader(inputStream)).getAsJsonObject();} catch (java.lang.IllegalStateException e) {return;}
+        try {
+            moduleObject = JsonParser.parseReader(new InputStreamReader(inputStream)).getAsJsonObject();
+        } catch (java.lang.IllegalStateException e) {
+            return;
+        }
 
         if (moduleObject.get("Pos") == null) return;
 

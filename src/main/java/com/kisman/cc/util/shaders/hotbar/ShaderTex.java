@@ -6,6 +6,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,10 +19,10 @@ public abstract class ShaderTex {
         int fragmentShaderID;
         try {
             final InputStream vertexStream = this.getClass().getResourceAsStream("/assets/kismancc/hotbar/shader/position_tex.vsh");
-            vertexShaderID = this.createShader(IOUtils.toString(vertexStream), 35633);
+            vertexShaderID = this.createShader(IOUtils.toString(vertexStream, Charset.defaultCharset()), 35633);
             IOUtils.closeQuietly(vertexStream);
             final InputStream fragmentStream = this.getClass().getResourceAsStream("/assets/kismancc/hotbar/shader/" + fragmentShader);
-            fragmentShaderID = this.createShader(IOUtils.toString(fragmentStream), 35632);
+            fragmentShaderID = this.createShader(IOUtils.toString(fragmentStream, Charset.defaultCharset()), 35632);
             IOUtils.closeQuietly(fragmentStream);
         } catch (Exception e) {
             e.printStackTrace();

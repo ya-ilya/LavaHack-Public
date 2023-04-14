@@ -17,7 +17,7 @@ public class Utils {
       // Shamelessly pulling data from Moulberry's website
       URL url = new URL(jsonUrl);
       URLConnection conn = url.openConnection();
-      return new JsonParser().parse(new InputStreamReader(conn.getInputStream()));
+      return JsonParser.parseReader(new InputStreamReader(conn.getInputStream()));
     } catch (Exception e) {
       Kisman.LOGGER.error(e.getMessage(), e);
       return null;

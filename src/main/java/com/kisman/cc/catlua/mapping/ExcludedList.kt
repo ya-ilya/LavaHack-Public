@@ -9,7 +9,6 @@ class ExcludedList {
 
     init {
         try {
-
             list = PasteBinAPI(url).get()
         } catch(ignored: PasteBinBufferedReaderException) {}
     }

@@ -4,7 +4,6 @@ import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.EventResolutionUpdate;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.event.events.subscribe.TotemPopEvent;
-import com.kisman.cc.gui.auth.AuthGui;
 import com.kisman.cc.hypixel.util.ConfigHandler;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.client.Config;
@@ -57,14 +56,6 @@ public class EventProcessor {
     @SubscribeEvent
     public void onEntityJoinWorldEvent(EntityJoinWorldEvent event) {
         if(Kisman.instance.aiImpr != null) Kisman.instance.aiImpr.onEntityJoinWorld(event);
-    }
-
-    @SubscribeEvent public void onGuiOpen(GuiOpenEvent event) {if(!(event.getGui() instanceof AuthGui) && Kisman.isOpenAuthGui && !Kisman.allowToConfiguredAnotherClients) event.setCanceled(true);}
-
-    public void onInit() {
-        if(Kisman.allowToConfiguredAnotherClients) return;
-        mc.displayGuiScreen(new AuthGui());
-        Kisman.isOpenAuthGui = true;
     }
 
     @SubscribeEvent

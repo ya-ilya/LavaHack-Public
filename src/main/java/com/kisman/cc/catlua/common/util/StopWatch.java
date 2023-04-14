@@ -4,7 +4,7 @@ import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class StopWatch {
-    long time = -1L;
+    private long time = -1L;
 
     public boolean passed(double time, TimeUnit unit) {
         return unit.convert(Duration.ofMillis(System.currentTimeMillis() - this.time).toMillis(), unit) >= time;

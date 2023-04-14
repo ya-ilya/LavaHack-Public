@@ -1,6 +1,5 @@
 package com.kisman.cc.module;
 
-import com.kisman.cc.module.Debug.HelloWorld;
 import com.kisman.cc.module.chat.*;
 import com.kisman.cc.module.client.*;
 import com.kisman.cc.module.combat.*;
@@ -38,9 +37,6 @@ public class ModuleManager {
 //		loader.exclude("com.kisman.cc.module.Module");
 //		loader.filter(Module::isToggled);
 //		modules = loader.loadAllFromPackage("com.kisman.cc.module");
-
-		//Debug
-		modules.add(new HelloWorld());
 
 		//combat
 		modules.add(new AutoCrystal());
@@ -80,10 +76,7 @@ public class ModuleManager {
 		modules.add(new GuiModule());
 		modules.add(new HUD());
 		modules.add(new HudEditorTest());
-		modules.add(new KotlinTest());
 		modules.add(new NotEnoughCoinsModule());
-//		modules.add(new ExampleModule());
-//		modules.add(new Test());
 		modules.add(new ToolTip());
 		modules.add(new VegaGui());
 		//chat

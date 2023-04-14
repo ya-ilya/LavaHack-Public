@@ -78,7 +78,7 @@ class ConfigManager(
                                             if(setting.isCombo) setting.valString = split1[1].split("\"")[1]
                                             if(setting.isSlider) setting.valDouble = java.lang.Double.parseDouble(split1[1])
                                             if(setting.isColorPicker) setting.colour = ColourUtilKt.fromConfig(split1[1], setting.colour)
-                                        } catch(e : Exception) {}
+                                        } catch(_: Exception) {}
                                     }
                                 }
                             }

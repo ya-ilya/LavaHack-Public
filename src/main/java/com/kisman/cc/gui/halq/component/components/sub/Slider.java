@@ -81,7 +81,7 @@ public class Slider extends Component {
         if(bool) {
             if(key == Keyboard.KEY_RETURN) {
                 bool = false;
-                if(!customValue.isEmpty() && customValue.matches(TextUtil.Companion.getDoubleRegex())) setting.setValDouble(TextUtil.Companion.parseNumber(customValue));
+                if(!customValue.isEmpty() && customValue.matches(TextUtil.doubleRegex)) setting.setValDouble(TextUtil.Companion.parseNumber(customValue));
                 return;
             }
 

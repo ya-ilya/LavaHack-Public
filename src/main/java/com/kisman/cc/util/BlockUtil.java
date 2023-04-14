@@ -20,8 +20,8 @@ import net.minecraft.world.IBlockAccess;
 import java.util.*;
 
 public class BlockUtil {
-    public static final List blackList;
-    public static final List shulkerList;
+    public static final List<Block> blackList;
+    public static final List<Block> shulkerList;
     private static final Minecraft mc = Minecraft.getMinecraft();
 
     public static Vec3d[] antiDropOffsetList = new Vec3d[] { new Vec3d(0.0, -2.0, 0.0) };
@@ -126,7 +126,7 @@ public class BlockUtil {
     }
 
     public static List<Vec3d> getUnsafeBlocksFromVec3d(final Vec3d pos, final int height, final boolean floor) {
-        final ArrayList<Vec3d> vec3ds = new ArrayList<Vec3d>();
+        final ArrayList<Vec3d> vec3ds = new ArrayList<>();
         for (final Vec3d vector : getOffsets(height, floor)) {
             final BlockPos targetPos = new BlockPos(pos).add(vector.x, vector.y, vector.z);
             final Block block = mc.world.getBlockState(targetPos).getBlock();
@@ -268,8 +268,7 @@ public class BlockUtil {
     public static EnumFacing getFirstFacing(final BlockPos pos) {
         final Iterator<EnumFacing> iterator = getPossibleSides(pos).iterator();
         if (iterator.hasNext()) {
-            final EnumFacing facing = iterator.next();
-            return facing;
+            return iterator.next();
         }
         return null;
     }

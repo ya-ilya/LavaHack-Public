@@ -119,7 +119,7 @@ public class AltManagerGUI extends GuiScreen {
 		public AltSlotList(AltManagerGUI parentGui, Minecraft mc, int width, int height, int top, int bottom, int slotHeight) {
 			super(mc, width, height, top, bottom, slotHeight);
 			alts.clear();
-			AltManager.getAlts().forEach(alt -> this.alts.add(alt));
+			this.alts.addAll(AltManager.getAlts());
 			/* TODO Add saved alts here once configging is done. */
 		}
 

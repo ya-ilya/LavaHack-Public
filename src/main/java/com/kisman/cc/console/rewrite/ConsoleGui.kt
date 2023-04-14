@@ -20,7 +20,7 @@ import java.io.UnsupportedEncodingException
 
 /**@author Dallas/gerald0mc
  */
-class ConsoleGui() : GuiScreen() {
+class ConsoleGui : GuiScreen() {
     var width1: Int = 300
     var height1: Int = 250 - 25
     var x: Int = 25
@@ -29,7 +29,7 @@ class ConsoleGui() : GuiScreen() {
     val history = ArrayList<String>()
     var entryString = ""
 
-    @EventHandler val onMessage = Listener(EventHook { event: ConsoleMessageEvent ->
+    @EventHandler val onMessage = Listener({ event: ConsoleMessageEvent ->
         history.add(event.message);
     })
 
@@ -94,7 +94,7 @@ class ConsoleGui() : GuiScreen() {
         when(keyCode) {
             Keyboard.KEY_BACK -> entryString = removeLastLetter(entryString)
             Keyboard.KEY_RETURN ->
-                when(entryString.toLowerCase()) {
+                when(entryString.lowercase()) {
                     "clear" -> {
                         history.clear()
                         history += "Cleared console!"
@@ -136,7 +136,7 @@ class ConsoleGui() : GuiScreen() {
 
     private fun removeLastLetter(string: String?): String {
         var out = ""
-        if (string != null && string.isNotEmpty()) {
+        if (!string.isNullOrEmpty()) {
             out = string.substring(0, string.length - 1)
         }
         return out

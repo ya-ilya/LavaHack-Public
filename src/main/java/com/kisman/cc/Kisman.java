@@ -165,14 +165,12 @@ public class Kisman {
         ShaderShell.init();
 
         //catlua
-        catlua: {
-            eventProcessorLua = new EventProcessorLua();
-            excludedList = new ExcludedList();
-            remapper3000 = new Remapper3000();
-            remapper3000.init();
-            luaRotation = new LuaRotation();
-            scriptManager = new ScriptManager();
-        }
+        eventProcessorLua = new EventProcessorLua();
+        excludedList = new ExcludedList();
+        remapper3000 = new Remapper3000();
+        remapper3000.init();
+        luaRotation = new LuaRotation();
+        scriptManager = new ScriptManager();
 
         //gui's
         clickGuiNew = new ClickGuiNew();

@@ -81,13 +81,13 @@ public class Platform implements ViaPlatform<UUID> {
     }
 
     @Override
-    public PlatformTask runSync(Runnable runnable, long ticks) {
+    public PlatformTask<?> runSync(Runnable runnable, long ticks) {
         return new FutureTaskId(ViaForge.getInstance().getEventLoop().schedule(() -> runSync(runnable), ticks *
                 50, TimeUnit.MILLISECONDS).addListener(errorLogger()));
     }
 
     @Override
-    public PlatformTask runRepeatingSync(Runnable runnable, long ticks) {
+    public PlatformTask<?> runRepeatingSync(Runnable runnable, long ticks) {
          return new FutureTaskId(ViaForge.getInstance().getEventLoop().scheduleAtFixedRate(() -> runSync(runnable),
                  0, ticks * 50, TimeUnit.MILLISECONDS).addListener(errorLogger()));
     }
@@ -149,8 +149,7 @@ public class Platform implements ViaPlatform<UUID> {
 
     @Override
     public JsonObject getDump() {
-        JsonObject platformSpecific = new JsonObject();
-        return platformSpecific;
+        return new JsonObject();
     }
 
     @Override

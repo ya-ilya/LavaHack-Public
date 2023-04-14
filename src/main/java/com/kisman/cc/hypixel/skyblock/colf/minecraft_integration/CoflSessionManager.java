@@ -8,6 +8,7 @@ import com.google.gson.stream.JsonWriter;
 import net.minecraftforge.fml.common.Loader;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
@@ -66,9 +67,9 @@ public class CoflSessionManager {
 		File[] sessions = GetTempFileFolder().toFile().listFiles();
 		
 		Map<String, CoflSession> map = new HashMap<>();
-		
-		for (int i= 0; i<sessions.length;i++) {
-			map.put(sessions[i].getName(),  GetCoflSession(sessions[i].getName()));
+
+		for (File session : sessions) {
+			map.put(session.getName(), GetCoflSession(session.getName()));
 		}
 		
 		return map;
@@ -103,12 +104,11 @@ public class CoflSessionManager {
 			return session;
 		}
 		
-		BufferedReader reader = new BufferedReader( new InputStreamReader(new FileInputStream(file)));
+		BufferedReader reader = new BufferedReader(new InputStreamReader(Files.newInputStream(file.toPath())));
 		String raw = reader.lines().collect(Collectors.joining("\n"));
 		
 		reader.close();
-		CoflSession session = gson.fromJson(raw, CoflSession.class);
-		return session;
+		return gson.fromJson(raw, CoflSession.class);
 	}
 	
 	public static boolean OverwriteCoflSession(String username, CoflSession session) throws IOException {
@@ -120,7 +120,7 @@ public class CoflSessionManager {
 		
 		String data = gson.toJson(session);
 		
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(Files.newOutputStream(file.toPath())));
 		bw.append(data);
 		bw.flush();
 		bw.close();

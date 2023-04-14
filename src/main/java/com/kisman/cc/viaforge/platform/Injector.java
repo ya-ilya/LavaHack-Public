@@ -32,7 +32,6 @@ public class Injector implements ViaInjector {
 
     @Override
     public JsonObject getDump() {
-        JsonObject obj = new JsonObject();
-        return obj;
+        return new JsonObject();
     }
 }

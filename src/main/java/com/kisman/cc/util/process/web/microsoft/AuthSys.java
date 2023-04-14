@@ -17,6 +17,7 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,33 +32,30 @@ public class AuthSys {
                 if (AuthSys.srv == null) {
                     gui.setState("Waiting for auth... (Check your browser)");
                     if(HttpTools.ping("http://minecraft.net")) {
-                        (AuthSys.srv = HttpServer.create(new InetSocketAddress(59125), 0)).createContext("/", new HttpHandler() {
-                            @Override
-                            public void handle(final HttpExchange exchange) throws IOException {
-                                try {
-                                    gui.setState("Processing token...");
-                                    final byte[] b = done.getBytes(StandardCharsets.UTF_8);
-                                    exchange.getResponseHeaders().put("Content-Type", Arrays.asList("text/html; charset=UTF-8"));
-                                    exchange.sendResponseHeaders(200, b.length);
-                                    final OutputStream os = exchange.getResponseBody();
-                                    os.write(b);
-                                    os.flush();
-                                    os.close();
-                                    final String s = exchange.getRequestURI().getQuery();
-                                    if (s == null) gui.error("query=null");
-                                    else if (s.startsWith("code=")) accessTokenStep(s.replace("code=", ""), gui);
-                                    else if (s.equals("error=access_denied&error_description=The user has denied access to the scope requested by the client application.")) gui.error("Authorization cancelled.");
-                                    else gui.error(s);
-                                }
-                                catch (Throwable t) {
-                                    if (t instanceof MicrosoftAuthException) gui.error(t.getLocalizedMessage());
-                                    else {
-                                        t.printStackTrace();
-                                        gui.error("Unexpected error: " + t);
-                                    }
-                                }
-                                AuthSys.stop();
+                        (AuthSys.srv = HttpServer.create(new InetSocketAddress(59125), 0)).createContext("/", exchange -> {
+                            try {
+                                gui.setState("Processing token...");
+                                final byte[] b = done.getBytes(StandardCharsets.UTF_8);
+                                exchange.getResponseHeaders().put("Content-Type", Arrays.asList("text/html; charset=UTF-8"));
+                                exchange.sendResponseHeaders(200, b.length);
+                                final OutputStream os = exchange.getResponseBody();
+                                os.write(b);
+                                os.flush();
+                                os.close();
+                                final String s = exchange.getRequestURI().getQuery();
+                                if (s == null) gui.error("query=null");
+                                else if (s.startsWith("code=")) accessTokenStep(s.replace("code=", ""), gui);
+                                else if (s.equals("error=access_denied&error_description=The user has denied access to the scope requested by the client application.")) gui.error("Authorization cancelled.");
+                                else gui.error(s);
                             }
+                            catch (Throwable t) {
+                                if (t instanceof MicrosoftAuthException) gui.error(t.getLocalizedMessage());
+                                else {
+                                    t.printStackTrace();
+                                    gui.error("Unexpected error: " + t);
+                                }
+                            }
+                            AuthSys.stop();
                         });
                         AuthSys.srv.start();
                         Sys.openURL("https://login.live.com/oauth20_authorize.srf?client_id=54fd49e4-2103-4044-9603-2b028c814ec3&response_type=code&scope=XboxLive.signin%20XboxLive.offline_access&redirect_uri=http://localhost:59125&prompt=consent");
@@ -86,7 +84,7 @@ public class AuthSys {
     
     private static void accessTokenStep(final String code, final MSAuthScreen gui) throws Throwable {
         final PostRequest pr = new PostRequest("https://login.live.com/oauth20_token.srf").header("Content-Type", "application/x-www-form-urlencoded");
-        final Map<Object, Object> data = new HashMap<Object, Object>();
+        final Map<Object, Object> data = new HashMap<>();
         data.put("client_id", "54fd49e4-2103-4044-9603-2b028c814ec3");
         data.put("code", code);
         data.put("grant_type", "authorization_code");
@@ -122,7 +120,7 @@ public class AuthSys {
         final HashMap<Object, Object> map = new HashMap<>();
         final HashMap<Object, Object> sub = new HashMap<>();
         sub.put("SandboxId", "RETAIL");
-        sub.put("UserTokens", Arrays.asList(xbl));
+        sub.put("UserTokens", Collections.singletonList(xbl));
         map.put("Properties", sub);
         map.put("RelyingParty", "rp://api.minecraftservices.com/");
         map.put("TokenType", "JWT");
@@ -135,7 +133,7 @@ public class AuthSys {
     
     private static void minecraftTokenStep(final String xbl, final String xsts, final MSAuthScreen gui) throws Throwable {
         final PostRequest pr = new PostRequest("https://api.minecraftservices.com/authentication/login_with_xbox").header("Content-Type", "application/json").header("Accept", "application/json");
-        final Map<Object, Object> map = new HashMap<Object, Object>();
+        final Map<Object, Object> map = new HashMap<>();
         map.put("identityToken", "XBL3.0 x=" + xbl + ";" + xsts);
         pr.post(AuthSys.gson.toJson(map));
         if (pr.response() != 200) throw new MicrosoftAuthException("minecraftToken response: " + pr.response());

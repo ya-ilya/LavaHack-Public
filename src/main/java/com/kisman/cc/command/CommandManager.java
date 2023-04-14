@@ -11,7 +11,7 @@ import org.lwjgl.input.Keyboard;
 import java.util.ArrayList;
 
 public class CommandManager {
-    public static ArrayList<Command> commands = new ArrayList<Command>();
+    public static ArrayList<Command> commands = new ArrayList<>();
 	
 	public char cmdPrefix = ';';
 	public String cmdPrefixStr = "" + cmdPrefix;

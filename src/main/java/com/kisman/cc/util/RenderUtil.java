@@ -1084,10 +1084,6 @@ public class RenderUtil {
     }
 
     public static void drawCircleVertices(AxisAlignedBB bb, float radius, float red, float green, float blue, float alpha){
-        float r = red;
-        float g = green;
-        float b = blue;
-        float a = alpha;
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buffer = tessellator.getBuffer();
         GlStateManager.pushMatrix();
@@ -1101,8 +1097,8 @@ public class RenderUtil {
         GL11.glLineWidth(1f);
         for (int i = 0; i < 360; i++) {
             buffer.begin(3, DefaultVertexFormats.POSITION_COLOR);
-            buffer.pos(bb.getCenter().x + (Math.sin((i * 3.1415926D / 180)) * radius), bb.minY, bb.getCenter().z + (Math.cos((i * 3.1415926D / 180)) * radius)).color(r, g, b, a).endVertex();
-            buffer.pos(bb.getCenter().x + (Math.sin(((i + 1) * 3.1415926D / 180)) * radius), bb.minY, bb.getCenter().z + (Math.cos(((i + 1) * 3.1415926D / 180)) * radius)).color(r, g, b, a).endVertex();
+            buffer.pos(bb.getCenter().x + (Math.sin((i * 3.1415926D / 180)) * radius), bb.minY, bb.getCenter().z + (Math.cos((i * 3.1415926D / 180)) * radius)).color(red, green, blue, alpha).endVertex();
+            buffer.pos(bb.getCenter().x + (Math.sin(((i + 1) * 3.1415926D / 180)) * radius), bb.minY, bb.getCenter().z + (Math.cos(((i + 1) * 3.1415926D / 180)) * radius)).color(red, green, blue, alpha).endVertex();
             tessellator.draw();
         }
         GL11.glDisable(2848);
@@ -1151,8 +1147,8 @@ public class RenderUtil {
             Colour colour = new Colour(0, 0, 0, 52);
             NameTags nametags = NameTags.instance;
 
-            for (int i = 0; i < text.length; i++) {
-                double w = CustomFontUtil.getStringWidth(text[i]) / 2;
+            for (String s : text) {
+                double w = CustomFontUtil.getStringWidth(s) / 2.0;
                 if (w > width) width = w;
             }
             drawBorderedRect(-width - 1, -mc.fontRenderer.FONT_HEIGHT, width + 2, 1, 1.8f, new Colour(0, 4, 0, 255).getRGB(), new Colour(244, 4, 0, 255).getRGB());

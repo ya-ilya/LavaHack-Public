@@ -182,7 +182,7 @@ public class MathUtil {
     }
 
     public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map, boolean descending) {
-        LinkedList<Map.Entry<K, V>> list = new LinkedList<Map.Entry<K, V>>(map.entrySet());
+        LinkedList<Map.Entry<K, V>> list = new LinkedList<>(map.entrySet());
         if (descending) list.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
         else list.sort(Map.Entry.comparingByValue());
         LinkedHashMap<K, V> result = new LinkedHashMap<>();

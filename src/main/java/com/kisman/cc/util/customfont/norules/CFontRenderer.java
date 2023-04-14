@@ -269,7 +269,7 @@ public class CFontRenderer extends CustomFont {
         List<String> finalWords = new ArrayList<>();
         if (getStringWidth(text) > width) {
             String[] words = text.split(" ");
-            String currentWord = "";
+            StringBuilder currentWord = new StringBuilder();
             char lastColorCode = 65535;
             String[] arrayOfString1;
             int j = (arrayOfString1 = words).length;
@@ -283,18 +283,18 @@ public class CFontRenderer extends CustomFont {
                     }
                 }
                 if (getStringWidth(currentWord + word + " ") < width) {
-                    currentWord = currentWord + word + " ";
+                    currentWord.append(word).append(" ");
                 } else {
-                    finalWords.add(currentWord);
-                    currentWord = '§' + lastColorCode + word + " ";
+                    finalWords.add(currentWord.toString());
+                    currentWord = new StringBuilder('§' + lastColorCode + word + " ");
                 }
             }
             if (currentWord.length() > 0)
-                if (getStringWidth(currentWord) < width) {
-                    finalWords.add('§' + lastColorCode + currentWord + " ");
-                    currentWord = "";
+                if (getStringWidth(currentWord.toString()) < width) {
+                    finalWords.add('§' + lastColorCode + currentWord.toString() + " ");
+                    currentWord = new StringBuilder();
                 } else {
-                    finalWords.addAll(formatString(currentWord, width));
+                    finalWords.addAll(formatString(currentWord.toString(), width));
                 }
         } else {
             finalWords.add(text);
@@ -349,7 +349,7 @@ public class CFontRenderer extends CustomFont {
     }
 
     public static String getFormatFromString(String text) {
-        String s = "";
+        StringBuilder s = new StringBuilder();
         int i = -1;
         int j = text.length();
 
@@ -358,14 +358,14 @@ public class CFontRenderer extends CustomFont {
                 char c0 = text.charAt(i + 1);
 
                 if (isFormatColor(c0)) {
-                    s = "\u00a7" + c0;
+                    s = new StringBuilder("\u00a7" + c0);
                 } else if (isFormatSpecial(c0)) {
-                    s = s + "\u00a7" + c0;
+                    s.append("\u00a7").append(c0);
                 }
             }
         }
 
-        return s;
+        return s.toString();
     }
 
     private int sizeStringToWidth(String str, int wrapWidth) {

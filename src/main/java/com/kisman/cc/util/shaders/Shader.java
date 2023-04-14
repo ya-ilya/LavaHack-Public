@@ -45,7 +45,7 @@ public abstract class Shader {
         GL11.glPushMatrix();
         GL20.glUseProgram(this.program);
         if (this.uniformsMap == null) {
-            this.uniformsMap = new HashMap<String, Integer>();
+            this.uniformsMap = new HashMap<>();
             this.setupUniforms();
         }
         this.updateUniforms();

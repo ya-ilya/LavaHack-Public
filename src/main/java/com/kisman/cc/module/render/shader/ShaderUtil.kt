@@ -29,7 +29,7 @@ class ShaderUtil {
         }
 
         fun clearFrameBuffer(frameBuffer: Framebuffer) {
-            frameBuffer!!.apply {
+            frameBuffer.apply {
                 bindFramebuffer(true)
                 GlStateManager.clearColor(framebufferColor[0], framebufferColor[1], framebufferColor[2], framebufferColor[3])
 

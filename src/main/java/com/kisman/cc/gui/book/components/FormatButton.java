@@ -37,16 +37,16 @@ public class FormatButton extends ActionButton {
     int y_end = (int)((float)(this.y + this.height) / scale);
 
     if(this.format.isColor()) {
-      this.drawRect(x, y, x_end, y_end, 0xff000000 | this.fontRenderer.getColorCode(this.format.toString().charAt(1)));
+      drawRect(x, y, x_end, y_end, 0xff000000 | this.fontRenderer.getColorCode(this.format.toString().charAt(1)));
     } else {
       this.fontRenderer.drawString(this.format.toString().substring(1), x + 2, y + 1, 0xffffffff);
     }
 
     // Borders
-    this.drawRect(x, y, x_end, y + 1, 0xffffffff);
-    this.drawRect(x, y, x + 1, y_end, 0xffffffff);
-    this.drawRect(x, y_end - 1, x_end, y_end, 0xffffffff);
-    this.drawRect(x_end - 1, y, x_end, y_end, 0xffffffff);
+    drawRect(x, y, x_end, y + 1, 0xffffffff);
+    drawRect(x, y, x + 1, y_end, 0xffffffff);
+    drawRect(x, y_end - 1, x_end, y_end, 0xffffffff);
+    drawRect(x_end - 1, y, x_end, y_end, 0xffffffff);
 
     GlStateManager.popMatrix();
   }

@@ -2,6 +2,7 @@ package com.kisman.cc.module.misc;
 
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
 
@@ -21,7 +22,7 @@ public class MurderFinder extends Module {
     public void onDisable() {
         if(mc.player == null && mc.world == null) return;
 
-        mc.world.loadedEntityList.stream().filter(entity -> entity.isGlowing()).filter(entity -> entity != mc.player).forEach(entity -> { entity.setGlowing(false); });
+        mc.world.loadedEntityList.stream().filter(Entity::isGlowing).filter(entity -> entity != mc.player).forEach(entity -> entity.setGlowing(false));
     }
 
     public static boolean isMurderer(final EntityPlayer player) {

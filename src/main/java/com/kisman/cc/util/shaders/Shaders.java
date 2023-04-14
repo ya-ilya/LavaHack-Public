@@ -43,7 +43,7 @@ public class Shaders {
         if (!folder.exists()) {
             return null;
         }
-        final List<String> shaders = new ArrayList<String>();
+        final List<String> shaders = new ArrayList<>();
         for (final File file : Objects.requireNonNull(folder.listFiles())) {
             final String name = file.getName();
             if (name.endsWith(".fsh")) {
@@ -54,7 +54,7 @@ public class Shaders {
             return null;
         }
         final String randomname = shaders.get(new Random().nextInt(shaders.size()));
-        final FileInputStream fis = new FileInputStream(new File("assets/kismancc/shaders/" + randomname));
+        final FileInputStream fis = new FileInputStream("assets/kismancc/shaders/" + randomname);
         return new Object[] { randomname, fis };
     }
 }

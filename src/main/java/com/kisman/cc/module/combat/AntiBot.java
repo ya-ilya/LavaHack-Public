@@ -46,7 +46,7 @@ public class AntiBot extends Module {
                 RayTraceResult result = mc.objectMouseOver;
                 if(result == null || result.typeOfHit != RayTraceResult.Type.ENTITY) return;
                 Entity entity = mc.objectMouseOver.entityHit;
-                if(entity == null || !(entity instanceof EntityPlayer)) return;
+                if(!(entity instanceof EntityPlayer)) return;
                 Kisman.target_by_click = (EntityPlayer) entity;
                 ChatUtils.complete("[AntiBot] Current target is " + entity.getName());
             } else clicked = false;

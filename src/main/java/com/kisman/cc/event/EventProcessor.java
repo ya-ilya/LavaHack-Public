@@ -117,7 +117,7 @@ public class EventProcessor {
     public void onChatMessage(ClientChatEvent event) {
         if(event.getMessage().startsWith(Kisman.instance.commandManager.cmdPrefixStr)) {
             try {
-                Kisman.instance.commandManager.runCommands(event.getMessage().substring(0));
+                Kisman.instance.commandManager.runCommands(event.getMessage());
                 event.setCanceled(true);
             } catch (Exception ignored) {}
         }

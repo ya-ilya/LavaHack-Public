@@ -15,7 +15,7 @@ public class SpecialTagCompound extends NBTTagCompound {
 
   public static int getStackDamage(ItemStack stack) {
     NBTTagCompound tag = stack.getTagCompound();
-    if(tag != null && tag instanceof SpecialTagCompound) {
+    if(tag instanceof SpecialTagCompound) {
       return ((SpecialTagCompound)tag).getTrueDamage();
     }
     return stack.getItemDamage();
@@ -50,10 +50,10 @@ public class SpecialTagCompound extends NBTTagCompound {
   }
 
   public NBTTagCompound copy() {
-    NBTTagCompound copy = new SpecialTagCompound(this.empty, this.true_damage);
+    SpecialTagCompound copy = new SpecialTagCompound(this.empty, this.true_damage);
 
     for (String s : this.getKeySet()) {
-      ((SpecialTagCompound)copy).setTagLegacy(s, this.getTag(s).copy());
+      copy.setTagLegacy(s, this.getTag(s).copy());
     }
 
     return copy;

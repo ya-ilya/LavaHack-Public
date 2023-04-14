@@ -42,30 +42,30 @@ public class PacketLogger extends Module{
     private final Listener<PacketEvent.Send> listener = new Listener<>(event -> {
         if(!client.getValBoolean()) return;
 
-        String message = "Client -> " + event.getPacket().getClass().getName();
+        StringBuilder message = new StringBuilder("Client -> " + event.getPacket().getClass().getName());
 
-        if(values.getValBoolean()) for(Field field : event.getPacket().getClass().getDeclaredFields()) message += " " + field.getName() + "[" + field + "]";
+        if(values.getValBoolean()) for(Field field : event.getPacket().getClass().getDeclaredFields()) message.append(" ").append(field.getName()).append("[").append(field).append("]");
         
-        ChatUtils.simpleMessage(message);
+        ChatUtils.simpleMessage(message.toString());
         if(PacketChat.Instance.logs.ActiveMessages.size()+1>10)
         {
             if(PacketChat.Instance.logs.PassiveMessages.size()+1>10)
                 PacketChat.Instance.logs.PassiveMessages.remove(0);
 
             PacketChat.Instance.up();
-            PacketChat.Instance.logs.ActiveMessages.add(new Message(message));
+            PacketChat.Instance.logs.ActiveMessages.add(new Message(message.toString()));
 
-        }else PacketChat.Instance.logs.ActiveMessages.add(new Message(message));
+        }else PacketChat.Instance.logs.ActiveMessages.add(new Message(message.toString()));
     });
 
     @EventHandler
     private final Listener<PacketEvent.Receive> listener1 = new Listener<>(event -> {
         if(!server.getValBoolean()) return;
 
-        String message = "Server -> " + event.getPacket().getClass().getName();
+        StringBuilder message = new StringBuilder("Server -> " + event.getPacket().getClass().getName());
 
-        if(values.getValBoolean()) for(Field field : event.getPacket().getClass().getDeclaredFields()) message += " " + field.getName() + "[" + field + "]";
+        if(values.getValBoolean()) for(Field field : event.getPacket().getClass().getDeclaredFields()) message.append(" ").append(field.getName()).append("[").append(field).append("]");
         
-        ChatUtils.simpleMessage(message);
+        ChatUtils.simpleMessage(message.toString());
     });
 }

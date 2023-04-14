@@ -82,7 +82,7 @@ public class AltEntry implements IGuiListEntry {
 	
 	@Override
 	public boolean mousePressed(int slotIndex, int mouseX, int mouseY, int mouseEvent, int relativeX, int relativeY) {
-		if(relativeX <= 32 && relativeX < 32) {
+		if(relativeX < 32) {
 			AltManager.logIn(this.email, this.password, true);
 			return true;
 		}

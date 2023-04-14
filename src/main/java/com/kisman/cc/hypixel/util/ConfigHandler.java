@@ -214,7 +214,7 @@ public class ConfigHandler {
 		try {
 			config.load();
 			config.get(category, key, value).getInt();
-			config.getCategory(category).get(key).set(Integer.valueOf(value));
+			config.getCategory(category).get(key).set((int) value);
 		} catch (Exception e) {
 			System.out.println("Cannot load configuration file!");
 		} finally {
@@ -227,7 +227,7 @@ public class ConfigHandler {
 		try {
 			config.load();
 			config.get(category, key, value).getInt();
-			config.getCategory(category).get(key).set(Integer.valueOf(value));
+			config.getCategory(category).get(key).set((int) value);
 		} catch (Exception e) {
 			System.out.println("Cannot load configuration file!");
 		} finally {

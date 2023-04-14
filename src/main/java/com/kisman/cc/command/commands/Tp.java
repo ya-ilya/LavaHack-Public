@@ -17,7 +17,6 @@ public class Tp extends Command {
     public void runCommand(String s, String[] args) {
         if(args.length > 3) {
             ChatUtils.error("Usage: " + getSyntax());
-            return;
         } else if(args.length == 3) {
             for(String str : args) {
                 if(str.matches(regex3)) {
@@ -63,7 +62,7 @@ public class Tp extends Command {
 
     private int getCoord(String str) {
         if(str.matches(regex1)) {
-            return -(Integer.parseInt(str.substring(0)));
+            return -(Integer.parseInt(str));
         } else if(str.matches(regex2)) {
             return Integer.parseInt(str);
         } else {

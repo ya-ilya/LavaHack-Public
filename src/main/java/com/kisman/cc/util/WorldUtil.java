@@ -10,7 +10,7 @@ import java.util.List;
 
 public class WorldUtil {
     public static String vectorToString(Vec3d vector, boolean... includeY) {
-        boolean reallyIncludeY = includeY.length <= 0 || includeY[0];
+        boolean reallyIncludeY = includeY.length == 0 || includeY[0];
         StringBuilder builder = new StringBuilder();
         builder.append('(');
         builder.append((int) Math.floor(vector.x));

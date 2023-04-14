@@ -26,7 +26,7 @@ class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.",
 
     val glow = Setting("Glow Background", this, false).setVisible {background.valBoolean}
 
-    val glowSetting = GlowRendererPattern(this, Supplier {background.valBoolean && glow.valBoolean})
+    val glowSetting = GlowRendererPattern(this, {background.valBoolean && glow.valBoolean})
 
     init {
         setmgr.rSetting(scale)

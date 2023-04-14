@@ -26,11 +26,9 @@ public class QueryServerCommands {
 			System.out.println(">>> "+Arrays.toString(commands));
 			
 			StringBuilder sb = new StringBuilder();
-			
-			if(commands.length>0) {
-				for(CommandInfo cm : commands) {
-					sb.append(cm + "\n");
-				}
+
+			for (CommandInfo cm : commands) {
+				sb.append(cm).append("\n");
 			}
 			return sb.toString().trim();
 			

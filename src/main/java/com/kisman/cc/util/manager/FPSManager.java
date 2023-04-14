@@ -7,7 +7,7 @@ public class FPSManager {
     private final LinkedList<Long> frames;
 
     public FPSManager() {
-        this.frames = new LinkedList<Long>();
+        this.frames = new LinkedList<>();
     }
 
     public void update() {

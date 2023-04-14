@@ -48,7 +48,7 @@ abstract class Abstract3dObject {
 
     fun glBillboardDistanceScaled(vec : Vec3d, player : EntityPlayer, scale : Float) {
         glBillboard(vec)
-        var scaleDist : Float = player.getDistance(vec.x, vec.y, vec.z).toFloat() / 2f / (2f + (2f - scale))
+        val scaleDist : Float = player.getDistance(vec.x, vec.y, vec.z).toFloat() / 2f / (2f + (2f - scale))
         GL11.glScalef(scaleDist, scaleDist, scaleDist)
     }
 

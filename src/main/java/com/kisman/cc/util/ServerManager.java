@@ -75,9 +75,7 @@ public class ServerManager {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> listener1 = new Listener<>(event -> {
-        timer.reset();
-    });
+    private final Listener<PacketEvent.Receive> listener1 = new Listener<>(event -> timer.reset());
 
     public void reset() {
         Arrays.fill(tpsCount, 20);

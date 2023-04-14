@@ -64,7 +64,7 @@ class Changer : Module("Changer", "FullBright + CustomFov + Ambience + CustomTim
         }
     }
 
-    val receive = Listener<PacketEvent.Receive>(EventHook {
+    val receive = Listener<PacketEvent.Receive>({
         if(time.valBoolean && it.packet is SPacketTimeUpdate) {
             it.cancel()
         }

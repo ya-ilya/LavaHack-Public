@@ -127,8 +127,7 @@ public class ModuleScript extends Module {
 
     public void invoke(String name, LuaValue arg) {
         if (callbacks == null || callbacks.isEmpty()) return;
-        for (int i = 0; i < callbacks.size(); i++) {
-            final LuaCallback c = callbacks.get(i);
+        for (final LuaCallback c : callbacks) {
             if (c.name.equalsIgnoreCase(name)) c.run(arg);
         }
     }

@@ -52,7 +52,7 @@ public class SandBoxShaders {
 
         String randomname = shaders.get(new Random().nextInt(shaders.size()));
 
-        FileInputStream fis = new FileInputStream(new File("glslmenu/" + randomname));
+        FileInputStream fis = new FileInputStream("glslmenu/" + randomname);
 
 //        String randomname = "testshader/fsh";
 //        FileInputStream fis = new FileInputStream(new File("assets/kismancc/mainmenu/sandboxshaders/" + randomname));

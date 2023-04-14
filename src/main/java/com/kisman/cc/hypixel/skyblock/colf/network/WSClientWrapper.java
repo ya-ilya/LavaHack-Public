@@ -103,17 +103,11 @@ public class WSClientWrapper {
 				isRunning = true;
 
 				return true;
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (WebSocketException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NoSuchAlgorithmException e) {
+			} catch (IOException | NoSuchAlgorithmException | WebSocketException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-    		return false;
+			return false;
     	}
 		return false;
     }
@@ -127,7 +121,7 @@ public class WSClientWrapper {
     	}
     }
     
-    public synchronized void SendMessage(Command cmd){
+    public synchronized void SendMessage(Command<?> cmd){
     	if(this.isRunning) {
     		this.socket.sendCommand(cmd);
     	} else {

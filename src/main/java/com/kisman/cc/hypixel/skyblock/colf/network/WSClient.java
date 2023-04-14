@@ -106,7 +106,7 @@ public class WSClient extends WebSocketAdapter {
 		
 	}
 
-	public void sendCommand(Command cmd) {
+	public void sendCommand(Command<?> cmd) {
 		String json = gson.toJson(cmd);
 		this.socket.sendText(json);
 	}

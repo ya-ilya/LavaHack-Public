@@ -49,7 +49,7 @@ public class PreviewGui extends RightPanel {
     this.hasParent = hasParent;
 
     this.inventory = new InventoryBasic(null, false, 27);
-    this.slots = new LinkedList<Slot>();
+    this.slots = new LinkedList<>();
     for(NBTBase i_base : list) {
       NBTTagCompound i = (NBTTagCompound) i_base;
       ItemStack stack = new ItemStack(i);

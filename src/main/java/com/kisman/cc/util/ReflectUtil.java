@@ -35,7 +35,7 @@ public final class ReflectUtil extends SecurityManager {
     }
 
     public static <T> T createInstance(Class<T> cls){
-        return new Loader<T>(cls).loadFromClass(cls);
+        return new Loader<>(cls).loadFromClass(cls);
     }
 
     public static <T> T createInstance(Class<T> cls, Instantiator instantiator){

@@ -5,7 +5,7 @@ public class RotationSpoof {
     public float pitch;
     
     public RotationSpoof(float yaw, float pitch) {
-        yaw = yaw;
-        pitch = pitch;
+        this.yaw = yaw;
+        this.pitch = pitch;
     }
 }

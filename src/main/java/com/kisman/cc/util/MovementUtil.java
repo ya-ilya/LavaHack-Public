@@ -173,10 +173,9 @@ public class MovementUtil {
     public static float calcMoveYaw(float targetYaw) {
         float moveForward = getRoundedForward();
         float moveString = getRoundedStrafing();
-        float yawIn = targetYaw;
         float strafe = 90 * moveString;
         strafe *= (moveForward != 0.0F) ? (moveForward * 0.5F) : 1.0F;
-        float yaw = yawIn - strafe;
+        float yaw = targetYaw - strafe;
         yaw -= ((moveForward < 0.0F) ? 180 : 0);
         yaw = (float) Math.toRadians(yaw);
 

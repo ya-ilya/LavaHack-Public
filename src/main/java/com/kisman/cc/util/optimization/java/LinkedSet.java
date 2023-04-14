@@ -3,7 +3,7 @@ package com.kisman.cc.util.optimization.java;
 import java.util.*;
 
 /**
- * @author https://habr.com/ru/post/325426/?
+ * @author <a href="https://habr.com/ru/post/325426/">yannmar</a>
  * @param <E>
  */
 public class LinkedSet<E> extends AbstractSet<E> {

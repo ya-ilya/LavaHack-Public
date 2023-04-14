@@ -75,8 +75,8 @@ public class PopCharms extends Module {
             time = System.currentTimeMillis();
             duration = time - this.startTime;
             startAlpha = (float) color.getAlpha() / 255;
-            if (duration < (long) (fadeSpeed.getValInt() * 10)) opacity = startAlpha - (float)duration / (float)(fadeSpeed.getValInt() * 10);
-            if (duration < (long)(fadeSpeed.getValInt() * 10)) {
+            if (duration < (fadeSpeed.getValInt() * 10L)) opacity = startAlpha - (float)duration / (float)(fadeSpeed.getValInt() * 10);
+            if (duration < (fadeSpeed.getValInt() * 10L)) {
             GL11.glPushMatrix();
             if (angle.getValBoolean()) GlStateManager.translate(Float.intBitsToFloat(Float.floatToIntBits(1.240196E38f) ^ 0x7EBA9A9D), ((float)duration / (float)(angleSpeed.getValInt() * 10)), Float.intBitsToFloat(Float.floatToIntBits(3.0414126E38f) ^ 0x7F64CF7A));
             mc.renderManager.renderEntityStatic(player, Float.intBitsToFloat(Float.floatToIntBits(6.159893f) ^ 0x7F451DD8), false);

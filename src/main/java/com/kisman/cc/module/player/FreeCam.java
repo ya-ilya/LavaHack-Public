@@ -55,7 +55,6 @@ public class FreeCam
             if (this.autoTeleportDisable.getValBoolean()) {
                 this.toggle();
             }
-            return;
         }
     }
 
@@ -82,7 +81,6 @@ public class FreeCam
             if (this.autoTeleportDisable.getValBoolean()) {
                 this.toggle();
             }
-            return;
         }
     }
 

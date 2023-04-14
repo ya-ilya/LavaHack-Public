@@ -222,13 +222,13 @@ public class InventoryUtil {
 
     public static void switchToSlotGhost(final int slot) {
         if (slot != -1 && InventoryUtil.mc.player.inventory.currentItem != slot) {
-            InventoryUtil.mc.player.connection.sendPacket((Packet)new CPacketHeldItemChange(slot));
+            InventoryUtil.mc.player.connection.sendPacket(new CPacketHeldItemChange(slot));
         }
     }
 
     public static void switchToSlotGhost(final Block block) {
         if (getBlockInHotbar(block) != -1 && InventoryUtil.mc.player.inventory.currentItem != getBlockInHotbar(block)) {
-            InventoryUtil.mc.player.connection.sendPacket((Packet)new CPacketHeldItemChange(getBlockInHotbar(block)));
+            InventoryUtil.mc.player.connection.sendPacket(new CPacketHeldItemChange(getBlockInHotbar(block)));
         }
     }
 
@@ -367,7 +367,7 @@ public class InventoryUtil {
         return slots;
     }
 
-    public static boolean holdingItem(Class clazz) {
+    public static boolean holdingItem(Class<?> clazz) {
         boolean result = false;
         ItemStack stack = mc.player.getHeldItemMainhand();
 
@@ -391,7 +391,7 @@ public class InventoryUtil {
 
     //zero two
     public static
-    boolean isInstanceOf ( ItemStack stack , Class clazz ) {
+    boolean isInstanceOf ( ItemStack stack , Class<?> clazz ) {
         if ( stack == null ) {
             return false;
         }

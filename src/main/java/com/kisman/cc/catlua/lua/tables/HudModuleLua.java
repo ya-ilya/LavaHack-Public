@@ -103,7 +103,7 @@ public class HudModuleLua extends HudModule {
     static class New extends LibFunction {
         public LuaValue call(LuaValue name, LuaValue description, LuaValue category, LuaValue drag, LuaValue script) {
             if(!name.isstring() || !description.isstring() || !category.isstring() || !drag.isstring()) throw new IllegalArgumentException("Invalid arguments.");
-            return CoerceJavaToLua.coerce(new HudModuleLua(name.tojstring(), description.tojstring(), HudCategory.valueOf(category.tojstring()), Boolean.valueOf(drag.tojstring()), ( ModuleScript ) CoerceLuaToJava.coerce(script, ModuleScript.class)));
+            return CoerceJavaToLua.coerce(new HudModuleLua(name.tojstring(), description.tojstring(), HudCategory.valueOf(category.tojstring()), Boolean.parseBoolean(drag.tojstring()), ( ModuleScript ) CoerceLuaToJava.coerce(script, ModuleScript.class)));
         }
     }
 }

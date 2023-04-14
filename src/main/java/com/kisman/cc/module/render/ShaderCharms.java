@@ -159,9 +159,7 @@ public class ShaderCharms extends Module {
 
     @SubscribeEvent
     public void onFog(EntityViewRenderEvent.FogColors event) {
-        ((AccessorShaderGroup) Objects.requireNonNull(shaderHelper.getShader())).getListFramebuffers().forEach(framebuffer -> {
-            framebuffer.setFramebufferColor(event.getRed(), event.getGreen(), event.getBlue(), 0);
-        });
+        ((AccessorShaderGroup) Objects.requireNonNull(shaderHelper.getShader())).getListFramebuffers().forEach(framebuffer -> framebuffer.setFramebufferColor(event.getRed(), event.getGreen(), event.getBlue(), 0));
     }
 
     @EventHandler

@@ -45,7 +45,7 @@ public class Setting {
 	private String sval;
 	private String dString;
 	private ArrayList<String> options;
-	private Enum optionEnum;
+	private Enum<?> optionEnum;
 	
 	public boolean bval;
 	private boolean rainbow;
@@ -156,7 +156,7 @@ public class Setting {
 		this.mode = "Combo";
 	}
 
-	public Setting(String name, Module parent, Enum options){
+	public Setting(String name, Module parent, Enum<?> options){
 		this.name = name;
 		this.parent = parent;
 		this.sval = options.name();
@@ -242,9 +242,9 @@ public class Setting {
 		this.mode = "Items";
 	}
 
-	public Enum getEnumByName() {
+	public Enum<?> getEnumByName() {
 		if(optionEnum == null) return null;
-		Enum enumVal = optionEnum;
+		Enum<?> enumVal = optionEnum;
 		String[] values = Arrays.stream(enumVal.getClass().getEnumConstants()).map(Enum::name).toArray(String[]::new);
 		return Enum.valueOf(enumVal.getClass(), values[index]);
 	}
@@ -400,7 +400,7 @@ public class Setting {
 		float[] color = Color.RGBtoHSB(colour.r, colour.g, colour.b, null);
 	}
 
-	public Enum getValEnum() {
+	public Enum<?> getValEnum() {
 		return optionEnum.valueOf(optionEnum.getClass(), sval);
 	}
 

@@ -53,7 +53,5 @@ public class TeamRusherLag extends Module {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> listener = new Listener<>(event -> {
-        lastPacket = System.currentTimeMillis();
-    });
+    private final Listener<PacketEvent.Receive> listener = new Listener<>(event -> lastPacket = System.currentTimeMillis());
 }

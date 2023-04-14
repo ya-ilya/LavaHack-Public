@@ -141,7 +141,7 @@ public class AutoFirework extends Module {
             smartRotate = false;
             doTrap();
 
-            blockPlaceFireWork0: {
+            {
                 //place firework
 
                 if (Math.sqrt(mc.player.getDistanceSq(playerPos.getX(), playerPos.getY(), playerPos.getZ())) <= range.getValDouble()) {
@@ -150,7 +150,7 @@ public class AutoFirework extends Module {
 
                     //rotate
                     if (rotate.getValBoolean()) {
-                        final double[] pos =  EntityUtil.calculateLookAt(target.posX + 0.5, target.posY - 0.5, target.posZ + 0.5, mc.player);
+                        final double[] pos = EntityUtil.calculateLookAt(target.posX + 0.5, target.posY - 0.5, target.posZ + 0.5, mc.player);
 
                         aimBot.rotationSpoof = new RotationSpoof((float) pos[0], (float) pos[1]);
 
@@ -163,16 +163,17 @@ public class AutoFirework extends Module {
                     //place
                     EnumFacing facing = null;
 
-                    if(raytrace.getValBoolean()) {
+                    if (raytrace.getValBoolean()) {
                         RayTraceResult result = mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ), new Vec3d(target.posX + 0.5, target.posY - 0.5, target.posZ + 0.5));
-                        if(result == null || result.sideHit  == null) facing = EnumFacing.UP;
+                        if (result == null || result.sideHit == null) facing = EnumFacing.UP;
                         else facing = result.sideHit;
                     }
 
                     mc.getConnection().sendPacket(new CPacketPlayerTryUseItemOnBlock(playerPos, facing, fireHand.getValString().equalsIgnoreCase("Default") ? mc.player.getHeldItemOffhand().getItem() == Items.FIREWORKS ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND : fireHand.getValString().equalsIgnoreCase("MainHand") ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND, 0, 0, 0));
 
                     //switch return
-                    if(switchFireReturn.getValBoolean()) InventoryUtil.switchToSlot(oldSlot, (InventoryUtil.Switch) switchMode.getValEnum());
+                    if (switchFireReturn.getValBoolean())
+                        InventoryUtil.switchToSlot(oldSlot, (InventoryUtil.Switch) switchMode.getValEnum());
 
                     //reset timer
                     delayTimer.reset();

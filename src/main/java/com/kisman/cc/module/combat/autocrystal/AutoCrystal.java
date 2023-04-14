@@ -186,7 +186,7 @@ public class AutoCrystal extends Module implements Runnable {
     private final Listener<PacketEvent.Send> listener1 = new Listener<>(event -> {
         bestCrystalPos = placeCalculateAI();
         float[] rot = RotationUtils.getRotationToPos(bestCrystalPos.getBlockPos());
-        Packet packet = event.getPacket();
+        Packet<?> packet = event.getPacket();
         if (packet instanceof CPacketPlayer && rotateMode.checkValString("Spoof")) {
             ((CPacketPlayer) packet).yaw = rot[0];
             ((CPacketPlayer) packet).pitch = rot[1];

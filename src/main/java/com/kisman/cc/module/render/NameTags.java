@@ -140,9 +140,8 @@ public class  NameTags extends Module {
         final int[] counter = { 1 };
         this.color1 = twoColorEffect(new Color(255, 50, 50), new Color(79, 9, 9), Math.abs(System.currentTimeMillis() / 10L) / 100.0 + 6.0 * (counter[0] * 2.55) / 60.0).getRGB();
         RenderUtil.drawSmoothRect((float)(-width - 3), 9.0f, (float)(width + 4), 23.0f, new Color(0, 0, 0, (int)widthBackGround).getRGB());
-        final int[] array = counter;
         final int n = 0;
-        ++array[n];//9 + 14 / 2 - font.fontHeight / 2
+        ++counter[n];//9 + 14 / 2 - font.fontHeight / 2
         font.drawString(name, -width, 9 + 7 - (font.fontHeight - 8) / 4, Color.red.getRGB());
         boolean item = this.items.getValBoolean();
         if (item) {
@@ -164,8 +163,8 @@ public class  NameTags extends Module {
             }
             if (player.getHeldItemOffhand() != null) {
                 xOffset += 0;
-                final Object renderOffhand = player.getHeldItemOffhand().copy();
-                this.renderItem((ItemStack)renderOffhand, xOffset, -10);
+                final ItemStack renderOffhand = player.getHeldItemOffhand().copy();
+                this.renderItem(renderOffhand, xOffset, -10);
                 xOffset += 8;
             }
         }

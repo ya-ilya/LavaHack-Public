@@ -47,7 +47,7 @@ object Outline2Shader {
 
         // Draw it on the main frame buffer
         mc.framebuffer.bindFramebuffer(false)
-        frameBufferFinal!!.framebufferRenderExt(mc.displayWidth, mc.displayHeight, false)
+        frameBufferFinal.framebufferRenderExt(mc.displayWidth, mc.displayHeight, false)
 
         // Revert states
         GlStateUtils.blend(true)
@@ -96,7 +96,7 @@ object Outline2Shader {
     fun updateUniforms(shaderHelper: ShaderHelper) {
         shaderHelper.shader?.let {
             for(shader in (it as AccessorShaderGroup).listShaders) {
-                ShaderUtil.setupUniforms(shader, arrayOf<ShaderUtil.Uniform>(outlineAlpha!!, filledAlpha!!, width!!, widthSq!!, ratio!!))
+                ShaderUtil.setupUniforms(shader, arrayOf(outlineAlpha!!, filledAlpha!!, width!!, widthSq!!, ratio!!))
             }
         }
     }

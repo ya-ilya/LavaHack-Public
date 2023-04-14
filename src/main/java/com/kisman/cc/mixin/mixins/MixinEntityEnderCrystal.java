@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = EntityEnderCrystal.class, priority = 1000)
+@Mixin(value = EntityEnderCrystal.class)
 public class MixinEntityEnderCrystal {
     @Inject(method = "attackEntityFrom", at = @At("RETURN"), cancellable = true)
     public void attackEntityFrom(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {

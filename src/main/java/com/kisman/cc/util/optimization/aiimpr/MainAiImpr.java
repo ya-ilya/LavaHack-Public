@@ -28,12 +28,11 @@ public class MainAiImpr {
         if (entity instanceof EntityLiving) {
             final EntityLiving living = (EntityLiving)entity;
             if (REMOVE_LOOK_AI || REMOVE_LOOK_IDLE) {
-                final Iterator it = living.tasks.taskEntries.iterator();
+                final Iterator<EntityAITasks.EntityAITaskEntry> it = living.tasks.taskEntries.iterator();
                 while (it.hasNext()) {
-                    final Object obj = it.next();
-                    if (obj instanceof EntityAITasks.EntityAITaskEntry) {
-                        final EntityAITasks.EntityAITaskEntry task = (EntityAITasks.EntityAITaskEntry)obj;
-                        if(!(REMOVE_LOOK_AI && task.action instanceof EntityAIWatchClosest)) if (!REMOVE_LOOK_IDLE || !(task.action instanceof EntityAILookIdle)) continue;
+                    final EntityAITasks.EntityAITaskEntry obj = it.next();
+                    if (obj != null) {
+                        if(!(REMOVE_LOOK_AI && obj.action instanceof EntityAIWatchClosest)) if (!REMOVE_LOOK_IDLE || !(obj.action instanceof EntityAILookIdle)) continue;
                         it.remove();
                     }
                 }

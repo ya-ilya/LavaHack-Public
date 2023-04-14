@@ -253,12 +253,11 @@ public class RotationUtils {
         return - 180.0f + yaw;
     }
 
-    public static float[] getAverageRotations(final List list) {
+    public static float[] getAverageRotations(final List<Entity> list) {
         double d = 0.0;
         double d2 = 0.0;
         double d3 = 0.0;
-        for (final Object entityw : list) {
-            final Entity entity = (Entity)entityw;
+        for (final Entity entity : list) {
             d += entity.posX;
             d2 += entity.getEntityBoundingBox().maxY - 2.0;
             d3 += entity.posZ;

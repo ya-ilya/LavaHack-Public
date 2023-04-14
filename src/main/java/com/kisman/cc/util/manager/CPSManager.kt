@@ -15,7 +15,7 @@ class CPSManager {
     var usage: Int = 0
     var cps: Int = 0
 
-    @EventHandler val send = Listener(EventHook { event: PacketEvent.Send ->
+    @EventHandler val send = Listener({ event: PacketEvent.Send ->
         if (event.packet is CPacketPlayerTryUseItemOnBlock) if (Minecraft.getMinecraft().player.heldItemMainhand.getItem() == Items.END_CRYSTAL || Minecraft.getMinecraft().player.heldItemOffhand.getItem() == Items.END_CRYSTAL) usage++
     })
 

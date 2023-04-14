@@ -57,11 +57,7 @@ class AutoRerRenderer {
             currentPos?.let { currentPos ->
                 val multiplier = Easing.OUT_QUART.inc(Easing.toDelta(lastUpdateTime, movingLength))
                 val renderPos = prevPos.add(currentPos.subtract(prevPos).scale(multiplier.toDouble()))
-                scale = if (placeInfo != null) {
-                    Easing.OUT_CUBIC.inc(Easing.toDelta(startTime, fadeLength))
-                } else {
-                    Easing.IN_CUBIC.dec(Easing.toDelta(startTime, fadeLength))
-                }
+                scale = Easing.OUT_CUBIC.inc(Easing.toDelta(startTime, fadeLength))
 
                 renderer.draw(toRenderBox(renderPos, scale))
 
@@ -69,15 +65,15 @@ class AutoRerRenderer {
 
 
                 //Text
-                if(text && placeInfo != null) {
-                    val text_ = buildString {
+                if (text) {
+                    val formattedText = buildString {
                         append("%.1f".format(lastTargetDamage))
                         if (this.isNotEmpty()) append('/')
                         append("%.1f".format(lastSelfDamage))
                     }
 
                     TextOnBlockObject(
-                            text_,
+                            formattedText,
                             placeInfo.blockPos,
                             (if (scale == 1.0f) Colour(255, 255, 255) else Colour(255, 255, 255, (255.0f * scale).toInt()))
                     )
@@ -86,7 +82,7 @@ class AutoRerRenderer {
         }
     }
 
-    private inline fun toRenderBox(vec3d: Vec3d, scale: Float): AxisAlignedBB {
+    private fun toRenderBox(vec3d: Vec3d, scale: Float): AxisAlignedBB {
         val halfSize = 0.5 * scale
         return AxisAlignedBB(
             vec3d.x - halfSize + 0.5, vec3d.y - halfSize + 0.5, vec3d.z - halfSize + 0.5,
@@ -104,9 +100,7 @@ class AutoRerRenderer {
 
             lastBlockPos = newBlockPos
         }
-        if(placeInfo != null) {
-            lastSelfDamage = placeInfo.selfDamage
-            lastTargetDamage = placeInfo.targetDamage
-        }
+        lastSelfDamage = placeInfo.selfDamage
+        lastTargetDamage = placeInfo.targetDamage
     }
 }

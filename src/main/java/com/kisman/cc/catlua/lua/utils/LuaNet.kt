@@ -16,7 +16,6 @@ class LuaNet {
         var instance = LuaNet()
 
         fun getDefault(): LuaNet {
-            if(instance == null) instance = LuaNet()
             return instance
         }
     }

@@ -26,7 +26,7 @@ open class PlaceInfo(
         target: EntityLivingBase,
         minDamage: Float
     ) : PlaceInfo(target, BlockPos.ORIGIN, Float.MAX_VALUE, minDamage, EnumFacing.UP, Vec3f.ZERO, Vec3d.ZERO) {
-        inline fun update(
+        fun update(
             target: EntityLivingBase,
             blockPos: BlockPos,
             selfDamage: Float,
@@ -38,7 +38,7 @@ open class PlaceInfo(
             this.targetDamage = targetDamage
         }
 
-        inline fun clear(player: EntityPlayerSP) {
+        fun clear(player: EntityPlayerSP) {
             update(player, BlockPos.ORIGIN, Float.MAX_VALUE, targetDamage)
         }
 
@@ -68,7 +68,7 @@ open class PlaceInfo(
             }
         }*/
 
-        inline fun takeValid(damage: Float): Mutable? {
+        fun takeValid(damage: Float): Mutable? {
             return this.takeIf {
                 target != mc.player
                         && selfDamage != Float.MAX_VALUE

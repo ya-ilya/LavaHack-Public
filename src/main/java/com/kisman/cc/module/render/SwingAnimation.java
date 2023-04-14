@@ -1,7 +1,8 @@
 package com.kisman.cc.module.render;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import net.minecraftforge.client.event.RenderSpecificHandEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -9,7 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.glRotatef;
 
 public class SwingAnimation extends Module {
     public static SwingAnimation instance;

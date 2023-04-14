@@ -1,21 +1,23 @@
 package com.kisman.cc.module.render;
 
-import com.kisman.cc.module.*;
+import com.kisman.cc.Kisman;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.Colour;
 import com.kisman.cc.util.RenderUtil;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import com.kisman.cc.Kisman;
-import net.minecraft.entity.*;
-import net.minecraft.entity.item.*;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.client.event.*;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EntityESP extends Module{
     private Setting range = new Setting("Range", this, 50, 0, 100, true);

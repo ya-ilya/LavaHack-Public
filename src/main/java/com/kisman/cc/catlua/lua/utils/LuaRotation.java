@@ -1,6 +1,7 @@
 package com.kisman.cc.catlua.lua.utils;
 
-import com.kisman.cc.util.*;
+import com.kisman.cc.util.Globals;
+import com.kisman.cc.util.RotationUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.play.client.CPacketPlayer;
 

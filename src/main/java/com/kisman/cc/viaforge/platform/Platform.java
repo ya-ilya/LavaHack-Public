@@ -1,5 +1,8 @@
 package com.kisman.cc.viaforge.platform;
 
+import com.kisman.cc.viaforge.ViaForge;
+import com.kisman.cc.viaforge.util.FutureTaskId;
+import com.kisman.cc.viaforge.util.JLoggerToLog4j;
 import com.viaversion.viaversion.api.command.ViaCommandSender;
 import com.viaversion.viaversion.api.configuration.ConfigurationProvider;
 import com.viaversion.viaversion.api.configuration.ViaVersionConfig;
@@ -8,9 +11,6 @@ import com.viaversion.viaversion.api.platform.ViaPlatform;
 import com.viaversion.viaversion.libs.gson.JsonObject;
 import com.viaversion.viaversion.libs.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
 import com.viaversion.viaversion.libs.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
-import com.kisman.cc.viaforge.ViaForge;
-import com.kisman.cc.viaforge.util.FutureTaskId;
-import com.kisman.cc.viaforge.util.JLoggerToLog4j;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
 import org.apache.logging.log4j.LogManager;

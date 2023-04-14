@@ -1,12 +1,17 @@
 package com.kisman.cc.catlua.lua.tables;
 
 import com.kisman.cc.catlua.lua.LuaCallback;
-import com.kisman.cc.catlua.lua.utils.*;
+import com.kisman.cc.catlua.lua.utils.LuaUtils;
+import com.kisman.cc.catlua.lua.utils.LuaVec2d;
 import com.kisman.cc.catlua.module.ModuleScript;
-import com.kisman.cc.hud.hudmodule.*;
-import org.luaj.vm2.*;
+import com.kisman.cc.hud.hudmodule.HudCategory;
+import com.kisman.cc.hud.hudmodule.HudModule;
+import org.luaj.vm2.LuaClosure;
+import org.luaj.vm2.LuaTable;
+import org.luaj.vm2.LuaValue;
 import org.luaj.vm2.lib.LibFunction;
-import org.luaj.vm2.lib.jse.*;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
+import org.luaj.vm2.lib.jse.CoerceLuaToJava;
 
 public class HudModuleLua extends HudModule {
     private final ModuleScript script;

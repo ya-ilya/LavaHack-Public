@@ -1,16 +1,15 @@
 package com.kisman.cc.gui.csgo.components.visualpreview;
 
-import com.kisman.cc.module.client.Config;
+import com.kisman.cc.gui.csgo.IRenderer;
 import com.kisman.cc.gui.csgo.Window;
-import com.kisman.cc.util.*;
-
+import com.kisman.cc.module.client.Config;
+import com.kisman.cc.util.Globals;
+import com.kisman.cc.util.Render2DUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLivingBase;
-
-import com.kisman.cc.gui.csgo.IRenderer;
 
 public class VisualPreviewWindow implements Globals {
     private String title;

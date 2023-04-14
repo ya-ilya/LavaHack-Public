@@ -14,7 +14,6 @@ import net.minecraft.util.text.TextFormatting
 import net.minecraftforge.client.event.RenderGameOverlayEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import org.lwjgl.opengl.GL11
-import java.lang.Exception
 import java.util.function.Supplier
 
 class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.", Category.RENDER) {
@@ -50,7 +49,7 @@ class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.",
             val yOffset = if(player.isSneaking) 1.75 else 2.25
             val deltas = Render2DUtilKt.getDeltas(event.partialTicks, player)
             val projection = ProjectionUtils.toScaledScreenPos(
-                Vec3d(deltas[0], deltas[1], deltas[2]).addVector(0.0, yOffset, 0.0)
+                Vec3d(deltas[0], deltas[1], deltas[2]).add(0.0, yOffset, 0.0)
             )
 
             GL11.glPushMatrix()

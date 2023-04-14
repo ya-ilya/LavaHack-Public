@@ -4,9 +4,12 @@ import com.kisman.cc.gui.alts.AltManagerGUI;
 import com.kisman.cc.viaforge.ViaForge;
 import com.kisman.cc.viaforge.gui.GuiProtocolSelector;
 import com.kisman.cc.viaforge.protocol.ProtocolCollection;
-import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiMultiplayer;
+import net.minecraft.client.gui.GuiScreen;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @SuppressWarnings("unused")

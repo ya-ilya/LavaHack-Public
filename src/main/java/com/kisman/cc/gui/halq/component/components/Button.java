@@ -2,15 +2,15 @@ package com.kisman.cc.gui.halq.component.components;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.catlua.module.ModuleScript;
+import com.kisman.cc.gui.halq.HalqGui;
+import com.kisman.cc.gui.halq.component.Component;
+import com.kisman.cc.gui.halq.component.components.sub.*;
 import com.kisman.cc.gui.halq.component.components.sub.lua.ActionButton;
 import com.kisman.cc.gui.halq.component.components.sub.modules.BindModeButton;
 import com.kisman.cc.gui.halq.component.components.sub.modules.VisibleBox;
 import com.kisman.cc.gui.halq.util.LayerMap;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.client.Config;
-import com.kisman.cc.gui.halq.HalqGui;
-import com.kisman.cc.gui.halq.component.Component;
-import com.kisman.cc.gui.halq.component.components.sub.*;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.Render2DUtil;
 import com.kisman.cc.util.customfont.CustomFontUtil;
@@ -21,7 +21,6 @@ import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Button extends Component {

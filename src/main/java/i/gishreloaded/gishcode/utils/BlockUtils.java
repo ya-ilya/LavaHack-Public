@@ -93,9 +93,9 @@ public final class BlockUtils {
 			// check if side is visible (facing away from player)
 			// TODO: actual line-of-sight check
 			if(eyesPos.squareDistanceTo(
-				new Vec3d(pos).addVector(0.5, 0.5, 0.5)) >= eyesPos
+				new Vec3d(pos).add(0.5, 0.5, 0.5)) >= eyesPos
 					.squareDistanceTo(
-						new Vec3d(neighbor).addVector(0.5, 0.5, 0.5)))
+						new Vec3d(neighbor).add(0.5, 0.5, 0.5)))
 				continue;
 			
 			// check if neighbor can be right clicked
@@ -103,7 +103,7 @@ public final class BlockUtils {
 				.canCollideCheck(Wrapper.INSTANCE.world().getBlockState(neighbor), false))
 				continue;
 			
-			Vec3d hitVec = new Vec3d(neighbor).addVector(0.5, 0.5, 0.5)
+			Vec3d hitVec = new Vec3d(neighbor).add(0.5, 0.5, 0.5)
 				.add(new Vec3d(side2.getDirectionVec()).scale(0.5));
 			
 			// check if hitVec is within range (4.25 blocks)
@@ -136,7 +136,7 @@ public final class BlockUtils {
 				.canCollideCheck(BlockUtils.getState(neighbor), false))
 				continue;
 			
-			Vec3d hitVec = new Vec3d(neighbor).addVector(0.5, 0.5, 0.5)
+			Vec3d hitVec = new Vec3d(neighbor).add(0.5, 0.5, 0.5)
 				.add(new Vec3d(side2.getDirectionVec()).scale(0.5));
 			
 			// check if hitVec is within range (6 blocks)
@@ -304,7 +304,7 @@ public final class BlockUtils {
 		
 		for(BlockPos pos : blocks)
 		{
-			Vec3d posVec = new Vec3d(pos).addVector(0.5, 0.5, 0.5);
+			Vec3d posVec = new Vec3d(pos).add(0.5, 0.5, 0.5);
 			double distanceSqPosVec = eyesPos.squareDistanceTo(posVec);
 			
 			for(EnumFacing side : EnumFacing.values())

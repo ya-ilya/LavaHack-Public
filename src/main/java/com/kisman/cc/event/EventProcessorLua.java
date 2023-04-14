@@ -1,8 +1,13 @@
 package com.kisman.cc.event;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.lua.*;
-import net.minecraftforge.client.event.*;
+import com.kisman.cc.event.events.lua.EventClientChat;
+import com.kisman.cc.event.events.lua.EventClientTickUpdate;
+import com.kisman.cc.event.events.lua.EventRender2D;
+import com.kisman.cc.event.events.lua.EventRender3D;
+import net.minecraftforge.client.event.ClientChatEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -34,6 +39,6 @@ public class EventProcessorLua {
     public void onClientChat(ClientChatEvent event) {
         EventClientChat eventClientChat = new EventClientChat(event.getMessage());
         Kisman.EVENT_BUS.post(eventClientChat);
-        if(eventClientChat.cancelled) event.setMessage(eventClientChat.message);
+        if(eventClientChat.isCancelled()) event.setMessage(eventClientChat.message);
     }
 }

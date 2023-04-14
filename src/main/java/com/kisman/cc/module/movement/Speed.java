@@ -1,24 +1,32 @@
 package com.kisman.cc.module.movement;
 
-import java.util.*;
-
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.*;
-import com.kisman.cc.mixin.mixins.accessor.AccessorEntityPlayer;
-import com.kisman.cc.module.*;
+import com.kisman.cc.event.events.EventPlayerUpdate;
+import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.gui.csgo.components.Slider;
-import com.kisman.cc.settings.*;
-
-import com.kisman.cc.util.*;
+import com.kisman.cc.mixin.mixins.accessor.AccessorEntityPlayer;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
+import com.kisman.cc.settings.Setting;
+import com.kisman.cc.util.EntityUtil;
+import com.kisman.cc.util.MovementUtil;
+import com.kisman.cc.util.PlayerUtil;
 import com.kisman.cc.util.manager.Managers;
-import i.gishreloaded.gishcode.utils.*;
-import me.zero.alpine.listener.*;
+import i.gishreloaded.gishcode.utils.Utils;
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listener;
 import net.minecraft.block.Block;
-import net.minecraft.init.*;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
 import net.minecraft.network.play.client.CPacketEntityAction;
 import net.minecraft.network.play.server.SPacketPlayerPosLook;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.TextFormatting;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class Speed extends Module {
     public static Speed instance;

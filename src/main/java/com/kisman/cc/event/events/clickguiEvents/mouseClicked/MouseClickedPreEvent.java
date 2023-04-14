@@ -2,7 +2,6 @@ package com.kisman.cc.event.events.clickguiEvents.mouseClicked;
 
 import com.kisman.cc.event.Event;
 import com.kisman.cc.event.events.clickguiEvents.drawScreen.render.GuiRenderPostEvent;
-import net.minecraft.client.gui.GuiNewChat;
 
 public class MouseClickedPreEvent extends Event {
     public int mouseX, mouseY, mouseButton;

@@ -1,6 +1,5 @@
 package com.kisman.cc.util
 
-import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.util.text.TextFormatting
 import java.awt.Color

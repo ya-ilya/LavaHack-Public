@@ -3,22 +3,26 @@ package com.kisman.cc.module.movement;
 import com.kisman.cc.Kisman;
 import com.kisman.cc.console.GuiConsole;
 import com.kisman.cc.console.rewrite.ConsoleGui;
-import com.kisman.cc.event.events.*;
-import com.kisman.cc.module.*;
+import com.kisman.cc.event.events.EventPlayerUpdateMoveState;
+import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.gui.ClickGui;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
-import com.kisman.cc.util.*;
-import me.zero.alpine.listener.*;
+import com.kisman.cc.util.MovementUtil;
+import com.kisman.cc.util.PlayerUtil;
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listener;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemShield;
-import net.minecraft.network.play.client.*;
+import net.minecraft.network.play.client.CPacketPlayer;
+import net.minecraft.network.play.client.CPacketPlayerDigging;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
 import org.lwjgl.input.Keyboard;
 
 public class NoSlow extends Module {

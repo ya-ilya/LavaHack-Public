@@ -2,7 +2,7 @@ package com.kisman.cc.module.render.shader.shaders;
 
 import com.kisman.cc.module.render.shader.FramebufferShader;
 import net.minecraft.client.gui.ScaledResolution;
-import org.lwjgl.opengl.*;
+import org.lwjgl.opengl.GL20;
 
 import java.awt.*;
 

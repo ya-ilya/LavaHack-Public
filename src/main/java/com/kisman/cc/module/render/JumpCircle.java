@@ -1,19 +1,19 @@
 package com.kisman.cc.module.render;
 
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.Colour;
-
-import org.lwjgl.opengl.GL11;
-
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.lwjgl.opengl.GL11;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.lwjgl.opengl.GL11.glDisable;

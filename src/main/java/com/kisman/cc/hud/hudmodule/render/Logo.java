@@ -1,11 +1,12 @@
 package com.kisman.cc.hud.hudmodule.render;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.hud.hudmodule.*;
-import com.kisman.cc.module.client.*;
+import com.kisman.cc.hud.hudmodule.HudCategory;
+import com.kisman.cc.hud.hudmodule.HudModule;
+import com.kisman.cc.module.client.CustomFontModule;
+import com.kisman.cc.module.client.HUD;
 import com.kisman.cc.util.Colour;
 import com.kisman.cc.util.Render2DUtil;
-
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import com.kisman.cc.util.render.objects.Icons;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;

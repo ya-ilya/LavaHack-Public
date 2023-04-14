@@ -1,6 +1,8 @@
 package com.kisman.cc.util.render.objects;
 
-import com.kisman.cc.util.*;
+import com.kisman.cc.util.Colour;
+import com.kisman.cc.util.Globals;
+import com.kisman.cc.util.Render2DUtil;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 

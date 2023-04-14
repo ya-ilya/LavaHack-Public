@@ -4,7 +4,7 @@ import com.kisman.cc.hud.hudeditor.component.Component;
 import com.kisman.cc.hud.hudmodule.HudModule;
 import com.kisman.cc.util.Render2DUtil;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class Draggable extends Component {
     private final HudModule mod;

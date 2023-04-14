@@ -1,11 +1,10 @@
 package com.kisman.cc.util.nbt;
 
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.relauncher.Side;
-
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.UUID;
 
@@ -61,7 +60,7 @@ public class SpecialTagCompound extends NBTTagCompound {
   }
 
   public boolean hasNoTags() { // do not clear me
-    if(super.hasNoTags()) {
+    if(super.isEmpty()) {
       this.empty = true;
     }
     return false;

@@ -1,16 +1,16 @@
 package com.kisman.cc.gui.alts;
 
+import com.kisman.cc.Kisman;
+import com.mojang.authlib.Agent;
+import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
+import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.Session;
+
 import java.lang.reflect.Field;
 import java.net.Proxy;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.kisman.cc.Kisman;
-import com.mojang.authlib.Agent;
-import com.mojang.authlib.yggdrasil.*;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.util.Session;
 
 public class AltManager {
 	private static final List<AltEntry> alts = new ArrayList<>();

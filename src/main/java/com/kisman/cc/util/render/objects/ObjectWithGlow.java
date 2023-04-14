@@ -1,12 +1,10 @@
 package com.kisman.cc.util.render.objects;
 
 import com.kisman.cc.util.glow.ShaderShell;
-
+import net.minecraft.client.Minecraft;
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.client.Minecraft;
-
-import java.awt.Color;
+import java.awt.*;
 
 public class ObjectWithGlow extends AbstractObject {
     public float radius;

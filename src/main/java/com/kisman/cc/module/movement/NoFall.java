@@ -2,18 +2,23 @@ package com.kisman.cc.module.movement;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.Event;
-import com.kisman.cc.event.events.*;
-import com.kisman.cc.module.*;
+import com.kisman.cc.event.events.EventPlayerMotionUpdate;
+import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
-import com.kisman.cc.util.*;
+import com.kisman.cc.util.EntityUtil;
+import com.kisman.cc.util.InventoryUtil;
+import com.kisman.cc.util.Locks;
 import i.gishreloaded.gishcode.utils.TimerUtils;
-import me.zero.alpine.listener.*;
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listener;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.init.Items;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 
 public class NoFall extends Module {
     private Setting mode = new Setting("Mode", this, Mode.Packet);

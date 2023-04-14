@@ -1,8 +1,13 @@
 package com.kisman.cc.util.optimization.aiimpr;
 
-import com.kisman.cc.util.optimization.aiimpr.math.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.*;
+import com.kisman.cc.util.optimization.aiimpr.math.FastTrig;
+import com.kisman.cc.util.optimization.aiimpr.math.FixedEntityLookHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAITasks;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.EntityLookHelper;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
 import java.util.Iterator;

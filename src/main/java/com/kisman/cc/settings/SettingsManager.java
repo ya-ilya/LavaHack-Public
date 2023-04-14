@@ -1,8 +1,8 @@
 package com.kisman.cc.settings;
 
-import java.util.*;
-
 import com.kisman.cc.module.Module;
+
+import java.util.ArrayList;
 
 /**
  *  Made by HeroCode

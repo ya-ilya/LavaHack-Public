@@ -1,9 +1,11 @@
 package com.kisman.cc.hud.hudmodule.combat;
 
-import com.kisman.cc.hud.hudmodule.*;
+import com.kisman.cc.hud.hudmodule.HudCategory;
+import com.kisman.cc.hud.hudmodule.HudModule;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.lwjgl.opengl.GL11;

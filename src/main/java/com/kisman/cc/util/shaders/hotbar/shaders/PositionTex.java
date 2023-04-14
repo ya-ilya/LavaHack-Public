@@ -1,6 +1,5 @@
 package com.kisman.cc.util.shaders.hotbar.shaders;
 
-import com.kisman.cc.module.render.shader.FramebufferShader;
 import com.kisman.cc.util.shaders.hotbar.FramebufferShaderTex;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.opengl.GL20;

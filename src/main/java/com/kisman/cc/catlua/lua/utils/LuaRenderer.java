@@ -1,6 +1,9 @@
 package com.kisman.cc.catlua.lua.utils;
 
-import com.kisman.cc.util.*;
+import com.kisman.cc.util.Colour;
+import com.kisman.cc.util.Globals;
+import com.kisman.cc.util.Render2DUtil;
+import com.kisman.cc.util.RenderUtil;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.BlockPos;
@@ -9,7 +12,6 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11.glDepthMask;
 import static org.lwjgl.opengl.GL41.glClearDepthf;
 
 public class LuaRenderer implements Globals {

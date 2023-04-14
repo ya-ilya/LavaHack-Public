@@ -1,20 +1,27 @@
 package com.kisman.cc.module.movement;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.*;
+import com.kisman.cc.event.events.EventPlayerJump;
+import com.kisman.cc.event.events.EventPlayerMove;
+import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.gui.csgo.components.Slider;
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.*;
 import i.gishreloaded.gishcode.utils.TimerUtils;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
-import me.zero.alpine.listener.*;
-import net.minecraft.block.*;
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listener;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.*;
-import net.minecraft.network.play.client.*;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.play.client.CPacketHeldItemChange;
+import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.BlockPos;
 
 public class Scaffold extends Module {
     private Setting placeLogic = new Setting("Place Logic", this, PlaceLogic.Predict);

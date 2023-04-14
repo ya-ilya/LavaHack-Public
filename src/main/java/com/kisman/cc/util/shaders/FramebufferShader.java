@@ -1,11 +1,14 @@
 package com.kisman.cc.util.shaders;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.shader.*;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.shader.Framebuffer;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL20;
+
 import java.awt.*;
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.gui.*;
-import org.lwjgl.opengl.*;
 
 public abstract class FramebufferShader extends Shader {
     private Minecraft mc = Minecraft.getMinecraft();

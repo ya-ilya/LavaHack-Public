@@ -1,12 +1,17 @@
 package com.kisman.cc.catlua.mapping;
 
 import com.kisman.cc.Kisman;
-import fuck.you.yarnparser.entry.*;
-import it.unimi.dsi.fastutil.objects.*;
+import fuck.you.yarnparser.entry.ClassEntry;
+import fuck.you.yarnparser.entry.FieldEntry;
+import fuck.you.yarnparser.entry.MethodEntry;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import it.unimi.dsi.fastutil.objects.ObjectList;
 import org.objectweb.asm.Type;
 
 import java.io.BufferedReader;
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
 
 public class ForgeMappings {

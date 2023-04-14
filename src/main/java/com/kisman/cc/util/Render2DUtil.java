@@ -2,20 +2,23 @@ package com.kisman.cc.util;
 
 import com.kisman.cc.module.client.Config;
 import com.kisman.cc.util.glow.ShaderShell;
-import com.kisman.cc.util.render.objects.*;
-
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import org.lwjgl.opengl.GL11;
-
+import com.kisman.cc.util.render.objects.AbstractGradient;
+import com.kisman.cc.util.render.objects.AbstractObject;
+import com.kisman.cc.util.render.objects.ObjectWithGlow;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL14;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
 import static org.lwjgl.opengl.GL11.*;

@@ -1,5 +1,9 @@
 package com.kisman.cc.hypixel.skyblock.colf.network;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.kisman.cc.hypixel.skyblock.colf.MainColf;
+
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -7,10 +11,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.kisman.cc.hypixel.skyblock.colf.MainColf;
 
 
 public class QueryServerCommands {

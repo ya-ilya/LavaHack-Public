@@ -1,17 +1,24 @@
 package com.kisman.cc.util.process.web.microsoft;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.kisman.cc.gui.alts.AltManager;
 import com.kisman.cc.gui.alts.microsoft.MSAuthScreen;
 import com.kisman.cc.util.process.web.util.HttpTools;
-import java.net.*;
-import com.sun.net.httpserver.*;
-import java.nio.charset.*;
-import java.io.*;
-import org.lwjgl.*;
-import com.google.gson.*;
-import java.util.*;
-import net.minecraft.client.*;
-import net.minecraft.util.*;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.Session;
+import org.lwjgl.Sys;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AuthSys {
     private static final Gson gson;

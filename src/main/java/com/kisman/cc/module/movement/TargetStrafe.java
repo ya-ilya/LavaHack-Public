@@ -1,15 +1,16 @@
 package com.kisman.cc.module.movement;
 
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.module.combat.KillAura;
 import com.kisman.cc.settings.Setting;
-import com.kisman.cc.util.*;
+import com.kisman.cc.util.EntityUtil;
+import com.kisman.cc.util.RotationUtils;
 import i.gishreloaded.gishcode.utils.TimerUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.potion.Potion;
-import net.minecraft.util.text.TextFormatting;
 
-import java.util.*;
+import java.util.Objects;
 
 public class TargetStrafe extends Module {
     private Setting radius = new Setting("Radius", this, 3.6f, 0.1f, 7, false);

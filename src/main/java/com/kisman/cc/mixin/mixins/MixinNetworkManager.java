@@ -1,12 +1,17 @@
 package com.kisman.cc.mixin.mixins;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.*;
+import com.kisman.cc.event.events.EventDisconnect;
+import com.kisman.cc.event.events.NetworkPacketEvent;
+import com.kisman.cc.event.events.PacketEvent;
 import io.netty.channel.ChannelHandlerContext;
-import net.minecraft.network.*;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
 import net.minecraft.util.text.ITextComponent;
-import org.spongepowered.asm.mixin.*;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = NetworkManager.class, priority = 10000)

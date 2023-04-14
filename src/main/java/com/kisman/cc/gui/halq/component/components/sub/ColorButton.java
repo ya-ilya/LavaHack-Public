@@ -11,7 +11,6 @@ import com.kisman.cc.util.render.objects.AbstractGradient;
 import com.kisman.cc.util.render.objects.Vec4d;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 import net.minecraft.client.gui.Gui;
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;

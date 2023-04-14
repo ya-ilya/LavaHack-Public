@@ -2,17 +2,22 @@ package com.kisman.cc.viaforge;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import com.kisman.cc.Kisman;
+import com.kisman.cc.viaforge.loader.BackwardsLoader;
+import com.kisman.cc.viaforge.platform.Injector;
+import com.kisman.cc.viaforge.platform.Platform;
+import com.kisman.cc.viaforge.platform.ProviderLoader;
+import com.kisman.cc.viaforge.util.JLoggerToLog4j;
 import com.viaversion.viaversion.ViaManagerImpl;
 import com.viaversion.viaversion.api.Via;
 import com.viaversion.viaversion.api.data.MappingDataLoader;
-import com.kisman.cc.viaforge.loader.BackwardsLoader;
-import com.kisman.cc.viaforge.platform.*;
-import com.kisman.cc.viaforge.util.JLoggerToLog4j;
 import io.netty.channel.DefaultEventLoopGroup;
 import io.netty.channel.EventLoop;
 
 import java.io.File;
-import java.util.concurrent.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 import java.util.logging.Logger;
 
 public class ViaForge {

@@ -5,10 +5,15 @@ import com.kisman.cc.gui.mainmenu.gui.KismanMainMenuGui;
 import com.kisman.cc.gui.particle.ParticleSystem;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import com.kisman.cc.util.modules.CustomMainMenu;
-import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiMainMenu;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.text.TextFormatting;
-import org.spongepowered.asm.mixin.*;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = GuiMainMenu.class, priority = 10000)

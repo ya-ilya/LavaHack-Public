@@ -1,8 +1,8 @@
 package com.kisman.cc.util.optimization.aiimpr.math;
 
-import net.minecraft.entity.ai.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.math.*;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.ai.EntityLookHelper;
+import net.minecraft.util.math.MathHelper;
 
 public class FixedEntityLookHelper extends EntityLookHelper {
     public FixedEntityLookHelper(final EntityLiving entity) {

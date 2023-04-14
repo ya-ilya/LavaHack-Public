@@ -1,7 +1,9 @@
 package com.kisman.cc.module.render.shader.shaders;
 
 import com.kisman.cc.module.render.shader.FramebufferShader;
-import org.lwjgl.opengl.*;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL13;
+import org.lwjgl.opengl.GL20;
 
 public class ItemShader extends FramebufferShader {
     public static final ItemShader ITEM_SHADER;

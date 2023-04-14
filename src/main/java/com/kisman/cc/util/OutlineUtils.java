@@ -1,12 +1,13 @@
 package com.kisman.cc.util;
 
-import java.awt.Color;
-
 import com.kisman.cc.settings.Setting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.shader.Framebuffer;
-import org.lwjgl.opengl.*;
+import org.lwjgl.opengl.EXTFramebufferObject;
+import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
 
 public class OutlineUtils{
     public static void renderOne(float f) {

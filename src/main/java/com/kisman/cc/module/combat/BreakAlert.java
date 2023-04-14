@@ -2,9 +2,9 @@ package com.kisman.cc.module.combat;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import i.gishreloaded.gishcode.utils.TimerUtils;

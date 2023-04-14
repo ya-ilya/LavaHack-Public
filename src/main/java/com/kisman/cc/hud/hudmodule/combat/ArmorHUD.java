@@ -1,13 +1,17 @@
 package com.kisman.cc.hud.hudmodule.combat;
 
-import com.kisman.cc.hud.hudmodule.*;
+import com.kisman.cc.hud.hudmodule.HudCategory;
+import com.kisman.cc.hud.hudmodule.HudModule;
 import com.kisman.cc.module.client.HUD;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 import i.gishreloaded.gishcode.wrappers.Wrapper;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.*;
-import net.minecraft.item.*;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 

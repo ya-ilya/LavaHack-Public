@@ -1,9 +1,11 @@
 package com.kisman.cc.module.combat;
 
 import com.kisman.cc.friend.FriendManager;
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
-import com.kisman.cc.util.*;
+import com.kisman.cc.util.CrystalUtils;
+import com.kisman.cc.util.PlayerUtil;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 import net.minecraft.client.gui.inventory.GuiInventory;
@@ -12,10 +14,12 @@ import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ClickType;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemSword;
 import org.lwjgl.input.Mouse;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class OffHand extends Module {
     public static OffHand instance;

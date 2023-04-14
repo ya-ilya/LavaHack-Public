@@ -1,19 +1,21 @@
 package com.kisman.cc.settings;
 
-import java.awt.*;
-import java.util.*;
-import java.util.List;
-import java.util.function.Supplier;
-
 import com.kisman.cc.Kisman;
 import com.kisman.cc.catlua.lua.settings.LuaSetting;
+import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.hud.hudmodule.HudModule;
 import com.kisman.cc.module.Module;
-import com.kisman.cc.gui.csgo.components.Slider;
-import com.kisman.cc.util.*;
+import com.kisman.cc.util.Colour;
+import com.kisman.cc.util.TextUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.input.Keyboard;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Supplier;
 
 /**
  *  Made by HeroCode

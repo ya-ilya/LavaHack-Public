@@ -1,13 +1,13 @@
 package com.kisman.cc.gui.misc;
 
-import com.kisman.cc.module.Module;
 import com.kisman.cc.gui.book.components.ActionButton;
+import com.kisman.cc.module.Module;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.IOException;
 

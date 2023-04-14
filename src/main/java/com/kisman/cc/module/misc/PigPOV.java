@@ -1,6 +1,7 @@
 package com.kisman.cc.module.misc;
 
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.util.NoRenderPig;
 import net.minecraft.client.renderer.entity.RenderPig;
 import net.minecraft.entity.passive.EntityPig;

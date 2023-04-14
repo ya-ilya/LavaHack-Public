@@ -1,13 +1,12 @@
 package com.kisman.cc.hud.hudeditor;
 
-import java.util.ArrayList;
-
 import com.kisman.cc.Kisman;
 import com.kisman.cc.hud.hudeditor.component.Component;
 import com.kisman.cc.hud.hudeditor.component.components.Draggable;
 import com.kisman.cc.hud.hudmodule.HudModule;
-
 import net.minecraft.client.gui.GuiScreen;
+
+import java.util.ArrayList;
 
 public class HudEditorGui extends GuiScreen {
     private ArrayList<Component> components = new ArrayList<>();

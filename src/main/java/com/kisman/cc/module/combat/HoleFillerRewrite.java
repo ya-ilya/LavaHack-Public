@@ -13,7 +13,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 
 /**

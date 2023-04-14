@@ -1,20 +1,23 @@
  package com.kisman.cc.module.combat;
 
  import com.kisman.cc.Kisman;
- import com.kisman.cc.module.*;
  import com.kisman.cc.gui.csgo.components.Slider;
+ import com.kisman.cc.module.Category;
+ import com.kisman.cc.module.Module;
+ import com.kisman.cc.settings.Setting;
  import com.kisman.cc.util.InventoryUtil;
- import com.kisman.cc.settings.*;
-
  import i.gishreloaded.gishcode.utils.TimerUtils;
  import net.minecraft.client.gui.inventory.GuiContainer;
  import net.minecraft.client.renderer.InventoryEffectRenderer;
- import net.minecraft.enchantment.*;
+ import net.minecraft.enchantment.Enchantment;
+ import net.minecraft.enchantment.EnchantmentHelper;
  import net.minecraft.init.Items;
  import net.minecraft.inventory.ClickType;
- import net.minecraft.item.*;
+ import net.minecraft.item.ItemArmor;
+ import net.minecraft.item.ItemStack;
 
- import java.util.*;
+ import java.util.HashMap;
+ import java.util.List;
 
  public class AutoArmor extends Module {
      private final Setting delay = new Setting("Delay", this, 0, 0, 100, Slider.NumberType.TIME);

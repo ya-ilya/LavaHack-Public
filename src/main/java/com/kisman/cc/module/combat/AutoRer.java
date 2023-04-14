@@ -1,12 +1,15 @@
 package com.kisman.cc.module.combat;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.*;
+import com.kisman.cc.event.events.EventPlayerMotionUpdate;
+import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.friend.FriendManager;
-import com.kisman.cc.module.*;
 import com.kisman.cc.gui.csgo.components.Slider;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.module.client.Config;
-import com.kisman.cc.module.combat.autorer.*;
+import com.kisman.cc.module.combat.autorer.AutoRerUtil;
+import com.kisman.cc.module.combat.autorer.PlaceInfo;
 import com.kisman.cc.module.combat.autorer.render.AutoRerRenderer;
 import com.kisman.cc.module.render.shader.FramebufferShader;
 import com.kisman.cc.module.render.shader.shaders.*;
@@ -23,18 +26,27 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.*;
-import net.minecraft.network.play.client.*;
-import net.minecraft.network.play.server.*;
-import net.minecraft.util.*;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.network.play.client.CPacketAnimation;
+import net.minecraft.network.play.client.CPacketPlayer;
+import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
+import net.minecraft.network.play.client.CPacketUseEntity;
+import net.minecraft.network.play.server.SPacketSoundEffect;
+import net.minecraft.network.play.server.SPacketSpawnObject;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.*;
-
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.*;
-import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 

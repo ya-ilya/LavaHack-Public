@@ -1,34 +1,38 @@
 package com.kisman.cc.util;
 
-import static org.lwjgl.opengl.GL11.*;
-
-import java.awt.Color;
-import java.text.*;
-import java.util.*;
-
-import com.kisman.cc.catlua.lua.utils.LuaBox;
 import com.kisman.cc.module.render.NameTags;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import com.kisman.cc.util.customfont.norules.CFontRenderer;
 import com.kisman.cc.util.render.objects.Vec3dSimple;
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.culling.*;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
-import org.lwjgl.opengl.*;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.culling.Frustum;
+import net.minecraft.client.renderer.culling.ICamera;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.math.*;
-import org.lwjgl.util.glu.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL32;
+import org.lwjgl.util.glu.Cylinder;
+import org.lwjgl.util.glu.GLU;
+import org.lwjgl.util.glu.Sphere;
 
 import javax.annotation.Nullable;
+import java.awt.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+import java.util.Objects;
+
+import static org.lwjgl.opengl.GL11.*;
 
 public class RenderUtil {
     private static final Minecraft mc = Minecraft.getMinecraft();

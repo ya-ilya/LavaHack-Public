@@ -1,9 +1,11 @@
 package com.kisman.cc.util;
 
-import net.minecraftforge.fml.relauncher.*;
-import net.minecraft.client.renderer.entity.*;
-import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.RenderPig;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class NoRenderPig extends RenderPig {

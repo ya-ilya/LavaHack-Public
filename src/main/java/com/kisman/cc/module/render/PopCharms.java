@@ -1,7 +1,8 @@
 package com.kisman.cc.module.render;
 
 import com.kisman.cc.event.events.subscribe.TotemPopEvent;
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.entity.EntityOtherPlayerMP;

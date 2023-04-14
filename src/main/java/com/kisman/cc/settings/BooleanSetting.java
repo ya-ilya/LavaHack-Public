@@ -1,8 +1,8 @@
 package com.kisman.cc.settings;
 
-import java.util.function.Supplier;
 import net.minecraft.block.Block;
-import com.kisman.cc.settings.Setting2;
+
+import java.util.function.Supplier;
 
 public class BooleanSetting
         extends Setting2 {

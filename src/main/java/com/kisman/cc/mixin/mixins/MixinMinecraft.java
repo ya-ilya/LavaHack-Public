@@ -1,18 +1,19 @@
  package com.kisman.cc.mixin.mixins;
 
  import com.kisman.cc.Kisman;
- import com.kisman.cc.mixin.mixins.accessor.*;
+ import com.kisman.cc.mixin.mixins.accessor.AccessorPlayerControllerMP;
+ import com.kisman.cc.mixin.mixins.accessor.IEntityPlayerSP;
  import com.kisman.cc.module.exploit.MultiTask;
  import com.kisman.cc.viaforge.ViaForge;
+ import net.minecraft.client.Minecraft;
  import net.minecraft.client.entity.EntityPlayerSP;
  import net.minecraft.client.main.GameConfiguration;
  import net.minecraft.client.multiplayer.PlayerControllerMP;
  import net.minecraft.client.settings.GameSettings;
  import org.spongepowered.asm.mixin.Mixin;
-
- import net.minecraft.client.Minecraft;
  import org.spongepowered.asm.mixin.Shadow;
- import org.spongepowered.asm.mixin.injection.*;
+ import org.spongepowered.asm.mixin.injection.At;
+ import org.spongepowered.asm.mixin.injection.Inject;
  import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
  @Mixin(value = Minecraft.class, priority = 10000)

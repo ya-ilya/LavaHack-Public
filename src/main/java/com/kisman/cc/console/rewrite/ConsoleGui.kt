@@ -17,7 +17,6 @@ import java.awt.Toolkit
 import java.awt.datatransfer.DataFlavor
 import java.awt.datatransfer.StringSelection
 import java.io.UnsupportedEncodingException
-import kotlin.collections.ArrayList
 
 /**@author Dallas/gerald0mc
  */

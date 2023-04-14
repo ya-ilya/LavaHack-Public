@@ -1,14 +1,14 @@
 package com.kisman.cc.module.render;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.module.*;
-import com.kisman.cc.settings.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
+import com.kisman.cc.settings.Setting;
 import com.kisman.cc.settings.util.BoxRendererPattern;
 import com.kisman.cc.util.ColourUtilKt;
-
+import net.minecraft.tileentity.*;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.tileentity.*;
 
 public class StorageESP extends Module{
     private final Setting distance = new Setting("Distance(Squared)", this, 4000, 10, 4000, true);

@@ -95,7 +95,7 @@ enum class DynamicVAO(private val vertexSize: Int, private val buildVAO: () -> U
 val vaoID = glGenVertexArrays()
 val vboID = glGenBuffers()
 
-@UseExperimental(ExperimentalContracts::class)
+@OptIn(ExperimentalContracts::class)
 inline fun useVbo(block: DynamicVAO.() -> Unit, parent: DynamicVAO) {
     contract1 {
         callsInPlace(block, InvocationKind.EXACTLY_ONCE)
@@ -106,7 +106,7 @@ inline fun useVbo(block: DynamicVAO.() -> Unit, parent: DynamicVAO) {
     glBindBuffer(GL_ARRAY_BUFFER, 0)
 }
 
-@UseExperimental(ExperimentalContracts::class)
+@OptIn(ExperimentalContracts::class)
 inline fun useVao(block: DynamicVAO.() -> Unit, parent: DynamicVAO) {
     contract1 {
         callsInPlace(block, InvocationKind.EXACTLY_ONCE)

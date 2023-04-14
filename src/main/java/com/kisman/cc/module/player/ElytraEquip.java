@@ -1,11 +1,13 @@
 package com.kisman.cc.module.player;
 
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.module.movement.ElytraFly;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.InventoryUtil;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.*;
+import net.minecraft.inventory.ClickType;
+import net.minecraft.inventory.EntityEquipmentSlot;
 
 public class ElytraEquip extends Module {
     private final Setting synsWithElytraFly = new Setting("Syns With ElytraFly", this, false);

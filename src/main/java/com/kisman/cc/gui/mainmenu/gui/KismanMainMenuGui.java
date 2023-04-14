@@ -6,7 +6,8 @@ import com.kisman.cc.gui.halq.HalqGui;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import com.kisman.cc.viaforge.gui.GuiProtocolSelector;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
-import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;

@@ -2,15 +2,18 @@ package com.kisman.cc.module.movement;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.gui.csgo.components.Slider;
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
-import com.kisman.cc.util.*;
-
+import com.kisman.cc.util.BlockUtil;
+import com.kisman.cc.util.EntityUtil;
+import com.kisman.cc.util.PlayerUtil;
 import com.kisman.cc.util.manager.Managers;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.network.play.client.CPacketPlayer;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
 public class Anchor extends Module {
     private final Setting mode = new Setting("Mode", this, Mode.Motion);

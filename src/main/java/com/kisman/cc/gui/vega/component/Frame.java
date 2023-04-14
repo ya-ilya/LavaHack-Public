@@ -1,9 +1,10 @@
 package com.kisman.cc.gui.vega.component;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.module.*;
-import com.kisman.cc.module.client.Config;
 import com.kisman.cc.gui.vega.component.components.Button;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
+import com.kisman.cc.module.client.Config;
 import com.kisman.cc.util.Timer;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;

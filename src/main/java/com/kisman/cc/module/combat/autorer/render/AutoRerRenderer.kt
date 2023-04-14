@@ -3,10 +3,8 @@ package com.kisman.cc.module.combat.autorer.render
 import com.kisman.cc.module.combat.autorer.AutoRerUtil
 import com.kisman.cc.module.combat.autorer.PlaceInfo
 import com.kisman.cc.module.combat.autorer.util.Easing
-import com.kisman.cc.module.combat.autorer.util.ProjectionUtils
 import com.kisman.cc.settings.util.RenderingRewritePattern
 import com.kisman.cc.util.Colour
-import com.kisman.cc.util.customfont.CustomFontUtil
 import com.kisman.cc.util.render.objects.TextOnBlockObject
 import net.minecraft.util.math.AxisAlignedBB
 import net.minecraft.util.math.BlockPos

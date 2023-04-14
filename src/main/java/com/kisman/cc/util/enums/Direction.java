@@ -1,7 +1,8 @@
 package com.kisman.cc.util.enums;
 
 import com.kisman.cc.util.Globals;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3i;
 
 public enum  Direction implements Globals {
     XPlus(new Vec3i(1, 0, 0)),

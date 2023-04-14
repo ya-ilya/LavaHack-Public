@@ -1,9 +1,12 @@
 package com.kisman.cc.util.shaders;
 
 import com.kisman.cc.Kisman;
-import org.lwjgl.opengl.*;
-import java.io.*;
-import java.nio.charset.*;
+import org.lwjgl.opengl.GL20;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 public class GLSLSandboxShader {
     private int programId;

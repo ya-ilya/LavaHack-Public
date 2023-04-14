@@ -6,22 +6,21 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.inventory.InventoryBasic;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.item.ItemStack;
-import net.minecraft.inventory.InventoryBasic;
-import net.minecraft.inventory.Slot;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.List;
 import java.util.LinkedList;
-
-import org.lwjgl.input.Keyboard;
+import java.util.List;
 
 /* Shulker peek GUI */
 

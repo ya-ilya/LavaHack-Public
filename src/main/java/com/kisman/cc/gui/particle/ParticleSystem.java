@@ -1,20 +1,13 @@
 package com.kisman.cc.gui.particle;
 
-import java.awt.*;
-import java.util.*;
-import java.util.List;
-
 import com.kisman.cc.module.client.Config;
+import net.minecraft.client.Minecraft;
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
 
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.Vector3d;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.math.MathHelper;
-import org.lwjgl.opengl.*;
-import net.minecraft.client.*;
-import org.lwjgl.input.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.lwjgl.opengl.GL11.*;
 

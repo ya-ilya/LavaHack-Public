@@ -1,16 +1,15 @@
 package com.kisman.cc.util.customfont.norules;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.kisman.cc.util.customfont.CustomFont;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.DynamicTexture;
-
 import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class CFontRenderer extends CustomFont {
 	protected CharData[] boldChars = new CharData['§'];

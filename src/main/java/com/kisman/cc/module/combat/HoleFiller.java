@@ -1,6 +1,7 @@
 package com.kisman.cc.module.combat;
 
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.module.combat.holefiller.Hole;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.*;

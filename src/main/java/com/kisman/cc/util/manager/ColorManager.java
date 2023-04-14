@@ -2,6 +2,7 @@ package com.kisman.cc.util.manager;
 
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.Colour;
+
 import java.util.ArrayList;
 
 public class ColorManager {

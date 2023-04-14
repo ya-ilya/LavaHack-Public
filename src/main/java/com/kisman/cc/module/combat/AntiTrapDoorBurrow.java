@@ -1,13 +1,18 @@
 package com.kisman.cc.module.combat;
 
 import com.kisman.cc.gui.csgo.components.Slider;
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
-import com.kisman.cc.util.*;
+import com.kisman.cc.util.Colour;
+import com.kisman.cc.util.CrystalUtils;
+import com.kisman.cc.util.RenderUtil;
 import i.gishreloaded.gishcode.utils.TimerUtils;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.awt.*;

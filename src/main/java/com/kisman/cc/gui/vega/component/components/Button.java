@@ -1,10 +1,14 @@
 package com.kisman.cc.gui.vega.component.components;
 
 import com.kisman.cc.Kisman;
+import com.kisman.cc.gui.vega.component.Component;
+import com.kisman.cc.gui.vega.component.Frame;
+import com.kisman.cc.gui.vega.component.components.sub.KeyBind;
+import com.kisman.cc.gui.vega.component.components.sub.ModeButton;
+import com.kisman.cc.gui.vega.component.components.sub.Slider;
+import com.kisman.cc.gui.vega.component.components.sub.StringButton;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.client.VegaGui;
-import com.kisman.cc.gui.vega.component.*;
-import com.kisman.cc.gui.vega.component.components.sub.*;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.Render2DUtil;
 import com.kisman.cc.util.customfont.CustomFontUtil;

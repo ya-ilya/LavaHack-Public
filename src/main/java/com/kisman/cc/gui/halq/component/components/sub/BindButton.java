@@ -1,8 +1,8 @@
 package com.kisman.cc.gui.halq.component.components.sub;
 
-import com.kisman.cc.module.Module;
 import com.kisman.cc.gui.halq.HalqGui;
 import com.kisman.cc.gui.halq.component.Component;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.Render2DUtil;
 import com.kisman.cc.util.render.objects.AbstractGradient;

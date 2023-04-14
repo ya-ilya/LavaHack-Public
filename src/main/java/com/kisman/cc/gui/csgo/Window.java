@@ -1,7 +1,7 @@
 package com.kisman.cc.gui.csgo;
 
-import com.kisman.cc.module.client.Config;
 import com.kisman.cc.gui.csgo.components.Pane;
+import com.kisman.cc.module.client.Config;
 import com.kisman.cc.util.Render2DUtil;
 
 import java.awt.*;

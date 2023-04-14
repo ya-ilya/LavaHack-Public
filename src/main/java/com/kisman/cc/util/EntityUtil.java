@@ -3,22 +3,34 @@ package com.kisman.cc.util;
 import com.kisman.cc.Kisman;
 import com.kisman.cc.friend.FriendManager;
 import com.kisman.cc.module.combat.AntiBot;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.BlockWeb;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.init.*;
+import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.passive.EntityAmbientCreature;
+import net.minecraft.entity.passive.EntitySquid;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
 import net.minecraft.network.play.client.CPacketEntityAction;
-import net.minecraft.util.*;
+import net.minecraft.util.CombatRules;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 086
@@ -214,7 +226,7 @@ public class EntityUtil {
     }
 
     public static float getDamageMultiplied(final float damage) {
-        final int diff = EntityUtil.mc.world.getDifficulty().getDifficultyId();
+        final int diff = EntityUtil.mc.world.getDifficulty().getId();
         return damage * ((diff == 0) ? 0.0f : ((diff == 2) ? 1.0f : ((diff == 1) ? 0.5f : 1.5f)));
     }
 

@@ -1,9 +1,11 @@
 package com.kisman.cc.util;
 
-import org.lwjgl.opengl.*;
-import net.minecraft.client.renderer.vertex.*;
-import net.minecraft.util.math.*;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.util.math.BlockPos;
+import org.lwjgl.opengl.GL11;
 
 public class KamiTessellator extends Tessellator {
     public static KamiTessellator INSTANCE;

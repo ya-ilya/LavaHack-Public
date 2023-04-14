@@ -1,7 +1,7 @@
 package com.kisman.cc.hud.hudmodule.render;
 
-import com.kisman.cc.Kisman;
-import com.kisman.cc.hud.hudmodule.*;
+import com.kisman.cc.hud.hudmodule.HudCategory;
+import com.kisman.cc.hud.hudmodule.HudModule;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 

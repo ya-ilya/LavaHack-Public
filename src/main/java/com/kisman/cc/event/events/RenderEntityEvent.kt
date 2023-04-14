@@ -1,7 +1,6 @@
 package com.kisman.cc.event.events
 
 import com.kisman.cc.event.Event
-import net.minecraft.client.renderer.entity.Render
 import net.minecraft.entity.Entity
 
 sealed class RenderEntityEvent(

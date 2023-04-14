@@ -1,7 +1,9 @@
 package com.kisman.cc.util.process.web.util;
 
 import java.io.IOException;
-import java.net.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class HttpTools {
     public static boolean ping(String url) {

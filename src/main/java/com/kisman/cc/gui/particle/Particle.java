@@ -1,15 +1,12 @@
 package com.kisman.cc.gui.particle;
 
-import org.lwjgl.util.vector.*;
-
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
-
-import java.util.*;
-
 import com.kisman.cc.module.client.Config;
 import com.kisman.cc.util.Colour;
+import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.util.vector.Vector2f;
 
-import org.lwjgl.opengl.*;
+import java.util.Random;
 
 public class Particle
 {

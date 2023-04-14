@@ -1,8 +1,10 @@
 package com.kisman.cc.hud.hudmodule.render;
 
-import com.kisman.cc.hud.hudmodule.*;
+import com.kisman.cc.hud.hudmodule.HudCategory;
+import com.kisman.cc.hud.hudmodule.HudModule;
 import com.kisman.cc.module.client.HUD;
-import com.kisman.cc.util.*;
+import com.kisman.cc.util.Colour;
+import com.kisman.cc.util.Render2DUtil;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 import net.minecraft.client.gui.Gui;

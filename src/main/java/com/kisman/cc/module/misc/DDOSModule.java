@@ -1,13 +1,16 @@
 package com.kisman.cc.module.misc;
 
-import com.kisman.cc.module.*;
 import com.kisman.cc.gui.csgo.components.Slider;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.process.web.TCPDDos;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 
 import java.util.Arrays;
-import java.util.concurrent.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class DDOSModule extends Module {
     public final Setting delay = new Setting("Delay", this, 100, 30, 3000, Slider.NumberType.TIME);

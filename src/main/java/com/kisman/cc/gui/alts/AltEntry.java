@@ -1,19 +1,17 @@
 package com.kisman.cc.gui.alts;
 
-import java.util.Map;
-
 import com.kisman.cc.util.Render2DUtil;
-import net.minecraft.client.Minecraft;
-import org.lwjgl.opengl.GL11;
-
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
-
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiListExtended.IGuiListEntry;
 import net.minecraft.client.resources.DefaultPlayerSkin;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
+
+import java.util.Map;
 
 public class AltEntry implements IGuiListEntry {
 	private Minecraft mc = Minecraft.getMinecraft();

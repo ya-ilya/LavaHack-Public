@@ -1,6 +1,7 @@
 package com.kisman.cc.module.movement;
 
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 
 public class AutoJump extends Module {
     public AutoJump() {

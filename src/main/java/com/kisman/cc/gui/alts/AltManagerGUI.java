@@ -1,19 +1,21 @@
 package com.kisman.cc.gui.alts;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Supplier;
-
 import com.kisman.cc.gui.alts.microsoft.MSAuthScreen;
 import com.kisman.cc.mixin.mixins.accessor.ISession;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
-import org.lwjgl.input.Keyboard;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiListExtended;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiTextField;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Supplier;
 
 public class AltManagerGUI extends GuiScreen {
 	private GuiButton delete;

@@ -1,18 +1,17 @@
 package com.kisman.cc.module.player;
 
-import com.kisman.cc.hud.hudmodule.render.PacketChat;
-import com.kisman.cc.hud.hudmodule.render.packetchat.Message;
-import com.kisman.cc.module.*;
-import com.kisman.cc.settings.Setting;
-
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
-
-import java.lang.reflect.Field;
-
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.hud.hudmodule.render.PacketChat;
+import com.kisman.cc.hud.hudmodule.render.packetchat.Message;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
+import com.kisman.cc.settings.Setting;
+import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listener;
 
-import me.zero.alpine.listener.*;
+import java.lang.reflect.Field;
 
 public class PacketLogger extends Module{
     private final Setting client = new Setting("Client", this, true);

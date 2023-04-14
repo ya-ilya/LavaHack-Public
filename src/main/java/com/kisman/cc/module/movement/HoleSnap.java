@@ -1,13 +1,15 @@
 package com.kisman.cc.module.movement;
 
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.*;
-
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
-import java.util.*;
+import java.util.List;
 
 public class HoleSnap extends Module {
     private Setting speedValue = new Setting("Speed", this, 0, 0, 2, false);

@@ -1,9 +1,9 @@
 package com.kisman.cc.viaforge.platform;
 
-import com.viaversion.viaversion.api.platform.ViaInjector;
-import com.viaversion.viaversion.libs.gson.JsonObject;
 import com.kisman.cc.viaforge.ViaForge;
 import com.kisman.cc.viaforge.handler.CommonTransformer;
+import com.viaversion.viaversion.api.platform.ViaInjector;
+import com.viaversion.viaversion.libs.gson.JsonObject;
 
 public class Injector implements ViaInjector {
 

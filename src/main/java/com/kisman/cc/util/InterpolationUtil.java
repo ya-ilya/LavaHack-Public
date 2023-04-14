@@ -1,7 +1,6 @@
 package com.kisman.cc.util;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 public class InterpolationUtil {

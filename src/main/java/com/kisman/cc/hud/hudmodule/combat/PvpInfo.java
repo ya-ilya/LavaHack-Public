@@ -1,13 +1,15 @@
 package com.kisman.cc.hud.hudmodule.combat;
 
-import com.kisman.cc.hud.hudmodule.*;
+import com.kisman.cc.hud.hudmodule.HudCategory;
+import com.kisman.cc.hud.hudmodule.HudModule;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.combat.*;
 import com.kisman.cc.module.movement.Speed;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.fml.common.eventhandler.*;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class PvpInfo extends HudModule {
     public PvpInfo() {

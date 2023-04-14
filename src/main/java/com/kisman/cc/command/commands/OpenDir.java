@@ -1,7 +1,6 @@
 package com.kisman.cc.command.commands;
 
 import com.kisman.cc.command.Command;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 import net.minecraft.client.Minecraft;
 
 import java.awt.*;
@@ -15,7 +14,7 @@ public class OpenDir extends Command {
     @Override
     public void runCommand(String s, String[] args) {
         try {
-            File file = new File(Minecraft.getMinecraft().mcDataDir + "kisman.cc/");
+            File file = new File(Minecraft.getMinecraft().gameDir + "kisman.cc/");
             Desktop.getDesktop().open(file);
         } catch (Exception e) {
             error("Usage: " + getSyntax());

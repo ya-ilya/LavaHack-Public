@@ -1,8 +1,10 @@
 package com.kisman.cc.module.combat;
 
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
-import com.kisman.cc.util.*;
+import com.kisman.cc.util.AngleUtil;
+import com.kisman.cc.util.EntityUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBow;
 import net.minecraft.util.math.Vec3d;

@@ -1,14 +1,16 @@
 package com.kisman.cc.gui.component.components;
 
-import java.awt.Color;
 import com.kisman.cc.gui.ClickGui;
-import com.kisman.cc.gui.component.*;
-import com.kisman.cc.hud.hudmodule.*;
-import com.kisman.cc.util.*;
+import com.kisman.cc.gui.component.Component;
+import com.kisman.cc.gui.component.Frame;
+import com.kisman.cc.hud.hudmodule.HudModule;
+import com.kisman.cc.util.LineMode;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.util.text.TextFormatting;
 import org.lwjgl.opengl.GL11;
-import net.minecraft.client.gui.Gui;
+
+import java.awt.*;
 
 public class Button extends Component {
 	public int x;

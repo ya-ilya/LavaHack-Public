@@ -3,27 +3,13 @@ package com.kisman.cc.module.client;
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.Event;
 import com.kisman.cc.event.events.EventPlayerMotionUpdate;
-import com.kisman.cc.event.events.EventWorldRender;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import com.kisman.cc.gui.ClickGui;
 import com.kisman.cc.settings.Setting;
-import com.kisman.cc.util.RenderUtil;
-import com.kisman.cc.gui.*;
-
-/*import net.minecraft.network.play.INetHandlerPlayServer;
-import net.minecraft.network.play.client.*;
-import net.minecraft.util.text.ITextComponent;*/
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
-
-import java.awt.Color;
-import java.awt.event.MouseEvent;
 
 //import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 

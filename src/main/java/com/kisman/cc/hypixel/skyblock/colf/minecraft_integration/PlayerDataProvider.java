@@ -1,16 +1,12 @@
 package com.kisman.cc.hypixel.skyblock.colf.minecraft_integration;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import com.kisman.cc.hypixel.skyblock.colf.network.WSClient;
+import net.minecraft.client.Minecraft;
+
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.UUID;
-
-import com.kisman.cc.hypixel.skyblock.colf.network.WSClient;
-import net.minecraft.client.Minecraft;
 
 public class PlayerDataProvider {
 	 private static class UUIDHelper {

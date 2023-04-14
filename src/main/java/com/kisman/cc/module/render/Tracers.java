@@ -1,11 +1,9 @@
 package com.kisman.cc.module.render;
 
 import com.kisman.cc.friend.FriendManager;
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
-import com.kisman.cc.util.Colour;
-import com.kisman.cc.util.RenderUtil;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;

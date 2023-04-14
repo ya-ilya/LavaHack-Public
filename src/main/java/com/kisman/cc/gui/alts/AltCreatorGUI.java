@@ -1,12 +1,11 @@
 package com.kisman.cc.gui.alts;
 
-import java.io.IOException;
-
-import org.lwjgl.input.Keyboard;
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
+import org.lwjgl.input.Keyboard;
+
+import java.io.IOException;
 
 public class AltCreatorGUI extends GuiScreen
 {

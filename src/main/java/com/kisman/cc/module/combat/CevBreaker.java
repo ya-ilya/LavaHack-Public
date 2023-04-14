@@ -1,17 +1,23 @@
 package com.kisman.cc.module.combat;
 
-import com.kisman.cc.module.*;
 import com.kisman.cc.gui.csgo.components.Slider.NumberType;
-import com.kisman.cc.settings.*;
-import com.kisman.cc.util.*;
-import com.kisman.cc.util.process.*;
-import com.kisman.cc.util.process.DynamicTrapUtil.*;
-
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
+import com.kisman.cc.settings.Setting;
+import com.kisman.cc.util.BlockUtil;
+import com.kisman.cc.util.EntityUtil;
+import com.kisman.cc.util.PlayerUtil;
+import com.kisman.cc.util.process.DynamicTrapUtil;
+import com.kisman.cc.util.process.DynamicTrapUtil.RewriteRotateModes;
+import com.kisman.cc.util.process.DynamicTrapUtil.RewriteSupportModes;
+import com.kisman.cc.util.process.DynamicTrapUtil.RewriteSwitchModes;
+import com.kisman.cc.util.process.PacketMineUtil;
 import i.gishreloaded.gishcode.utils.TimerUtils;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.network.play.client.*;
+import net.minecraft.network.play.client.CPacketAnimation;
+import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;

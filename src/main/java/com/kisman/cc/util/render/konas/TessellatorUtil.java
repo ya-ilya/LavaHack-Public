@@ -1,12 +1,18 @@
 package com.kisman.cc.util.render.konas;
 
-import com.kisman.cc.util.*;
-import net.minecraft.client.renderer.*;
+import com.kisman.cc.util.Colour;
+import com.kisman.cc.util.Globals;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.math.*;
-import org.lwjgl.opengl.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL32;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.glEnable;
+import static org.lwjgl.opengl.GL11.glHint;
 
 public class TessellatorUtil implements Globals {
     public static void drawBoundingBox(BlockPos bp, double height, float width, Colour color) {

@@ -1,7 +1,6 @@
 package com.kisman.cc.settings;
 
 import java.util.function.Supplier;
-import com.kisman.cc.settings.Setting2;
 
 public class NumberSetting
         extends Setting2 {

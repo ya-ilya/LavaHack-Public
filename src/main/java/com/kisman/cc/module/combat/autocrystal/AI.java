@@ -1,11 +1,6 @@
 package com.kisman.cc.module.combat.autocrystal;
 
-import com.kisman.cc.util.CrystalUtils;
-import com.kisman.cc.util.MathUtil;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityEnderCrystal;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;

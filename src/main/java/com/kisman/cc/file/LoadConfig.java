@@ -1,6 +1,8 @@
 package com.kisman.cc.file;
 
-import com.google.gson.*;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.kisman.cc.Kisman;
 import com.kisman.cc.friend.FriendManager;
 import com.kisman.cc.hud.hudmodule.HudModule;
@@ -10,8 +12,12 @@ import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.ColourUtilKt;
 import org.lwjgl.input.Keyboard;
 
-import java.io.*;
-import java.nio.file.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class LoadConfig {

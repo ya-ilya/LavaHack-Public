@@ -1,11 +1,8 @@
 package com.kisman.cc.gui.csgo.components;
 
-import com.kisman.cc.gui.csgo.AbstractComponent;
 import com.kisman.cc.gui.csgo.IRenderer;
 import net.minecraft.util.ChatAllowedCharacters;
 import org.lwjgl.input.Keyboard;
-
-import java.util.function.Function;
 
 public class StringButton extends Button {
     private ValueChangeListener<String> listener;

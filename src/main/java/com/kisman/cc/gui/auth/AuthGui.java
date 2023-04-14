@@ -1,11 +1,11 @@
 package com.kisman.cc.gui.auth;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.util.Render2DUtil;
-import com.kisman.cc.util.protect.keyauth.KeyAuthApp;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.*;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiTextField;
 import org.lwjgl.input.Keyboard;
 
 import java.awt.*;

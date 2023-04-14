@@ -1,14 +1,17 @@
 package com.kisman.cc.mixin.mixins.viaforge;
 
+import com.kisman.cc.viaforge.ViaForge;
+import com.kisman.cc.viaforge.handler.CommonTransformer;
+import com.kisman.cc.viaforge.handler.DecodeHandler;
+import com.kisman.cc.viaforge.handler.EncodeHandler;
 import com.viaversion.viaversion.api.connection.UserConnection;
 import com.viaversion.viaversion.connection.UserConnectionImpl;
 import com.viaversion.viaversion.protocol.ProtocolPipelineImpl;
-import com.kisman.cc.viaforge.ViaForge;
-import com.kisman.cc.viaforge.handler.*;
 import io.netty.channel.Channel;
 import io.netty.channel.socket.SocketChannel;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(targets = "net.minecraft.network.NetworkManager$5")

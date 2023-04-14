@@ -1,10 +1,9 @@
 package com.kisman.cc.util.render.objects;
 
-import java.util.ArrayList;
-
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 
-import java.awt.Color;
+import java.awt.*;
+import java.util.ArrayList;
 
 import static org.lwjgl.opengl.GL11.*;
 

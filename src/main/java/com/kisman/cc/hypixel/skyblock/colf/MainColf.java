@@ -4,7 +4,8 @@ import com.kisman.cc.hypixel.skyblock.colf.event.EventRegistry;
 import com.kisman.cc.hypixel.skyblock.colf.network.WSClientWrapper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import org.apache.logging.log4j.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class MainColf {
     public static final Logger LOGGER = LogManager.getLogger("[ColfSky]");

@@ -5,7 +5,8 @@ import com.kisman.cc.event.events.EventCrystalAttack;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.util.DamageSource;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = EntityEnderCrystal.class, priority = 1000)

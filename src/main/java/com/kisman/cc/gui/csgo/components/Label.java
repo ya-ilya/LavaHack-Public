@@ -1,6 +1,8 @@
 package com.kisman.cc.gui.csgo.components;
 
-import com.kisman.cc.gui.csgo.*;
+import com.kisman.cc.gui.csgo.AbstractComponent;
+import com.kisman.cc.gui.csgo.IRenderer;
+import com.kisman.cc.gui.csgo.Window;
 
 public class Label extends AbstractComponent {
     private String text;

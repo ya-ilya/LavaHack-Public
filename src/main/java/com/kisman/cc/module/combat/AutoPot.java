@@ -1,11 +1,16 @@
 package com.kisman.cc.module.combat;
 
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import i.gishreloaded.gishcode.utils.TimerUtils;
 import net.minecraft.init.Items;
-import net.minecraft.item.*;
-import net.minecraft.network.play.client.*;
-import net.minecraft.potion.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.play.client.CPacketHeldItemChange;
+import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.EnumHand;
 
 import java.util.Objects;

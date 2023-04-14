@@ -2,16 +2,22 @@ package com.kisman.cc.mixin.mixins;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.module.combat.KillAura;
-import com.kisman.cc.module.render.*;
+import com.kisman.cc.module.render.SwingAnimation;
+import com.kisman.cc.module.render.ViewModel;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.PlayerUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
-import org.spongepowered.asm.mixin.*;
-import org.spongepowered.asm.mixin.injection.*;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumHandSide;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = ItemRenderer.class, priority = 10000)

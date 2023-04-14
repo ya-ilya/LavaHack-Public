@@ -3,7 +3,6 @@ package com.kisman.cc.settings;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
-import com.kisman.cc.settings.Setting;
 
 public class ListSetting
         extends Setting2 {

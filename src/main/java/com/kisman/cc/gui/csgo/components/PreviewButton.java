@@ -1,8 +1,12 @@
 package com.kisman.cc.gui.csgo.components;
 
-import com.kisman.cc.gui.csgo.*;
+import com.kisman.cc.gui.csgo.AbstractComponent;
+import com.kisman.cc.gui.csgo.IRenderer;
+import com.kisman.cc.gui.csgo.Window;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;

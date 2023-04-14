@@ -3,50 +3,60 @@ package com.kisman.cc;
 import com.kisman.cc.api.cape.CapeAPI;
 import com.kisman.cc.catlua.ScriptManager;
 import com.kisman.cc.catlua.lua.utils.LuaRotation;
-import com.kisman.cc.catlua.mapping.*;
+import com.kisman.cc.catlua.mapping.ExcludedList;
+import com.kisman.cc.catlua.mapping.ForgeMappings;
+import com.kisman.cc.catlua.mapping.Remapper3000;
 import com.kisman.cc.command.CommandManager;
 import com.kisman.cc.console.GuiConsole;
 import com.kisman.cc.console.rewrite.ConsoleGui;
-import com.kisman.cc.event.*;
+import com.kisman.cc.event.EventProcessor;
+import com.kisman.cc.event.EventProcessorLua;
 import com.kisman.cc.file.ConfigManager;
 import com.kisman.cc.friend.FriendManager;
 import com.kisman.cc.gui.MainGui;
-import com.kisman.cc.gui.halq.Frame;
-import com.kisman.cc.hud.hudeditor.HudEditorGui;
-import com.kisman.cc.hud.hudgui.HudGui;
-import com.kisman.cc.hud.hudmodule.*;
-import com.kisman.cc.module.client.Config;
-import com.kisman.cc.module.*;
 import com.kisman.cc.gui.csgo.ClickGuiNew;
+import com.kisman.cc.gui.halq.Frame;
 import com.kisman.cc.gui.halq.HalqGui;
 import com.kisman.cc.gui.mainmenu.sandbox.SandBoxShaders;
 import com.kisman.cc.gui.vega.Gui;
+import com.kisman.cc.hud.hudeditor.HudEditorGui;
+import com.kisman.cc.hud.hudgui.HudGui;
+import com.kisman.cc.hud.hudmodule.HudModule;
+import com.kisman.cc.hud.hudmodule.HudModuleManager;
+import com.kisman.cc.module.Module;
+import com.kisman.cc.module.ModuleManager;
+import com.kisman.cc.module.client.Config;
 import com.kisman.cc.settings.SettingsManager;
-import com.kisman.cc.util.*;
+import com.kisman.cc.util.RotationUtils;
+import com.kisman.cc.util.ServerManager;
+import com.kisman.cc.util.VectorUtils;
 import com.kisman.cc.util.customfont.CustomFontRenderer;
-import com.kisman.cc.util.optimization.aiimpr.MainAiImpr;
-import com.kisman.cc.util.protect.*;
-import com.kisman.cc.util.manager.Managers;
-import com.kisman.cc.util.shaders.Shaders;
 import com.kisman.cc.util.glow.ShaderShell;
+import com.kisman.cc.util.manager.Managers;
+import com.kisman.cc.util.optimization.aiimpr.MainAiImpr;
+import com.kisman.cc.util.shaders.Shaders;
 import me.zero.alpine.bus.EventManager;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import org.apache.logging.log4j.*;
-import org.lwjgl.input.Keyboard;
-
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
 import java.awt.*;
 import java.io.IOException;
-import java.net.*;
-import java.nio.file.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
+@Mod(modid = Kisman.MODID, name = Kisman.NAME, version = Kisman.VERSION)
 public class Kisman {
     public static final String NAME = "LavaHack Public";
     public static final String MODID = "kisman";
@@ -101,35 +111,22 @@ public class Kisman {
     public SandBoxShaders sandBoxShaders;
     public Managers managers;
     public CapeAPI capeAPI;
-
     public MainAiImpr aiImpr;
-
-    //catlua
     public EventProcessorLua eventProcessorLua;
     public ExcludedList excludedList;
     public Remapper3000 remapper3000;
     public ForgeMappings forgeMappings;
     public LuaRotation luaRotation;
     public ScriptManager scriptManager;
-
-    //Config
     public ConfigManager configManager;
 
-    private Kisman() {
-        //instance = this;
-    }
-
-    public void preInit() throws IOException, NoSuchFieldException, IllegalAccessException {
-        AntiDump.check();
-
+    public void init() throws IOException, NoSuchFieldException, IllegalAccessException {
         try {
             Minecraft.class.getDeclaredField("player");
         } catch(Exception e) {
             remapped = true;
         }
-    }
 
-    public void init() throws IOException, NoSuchFieldException, IllegalAccessException {
         Display.setTitle(NAME + " | " + VERSION);
     	MinecraftForge.EVENT_BUS.register(this);
 

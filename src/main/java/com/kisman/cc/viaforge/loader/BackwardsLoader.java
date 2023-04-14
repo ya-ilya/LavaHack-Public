@@ -1,7 +1,7 @@
 package com.kisman.cc.viaforge.loader;
 
-import com.viaversion.viabackwards.api.ViaBackwardsPlatform;
 import com.kisman.cc.viaforge.ViaForge;
+import com.viaversion.viabackwards.api.ViaBackwardsPlatform;
 
 import java.io.File;
 import java.util.logging.Logger;

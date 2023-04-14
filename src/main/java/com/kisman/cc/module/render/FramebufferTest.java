@@ -1,18 +1,16 @@
 package com.kisman.cc.module.render;
 
-import com.kisman.cc.module.*;
-import com.kisman.cc.module.render.shader.shaders.ItemShader;
 import com.kisman.cc.gui.csgo.components.Slider;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
+import com.kisman.cc.module.render.shader.shaders.ItemShader;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.Render2DUtil;
-import com.kisman.cc.util.customfont.CustomFontUtil;
-import com.kisman.cc.util.render.objects.*;
-
+import com.kisman.cc.util.render.objects.AbstractGradient;
+import com.kisman.cc.util.render.objects.Vec4d;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.awt.*;

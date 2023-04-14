@@ -3,7 +3,7 @@ package com.kisman.cc.util.bypasses;
 import com.kisman.cc.util.InventoryUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.ClickType;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
 
 public class SilentSwitchBypass {
     private final Minecraft mc = Minecraft.getMinecraft();

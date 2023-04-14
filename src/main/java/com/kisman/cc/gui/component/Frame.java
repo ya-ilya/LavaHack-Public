@@ -1,18 +1,21 @@
 package com.kisman.cc.gui.component;
 
-import java.awt.*;
-import java.util.ArrayList;
-
 import com.kisman.cc.Kisman;
-import com.kisman.cc.hud.hudmodule.*;
-import com.kisman.cc.module.client.Config;
 import com.kisman.cc.gui.ClickGui;
 import com.kisman.cc.gui.component.components.Button;
-import com.kisman.cc.util.*;
+import com.kisman.cc.hud.hudmodule.HudCategory;
+import com.kisman.cc.hud.hudmodule.HudModule;
+import com.kisman.cc.module.client.Config;
+import com.kisman.cc.util.ColorUtil;
+import com.kisman.cc.util.LineMode;
+import com.kisman.cc.util.Render2DUtil;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.util.text.TextFormatting;
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.client.gui.*;
+import java.awt.*;
+import java.util.ArrayList;
 
 public class Frame {
 	public ArrayList<Component> components;

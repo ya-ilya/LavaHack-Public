@@ -1,8 +1,9 @@
 package com.kisman.cc.hud.hudgui;
 
-import com.kisman.cc.gui.component.*;
-import net.minecraft.client.gui.GuiScreen;
+import com.kisman.cc.gui.component.Component;
+import com.kisman.cc.gui.component.Frame;
 import com.kisman.cc.hud.hudmodule.HudCategory;
+import net.minecraft.client.gui.GuiScreen;
 
 import java.io.IOException;
 import java.util.ArrayList;

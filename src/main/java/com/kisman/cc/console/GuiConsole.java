@@ -1,21 +1,27 @@
 package com.kisman.cc.console;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.awt.*;
-import javax.annotation.Nullable;
-import com.kisman.cc.util.ColorUtil;
-import org.lwjgl.input.*;
 import com.kisman.cc.Kisman;
-import com.kisman.cc.command.*;
+import com.kisman.cc.command.Command;
+import com.kisman.cc.util.ColorUtil;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.util.*;
+import net.minecraft.util.ITabCompleter;
+import net.minecraft.util.TabCompleter;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.*;
-import net.minecraft.util.text.*;
-import net.minecraftforge.fml.relauncher.*;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+
+import javax.annotation.Nullable;
+import java.awt.*;
+import java.io.IOException;
+import java.util.ArrayList;
 
 @SideOnly(Side.CLIENT)
 public class GuiConsole extends GuiScreen implements ITabCompleter {

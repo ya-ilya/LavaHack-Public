@@ -1,9 +1,11 @@
 package com.kisman.cc.gui.csgo.components;
 
-import com.kisman.cc.module.client.Config;
-import com.kisman.cc.gui.csgo.*;
+import com.kisman.cc.gui.csgo.AbstractComponent;
+import com.kisman.cc.gui.csgo.IRenderer;
 import com.kisman.cc.gui.csgo.Window;
-import com.kisman.cc.util.*;
+import com.kisman.cc.module.client.Config;
+import com.kisman.cc.util.Colour;
+import com.kisman.cc.util.Render2DUtil;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import net.minecraft.client.gui.Gui;
 import org.lwjgl.opengl.GL11;

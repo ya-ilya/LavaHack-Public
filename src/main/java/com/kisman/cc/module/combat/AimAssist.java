@@ -1,8 +1,11 @@
 package com.kisman.cc.module.combat;
 
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
-import com.kisman.cc.util.*;
+import com.kisman.cc.util.AnimationUtils;
+import com.kisman.cc.util.EntityUtil;
+import com.kisman.cc.util.RotationUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;

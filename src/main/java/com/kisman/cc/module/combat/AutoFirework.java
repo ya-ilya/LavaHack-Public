@@ -1,18 +1,22 @@
 package com.kisman.cc.module.combat;
 
 import com.kisman.cc.module.Category;
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.*;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import i.gishreloaded.gishcode.utils.TimerUtils;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.*;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemTool;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextFormatting;
 
 import java.util.*;

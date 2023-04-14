@@ -1,7 +1,8 @@
 package com.kisman.cc.util;
 
 import com.kisman.cc.event.events.PacketEvent;
-import me.zero.alpine.listener.*;
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listener;
 import net.minecraft.network.play.server.SPacketTimeUpdate;
 import net.minecraft.util.math.MathHelper;
 

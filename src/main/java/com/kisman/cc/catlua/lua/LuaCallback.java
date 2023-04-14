@@ -1,7 +1,6 @@
 package com.kisman.cc.catlua.lua;
 
 import com.kisman.cc.catlua.lua.utils.LuaUtils;
-import com.kisman.cc.catlua.module.ModuleScript;
 import com.kisman.cc.module.Module;
 import org.luaj.vm2.LuaClosure;
 import org.luaj.vm2.LuaValue;

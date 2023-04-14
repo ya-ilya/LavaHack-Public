@@ -2,17 +2,21 @@ package com.kisman.cc.module.client;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.EventRenderToolTip;
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.customfont.CustomFontUtil;
-import me.zero.alpine.listener.*;
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listener;
 import net.minecraft.block.BlockShulkerBox;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.item.ItemShulkerBox;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.*;
+import net.minecraft.util.NonNullList;
 
 import java.awt.*;
 

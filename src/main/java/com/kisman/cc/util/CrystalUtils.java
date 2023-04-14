@@ -1,12 +1,6 @@
 package com.kisman.cc.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -28,6 +22,11 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CrystalUtils {
     private static Minecraft mc = Minecraft.getMinecraft();
@@ -388,7 +387,7 @@ public class CrystalUtils {
     }
 
     private static float getDamageMultiplied(final World p_World, float damage) {
-        int diff = p_World.getDifficulty().getDifficultyId();
+        int diff = p_World.getDifficulty().getId();
         return damage * (diff == 0 ? 0 : (diff == 2 ? 1 : (diff == 1 ? 0.5f : 1.5f)));
     }
 

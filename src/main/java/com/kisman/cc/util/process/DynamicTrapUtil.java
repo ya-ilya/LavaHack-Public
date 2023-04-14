@@ -1,14 +1,15 @@
 package com.kisman.cc.util.process;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-
-import java.util.*;
-
 import com.kisman.cc.module.combat.Surround;
 import com.kisman.cc.util.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DynamicTrapUtil implements Globals {
     public EntityPlayer target = null;
@@ -95,7 +96,7 @@ public class DynamicTrapUtil implements Globals {
                 tempOffsets.add(addToPosition(getPlayerPosition(), -(1 + negativeLengthX), -z));
             }
             offsets.addAll(tempOffsets);
-        } else for (EnumFacing side : EnumFacing.HORIZONTALS) offsets.add(getPlayerPosition().add(side.getFrontOffsetX(), 0, side.getFrontOffsetZ()));
+        } else for (EnumFacing side : EnumFacing.HORIZONTALS) offsets.add(getPlayerPosition().add(side.getXOffset(), 0, side.getZOffset()));
         return offsets;
     }
 
@@ -166,7 +167,7 @@ public class DynamicTrapUtil implements Globals {
                 tempOffsets.add(addToPosition(getPlayerPosition(), -(1 + negativeLengthX), -z));
             }
             offsets.addAll(tempOffsets);
-        } else for (EnumFacing side : EnumFacing.HORIZONTALS) offsets.add(getPlayerPosition().add(side.getFrontOffsetX(), 0, side.getFrontOffsetZ()));
+        } else for (EnumFacing side : EnumFacing.HORIZONTALS) offsets.add(getPlayerPosition().add(side.getXOffset(), 0, side.getZOffset()));
         return offsets;
     }
 

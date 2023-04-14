@@ -1,12 +1,15 @@
 package com.kisman.cc.util;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.*;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Enchantments;
+import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.*;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketHeldItemChange;

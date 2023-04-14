@@ -1,9 +1,12 @@
 package com.kisman.cc.util.render;
 
-import com.kisman.cc.util.*;
-import com.kisman.cc.util.render.konas.*;
+import com.kisman.cc.util.Colour;
+import com.kisman.cc.util.Globals;
+import com.kisman.cc.util.render.konas.BlockRenderUtil;
+import com.kisman.cc.util.render.konas.FaceMasks;
+import com.kisman.cc.util.render.konas.TessellatorUtil;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.AxisAlignedBB;
 
 public class KonasRenderer implements Globals {
     public static void drawHole(AxisAlignedBB axisAlignedBB, String mode, String lines, double height, Colour color, Colour lineColor, boolean notSelf, int fadeAlpha, boolean sides, boolean noLineDepth, boolean depth, float width) {

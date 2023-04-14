@@ -1,10 +1,13 @@
 package com.kisman.cc.module.combat;
 
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.InventoryUtil;
 import net.minecraft.init.Items;
-import net.minecraft.network.play.client.*;
+import net.minecraft.network.play.client.CPacketHeldItemChange;
+import net.minecraft.network.play.client.CPacketPlayer;
+import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
 import net.minecraft.util.EnumHand;
 
 import java.util.ArrayList;

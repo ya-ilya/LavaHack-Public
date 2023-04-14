@@ -1,6 +1,8 @@
 package com.kisman.cc;
 
-import club.minnced.discord.rpc.*;
+import club.minnced.discord.rpc.DiscordEventHandlers;
+import club.minnced.discord.rpc.DiscordRPC;
+import club.minnced.discord.rpc.DiscordRichPresence;
 import com.kisman.cc.module.client.DiscordRPCModule;
 import com.kisman.cc.util.Globals;
 

@@ -1,11 +1,14 @@
 package com.kisman.cc.module.render.shader;
 
 import org.apache.commons.io.IOUtils;
-import org.lwjgl.opengl.*;
+import org.lwjgl.opengl.ARBShaderObjects;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL20;
 
 import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class Shader {
     public int program;

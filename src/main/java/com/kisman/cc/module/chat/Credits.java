@@ -1,6 +1,7 @@
 package com.kisman.cc.module.chat;
 
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 import net.minecraft.util.text.TextFormatting;
 

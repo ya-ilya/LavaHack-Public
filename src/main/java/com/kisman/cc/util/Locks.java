@@ -1,6 +1,7 @@
 package com.kisman.cc.util;
 
-import java.util.concurrent.locks.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Locks that the client uses.

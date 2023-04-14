@@ -1,14 +1,20 @@
 package com.kisman.cc.module.misc;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.*;
-import com.kisman.cc.module.*;
-import com.kisman.cc.module.combat.*;
+import com.kisman.cc.event.events.EventPlayerMotionUpdate;
+import com.kisman.cc.event.events.EventSpawnEntity;
+import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
+import com.kisman.cc.module.combat.AntiTrap;
+import com.kisman.cc.module.combat.AutoRer;
 import com.kisman.cc.settings.Setting;
 import i.gishreloaded.gishcode.utils.TimerUtils;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
-import me.zero.alpine.listener.*;
-import net.minecraft.entity.item.*;
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listener;
+import net.minecraft.entity.item.EntityEnderCrystal;
+import net.minecraft.entity.item.EntityExpBottle;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
@@ -18,7 +24,9 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 public class Tracker extends Module {
     private Setting autoEnable = new Setting("AutoEnable", this, false);

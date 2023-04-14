@@ -1,10 +1,12 @@
 package com.kisman.cc.module.client;
 
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.customfont.CustomFontUtilKt;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CustomFontModule extends Module {
     private final Setting antiAlias = new Setting("Anti Alias", this, true);

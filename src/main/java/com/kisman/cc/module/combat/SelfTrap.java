@@ -1,11 +1,13 @@
 package com.kisman.cc.module.combat;
 
 import com.kisman.cc.module.Category;
-import com.kisman.cc.util.*;
+import com.kisman.cc.util.BlockUtil2;
+import com.kisman.cc.util.EntityUtil;
+import com.kisman.cc.util.InventoryUtil;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.BlockPos;
 
 public class SelfTrap extends AutoTrap {
     public SelfTrap() {

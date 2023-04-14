@@ -1,17 +1,27 @@
 package com.kisman.cc.mixin.mixins;
 
-import com.kisman.cc.module.render.*;
+import com.kisman.cc.module.render.HotbarModifier;
+import com.kisman.cc.module.render.NoRender;
 import com.kisman.cc.util.Render2DUtil;
-import com.kisman.cc.util.render.objects.*;
+import com.kisman.cc.util.render.objects.AbstractGradient;
+import com.kisman.cc.util.render.objects.Vec4d;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.*;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiIngame;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHandSide;
-import org.spongepowered.asm.mixin.*;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.awt.*;

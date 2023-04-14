@@ -2,13 +2,16 @@ package com.kisman.cc.hud.hudmodule;
 
 import com.kisman.cc.hud.hudmodule.combat.*;
 import com.kisman.cc.hud.hudmodule.movement.Speed;
-import com.kisman.cc.hud.hudmodule.player.*;
+import com.kisman.cc.hud.hudmodule.player.Indicators;
+import com.kisman.cc.hud.hudmodule.player.Ping;
+import com.kisman.cc.hud.hudmodule.player.ServerIp;
+import com.kisman.cc.hud.hudmodule.player.Tps;
 import com.kisman.cc.hud.hudmodule.render.*;
-
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.*;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class HudModuleManager {
     public java.util.ArrayList<HudModule> modules;

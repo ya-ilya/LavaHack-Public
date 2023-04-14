@@ -2,12 +2,20 @@ package com.kisman.cc.catlua.mapping;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.catlua.parser.MappingParser;
-import fuck.you.yarnparser.entry.*;
+import fuck.you.yarnparser.entry.ClassEntry;
+import fuck.you.yarnparser.entry.FieldEntry;
+import fuck.you.yarnparser.entry.MethodEntry;
 import org.luaj.vm2.LuaValue;
 
-import java.io.*;
-import java.lang.reflect.*;
-import java.nio.file.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 public class Remapper3000 {

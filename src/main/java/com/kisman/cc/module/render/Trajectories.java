@@ -1,6 +1,7 @@
 package com.kisman.cc.module.render;
 
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.MathUtil;
 import com.kisman.cc.util.RenderUtil;
@@ -8,18 +9,23 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.*;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.lwjgl.opengl.*;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL32;
 
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -320,7 +326,7 @@ public class Trajectories extends Module {
         }
 
         private void setThrowableHeading(Vec3d motion, float velocity) {
-            this.motion = MathUtil.div(motion, (float) motion.lengthVector());
+            this.motion = MathUtil.div(motion, (float) motion.length());
             this.motion = MathUtil.mult(this.motion, velocity);
         }
 

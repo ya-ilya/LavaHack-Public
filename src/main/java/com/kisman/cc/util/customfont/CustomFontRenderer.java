@@ -1,9 +1,10 @@
 package com.kisman.cc.util.customfont;
 
-import java.awt.Font;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
 
 public class CustomFontRenderer extends CustomFont {
     protected CustomFont.CharData[] boldChars = new CustomFont.CharData[256];

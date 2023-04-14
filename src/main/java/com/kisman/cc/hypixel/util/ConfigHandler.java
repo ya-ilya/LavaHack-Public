@@ -1,10 +1,10 @@
 package com.kisman.cc.hypixel.util;
 
-import java.io.File;
-
 import com.kisman.cc.Kisman;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
+
+import java.io.File;
 
 public class ConfigHandler {
 

@@ -3,10 +3,8 @@ package com.kisman.cc.module.client;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
-import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class Test extends Module {

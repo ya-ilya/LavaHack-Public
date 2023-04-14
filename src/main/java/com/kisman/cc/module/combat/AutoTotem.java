@@ -6,9 +6,9 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ClickType;
-import net.minecraft.util.NonNullList;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
 public class AutoTotem extends Module {
     public AutoTotem() {

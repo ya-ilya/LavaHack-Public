@@ -2,9 +2,11 @@ package com.kisman.cc.module.render.shader;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.shader.Framebuffer;
-import org.lwjgl.opengl.*;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL20;
 
 public abstract class FramebufferShader extends Shader {
     public Minecraft mc;

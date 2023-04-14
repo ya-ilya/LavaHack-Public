@@ -4,7 +4,8 @@ import com.kisman.cc.module.render.NoRender;
 import net.minecraft.client.renderer.entity.RenderEntityItem;
 import net.minecraft.entity.item.EntityItem;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(RenderEntityItem.class)

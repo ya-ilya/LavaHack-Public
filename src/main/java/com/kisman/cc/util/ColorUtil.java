@@ -1,12 +1,13 @@
 package com.kisman.cc.util;
 
-import java.awt.*;
-import java.util.*;
-import java.util.List;
-
 import com.kisman.cc.settings.Setting;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 import net.minecraft.util.text.TextFormatting;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ColorUtil {
     public static List<String> colors = Arrays.asList("Black", "Dark Green", "Dark Red", "Gold", "Dark Gray", "Green", "Red", "Yellow", "Dark Blue", "Dark Aqua", "Dark Purple", "Gray", "Blue", "Aqua", "Light Purple", "White");

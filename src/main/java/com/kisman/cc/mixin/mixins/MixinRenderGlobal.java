@@ -1,14 +1,15 @@
 package com.kisman.cc.mixin.mixins;
 
 import com.kisman.cc.event.events.RenderEntityEvent;
-import com.kisman.cc.module.render.*;
+import com.kisman.cc.module.render.NoRender;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.RayTraceResult;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.*;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = RenderGlobal.class, priority = 10000)

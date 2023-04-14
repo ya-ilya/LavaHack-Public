@@ -3,7 +3,6 @@ package com.kisman.cc.command.commands;
 import com.kisman.cc.Kisman;
 import com.kisman.cc.command.Command;
 import com.kisman.cc.module.Module;
-
 import org.lwjgl.input.Keyboard;
 
 public class Bind extends Command{

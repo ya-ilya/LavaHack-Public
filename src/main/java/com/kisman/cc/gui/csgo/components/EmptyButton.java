@@ -1,6 +1,7 @@
 package com.kisman.cc.gui.csgo.components;
 
-import com.kisman.cc.gui.csgo.*;
+import com.kisman.cc.gui.csgo.AbstractComponent;
+import com.kisman.cc.gui.csgo.IRenderer;
 
 public class EmptyButton extends AbstractComponent {
     private static final int PREFERRED_WIDTH = 180;

@@ -2,20 +2,25 @@ package com.kisman.cc.module.combat;
 
 import com.google.common.collect.Ordering;
 import com.kisman.cc.Kisman;
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
-import com.kisman.cc.util.*;
+import com.kisman.cc.util.EntityUtil;
+import com.kisman.cc.util.RotationUtils;
 import com.kisman.cc.util.mixin.util.GuiPlayerTabOverlayUtil;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.*;
+import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.util.math.RayTraceResult;
 import org.lwjgl.input.Mouse;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class AntiBot extends Module {
     public Setting mode = new Setting("Mode", this, "WellMore", Arrays.asList("Matrix 6.3", "Classic", "Vanish", "Zamorozka"));

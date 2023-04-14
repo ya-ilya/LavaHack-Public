@@ -1,7 +1,8 @@
 package com.kisman.cc.module.render;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import net.minecraft.init.Blocks;
 import net.minecraft.potion.Potion;

@@ -1,9 +1,9 @@
 package com.kisman.cc.util.render.objects;
 
+import org.lwjgl.opengl.GL11;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import org.lwjgl.opengl.GL11;
 
 public class Vec4d {
     public double x1, x2, y1, y2, x3, x4, y3, y4;

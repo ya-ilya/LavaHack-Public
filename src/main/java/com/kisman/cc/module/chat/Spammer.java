@@ -1,10 +1,9 @@
 package com.kisman.cc.module.chat;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.module.*;
-
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
-
 import i.gishreloaded.gishcode.utils.TimerUtils;
 
 import java.util.ArrayList;

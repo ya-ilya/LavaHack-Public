@@ -1,9 +1,10 @@
 package com.kisman.cc.module.client;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.file.*;
-import com.kisman.cc.module.*;
+import com.kisman.cc.file.LoadConfig;
 import com.kisman.cc.gui.csgo.components.Slider;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.Colour;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;

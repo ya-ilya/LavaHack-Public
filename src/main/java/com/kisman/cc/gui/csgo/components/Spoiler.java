@@ -1,8 +1,10 @@
 package com.kisman.cc.gui.csgo.components;
 
+import com.kisman.cc.gui.csgo.AbstractComponent;
+import com.kisman.cc.gui.csgo.IRenderer;
+import com.kisman.cc.gui.csgo.Window;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.client.Config;
-import com.kisman.cc.gui.csgo.*;
 
 public class Spoiler extends AbstractComponent {
     private static final int PREFERRED_HEIGHT = 28;

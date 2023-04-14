@@ -1,8 +1,9 @@
 package com.kisman.cc.gui;
 
-import com.kisman.cc.util.*;
-import net.minecraft.client.gui.*;
-import net.minecraftforge.fml.relauncher.*;
+import com.kisman.cc.util.LineMode;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ClickGui extends GuiScreen {

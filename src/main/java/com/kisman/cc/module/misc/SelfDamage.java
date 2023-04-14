@@ -1,7 +1,8 @@
 package com.kisman.cc.module.misc;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.module.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 
 public class SelfDamage extends Module {

@@ -1,148 +1,120 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven {
-            name = 'forge'
-            url = 'https://files.minecraftforge.net/maven'
-        }
-        maven {
-            name = 'spongepowered-repo'
-            url = 'https://repo.spongepowered.org/maven'
-        }
-        maven {
-            name = 'jitpack.io'
-            url = 'https://jitpack.io'
-        }
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://repo.spongepowered.org/maven' }
+        maven { url = 'https://jitpack.io' }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-        classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
-        classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.4'
-        classpath 'com.google.code.gson:gson:2.8.6'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:5.+'
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:6.1.0'
     }
 }
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.3.50'
+    id 'org.jetbrains.kotlin.jvm' version '1.8.20'
 }
 
-ext.kotlin_version = '1.3.50'
-ext.annotations_version = '16.0.3'
-ext.coroutines_version = '1.3.1'
-
-apply plugin: 'com.github.johnrengelman.shadow'
-apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'com.github.johnrengelman.shadow'
 
-version = 'b1.3'
-group = 'com.kisman.cc'
-archivesBaseName = 'LavaHack-Public'
+version project.mod_version
+group project.mod_group
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
-
-tasks.withType(JavaCompile) {
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
     options.encoding = 'UTF-8'
 }
 
-minecraft {
-    version = '1.12.2-14.23.5.2768'
-    mappings = 'snapshot_20171003'
-    runDir = 'run'
+repositories {
+    mavenCentral()
+    maven { url = 'https://repo.spongepowered.org/maven/' }
+    maven { url = 'https://impactdevelopment.github.io/maven/' }
+    maven { url = 'https://jitpack.io' }
+    maven { url = 'https://repo.viaversion.com'}
 }
 
-repositories {
-    maven {
-        name = 'spongepowered-repo'
-        url = 'https://repo.spongepowered.org/repository/maven-public/'
+minecraft {
+    accessTransformer = file('src/main/resources/lavahack-public_at.cfg')
+    mappings channel: "$mappings_channel", version: "$mappings_version"
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+
+            property 'fml.coreMods.load', 'com.kisman.cc.mixin.KismanMixinLoader'
+            property 'mixin.env.disableRefMap', 'true'
+
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+        }
     }
-    maven {
-        name = 'impactdevelopment-repo'
-        url = 'https://impactdevelopment.github.io/maven/'
-    }
-    maven {
-        name = 'swt-repo'
-        url = 'http://maven-eclipse.github.io/maven'
-    }
-    maven {
-        name = 'jitpack.io'
-        url = 'https://jitpack.io'
-    }
-    maven {
-        url = 'https://repo.viaversion.com'
-    }
-    mavenCentral()
 }
 
 configurations {
-    shade
-    compile.extendsFrom(shade)
+    library
 }
 
 dependencies {
-    compile("org.spongepowered:mixin:0.7.4-SNAPSHOT") {//
-        exclude module: 'launchwrapper'
-        exclude module: 'guava'
-        exclude module: 'gson'
-        exclude module: 'commons-io'
-    }
-    compile group: 'net.jodah', name: 'typetools', version: '0.6.3'
-    compile group: "com.googlecode.json-simple", name: "json-simple", version: "1.1.1"
-    compile group: 'club.minnced', name: 'java-discord-rpc', version: '2.0.1'
-    compile group: 'org.yaml', name: 'snakeyaml', version: '2.0'
-    compile(group: 'org.reflections', name: 'reflections', version: '0.9.11') {
-        exclude group: 'com.google.guava', module: 'guava'
-    }
-    shade 'com.neovisionaries:nv-websocket-client:2.14'
+    minecraft "net.minecraftforge:forge:$minecraft_version-$forge_version"
 
-    /*
-    compile group: 'org.apache.httpcomponents', name: 'httpasyncclient', version: '4.1.4'
-    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
-    compile group: 'org.apache.httpcomponents', name: 'httpcore', version: '4.4.14'
-    compile group: 'org.apache.httpcomponents', name: 'httpcore-nio', version: '4.4.14'
-    compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.5.13'
-     */
-    compile group: 'org.json', name: 'json', version: '20220320'
-    compile group: 'com.viaversion', name: 'viaversion', version: '4.2.2-SNAPSHOT'
-    compile group: 'com.viaversion', name: 'viabackwards', version: '4.2.1-SNAPSHOT'
-    compile group: "com.sun.net.httpserver", name: "http", version: "20070405"
-    compile group: "org.apache.bcel", name: "bcel", version: '6.6.0'
-    compile group: "org.jetbrains.kotlin", name: "kotlin-stdlib", version: "$kotlin_version"
-    compile group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jdk7", version: "$kotlin_version"
-    compile group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jdk8", version: "$kotlin_version"
-    compile group: "org.jetbrains.kotlin", name: "kotlin-reflect", version: "$kotlin_version"
-    compile group: "org.jetbrains", name: "annotations", version: "$annotations_version"
-    compile group: "org.jetbrains.kotlinx", name: "kotlinx-coroutines-core", version: "$coroutines_version"
-    compile group: "org.jetbrains.kotlinx", name: "kotlinx-coroutines-jdk8", version: "$coroutines_version"
+    library('org.spongepowered:mixin:0.8.5') {
+        exclude module: 'commons-io'
+        exclude module: 'gson'
+        exclude module: 'guava'
+    }
+
+    annotationProcessor('org.spongepowered:mixin:0.8.5:processor') {
+        exclude module: 'gson'
+    }
+
+    library(group: 'org.reflections', name: 'reflections', version: '0.9.11') {
+        exclude module: 'guava'
+    }
+
+    library group: 'com.github.ZeroMemes', name: 'alpine', version: '1.9'
+    library group: 'club.minnced', name: 'java-discord-rpc', version: '2.0.1'
+
+    library group: 'org.luaj', name: 'luaj-jse', version: '3.0.1'
+
+    library group: 'com.google.code.gson', name: 'gson', version: '2.10.1'
+    library group: 'org.yaml', name: 'snakeyaml', version: '1.19' // for ViaVersions
+
+    library group: 'com.viaversion', name: 'viaversion', version: '4.2.2-SNAPSHOT'
+    library group: 'com.viaversion', name: 'viabackwards', version: '4.2.1-SNAPSHOT'
+
+    library group: 'com.sun.net.httpserver', name: 'http', version: '20070405'
+    library group: 'com.neovisionaries', name: 'nv-websocket-client', version: '2.14'
+
+    library group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jdk8", version: "$kotlin_version"
+    library group: "org.jetbrains.kotlin", name: "kotlin-reflect", version: "$kotlin_version"
+    library group: "org.jetbrains", name: "annotations", version: "$annotations_version"
+
+    implementation configurations.library
+}
+
+mixin {
+    defaultObfuscationEnv 'searge'
+    add sourceSets.main, 'mixins.lavahack-public.refmap.json'
 }
 
 processResources {
-    inputs.property 'version', project.version
-    inputs.property 'mcversion', project.minecraft.version
-
     from(sourceSets.main.resources.srcDirs) {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
         include 'mcmod.info'
-        expand 'version': project.version, 'mcversion': project.minecraft.version
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
+        expand version: version, 'mcversion': minecraft_version
     }
 
     rename '(.+_at.cfg)', 'META-INF/$1'
 }
 
-mixin {
-    defaultObfuscationEnv searge
-    add sourceSets.main, 'mixins.lavahack-public.refmap.json'
+reobf {
+    shadowJar { }
 }
 
-reobf {
-    shadowJar {
-        mappingType = 'SEARGE'
-        classpath = sourceSets.main.compileClasspath
-    }
-}
-jar {
+shadowJar {
     manifest {
         attributes(
                 'MixinConfigs': 'mixins.lavahack-public.json',
@@ -154,54 +126,21 @@ jar {
                 'FMLAT': 'lavahack-public_at.cfg'
         )
     }
-}
-shadowJar {
-    dependencies {
-        include(dependency('com.yworks:yguard'))
-        include(dependency('org.spongepowered:mixin'))
-        include(dependency('net.jodah:typetools'))
-        include(dependency('com.googlecode.json-simple:json-simple:1.1.1'))
-        include(dependency('club.minnced:java-discord-rpc:2.0.1'))
-        include(dependency('com.lukflug:panelstudio'))
-        include(dependency('com.lukflug:panelstudio-mc12'))
-        include(dependency('org.yaml:snakeyaml'))
-        include(dependency('org.reflections:reflections'))
-        include(dependency('org.javassist:javassist'))
-        /*
-        include(dependency('org.apache.httpcomponents:httpasyncclient'))
-        include(dependency('org.apache.httpcomponents:httpclient'))
-        include(dependency('org.apache.httpcomponents:httpcore'))
-        include(dependency('org.apache.httpcomponents:httpcore-nio'))
-        include(dependency('org.apache.httpcomponents:httpmime'))
-         */
-        include(dependency('org.json:json'))
-        include(dependency('com.viaversion:viaversion'))
-        include(dependency('com.viaversion:viabackwards'))
-        include(dependency('com.sun.net.httpserver:http'))
-        include(dependency('org.apache.bcel:bcel:6.5.0'))
-        include(dependency("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"))
-        include(dependency("org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"))
-        include(dependency("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"))
-        include(dependency("org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"))
-        include(dependency("org.jetbrains:annotations:$annotations_version"))
-        include(dependency("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"))
-        include(dependency("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$coroutines_version"))
-    }
-    exclude 'dummyThing'
-    exclude 'LICENSE.txt'
+
+    exclude '**/module-info.class',
+            'DebugProbesKt.bin',
+            'META-INF/proguard/**',
+            'META-INF/versions/**',
+            'META-INF/**.RSA',
+            'META-INF/com.android.tools/**',
+            'META-INF/*.kotlin_module',
+            'kotlin/**/*.kotlin_metadata',
+            'kotlin/**/*.kotlin_builtins',
+            'META-INF/*.version',
+            '*.class' // Exclude luaj resources
+
+    configurations = [project.configurations.library]
     classifier = 'release'
 }
 
 build.dependsOn(shadowJar)
-
-compileKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
-
-compileTestKotlin {
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}

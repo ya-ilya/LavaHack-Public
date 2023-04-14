@@ -1,13 +1,11 @@
 package com.kisman.cc.util;
 
 import com.kisman.cc.module.exploit.LiquidInteract;
-import net.minecraft.init.Blocks;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
-import net.minecraft.entity.Entity;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockSlab;
 import net.minecraft.init.Blocks;
 import net.minecraft.network.play.client.CPacketAnimation;
 import net.minecraft.network.play.client.CPacketEntityAction;
@@ -15,18 +13,13 @@ import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
-
-import static java.lang.Double.isNaN;
+import net.minecraft.util.math.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
+
+import static java.lang.Double.isNaN;
 
 public class BlockInteractionHelper
 {

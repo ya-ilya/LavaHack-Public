@@ -2,14 +2,13 @@ package com.kisman.cc.command;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.command.commands.*;
-
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 import i.gishreloaded.gishcode.wrappers.Wrapper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class CommandManager {
     public static ArrayList<Command> commands = new ArrayList<Command>();

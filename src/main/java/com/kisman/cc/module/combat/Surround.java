@@ -2,27 +2,37 @@ package com.kisman.cc.module.combat;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
-import com.kisman.cc.mixin.mixins.accessor.ICPacketPlayer;
-import com.kisman.cc.module.*;
 import com.kisman.cc.gui.csgo.components.Slider;
+import com.kisman.cc.mixin.mixins.accessor.ICPacketPlayer;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.*;
-import com.kisman.cc.util.Rotation;
-import com.kisman.cc.util.Rotation.*;
+import com.kisman.cc.util.Rotation.Rotate;
 import i.gishreloaded.gishcode.utils.TimerUtils;
-import me.zero.alpine.listener.*;
+import me.zero.alpine.listener.EventHandler;
+import me.zero.alpine.listener.Listener;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.*;
+import net.minecraft.entity.item.EntityEnderCrystal;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.network.play.client.*;
-import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.network.play.client.CPacketAnimation;
+import net.minecraft.network.play.client.CPacketPlayer;
+import net.minecraft.network.play.client.CPacketUseEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static com.kisman.cc.module.combat.Surround.Center.*;
+import static com.kisman.cc.module.combat.Surround.Center.TELEPORT;
 
 public class Surround extends Module {
     private Setting surroundVec = new Setting("SurroundVec", this, SurroundVectors.BASE);
@@ -412,7 +422,7 @@ public class Surround extends Module {
                 protectOffsets.add(addToPosition(addToPosition(getPlayerPosition(), -(1 + negativeLengthX), -z), -(3 + negativeLengthX), -z));
             }
             offsets.addAll(tempOffsets);
-        } else for (EnumFacing side : EnumFacing.HORIZONTALS) offsets.add(getPlayerPosition().add(side.getFrontOffsetX(), 0, side.getFrontOffsetZ()));
+        } else for (EnumFacing side : EnumFacing.HORIZONTALS) offsets.add(getPlayerPosition().add(side.getXOffset(), 0, side.getZOffset()));
         return offsets;
     }
 

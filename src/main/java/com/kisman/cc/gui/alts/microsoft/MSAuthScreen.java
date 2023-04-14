@@ -1,13 +1,14 @@
 package com.kisman.cc.gui.alts.microsoft;
 
-import java.util.*;
-
 import com.kisman.cc.util.process.web.microsoft.AuthSys;
-import net.minecraft.client.resources.*;
-import net.minecraft.client.gui.*;
-import java.io.*;
-import net.minecraft.client.*;
-import net.minecraft.util.text.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.util.text.TextFormatting;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MSAuthScreen extends GuiScreen {
     public static final String[] symbols;

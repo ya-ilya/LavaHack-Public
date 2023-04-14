@@ -1,8 +1,8 @@
 package com.kisman.cc.module;
 
 import com.kisman.cc.Kisman;
-
-import com.kisman.cc.settings.*;
+import com.kisman.cc.settings.Setting;
+import com.kisman.cc.settings.SettingsManager;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.TextFormatting;

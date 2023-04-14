@@ -2,11 +2,11 @@ package com.kisman.cc.gui.halq;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.gui.MainGui;
+import com.kisman.cc.gui.halq.component.Component;
+import com.kisman.cc.gui.particle.ParticleSystem;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.client.Config;
 import com.kisman.cc.module.client.GuiModule;
-import com.kisman.cc.gui.halq.component.Component;
-import com.kisman.cc.gui.particle.ParticleSystem;
 import com.kisman.cc.util.Colour;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
@@ -14,7 +14,7 @@ import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-import java.awt.Color;
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 

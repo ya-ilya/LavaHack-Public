@@ -4,10 +4,13 @@ import com.kisman.cc.module.misc.BetterScreenshot;
 import net.minecraft.client.shader.Framebuffer;
 import net.minecraft.util.ScreenShotHelper;
 import net.minecraft.util.text.ITextComponent;
-import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Shadow;
 
 import javax.annotation.Nullable;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 
 @Mixin(ScreenShotHelper.class)
 public class MixinScreenShotHelper {

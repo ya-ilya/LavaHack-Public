@@ -1,6 +1,7 @@
 package com.kisman.cc.util.render.objects
 
-import net.minecraft.util.math.*
+import net.minecraft.util.math.AxisAlignedBB
+import net.minecraft.util.math.Vec3d
 
 class Box(var pos: Vec3d, var size: Vec3d) {
     constructor(box : Box) : this(box.pos, box.size)

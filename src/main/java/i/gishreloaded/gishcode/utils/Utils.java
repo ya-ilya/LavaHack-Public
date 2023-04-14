@@ -643,9 +643,9 @@ public class Utils {
 			final EnumFacing side = values[i];
 			final BlockPos neighbor = pos.offset(side);
 			final EnumFacing side2 = side.getOpposite();
-			if (eyesPos.squareDistanceTo(new Vec3d(pos).addVector(0.5, 0.5, 0.5)) < eyesPos
-					.squareDistanceTo(new Vec3d(neighbor).addVector(0.5, 0.5, 0.5)) && canBeClicked(neighbor)) {
-				final Vec3d hitVec = new Vec3d(neighbor).addVector(0.5, 0.5, 0.5)
+			if (eyesPos.squareDistanceTo(new Vec3d(pos).add(0.5, 0.5, 0.5)) < eyesPos
+					.squareDistanceTo(new Vec3d(neighbor).add(0.5, 0.5, 0.5)) && canBeClicked(neighbor)) {
+				final Vec3d hitVec = new Vec3d(neighbor).add(0.5, 0.5, 0.5)
 						.add(new Vec3d(side2.getDirectionVec()).scale(0.5));
 				if (eyesPos.squareDistanceTo(hitVec) <= 18.0625) {
 					Utils.faceVectorPacketInstant(hitVec);

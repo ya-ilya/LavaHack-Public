@@ -1,7 +1,9 @@
 package com.kisman.cc.module.player;
 
-import com.kisman.cc.module.*;
-import i.gishreloaded.gishcode.utils.*;
+import com.kisman.cc.module.Category;
+import com.kisman.cc.module.Module;
+import i.gishreloaded.gishcode.utils.BlockUtils;
+import i.gishreloaded.gishcode.utils.PlayerControllerUtils;
 import net.minecraft.network.play.client.CPacketPlayerDigging;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

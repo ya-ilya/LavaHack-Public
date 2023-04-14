@@ -89,7 +89,8 @@ public class ActionButton extends Component {
         RELOAD("Reload"),
         UNLOAD("Unload");
 
-        String name;
+        final String name;
+
         Action(String name) {this.name = name;}
     }
 }

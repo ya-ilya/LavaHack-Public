@@ -34,7 +34,7 @@ public class TotemPopCounter extends Module {
         OtherPLayers("Only Other Players"),
         Both("Both");
 
-        public String name;
+        public final String name;
 
         TargetMode(String name) {
             this.name = name;

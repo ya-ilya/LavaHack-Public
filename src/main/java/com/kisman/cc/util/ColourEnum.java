@@ -10,8 +10,10 @@ public enum ColourEnum {
         Astolfo(Colour.COLOR_ASTOLFO),
         Static(Colour.COLOR_PRIMARY);
 
-        public int mode, delay = 1, offset = 100;
-        public Colour primary = new Colour(Color.RED);
+        public final int mode;
+        public int delay = 1;
+        public int offset = 100;
+        public final Colour primary = new Colour(Color.RED);
         
         ColourEnum(int mode) {
             this.mode = mode;

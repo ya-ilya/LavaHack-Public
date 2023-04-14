@@ -141,7 +141,7 @@ public class Slider extends AbstractComponent {
         DECIMAL(number -> String.format(Locale.ENGLISH, "%.4f", number.floatValue())),
         INTEGER(number -> Long.toString(number.longValue()));
 
-        private Function<Number, String> formatter;
+        private final Function<Number, String> formatter;
 
         NumberType(Function<Number, String> formatter) {
             this.formatter = formatter;

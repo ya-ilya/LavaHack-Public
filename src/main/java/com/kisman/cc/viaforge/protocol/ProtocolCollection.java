@@ -45,9 +45,9 @@ public enum ProtocolCollection {
 
     R1_8(new ProtocolVersion(47, "1.8.x"));
 
-    private ProtocolVersion version;
+    private final ProtocolVersion version;
 
-    private ProtocolCollection(ProtocolVersion version) {
+    ProtocolCollection(ProtocolVersion version) {
         this.version = version;
     }
 

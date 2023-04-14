@@ -11,8 +11,10 @@ public enum SelfTrapVectors {
     AroundFull(Arrays.asList(new Vec3i(0, 1, 0), new Vec3i(0, -1, 0), new Vec3i(1, 0, 0), new Vec3i(-1, 0, 0), new Vec3i(0, 0, 1), new Vec3i(0, 0, -1))),
     Around(Arrays.asList(new Vec3i(1, 0, 0), new Vec3i(-1, 0, 0), new Vec3i(0, 0, 1), new Vec3i(0, 0, -1)));
         
-    public List<Vec3i> vec;
+    public final List<Vec3i> vec;
+
     SelfTrapVectors(List<Vec3i> vec) {this.vec = vec;}
+
     public List<Vec3i> clear(Direction dir) {
         List<Vec3i> vectors = new ArrayList<>();
         for(Vec3i vec : this.vec) if(!vec.equals(dir.vec)) vectors.add(vec);

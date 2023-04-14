@@ -166,7 +166,7 @@ public class MovementUtil {
         return getRoundedMovementInput(mc.player.movementInput.moveStrafe);
     }
 
-    private static final float getRoundedMovementInput(float input) {
+    private static float getRoundedMovementInput(float input) {
         return (input > 0.0F) ? 1.0F : ((input < 0.0F) ? -1.0F : 0.0F);
     }
 

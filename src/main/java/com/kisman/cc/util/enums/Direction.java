@@ -11,7 +11,8 @@ public enum  Direction implements Globals {
     ZMinus(new Vec3i(0, 0, -1)),
     None(new Vec3i(0, 0, 0));
 
-    public Vec3i vec;
+    public final Vec3i vec;
+
     Direction(Vec3i vec) {this.vec = vec;}
 
     public static Direction getDirectionForPlayerByBlockPos(BlockPos pos) {

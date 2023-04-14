@@ -5,7 +5,9 @@ public enum LayerMap {
     FIRST(1, 5),
     SECOND(2, 10);
 
-    public int index, modifier;
+    public final int index;
+    public final int modifier;
+
     LayerMap(int index, int modifier) {
         this.index = index;
         this.modifier = modifier;

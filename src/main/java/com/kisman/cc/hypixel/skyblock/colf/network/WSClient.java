@@ -75,10 +75,8 @@ public class WSClient extends WebSocketAdapter {
 		/*try {
 			socket.getConnectedSocket().close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (WebSocketException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
 		System.out.println("Socket closed");

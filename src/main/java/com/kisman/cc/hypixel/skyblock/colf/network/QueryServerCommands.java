@@ -90,7 +90,6 @@ public class QueryServerCommands {
 			 System.out.println("Result= " + resString);
 			 return resString;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

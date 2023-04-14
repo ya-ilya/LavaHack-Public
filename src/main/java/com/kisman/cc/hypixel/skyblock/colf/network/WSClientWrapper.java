@@ -34,7 +34,6 @@ public class WSClientWrapper {
     	try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     	
@@ -104,7 +103,6 @@ public class WSClientWrapper {
 
 				return true;
 			} catch (IOException | NoSuchAlgorithmException | WebSocketException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return false;

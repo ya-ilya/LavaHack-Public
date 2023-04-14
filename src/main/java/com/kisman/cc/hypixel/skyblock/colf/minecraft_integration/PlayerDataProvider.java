@@ -49,7 +49,6 @@ public class PlayerDataProvider {
 				 return helpers[0].id;
 			 }
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

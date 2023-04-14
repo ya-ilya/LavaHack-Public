@@ -133,7 +133,7 @@ public class EntityUtil {
     }
 
     public static boolean antibotCheck(EntityLivingBase entity) {
-        return (Kisman.target_by_click != null && Kisman.target_by_click.equals(entity));
+        return (AntiBot.instance != null && AntiBot.instance.target.equals(entity));
     }
 
     public static boolean isntValid2(final EntityLivingBase entity, boolean players, boolean animals, boolean monsters) {

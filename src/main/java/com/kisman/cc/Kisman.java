@@ -37,8 +37,6 @@ import com.kisman.cc.util.optimization.aiimpr.MainAiImpr;
 import com.kisman.cc.util.shaders.Shaders;
 import me.zero.alpine.bus.EventManager;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -54,14 +52,12 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
 
-@Mod(modid = Kisman.MODID, name = Kisman.NAME, version = Kisman.VERSION)
+@Mod(modid = Kisman.MOD_ID, name = Kisman.NAME, version = Kisman.VERSION)
 public class Kisman {
     public static final String NAME = "LavaHack Public";
-    public static final String MODID = "kisman";
+    public static final String MOD_ID = "kisman";
     public static final String VERSION = "b0.1.4";
-    public static final String HWIDS_LIST = "https://pastebin.com/raw/yM7s0G4u";
     public static final String fileName = "lavahack-public/";
     public static final String moduleName = "Modules/";
     public static final String hudName = "Hud/";
@@ -73,14 +69,10 @@ public class Kisman {
     public static Kisman instance = new Kisman();
     public static final EventManager EVENT_BUS = new EventManager();
     public static final Logger LOGGER = LogManager.getLogger(NAME);
-    public static final HashMap<GuiScreen, Float> map = new HashMap<>();
-
-    public static EntityPlayer target_by_click = null;
 
     public static boolean allowToConfiguredAnotherClients = true, remapped = false;
-    public static boolean isOpenAuthGui;
     public static boolean canUseImprAstolfo = false;
-    public static boolean canInitializateCatLua = true;
+    public static boolean canInitializeCatLua = true;
 
     public boolean init = false;
 

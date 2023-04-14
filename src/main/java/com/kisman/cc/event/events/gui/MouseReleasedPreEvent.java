@@ -1,20 +1,19 @@
-package com.kisman.cc.event.events.clickguiEvents.mouseClicked;
+package com.kisman.cc.event.events.gui;
 
 import com.kisman.cc.event.Event;
-import com.kisman.cc.event.events.clickguiEvents.drawScreen.render.GuiRenderPostEvent;
 
-public class MouseClickedPreEvent extends Event {
+public class MouseReleasedPreEvent extends Event {
     public int mouseX, mouseY, mouseButton;
     public GuiRenderPostEvent.Gui gui;
 
-    public MouseClickedPreEvent(int mouseX, int mouseY, int mouseButton) {
+    public MouseReleasedPreEvent(int mouseX, int mouseY, int mouseButton) {
         this.mouseX = mouseX;
         this.mouseY = mouseY;
         this.mouseButton = mouseButton;
         this.gui = GuiRenderPostEvent.Gui.OldGui;
     }
 
-    public MouseClickedPreEvent(int mouseX, int mouseY, int mouseButton, GuiRenderPostEvent.Gui gui) {
+    public MouseReleasedPreEvent(int mouseX, int mouseY, int mouseButton, GuiRenderPostEvent.Gui gui) {
         this.mouseX = mouseX;
         this.mouseY = mouseY;
         this.mouseButton = mouseButton;

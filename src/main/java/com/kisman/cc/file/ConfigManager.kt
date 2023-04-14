@@ -28,7 +28,7 @@ class ConfigManager(
         @Throws(IOException::class)
         fun init() {
             if(!Files.exists(Paths.get(config.path + config.name + config.suffix))) {
-                LoadConfig.init()
+                ConfigLoader.init()
                 return
             }
 

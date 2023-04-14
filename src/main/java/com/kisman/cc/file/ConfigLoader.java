@@ -20,7 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-public class LoadConfig {
+public class ConfigLoader {
     public static void init() {
         try {
             Kisman.initDirs();

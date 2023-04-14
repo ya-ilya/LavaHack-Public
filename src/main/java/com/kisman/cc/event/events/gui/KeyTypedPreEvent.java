@@ -1,4 +1,4 @@
-package com.kisman.cc.event.events.clickguiEvents.keyTyped;
+package com.kisman.cc.event.events.gui;
 
 import com.kisman.cc.event.Event;
 

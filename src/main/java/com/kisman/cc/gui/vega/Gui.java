@@ -1,9 +1,9 @@
 package com.kisman.cc.gui.vega;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.clickguiEvents.drawScreen.render.GuiRenderPostEvent;
-import com.kisman.cc.event.events.clickguiEvents.mouseClicked.MouseClickedPreEvent;
-import com.kisman.cc.event.events.clickguiEvents.mouseReleased.MouseReleasedPreEvent;
+import com.kisman.cc.event.events.gui.GuiRenderPostEvent;
+import com.kisman.cc.event.events.gui.MouseClickedPreEvent;
+import com.kisman.cc.event.events.gui.MouseReleasedPreEvent;
 import com.kisman.cc.gui.particle.ParticleSystem;
 import com.kisman.cc.gui.vega.component.Component;
 import com.kisman.cc.gui.vega.component.Frame;

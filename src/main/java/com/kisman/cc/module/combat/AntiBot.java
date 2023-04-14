@@ -25,12 +25,13 @@ import java.util.List;
 public class AntiBot extends Module {
     public Setting mode = new Setting("Mode", this, "WellMore", Arrays.asList("Matrix 6.3", "Classic", "Vanish", "Zamorozka"));
 
-    private List<EntityPlayer> bots = new ArrayList<>();
+    private final List<EntityPlayer> bots = new ArrayList<>();
     public static AntiBot instance;
+    public EntityPlayer target;
     private boolean clicked = false;
 
 	public AntiBot() {
-		super("AntiBot", "Prevents you from targetting bots", Category.COMBAT);
+		super("AntiBot", "Prevents you from targeting bots", Category.COMBAT);
 
         instance = this;
 
@@ -47,7 +48,7 @@ public class AntiBot extends Module {
                 if(result == null || result.typeOfHit != RayTraceResult.Type.ENTITY) return;
                 Entity entity = mc.objectMouseOver.entityHit;
                 if(!(entity instanceof EntityPlayer)) return;
-                Kisman.target_by_click = (EntityPlayer) entity;
+                target = (EntityPlayer) entity;
                 ChatUtils.complete("[AntiBot] Current target is " + entity.getName());
             } else clicked = false;
         }
@@ -81,7 +82,7 @@ public class AntiBot extends Module {
     }
 
     public void onDisable() {
-        Kisman.target_by_click = null;
+        target = null;
     }
 
     private List<EntityPlayer> getTabPlayerList() {

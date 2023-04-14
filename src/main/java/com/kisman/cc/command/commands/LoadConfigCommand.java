@@ -1,7 +1,7 @@
 package com.kisman.cc.command.commands;
 
 import com.kisman.cc.command.Command;
-import com.kisman.cc.file.LoadConfig;
+import com.kisman.cc.file.ConfigLoader;
 
 public class LoadConfigCommand extends Command {
     public LoadConfigCommand() {
@@ -17,7 +17,7 @@ public class LoadConfigCommand extends Command {
             }
 
             warning("Start loading configs!");
-            LoadConfig.init();
+            ConfigLoader.init();
             message("Loaded Config!");
         } catch (Exception e) {
             error("Loaded config is failed!");

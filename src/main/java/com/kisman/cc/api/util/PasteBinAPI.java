@@ -1,6 +1,5 @@
 package com.kisman.cc.api.util;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.api.util.exception.PasteBinBufferedReaderException;
 
 import java.io.BufferedReader;
@@ -19,7 +18,7 @@ public class PasteBinAPI {
     public List<String> get() {
         List<String> list = new ArrayList<>();
         try {
-            final URL url = new URL(Kisman.HWIDS_LIST);
+            final URL url = new URL(this.url);
             BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
             String inputLine;
             while ((inputLine = in.readLine()) != null) {

@@ -1,19 +1,23 @@
 package com.kisman.cc.module.player;
 
-
 import com.kisman.cc.Kisman;
+import com.kisman.cc.event.Event;
+import com.kisman.cc.event.events.EventPlayerMotionUpdate;
+import com.kisman.cc.event.events.EventPlayerPushOutOfBlocks;
+import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
+import com.kisman.cc.module.player.freecam.MovementHelper;
 import com.kisman.cc.settings.Setting;
+import me.zero.alpine.event.type.Cancellable;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.network.play.client.CPacketEntityAction;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.server.SPacketPlayerPosLook;
-import part.kotopushka.lavahack.utils.*;
-
-
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class FreeCam
         extends Module {
@@ -25,10 +29,9 @@ public class FreeCam
     private double oldX;
     private double oldY;
     private double oldZ;
-    private int oldPosY;
 
     public FreeCam() {
-        super("FreeCam", "\u041f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u043b\u0435\u0442\u0430\u0442\u044c \u0432 \u0441\u0432\u043e\u0431\u043e\u0434\u043d\u043e\u0439 \u043a\u0430\u043c\u0435\u0440\u0435", Category.MISC);
+        super("FreeCam", "Allows you to fly in a FreeCam", Category.PLAYER);
         setmgr.rSetting(speed);
         setmgr.rSetting(reallyWorld);
         setmgr.rSetting(autoTeleportDisable);
@@ -38,20 +41,20 @@ public class FreeCam
 
     @Override
     public void onEnable() {
-        this.oldX = FreeCam.mc.player.posX;
-        this.oldY = FreeCam.mc.player.posY;
-        this.oldZ = FreeCam.mc.player.posZ;
-        this.oldPosY = (int)FreeCam.mc.player.posY;
-        FreeCam.mc.player.noClip = true;
-        EntityOtherPlayerMP fakePlayer = new EntityOtherPlayerMP(FreeCam.mc.world, FreeCam.mc.player.getGameProfile());
-        fakePlayer.copyLocationAndAnglesFrom(FreeCam.mc.player);
+        this.oldX = mc.player.posX;
+        this.oldY = mc.player.posY;
+        this.oldZ = mc.player.posZ;
+        mc.player.noClip = true;
+        EntityOtherPlayerMP fakePlayer = new EntityOtherPlayerMP(mc.world, mc.player.getGameProfile());
+        fakePlayer.copyLocationAndAnglesFrom(mc.player);
         fakePlayer.posY -= 0.0;
-        fakePlayer.rotationYawHead = FreeCam.mc.player.rotationYawHead;
-        FreeCam.mc.world.addEntityToWorld(-69, fakePlayer);
-        Kisman.EVENT_BUS.subscribe(listener1);
-        Kisman.EVENT_BUS.subscribe(listener2);
+        fakePlayer.rotationYawHead = mc.player.rotationYawHead;
+        mc.world.addEntityToWorld(-69, fakePlayer);
+        Kisman.EVENT_BUS.subscribe(packetListener);
+        Kisman.EVENT_BUS.subscribe(pushOutOfBlocksListener);
+        Kisman.EVENT_BUS.subscribe(motionUpdateListener);
         super.onEnable();
-        if (FreeCam.mc.player == null || FreeCam.mc.world == null || FreeCam.mc.player.ticksExisted < 1) {
+        if (mc.player == null || mc.world == null || mc.player.ticksExisted < 1) {
             if (this.autoTeleportDisable.getValBoolean()) {
                 this.toggle();
             }
@@ -60,24 +63,23 @@ public class FreeCam
 
     @Override
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(listener1);
-        Kisman.EVENT_BUS.unsubscribe(listener2);
+        Kisman.EVENT_BUS.unsubscribe(packetListener);
+        Kisman.EVENT_BUS.unsubscribe(pushOutOfBlocksListener);
+        Kisman.EVENT_BUS.unsubscribe(motionUpdateListener);
             
         if (this.clipOnDisable.getValBoolean()) {
-            this.oldX = FreeCam.mc.player.posX;
-            this.oldY = FreeCam.mc.player.posY;
-            this.oldZ = FreeCam.mc.player.posZ;
+            this.oldX = mc.player.posX;
+            this.oldY = mc.player.posY;
+            this.oldZ = mc.player.posZ;
         }
-        FreeCam.mc.player.capabilities.isFlying = false;
-        FreeCam.mc.world.removeEntityFromWorld(-69);
-        FreeCam.mc.player.motionZ = 0.0;
-        FreeCam.mc.player.motionX = 0.0;
-        FreeCam.mc.player.noClip = true;
-        FreeCam.mc.player.setPositionAndRotation(this.oldX, this.oldY, this.oldZ, FreeCam.mc.player.rotationYaw, FreeCam.mc.player.rotationPitch);
-        Kisman.EVENT_BUS.unsubscribe(listener1);
-        Kisman.EVENT_BUS.unsubscribe(listener2);
+        mc.player.capabilities.isFlying = false;
+        mc.world.removeEntityFromWorld(-69);
+        mc.player.motionZ = 0.0;
+        mc.player.motionX = 0.0;
+        mc.player.noClip = true;
+        mc.player.setPositionAndRotation(this.oldX, this.oldY, this.oldZ, mc.player.rotationYaw, mc.player.rotationPitch);
         super.onDisable();
-        if (FreeCam.mc.player == null || FreeCam.mc.world == null || FreeCam.mc.player.ticksExisted < 1) {
+        if (mc.player == null || mc.world == null || mc.player.ticksExisted < 1) {
             if (this.autoTeleportDisable.getValBoolean()) {
                 this.toggle();
             }
@@ -85,86 +87,68 @@ public class FreeCam
     }
 
     @EventHandler
-    private final Listener<EventReceivePacket> listener1 = new Listener<>(event -> {
-        if (!this.reallyWorld.getValBoolean()) {
-            return;
+    private final Listener<PacketEvent> packetListener = new Listener<>(event -> {
+        if (event.getPacket() instanceof SPacketPlayerPosLook && reallyWorld.getValBoolean()) {
+            event.cancel();
         }
 
-        if (event.getPacket() instanceof SPacketPlayerPosLook) {
-            event.setCancelled(true);
+        if (event.getPacket() instanceof CPacketPlayer || event.getPacket() instanceof CPacketEntityAction) {
+            event.cancel();
         }
     });
-
-
-
-
 
     @EventHandler
-    private final Listener<EventReceivePacket> listener2 = new Listener<>(event -> {
-        if (event.getPacket() instanceof CPacketPlayer || event.getPacket() instanceof CPacketEntityAction) {
-            event.setCancelled(true);
+    private final Listener<EventPlayerPushOutOfBlocks> pushOutOfBlocksListener = new Listener<>(Cancellable::cancel);
+
+    @EventHandler
+    private final Listener<EventPlayerMotionUpdate> motionUpdateListener = new Listener<>(event -> {
+        if (event.getEra() == Event.Era.PRE) {
+            event.cancel();
         }
     });
 
-    @EventTarget
-    public void onPreMotion(EventPreMotion event) {
-        event.setCancelled(true);
-    }
-
-    @EventTarget
-    public void onFullCube(EventFullCube event) {
-        event.setCancelled(true);
-    }
-
-    @EventTarget
-    public void onPush(EventPush event) {
-        event.setCancelled(true);
-    }
-
-
-
-    @EventTarget
-    public void onUpdate(EventUpdateLiving event) {
-        if (FreeCam.mc.player == null || FreeCam.mc.world == null) {
+    @SubscribeEvent
+    public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
+        if (mc.player == null || mc.world == null) {
             return;
         }
         if (this.disableOnDamage.getValBoolean()) {
-            if (FreeCam.mc.player.hurtTime <= 8) {
-                FreeCam.mc.player.noClip = true;
-                FreeCam.mc.player.capabilities.isFlying = true;
-                if (FreeCam.mc.gameSettings.keyBindJump.isKeyDown()) {
-                    FreeCam.mc.player.motionY = this.speed.getValFloat() / 1.5f;
+            if (mc.player.hurtTime <= 8) {
+                mc.player.noClip = true;
+                mc.player.capabilities.isFlying = true;
+                if (mc.gameSettings.keyBindJump.isKeyDown()) {
+                    mc.player.motionY = this.speed.getValFloat() / 1.5f;
                 }
-                if (FreeCam.mc.gameSettings.keyBindSneak.isKeyDown()) {
-                    FreeCam.mc.player.motionY = -this.speed.getValFloat() / 1.5f;
+                if (mc.gameSettings.keyBindSneak.isKeyDown()) {
+                    mc.player.motionY = -this.speed.getValFloat() / 1.5f;
                 }
                 MovementHelper.setSpeed(this.speed.getValFloat());
             } else if (!MovementHelper.isUnderBedrock()) {
-                FreeCam.mc.player.capabilities.isFlying = false;
-                FreeCam.mc.renderGlobal.loadRenderers();
-                FreeCam.mc.player.noClip = false;
-                FreeCam.mc.player.setPositionAndRotation(this.oldX, this.oldY, this.oldZ, FreeCam.mc.player.rotationYaw, FreeCam.mc.player.rotationPitch);
-                FreeCam.mc.world.removeEntityFromWorld(-69);
-                FreeCam.mc.player.motionZ = 0.0;
-                FreeCam.mc.player.motionX = 0.0;
+                mc.player.capabilities.isFlying = false;
+                mc.renderGlobal.loadRenderers();
+                mc.player.noClip = false;
+                mc.player.setPositionAndRotation(this.oldX, this.oldY, this.oldZ, mc.player.rotationYaw, mc.player.rotationPitch);
+                mc.world.removeEntityFromWorld(-69);
+                mc.player.motionZ = 0.0;
+                mc.player.motionX = 0.0;
                 this.toggle();
             }
         } else {
-            FreeCam.mc.player.noClip = true;
-            FreeCam.mc.player.onGround = false;
-            if (FreeCam.mc.gameSettings.keyBindJump.isKeyDown()) {
-                FreeCam.mc.player.motionY = this.speed.getValFloat() / 1.5f;
+            mc.player.noClip = true;
+            mc.player.onGround = false;
+            if (mc.gameSettings.keyBindJump.isKeyDown()) {
+                mc.player.motionY = this.speed.getValFloat() / 1.5f;
             }
-            if (FreeCam.mc.gameSettings.keyBindSneak.isKeyDown()) {
-                FreeCam.mc.player.motionY = -this.speed.getValFloat() / 1.5f;
+            if (mc.gameSettings.keyBindSneak.isKeyDown()) {
+                mc.player.motionY = -this.speed.getValFloat() / 1.5f;
             }
             MovementHelper.setSpeed(this.speed.getValFloat());
-            FreeCam.mc.player.capabilities.isFlying = true;
+            mc.player.capabilities.isFlying = true;
         }
         if (this.clipOnDisable.getValBoolean()) {
-            this.oldX = FreeCam.mc.player.posX;
-            this.oldY = FreeCam.mc.player.posY;
-            this.oldZ = FreeCam.mc.player.posZ;
+            this.oldX = mc.player.posX;
+            this.oldY = mc.player.posY;
+            this.oldZ = mc.player.posZ;
         }
     }
 }

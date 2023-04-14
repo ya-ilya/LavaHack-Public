@@ -9,7 +9,6 @@ public enum Category {
 	RENDER("Render"),
 	MISC("Misc"),
 	EXPLOIT("Exploit"),
-	DEBUG("Debug"),
 	LUA("Lua");
 
 	private final String name;

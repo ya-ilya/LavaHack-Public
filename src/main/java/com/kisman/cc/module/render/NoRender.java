@@ -1,6 +1,5 @@
 package com.kisman.cc.module.render;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -48,17 +47,17 @@ public class NoRender extends Module {
         setmgr.rSetting(defaultBlockHighlight);
         setmgr.rSetting(handItemsTex);
         setmgr.rSetting(enchantGlint);
-        Kisman.instance.settingsManager.rSetting(new Setting("Potion", this, false));
-        Kisman.instance.settingsManager.rSetting(new Setting("Weather", this, false));
-        Kisman.instance.settingsManager.rSetting(new Setting("Block", this, false));
-        Kisman.instance.settingsManager.rSetting(new Setting("Lava", this, false));
+        setmgr.rSetting(new Setting("Potion", this, false));
+        setmgr.rSetting(new Setting("Weather", this, false));
+        setmgr.rSetting(new Setting("Block", this, false));
+        setmgr.rSetting(new Setting("Lava", this, false));
     }
 
     public void update() {
         if(mc.player == null && mc.world == null) return;
 
-        boolean potion = Kisman.instance.settingsManager.getSettingByName(this, "Potion").getValBoolean();
-        boolean weather = Kisman.instance.settingsManager.getSettingByName(this, "Weather").getValBoolean();
+        boolean potion = setmgr.getSettingByName(this, "Potion").getValBoolean();
+        boolean weather = setmgr.getSettingByName(this, "Weather").getValBoolean();
 
         if(potion) {
             if(mc.player.isPotionActive(Potion.getPotionById(25))) mc.player.removeActivePotionEffect(Potion.getPotionById(25));
@@ -78,8 +77,8 @@ public class NoRender extends Module {
     @SubscribeEvent
     public void renderBlockEvent(RenderBlockOverlayEvent event) {
         if(mc.player != null && mc.world != null) {
-            boolean block = Kisman.instance.settingsManager.getSettingByName(this, "Block").getValBoolean();
-            boolean lava = Kisman.instance.settingsManager.getSettingByName(this, "Lava").getValBoolean();
+            boolean block = setmgr.getSettingByName(this, "Block").getValBoolean();
+            boolean lava = setmgr.getSettingByName(this, "Lava").getValBoolean();
             if(block) event.setCanceled(true);
             if(lava && event.getBlockForOverlay().getBlock().equals(Blocks.LAVA)) event.setCanceled(true);
         }

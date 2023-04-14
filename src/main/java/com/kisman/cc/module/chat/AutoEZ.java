@@ -14,7 +14,10 @@ import net.minecraft.network.play.client.CPacketUseEntity;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class AutoEZ extends Module {

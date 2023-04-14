@@ -1,6 +1,5 @@
 package com.kisman.cc.module.render;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -39,18 +38,18 @@ public class SwingAnimation extends Module {
         setmgr.rSetting(mode);
 
         setmgr.rSetting(simpleLine);
-        Kisman.instance.settingsManager.rSetting(new Setting("SwingMode", this, "1", swingMode));
+        setmgr.rSetting(new Setting("SwingMode", this, "1", swingMode));
 
         setmgr.rSetting(strongLine);
         setmgr.rSetting(strongMode);
         setmgr.rSetting(ignoreEating);
         setmgr.rSetting(ifKillAura);
 
-        super.setDisplayInfo(() -> "[" + (mode.getValString().equalsIgnoreCase("Hand") ? Kisman.instance.settingsManager.getSettingByName(this, "SwingMode").getValString() : strongMode.getValString()) + "]");
+        super.setDisplayInfo(() -> "[" + (mode.getValString().equalsIgnoreCase("Hand") ? setmgr.getSettingByName(this, "SwingMode").getValString() : strongMode.getValString()) + "]");
     }
 
     public void update() {
-        this.swingModeString = Kisman.instance.settingsManager.getSettingByName(this, "SwingMode").getValString();
+        this.swingModeString = setmgr.getSettingByName(this, "SwingMode").getValString();
     }
 
     @SubscribeEvent

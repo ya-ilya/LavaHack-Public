@@ -1,6 +1,5 @@
 package com.kisman.cc.module.combat;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -21,8 +20,8 @@ public class AutoClicker extends Module {
 	public AutoClicker() {
 		super("AutoClicker", "clicks automatically", Category.COMBAT);
 		
-		Kisman.instance.settingsManager.rSetting(new Setting("MinCPS", this, 8, 1, 20, false));
-		Kisman.instance.settingsManager.rSetting(new Setting("MaxCPS", this, 12, 1, 20, false));
+		setmgr.rSetting(new Setting("MinCPS", this, 8, 1, 20, false));
+		setmgr.rSetting(new Setting("MaxCPS", this, 12, 1, 20, false));
 	}
 
 	public void update() {
@@ -49,8 +48,8 @@ public class AutoClicker extends Module {
 	}
 	
 	private void updateVals() {
-		this.min = Kisman.instance.settingsManager.getSettingByName(this, "MinCPS").getValDouble();
-		this.max = Kisman.instance.settingsManager.getSettingByName(this, "MaxCPS").getValDouble();
+		this.min = setmgr.getSettingByName(this, "MinCPS").getValDouble();
+		this.max = setmgr.getSettingByName(this, "MaxCPS").getValDouble();
 		
 		if (min >= max) {
 			max = min + 1;

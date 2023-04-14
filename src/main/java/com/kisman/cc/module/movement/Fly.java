@@ -1,6 +1,5 @@
 package com.kisman.cc.module.movement;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -16,14 +15,14 @@ public class Fly extends Module {
     public Fly() {
         super("Fly", "Your flying", Category.MOVEMENT);
 
-        Kisman.instance.settingsManager.rSetting(new Setting("FlySpeed", this, 0.1f, 0.1f, 100.0f, false));
+        setmgr.rSetting(new Setting("FlySpeed", this, 0.1f, 0.1f, 100.0f, false));
         setmgr.rSetting(mode);
     }
 
     public void update() {
         if(mc.player == null && mc.world == null) return;
 
-        this.flySpeed = (float) Kisman.instance.settingsManager.getSettingByName(this, "FlySpeed").getValDouble();
+        this.flySpeed = (float) setmgr.getSettingByName(this, "FlySpeed").getValDouble();
 
         super.setDisplayInfo("[" + mode.getValString() + "]");
 

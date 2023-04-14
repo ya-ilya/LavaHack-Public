@@ -1,6 +1,5 @@
 package com.kisman.cc.module.movement;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -12,11 +11,11 @@ public class IceSpeed extends Module {
     public IceSpeed() {
         super("IceSpeed", "IceSpeed", Category.MOVEMENT);
 
-        Kisman.instance.settingsManager.rSetting(new Setting("Speed", this, 0.4f, 0.2f, 1.5f, false));
+        setmgr.rSetting(new Setting("Speed", this, 0.4f, 0.2f, 1.5f, false));
     }
 
     public void update() {
-        this.speed = Kisman.instance.settingsManager.getSettingByName(this, "Speed").getValDouble();
+        this.speed = setmgr.getSettingByName(this, "Speed").getValDouble();
         Blocks.ICE.slipperiness = (float) this.speed;
         Blocks.PACKED_ICE.slipperiness = (float) this.speed;
         Blocks.FROSTED_ICE.slipperiness = (float) this.speed;

@@ -6,7 +6,6 @@ import com.kisman.cc.gui.MainGui
 import com.kisman.cc.module.client.Config
 import com.mojang.realmsclient.gui.ChatFormatting
 import me.zero.alpine.listener.EventHandler
-import me.zero.alpine.listener.EventHook
 import me.zero.alpine.listener.Listener
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiScreen

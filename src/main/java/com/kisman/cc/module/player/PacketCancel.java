@@ -20,23 +20,23 @@ public class PacketCancel extends Module {
     public PacketCancel() {
         super("PacketCancel", "PacketCancel", Category.PLAYER);
 
-        Kisman.instance.settingsManager.rSetting(new Setting("Packets", this, "Packets"));
+        setmgr.rSetting(new Setting("Packets", this, "Packets"));
 
-        Kisman.instance.settingsManager.rSetting(new Setting("CPacketInput", this, false));
-        Kisman.instance.settingsManager.rSetting(new Setting("CPacketPlayer", this, false));
-        Kisman.instance.settingsManager.rSetting(new Setting("CPacketEntityAction", this, false));
-        Kisman.instance.settingsManager.rSetting(new Setting("CPacketUseEntity", this, false));
-        Kisman.instance.settingsManager.rSetting(new Setting("CPacketVehicleMove", this, false));
+        setmgr.rSetting(new Setting("CPacketInput", this, false));
+        setmgr.rSetting(new Setting("CPacketPlayer", this, false));
+        setmgr.rSetting(new Setting("CPacketEntityAction", this, false));
+        setmgr.rSetting(new Setting("CPacketUseEntity", this, false));
+        setmgr.rSetting(new Setting("CPacketVehicleMove", this, false));
     }
 
     public void onEnable() {
         MinecraftForge.EVENT_BUS.register(this);
         Kisman.EVENT_BUS.subscribe(this.sendListener);
-        this.input = Kisman.instance.settingsManager.getSettingByName(this, "CPacketInput").getValBoolean();
-        this.player = Kisman.instance.settingsManager.getSettingByName(this, "CPacketPlayer").getValBoolean();
-        this.entityAction = Kisman.instance.settingsManager.getSettingByName(this, "CPacketEntityAction").getValBoolean();
-        this.useEntity = Kisman.instance.settingsManager.getSettingByName(this, "CPacketUseEntity").getValBoolean();
-        this.vehicleMove = Kisman.instance.settingsManager.getSettingByName(this, "CPacketVehicleMove").getValBoolean();
+        this.input = setmgr.getSettingByName(this, "CPacketInput").getValBoolean();
+        this.player = setmgr.getSettingByName(this, "CPacketPlayer").getValBoolean();
+        this.entityAction = setmgr.getSettingByName(this, "CPacketEntityAction").getValBoolean();
+        this.useEntity = setmgr.getSettingByName(this, "CPacketUseEntity").getValBoolean();
+        this.vehicleMove = setmgr.getSettingByName(this, "CPacketVehicleMove").getValBoolean();
     }
 
     public void onDisable() {

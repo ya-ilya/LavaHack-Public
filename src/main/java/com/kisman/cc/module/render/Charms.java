@@ -1,6 +1,5 @@
 package com.kisman.cc.module.render;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -21,7 +20,7 @@ public class Charms extends Module {
 
         setmgr.rSetting(polygonOffset);
 
-        Kisman.instance.settingsManager.rSetting(new Setting("Texture", this, false));
+        setmgr.rSetting(new Setting("Texture", this, false));
         setmgr.rSetting(targetRender);
 
         setmgr.rSetting(customColor);

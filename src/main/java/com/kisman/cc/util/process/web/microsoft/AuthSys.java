@@ -5,14 +5,11 @@ import com.google.gson.JsonObject;
 import com.kisman.cc.gui.alts.AltManager;
 import com.kisman.cc.gui.alts.microsoft.MSAuthScreen;
 import com.kisman.cc.util.process.web.util.HttpTools;
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.Session;
 import org.lwjgl.Sys;
 
-import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;

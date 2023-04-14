@@ -1,6 +1,5 @@
 package com.kisman.cc.module.chat;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -35,8 +34,8 @@ public class Spammer extends Module {
     public Spammer() {
         super("Spammer", "chat spammer", Category.CHAT);
 
-        Kisman.instance.settingsManager.rSetting(new Setting("GlobalMode", this, false));
-        Kisman.instance.settingsManager.rSetting(new Setting("Delay", this, 5000, 0, 10000, true));
+        setmgr.rSetting(new Setting("GlobalMode", this, false));
+        setmgr.rSetting(new Setting("Delay", this, 5000, 0, 10000, true));
         setmgr.rSetting(customMsg);
         setmgr.rSetting(customMessage);
 
@@ -46,8 +45,8 @@ public class Spammer extends Module {
     public void update() {
         if(mc.player == null && mc.world == null) return;
 
-        boolean globalMode = Kisman.instance.settingsManager.getSettingByName(this, "GlobalMode").getValBoolean();
-        long delay = (int) Kisman.instance.settingsManager.getSettingByName(this, "Delay").getValDouble();
+        boolean globalMode = setmgr.getSettingByName(this, "GlobalMode").getValBoolean();
+        long delay = (int) setmgr.getSettingByName(this, "Delay").getValDouble();
 
         if (timer.passedMillis(delay)) {
             if(customMsg.getValBoolean()) {

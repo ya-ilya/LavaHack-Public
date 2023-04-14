@@ -11,7 +11,6 @@ import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.*;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.client.CPacketHeldItemChange;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;

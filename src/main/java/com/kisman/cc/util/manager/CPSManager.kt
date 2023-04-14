@@ -4,7 +4,6 @@ import com.kisman.cc.Kisman
 import com.kisman.cc.event.events.PacketEvent
 import i.gishreloaded.gishcode.utils.TimerUtils
 import me.zero.alpine.listener.EventHandler
-import me.zero.alpine.listener.EventHook
 import me.zero.alpine.listener.Listener
 import net.minecraft.client.Minecraft
 import net.minecraft.init.Items

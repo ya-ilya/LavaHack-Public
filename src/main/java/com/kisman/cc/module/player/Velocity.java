@@ -32,7 +32,7 @@ public class Velocity extends Module{
     public Velocity() {
         super("Velocity", "akb", Category.PLAYER);
 
-        Kisman.instance.settingsManager.rSetting(new Setting("Mode", this, "None", new ArrayList<>(Arrays.asList("None", "Matrix", "Matrix 6.4", "Vanilla"))));
+        setmgr.rSetting(new Setting("Mode", this, "None", new ArrayList<>(Arrays.asList("None", "Matrix", "Matrix 6.4", "Vanilla"))));
 
         setmgr.rSetting(exp);
         setmgr.rSetting(bobbers);
@@ -51,7 +51,7 @@ public class Velocity extends Module{
 
     public void update() {
         if(mc.player == null || mc.world == null) return;
-        String mode = Kisman.instance.settingsManager.getSettingByName(this, "Mode").getValString();
+        String mode = setmgr.getSettingByName(this, "Mode").getValString();
         super.setDisplayInfo("[" + mode + "]");
 
         if(mode.equalsIgnoreCase("Matrix")) {

@@ -1,6 +1,5 @@
 package com.kisman.cc.module.render;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -42,15 +41,15 @@ public class EntityESP extends Module{
 
         setmgr.rSetting(range);
 
-        Kisman.instance.settingsManager.rSetting(new Setting("PlayersLine", this, "Players"));
+        setmgr.rSetting(new Setting("PlayersLine", this, "Players"));
         setmgr.rSetting(players);
         setmgr.rSetting(playerColor);
 
-        Kisman.instance.settingsManager.rSetting(new Setting("MonstersLine", this, "Monsters"));
+        setmgr.rSetting(new Setting("MonstersLine", this, "Monsters"));
         setmgr.rSetting(monsters);
         setmgr.rSetting(monstersColor);
 
-        Kisman.instance.settingsManager.rSetting(new Setting("ItemsLine", this, "Items"));
+        setmgr.rSetting(new Setting("ItemsLine", this, "Items"));
         setmgr.rSetting(items);
         setmgr.rSetting(itemsColor);
 
@@ -58,7 +57,7 @@ public class EntityESP extends Module{
         setmgr.rSetting(passive);
         setmgr.rSetting(passiveColor);
 
-        Kisman.instance.settingsManager.rSetting(new Setting("EntityLine", this, "Entity"));
+        setmgr.rSetting(new Setting("EntityLine", this, "Entity"));
         setmgr.rSetting(entities);
         setmgr.rSetting(entityColor);
     }

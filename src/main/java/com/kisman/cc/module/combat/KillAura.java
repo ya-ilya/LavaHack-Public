@@ -1,6 +1,5 @@
 package com.kisman.cc.module.combat;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -70,7 +69,7 @@ public class KillAura extends Module {
         setmgr.rSetting(useFallDist);
         setmgr.rSetting(fallDistance);
         setmgr.rSetting(shieldBreaker);
-        Kisman.instance.settingsManager.rSetting(new Setting("HitSound", this, false));
+        setmgr.rSetting(new Setting("HitSound", this, false));
         setmgr.rSetting(packetAttack);
         setmgr.rSetting(rotations);
         setmgr.rSetting(betterRots);
@@ -85,16 +84,16 @@ public class KillAura extends Module {
         setmgr.rSetting(new Setting("WeaponLine", this, "Weapon"));
         setmgr.rSetting(weapon);
 
-        Kisman.instance.settingsManager.rSetting(new Setting("TargetsLine", this, "Targets"));
-        Kisman.instance.settingsManager.rSetting(new Setting("Player", this, true));
-        Kisman.instance.settingsManager.rSetting(new Setting("Monster", this, true));
-        Kisman.instance.settingsManager.rSetting(new Setting("Passive", this, true));
+        setmgr.rSetting(new Setting("TargetsLine", this, "Targets"));
+        setmgr.rSetting(new Setting("Player", this, true));
+        setmgr.rSetting(new Setting("Monster", this, true));
+        setmgr.rSetting(new Setting("Passive", this, true));
         setmgr.rSetting(invisible);
 
-        Kisman.instance.settingsManager.rSetting(new Setting("DistanceLine", this, "Distance"));
+        setmgr.rSetting(new Setting("DistanceLine", this, "Distance"));
 
         setmgr.rSetting(targetRange);
-        Kisman.instance.settingsManager.rSetting(new Setting("Distance", this, 4.25f, 0, 6, false));
+        setmgr.rSetting(new Setting("Distance", this, 4.25f, 0, 6, false));
         setmgr.rSetting(wallDistance);
 
         setmgr.rSetting(renderLine);
@@ -110,13 +109,13 @@ public class KillAura extends Module {
         if(mc.player.isDead) return;
         if(mc.player.getCooledAttackStrength(0) <= (onlyCrits.getValBoolean() ? 0.95f : attackCooldown.getValFloat()) && cooldownCheck.getValBoolean()) return;
 
-        boolean player = Kisman.instance.settingsManager.getSettingByName(this, "Player").getValBoolean();
-        boolean monster = Kisman.instance.settingsManager.getSettingByName(this, "Monster").getValBoolean();
-        boolean passive = Kisman.instance.settingsManager.getSettingByName(this, "Passive").getValBoolean();
+        boolean player = setmgr.getSettingByName(this, "Player").getValBoolean();
+        boolean monster = setmgr.getSettingByName(this, "Monster").getValBoolean();
+        boolean passive = setmgr.getSettingByName(this, "Passive").getValBoolean();
 
-        boolean hitsound = Kisman.instance.settingsManager.getSettingByName(this, "HitSound").getValBoolean();
+        boolean hitsound = setmgr.getSettingByName(this, "HitSound").getValBoolean();
 
-        float distance = Kisman.instance.settingsManager.getSettingByName(this, "Distance").getValFloat();
+        float distance = setmgr.getSettingByName(this, "Distance").getValFloat();
 
         if(mode.getValString().equalsIgnoreCase("Default")) {
             Entity target1 = EntityUtil.getTarget(distance, distance, player, passive, monster);

@@ -1,6 +1,5 @@
 package com.kisman.cc.module.render;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -30,26 +29,26 @@ public class StorageESP extends Module{
         setmgr.rSetting(distance);
         setmgr.rSetting(colorAlpha);
 
-        Kisman.instance.settingsManager.rSetting(new Setting("Chest", this, true));
-        Kisman.instance.settingsManager.rSetting(new Setting("EChest", this, true));
-        Kisman.instance.settingsManager.rSetting(new Setting("ShulkerBox", this, true));
-        Kisman.instance.settingsManager.rSetting(new Setting("Dispenser", this, true));
-        Kisman.instance.settingsManager.rSetting(new Setting("Furnace", this, true));
-        Kisman.instance.settingsManager.rSetting(new Setting("Hopper", this, true));
-        Kisman.instance.settingsManager.rSetting(new Setting("Dropper", this, true));
+        setmgr.rSetting(new Setting("Chest", this, true));
+        setmgr.rSetting(new Setting("EChest", this, true));
+        setmgr.rSetting(new Setting("ShulkerBox", this, true));
+        setmgr.rSetting(new Setting("Dispenser", this, true));
+        setmgr.rSetting(new Setting("Furnace", this, true));
+        setmgr.rSetting(new Setting("Hopper", this, true));
+        setmgr.rSetting(new Setting("Dropper", this, true));
 
         renderer.init();
     }
 
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event) {
-        chest = Kisman.instance.settingsManager.getSettingByName(this, "Chest").getValBoolean();
-        eChest = Kisman.instance.settingsManager.getSettingByName(this, "EChest").getValBoolean();
-        shulkerBox = Kisman.instance.settingsManager.getSettingByName(this, "ShulkerBox").getValBoolean();
-        dispenser = Kisman.instance.settingsManager.getSettingByName(this, "Dispenser").getValBoolean();
-        furnace = Kisman.instance.settingsManager.getSettingByName(this, "Furnace").getValBoolean();
-        hopper = Kisman.instance.settingsManager.getSettingByName(this, "Hopper").getValBoolean();
-        dropper = Kisman.instance.settingsManager.getSettingByName(this, "Dropper").getValBoolean();
+        chest = setmgr.getSettingByName(this, "Chest").getValBoolean();
+        eChest = setmgr.getSettingByName(this, "EChest").getValBoolean();
+        shulkerBox = setmgr.getSettingByName(this, "ShulkerBox").getValBoolean();
+        dispenser = setmgr.getSettingByName(this, "Dispenser").getValBoolean();
+        furnace = setmgr.getSettingByName(this, "Furnace").getValBoolean();
+        hopper = setmgr.getSettingByName(this, "Hopper").getValBoolean();
+        dropper = setmgr.getSettingByName(this, "Dropper").getValBoolean();
 
         mc.world.loadedTileEntityList.stream()
             .filter(tileEntity -> tileEntity.getDistanceSq(mc.player.posX, mc.player.posY, mc.player.posZ) <= distance.getValDouble())

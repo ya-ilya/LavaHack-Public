@@ -1,6 +1,5 @@
 package com.kisman.cc.module.misc;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -14,8 +13,8 @@ public class SelfDamage extends Module {
     public SelfDamage() {
         super("SelfDamage", "SelfDamage", Category.MISC);
 
-        Kisman.instance.settingsManager.rSetting(this.jump = new Setting("Jumps", this, 3, 3, 50, true));
-        Kisman.instance.settingsManager.rSetting(this.timer = new Setting("JumpTimer", this, 3, 1, 1000, true));
+        setmgr.rSetting(this.jump = new Setting("Jumps", this, 3, 3, 50, true));
+        setmgr.rSetting(this.timer = new Setting("JumpTimer", this, 3, 1, 1000, true));
     }
 
     public void onEnable() {

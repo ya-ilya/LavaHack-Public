@@ -1,6 +1,5 @@
 package com.kisman.cc.module.movement;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -42,7 +41,7 @@ public class Anchor extends Module {
         setmgr.rSetting(disableAfterComplete);
         setmgr.rSetting(fastFall);
         setmgr.rSetting(fastFallMotion);
-        Kisman.instance.settingsManager.rSetting(new Setting("Pitch", this, 60, 0, 90, false));
+        setmgr.rSetting(new Setting("Pitch", this, 60, 0, 90, false));
     }
 
     private boolean isBlockHole(BlockPos blockpos) {
@@ -79,7 +78,7 @@ public class Anchor extends Module {
         super.setDisplayInfo("[" + mode.getValString() + "]");
         if (mc.player.posY < 0) return;
 
-        double pitch = Kisman.instance.settingsManager.getSettingByName(this, "Pitch").getValDouble();
+        double pitch = setmgr.getSettingByName(this, "Pitch").getValDouble();
 
         if (mc.player.rotationPitch >= pitch) {
             if (isBlockHole(PlayerUtil.getPlayerPos().down(1)) || isBlockHole(PlayerUtil.getPlayerPos().down(2)) || isBlockHole(PlayerUtil.getPlayerPos().down(3)) || isBlockHole(PlayerUtil.getPlayerPos().down(4))) {

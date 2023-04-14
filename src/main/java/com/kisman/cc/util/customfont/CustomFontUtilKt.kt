@@ -2,7 +2,6 @@ package com.kisman.cc.util.customfont
 
 import com.kisman.cc.Kisman
 import com.kisman.cc.util.customfont.norules.CFontRenderer
-import net.minecraft.client.Minecraft
 
 class CustomFontUtilKt {
     companion object {

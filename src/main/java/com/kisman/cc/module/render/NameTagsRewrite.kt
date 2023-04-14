@@ -6,7 +6,10 @@ import com.kisman.cc.module.Module
 import com.kisman.cc.module.combat.autorer.util.ProjectionUtils
 import com.kisman.cc.settings.Setting
 import com.kisman.cc.settings.util.GlowRendererPattern
-import com.kisman.cc.util.*
+import com.kisman.cc.util.Colour
+import com.kisman.cc.util.ColourUtilKt
+import com.kisman.cc.util.Render2DUtil
+import com.kisman.cc.util.Render2DUtilKt
 import com.kisman.cc.util.customfont.CustomFontUtil
 import net.minecraft.util.math.MathHelper
 import net.minecraft.util.math.Vec3d
@@ -14,7 +17,6 @@ import net.minecraft.util.text.TextFormatting
 import net.minecraftforge.client.event.RenderGameOverlayEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import org.lwjgl.opengl.GL11
-import java.util.function.Supplier
 
 class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.", Category.RENDER) {
     val scale = Setting("Scale", this, 2.5, 0.1, 5.0, false)

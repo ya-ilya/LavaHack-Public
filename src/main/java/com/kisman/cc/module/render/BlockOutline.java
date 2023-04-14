@@ -1,6 +1,5 @@
 package com.kisman.cc.module.render;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -31,12 +30,12 @@ public class BlockOutline extends Module {
         instance = this;
 
         setmgr.rSetting(colorVal);
-        Kisman.instance.settingsManager.rSetting(new Setting("RenderMode", this, "Outline", new ArrayList<>(Arrays.asList("Outline", "Box", "OutlineBox", "Flat"))));
+        setmgr.rSetting(new Setting("RenderMode", this, "Outline", new ArrayList<>(Arrays.asList("Outline", "Box", "OutlineBox", "Flat"))));
     }
 
     public void update() {
         this.color = new float[] {colorVal.getColour().getColor().getRed() / 255f, colorVal.getColour().getColor().getGreen() / 255f, colorVal.getColour().getColor().getBlue() / 255f};
-        this.renderMode = Kisman.instance.settingsManager.getSettingByName(this, "RenderMode").getValString();
+        this.renderMode = setmgr.getSettingByName(this, "RenderMode").getValString();
     }
 
     @SubscribeEvent

@@ -1,6 +1,5 @@
  package com.kisman.cc.module.combat;
 
- import com.kisman.cc.Kisman;
  import com.kisman.cc.gui.csgo.components.Slider;
  import com.kisman.cc.module.Category;
  import com.kisman.cc.module.Module;
@@ -31,7 +30,7 @@
          instance = this;
 
          setmgr.rSetting(delay);
-         Kisman.instance.settingsManager.rSetting(new Setting("NoThorns", this, false));
+         setmgr.rSetting(new Setting("NoThorns", this, false));
      }
 
      public void onEnable() {
@@ -45,7 +44,7 @@
          if (mc.player.ticksExisted % 2 == 0) return;
          if (mc.currentScreen instanceof GuiContainer && !(mc.currentScreen instanceof InventoryEffectRenderer)) return;
 
-         boolean noThorns = Kisman.instance.settingsManager.getSettingByName(this, "NoThorns").getValBoolean();
+         boolean noThorns = setmgr.getSettingByName(this, "NoThorns").getValBoolean();
 
          List<ItemStack> armorInventory = mc.player.inventory.armorInventory;
          List<ItemStack> inventory = mc.player.inventory.mainInventory;

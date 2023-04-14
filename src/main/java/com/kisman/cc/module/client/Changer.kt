@@ -7,7 +7,6 @@ import com.kisman.cc.module.Category
 import com.kisman.cc.module.Module
 import com.kisman.cc.settings.Setting
 import com.kisman.cc.util.Colour
-import me.zero.alpine.listener.EventHook
 import me.zero.alpine.listener.Listener
 import net.minecraft.network.play.server.SPacketTimeUpdate
 

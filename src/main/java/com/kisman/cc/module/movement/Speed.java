@@ -91,7 +91,7 @@ public class Speed extends Module {
         setmgr.rSetting(lagTime);
 
         setmgr.rSetting(yPortLine);
-        Kisman.instance.settingsManager.rSetting(new Setting("YPortSpeed", this, 0.06f, 0.01f, 0.15f, false).setVisible(() -> speedMode.checkValString("YPort")));
+        setmgr.rSetting(new Setting("YPortSpeed", this, 0.06f, 0.01f, 0.15f, false).setVisible(() -> speedMode.checkValString("YPort")));
         setmgr.rSetting(yWater);
         setmgr.rSetting(yLava);
 
@@ -128,7 +128,7 @@ public class Speed extends Module {
 
         super.setDisplayInfo("[" + speedMode.getValString() + TextFormatting.GRAY + "]");
 
-        yPortSpeed = (float) Kisman.instance.settingsManager.getSettingByName(this, "YPortSpeed").getValDouble();
+        yPortSpeed = (float) setmgr.getSettingByName(this, "YPortSpeed").getValDouble();
         dist = MovementUtil.getDistance2D();
 
         if(mc.player.moveForward > 0 && mc.player.hurtTime < 5 && speedMode.getValString().equalsIgnoreCase("Strafe")) {

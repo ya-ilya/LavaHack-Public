@@ -1,6 +1,5 @@
 package com.kisman.cc.module.render;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -79,12 +78,12 @@ public class ViewModel extends Module {
         setmgr.rSetting(itemFOV);
         setmgr.rSetting(fov);
 
-        Kisman.instance.settingsManager.rSetting(new Setting("RightX", this, 0, -2, 2, false).setVisible(translate::getValBoolean));
-        Kisman.instance.settingsManager.rSetting(new Setting("RightY", this, 0, -2, 2, false).setVisible(translate::getValBoolean));
-        Kisman.instance.settingsManager.rSetting(new Setting("RightZ", this, 0, -2, 2, false).setVisible(translate::getValBoolean));
-        Kisman.instance.settingsManager.rSetting(new Setting("RotateRightX", this, 0, 0, 360, false));
-        Kisman.instance.settingsManager.rSetting(new Setting("RotateRightY", this, 0, 0, 360, false));
-        Kisman.instance.settingsManager.rSetting(new Setting("RotateRightZ", this, 0, 0, 360, false));
+        setmgr.rSetting(new Setting("RightX", this, 0, -2, 2, false).setVisible(translate::getValBoolean));
+        setmgr.rSetting(new Setting("RightY", this, 0, -2, 2, false).setVisible(translate::getValBoolean));
+        setmgr.rSetting(new Setting("RightZ", this, 0, -2, 2, false).setVisible(translate::getValBoolean));
+        setmgr.rSetting(new Setting("RotateRightX", this, 0, 0, 360, false));
+        setmgr.rSetting(new Setting("RotateRightY", this, 0, 0, 360, false));
+        setmgr.rSetting(new Setting("RotateRightZ", this, 0, 0, 360, false));
         setmgr.rSetting(autoRotateRigthX);
         setmgr.rSetting(autoRotateRigthY);
         setmgr.rSetting(autoRotateRigthZ);
@@ -92,12 +91,12 @@ public class ViewModel extends Module {
         setmgr.rSetting(scaleRightY);
         setmgr.rSetting(scaleRightZ);
 
-        Kisman.instance.settingsManager.rSetting(new Setting("LeftX", this, 0, -2, 2, false).setVisible(translate::getValBoolean));
-        Kisman.instance.settingsManager.rSetting(new Setting("LeftY", this, 0, -2, 2, false).setVisible(translate::getValBoolean));
-        Kisman.instance.settingsManager.rSetting(new Setting("LeftZ", this, 0, -2, 2, false).setVisible(translate::getValBoolean));
-        Kisman.instance.settingsManager.rSetting(new Setting("RotateLeftX", this, 0, 0, 360, false));
-        Kisman.instance.settingsManager.rSetting(new Setting("RotateLeftY", this, 0, 0, 360, false));
-        Kisman.instance.settingsManager.rSetting(new Setting("RotateLeftZ", this, 0, 0, 360, false));
+        setmgr.rSetting(new Setting("LeftX", this, 0, -2, 2, false).setVisible(translate::getValBoolean));
+        setmgr.rSetting(new Setting("LeftY", this, 0, -2, 2, false).setVisible(translate::getValBoolean));
+        setmgr.rSetting(new Setting("LeftZ", this, 0, -2, 2, false).setVisible(translate::getValBoolean));
+        setmgr.rSetting(new Setting("RotateLeftX", this, 0, 0, 360, false));
+        setmgr.rSetting(new Setting("RotateLeftY", this, 0, 0, 360, false));
+        setmgr.rSetting(new Setting("RotateLeftZ", this, 0, 0, 360, false));
         setmgr.rSetting(autoRotateLeftX);
         setmgr.rSetting(autoRotateLeftY);
         setmgr.rSetting(autoRotateLeftZ);

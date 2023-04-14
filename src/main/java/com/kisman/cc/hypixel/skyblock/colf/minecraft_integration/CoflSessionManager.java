@@ -82,7 +82,7 @@ public class CoflSessionManager {
 	}
 	
 	private static Path GetUserPath(String username) {
-		return Paths.get(GetTempFileFolder().toString() + "/" + username);
+		return Paths.get(GetTempFileFolder() + "/" + username);
 	}
 	public static void DeleteCoflSession(String username) {
 		Path path =GetUserPath(username);

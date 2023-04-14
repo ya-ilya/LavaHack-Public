@@ -87,7 +87,7 @@ public class BookEditingGui extends GuiScreenBook {
                 String title = (String) this.bookTitle.get(this);
                 super.keyTyped(typedChat, keyCode);
                 if(keyCode != 14 && keyCode != 28 && keyCode != 156 && title.length() < 32) {
-                    this.bookTitle.set(this, title + Character.toString(typedChat));
+                    this.bookTitle.set(this, title + typedChat);
                 }
             } else super.keyTyped(typedChat, keyCode);
         } catch (Exception e) {

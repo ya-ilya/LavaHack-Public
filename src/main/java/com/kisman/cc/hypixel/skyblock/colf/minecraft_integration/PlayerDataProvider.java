@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 public class PlayerDataProvider {
@@ -29,7 +30,7 @@ public class PlayerDataProvider {
 			// ...
 
 			OutputStream os = con.getOutputStream();
-			byte[] bytes = ("[\"" + Minecraft.getMinecraft().session.getUsername() + "\"]").getBytes("UTF-8");
+			byte[] bytes = ("[\"" + Minecraft.getMinecraft().session.getUsername() + "\"]").getBytes(StandardCharsets.UTF_8);
 			os.write(bytes);
 			os.close();
 			

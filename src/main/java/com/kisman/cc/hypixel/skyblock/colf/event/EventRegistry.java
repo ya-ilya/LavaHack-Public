@@ -44,7 +44,7 @@ public class EventRegistry {
 				return uuid;
 			} catch (Exception e) {
 				System.out.println("Clicked item " + stack.getDisplayName() + " has the following meta: "
-						+ stack.serializeNBT().toString());
+						+ stack.serializeNBT());
 			}
 		}
 		return "";

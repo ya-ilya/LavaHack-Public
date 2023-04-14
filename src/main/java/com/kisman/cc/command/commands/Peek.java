@@ -86,7 +86,7 @@ public class Peek extends Command {
                     return;
                 }
 
-                ChatUtils.message("Book size: " + Integer.toString(getItemSize(stack)) + " bytes");
+                ChatUtils.message("Book size: " + getItemSize(stack) + " bytes");
 
                 this.screen = new GuiScreenBook(mc.player, stack, false);
                 MinecraftForge.EVENT_BUS.register(this);

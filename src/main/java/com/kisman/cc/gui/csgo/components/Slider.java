@@ -28,7 +28,7 @@ public class Slider extends AbstractComponent {
 
     private boolean changing = false;
     private boolean open = false;
-    private final String values[] = new String[] {"Change", "Reset"};
+    private final String[] values = new String[] {"Change", "Reset"};
 
     public Slider(IRenderer renderer, double value, double minValue, double maxValue, NumberType numberType, int preferredWidth, int preferredHeight) {
         super(renderer);

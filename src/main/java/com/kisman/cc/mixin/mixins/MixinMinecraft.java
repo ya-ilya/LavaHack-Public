@@ -21,8 +21,8 @@
   @Shadow public GameSettings gameSettings;
   @Shadow public EntityPlayerSP player;
   @Shadow public PlayerControllerMP playerController;
-  @Shadow private void clickMouse() {};
-  
+  @Shadow private void clickMouse() {}
+
   @Inject(
           method = "init",
           at = @At("RETURN")

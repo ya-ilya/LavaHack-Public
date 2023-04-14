@@ -44,7 +44,7 @@ public class PacketLogger extends Module{
 
         String message = "Client -> " + event.getPacket().getClass().getName();
 
-        if(values.getValBoolean()) for(Field field : event.getPacket().getClass().getDeclaredFields()) message += " " + field.getName() + "[" + field.toString() + "]";
+        if(values.getValBoolean()) for(Field field : event.getPacket().getClass().getDeclaredFields()) message += " " + field.getName() + "[" + field + "]";
         
         ChatUtils.simpleMessage(message);
         if(PacketChat.Instance.logs.ActiveMessages.size()+1>10)
@@ -64,7 +64,7 @@ public class PacketLogger extends Module{
 
         String message = "Server -> " + event.getPacket().getClass().getName();
 
-        if(values.getValBoolean()) for(Field field : event.getPacket().getClass().getDeclaredFields()) message += " " + field.getName() + "[" + field.toString() + "]";
+        if(values.getValBoolean()) for(Field field : event.getPacket().getClass().getDeclaredFields()) message += " " + field.getName() + "[" + field + "]";
         
         ChatUtils.simpleMessage(message);
     });

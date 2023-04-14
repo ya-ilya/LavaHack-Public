@@ -108,7 +108,7 @@ public class Remapper3000 {
         Kisman.LOGGER.info("[Remapper3000] Remapping has been finished!");
     }
 
-    public Class getClassByName(String name) {
+    public Class<?> getClassByName(String name) {
         try {
             return Class.forName(name);
         } catch (ClassNotFoundException e) {
@@ -116,7 +116,7 @@ public class Remapper3000 {
         }
     }
 
-    public Method getMethodFromClassByName(Class clazz, String name) {
+    public Method getMethodFromClassByName(Class<?> clazz, String name) {
         try {
             return clazz.getMethod(name);
         } catch (NoSuchMethodException e) {

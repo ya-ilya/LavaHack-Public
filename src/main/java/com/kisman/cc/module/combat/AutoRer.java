@@ -975,9 +975,9 @@ public class AutoRer extends Module {
      */
     public static class Util {
         public static List<BlockPos> possiblePlacePositions(float placeRange, boolean secondCheck, boolean thirdCheck, boolean multiPlace, boolean firePlace) {
-            NonNullList list = NonNullList.create();
+            NonNullList<BlockPos> list = NonNullList.create();
             list.addAll(getSphere(mc.player.getPosition(), placeRange, (int) placeRange, false, true, 0).stream().filter(pos -> CrystalUtils.canPlaceCrystal(pos, secondCheck, thirdCheck, multiPlace, firePlace)).collect(Collectors.toList()));
-            return ((List<BlockPos>) list);
+            return list;
         }
 
         public static List<BlockPos> getSphere(BlockPos pos, float r, int h, boolean hollow, boolean sphere, int plus_y) {

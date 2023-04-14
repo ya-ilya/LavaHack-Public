@@ -96,7 +96,7 @@ public class AuthSys {
         if (pr.response() != 200) {
             throw new MicrosoftAuthException("accessToken response: " + pr.response());
         }
-        xblStep(((JsonObject)AuthSys.gson.fromJson(pr.body(), (Class)JsonObject.class)).get("access_token").getAsString(), gui);
+        xblStep(AuthSys.gson.fromJson(pr.body(), JsonObject.class).get("access_token").getAsString(), gui);
     }
     
     private static void xblStep(final String token, final MSAuthScreen gui) throws Throwable {
@@ -114,7 +114,7 @@ public class AuthSys {
         if (pr.response() != 200) {
             throw new MicrosoftAuthException("xbl response: " + pr.response());
         }
-        xstsStep(((JsonObject)AuthSys.gson.fromJson(pr.body(), (Class)JsonObject.class)).get("Token").getAsString(), gui);
+        xstsStep(AuthSys.gson.fromJson(pr.body(), JsonObject.class).get("Token").getAsString(), gui);
     }
     
     private static void xstsStep(final String xbl, final MSAuthScreen gui) throws Throwable {
@@ -129,7 +129,7 @@ public class AuthSys {
         pr.post(AuthSys.gson.toJson(map));
         if (pr.response() == 401) throw new MicrosoftAuthException("This account doesn't have Minecraft account linked.");
         if (pr.response() != 200) throw new MicrosoftAuthException("xsts response: " + pr.response());
-        final JsonObject jo = (JsonObject)AuthSys.gson.fromJson(pr.body(), (Class)JsonObject.class);
+        final JsonObject jo = AuthSys.gson.fromJson(pr.body(), JsonObject.class);
         minecraftTokenStep(jo.getAsJsonObject("DisplayClaims").getAsJsonArray("xui").get(0).getAsJsonObject().get("uhs").getAsString(), jo.get("Token").getAsString(), gui);
     }
     
@@ -139,7 +139,7 @@ public class AuthSys {
         map.put("identityToken", "XBL3.0 x=" + xbl + ";" + xsts);
         pr.post(AuthSys.gson.toJson(map));
         if (pr.response() != 200) throw new MicrosoftAuthException("minecraftToken response: " + pr.response());
-        minecraftStoreVerify(((JsonObject)AuthSys.gson.fromJson(pr.body(), (Class)JsonObject.class)).get("access_token").getAsString(), gui);
+        minecraftStoreVerify(AuthSys.gson.fromJson(pr.body(), JsonObject.class).get("access_token").getAsString(), gui);
     }
     
     private static void minecraftStoreVerify(final String token, final MSAuthScreen gui) throws Throwable {
@@ -147,7 +147,7 @@ public class AuthSys {
         final GetRequest gr = new GetRequest("https://api.minecraftservices.com/entitlements/mcstore").header("Authorization", "Bearer " + token);
         gr.get();
         if (gr.response() != 200) throw new MicrosoftAuthException("minecraftStore response: " + gr.response());
-        if (((JsonObject)AuthSys.gson.fromJson(gr.body(), (Class)JsonObject.class)).getAsJsonArray("items").size() == 0) throw new MicrosoftAuthException("This account doesn't own the game.");
+        if (AuthSys.gson.fromJson(gr.body(), JsonObject.class).getAsJsonArray("items").size() == 0) throw new MicrosoftAuthException("This account doesn't own the game.");
         minecraftProfileVerify(token, gui);
     }
     
@@ -155,7 +155,7 @@ public class AuthSys {
         final GetRequest gr = new GetRequest("https://api.minecraftservices.com/minecraft/profile").header("Authorization", "Bearer " + token);
         gr.get();
         if (gr.response() != 200) throw new MicrosoftAuthException("minecraftProfile response: " + gr.response());
-        final JsonObject jo = (JsonObject)AuthSys.gson.fromJson(gr.body(), (Class)JsonObject.class);
+        final JsonObject jo = AuthSys.gson.fromJson(gr.body(), JsonObject.class);
         final String name = jo.get("name").getAsString();
         final String uuid = jo.get("id").getAsString();
         final Minecraft minecraft = Minecraft.getMinecraft();

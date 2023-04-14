@@ -31,8 +31,8 @@ public class SpawnsESP extends Module {
     private final Setting duration = new Setting("Duration", this, 1, 0.1f, 5, false);
     private final Setting width = new Setting("Widtht", this, 2.5f, 0.1, 10, false);
 
-    public CopyOnWriteArrayList<VecCircle> circles = new CopyOnWriteArrayList();
-    public ConcurrentHashMap<BlockPos, Long> blocks = new ConcurrentHashMap();
+    public CopyOnWriteArrayList<VecCircle> circles = new CopyOnWriteArrayList<>();
+    public ConcurrentHashMap<BlockPos, Long> blocks = new ConcurrentHashMap<>();
 
     public SpawnsESP() {
         super("SpawnsESP", "        super(\"SpawnsESP\", )", Category.RENDER);

@@ -266,7 +266,7 @@ public class CFontRenderer extends CustomFont {
     }
 
     public List<String> wrapWords(String text, double width) {
-        List finalWords = new ArrayList();
+        List<String> finalWords = new ArrayList<>();
         if (getStringWidth(text) > width) {
             String[] words = text.split(" ");
             String currentWord = "";
@@ -275,7 +275,7 @@ public class CFontRenderer extends CustomFont {
             int j = (arrayOfString1 = words).length;
             for (int i = 0; i < j; i++) {
                 String word = arrayOfString1[i];
-                for (int ii = 0; i < word.toCharArray().length; i++) {
+                for (; i < word.toCharArray().length; i++) {
                     char c = word.toCharArray()[i];
 
                     if ((c == '§') && (i < word.toCharArray().length - 1)) {
@@ -294,8 +294,7 @@ public class CFontRenderer extends CustomFont {
                     finalWords.add('§' + lastColorCode + currentWord + " ");
                     currentWord = "";
                 } else {
-                    for (String s : formatString(currentWord, width))
-                        finalWords.add(s);
+                    finalWords.addAll(formatString(currentWord, width));
                 }
         } else {
             finalWords.add(text);
@@ -305,7 +304,7 @@ public class CFontRenderer extends CustomFont {
     }
 
     public List<String> formatString(String string, double width) {
-        List finalWords = new ArrayList();
+        List<String> finalWords = new ArrayList<>();
         String currentWord = "";
         char lastColorCode = 65535;
         char[] chars = string.toCharArray();

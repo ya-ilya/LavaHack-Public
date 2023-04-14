@@ -185,8 +185,8 @@ public class MathUtil {
         LinkedList<Map.Entry<K, V>> list = new LinkedList<Map.Entry<K, V>>(map.entrySet());
         if (descending) list.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
         else list.sort(Map.Entry.comparingByValue());
-        LinkedHashMap result = new LinkedHashMap();
-        for (Map.Entry entry : list) result.put(entry.getKey(), entry.getValue());
+        LinkedHashMap<K, V> result = new LinkedHashMap<>();
+        for (Map.Entry<K, V> entry : list) result.put(entry.getKey(), entry.getValue());
         return result;
     }
 

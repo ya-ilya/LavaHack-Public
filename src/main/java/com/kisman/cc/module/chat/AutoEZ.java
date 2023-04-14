@@ -19,7 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class AutoEZ extends Module {
     public static List<String> AutoGgMessages = new ArrayList<>(Arrays.asList("{name} owned by {player_name} with " + Kisman.getName(), "gg, {name}!", Kisman.getName() + " owning {name}"));
-    private ConcurrentHashMap targetedPlayers = null;
+    private ConcurrentHashMap<String, Integer> targetedPlayers = null;
     private int index = -1;
 
     private Setting random = new Setting("Random message", this, true);
@@ -32,22 +32,20 @@ public class AutoEZ extends Module {
 
     public void onEnable() {
         super.onEnable();
-        targetedPlayers = new ConcurrentHashMap();
+        targetedPlayers = new ConcurrentHashMap<>();
         Kisman.EVENT_BUS.subscribe(send);
     }
 
     public void update() {
         if(mc.player == null || mc.world == null) return;
-        if (this.targetedPlayers == null) this.targetedPlayers = new ConcurrentHashMap();
-        Iterator var1 = mc.world.loadedEntityList.iterator();
+        if (this.targetedPlayers == null) this.targetedPlayers = new ConcurrentHashMap<>();
 
-        while (var1.hasNext()) {
-            Entity entity = (Entity) var1.next();
-            if(entity instanceof EntityPlayer) {
+        for (Entity entity : mc.world.loadedEntityList) {
+            if (entity instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) entity;
-                if(player.getHealth() < 0) {
+                if (player.getHealth() < 0) {
                     String name = player.getName();
-                    if(shouldAnnounce(name)) {
+                    if (shouldAnnounce(name)) {
                         doAnnounce(name);
                         break;
                     }
@@ -56,15 +54,15 @@ public class AutoEZ extends Module {
         }
 
         targetedPlayers.forEach((name, timeout) -> {
-            if((int) timeout < 0) targetedPlayers.remove(name);
-            else targetedPlayers.put(name, (int) timeout - 1);
+            if(timeout < 0) targetedPlayers.remove(name);
+            else targetedPlayers.put(name, timeout - 1);
         });
     }
 
     @EventHandler
     private final Listener<PacketEvent.Send> send = new Listener<>(event -> {
         if(mc.player != null) {
-            if(targetedPlayers == null) targetedPlayers = new ConcurrentHashMap();
+            if(targetedPlayers == null) targetedPlayers = new ConcurrentHashMap<>();
 
             if(event.getPacket() instanceof CPacketUseEntity) {
                 CPacketUseEntity packet = (CPacketUseEntity) event.getPacket();
@@ -79,7 +77,7 @@ public class AutoEZ extends Module {
     @SubscribeEvent
     public void onLivingDeath(LivingDeathEvent event) {
         if(mc.player != null) {
-            if(targetedPlayers == null) targetedPlayers = new ConcurrentHashMap();
+            if(targetedPlayers == null) targetedPlayers = new ConcurrentHashMap<>();
 
             EntityLivingBase entity = event.getEntityLiving();
             if(entity instanceof EntityPlayer) {
@@ -110,7 +108,7 @@ public class AutoEZ extends Module {
 
     public void addTargetedPlayer(String name) {
         if (!Objects.equals(name, mc.player.getName())) {
-            if (targetedPlayers == null) targetedPlayers = new ConcurrentHashMap();
+            if (targetedPlayers == null) targetedPlayers = new ConcurrentHashMap<>();
             targetedPlayers.put(name, 20);
         }
     }

@@ -29,7 +29,7 @@ public class Platform implements ViaPlatform<UUID> {
 
     private final ViaConfig config;
     private final File dataFolder;
-    private final com.viaversion.viaversion.api.ViaAPI api;
+    private final com.viaversion.viaversion.api.ViaAPI<UUID> api;
 
     public Platform(File dataFolder) {
         Path configDir = dataFolder.toPath().resolve("ViaVersion");
@@ -124,8 +124,8 @@ public class Platform implements ViaPlatform<UUID> {
     }
 
     @Override
-    public com.viaversion.viaversion.api.ViaAPI getApi() {
-        return api;
+    public com.viaversion.viaversion.api.ViaAPI<UUID> getApi() {
+        return  api;
     }
 
     @Override

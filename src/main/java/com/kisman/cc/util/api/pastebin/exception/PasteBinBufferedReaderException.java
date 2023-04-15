@@ -1,4 +1,4 @@
-package com.kisman.cc.api.pastebin.exception;
+package com.kisman.cc.util.api.pastebin.exception;
 
 public class PasteBinBufferedReaderException extends RuntimeException {
     public PasteBinBufferedReaderException(final String msg) {

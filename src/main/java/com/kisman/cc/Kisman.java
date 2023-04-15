@@ -1,6 +1,6 @@
 package com.kisman.cc;
 
-import com.kisman.cc.api.cape.CapeAPI;
+import com.kisman.cc.util.api.cape.CapeAPI;
 import com.kisman.cc.command.CommandManager;
 import com.kisman.cc.gui.console.rewrite.ConsoleGui;
 import com.kisman.cc.event.EventProcessor;

@@ -3,7 +3,7 @@ package com.kisman.cc.util;
 import net.minecraft.client.Minecraft;
 
 public class Rotation {
-    private Minecraft mc = Minecraft.getMinecraft();
+    private final Minecraft mc = Minecraft.getMinecraft();
 
     private float yaw;
     private float pitch;

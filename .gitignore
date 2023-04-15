@@ -2,7 +2,6 @@ build
 .gradle
 .mixin.out
 bin
-config
 run
 usercache.json
 usernamecache.json

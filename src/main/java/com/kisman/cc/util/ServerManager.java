@@ -15,10 +15,10 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class ServerManager {
-    private Minecraft mc = Minecraft.getMinecraft();
+    private final Minecraft mc = Minecraft.getMinecraft();
 
-    private float[] tpsCount;
-    private DecimalFormat format;
+    private final float[] tpsCount;
+    private final DecimalFormat format;
     private TimerUtils timer;
     private float tps;
     private long lastUpdate;

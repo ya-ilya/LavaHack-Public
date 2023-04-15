@@ -33,7 +33,7 @@ public class AuthSys {
                             try {
                                 gui.setState("Processing token...");
                                 final byte[] b = done.getBytes(StandardCharsets.UTF_8);
-                                exchange.getResponseHeaders().put("Content-Type", Arrays.asList("text/html; charset=UTF-8"));
+                                exchange.getResponseHeaders().put("Content-Type", Collections.singletonList("text/html; charset=UTF-8"));
                                 exchange.sendResponseHeaders(200, b.length);
                                 final OutputStream os = exchange.getResponseBody();
                                 os.write(b);

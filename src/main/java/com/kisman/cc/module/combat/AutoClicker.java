@@ -8,7 +8,6 @@ import net.minecraft.client.settings.KeyBinding;
 import org.lwjgl.input.Mouse;
 
 public class AutoClicker extends Module {
-
 	private long lastClick;
 	private long hold;
 	

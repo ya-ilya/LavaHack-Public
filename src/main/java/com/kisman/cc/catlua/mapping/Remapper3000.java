@@ -98,7 +98,7 @@ public class Remapper3000 {
 
             Kisman.instance.forgeMappings = new ForgeMappings();
             try {
-                Kisman.instance.forgeMappings.init(new FileInputStream(mapping.toFile()));
+                Kisman.instance.forgeMappings.init(Files.newInputStream(mapping.toFile().toPath()));
             } catch (IOException e) {
                 Kisman.LOGGER.error("[ForgeMappings] You have error with lzma.txt mapping file, please, fix the problem and launch the client!(Maybe you will get crash if you dont fix the problem)");
                 return;

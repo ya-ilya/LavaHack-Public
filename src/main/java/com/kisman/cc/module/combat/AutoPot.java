@@ -16,7 +16,7 @@ import net.minecraft.util.EnumHand;
 import java.util.Objects;
 
 public class AutoPot extends Module {
-    private TimerUtils timer = new TimerUtils();
+    private final TimerUtils timer = new TimerUtils();
     private ItemStack stack = null;
 
     public AutoPot() {

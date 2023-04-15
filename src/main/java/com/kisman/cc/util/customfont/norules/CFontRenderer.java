@@ -305,7 +305,7 @@ public class CFontRenderer extends CustomFont {
 
     public List<String> formatString(String string, double width) {
         List<String> finalWords = new ArrayList<>();
-        String currentWord = "";
+        StringBuilder currentWord = new StringBuilder();
         char lastColorCode = 65535;
         char[] chars = string.toCharArray();
         for (int i = 0; i < chars.length; i++) {
@@ -315,16 +315,16 @@ public class CFontRenderer extends CustomFont {
                 lastColorCode = chars[(i + 1)];
             }
 
-            if (getStringWidth(currentWord + c) < width) {
-                currentWord = currentWord + c;
+            if (getStringWidth(currentWord.toString() + c) < width) {
+                currentWord.append(c);
             } else {
-                finalWords.add(currentWord);
-                currentWord = '§' + lastColorCode + String.valueOf(c);
+                finalWords.add(currentWord.toString());
+                currentWord = new StringBuilder('§' + lastColorCode + String.valueOf(c));
             }
         }
 
         if (currentWord.length() > 0) {
-            finalWords.add(currentWord);
+            finalWords.add(currentWord.toString());
         }
 
         return finalWords;

@@ -303,7 +303,7 @@ public class Setting {
 	}
 
 	public String[] getStringValues() {
-		if(!enumCombo) return options.toArray(new String[options.size()]);
+		if(!enumCombo) return options.toArray(new String[0]);
 		else return Arrays.stream(optionEnum.getClass().getEnumConstants()).map(Enum::name).toArray(String[]::new);
 	}
 

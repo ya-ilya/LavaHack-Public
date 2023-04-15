@@ -8,8 +8,7 @@ public enum Category {
 	PLAYER("Player"),
 	RENDER("Render"),
 	MISC("Misc"),
-	EXPLOIT("Exploit"),
-	LUA("Lua");
+	EXPLOIT("Exploit");
 
 	private final String name;
 	Category(final String name) { this.name = name;}

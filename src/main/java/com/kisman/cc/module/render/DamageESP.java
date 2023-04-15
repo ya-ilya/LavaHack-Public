@@ -1,7 +1,7 @@
 package com.kisman.cc.module.render;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.lua.Render2DEvent;
+import com.kisman.cc.event.events.Render2DEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;

@@ -1,11 +1,9 @@
 package com.kisman.cc.gui.halq.component.components;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.catlua.module.ModuleScript;
 import com.kisman.cc.gui.halq.HalqGui;
 import com.kisman.cc.gui.halq.component.Component;
 import com.kisman.cc.gui.halq.component.components.sub.*;
-import com.kisman.cc.gui.halq.component.components.sub.lua.ActionButton;
 import com.kisman.cc.gui.halq.component.components.sub.modules.BindModeButton;
 import com.kisman.cc.gui.halq.component.components.sub.modules.VisibleBox;
 import com.kisman.cc.gui.halq.util.LayerMap;
@@ -41,47 +39,41 @@ public class Button extends Component {
         int offsetY = offset + HalqGui.height;
         int count1 = 0;
 
-        if(mod instanceof ModuleScript) {
-            comps.add(new ActionButton((ModuleScript) mod, ActionButton.Action.RELOAD, x, y, offsetY, count1++));
-            offsetY += HalqGui.height;
-            comps.add(new ActionButton((ModuleScript) mod, ActionButton.Action.UNLOAD, x, y, offsetY, count1++));
-        } else {
-            comps.add(new BindButton(mod, x, y, offsetY, count1++));
-            offsetY += HalqGui.height;
-            comps.add(new VisibleBox(mod, x, y, offsetY, count1++));
-            offsetY += HalqGui.height;
-            comps.add(new BindModeButton(mod, x, y, offsetY, count1++));
-            offsetY += HalqGui.height;
+        comps.add(new BindButton(mod, x, y, offsetY, count1++));
+        offsetY += HalqGui.height;
+        comps.add(new VisibleBox(mod, x, y, offsetY, count1++));
+        offsetY += HalqGui.height;
+        comps.add(new BindModeButton(mod, x, y, offsetY, count1++));
+        offsetY += HalqGui.height;
 
-            if (Kisman.instance.settingsManager.getSettingsByMod(mod) != null) {
-                for (Setting set : Kisman.instance.settingsManager.getSettingsByMod(mod)) {
-                    if (set == null) continue;
-                    if (set.isSlider()) {
-                        comps.add(new Slider(set, x, y, offsetY, count1++));
-                        offsetY += HalqGui.height;
-                    }
-                    if (set.isCheck()) {
-                        comps.add(new CheckBox(set, x, y, offsetY, count1++));
-                        offsetY += HalqGui.height;
-                    }
-                    if (set.isBind()) {
-                        comps.add(new BindButton(set, x, y, offsetY, count1++));
-                        offsetY += HalqGui.height;
-                    }
-                    if (set.isCombo()) {
-                        comps.add(new ModeButton(set, x, y, offsetY, count1++));
-                        offsetY += HalqGui.height;
-                    }
-                    if (set.isColorPicker()) {
-                        comps.add(new ColorButton(set, x, y, offsetY, count1++));
-                        offset += HalqGui.height;
-                    }
+        if (Kisman.instance.settingsManager.getSettingsByMod(mod) != null) {
+            for (Setting set : Kisman.instance.settingsManager.getSettingsByMod(mod)) {
+                if (set == null) continue;
+                if (set.isSlider()) {
+                    comps.add(new Slider(set, x, y, offsetY, count1++));
+                    offsetY += HalqGui.height;
+                }
+                if (set.isCheck()) {
+                    comps.add(new CheckBox(set, x, y, offsetY, count1++));
+                    offsetY += HalqGui.height;
+                }
+                if (set.isBind()) {
+                    comps.add(new BindButton(set, x, y, offsetY, count1++));
+                    offsetY += HalqGui.height;
+                }
+                if (set.isCombo()) {
+                    comps.add(new ModeButton(set, x, y, offsetY, count1++));
+                    offsetY += HalqGui.height;
+                }
+                if (set.isColorPicker()) {
+                    comps.add(new ColorButton(set, x, y, offsetY, count1++));
+                    offset += HalqGui.height;
                 }
             }
-            for(Component comp : comps) {
-                comp.setLayer(1);
-                comp.setWidth(90);
-            }
+        }
+        for(Component comp : comps) {
+            comp.setLayer(1);
+            comp.setWidth(90);
         }
     }
 

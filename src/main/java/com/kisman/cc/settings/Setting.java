@@ -1,7 +1,6 @@
 package com.kisman.cc.settings;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.catlua.lua.settings.LuaSetting;
 import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.hud.hudmodule.HudModule;
 import com.kisman.cc.module.Module;
@@ -579,11 +578,6 @@ public class Setting {
 
 	public Setting setMax(double max) {
 		this.max = max;
-		return this;
-	}
-
-	public Setting setType(String type) {
-		numberType = LuaSetting.getNumberTypeByName(type);
 		return this;
 	}
 

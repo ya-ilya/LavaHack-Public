@@ -35,18 +35,9 @@ public class Frame {
         int offsetY = HalqGui.height;
         int count1 = 0;
 
-        if(!cat.equals(Category.LUA)) {
-            for (Module mod : Kisman.instance.moduleManager.getModulesInCategory(cat)) {
-                mods.add(new Button(mod, x, y, offsetY, count1++));
-                offsetY += HalqGui.height;
-            }
-        } else {
-            if(!Kisman.instance.scriptManager.scripts.isEmpty()) {
-                for (Module script : Kisman.instance.scriptManager.scripts) {
-                    mods.add(new Button(script, x, y, offsetY, count1++));
-                    offsetY += HalqGui.height;
-                }
-            }
+        for (Module mod : Kisman.instance.moduleManager.getModulesInCategory(cat)) {
+            mods.add(new Button(mod, x, y, offsetY, count1++));
+            offsetY += HalqGui.height;
         }
 
         this.cat = cat;
@@ -61,17 +52,11 @@ public class Frame {
         int offsetY = HalqGui.height;
         int count1 = 0;
 
-        if(!cat.equals(Category.LUA)) {
-            for (Module mod : Kisman.instance.moduleManager.getModulesInCategory(cat)) {
-                mods.add(new Button(mod, x, y, offsetY, count1++));
-                offsetY += HalqGui.height;
-            }
-        } else {
-            for(Module script : Kisman.instance.scriptManager.scripts) {
-                mods.add(new Button(script, x, y, offsetY, count1++));
-                offsetY += HalqGui.height;
-            }
+        for (Module mod : Kisman.instance.moduleManager.getModulesInCategory(cat)) {
+            mods.add(new Button(mod, x, y, offsetY, count1++));
+            offsetY += HalqGui.height;
         }
+
         reloading = false;
     }
 
@@ -90,7 +75,7 @@ public class Frame {
             if (HalqGui.shadow) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[]{x + HalqGui.width, y}, new double[]{x + HalqGui.width + HalqGui.headerOffset, y}, new double[]{x + HalqGui.width + HalqGui.headerOffset, y + HalqGui.height}, new double[]{x + HalqGui.width, y + HalqGui.height}), HalqGui.getGradientColour(count).getColor(), ColorUtils.injectAlpha(HalqGui.getGradientColour(count).getColor(), 0)));
         }
 
-        HalqGui.drawString(cat.getName() + (Config.instance.guiRenderSize.getValBoolean() ? " [" + (cat.equals(Category.LUA) ? Kisman.instance.scriptManager.scripts.size() : Kisman.instance.moduleManager.getModulesInCategory(cat).size()) + "]": ""), x, y, HalqGui.width, HalqGui.height);
+        HalqGui.drawString(cat.getName() + (Config.instance.guiRenderSize.getValBoolean() ? " [" + Kisman.instance.moduleManager.getModulesInCategory(cat).size() + "]": ""), x, y, HalqGui.width, HalqGui.height);
     }
 
     public void renderPost(int mouseX, int mouseY) {

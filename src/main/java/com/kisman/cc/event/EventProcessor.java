@@ -2,6 +2,7 @@ package com.kisman.cc.event;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.event.events.Render2DEvent;
 import com.kisman.cc.event.events.TotemPopEvent;
 import com.kisman.cc.hypixel.util.ConfigHandler;
 import com.kisman.cc.module.Module;
@@ -91,6 +92,11 @@ public class EventProcessor {
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent event) {
         Kisman.EVENT_BUS.post(this);
+    }
+
+    @SubscribeEvent
+    public void onRenderText(RenderGameOverlayEvent.Text event) {
+        Kisman.EVENT_BUS.post(new Render2DEvent(event.getPartialTicks()));
     }
 
     @SubscribeEvent

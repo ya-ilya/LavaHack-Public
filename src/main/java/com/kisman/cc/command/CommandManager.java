@@ -29,7 +29,6 @@ public class CommandManager {
 		commands.add(new FriendCommand());
 		commands.add(new HelpCommand());
 		commands.add(new ConfigCommand());
-		commands.add(new LuaCommand());
         commands.add(new SliderCommand());
         commands.add(new OpenDirCommand());
 		commands.add(new PeekCommand());

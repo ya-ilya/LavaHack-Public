@@ -1,16 +1,10 @@
 package com.kisman.cc;
 
 import com.kisman.cc.api.cape.CapeAPI;
-import com.kisman.cc.catlua.ScriptManager;
-import com.kisman.cc.catlua.lua.utils.LuaRotation;
-import com.kisman.cc.catlua.mapping.ExcludedList;
-import com.kisman.cc.catlua.mapping.ForgeMappings;
-import com.kisman.cc.catlua.mapping.Remapper3000;
 import com.kisman.cc.command.CommandManager;
 import com.kisman.cc.gui.console.GuiConsole;
 import com.kisman.cc.gui.console.rewrite.ConsoleGui;
 import com.kisman.cc.event.EventProcessor;
-import com.kisman.cc.event.EventProcessorLua;
 import com.kisman.cc.file.ConfigManager;
 import com.kisman.cc.friend.FriendManager;
 import com.kisman.cc.gui.MainGui;
@@ -102,12 +96,6 @@ public class Kisman {
     public Managers managers;
     public CapeAPI capeAPI;
     public MainAiImpr aiImpr;
-    public EventProcessorLua eventProcessorLua;
-    public ExcludedList excludedList;
-    public Remapper3000 remapper3000;
-    public ForgeMappings forgeMappings;
-    public LuaRotation luaRotation;
-    public ScriptManager scriptManager;
     public ConfigManager configManager;
 
     public void init() throws IOException, NoSuchFieldException, IllegalAccessException {
@@ -151,14 +139,6 @@ public class Kisman {
 
         //load glow shader
         ShaderShell.init();
-
-        //catlua
-        eventProcessorLua = new EventProcessorLua();
-        excludedList = new ExcludedList();
-        remapper3000 = new Remapper3000();
-        remapper3000.init();
-        luaRotation = new LuaRotation();
-        scriptManager = new ScriptManager();
 
         //gui's
         clickGuiNew = new ClickGuiNew();

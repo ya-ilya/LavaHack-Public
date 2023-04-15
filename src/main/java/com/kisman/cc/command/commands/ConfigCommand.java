@@ -2,7 +2,7 @@ package com.kisman.cc.command.commands;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.command.Command;
-import com.kisman.cc.file.ConfigLoader;
+import com.kisman.cc.config.ConfigLoader;
 
 public class ConfigCommand extends Command {
     public ConfigCommand() {

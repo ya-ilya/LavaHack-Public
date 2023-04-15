@@ -76,7 +76,6 @@ public class ModuleManager {
 		modules.add(new Gui());
 		modules.add(new HUD());
 		modules.add(new HudEditorTest());
-		modules.add(new NotEnoughCoins());
 		modules.add(new ToolTip());
 		modules.add(new VegaGui());
 		//chat

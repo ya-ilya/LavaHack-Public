@@ -2,10 +2,9 @@ package com.kisman.cc;
 
 import com.kisman.cc.api.cape.CapeAPI;
 import com.kisman.cc.command.CommandManager;
-import com.kisman.cc.gui.console.GuiConsole;
 import com.kisman.cc.gui.console.rewrite.ConsoleGui;
 import com.kisman.cc.event.EventProcessor;
-import com.kisman.cc.file.ConfigManager;
+import com.kisman.cc.config.ConfigManager;
 import com.kisman.cc.friend.FriendManager;
 import com.kisman.cc.gui.MainGui;
 import com.kisman.cc.gui.csgo.ClickGuiNew;
@@ -65,7 +64,6 @@ public class Kisman {
 
     public static boolean allowToConfiguredAnotherClients = true, remapped = false;
     public static boolean canUseImprAstolfo = false;
-    public static boolean canInitializeCatLua = true;
 
     public boolean init = false;
 
@@ -77,7 +75,6 @@ public class Kisman {
     public HudModuleManager hudModuleManager;
     public SettingsManager settingsManager;
     public ClickGuiNew clickGuiNew;
-    public GuiConsole guiConsole;
     public ConsoleGui consoleGui;
     public HudGui hudGui;
     public HudEditorGui hudEditorGui;
@@ -87,7 +84,6 @@ public class Kisman {
     public CustomFontRenderer customFontRenderer;
     public CustomFontRenderer customFontRenderer1;
     public CommandManager commandManager;
-    public RPC discord;
     public RotationUtils rotationUtils;
     public EventProcessor eventProcessor;
     public ServerManager serverManager;
@@ -122,16 +118,13 @@ public class Kisman {
     	moduleManager = new ModuleManager();
         hudModuleManager = new HudModuleManager();
         clickGuiNew = new ClickGuiNew();
-        guiConsole = new GuiConsole();
         consoleGui = new ConsoleGui();
         customFontRenderer = new CustomFontRenderer(new Font("Verdana", Font.PLAIN, 18), true, true);
         customFontRenderer1 = new CustomFontRenderer(new Font("Verdana", Font.PLAIN, 15), true, true);
         commandManager = new CommandManager();
-        discord = new RPC();
         rotationUtils = new RotationUtils();
         serverManager = new ServerManager();
         shaders = new Shaders();
-        sandBoxShaders = new SandBoxShaders();
         capeAPI = new CapeAPI();
 
         configManager = new ConfigManager("config");

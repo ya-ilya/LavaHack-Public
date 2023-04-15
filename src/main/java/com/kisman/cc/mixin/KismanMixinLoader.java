@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Mixins;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-@IFMLLoadingPlugin.Name("ratka")
+@IFMLLoadingPlugin.Name("LavaHack")
 @IFMLLoadingPlugin.MCVersion("1.12.2")
 public class KismanMixinLoader implements IFMLLoadingPlugin {
 

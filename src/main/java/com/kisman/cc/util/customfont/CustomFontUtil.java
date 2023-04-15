@@ -49,11 +49,11 @@ public class CustomFontUtil {
         try {
             InputStream is = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation("font/" + name + ".ttf")).getInputStream();
             font = Font.createFont(0, is);
-            font = font.deriveFont(0, size);
+            font = font.deriveFont(Font.PLAIN, size);
         } catch (Exception ex) {
             ex.printStackTrace();
             System.out.println("Error loading font");
-            font = new Font("default", 0, size);
+            font = new Font("default", Font.PLAIN, size);
         }
         return font;
     }

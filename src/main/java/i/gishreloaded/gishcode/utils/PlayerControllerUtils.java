@@ -1,7 +1,5 @@
 package i.gishreloaded.gishcode.utils;
 
-import java.lang.reflect.Field;
-
 import i.gishreloaded.gishcode.utils.system.Mapping;
 import i.gishreloaded.gishcode.wrappers.Wrapper;
 import net.minecraft.client.Minecraft;
@@ -11,6 +9,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.GameType;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
+
+import java.lang.reflect.Field;
 
 public class PlayerControllerUtils {
 	public static void setReach(Entity entity, double range) {

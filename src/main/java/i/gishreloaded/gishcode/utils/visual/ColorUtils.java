@@ -1,12 +1,11 @@
 package i.gishreloaded.gishcode.utils.visual;
 
+import com.kisman.cc.util.Colour;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.Random;
-
-import com.kisman.cc.util.Colour;
 
 public class ColorUtils {
     public static Colour getRandomColour() {

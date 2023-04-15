@@ -1,9 +1,8 @@
 package i.gishreloaded.gishcode.managers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+
+import java.util.ArrayList;
 
 public class EnemyManager {
 	

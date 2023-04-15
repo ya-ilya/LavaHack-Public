@@ -1,9 +1,10 @@
 package i.gishreloaded.gishcode.utils.visual;
 
 import com.kisman.cc.Kisman;
-
 import i.gishreloaded.gishcode.wrappers.Wrapper;
-import net.minecraft.util.text.*;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 
 public class ChatUtils {
 	// TODO Rewrite to LogManager

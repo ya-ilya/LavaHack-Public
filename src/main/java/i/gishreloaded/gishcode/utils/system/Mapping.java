@@ -1,9 +1,6 @@
 package i.gishreloaded.gishcode.utils.system;
 
-import java.lang.reflect.Field;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.PlayerControllerMP;
 
 public class Mapping {
 	

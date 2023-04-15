@@ -1,7 +1,5 @@
 package i.gishreloaded.gishcode.utils;
 
-import java.util.LinkedList;
-
 import i.gishreloaded.gishcode.wrappers.Wrapper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -18,6 +16,8 @@ import net.minecraft.network.play.client.CPacketPlayerDigging.Action;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.*;
+
+import java.util.LinkedList;
 
 public final class BlockUtils {
 	private static Minecraft mc = Minecraft.getMinecraft();

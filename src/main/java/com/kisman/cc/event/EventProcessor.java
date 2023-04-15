@@ -1,9 +1,8 @@
 package com.kisman.cc.event;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.ResolutionUpdateEvent;
 import com.kisman.cc.event.events.PacketEvent;
-import com.kisman.cc.event.events.subscribe.TotemPopEvent;
+import com.kisman.cc.event.events.TotemPopEvent;
 import com.kisman.cc.hypixel.util.ConfigHandler;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.client.Config;
@@ -45,8 +44,6 @@ public class EventProcessor {
 
     public AtomicBoolean ongoing;
 
-    public int oldWidth = -1, oldHeight = -1;
-
     public EventProcessor() {
         MinecraftForge.EVENT_BUS.register(this);
         Kisman.EVENT_BUS.subscribe(totempop);
@@ -87,11 +84,6 @@ public class EventProcessor {
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event) {
         Kisman.EVENT_BUS.post(this);
-        if(oldWidth != mc.displayWidth || oldHeight != mc.displayHeight) {
-            oldWidth = mc.displayWidth;
-            oldHeight = mc.displayHeight;
-            new ResolutionUpdateEvent(oldWidth, oldHeight).post();
-        }
         if(CustomMainMenuModule.instance != null) CustomMainMenu.update();
         if(ElytraEquip.instance != null) ElytraEquip.instance.updateState();
         if(Config.instance != null) Kisman.canUseImprAstolfo = Config.instance.astolfoColorMode.checkValString(Config.AstolfoColorMode.Impr.name());

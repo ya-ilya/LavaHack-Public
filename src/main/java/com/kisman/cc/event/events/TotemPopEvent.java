@@ -1,4 +1,4 @@
-package com.kisman.cc.event.events.subscribe;
+package com.kisman.cc.event.events;
 
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;

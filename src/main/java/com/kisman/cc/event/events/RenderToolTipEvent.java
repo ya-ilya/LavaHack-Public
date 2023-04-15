@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 public class RenderToolTipEvent extends Event {
     public ItemStack stack;
     public int x, y;
+
     public RenderToolTipEvent(ItemStack stack, int x, int y) {
         this.stack = stack;
         this.x = x;

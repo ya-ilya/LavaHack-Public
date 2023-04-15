@@ -2,7 +2,7 @@ package com.kisman.cc.mixin.mixins;
 
 import com.google.common.base.Predicate;
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.RenderGetEntitiesINAABBexcludingEvent;
+import com.kisman.cc.event.events.RenderGetEntitiesInAABBexcludingEvent;
 import com.kisman.cc.module.client.Changer;
 import com.kisman.cc.module.misc.SkylightFix;
 import com.kisman.cc.module.render.CameraClip;
@@ -37,7 +37,7 @@ public class MixinEntityRenderer {
 
     @Redirect(method = "getMouseOver", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/WorldClient;getEntitiesInAABBexcluding(Lnet/minecraft/entity/Entity;Lnet/minecraft/util/math/AxisAlignedBB;Lcom/google/common/base/Predicate;)Ljava/util/List;"))
     public List<Entity> getEntitiesInAABBexcluding(WorldClient worldClient, Entity entityIn, AxisAlignedBB boundingBox, Predicate<? super Entity> predicate) {
-        RenderGetEntitiesINAABBexcludingEvent event = new RenderGetEntitiesINAABBexcludingEvent();
+        RenderGetEntitiesInAABBexcludingEvent event = new RenderGetEntitiesInAABBexcludingEvent();
         Kisman.EVENT_BUS.post(event);
 
         if(event.isCancelled()) return new ArrayList<>();

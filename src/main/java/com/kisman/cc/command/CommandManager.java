@@ -22,20 +22,18 @@ public class CommandManager {
 	}
 
 	public void addCommands() {
-		commands.add(new AntiSpammerCommand());
+		commands.add(new AntiSpamCommand());
 		commands.add(new BindCommand());
 		commands.add(new ColfCommand());
 		commands.add(new CreditsCommand());
 		commands.add(new DDOSCommand());
-		// commands.add(new Flip());
 		commands.add(new FriendCommand());
 		commands.add(new HelpCommand());
-		commands.add(new LoadConfigCommand());
+		commands.add(new ConfigCommand());
 		commands.add(new LuaCommand());
         commands.add(new SliderCommand());
         commands.add(new OpenDirCommand());
 		commands.add(new PeekCommand());
-        commands.add(new SaveConfigCommand());
 		commands.add(new SetKeyCommand());
         commands.add(new ToggleCommand());
 		commands.add(new TpCommand());

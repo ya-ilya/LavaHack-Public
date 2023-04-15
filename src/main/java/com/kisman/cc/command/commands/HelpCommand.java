@@ -1,6 +1,7 @@
 package com.kisman.cc.command.commands;
 
 import com.kisman.cc.command.Command;
+import com.kisman.cc.command.CommandManager;
 
 public class HelpCommand extends Command {
     public HelpCommand() {
@@ -24,6 +25,9 @@ public class HelpCommand extends Command {
         message("toggle <module>");
         message("tp <x> <y> <z>");
         message("tp <player's nickname>");
+        for (Command command : CommandManager.commands) {
+
+        }
     }
 
     public String getDescription() {

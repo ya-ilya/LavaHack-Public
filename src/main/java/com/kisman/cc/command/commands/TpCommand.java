@@ -37,14 +37,16 @@ public class TpCommand extends Command {
         } else if(args.length == 1) {
             //tp to player
 
-            if(getPlayer(args[0]) == null) {
+            EntityPlayer player = getPlayer(args[0]);
+
+            if(player == null) {
                 ChatUtils.error("The player" + args[0] + " does not exist!");
                 return;
             }
 
-            double x = getPlayer(args[0]).posX;
-            double y = getPlayer(args[0]).posY;
-            double z = getPlayer(args[0]).posZ;
+            double x = player.posX;
+            double y = player.posY;
+            double z = player.posZ;
 
             mc.player.connection.sendPacket(new CPacketPlayer.Position(x, y, z, false));
             mc.player.connection.sendPacket(new CPacketPlayer.Position(x, y, z, true));

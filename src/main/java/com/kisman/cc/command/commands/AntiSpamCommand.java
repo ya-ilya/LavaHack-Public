@@ -3,8 +3,8 @@ package com.kisman.cc.command.commands;
 import com.kisman.cc.command.Command;
 import com.kisman.cc.module.chat.AntiSpammer;
 
-public class AntiSpammerCommand extends Command {
-    public AntiSpammerCommand() {
+public class AntiSpamCommand extends Command {
+    public AntiSpamCommand() {
         super("antispam");
     }
 
@@ -13,15 +13,15 @@ public class AntiSpammerCommand extends Command {
         try {
             if(args[0].equalsIgnoreCase("add")) {
                 AntiSpammer.instance.illegalWords.add(args[1]);
-                complete(args[1] + " added to AntiSpammer list");
+                complete(args[1] + " added to AntiSpam list");
             } else if(args[0].equalsIgnoreCase("remove")) {
                 AntiSpammer.instance.illegalWords.remove(args[1]);
-                complete(args[1] + " removed from AntiSpammer list");
+                complete(args[1] + " removed from AntiSpam list");
             } else if(args[0].equalsIgnoreCase("clear")) {
                 AntiSpammer.instance.illegalWords.clear();
-                complete("AntiSpammer list has been cleared");
+                complete("AntiSpam list has been cleared");
             } else if(args[0].equalsIgnoreCase("list")) {
-                print("AntiSpammer list:");
+                print("AntiSpam list:");
                 for(String str : AntiSpammer.instance.illegalWords) print(str);
             }
         } catch (Exception e) {

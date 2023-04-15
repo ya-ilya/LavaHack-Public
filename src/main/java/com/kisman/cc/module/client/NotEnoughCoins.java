@@ -9,11 +9,11 @@ import net.minecraftforge.common.config.Configuration;
 public class NotEnoughCoins extends Module {
     public static NotEnoughCoins instance;
 
-    public Setting minProfit = new Setting("MinProfit", this, 50000, 1, Integer.MAX_VALUE, true);
-    public Setting demand = new Setting("Demand", this, 3, 1, Integer.MAX_VALUE, true);
-    public Setting minProfitPercent = new Setting("MinProfitPercent", this, 0, 0, 100, true);
-    public Setting alertSound = new Setting("AlertSound", this, true);
-    public Setting onlyHypixelWorking = new Setting("OnlyOnHypixelWorking", this, true);
+    public final Setting minProfit = new Setting("MinProfit", this, 50000, 1, Integer.MAX_VALUE, true);
+    public final Setting demand = new Setting("Demand", this, 3, 1, Integer.MAX_VALUE, true);
+    public final Setting minProfitPercent = new Setting("MinProfitPercent", this, 0, 0, 100, true);
+    public final Setting alertSound = new Setting("AlertSound", this, true);
+    public final Setting onlyHypixelWorking = new Setting("OnlyOnHypixelWorking", this, true);
 
     public NotEnoughCoins() {
         super("NotEnoughCoins", "NotEnoughCoins", Category.CLIENT);

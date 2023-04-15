@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AimBot extends Module {
-    private Setting mode = new Setting("Mode", this, "Packet", new ArrayList<>(Arrays.asList("Packet", "Client")));
+    private final Setting mode = new Setting("Mode", this, "Packet", new ArrayList<>(Arrays.asList("Packet", "Client")));
 
     public static AimBot instance;
 

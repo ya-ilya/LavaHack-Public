@@ -9,41 +9,41 @@ import net.minecraft.entity.item.EntityEnderCrystal;
 public class CrystalModifier extends Module {
     public static CrystalModifier instance;
 
-    public Setting mode = new Setting("Mode", this, Modes.Fill);
-    public Setting preview = new Setting("Crystal", this, "Crystal", new EntityEnderCrystal(mc.world));
+    public final Setting mode = new Setting("Mode", this, Modes.Fill);
+    public final Setting preview = new Setting("Crystal", this, "Crystal", new EntityEnderCrystal(mc.world));
 
-    private Setting scaleLine = new Setting("ScaleLine", this, "Scale");
+    private final Setting scaleLine = new Setting("ScaleLine", this, "Scale");
 
-    public Setting scale = new Setting("Scale", this,false);
-    public Setting scaleVal = new Setting("ScaleVal", this, 1, 0.1, 2, false);
+    public final Setting scale = new Setting("Scale", this,false);
+    public final Setting scaleVal = new Setting("ScaleVal", this, 1, 0.1, 2, false);
 
-    private Setting translateLine = new Setting("TranslateLine", this, "Translate");
+    private final Setting translateLine = new Setting("TranslateLine", this, "Translate");
 
-    public Setting translateX = new Setting("TranslateX", this, 0, -2, 2, false);
-    public Setting translateY = new Setting("TranslateY", this, 0, -2, 2, false);
-    public Setting translateZ = new Setting("TranslateZ", this, 0, -2, 2, false);
+    public final Setting translateX = new Setting("TranslateX", this, 0, -2, 2, false);
+    public final Setting translateY = new Setting("TranslateY", this, 0, -2, 2, false);
+    public final Setting translateZ = new Setting("TranslateZ", this, 0, -2, 2, false);
 
-    private Setting crystalSettingLine = new Setting("CrystalSettingLine", this, "CrystalSetting");
+    private final Setting crystalSettingLine = new Setting("CrystalSettingLine", this, "CrystalSetting");
 
-    public Setting insideCube = new Setting("InsideCube", this, true);
-    public Setting outsideCube = new Setting("OutsideCube", this, true);
-    public Setting outsideCube2 = new Setting("OutsideCube2", this, true);
-    public Setting texture = new Setting("Texture", this, false);
-    public Setting customColor = new Setting("CustomColor", this, false);
-    public Setting crystalColor = new Setting("CrystalColor", this, "Color", new Colour(0, 0, 255));
+    public final Setting insideCube = new Setting("InsideCube", this, true);
+    public final Setting outsideCube = new Setting("OutsideCube", this, true);
+    public final Setting outsideCube2 = new Setting("OutsideCube2", this, true);
+    public final Setting texture = new Setting("Texture", this, false);
+    public final Setting customColor = new Setting("CustomColor", this, false);
+    public final Setting crystalColor = new Setting("CrystalColor", this, "Color", new Colour(0, 0, 255));
 
-    private Setting outlineLine = new Setting("OutLineLine", this, "OutLine");
+    private final Setting outlineLine = new Setting("OutLineLine", this, "OutLine");
 
-    public Setting outline = new Setting("Outline", this, false);
-    public Setting outlineMode = new Setting("OutlineMode", this, OutlineModes.Wire);
-    public Setting lineWidth = new Setting("LineWidth", this, 3, 0.5, 5, false);
-    public Setting color = new Setting("Outline Color", this, "Color", new Colour(255, 0, 0));
+    public final Setting outline = new Setting("Outline", this, false);
+    public final Setting outlineMode = new Setting("OutlineMode", this, OutlineModes.Wire);
+    public final Setting lineWidth = new Setting("LineWidth", this, 3, 0.5, 5, false);
+    public final Setting color = new Setting("Outline Color", this, "Color", new Colour(255, 0, 0));
 
 
-    private Setting speedLine = new Setting("SpeedLine", this, "Speed");
+    private final Setting speedLine = new Setting("SpeedLine", this, "Speed");
 
-    public Setting speed = new Setting("CrystalSpeed", this, 3, 0, 50, false);
-    public Setting bounce = new Setting("CrystalBounce", this, 0.2f, 0, 10, false);
+    public final Setting speed = new Setting("CrystalSpeed", this, 3, 0, 50, false);
+    public final Setting bounce = new Setting("CrystalBounce", this, 0.2f, 0, 10, false);
 
     public CrystalModifier() {
         super("CrystalCharms", "r", Category.RENDER);

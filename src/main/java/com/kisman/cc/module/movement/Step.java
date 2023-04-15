@@ -9,7 +9,7 @@ import java.util.Locale;
 public class Step extends Module {
     public static Step instance;
 
-    public Setting height = new Setting("Height", this, 0.5f, 0.5f, 4, false);
+    public final Setting height = new Setting("Height", this, 0.5f, 0.5f, 4, false);
 
     public Step() {
         super("Step", "setting your step", Category.MOVEMENT);

@@ -10,7 +10,7 @@ import net.minecraft.item.ItemBow;
 import net.minecraft.util.math.Vec3d;
 
 public class BowAimBot extends Module {
-    private Setting maxDist = new Setting("Max Distance", this, 20, 1, 50, true);
+    private final Setting maxDist = new Setting("Max Distance", this, 20, 1, 50, true);
 
     public BowAimBot() {
         super("BowAimBot", "", Category.COMBAT);

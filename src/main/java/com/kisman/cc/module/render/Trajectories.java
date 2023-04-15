@@ -31,7 +31,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import static org.lwjgl.opengl.GL11.*;
 
 public class Trajectories extends Module {
-    private Setting width = new Setting("Width", this, 1, 0, 5, false);
+    private final Setting width = new Setting("Width", this, 1, 0, 5, false);
 
     private final Queue<Vec3d> flightPoint = new ConcurrentLinkedQueue<>();
 

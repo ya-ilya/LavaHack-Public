@@ -11,8 +11,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 
 public class TeamRusherLag extends Module {
-    private Setting time = new Setting("Lag Time (in ms)", this, 3000, 1000, 10000, true);
-    private Setting text = new Setting("Message", this, "> #TeamRusher Lag: ON", "> #TeamRusher Lag: ON", true);
+    private final Setting time = new Setting("Lag Time (in ms)", this, 3000, 1000, 10000, true);
+    private final Setting text = new Setting("Message", this, "> #TeamRusher Lag: ON", "> #TeamRusher Lag: ON", true);
 
     private boolean canSend = false;
     private long lastPacket = 0L;

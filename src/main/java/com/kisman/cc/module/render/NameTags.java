@@ -27,14 +27,14 @@ import java.awt.*;
 import java.util.HashMap;
 
 public class  NameTags extends Module {
-    private Setting range = new Setting("Range", this, 0, 50 ,100, false);
-    private Setting scale = new Setting("Scale", this, 0.1f, 0.1f, 0.3f, false);
-    private Setting bgAlpha = new Setting("BG Alpha", this, 128, 0, 250, true);
-    private Setting ping = new Setting("Ping", this, true);
-    private Setting items = new Setting("Items", this, true);
-    private Setting damageDisplay = new Setting("Damage Display", this, true);
-    private Setting atheist = new Setting("Atheist", this, true);
-    private Setting desc = new Setting("Desc", this, false);
+    private final Setting range = new Setting("Range", this, 0, 50 ,100, false);
+    private final Setting scale = new Setting("Scale", this, 0.1f, 0.1f, 0.3f, false);
+    private final Setting bgAlpha = new Setting("BG Alpha", this, 128, 0, 250, true);
+    private final Setting ping = new Setting("Ping", this, true);
+    private final Setting items = new Setting("Items", this, true);
+    private final Setting damageDisplay = new Setting("Damage Display", this, true);
+    private final Setting atheist = new Setting("Atheist", this, true);
+    private final Setting desc = new Setting("Desc", this, false);
 
     public static NameTags instance;
 

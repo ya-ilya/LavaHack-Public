@@ -11,9 +11,9 @@ import java.util.Arrays;
 public class CustomFont extends Module {
     private final Setting antiAlias = new Setting("Anti Alias", this, true);
     private final Setting fractionMetrics = new Setting("Fraction Metrics", this, true);
-    public Setting mode = new Setting("Mode", this, "Comfortaa", new ArrayList<>(Arrays.asList("Verdana", "Comfortaa", "Comfortaa Light", "Comfortaa Bold", "Consolas", "LexendDeca", "Futura", "SfUi")));
-    public Setting bold = new Setting("Bold", this, false).setVisible(() -> mode.checkValString("Verdana"));
-    public Setting italic = new Setting("Italic", this, false).setVisible(() -> mode.checkValString("Verdana"));
+    public final Setting mode = new Setting("Mode", this, "Comfortaa", new ArrayList<>(Arrays.asList("Verdana", "Comfortaa", "Comfortaa Light", "Comfortaa Bold", "Consolas", "LexendDeca", "Futura", "SfUi")));
+    public final Setting bold = new Setting("Bold", this, false).setVisible(() -> mode.checkValString("Verdana"));
+    public final Setting italic = new Setting("Italic", this, false).setVisible(() -> mode.checkValString("Verdana"));
 
     public static boolean turnOn = false;
 

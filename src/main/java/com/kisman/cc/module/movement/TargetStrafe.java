@@ -13,9 +13,9 @@ import net.minecraft.potion.Potion;
 import java.util.Objects;
 
 public class TargetStrafe extends Module {
-    private Setting radius = new Setting("Radius", this, 3.6f, 0.1f, 7, false);
-    private Setting speed = new Setting("Speed", this, 3.19, 0.15f, 50, false);
-    private Setting autoJump = new Setting("Auto Jump", this, false);
+    private final Setting radius = new Setting("Radius", this, 3.6f, 0.1f, 7, false);
+    private final Setting speed = new Setting("Speed", this, 3.19, 0.15f, 50, false);
+    private final Setting autoJump = new Setting("Auto Jump", this, false);
     private Entity target;
     private TimerUtils timer = new TimerUtils();
     private int direction;

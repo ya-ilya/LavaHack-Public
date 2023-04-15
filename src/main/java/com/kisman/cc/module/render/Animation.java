@@ -8,7 +8,7 @@ import com.kisman.cc.settings.Setting;
 public class Animation extends Module {
     public static Animation instance;
 
-    public Setting speed = new Setting("Speed", this, 13, 1, 20, Slider.NumberType.INTEGER);
+    public final Setting speed = new Setting("Speed", this, 13, 1, 20, Slider.NumberType.INTEGER);
 
     public Animation() {
         super("Animation", Category.RENDER);

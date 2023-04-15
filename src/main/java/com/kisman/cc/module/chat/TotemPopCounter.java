@@ -11,7 +11,8 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class TotemPopCounter extends Module {
-    private Setting target = new Setting("Target", this, TargetMode.Both);
+    private final Setting target = new Setting("Target", this, TargetMode.Both);
+    
     public TotemPopCounter() {
         super("TotemPopCounter", "totem pops count!", Category.CHAT);
 

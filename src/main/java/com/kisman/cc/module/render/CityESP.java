@@ -22,20 +22,20 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 public class CityESP extends Module {
-    private Setting range = new Setting("Range", this, 20, 1, 30, true);
-    private Setting down = new Setting("Down", this, 1, 0, 3, true);
-    private Setting sides = new Setting("Sides", this, 1, 0, 4, true);
-    private Setting depth = new Setting("Depth", this, 3, 0, 10, true);
-    private Setting minDMG = new Setting("Min DMG", this, 10, 0, 20, true);
-    private Setting maxSelfDMG = new Setting("Max Self DMG", this, 7, 0, 20, true);
-    private Setting ignoreCrystals = new Setting("Ignore Crystals", this, true);
-    private Setting mine = new Setting("Mine", this, false);
-    private Setting mineKey = new Setting("Mine Key", this, Keyboard.KEY_LSHIFT);
-    private Setting switchPick = new Setting("Switch Pick", this, true);
-    private Setting mineDist = new Setting("Mine Dist", this, 5, 0, 10, true);
-    private Setting mineMode = new Setting("Mine Mode", this, MineMode.Packet);
-    private Setting targetMode = new Setting("Target Mode", this, TargetMode.Single);
-    private Setting selectMode = new Setting("Select Mode", this, SelectMode.Closest);
+    private final Setting range = new Setting("Range", this, 20, 1, 30, true);
+    private final Setting down = new Setting("Down", this, 1, 0, 3, true);
+    private final Setting sides = new Setting("Sides", this, 1, 0, 4, true);
+    private final Setting depth = new Setting("Depth", this, 3, 0, 10, true);
+    private final Setting minDMG = new Setting("Min DMG", this, 10, 0, 20, true);
+    private final Setting maxSelfDMG = new Setting("Max Self DMG", this, 7, 0, 20, true);
+    private final Setting ignoreCrystals = new Setting("Ignore Crystals", this, true);
+    private final Setting mine = new Setting("Mine", this, false);
+    private final Setting mineKey = new Setting("Mine Key", this, Keyboard.KEY_LSHIFT);
+    private final Setting switchPick = new Setting("Switch Pick", this, true);
+    private final Setting mineDist = new Setting("Mine Dist", this, 5, 0, 10, true);
+    private final Setting mineMode = new Setting("Mine Mode", this, MineMode.Packet);
+    private final Setting targetMode = new Setting("Target Mode", this, TargetMode.Single);
+    private final Setting selectMode = new Setting("Select Mode", this, SelectMode.Closest);
 
 
     private final HashMap<EntityPlayer, List<BlockPos>> cityable = new HashMap<>();

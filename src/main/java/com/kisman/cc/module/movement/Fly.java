@@ -8,7 +8,7 @@ import net.minecraft.network.play.client.CPacketEntityAction;
 import java.util.Arrays;
 
 public class Fly extends Module {
-    private Setting mode = new Setting("Mode", this, "Vanilla", Arrays.asList("Vanilla", "WellMore", "ReallyWorld"));
+    private final Setting mode = new Setting("Mode", this, "Vanilla", Arrays.asList("Vanilla", "WellMore", "ReallyWorld"));
 
     private float flySpeed;
 

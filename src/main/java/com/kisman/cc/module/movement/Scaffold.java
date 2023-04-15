@@ -24,7 +24,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 
 public class Scaffold extends Module {
-    private Setting placeLogic = new Setting("Place Logic", this, PlaceLogic.Predict);
+    private final Setting placeLogic = new Setting("Place Logic", this, PlaceLogic.Predict);
     private final Setting distance = new Setting("Distance", this, 2, 0, 20, true);
     private final Setting towerMode = new Setting("Tower Mode", this, TowerMode.None);
     private final Setting downSpeed = new Setting("Down Speed", this, 0, 0, 0.2f, false);

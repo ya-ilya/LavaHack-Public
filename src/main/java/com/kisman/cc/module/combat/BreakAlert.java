@@ -21,8 +21,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.util.ArrayList;
 
 public class BreakAlert extends Module {
-    private Setting messageType = new Setting("Message Type", this, MessageType.Chat);
-    private Setting displayShowDelay = new Setting("Display Show Delay", this, 1000, 1, 5000, Slider.NumberType.TIME);
+    private final Setting messageType = new Setting("Message Type", this, MessageType.Chat);
+    private final Setting displayShowDelay = new Setting("Display Show Delay", this, 1000, 1, 5000, Slider.NumberType.TIME);
 
     private ArrayList<BlockPos> blocksBeginBroken = new ArrayList<>();
     private TimerUtils renderTimer = new TimerUtils();

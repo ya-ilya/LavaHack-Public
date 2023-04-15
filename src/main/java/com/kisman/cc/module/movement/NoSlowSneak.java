@@ -7,7 +7,7 @@ import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.MovementUtil;
 
 public class NoSlowSneak extends Module {
-    public Setting mode = new Setting("Mode", this, Mode.Motion);
+    public final Setting mode = new Setting("Mode", this, Mode.Motion);
 
     public static NoSlowSneak instance;
 

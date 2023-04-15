@@ -24,43 +24,43 @@ import java.util.*;
 public class AutoFirework extends Module {
     public static AutoFirework instance;
     
-    private Setting targetRange = new Setting("Target Range", this, 10, 1, 20, true);
+    private final Setting targetRange = new Setting("Target Range", this, 10, 1, 20, true);
 
-    private Setting delayLine = new Setting("DLine", this, "Delays");
+    private final Setting delayLine = new Setting("DLine", this, "Delays");
 
-    private Setting delay = new Setting("Delay", this, 1, 0, 20, true);
-    private Setting trapDelay = new Setting("PlaceDelay", this, 1000, 1, 10000, true);
-
-
-    private Setting placeLine = new Setting("PlaceLine", this, "Place");
-
-    private Setting placeMode = new Setting("PlaceMode", this, "Normal", new ArrayList<>(Arrays.asList("Normal", "Packet")));
-    private Setting rotate = new Setting("Rotate", this, true);
-    private Setting blocksPerTick = new Setting("BlocksPerTick", this, 8, 1, 30, true);
-    private Setting antiScaffold = new Setting("AntiScaffold", this, false);
-    private Setting antiStep = new Setting("AntiStep", this, false);
-    private Setting surroundPlacing = new Setting("SurroundPlacing", this, true);
-    private Setting range = new Setting("Range", this, 4, 1, 5, false);
-    private Setting raytrace = new Setting("RayTrace", this, false);
+    private final Setting delay = new Setting("Delay", this, 1, 0, 20, true);
+    private final Setting trapDelay = new Setting("PlaceDelay", this, 1000, 1, 10000, true);
 
 
-    private Setting switchLine = new Setting("SwitchLine", this, "Switch");
+    private final Setting placeLine = new Setting("PlaceLine", this, "Place");
 
-    private Setting switchMode = new Setting("SwitchMode", this, InventoryUtil.Switch.NORMAL);
-    private Setting switchObbyReturn = new Setting("SwitchReturnObby", this, true);
-    private Setting switchFireReturn = new Setting("SwitchReturnFirework", this, true);
-
-
-    private Setting pauseLine = new Setting("PauseLine", this, "Pause");
-
-    private Setting minHealthPause = new Setting("MinHealthPause", this, false);
-    private Setting requiredHealth = new Setting("RequiredHealth", this, 11, 0, 36, true);
-    private Setting pauseWhileEating = new Setting("PauseWhileEating", this, false);
-    private Setting pauseIfHittingBlock = new Setting("PauseIfHittingBlock", this, false);
+    private final Setting placeMode = new Setting("PlaceMode", this, "Normal", new ArrayList<>(Arrays.asList("Normal", "Packet")));
+    private final Setting rotate = new Setting("Rotate", this, true);
+    private final Setting blocksPerTick = new Setting("BlocksPerTick", this, 8, 1, 30, true);
+    private final Setting antiScaffold = new Setting("AntiScaffold", this, false);
+    private final Setting antiStep = new Setting("AntiStep", this, false);
+    private final Setting surroundPlacing = new Setting("SurroundPlacing", this, true);
+    private final Setting range = new Setting("Range", this, 4, 1, 5, false);
+    private final Setting raytrace = new Setting("RayTrace", this, false);
 
 
-    private Setting handLine = new Setting("HandLine", this, "Hand");
-    private Setting fireHand = new Setting("FireworkHand", this, "Default", new ArrayList<>(Arrays.asList("Default", "MainHand", "OffHand")));
+    private final Setting switchLine = new Setting("SwitchLine", this, "Switch");
+
+    private final Setting switchMode = new Setting("SwitchMode", this, InventoryUtil.Switch.NORMAL);
+    private final Setting switchObbyReturn = new Setting("SwitchReturnObby", this, true);
+    private final Setting switchFireReturn = new Setting("SwitchReturnFirework", this, true);
+
+
+    private final Setting pauseLine = new Setting("PauseLine", this, "Pause");
+
+    private final Setting minHealthPause = new Setting("MinHealthPause", this, false);
+    private final Setting requiredHealth = new Setting("RequiredHealth", this, 11, 0, 36, true);
+    private final Setting pauseWhileEating = new Setting("PauseWhileEating", this, false);
+    private final Setting pauseIfHittingBlock = new Setting("PauseIfHittingBlock", this, false);
+
+
+    private final Setting handLine = new Setting("HandLine", this, "Hand");
+    private final Setting fireHand = new Setting("FireworkHand", this, "Default", new ArrayList<>(Arrays.asList("Default", "MainHand", "OffHand")));
 
     private TimerUtils trapTimer = new TimerUtils();
     private TimerUtils delayTimer = new TimerUtils();

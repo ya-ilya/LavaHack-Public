@@ -14,17 +14,17 @@ import static org.lwjgl.opengl.GL11.glRotatef;
 public class SwingAnimation extends Module {
     public static SwingAnimation instance;
 
-    public Setting mode = new Setting("Mode", this, "Strong", new ArrayList<>(Arrays.asList("Hand", "Strong")));
+    public final Setting mode = new Setting("Mode", this, "Strong", new ArrayList<>(Arrays.asList("Hand", "Strong")));
 
 
-    private Setting simpleLine = new Setting("SimpleLine", this, "Hand");
+    private final Setting simpleLine = new Setting("SimpleLine", this, "Hand");
 
-    private Setting strongLine = new Setting("StrongLine", this, "Strong");
-    public Setting ignoreEating = new Setting("IgnoreEating", this, true);
+    private final Setting strongLine = new Setting("StrongLine", this, "Strong");
+    public final Setting ignoreEating = new Setting("IgnoreEating", this, true);
 
-    public Setting strongMode = new Setting("StrongMode", this, StrongMode.Blockhit1);
+    public final Setting strongMode = new Setting("StrongMode", this, StrongMode.Blockhit1);
 
-    public Setting ifKillAura = new Setting("If KillAura", this, true);
+    public final Setting ifKillAura = new Setting("If KillAura", this, true);
 
     private ArrayList<String> swingMode = new ArrayList<>(Arrays.asList("1", "2", "3"));
 

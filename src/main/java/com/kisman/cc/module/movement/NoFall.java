@@ -21,7 +21,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 
 public class NoFall extends Module {
-    private Setting mode = new Setting("Mode", this, Mode.Packet);
+    private final Setting mode = new Setting("Mode", this, Mode.Packet);
 
     private TimerUtils timer = new TimerUtils();
 

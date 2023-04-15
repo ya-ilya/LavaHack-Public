@@ -15,15 +15,15 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 
 public class PopCharms extends Module {
-    public Setting selfPop = new Setting("SelfPop", this, false);
-    private Setting angle = new Setting("Angle", this, false);
-    private Setting angleSpeed = new Setting("AngleSpeed", this, 150, 0, 500, true);
-    private Setting fadeSpeed = new Setting("FadeSpeed", this, 200, 0, 500, true);
-    private Setting width = new Setting("Width", this, Double.longBitsToDouble(Double.doubleToLongBits(0.10667784123174527) ^ 0x7FB34F3D2F4C588FL), Double.longBitsToDouble(Double.doubleToLongBits(2.8356779810862056) ^ 0x7FE6AF77EFF6053EL), Double.longBitsToDouble(Double.doubleToLongBits(0.14239240361793695) ^ 0x7FD639EA0E5E7291L), false);
-    private Setting colorR = new Setting("ColorR", this, 1, 0, 1, false);
-    private Setting colorG = new Setting("ColorG", this, 1, 0, 1, false);
-    private Setting colorB = new Setting("ColorB", this, 1, 0, 1, false);
-    private Setting colorA = new Setting("ColorA", this, 1, 0, 1, false);
+    public final Setting selfPop = new Setting("SelfPop", this, false);
+    private final Setting angle = new Setting("Angle", this, false);
+    private final Setting angleSpeed = new Setting("AngleSpeed", this, 150, 0, 500, true);
+    private final Setting fadeSpeed = new Setting("FadeSpeed", this, 200, 0, 500, true);
+    private final Setting width = new Setting("Width", this, Double.longBitsToDouble(Double.doubleToLongBits(0.10667784123174527) ^ 0x7FB34F3D2F4C588FL), Double.longBitsToDouble(Double.doubleToLongBits(2.8356779810862056) ^ 0x7FE6AF77EFF6053EL), Double.longBitsToDouble(Double.doubleToLongBits(0.14239240361793695) ^ 0x7FD639EA0E5E7291L), false);
+    private final Setting colorR = new Setting("ColorR", this, 1, 0, 1, false);
+    private final Setting colorG = new Setting("ColorG", this, 1, 0, 1, false);
+    private final Setting colorB = new Setting("ColorB", this, 1, 0, 1, false);
+    private final Setting colorA = new Setting("ColorA", this, 1, 0, 1, false);
 
     private EntityOtherPlayerMP player;
     private EntityPlayer entity;

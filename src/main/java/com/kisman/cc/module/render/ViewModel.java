@@ -17,55 +17,55 @@ import static org.lwjgl.opengl.GL11.*;
 public class ViewModel extends Module {
     public static ViewModel instance;
 
-    public Setting customEating = new Setting("Custom Eating", this, false);
-    public Setting translate = new Setting("Translate", this, true);
+    public final Setting customEating = new Setting("Custom Eating", this, false);
+    public final Setting translate = new Setting("Translate", this, true);
 
     //item FOV
-    public Setting itemFOV = new Setting("ItemFOV", this, false);
-    public Setting fov = new Setting("FOV", this, 130, 70, 200, true).setVisible(itemFOV::getValBoolean);
+    public final Setting itemFOV = new Setting("ItemFOV", this, false);
+    public final Setting fov = new Setting("FOV", this, 130, 70, 200, true).setVisible(itemFOV::getValBoolean);
 
     //scale
-    public Setting scaleRightX = new Setting("ScaleRigthX", this, 1, -2, 2, false);
-    public Setting scaleRightY = new Setting("ScaleRigthY", this, 1, -2, 2, false);
-    public Setting scaleRightZ = new Setting("ScaleRigthZ", this, 1, -2, 2, false);
-    public Setting scaleLeftX = new Setting("ScaleLeftX", this, 1, -2, 2, false);
-    public Setting scaleLeftY = new Setting("ScaleLeftY", this, 1, -2, 2, false);
-    public Setting scaleLeftZ = new Setting("ScaleLeftZ", this, 1, -2, 2, false);
+    public final Setting scaleRightX = new Setting("ScaleRigthX", this, 1, -2, 2, false);
+    public final Setting scaleRightY = new Setting("ScaleRigthY", this, 1, -2, 2, false);
+    public final Setting scaleRightZ = new Setting("ScaleRigthZ", this, 1, -2, 2, false);
+    public final Setting scaleLeftX = new Setting("ScaleLeftX", this, 1, -2, 2, false);
+    public final Setting scaleLeftY = new Setting("ScaleLeftY", this, 1, -2, 2, false);
+    public final Setting scaleLeftZ = new Setting("ScaleLeftZ", this, 1, -2, 2, false);
 
     //auto rotate
-    public Setting autoRotateRigthX = new Setting("AutoRotateRigthX", this, false);
-    public Setting autoRotateRigthY = new Setting("AutoRotateRigthY", this, false);
-    public Setting autoRotateRigthZ = new Setting("AutoRotateRigthZ", this, false);
-    public Setting autoRotateLeftX = new Setting("AutoRotateLeftX", this, false);
-    public Setting autoRotateLeftY = new Setting("AutoRotateLeftY", this, false);
-    public Setting autoRotateLeftZ = new Setting("AutoRotateLeftZ", this, false);
+    public final Setting autoRotateRigthX = new Setting("AutoRotateRigthX", this, false);
+    public final Setting autoRotateRigthY = new Setting("AutoRotateRigthY", this, false);
+    public final Setting autoRotateRigthZ = new Setting("AutoRotateRigthZ", this, false);
+    public final Setting autoRotateLeftX = new Setting("AutoRotateLeftX", this, false);
+    public final Setting autoRotateLeftY = new Setting("AutoRotateLeftY", this, false);
+    public final Setting autoRotateLeftZ = new Setting("AutoRotateLeftZ", this, false);
 
     //hand pos modifier
     private final Setting handLine = new Setting("HandLine", this, "Hand");
-    public Setting hands = new Setting("Hands", this, false);
-    public Setting handRightX = new Setting("HandRightX", this, 0, -4, 4, false).setVisible(hands::getValBoolean);
-    public Setting handRightY = new Setting("HandRightY", this, 0, -4, 4, false).setVisible(hands::getValBoolean);
-    public Setting handRightZ = new Setting("HandRightZ", this, 0, -4, 4, false).setVisible(hands::getValBoolean);
-    public Setting handRightRotateX = new Setting("HandRotateRightX", this, 0, 0, 360, false).setVisible(hands::getValBoolean);
-    public Setting handRightRotateY = new Setting("HandRotateRightY", this, 0, 0, 360, false).setVisible(hands::getValBoolean);
-    public Setting handRightRotateZ = new Setting("HandRotateRightZ", this, 0, 0, 360, false).setVisible(hands::getValBoolean);
-    public Setting handRightScaleX = new Setting("HandScaleRightX", this, 0, -2, 2, false).setVisible(hands::getValBoolean);
-    public Setting handRightScaleY = new Setting("HandScaleRightY", this, 0, -2, 2, false).setVisible(hands::getValBoolean);
-    public Setting handRightScaleZ = new Setting("HandScaleRightZ", this, 0, -2, 2, false).setVisible(hands::getValBoolean);
-    public Setting handLeftX = new Setting("HandLeftX", this, 0, -4, 4, false).setVisible(hands::getValBoolean);
-    public Setting handLeftY = new Setting("HandLeftY", this, 0, -4, 4, false).setVisible(hands::getValBoolean);
-    public Setting handLeftZ = new Setting("HandLeftZ", this, 0, -4, 4, false).setVisible(hands::getValBoolean);
-    public Setting handLeftRotateX = new Setting("HandRotateLeftX", this, 0, 0, 360, false).setVisible(hands::getValBoolean);
-    public Setting handLeftRotateY = new Setting("HandRotateLeftY", this, 0, 0, 360, false).setVisible(hands::getValBoolean);
-    public Setting handLeftRotateZ = new Setting("HandRotateLeftZ", this, 0, 0, 360, false).setVisible(hands::getValBoolean);
-    public Setting handLeftScaleX = new Setting("HandScaleLeftX", this, 0, -2, 2, false).setVisible(hands::getValBoolean);
-    public Setting handLeftScaleY = new Setting("HandScaleLeftY", this, 0, -2, 2, false).setVisible(hands::getValBoolean);
-    public Setting handLeftScaleZ = new Setting("HandScaleLeftZ", this, 0, -2, 2, false).setVisible(hands::getValBoolean);
+    public final Setting hands = new Setting("Hands", this, false);
+    public final Setting handRightX = new Setting("HandRightX", this, 0, -4, 4, false).setVisible(hands::getValBoolean);
+    public final Setting handRightY = new Setting("HandRightY", this, 0, -4, 4, false).setVisible(hands::getValBoolean);
+    public final Setting handRightZ = new Setting("HandRightZ", this, 0, -4, 4, false).setVisible(hands::getValBoolean);
+    public final Setting handRightRotateX = new Setting("HandRotateRightX", this, 0, 0, 360, false).setVisible(hands::getValBoolean);
+    public final Setting handRightRotateY = new Setting("HandRotateRightY", this, 0, 0, 360, false).setVisible(hands::getValBoolean);
+    public final Setting handRightRotateZ = new Setting("HandRotateRightZ", this, 0, 0, 360, false).setVisible(hands::getValBoolean);
+    public final Setting handRightScaleX = new Setting("HandScaleRightX", this, 0, -2, 2, false).setVisible(hands::getValBoolean);
+    public final Setting handRightScaleY = new Setting("HandScaleRightY", this, 0, -2, 2, false).setVisible(hands::getValBoolean);
+    public final Setting handRightScaleZ = new Setting("HandScaleRightZ", this, 0, -2, 2, false).setVisible(hands::getValBoolean);
+    public final Setting handLeftX = new Setting("HandLeftX", this, 0, -4, 4, false).setVisible(hands::getValBoolean);
+    public final Setting handLeftY = new Setting("HandLeftY", this, 0, -4, 4, false).setVisible(hands::getValBoolean);
+    public final Setting handLeftZ = new Setting("HandLeftZ", this, 0, -4, 4, false).setVisible(hands::getValBoolean);
+    public final Setting handLeftRotateX = new Setting("HandRotateLeftX", this, 0, 0, 360, false).setVisible(hands::getValBoolean);
+    public final Setting handLeftRotateY = new Setting("HandRotateLeftY", this, 0, 0, 360, false).setVisible(hands::getValBoolean);
+    public final Setting handLeftRotateZ = new Setting("HandRotateLeftZ", this, 0, 0, 360, false).setVisible(hands::getValBoolean);
+    public final Setting handLeftScaleX = new Setting("HandScaleLeftX", this, 0, -2, 2, false).setVisible(hands::getValBoolean);
+    public final Setting handLeftScaleY = new Setting("HandScaleLeftY", this, 0, -2, 2, false).setVisible(hands::getValBoolean);
+    public final Setting handLeftScaleZ = new Setting("HandScaleLeftZ", this, 0, -2, 2, false).setVisible(hands::getValBoolean);
 
     //custom items alpha
     private final Setting itemLine = new Setting("ItemLine", this, "Item");
-    public Setting useAlpha = new Setting("Use Custom Alpha", this, false);
-    public Setting alpha = new Setting("Alpha", this, 255, 0, 255, true).setVisible(useAlpha::getValBoolean);
+    public final Setting useAlpha = new Setting("Use Custom Alpha", this, false);
+    public final Setting alpha = new Setting("Alpha", this, 255, 0, 255, true).setVisible(useAlpha::getValBoolean);
 
 
     public ViewModel() {

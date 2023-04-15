@@ -11,7 +11,7 @@ import net.minecraft.world.GameType;
 import java.util.UUID;
 
 public class FakePlayer extends Module {
-    private Setting name = new Setting("Name", this, "FinLicorice", "FinLicorice", true);
+    private final Setting name = new Setting("Name", this, "FinLicorice", "FinLicorice", true);
 
     public FakePlayer() {
         super("FakePlayer", "FakePlayer", Category.MISC);

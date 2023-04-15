@@ -8,10 +8,10 @@ import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 import java.awt.*;
 
 public class HotbarModifier extends Module {
-    public Setting containerShadow = new Setting("Shadow", this, false);
-    public Setting primaryAstolfo = new Setting("Primary Astolfo", this, true).setVisible(containerShadow::getValBoolean);
-    public Setting offhand = new Setting("Offhand", this, true).setVisible(containerShadow::getValBoolean);
-    public Setting offhandGradient = new Setting("Offhand Gradient", this, false).setVisible(() -> offhand.getValBoolean() && containerShadow.getValBoolean());
+    public final Setting containerShadow = new Setting("Shadow", this, false);
+    public final Setting primaryAstolfo = new Setting("Primary Astolfo", this, true).setVisible(containerShadow::getValBoolean);
+    public final Setting offhand = new Setting("Offhand", this, true).setVisible(containerShadow::getValBoolean);
+    public final Setting offhandGradient = new Setting("Offhand Gradient", this, false).setVisible(() -> offhand.getValBoolean() && containerShadow.getValBoolean());
 
     public static HotbarModifier instance;
 

@@ -7,7 +7,7 @@ import com.kisman.cc.settings.Setting;
 import java.util.Arrays;
 
 public class AirJump extends Module {
-    private Setting mode = new Setting("Mode", this, "Vanilla", Arrays.asList("Vanilla", "NCP", "Matrix"));
+    private final Setting mode = new Setting("Mode", this, "Vanilla", Arrays.asList("Vanilla", "NCP", "Matrix"));
 
     public AirJump() {
         super("AirJump", "Category", Category.MOVEMENT);

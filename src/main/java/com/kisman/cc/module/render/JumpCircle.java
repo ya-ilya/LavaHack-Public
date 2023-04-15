@@ -25,8 +25,8 @@ public class JumpCircle extends Module {
     private final byte MAX_JC_TIME = 20;
     private List<Circle> circles = new ArrayList<>();
 
-    private Setting rainbow = new Setting("RainBow", this, true);
-    private Setting color = new Setting("Color", this, "Color", new Colour(255, 0, 0));
+    private final Setting rainbow = new Setting("RainBow", this, true);
+    private final Setting color = new Setting("Color", this, "Color", new Colour(255, 0, 0));
 
     public JumpCircle() {
         super("JumpCircle", Category.RENDER);

@@ -16,16 +16,16 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.awt.*;
 
 public class FramebufferTest extends Module {
-    private Setting degrees = new Setting("Degrees", this, 200, 0, 360, true);
-    private Setting radius = new Setting("Radius", this, 2, 0.1f, 10, false);
-    private Setting mix = new Setting("Mix", this, 1, 0, 1, false);
-    private Setting red = new Setting("Red", this, 1, 0, 1, false);
-    private Setting green = new Setting("Green", this, 1, 0, 1, false);
-    private Setting blue = new Setting("Blue", this, 1, 0, 1, false);
-    private Setting rainbow = new Setting("RainBow", this, true);
-    private Setting delay = new Setting("Delay", this, 100, 1, 2000, true);
-    private Setting saturation = new Setting("Saturation", this, 36, 0, 100, Slider.NumberType.PERCENT);
-    private Setting brightness = new Setting("Brightness", this, 100, 0, 100, Slider.NumberType.PERCENT);
+    private final Setting degrees = new Setting("Degrees", this, 200, 0, 360, true);
+    private final Setting radius = new Setting("Radius", this, 2, 0.1f, 10, false);
+    private final Setting mix = new Setting("Mix", this, 1, 0, 1, false);
+    private final Setting red = new Setting("Red", this, 1, 0, 1, false);
+    private final Setting green = new Setting("Green", this, 1, 0, 1, false);
+    private final Setting blue = new Setting("Blue", this, 1, 0, 1, false);
+    private final Setting rainbow = new Setting("RainBow", this, true);
+    private final Setting delay = new Setting("Delay", this, 100, 1, 2000, true);
+    private final Setting saturation = new Setting("Saturation", this, 36, 0, 100, Slider.NumberType.PERCENT);
+    private final Setting brightness = new Setting("Brightness", this, 100, 0, 100, Slider.NumberType.PERCENT);
 
     private ItemShader shader;
 

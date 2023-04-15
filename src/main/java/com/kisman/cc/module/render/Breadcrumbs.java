@@ -15,9 +15,9 @@ import org.lwjgl.opengl.GL11;
 import java.util.ArrayList;
 
 public class Breadcrumbs extends Module {
-    private Setting lineWidth = new Setting("Line Width", this, 1, 1, 6, true);
-    private Setting removeTicks =  new Setting("Remove Ticks", this, 10, 0, 50, true);
-    private Setting alpha = new Setting("Alpha", this, 100, 0, 255, true);
+    private final Setting lineWidth = new Setting("Line Width", this, 1, 1, 6, true);
+    private final Setting removeTicks =  new Setting("Remove Ticks", this, 10, 0, 50, true);
+    private final Setting alpha = new Setting("Alpha", this, 100, 0, 255, true);
 
     private ArrayList<Helper> positions = new ArrayList<>();
 

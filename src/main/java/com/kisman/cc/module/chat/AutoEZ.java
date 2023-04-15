@@ -25,7 +25,7 @@ public class AutoEZ extends Module {
     private ConcurrentHashMap<String, Integer> targetedPlayers = null;
     private int index = -1;
 
-    private Setting random = new Setting("Random message", this, true);
+    private final Setting random = new Setting("Random message", this, true);
 
     public AutoEZ() {
         super("AutoEZ", "", Category.CHAT);

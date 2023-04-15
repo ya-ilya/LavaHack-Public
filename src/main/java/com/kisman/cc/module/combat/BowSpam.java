@@ -9,7 +9,7 @@ import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
 import net.minecraft.util.math.BlockPos;
 
 public class BowSpam extends Module {
-    private Setting drawLength = new Setting("DrawLength", this, 3, 3, 21, true);
+    private final Setting drawLength = new Setting("DrawLength", this, 3, 3, 21, true);
 
     public BowSpam() {
         super("BowSpam", "", Category.COMBAT);

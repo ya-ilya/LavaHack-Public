@@ -12,7 +12,7 @@ import net.minecraft.network.play.server.SPacketChat;
 import net.minecraft.util.text.ChatType;
 
 public class NameProtect extends Module {
-    private Setting name = new Setting("Name", this, "Kisman", "Kisman", true);
+    private final Setting name = new Setting("Name", this, "Kisman", "Kisman", true);
 
     public static NameProtect instance;
 

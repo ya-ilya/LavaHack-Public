@@ -8,13 +8,13 @@ import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class CustomFog extends Module {
-    private Setting red = new Setting("Red", this, 1, 0, 1, false);
-    private Setting green = new Setting("Green", this, 0, 0, 1, false);
-    private Setting blue = new Setting("Blue", this, 0, 0, 1, false);
-    private Setting rainbow = new Setting("Rainbow", this, true);
-    private Setting saturatuon = new Setting("Saturation", this, 1, 0,1, false);
-    private Setting bringhtness = new Setting("Bringhtness", this, 1, 0, 1,  false);
-    private Setting delay = new Setting("Delay", this, 100, 1, 2000, true);
+    private final Setting red = new Setting("Red", this, 1, 0, 1, false);
+    private final Setting green = new Setting("Green", this, 0, 0, 1, false);
+    private final Setting blue = new Setting("Blue", this, 0, 0, 1, false);
+    private final Setting rainbow = new Setting("Rainbow", this, true);
+    private final Setting saturatuon = new Setting("Saturation", this, 1, 0,1, false);
+    private final Setting bringhtness = new Setting("Bringhtness", this, 1, 0, 1,  false);
+    private final Setting delay = new Setting("Delay", this, 100, 1, 2000, true);
 
     public CustomFog() {
         super("CustomFog", Category.RENDER);

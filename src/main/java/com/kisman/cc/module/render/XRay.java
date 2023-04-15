@@ -36,15 +36,15 @@ public class XRay extends Module {
             new Colour(0.01f, 0.99f, 0.69f)
     };
 
-    public Setting range = new Setting("Range", this, 50, 0, 100, false);
+    public final Setting range = new Setting("Range", this, 50, 0, 100, false);
 
-    public Setting coal = new Setting("Coal", this, false);
-    public Setting iron = new Setting("Iron", this, false);
-    public Setting gold = new Setting("Gold", this, false);
-    public Setting redstone = new Setting("Redstone", this, false);
-    public Setting lapis = new Setting("Lapis", this, false);
-    public Setting diamond = new Setting("Diamond", this, false);
-    public Setting emerald = new Setting("Emerald", this, false);
+    public final Setting coal = new Setting("Coal", this, false);
+    public final Setting iron = new Setting("Iron", this, false);
+    public final Setting gold = new Setting("Gold", this, false);
+    public final Setting redstone = new Setting("Redstone", this, false);
+    public final Setting lapis = new Setting("Lapis", this, false);
+    public final Setting diamond = new Setting("Diamond", this, false);
+    public final Setting emerald = new Setting("Emerald", this, false);
 
     public XRay() {
         super("XRay", "", Category.RENDER);

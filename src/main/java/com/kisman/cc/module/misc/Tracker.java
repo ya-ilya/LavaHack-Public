@@ -29,8 +29,8 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Tracker extends Module {
-    private Setting autoEnable = new Setting("AutoEnable", this, false);
-    private Setting autoDisable = new Setting("AutoDisable", this, true);
+    private final Setting autoEnable = new Setting("AutoEnable", this, false);
+    private final Setting autoDisable = new Setting("AutoDisable", this, true);
 
     private final TimerUtils timer = new TimerUtils();
     private final Set<BlockPos> manuallyPlaced = new HashSet<>();

@@ -8,7 +8,7 @@ import com.kisman.cc.settings.Setting;
 public class DiscordRPC extends Module {
     public static DiscordRPC instance;
 
-    public Setting impr = new Setting("Impr RPC", this, true);
+    public final Setting impr = new Setting("Impr RPC", this, true);
 
     public DiscordRPC() {
         super("DiscordRPC", "", Category.CLIENT);

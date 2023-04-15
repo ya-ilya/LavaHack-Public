@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 public class VegaGui extends Module {
     public static VegaGui instance;
 
-    public Setting test = new Setting("Test Gui Update", this, false);
+    public final Setting test = new Setting("Test Gui Update", this, false);
 
     public VegaGui() {
         super("VegaGui", "gui", Category.CLIENT);

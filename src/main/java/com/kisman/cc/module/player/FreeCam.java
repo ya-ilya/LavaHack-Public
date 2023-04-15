@@ -21,11 +21,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class FreeCam
         extends Module {
-    public Setting speed = new Setting("Flying Speed",this, 1.0f, 0.1f, 5.0f, false);
-    public Setting disableOnDamage = new Setting("Disable on damage",this,false);
-    public Setting clipOnDisable = new Setting("Clip on disable", this,false);
-    public Setting autoTeleportDisable = new Setting("Auto teleport disable",this,false);
-    public Setting reallyWorld = new Setting("Really World",this,false);
+    public final Setting speed = new Setting("Flying Speed",this, 1.0f, 0.1f, 5.0f, false);
+    public final Setting disableOnDamage = new Setting("Disable on damage",this,false);
+    public final Setting clipOnDisable = new Setting("Clip on disable", this,false);
+    public final Setting autoTeleportDisable = new Setting("Auto teleport disable",this,false);
+    public final Setting reallyWorld = new Setting("Really World",this,false);
     private double oldX;
     private double oldY;
     private double oldZ;

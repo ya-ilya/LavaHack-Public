@@ -6,10 +6,10 @@ import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.Colour;
 
 public class Charms extends Module {
-    public Setting polygonOffset = new Setting("PolygonOffset", this, true);
-    public Setting targetRender = new Setting("TargetRender", this, true);
-    public Setting customColor = new Setting("Use Color", this, false);
-    public Setting color = new Setting("Color", this, "Color", new Colour(255, 0, 0));
+    public final Setting polygonOffset = new Setting("PolygonOffset", this, true);
+    public final Setting targetRender = new Setting("TargetRender", this, true);
+    public final Setting customColor = new Setting("Use Color", this, false);
+    public final Setting color = new Setting("Color", this, "Color", new Colour(255, 0, 0));
 
     public static Charms instance;
 

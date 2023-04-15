@@ -13,24 +13,24 @@ import java.util.Arrays;
 public class ItemCharms extends Module {
     public static ItemCharms instance;
 
-    public Setting glowESP = new Setting("GlowESP", this, "None", Arrays.asList("None", "Color", "Astral", "RainbowCube", "Gradient", "Aqua", "Circle", "Smoke"));
+    public final Setting glowESP = new Setting("GlowESP", this, "None", Arrays.asList("None", "Color", "Astral", "RainbowCube", "Gradient", "Aqua", "Circle", "Smoke"));
 
-    public Setting red = new Setting("ColorESPRed", this, 1, 0, 1, false);
-    public Setting green = new Setting("ColorESPGreen", this, 1, 0, 1, false);
-    public Setting blue = new Setting("ColorESPBlue", this, 1, 0, 1, false);
-    public Setting alpha = new Setting("ColorESPAlpha", this, 1, 0, 1, false);
+    public final Setting red = new Setting("ColorESPRed", this, 1, 0, 1, false);
+    public final Setting green = new Setting("ColorESPGreen", this, 1, 0, 1, false);
+    public final Setting blue = new Setting("ColorESPBlue", this, 1, 0, 1, false);
+    public final Setting alpha = new Setting("ColorESPAlpha", this, 1, 0, 1, false);
 
-    public Setting radiusESP = new Setting("RadiusESP", this, 1, 0, 5, Slider.NumberType.DECIMAL);
-    public Setting qualityESP = new Setting("QualityESP", this, 1, 0, 20, Slider.NumberType.DECIMAL);
-    public Setting gradientAlpha = new Setting("GradientAlpha", this, false);
-    public Setting alphaOutline = new Setting("AlphaOutline", this, 255, 0, 255, Slider.NumberType.INTEGER).setVisible(() -> !gradientAlpha.getValBoolean());
-    public Setting piOutline = new Setting("PIOutline", this, 3.141592653, 0, 10, Slider.NumberType.DECIMAL).setVisible(() -> glowESP.getValString().equalsIgnoreCase("Circle"));
-    public Setting radOutline = new Setting("RADOutline", this, 0.75f, 0, 5, Slider.NumberType.DECIMAL).setVisible(() -> glowESP.getValString().equalsIgnoreCase("Circle"));
+    public final Setting radiusESP = new Setting("RadiusESP", this, 1, 0, 5, Slider.NumberType.DECIMAL);
+    public final Setting qualityESP = new Setting("QualityESP", this, 1, 0, 20, Slider.NumberType.DECIMAL);
+    public final Setting gradientAlpha = new Setting("GradientAlpha", this, false);
+    public final Setting alphaOutline = new Setting("AlphaOutline", this, 255, 0, 255, Slider.NumberType.INTEGER).setVisible(() -> !gradientAlpha.getValBoolean());
+    public final Setting piOutline = new Setting("PIOutline", this, 3.141592653, 0, 10, Slider.NumberType.DECIMAL).setVisible(() -> glowESP.getValString().equalsIgnoreCase("Circle"));
+    public final Setting radOutline = new Setting("RADOutline", this, 0.75f, 0, 5, Slider.NumberType.DECIMAL).setVisible(() -> glowESP.getValString().equalsIgnoreCase("Circle"));
 
 
-//    public Setting exampleColor = new Setting("ExampleColor", this, red.getValFloat(), green.getValFloat(), blue.getValFloat(), alpha.getValFloat());
+//    public final Setting exampleColor = new Setting("ExampleColor", this, red.getValFloat(), green.getValFloat(), blue.getValFloat(), alpha.getValFloat());
 
-    public Setting glintModify = new Setting("GlintModify", this, false);
+    public final Setting glintModify = new Setting("GlintModify", this, false);
 
     public Color color = new Color(red.getRed(), red.getGreen(), red.getBlue(), red.getAlpha());
 

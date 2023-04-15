@@ -13,8 +13,8 @@ import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.client.CPacketUseEntity;
 
 public class Criticals extends Module {
-    private Setting strict = new Setting("Strict", this, false);
-    private Setting onlyKillaura = new Setting("OnlyKillAura", this, false);
+    private final Setting strict = new Setting("Strict", this, false);
+    private final Setting onlyKillaura = new Setting("OnlyKillAura", this, false);
 
     public Criticals() {
         super("Criticals", "", Category.COMBAT);

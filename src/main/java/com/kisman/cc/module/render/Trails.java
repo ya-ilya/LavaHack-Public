@@ -14,7 +14,7 @@ import org.lwjgl.opengl.GL11;
 import java.util.ArrayList;
 
 public class Trails extends Module {
-    private Setting removeTicks = new Setting("RemoveTicks", this, 1, 1, 50, true);
+    private final Setting removeTicks = new Setting("RemoveTicks", this, 1, 1, 50, true);
 
     private ArrayList<TrailUtil> bcs = new ArrayList<>();
 

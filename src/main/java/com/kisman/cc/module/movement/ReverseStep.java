@@ -11,7 +11,7 @@ import java.util.Locale;
 public class ReverseStep extends Module {
     public static ReverseStep instance;
 
-    public Setting height = new Setting("Height", this, 1.0, 0.5, 4, false);
+    public final Setting height = new Setting("Height", this, 1.0, 0.5, 4, false);
 
     private final Setting lagTime = new Setting("Lag Time", this, false);
     private final Setting lagTimeValue = new Setting("Lag Time Value", this, 500, 0, 2000, Slider.NumberType.TIME);

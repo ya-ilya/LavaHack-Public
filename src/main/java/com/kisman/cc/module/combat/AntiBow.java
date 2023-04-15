@@ -10,11 +10,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 
 public class AntiBow extends Module {
-    private Setting packet = new Setting("Packet", this, false);
-    private Setting range = new Setting("Range", this, 40, 0, 40, false);
-    private Setting checkUse = new Setting("CheckUse", this, false);
-    private Setting maxUse = new Setting("MaxUse", this, 10, 0, 20, true);
-    private Setting bowInHandCheck = new Setting("BowInHandCheck", this, true);
+    private final Setting packet = new Setting("Packet", this, false);
+    private final Setting range = new Setting("Range", this, 40, 0, 40, false);
+    private final Setting checkUse = new Setting("CheckUse", this, false);
+    private final Setting maxUse = new Setting("MaxUse", this, 10, 0, 20, true);
+    private final Setting bowInHandCheck = new Setting("BowInHandCheck", this, true);
 
     private boolean bool;
 

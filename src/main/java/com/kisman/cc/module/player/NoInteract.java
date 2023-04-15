@@ -13,12 +13,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 
 public class NoInteract extends Module {
-    private Setting enderChest = new Setting("EnderChest", this, true);
-    private Setting craft = new Setting("CraftingTable", this, true);
-    private Setting chest = new Setting("Chest", this, true);
-    private Setting furnace = new Setting("Furnace", this, true);
-    private Setting armorStand = new Setting("ArmorStand", this, true);
-    private Setting anvil = new Setting("Anvil", this, true);
+    private final Setting enderChest = new Setting("EnderChest", this, true);
+    private final Setting craft = new Setting("CraftingTable", this, true);
+    private final Setting chest = new Setting("Chest", this, true);
+    private final Setting furnace = new Setting("Furnace", this, true);
+    private final Setting armorStand = new Setting("ArmorStand", this, true);
+    private final Setting anvil = new Setting("Anvil", this, true);
 
     public NoInteract() {
         super("NoInteract", "NoInteract", Category.PLAYER);

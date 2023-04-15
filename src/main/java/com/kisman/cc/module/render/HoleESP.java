@@ -19,34 +19,34 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class HoleESP extends Module {
-    private Setting mode = new Setting("Mode", this, "Air", new ArrayList<>(Arrays.asList("Air", "Ground", "Flat", "Slab", "Double", "Konas")));
-    private Setting konasMode = new Setting("Konas Mode", this, KonasMode.FULL).setVisible(() -> mode.checkValString("Konas"));
-    private Setting konasLine = new Setting("Konas Line", this, KonasLines.BOTTOM).setVisible(() -> mode.checkValString("Konas"));
-    private Setting radius = new Setting("Radius", this, 8, 0, 32, true);
-    private Setting ignoreOwnHole = new Setting("IgnoreOwnHole", this, false);
-    private Setting flatOwn = new Setting("FlatOwn", this, false).setVisible(() -> !mode.checkValString("Konas"));
-    private Setting height = new Setting("Height", this, 0.5, 0.1, 2, false);
-    private Setting width = new Setting("Width", this, 1, 1, 10, true);
-    private Setting type = new Setting("Type", this, "Both", new ArrayList<>(Arrays.asList("Outline", "Fill", "Both"))).setVisible(() -> !mode.checkValString("Konas"));
-    private Setting ufoAlpha = new Setting("UFOAlpha", this, 255, 0, 255, true);
+    private final Setting mode = new Setting("Mode", this, "Air", new ArrayList<>(Arrays.asList("Air", "Ground", "Flat", "Slab", "Double", "Konas")));
+    private final Setting konasMode = new Setting("Konas Mode", this, KonasMode.FULL).setVisible(() -> mode.checkValString("Konas"));
+    private final Setting konasLine = new Setting("Konas Line", this, KonasLines.BOTTOM).setVisible(() -> mode.checkValString("Konas"));
+    private final Setting radius = new Setting("Radius", this, 8, 0, 32, true);
+    private final Setting ignoreOwnHole = new Setting("IgnoreOwnHole", this, false);
+    private final Setting flatOwn = new Setting("FlatOwn", this, false).setVisible(() -> !mode.checkValString("Konas"));
+    private final Setting height = new Setting("Height", this, 0.5, 0.1, 2, false);
+    private final Setting width = new Setting("Width", this, 1, 1, 10, true);
+    private final Setting type = new Setting("Type", this, "Both", new ArrayList<>(Arrays.asList("Outline", "Fill", "Both"))).setVisible(() -> !mode.checkValString("Konas"));
+    private final Setting ufoAlpha = new Setting("UFOAlpha", this, 255, 0, 255, true);
 
-    private Setting depth = new Setting("Depth", this, true).setVisible(() -> mode.checkValString("Konas"));
-    private Setting noLineDepth = new Setting("No Line", this, true).setVisible(() -> mode.checkValString("Konas") && konasMode.checkValString("FADE") && depth.getValBoolean());
-    private Setting notSelf = new Setting("Not Self", this, true).setVisible(() -> mode.checkValString("Konas") && konasMode.checkValString("FADE"));
-    private Setting sides = new Setting("Sides", this, false).setVisible(() -> mode.checkValString("Konas") && (konasMode.checkValString("FULL") || konasMode.checkValString("FADE")));
+    private final Setting depth = new Setting("Depth", this, true).setVisible(() -> mode.checkValString("Konas"));
+    private final Setting noLineDepth = new Setting("No Line", this, true).setVisible(() -> mode.checkValString("Konas") && konasMode.checkValString("FADE") && depth.getValBoolean());
+    private final Setting notSelf = new Setting("Not Self", this, true).setVisible(() -> mode.checkValString("Konas") && konasMode.checkValString("FADE"));
+    private final Setting sides = new Setting("Sides", this, false).setVisible(() -> mode.checkValString("Konas") && (konasMode.checkValString("FULL") || konasMode.checkValString("FADE")));
 
-    private Setting obby = new Setting("_ObsidianHoles", this, "ObsidianHoles");
-    private Setting obbyHoles = new Setting("ObsidianHoles", this, true);
-    private Setting obbyColor = new Setting("ObbyColor", this, "ObbyColor", new Colour(255, 0, 0)).setVisible(obbyHoles::getValBoolean);
-
-
-    private Setting bedrock = new Setting("_BedrockHoles", this, "BedrockHoles");
-    private Setting bedrockHoles = new Setting("BedrockHoles", this, true);
-    private Setting bedrockColor = new Setting("BedrockColor", this, "BedrockColor", new Colour(0, 255, 0)).setVisible(bedrockHoles::getValBoolean);
+    private final Setting obby = new Setting("_ObsidianHoles", this, "ObsidianHoles");
+    private final Setting obbyHoles = new Setting("ObsidianHoles", this, true);
+    private final Setting obbyColor = new Setting("ObbyColor", this, "ObbyColor", new Colour(255, 0, 0)).setVisible(obbyHoles::getValBoolean);
 
 
-    private Setting custom = new Setting("Custom", this, "CustomHoles");
-    private Setting customMode = new Setting("CustomMode", this, "Single", new ArrayList<>(Arrays.asList("Single", "Double", "Custom")));
+    private final Setting bedrock = new Setting("_BedrockHoles", this, "BedrockHoles");
+    private final Setting bedrockHoles = new Setting("BedrockHoles", this, true);
+    private final Setting bedrockColor = new Setting("BedrockColor", this, "BedrockColor", new Colour(0, 255, 0)).setVisible(bedrockHoles::getValBoolean);
+
+
+    private final Setting custom = new Setting("Custom", this, "CustomHoles");
+    private final Setting customMode = new Setting("CustomMode", this, "Single", new ArrayList<>(Arrays.asList("Single", "Double", "Custom")));
     private final Setting customColor = new Setting("Custom Color", this, "Custom Color", new Colour(255, 255, 255, 255));
 
     private ConcurrentHashMap<AxisAlignedBB, Colour> holes;

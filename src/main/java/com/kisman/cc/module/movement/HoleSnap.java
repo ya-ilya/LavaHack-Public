@@ -12,9 +12,9 @@ import net.minecraft.util.math.Vec3d;
 import java.util.List;
 
 public class HoleSnap extends Module {
-    private Setting speedValue = new Setting("Speed", this, 0, 0, 2, false);
-    private Setting range = new Setting("Range", this, 4, 0, 10, true);
-    private Setting disableIfNoHole = new Setting("Disable If No Hole", this, true);
+    private final Setting speedValue = new Setting("Speed", this, 0, 0, 2, false);
+    private final Setting range = new Setting("Range", this, 4, 0, 10, true);
+    private final Setting disableIfNoHole = new Setting("Disable If No Hole", this, true);
 
     private BlockPos hole;
     private double yawRad,speed, lastDist;

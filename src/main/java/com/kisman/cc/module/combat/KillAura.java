@@ -28,35 +28,35 @@ public class KillAura extends Module {
 
     public EntityPlayer target;
 
-    private Setting mode = new Setting("Mode", this, "HvH", Arrays.asList("HvH", "Default"));
+    private final Setting mode = new Setting("Mode", this, "HvH", Arrays.asList("HvH", "Default"));
 
-    private Setting hitLine = new Setting("HitLine", this, "Hit");
-    private Setting useFallDist = new Setting("Use Fall Dist", this, false);
-    private Setting fallDistance = new Setting("Fall Distance", this, 0.25, 0, 1, false).setVisible(useFallDist::getValBoolean);
-    private Setting shieldBreaker = new Setting("Shield Breaker", this, true);
-    private Setting packetAttack = new Setting("Packet Attack", this, false);
-    private Setting rotations = new Setting("Rotations", this, RotateMode.Silent);
-    private Setting betterRots = new Setting("Better Rotations", this, false).setVisible(() -> !rotations.checkValString(RotateMode.None.name()));
-    private Setting packetRots = new Setting("Packet Rotations", this, false).setVisible(() -> !rotations.checkValString(RotateMode.None.name()));
-    private Setting preRots = new Setting("Pre Rots", this, true).setVisible(() -> !rotations.checkValString(RotateMode.None.name()));
+    private final Setting hitLine = new Setting("HitLine", this, "Hit");
+    private final Setting useFallDist = new Setting("Use Fall Dist", this, false);
+    private final Setting fallDistance = new Setting("Fall Distance", this, 0.25, 0, 1, false).setVisible(useFallDist::getValBoolean);
+    private final Setting shieldBreaker = new Setting("Shield Breaker", this, true);
+    private final Setting packetAttack = new Setting("Packet Attack", this, false);
+    private final Setting rotations = new Setting("Rotations", this, RotateMode.Silent);
+    private final Setting betterRots = new Setting("Better Rotations", this, false).setVisible(() -> !rotations.checkValString(RotateMode.None.name()));
+    private final Setting packetRots = new Setting("Packet Rotations", this, false).setVisible(() -> !rotations.checkValString(RotateMode.None.name()));
+    private final Setting preRots = new Setting("Pre Rots", this, true).setVisible(() -> !rotations.checkValString(RotateMode.None.name()));
     private final Setting cooldownCheck = new Setting("Cooldown Check", this, false);
-    private Setting attackCooldown = new Setting("Attack Cooldown", this, 1, 0, 1, false).setVisible(cooldownCheck::getValBoolean);
-    private Setting onlyCrits = new Setting("Only Crits", this, false).setVisible(cooldownCheck::getValBoolean);
-    private Setting resetCd = new Setting("Reset Cooldown", this, false);
+    private final Setting attackCooldown = new Setting("Attack Cooldown", this, 1, 0, 1, false).setVisible(cooldownCheck::getValBoolean);
+    private final Setting onlyCrits = new Setting("Only Crits", this, false).setVisible(cooldownCheck::getValBoolean);
+    private final Setting resetCd = new Setting("Reset Cooldown", this, false);
     private final Setting packetSwing = new Setting("Packet Swing", this, false);
 
-    private Setting weapon = new Setting("Weapon", this, "Sword", new ArrayList<>(Arrays.asList("Sword", "Axe", "Both", "None")));
+    private final Setting weapon = new Setting("Weapon", this, "Sword", new ArrayList<>(Arrays.asList("Sword", "Axe", "Both", "None")));
 
-    private Setting invisible = new Setting("Invisible", this, false);
+    private final Setting invisible = new Setting("Invisible", this, false);
 
-    private Setting renderLine = new Setting("RenderLine", this, "Render");
-    private Setting targetEsp = new Setting("Target ESP", this, true);
+    private final Setting renderLine = new Setting("RenderLine", this, "Render");
+    private final Setting targetEsp = new Setting("Target ESP", this, true);
 
     private final Setting targetRange = new Setting("Target Range", this, 6, 1, 20, true);
-    private Setting wallDistance = new Setting("Wall Distance", this, 3, 0, 5, false);
+    private final Setting wallDistance = new Setting("Wall Distance", this, 3, 0, 5, false);
 
-    private Setting switchMode = new Setting("Switch Mode", this, "None", new ArrayList<>(Arrays.asList("None", "Normal", "Silent")));
-    private Setting packetSwitch = new Setting("Packet Switch", this, true).setVisible(!switchMode.checkValString("None"));
+    private final Setting switchMode = new Setting("Switch Mode", this, "None", new ArrayList<>(Arrays.asList("None", "Normal", "Silent")));
+    private final Setting packetSwitch = new Setting("Packet Switch", this, true).setVisible(!switchMode.checkValString("None"));
 
     public KillAura() {
         super("KillAura", "8", Category.COMBAT);

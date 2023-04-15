@@ -6,11 +6,11 @@ import com.kisman.cc.settings.Setting;
 import org.lwjgl.input.Keyboard;
 
 public class NoWeb extends Module {
-//    public Setting disableBB = new Setting("Add BB", this, true);
-    public Setting onGround = new Setting("OnGround", this, true);
-//    public Setting bbOffset = new Setting("BB Offset", this, 0, -2, 2, false);
-    public Setting motionX = new Setting("MotionX", this, 0.84, -1, 5, false);
-    public Setting motionY = new Setting("MotionY", this, 1, 0, 20, false);
+//    public final Setting disableBB = new Setting("Add BB", this, true);
+    public final Setting onGround = new Setting("OnGround", this, true);
+//    public final Setting bbOffset = new Setting("BB Offset", this, 0, -2, 2, false);
+    public final Setting motionX = new Setting("MotionX", this, 0.84, -1, 5, false);
+    public final Setting motionY = new Setting("MotionY", this, 1, 0, 20, false);
 
     public NoWeb() {
         super("NoWeb", "", Category.MOVEMENT);

@@ -11,17 +11,17 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class Tracers extends Module {
-    private Setting players = new Setting("Players", this, false);
-//    private Setting playersColor = new Setting("PlayersColor", this, "Color", new float[] {1, 1, 1, 1});
-    private Setting playersAstolfo = new Setting("PlayersAstolfo", this, false);
+    private final Setting players = new Setting("Players", this, false);
+//    private final Setting playersColor = new Setting("PlayersColor", this, "Color", new float[] {1, 1, 1, 1});
+    private final Setting playersAstolfo = new Setting("PlayersAstolfo", this, false);
 
-    private Setting friends = new Setting("Friends", this, false);
-//    private Setting friendsColor = new Setting("friendsColor", this, "Color", new float[] {1, 1, 1, 1});
-    private Setting friendsAstolfo = new Setting("FriendsAstolfo", this, true);
+    private final Setting friends = new Setting("Friends", this, false);
+//    private final Setting friendsColor = new Setting("friendsColor", this, "Color", new float[] {1, 1, 1, 1});
+    private final Setting friendsAstolfo = new Setting("FriendsAstolfo", this, true);
 
-    private Setting items = new Setting("Items", this, false);
-//    private Setting itemsColor = new Setting("ItemsColor", this, "Color", new float[] {1, 1, 1, 1});
-    private Setting itemsAstolfo = new Setting("ItemsAstolfo", this, true);
+    private final Setting items = new Setting("Items", this, false);
+//    private final Setting itemsColor = new Setting("ItemsColor", this, "Color", new float[] {1, 1, 1, 1});
+    private final Setting itemsAstolfo = new Setting("ItemsAstolfo", this, true);
 
     public Tracers() {
         super("Tracers", "Tracers", Category.RENDER);

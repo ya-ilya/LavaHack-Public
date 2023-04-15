@@ -11,21 +11,21 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class NoRender extends Module {
     public static NoRender instance;
 
-    public Setting fog = new Setting("Fog", this, false);
-    public Setting hurtCam = new Setting("HurtCam", this, false);
-    public Setting armor = new Setting("Armor", this, false);
-    public Setting overlay = new Setting("Overlay", this, false);
-    public Setting guiOverlay = new Setting("Gui Overlay", this, false);
-    public Setting book = new Setting("Book", this, false);
-    public Setting chatBackground = new Setting("Chat Background", this, false);
-    public Setting bossBar = new Setting("Boss Bar", this, false);
-    public Setting scoreboard = new Setting("Scoreboard", this, false);
-    public Setting particle = new Setting("Particle", this, ParticleMode.None);
-    public Setting portal = new Setting("Portal", this, false);
-    public Setting items = new Setting("Items", this, false);
-    public Setting defaultBlockHighlight = new Setting("Default Block Highlight", this, false);
-    public Setting handItemsTex  = new Setting("Hand Items Texture", this, false);
-    public Setting enchantGlint = new Setting("Enchant Glint", this, false);
+    public final Setting fog = new Setting("Fog", this, false);
+    public final Setting hurtCam = new Setting("HurtCam", this, false);
+    public final Setting armor = new Setting("Armor", this, false);
+    public final Setting overlay = new Setting("Overlay", this, false);
+    public final Setting guiOverlay = new Setting("Gui Overlay", this, false);
+    public final Setting book = new Setting("Book", this, false);
+    public final Setting chatBackground = new Setting("Chat Background", this, false);
+    public final Setting bossBar = new Setting("Boss Bar", this, false);
+    public final Setting scoreboard = new Setting("Scoreboard", this, false);
+    public final Setting particle = new Setting("Particle", this, ParticleMode.None);
+    public final Setting portal = new Setting("Portal", this, false);
+    public final Setting items = new Setting("Items", this, false);
+    public final Setting defaultBlockHighlight = new Setting("Default Block Highlight", this, false);
+    public final Setting handItemsTex  = new Setting("Hand Items Texture", this, false);
+    public final Setting enchantGlint = new Setting("Enchant Glint", this, false);
 
     public NoRender() {
         super("NoRender", "no render", Category.RENDER);

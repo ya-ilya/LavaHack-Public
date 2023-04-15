@@ -51,7 +51,7 @@ public class ShaderCharms extends Module {
     private final Setting itemsEntity = new Setting("Items(Entity)", this, false);
     public final Setting items = new Setting("Items", this, true);
     private final Setting itemsFix = new Setting("Items Fix", this, false).setVisible(items::getValBoolean);
-//    private Setting storages = new Setting("Storages(cfg from StorageEsp)", this, false);
+//    private final Setting storages = new Setting("Storages(cfg from StorageEsp)", this, false);
 
     private final Setting animationSpeed = new Setting("Animation Speed", this, 0, 1, 10, true).setVisible(() -> !mode.checkValString("GRADIENT"));
 

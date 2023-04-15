@@ -7,7 +7,7 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.util.EnumHand;
 
 public class Swing extends Module {
-    private Setting mode = new Setting("Mode", this, Hand.MAINHAND);
+    private final Setting mode = new Setting("Mode", this, Hand.MAINHAND);
 
     public Swing() {
         super("Swing", "swing", Category.PLAYER);

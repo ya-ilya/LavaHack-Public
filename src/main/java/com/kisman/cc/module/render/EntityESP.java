@@ -19,20 +19,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class EntityESP extends Module{
-    private Setting range = new Setting("Range", this, 50, 0, 100, true);
+    private final Setting range = new Setting("Range", this, 50, 0, 100, true);
 
-    private Setting players = new Setting("Players", this, "None", new ArrayList<>(Arrays.asList("None", "Box1", "Box2", "Glow")));
-    private Setting monsters = new Setting("Monsters", this, "None", new ArrayList<>(Arrays.asList("None", "Box1", "Box2", "Glow")));
-    private Setting items = new Setting("Items", this, "None", new ArrayList<>(Arrays.asList("None", "Box1", "Box2", "Glow")));
-    private Setting passive =  new Setting("Passive", this, "None", new ArrayList<>(Arrays.asList("None", "Box1", "Box2", "Glow")));
-    private Setting entities = new Setting("Entities", this, "None", new ArrayList<>(Arrays.asList("None", "Box1", "Box2", "Glow")));
+    private final Setting players = new Setting("Players", this, "None", new ArrayList<>(Arrays.asList("None", "Box1", "Box2", "Glow")));
+    private final Setting monsters = new Setting("Monsters", this, "None", new ArrayList<>(Arrays.asList("None", "Box1", "Box2", "Glow")));
+    private final Setting items = new Setting("Items", this, "None", new ArrayList<>(Arrays.asList("None", "Box1", "Box2", "Glow")));
+    private final Setting passive =  new Setting("Passive", this, "None", new ArrayList<>(Arrays.asList("None", "Box1", "Box2", "Glow")));
+    private final Setting entities = new Setting("Entities", this, "None", new ArrayList<>(Arrays.asList("None", "Box1", "Box2", "Glow")));
 
     //colors
-    private Setting playerColor = new Setting("PlayerColor", this, "Players Color", new Colour(255, 255, 0, 255));
-    private Setting monstersColor = new Setting("MonstersColor", this, "Monsters Color", new Colour(255, 0, 255, 255));
-    private Setting itemsColor = new Setting("ItemsColor", this, "ItemsColor", new Colour(0, 0, 255, 255));
-    private Setting passiveColor = new Setting("PassiveColor", this, "Passives Color", new Colour(0, 255, 0, 255));
-    private Setting entityColor = new Setting("EntityColor", this, "Entities Color", new Colour(0, 255, 120, 255));
+    private final Setting playerColor = new Setting("PlayerColor", this, "Players Color", new Colour(255, 255, 0, 255));
+    private final Setting monstersColor = new Setting("MonstersColor", this, "Monsters Color", new Colour(255, 0, 255, 255));
+    private final Setting itemsColor = new Setting("ItemsColor", this, "ItemsColor", new Colour(0, 0, 255, 255));
+    private final Setting passiveColor = new Setting("PassiveColor", this, "Passives Color", new Colour(0, 255, 0, 255));
+    private final Setting entityColor = new Setting("EntityColor", this, "Entities Color", new Colour(0, 255, 120, 255));
 
     private final ArrayList<Entity> glowings = new ArrayList<>();
 

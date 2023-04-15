@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AntiBot extends Module {
-    public Setting mode = new Setting("Mode", this, "WellMore", Arrays.asList("Matrix 6.3", "Classic", "Vanish", "Zamorozka"));
+    public final Setting mode = new Setting("Mode", this, "WellMore", Arrays.asList("Matrix 6.3", "Classic", "Vanish", "Zamorozka"));
 
     private final List<EntityPlayer> bots = new ArrayList<>();
     public static AntiBot instance;

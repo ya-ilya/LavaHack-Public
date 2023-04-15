@@ -26,36 +26,36 @@ import net.minecraft.util.math.Vec3d;
 
 public class CevBreaker extends Module {
     //another
-    private Setting range = new Setting("Range", this, 4, 1, 5, false);
-    private Setting targetRange = new Setting("Target Range", this, 15, 1, 30, true);
-    private Setting switch_ = new Setting("Switch Mode", this, RewriteSwitchModes.Silent);
+    private final Setting range = new Setting("Range", this, 4, 1, 5, false);
+    private final Setting targetRange = new Setting("Target Range", this, 15, 1, 30, true);
+    private final Setting switch_ = new Setting("Switch Mode", this, RewriteSwitchModes.Silent);
 
     //crystal
-    private Setting placeDelay = new Setting("Crystal Place Delay", this, 10, 0, 5000, NumberType.TIME);
-    private Setting breakDelay = new Setting("Crystal Break Delay", this, 10, 0, 5000, NumberType.TIME);
+    private final Setting placeDelay = new Setting("Crystal Place Delay", this, 10, 0, 5000, NumberType.TIME);
+    private final Setting breakDelay = new Setting("Crystal Break Delay", this, 10, 0, 5000, NumberType.TIME);
 
     //obby
-    private Setting breakMode = new Setting("Obby Break Mode", this, ObbyBreakMode.Packet); 
+    private final Setting breakMode = new Setting("Obby Break Mode", this, ObbyBreakMode.Packet); 
 
     //trap
-    private Setting blocksPerTick = new Setting("Trap Blocks Per Tick", this, 8, 1, 30, true);
-    private Setting antiStep = new Setting("Trap Anti Step", this, false);
-    private Setting surroundPlacing = new Setting("Trap Surround Placing", this, true);
-    private Setting raytrace = new Setting("Trap RayTrace", this, false);
-    private Setting packet = new Setting("Trap Packet Place", this, true);
-    private Setting dynamic = new Setting("Trap Rewrite Dynamic", this, false);
-    private Setting supportBlocks = new Setting("Trap Support Blocks", this, RewriteSupportModes.Dynamic);
-    private Setting rewriteRetries = new Setting("Trap Retries", this, 0, 0, 20, true);
-    private Setting rotateMode = new Setting("Trap Reite Rotate Mode", this, RewriteRotateModes.Silent);
+    private final Setting blocksPerTick = new Setting("Trap Blocks Per Tick", this, 8, 1, 30, true);
+    private final Setting antiStep = new Setting("Trap Anti Step", this, false);
+    private final Setting surroundPlacing = new Setting("Trap Surround Placing", this, true);
+    private final Setting raytrace = new Setting("Trap RayTrace", this, false);
+    private final Setting packet = new Setting("Trap Packet Place", this, true);
+    private final Setting dynamic = new Setting("Trap Rewrite Dynamic", this, false);
+    private final Setting supportBlocks = new Setting("Trap Support Blocks", this, RewriteSupportModes.Dynamic);
+    private final Setting rewriteRetries = new Setting("Trap Retries", this, 0, 0, 20, true);
+    private final Setting rotateMode = new Setting("Trap Reite Rotate Mode", this, RewriteRotateModes.Silent);
 
     //packet break mode
-    private Setting packetMineRange = new Setting("Packet Break Range", this, 10, 5, 15, true);
-    private Setting speed = new Setting("Packet Break Speed", this, 0.8f, 0.1f, 1, false);
-    public Setting instant = new Setting("Packet Break Instant", this, true);
-    private Setting strict = new Setting("Packet Break Strict", this, false);
-    private Setting instantAttempts = new Setting("Packet Break Instant Attempts", this, 8, 0, 20, true);
-    private Setting packetSpam = new Setting("Packet Break Packet Spam", this, 1, 1, 10, true);
-    private Setting autoSwitch = new Setting("Auto Switch", this, true);
+    private final Setting packetMineRange = new Setting("Packet Break Range", this, 10, 5, 15, true);
+    private final Setting speed = new Setting("Packet Break Speed", this, 0.8f, 0.1f, 1, false);
+    public final Setting instant = new Setting("Packet Break Instant", this, true);
+    private final Setting strict = new Setting("Packet Break Strict", this, false);
+    private final Setting instantAttempts = new Setting("Packet Break Instant Attempts", this, 8, 0, 20, true);
+    private final Setting packetSpam = new Setting("Packet Break Packet Spam", this, 1, 1, 10, true);
+    private final Setting autoSwitch = new Setting("Auto Switch", this, true);
 
     private CevBreakerStage stage;
 

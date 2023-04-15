@@ -1,4 +1,4 @@
-package com.kisman.cc.console.rewrite
+package com.kisman.cc.gui.console.rewrite
 
 import com.kisman.cc.Kisman
 import com.kisman.cc.event.events.client.console.ConsoleMessageEvent

@@ -1,4 +1,4 @@
-package com.kisman.cc.console;
+package com.kisman.cc.gui.console;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.command.Command;

@@ -217,7 +217,6 @@ public class ModuleManager {
 		modules.add(new Tracker());
 		modules.add(new VisualRange());
 		modules.add(new WeaknessLog());
-		modules.add(new WebhookSpammer());
 		modules.add(new XCarry());
 	}
 	

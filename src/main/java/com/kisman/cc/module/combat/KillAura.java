@@ -201,7 +201,7 @@ public class KillAura extends Module {
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
         if(target == null) return;
-            RenderUtil2.drawFadeESP(target, new Colour(Color.GREEN), new Colour(ColorUtils.injectAlpha(Color.GREEN, 0)));
+            RenderUtil.drawFadeESP(target, new Colour(Color.GREEN), new Colour(ColorUtils.injectAlpha(Color.GREEN, 0)));
     }
 
     private void doRots(Entity entityToRotate) {

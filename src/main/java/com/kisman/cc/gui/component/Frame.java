@@ -7,7 +7,7 @@ import com.kisman.cc.hud.hudmodule.HudCategory;
 import com.kisman.cc.hud.hudmodule.HudModule;
 import com.kisman.cc.module.client.Config;
 import com.kisman.cc.util.ColorUtil;
-import com.kisman.cc.util.LineMode;
+import com.kisman.cc.util.enums.LineMode;
 import com.kisman.cc.util.Render2DUtil;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;

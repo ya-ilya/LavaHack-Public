@@ -26,7 +26,6 @@ public class CommandManager {
 		commands.add(new BindCommand());
 		commands.add(new ColfCommand());
 		commands.add(new CreditsCommand());
-		commands.add(new DDOSCommand());
 		commands.add(new FriendCommand());
 		commands.add(new HelpCommand());
 		commands.add(new ConfigCommand());

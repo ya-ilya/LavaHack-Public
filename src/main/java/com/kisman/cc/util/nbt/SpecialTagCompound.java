@@ -13,116 +13,115 @@ import java.util.UUID;
 @SideOnly(Side.CLIENT)
 public class SpecialTagCompound extends NBTTagCompound {
 
-  public static int getStackDamage(ItemStack stack) {
-    NBTTagCompound tag = stack.getTagCompound();
-    if(tag instanceof SpecialTagCompound) {
-      return ((SpecialTagCompound)tag).getTrueDamage();
-    }
-    return stack.getItemDamage();
-  }
-
-  private boolean empty;
-  private int true_damage;
-
-  public SpecialTagCompound(boolean empty, int true_damage) {
-    this.empty = empty;
-    this.true_damage = true_damage;
-  }
-
-  public SpecialTagCompound(NBTTagCompound old, int true_damage) {
-    super();
-    if(old == null) this.empty = true;
-    else {
-      for(String key : old.getKeySet()) {
-        super.setTag(key, old.getTag(key));
-      }
-    }
-    this.true_damage = true_damage;
-  }
-
-  public int getTrueDamage() {
-    return this.true_damage;
-  }
-
-  public byte getId() {
-    if(this.empty) return 0;
-    return super.getId();
-  }
-
-  public NBTTagCompound copy() {
-    SpecialTagCompound copy = new SpecialTagCompound(this.empty, this.true_damage);
-
-    for (String s : this.getKeySet()) {
-      copy.setTagLegacy(s, this.getTag(s).copy());
+    private boolean empty;
+    private final int true_damage;
+    public SpecialTagCompound(boolean empty, int true_damage) {
+        this.empty = empty;
+        this.true_damage = true_damage;
     }
 
-    return copy;
-  }
-
-  public boolean hasNoTags() { // do not clear me
-    if(super.isEmpty()) {
-      this.empty = true;
+    public SpecialTagCompound(NBTTagCompound old, int true_damage) {
+        super();
+        if (old == null) this.empty = true;
+        else {
+            for (String key : old.getKeySet()) {
+                super.setTag(key, old.getTag(key));
+            }
+        }
+        this.true_damage = true_damage;
     }
-    return false;
-  }
 
-  public void setTag(String key, NBTBase value) {
-    this.empty = false;
-    super.setTag(key, value);
-  }
+    public static int getStackDamage(ItemStack stack) {
+        NBTTagCompound tag = stack.getTagCompound();
+        if (tag instanceof SpecialTagCompound) {
+            return ((SpecialTagCompound) tag).getTrueDamage();
+        }
+        return stack.getItemDamage();
+    }
 
-  public void setTagLegacy(String key, NBTBase value) {
-    super.setTag(key, value);
-  }
+    public int getTrueDamage() {
+        return this.true_damage;
+    }
 
-  public void setInteger(String key, int value) {
-    this.empty = false;
-    super.setInteger(key, value);
-  }
+    public byte getId() {
+        if (this.empty) return 0;
+        return super.getId();
+    }
 
-  public void setByte(String key, byte value) {
-    this.empty = false;
-    super.setByte(key, value);
-  }
+    public NBTTagCompound copy() {
+        SpecialTagCompound copy = new SpecialTagCompound(this.empty, this.true_damage);
 
-  public void setShort(String key, short value) {
-    this.empty = false;
-    super.setShort(key, value);
-  }
+        for (String s : this.getKeySet()) {
+            copy.setTagLegacy(s, this.getTag(s).copy());
+        }
 
-  public void setLong(String key, long value) {
-    this.empty = false;
-    super.setLong(key, value);
-  }
+        return copy;
+    }
 
-  public void setUniqueId(String key, UUID value) {
-    this.empty = false;
-    super.setUniqueId(key, value);
-  }
+    public boolean hasNoTags() { // do not clear me
+        if (super.isEmpty()) {
+            this.empty = true;
+        }
+        return false;
+    }
 
-  public void setFloat(String key, float value) {
-    this.empty = false;
-    super.setFloat(key, value);
-  }
+    public void setTag(String key, NBTBase value) {
+        this.empty = false;
+        super.setTag(key, value);
+    }
 
-  public void setDouble(String key, double value) {
-    this.empty = false;
-    super.setDouble(key, value);
-  }
+    public void setTagLegacy(String key, NBTBase value) {
+        super.setTag(key, value);
+    }
 
-  public void setString(String key, String value) {
-    this.empty = false;
-    super.setString(key, value);
-  }
+    public void setInteger(String key, int value) {
+        this.empty = false;
+        super.setInteger(key, value);
+    }
 
-  public void setByteArray(String key, byte[] value) {
-    this.empty = false;
-    super.setByteArray(key, value);
-  }
+    public void setByte(String key, byte value) {
+        this.empty = false;
+        super.setByte(key, value);
+    }
 
-  public void setIntArray(String key, int[] value) {
-    this.empty = false;
-    super.setIntArray(key, value);
-  }
+    public void setShort(String key, short value) {
+        this.empty = false;
+        super.setShort(key, value);
+    }
+
+    public void setLong(String key, long value) {
+        this.empty = false;
+        super.setLong(key, value);
+    }
+
+    public void setUniqueId(String key, UUID value) {
+        this.empty = false;
+        super.setUniqueId(key, value);
+    }
+
+    public void setFloat(String key, float value) {
+        this.empty = false;
+        super.setFloat(key, value);
+    }
+
+    public void setDouble(String key, double value) {
+        this.empty = false;
+        super.setDouble(key, value);
+    }
+
+    public void setString(String key, String value) {
+        this.empty = false;
+        super.setString(key, value);
+    }
+
+    public void setByteArray(String key, byte[] value) {
+        this.empty = false;
+        super.setByteArray(key, value);
+    }
+
+    public void setIntArray(String key, int[] value) {
+        this.empty = false;
+        super.setIntArray(key, value);
+    }
 
 }

@@ -205,7 +205,6 @@ public class ModuleManager {
 		modules.add(new AutoLog());
 		modules.add(new BetterScreenshot());
 		modules.add(new BurrowCounter());
-		modules.add(new DDOSModule());
 		modules.add(new FakePlayer());
 		modules.add(new FreeLook());
 		modules.add(new MurderFinder());

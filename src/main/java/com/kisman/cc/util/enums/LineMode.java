@@ -1,4 +1,4 @@
-package com.kisman.cc.util;
+package com.kisman.cc.util.enums;
 
 public enum LineMode {
     LEFT,

@@ -1,6 +1,6 @@
 package com.kisman.cc.gui;
 
-import com.kisman.cc.util.LineMode;
+import com.kisman.cc.util.enums.LineMode;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

@@ -3,9 +3,9 @@ package com.kisman.cc.command.commands;
 import com.kisman.cc.command.Command;
 import net.minecraft.util.text.TextFormatting;
 
-public class Credits extends Command {
+public class CreditsCommand extends Command {
     private String msg = "";
-    public Credits() {
+    public CreditsCommand() {
         super("credits");
     }
 

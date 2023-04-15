@@ -5,8 +5,8 @@ import com.kisman.cc.hypixel.util.ConfigHandler;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.config.Configuration;
 
-public class SetKey extends Command {
-    public SetKey() {
+public class SetKeyCommand extends Command {
+    public SetKeyCommand() {
         super("setkey");
     }
 

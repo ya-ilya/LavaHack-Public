@@ -2,8 +2,8 @@ package com.kisman.cc.command.commands;
 
 import com.kisman.cc.command.Command;
 
-public class Help extends Command {
-    public Help() {
+public class HelpCommand extends Command {
+    public HelpCommand() {
         super("help");
     }
 

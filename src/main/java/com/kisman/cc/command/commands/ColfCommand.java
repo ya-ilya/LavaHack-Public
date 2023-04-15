@@ -7,8 +7,8 @@ import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 
 import java.util.Base64;
 
-public class ColfCmd extends Command {
-    public ColfCmd() {
+public class ColfCommand extends Command {
+    public ColfCommand() {
         super("colf");
     }
 

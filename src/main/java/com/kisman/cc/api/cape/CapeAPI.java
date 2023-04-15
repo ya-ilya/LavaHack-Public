@@ -1,7 +1,7 @@
 package com.kisman.cc.api.cape;
 
-import com.kisman.cc.api.util.PasteBinAPI;
-import com.kisman.cc.api.util.exception.PasteBinBufferedReaderException;
+import com.kisman.cc.api.pastebin.PasteBinAPI;
+import com.kisman.cc.api.pastebin.exception.PasteBinBufferedReaderException;
 
 import java.util.ArrayList;
 import java.util.List;

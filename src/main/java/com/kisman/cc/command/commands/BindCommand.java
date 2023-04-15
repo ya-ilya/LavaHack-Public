@@ -5,8 +5,8 @@ import com.kisman.cc.command.Command;
 import com.kisman.cc.module.Module;
 import org.lwjgl.input.Keyboard;
 
-public class Bind extends Command{
-    public Bind() {
+public class BindCommand extends Command{
+    public BindCommand() {
         super("bind");
     }
 

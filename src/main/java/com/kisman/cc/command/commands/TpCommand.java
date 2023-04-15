@@ -5,12 +5,12 @@ import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.play.client.CPacketPlayer;
 
-public class Tp extends Command {
+public class TpCommand extends Command {
     private final String regex1 = "-[1-9][0-9]*";
     private final String regex2 = "[1-9][0-9]*";
     private final String regex3 = "-*[^0-9]*";
 
-    public Tp() {
+    public TpCommand() {
         super("tp");
     }
 

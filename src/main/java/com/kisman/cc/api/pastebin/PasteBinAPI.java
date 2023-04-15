@@ -1,6 +1,6 @@
-package com.kisman.cc.api.util;
+package com.kisman.cc.api.pastebin;
 
-import com.kisman.cc.api.util.exception.PasteBinBufferedReaderException;
+import com.kisman.cc.api.pastebin.exception.PasteBinBufferedReaderException;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

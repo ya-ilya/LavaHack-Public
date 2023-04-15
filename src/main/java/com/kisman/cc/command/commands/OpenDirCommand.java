@@ -6,8 +6,8 @@ import net.minecraft.client.Minecraft;
 import java.awt.*;
 import java.io.File;
 
-public class OpenDir extends Command {
-    public OpenDir() {
+public class OpenDirCommand extends Command {
+    public OpenDirCommand() {
         super("opendir");
     }
 

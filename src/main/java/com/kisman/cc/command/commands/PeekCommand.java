@@ -18,10 +18,10 @@ import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class Peek extends Command {
+public class PeekCommand extends Command {
     private GuiScreen screen;
 
-    public Peek() {
+    public PeekCommand() {
         super("peek");
     }
 

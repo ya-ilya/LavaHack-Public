@@ -1,7 +1,7 @@
 package com.kisman.cc.mixin.mixins;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.EventPlayerUpdateMoveState;
+import com.kisman.cc.event.events.PlayerUpdateMoveStateEvent;
 import net.minecraft.util.MovementInput;
 import net.minecraft.util.MovementInputFromOptions;
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,6 +13,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinMovementInputFromOptions extends MovementInput {
     @Inject(method = "updatePlayerMoveState", at = @At("RETURN"))
     public void updatePlayerMoveState(CallbackInfo ci) {
-        Kisman.EVENT_BUS.post(new EventPlayerUpdateMoveState());
+        Kisman.EVENT_BUS.post(new PlayerUpdateMoveStateEvent());
     }
 }

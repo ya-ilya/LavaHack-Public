@@ -1,7 +1,7 @@
 package com.kisman.cc.mixin.mixins;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.EventRenderEntityName;
+import com.kisman.cc.event.events.RenderEntityNameEvent;
 import com.kisman.cc.module.combat.AutoRer;
 import com.kisman.cc.module.combat.KillAura;
 import com.kisman.cc.module.combat.autocrystal.AutoCrystal;
@@ -40,7 +40,7 @@ public class MixinRendererLivingEntity<T extends EntityLivingBase> extends Rende
 
     @Inject(method = "renderName(Lnet/minecraft/entity/Entity;DDD)V", at = @At("HEAD"), cancellable = true)
     private void doRenderName(Entity par1, double par2, double par3, double par4, CallbackInfo ci) {
-        EventRenderEntityName event = new EventRenderEntityName(par1, par2, par2, par4, "", 0);
+        RenderEntityNameEvent event = new RenderEntityNameEvent(par1, par2, par2, par4, "", 0);
         Kisman.EVENT_BUS.post(event);
         if(event.isCancelled()) ci.cancel();
     }

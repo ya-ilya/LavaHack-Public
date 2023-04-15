@@ -1,7 +1,7 @@
 package com.kisman.cc.mixin.mixins;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.EventRenderToolTip;
+import com.kisman.cc.event.events.RenderToolTipEvent;
 import com.kisman.cc.module.render.NoRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -22,7 +22,7 @@ public class MixinGuiScreen extends Gui implements GuiYesNoCallback {
     @Override public void confirmClicked(boolean b, int i) {}
     @Inject(method = "renderToolTip", at = @At("HEAD"), cancellable = true)
     private void toolTipHook(ItemStack itemStack, int x, int y, CallbackInfo ci) {
-        EventRenderToolTip event = new EventRenderToolTip(itemStack, x, y);
+        RenderToolTipEvent event = new RenderToolTipEvent(itemStack, x, y);
         Kisman.EVENT_BUS.post(event);
         if (event.isCancelled()) ci.cancel();
     }

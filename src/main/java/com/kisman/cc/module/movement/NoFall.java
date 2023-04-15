@@ -2,7 +2,7 @@ package com.kisman.cc.module.movement;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.Event;
-import com.kisman.cc.event.events.EventPlayerMotionUpdate;
+import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -74,7 +74,7 @@ public class NoFall extends Module {
     });
 
     @EventHandler
-    private final Listener<EventPlayerMotionUpdate> listener1 = new Listener<>(event -> {
+    private final Listener<PlayerMotionUpdateEvent> listener1 = new Listener<>(event -> {
         if(mode.getValString().equalsIgnoreCase(Mode.Bucket.name())) {
             int bucketSlot = InventoryUtil.findItem(Items.WATER_BUCKET, 0, 9);
             int oldSlot = mc.player.inventory.currentItem;

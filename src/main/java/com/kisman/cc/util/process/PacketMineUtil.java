@@ -1,7 +1,7 @@
 package com.kisman.cc.util.process;
 
-import com.kisman.cc.event.events.EventDamageBlock;
-import com.kisman.cc.event.events.EventPlayerMove;
+import com.kisman.cc.event.events.DamageBlockEvent;
+import com.kisman.cc.event.events.PlayerMoveEvent;
 import com.kisman.cc.util.BlockUtil;
 import com.kisman.cc.util.Globals;
 import com.kisman.cc.util.InventoryUtil;
@@ -42,7 +42,7 @@ public class PacketMineUtil implements Globals {
     }
 
     @EventHandler
-    private final Listener<EventDamageBlock> dmg = new Listener<>(event -> {
+    private final Listener<DamageBlockEvent> dmg = new Listener<>(event -> {
         if (swap) {
             event.cancel();
             return;
@@ -76,7 +76,7 @@ public class PacketMineUtil implements Globals {
     });
 
     @EventHandler
-    private final Listener<EventPlayerMove> listener = new Listener<>(event -> {
+    private final Listener<PlayerMoveEvent> listener = new Listener<>(event -> {
         if (currentPos != null) {
             if (instant) {
                 if (mc.world.getBlockState(currentPos).getBlock() == Blocks.AIR) {

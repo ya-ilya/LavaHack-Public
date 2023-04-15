@@ -1,7 +1,7 @@
 package com.kisman.cc.event;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.EventResolutionUpdate;
+import com.kisman.cc.event.events.ResolutionUpdateEvent;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.event.events.subscribe.TotemPopEvent;
 import com.kisman.cc.hypixel.util.ConfigHandler;
@@ -90,7 +90,7 @@ public class EventProcessor {
         if(oldWidth != mc.displayWidth || oldHeight != mc.displayHeight) {
             oldWidth = mc.displayWidth;
             oldHeight = mc.displayHeight;
-            new EventResolutionUpdate(oldWidth, oldHeight).post();
+            new ResolutionUpdateEvent(oldWidth, oldHeight).post();
         }
         if(CustomMainMenuModule.instance != null) CustomMainMenu.update();
         if(ElytraEquip.instance != null) ElytraEquip.instance.updateState();

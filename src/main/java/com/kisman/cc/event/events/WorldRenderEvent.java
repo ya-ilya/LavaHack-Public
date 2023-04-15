@@ -2,10 +2,10 @@ package com.kisman.cc.event.events;
 
 import com.kisman.cc.event.Event;
 
-public class EventWorldRender extends Event{
+public class WorldRenderEvent extends Event{
     public final float particalTicks;
 
-    public EventWorldRender(float particalTicks) {
+    public WorldRenderEvent(float particalTicks) {
         super();
         this.particalTicks = particalTicks;
     }

@@ -1,7 +1,7 @@
 package com.kisman.cc.module.combat;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.EventPlayerMotionUpdate;
+import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.friend.FriendManager;
 import com.kisman.cc.gui.csgo.components.Slider;
@@ -414,7 +414,7 @@ public class AutoRer extends Module {
     }
 
     @EventHandler
-    private final Listener<EventPlayerMotionUpdate> motion = new Listener<>(event -> {
+    private final Listener<PlayerMotionUpdateEvent> motion = new Listener<>(event -> {
         if(!motionCrystal.getValBoolean() || currentTarget == null) return;
         if(motionCalc.getValBoolean() && fastCalc.getValBoolean() && calcTimer.passedMillis(calcDelay.getValLong())) {
             doCalculatePlace();
@@ -424,7 +424,7 @@ public class AutoRer extends Module {
         else for(int i = 0; i < multiplication.getValInt(); i++) doAutoRerLogic(event, false);
     });
 
-    private void doAutoRerLogic(EventPlayerMotionUpdate event, boolean thread) {
+    private void doAutoRerLogic(PlayerMotionUpdateEvent event, boolean thread) {
         if(logic.getValString().equalsIgnoreCase("PlaceBreak")) {
             doPlace(event, thread);
             if(placePos != null) doBreak();
@@ -729,7 +729,7 @@ public class AutoRer extends Module {
         return mc.player.getDistance(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5) <= (EntityUtil.canSee(pos) ?  placeRange.getValDouble() : placeWallRange.getValDouble());
     }
 
-    private void doPlace(EventPlayerMotionUpdate event, boolean thread) {
+    private void doPlace(PlayerMotionUpdateEvent event, boolean thread) {
         if(!place.getValBoolean() || !placeTimer.passedMillis(placeDelay.getValLong()) || (placePos == null && fastCalc.getValBoolean())) return;
         if(!fastCalc.getValBoolean() || (thread && threadCalc.getValBoolean())) doCalculatePlace();
         if(placePos == null || (!mc.world.getBlockState(placePos.getBlockPos()).getBlock().equals(Blocks.OBSIDIAN) && !mc.world.getBlockState(placePos.getBlockPos()).getBlock().equals(Blocks.BEDROCK))) return;

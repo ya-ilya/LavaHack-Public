@@ -1,7 +1,7 @@
 package com.kisman.cc.mixin.mixins;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.EventCrystalAttack;
+import com.kisman.cc.event.events.CrystalAttackEvent;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.util.DamageSource;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,7 +14,7 @@ public class MixinEntityEnderCrystal {
     @Inject(method = "attackEntityFrom", at = @At("RETURN"), cancellable = true)
     public void attackEntityFrom(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (source.getTrueSource() != null) {
-            EventCrystalAttack event = new EventCrystalAttack(source.getTrueSource().entityId);
+            CrystalAttackEvent event = new CrystalAttackEvent(source.getTrueSource().entityId);
             Kisman.EVENT_BUS.post(event);
             if (event.isCancelled()) cir.cancel();
         }

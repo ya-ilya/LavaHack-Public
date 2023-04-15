@@ -1,10 +1,10 @@
 package com.kisman.cc.mixin.mixins;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.EventPlayerApplyCollision;
-import com.kisman.cc.event.events.EventPlayerJump;
-import com.kisman.cc.event.events.EventPlayerPushedByWater;
-import com.kisman.cc.event.events.EventPlayerTravel;
+import com.kisman.cc.event.events.PlayerApplyCollisionEvent;
+import com.kisman.cc.event.events.PlayerJumpEvent;
+import com.kisman.cc.event.events.PlayerPushedByWaterEvent;
+import com.kisman.cc.event.events.PlayerTravelEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
@@ -27,7 +27,7 @@ public class MixinEntityPlayer extends MixinEntityLivingBase {
     @Inject(method = "jump", at = @At("HEAD"), cancellable = true)
     private void onJump(CallbackInfo ci) {
         if(Minecraft.getMinecraft().player.getName().equals(getName())) {
-            EventPlayerJump event = new EventPlayerJump();
+            PlayerJumpEvent event = new PlayerJumpEvent();
             Kisman.EVENT_BUS.post(event);
             if(event.isCancelled()) ci.cancel();
         }
@@ -35,7 +35,7 @@ public class MixinEntityPlayer extends MixinEntityLivingBase {
 
     @Inject(method = "travel", at = @At("HEAD"), cancellable = true)
     private void onTravel(float strafe, float vertical, float forward, CallbackInfo ci) {
-        EventPlayerTravel event = new EventPlayerTravel(strafe, vertical, forward);
+        PlayerTravelEvent event = new PlayerTravelEvent(strafe, vertical, forward);
         Kisman.EVENT_BUS.post(event);
 
         if(event.isCancelled()) {
@@ -46,7 +46,7 @@ public class MixinEntityPlayer extends MixinEntityLivingBase {
 
     @Inject(method = "applyEntityCollision", at = @At("HEAD"), cancellable = true)
     private void applyEntityCollision(Entity entity, CallbackInfo ci) {
-        EventPlayerApplyCollision event = new EventPlayerApplyCollision(entity);
+        PlayerApplyCollisionEvent event = new PlayerApplyCollisionEvent(entity);
         Kisman.EVENT_BUS.post(event);
 
         if (event.isCancelled()) ci.cancel();
@@ -54,7 +54,7 @@ public class MixinEntityPlayer extends MixinEntityLivingBase {
 
     @Inject(method = "isPushedByWater()Z", at = @At("HEAD"), cancellable = true)
     private void isPushedByWater(CallbackInfoReturnable<Boolean> cir) {
-        EventPlayerPushedByWater event = new EventPlayerPushedByWater();
+        PlayerPushedByWaterEvent event = new PlayerPushedByWaterEvent();
         Kisman.EVENT_BUS.post(event);
 
         if (event.isCancelled()) cir.setReturnValue(false);

@@ -2,7 +2,7 @@ package com.kisman.cc.module.player;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.Event;
-import com.kisman.cc.event.events.EventPlayerMotionUpdate;
+import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -101,7 +101,7 @@ public class FastPlace extends Module {
     }
 
     @EventHandler
-    private final Listener<EventPlayerMotionUpdate> listener = new Listener<>(event -> {
+    private final Listener<PlayerMotionUpdateEvent> listener = new Listener<>(event -> {
         if (event.getEra().equals(Event.Era.PRE) && this.feetExp.getValBoolean()) {
             final boolean mainHand = mc.player.getHeldItemMainhand().getItem() == Items.EXPERIENCE_BOTTLE;
             final boolean offHand = (mc.player.getHeldItemOffhand().getItem() == Items.EXPERIENCE_BOTTLE);

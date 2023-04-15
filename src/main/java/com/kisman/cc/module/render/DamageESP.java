@@ -1,7 +1,7 @@
 package com.kisman.cc.module.render;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.lua.EventRender2D;
+import com.kisman.cc.event.events.lua.Render2DEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -90,7 +90,7 @@ public class DamageESP extends Module {
     }
 
     @EventHandler
-    private final Listener<EventRender2D> listener = new Listener<>(event -> {
+    private final Listener<Render2DEvent> listener = new Listener<>(event -> {
         if(damages.isEmpty()) return;
         for(Damage damage : damages) {
             if(mc.player.getDistance(damage.entity) > range.getValInt()) continue;

@@ -1,9 +1,9 @@
 package com.kisman.cc.module.player;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.EventPlayerApplyCollision;
-import com.kisman.cc.event.events.EventPlayerPushOutOfBlocks;
-import com.kisman.cc.event.events.EventPlayerPushedByWater;
+import com.kisman.cc.event.events.PlayerApplyCollisionEvent;
+import com.kisman.cc.event.events.PlayerPushOutOfBlocksEvent;
+import com.kisman.cc.event.events.PlayerPushedByWaterEvent;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -72,17 +72,17 @@ public class Velocity extends Module{
     }
 
     @EventHandler
-    private final Listener<EventPlayerApplyCollision> listener = new Listener<>(event -> {
+    private final Listener<PlayerApplyCollisionEvent> listener = new Listener<>(event -> {
         if(noPush.getValBoolean()) event.cancel();
     });
 
     @EventHandler
-    private final Listener<EventPlayerPushedByWater> listener1 = new Listener<>(event -> {
+    private final Listener<PlayerPushedByWaterEvent> listener1 = new Listener<>(event -> {
         if(noPush.getValBoolean()) event.cancel();
     });
 
     @EventHandler
-    private final Listener<EventPlayerPushOutOfBlocks> listener2 = new Listener<>(event -> {
+    private final Listener<PlayerPushOutOfBlocksEvent> listener2 = new Listener<>(event -> {
         if(noPush.getValBoolean()) event.cancel();
     });
 

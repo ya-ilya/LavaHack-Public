@@ -2,10 +2,10 @@ package com.kisman.cc.mixin.mixins;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.Event;
-import com.kisman.cc.event.events.EventPlayerMotionUpdate;
-import com.kisman.cc.event.events.EventPlayerMove;
-import com.kisman.cc.event.events.EventPlayerPushOutOfBlocks;
-import com.kisman.cc.event.events.EventPlayerUpdate;
+import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
+import com.kisman.cc.event.events.PlayerMoveEvent;
+import com.kisman.cc.event.events.PlayerPushOutOfBlocksEvent;
+import com.kisman.cc.event.events.PlayerUpdateEvent;
 import com.kisman.cc.module.movement.NoSlowSneak;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -37,7 +37,7 @@ public class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
 
     @Inject(method = "move", at = @At("HEAD"), cancellable = true)
     public void move(MoverType type, double x, double y, double z, CallbackInfo ci) {
-        EventPlayerMove event = new EventPlayerMove(type, x, y, z);
+        PlayerMoveEvent event = new PlayerMoveEvent(type, x, y, z);
         Kisman.EVENT_BUS.post(event);
         if (event.isCancelled()) {
             move(type, event.x, event.y, event.z);
@@ -47,7 +47,7 @@ public class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
 
     @Inject(method = "onUpdateWalkingPlayer", at = @At("HEAD"), cancellable = true)
     public void onPreUpdateWalkingPlayer(CallbackInfo ci) {
-        EventPlayerMotionUpdate event = new EventPlayerMotionUpdate(Event.Era.PRE, rotationYaw, rotationPitch, this.posX, this.getEntityBoundingBox().minY, this.posZ, this.onGround);
+        PlayerMotionUpdateEvent event = new PlayerMotionUpdateEvent(Event.Era.PRE, rotationYaw, rotationPitch, this.posX, this.getEntityBoundingBox().minY, this.posZ, this.onGround);
         Kisman.EVENT_BUS.post(event);
         this.rotationYaw = event.getYaw();
         this.rotationPitch = event.getPitch();
@@ -56,21 +56,21 @@ public class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
 
     @Inject(method = "onUpdateWalkingPlayer", at = @At("RETURN"), cancellable = true)
     public void onPostUpdateWalkingPlayer(CallbackInfo ci) {
-        EventPlayerMotionUpdate event = new EventPlayerMotionUpdate(Event.Era.POST, rotationYaw, rotationPitch, this.posX, this.getEntityBoundingBox().minY, this.posZ, this.onGround);
+        PlayerMotionUpdateEvent event = new PlayerMotionUpdateEvent(Event.Era.POST, rotationYaw, rotationPitch, this.posX, this.getEntityBoundingBox().minY, this.posZ, this.onGround);
         Kisman.EVENT_BUS.post(event);
         if(event.isCancelled()) ci.cancel();
     }
 
     @Inject(method = "onUpdate", at = @At("HEAD"), cancellable = true)
     public void onUpdate(CallbackInfo ci) {
-        EventPlayerUpdate event = new EventPlayerUpdate();
+        PlayerUpdateEvent event = new PlayerUpdateEvent();
         Kisman.EVENT_BUS.post(event);
         if (event.isCancelled()) ci.cancel();
     }
 
     @Inject(method = "pushOutOfBlocks(DDD)Z", at = @At("HEAD"), cancellable = true)
     public void pushOutOfBlocks(double x, double y, double z, CallbackInfoReturnable<Boolean> cir) {
-        EventPlayerPushOutOfBlocks event = new EventPlayerPushOutOfBlocks(x, y, z);
+        PlayerPushOutOfBlocksEvent event = new PlayerPushOutOfBlocksEvent(x, y, z);
         Kisman.EVENT_BUS.post(event);
         if (event.isCancelled()) cir.setReturnValue(false);
     }

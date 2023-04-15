@@ -1,7 +1,7 @@
 package com.kisman.cc.module.movement;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.EventPlayerUpdate;
+import com.kisman.cc.event.events.PlayerUpdateEvent;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.mixin.mixins.accessor.AccessorEntityPlayer;
@@ -371,6 +371,6 @@ public class Speed extends Module {
         }
     });
 
-    @EventHandler private final Listener<EventPlayerUpdate> listener = new Listener<>(event -> {if(speedMode.getValString().equalsIgnoreCase("Sti")) mc.timer.tickLength = 50 / getSpeed();});
+    @EventHandler private final Listener<PlayerUpdateEvent> listener = new Listener<>(event -> {if(speedMode.getValString().equalsIgnoreCase("Sti")) mc.timer.tickLength = 50 / getSpeed();});
     private float getSpeed() {return Math.max((float) stiSpeed.getValDouble(), 0.1f);}
 }

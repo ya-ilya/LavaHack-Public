@@ -1,7 +1,7 @@
 package com.kisman.cc.gui.csgo;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.client.settings.EventSettingChange;
+import com.kisman.cc.event.events.client.settings.SettingChangeEvent;
 import com.kisman.cc.gui.MainGui;
 import com.kisman.cc.gui.csgo.components.Button;
 import com.kisman.cc.gui.csgo.components.Label;
@@ -197,7 +197,7 @@ public class ClickGuiNew extends GuiScreen {
                                     settingPane.addComponent(cb);
                                     cb.setListener(val -> {
                                         set.setValBoolean(val);
-                                        Kisman.EVENT_BUS.post(new EventSettingChange.BooleanSetting(set));
+                                        Kisman.EVENT_BUS.post(new SettingChangeEvent.BooleanSetting(set));
                                         return true;
                                     });
 
@@ -249,7 +249,7 @@ public class ClickGuiNew extends GuiScreen {
                                     cb.setListener(val -> {
                                         set.setValString(set.getStringFromIndex(val));
                                         set.setIndex(val);
-                                        Kisman.EVENT_BUS.post(new EventSettingChange.ModeSetting(set));
+                                        Kisman.EVENT_BUS.post(new SettingChangeEvent.ModeSetting(set));
                                         return true;
                                     });
 

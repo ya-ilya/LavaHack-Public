@@ -1,7 +1,7 @@
 package com.kisman.cc.module.movement;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.EventPlayerTravel;
+import com.kisman.cc.event.events.PlayerTravelEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -91,7 +91,7 @@ public class ElytraFly extends Module {
     }
 
     @EventHandler
-    private final Listener<EventPlayerTravel> listener = new Listener<>(event -> {
+    private final Listener<PlayerTravelEvent> listener = new Listener<>(event -> {
         if (mc.player == null) return;
         if (mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.ELYTRA) return;
 
@@ -120,7 +120,7 @@ public class ElytraFly extends Module {
         }
     });
 
-    private void handleNormalPacketModeElytra(EventPlayerTravel travel) {
+    private void handleNormalPacketModeElytra(PlayerTravelEvent travel) {
         double[] dir = MathUtil.directionSpeedNoForward(speed.getValDouble());
 
         if (mc.player.movementInput.jump) mc.player.motionY = speed.getValDouble();
@@ -133,7 +133,7 @@ public class ElytraFly extends Module {
         mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_FALL_FLYING));
     }
 
-    private void handleImmediateModeElytra(EventPlayerTravel travel) {
+    private void handleImmediateModeElytra(PlayerTravelEvent travel) {
         if (mc.player.movementInput.jump) {
             double motionSq = Math.sqrt(mc.player.motionX * mc.player.motionX + mc.player.motionZ * mc.player.motionZ);
 
@@ -170,7 +170,7 @@ public class ElytraFly extends Module {
         mc.player.limbSwing = 0;
     }
 
-    private void handleControlMode(EventPlayerTravel event) {
+    private void handleControlMode(PlayerTravelEvent event) {
         final double[] dir = MathUtil.directionSpeed(speed.getValDouble());
 
         if (mc.player.movementInput.moveStrafe != 0 || mc.player.movementInput.moveForward != 0) {

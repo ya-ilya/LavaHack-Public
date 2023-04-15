@@ -4,11 +4,11 @@ import com.kisman.cc.event.Event;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
-public class EventDamageBlock extends Event {
+public class DamageBlockEvent extends Event {
     private BlockPos blockPos;
     private EnumFacing faceDirection;
 
-    public EventDamageBlock(BlockPos blockPos, EnumFacing faceDirection) {
+    public DamageBlockEvent(BlockPos blockPos, EnumFacing faceDirection) {
         this.blockPos = blockPos;
         this.faceDirection = faceDirection;
     }

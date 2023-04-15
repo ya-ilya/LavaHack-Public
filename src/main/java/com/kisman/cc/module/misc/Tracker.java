@@ -1,8 +1,8 @@
 package com.kisman.cc.module.misc;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.EventPlayerMotionUpdate;
-import com.kisman.cc.event.events.EventSpawnEntity;
+import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
+import com.kisman.cc.event.events.SpawnEntityEvent;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -146,14 +146,14 @@ public class Tracker extends Module {
     });
 
     @EventHandler
-    private final Listener<EventPlayerMotionUpdate> listener3 = new Listener<>(event -> {
+    private final Listener<PlayerMotionUpdateEvent> listener3 = new Listener<>(event -> {
         if(shouldEnable && timer.passedSec(5L) && !super.isToggled()) {
             super.setToggled(true);
         }
     });
 
     @EventHandler
-    private final Listener<EventSpawnEntity> listener4 = new Listener<>(event -> {
+    private final Listener<SpawnEntityEvent> listener4 = new Listener<>(event -> {
         if (event.entity instanceof EntityExpBottle && Objects.equals(mc.world.getClosestPlayerToEntity(event.entity, 3.0), this.trackedPlayer)) {
             ++this.usedExp;
         }

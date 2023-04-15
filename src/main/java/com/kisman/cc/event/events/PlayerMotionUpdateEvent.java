@@ -5,7 +5,7 @@ import net.minecraft.client.entity.EntityPlayerSP;
 
 import java.util.function.Consumer;
 
-public class EventPlayerMotionUpdate extends Event {
+public class PlayerMotionUpdateEvent extends Event {
     protected float yaw;
     protected float pitch;
     protected double x;
@@ -15,7 +15,7 @@ public class EventPlayerMotionUpdate extends Event {
     private Consumer<EntityPlayerSP> funcToCall;
     private boolean isForceCancelled;
 
-    public EventPlayerMotionUpdate(Era era, float yaw, float pitch, double posX, double posY, double posZ, boolean OnGround) {
+    public PlayerMotionUpdateEvent(Era era, float yaw, float pitch, double posX, double posY, double posZ, boolean OnGround) {
         super(era);
         this.funcToCall = null;
         this.yaw = yaw;

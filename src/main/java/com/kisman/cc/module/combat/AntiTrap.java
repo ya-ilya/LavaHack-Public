@@ -2,7 +2,7 @@ package com.kisman.cc.module.combat;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.Event;
-import com.kisman.cc.event.events.EventPlayerMotionUpdate;
+import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -74,7 +74,7 @@ public class AntiTrap extends Module {
         if(mode.getValString().equalsIgnoreCase("ClientTick")) doAntiTrap();
     }
 
-    @EventHandler private final Listener<EventPlayerMotionUpdate> listener = new Listener<>(event -> {if(event.getEra() == Event.Era.PRE && mode.getValString().equalsIgnoreCase("MotionTick")) doAntiTrap();});
+    @EventHandler private final Listener<PlayerMotionUpdateEvent> listener = new Listener<>(event -> {if(event.getEra() == Event.Era.PRE && mode.getValString().equalsIgnoreCase("MotionTick")) doAntiTrap();});
 
     private void doAntiTrap() {
         if(timer.passedMillis(delay.getValInt())) timer.reset();

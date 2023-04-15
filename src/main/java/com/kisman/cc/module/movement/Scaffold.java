@@ -1,8 +1,8 @@
 package com.kisman.cc.module.movement;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.EventPlayerJump;
-import com.kisman.cc.event.events.EventPlayerMove;
+import com.kisman.cc.event.events.PlayerJumpEvent;
+import com.kisman.cc.event.events.PlayerMoveEvent;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.module.Category;
@@ -80,7 +80,7 @@ public class Scaffold extends Module {
     }
 
     @EventHandler
-    private final Listener<EventPlayerJump> listener = new Listener<>(event -> {
+    private final Listener<PlayerJumpEvent> listener = new Listener<>(event -> {
         if(towerMode.checkValString(TowerMode.FakeJump.name())) event.cancel();
     });
 
@@ -93,7 +93,7 @@ public class Scaffold extends Module {
     });
 
     @EventHandler
-    private final Listener<EventPlayerMove> listener2 = new Listener<>(event -> {
+    private final Listener<PlayerMoveEvent> listener2 = new Listener<>(event -> {
         oldSlot = mc.player.inventory.currentItem;
         towerPos = new BlockPos(mc.player.posX, mc.player.posY - 1, mc.player.posZ);
         downPos = new BlockPos(mc.player.posX, mc.player.posY - 2, mc.player.posZ);

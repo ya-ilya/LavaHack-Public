@@ -3,7 +3,7 @@ package com.kisman.cc.module.movement;
 import com.kisman.cc.Kisman;
 import com.kisman.cc.console.GuiConsole;
 import com.kisman.cc.console.rewrite.ConsoleGui;
-import com.kisman.cc.event.events.EventPlayerUpdateMoveState;
+import com.kisman.cc.event.events.PlayerUpdateMoveStateEvent;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.gui.ClickGui;
 import com.kisman.cc.module.Category;
@@ -106,7 +106,7 @@ public class NoSlow extends Module {
     }
 
     @EventHandler
-    private final Listener<EventPlayerUpdateMoveState> listener = new Listener<>(event -> {
+    private final Listener<PlayerUpdateMoveStateEvent> listener = new Listener<>(event -> {
         if (invMove.getValBoolean() && mc.currentScreen != null) {
             if(mc.currentScreen instanceof GuiChat && ignoreChat.getValBoolean()) return;
             if((mc.currentScreen instanceof GuiConsole || mc.currentScreen instanceof ConsoleGui) && ignoreConsole.getValBoolean()) return;
@@ -146,7 +146,7 @@ public class NoSlow extends Module {
     });
 
     @EventHandler
-    private final Listener<EventPlayerUpdateMoveState> listener1 = new Listener<>(event -> {
+    private final Listener<PlayerUpdateMoveStateEvent> listener1 = new Listener<>(event -> {
         if(items.getValBoolean() && mc.player.isHandActive() && !mc.player.isRiding()) {
             mc.player.movementInput.moveForward /= 0.2;
             mc.player.movementInput.moveStrafe /= 0.2;

@@ -2,8 +2,8 @@ package com.kisman.cc.module.player;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.Event;
-import com.kisman.cc.event.events.EventPlayerMotionUpdate;
-import com.kisman.cc.event.events.EventPlayerPushOutOfBlocks;
+import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
+import com.kisman.cc.event.events.PlayerPushOutOfBlocksEvent;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -98,10 +98,10 @@ public class FreeCam
     });
 
     @EventHandler
-    private final Listener<EventPlayerPushOutOfBlocks> pushOutOfBlocksListener = new Listener<>(Cancellable::cancel);
+    private final Listener<PlayerPushOutOfBlocksEvent> pushOutOfBlocksListener = new Listener<>(Cancellable::cancel);
 
     @EventHandler
-    private final Listener<EventPlayerMotionUpdate> motionUpdateListener = new Listener<>(event -> {
+    private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = new Listener<>(event -> {
         if (event.getEra() == Event.Era.PRE) {
             event.cancel();
         }

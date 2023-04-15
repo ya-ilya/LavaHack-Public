@@ -1,7 +1,7 @@
 package com.kisman.cc.mixin.mixins;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.EventDisconnect;
+import com.kisman.cc.event.events.DisconnectEvent;
 import com.kisman.cc.event.events.NetworkPacketEvent;
 import com.kisman.cc.event.events.PacketEvent;
 import io.netty.channel.ChannelHandlerContext;
@@ -55,6 +55,6 @@ public class MixinNetworkManager {
 
     @Inject(method = "closeChannel", at = @At(value = "INVOKE", target = "Lio/netty/channel/Channel;isOpen()Z", remap = false))
     public void doCloseChannel(ITextComponent message, CallbackInfo ci) {
-        if(isChannelOpen()) Kisman.EVENT_BUS.post(new EventDisconnect(message));
+        if(isChannelOpen()) Kisman.EVENT_BUS.post(new DisconnectEvent(message));
     }
 }

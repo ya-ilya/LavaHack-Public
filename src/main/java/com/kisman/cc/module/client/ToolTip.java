@@ -1,7 +1,7 @@
 package com.kisman.cc.module.client;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.EventRenderToolTip;
+import com.kisman.cc.event.events.RenderToolTipEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
@@ -38,7 +38,7 @@ public class ToolTip extends Module {
     }
 
     @EventHandler
-    private final Listener<EventRenderToolTip> tooltip = new Listener<>(event -> {
+    private final Listener<RenderToolTipEvent> tooltip = new Listener<>(event -> {
         if (shulkers.getValBoolean() && event.stack.getItem() instanceof ItemShulkerBox) {
             renderShulkerTip(event.stack, event.x, event.y);
             event.cancel();

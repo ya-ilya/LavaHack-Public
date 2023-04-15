@@ -2,11 +2,11 @@ package com.kisman.cc.event.events;
 
 import com.kisman.cc.event.Event;
 
-public class EventEntityRender extends Event {
+public class EntityRenderEvent extends Event {
     private float partialTicks;
     private Era era;
 
-    public EventEntityRender(float partialTicks, Era era) {
+    public EntityRenderEvent(float partialTicks, Era era) {
         this.partialTicks = partialTicks;
         this.era = era;
     }

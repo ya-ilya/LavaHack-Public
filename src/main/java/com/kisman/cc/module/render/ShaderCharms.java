@@ -139,12 +139,10 @@ public class ShaderCharms extends Module {
     }
 
     public void onEnable() {
-        super.onEnable();
         Kisman.EVENT_BUS.subscribe(renderListener);
     }
 
     public void onDisable() {
-        super.onDisable();
         Kisman.EVENT_BUS.unsubscribe(renderListener);
     }
 

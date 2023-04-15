@@ -52,7 +52,6 @@ public class FreeCam extends Module {
         Kisman.EVENT_BUS.subscribe(packetListener);
         Kisman.EVENT_BUS.subscribe(pushOutOfBlocksListener);
         Kisman.EVENT_BUS.subscribe(motionUpdateListener);
-        super.onEnable();
         if (mc.player == null || mc.world == null || mc.player.ticksExisted < 1) {
             if (this.autoTeleportDisable.getValBoolean()) {
                 this.toggle();
@@ -77,7 +76,7 @@ public class FreeCam extends Module {
         mc.player.motionX = 0.0;
         mc.player.noClip = true;
         mc.player.setPositionAndRotation(this.oldX, this.oldY, this.oldZ, mc.player.rotationYaw, mc.player.rotationPitch);
-        super.onDisable();
+        
         if (mc.player == null || mc.world == null || mc.player.ticksExisted < 1) {
             if (this.autoTeleportDisable.getValBoolean()) {
                 this.toggle();

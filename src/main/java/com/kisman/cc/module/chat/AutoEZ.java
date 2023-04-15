@@ -34,7 +34,6 @@ public class AutoEZ extends Module {
     }
 
     public void onEnable() {
-        super.onEnable();
         targetedPlayers = new ConcurrentHashMap<>();
         Kisman.EVENT_BUS.subscribe(send);
     }
@@ -117,7 +116,7 @@ public class AutoEZ extends Module {
     }
 
     public void onDisable() {
-        super.onDisable();
+        
         targetedPlayers = null;
     }
 }

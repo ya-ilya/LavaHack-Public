@@ -46,16 +46,32 @@ public class Module {
 		if(block) return;
 		this.toggled = toggled;
 		if (Kisman.instance.init && Kisman.instance.moduleManager.getModule("Notification").isToggled()) ChatUtils.message(TextFormatting.GRAY + "Module " + (isToggled() ? TextFormatting.GREEN : TextFormatting.RED) + getName() + TextFormatting.GRAY + " has been " + (isToggled() ? "enabled" : "disabled") + "!");
-		if (this.toggled) onEnable();
-		else onDisable();
+		if (this.toggled) {
+			enable();
+		} else {
+			disable();
+		}
 	}
 
 	public void toggle() {
 		if(block) return;
 		toggled = !toggled;
 		if (Kisman.instance.init && Kisman.instance.moduleManager.getModule("Notification").isToggled()) ChatUtils.message(TextFormatting.GRAY + "Module " + (isToggled() ? TextFormatting.GREEN : TextFormatting.RED) + getName() + TextFormatting.GRAY + " has been " + (isToggled() ? "enabled" : "disabled") + "!");
-		if (toggled) onEnable();
-		else onDisable();
+		if (toggled) {
+			enable();
+		} else {
+			disable();
+		}
+	}
+
+	private void enable() {
+		if (subscribes) MinecraftForge.EVENT_BUS.register(this);
+		onEnable();
+	}
+
+	private void disable() {
+		if (subscribes) MinecraftForge.EVENT_BUS.unregister(this);
+		onDisable();
 	}
 
 	public Setting register(Setting set) {
@@ -70,8 +86,8 @@ public class Module {
 	public void setPriority(int priority) {this.priority = priority;}
 	public void setKey(int key) {this.key = key;}
 	public boolean isToggled() {return toggled;}
-	public void onEnable() {if(subscribes) MinecraftForge.EVENT_BUS.register(this);}
-	public void onDisable() {if(subscribes) MinecraftForge.EVENT_BUS.unregister(this);}
+	public void onEnable() { }
+	public void onDisable() { }
 	public String getName() {return this.name;}
 	public Category getCategory() {return this.category;}
 	public String getCategoryName() {return this.category.name();} //lua

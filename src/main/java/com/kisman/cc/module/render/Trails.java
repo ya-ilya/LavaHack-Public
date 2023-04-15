@@ -25,7 +25,6 @@ public class Trails extends Module {
     }
 
     public void onEnable() {
-        super.onEnable();
         bcs.clear();
     }
 

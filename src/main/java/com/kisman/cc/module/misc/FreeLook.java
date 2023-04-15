@@ -23,7 +23,6 @@ public class FreeLook extends Module {
     }
 
     public void onEnable() {
-        super.onEnable();
         Kisman.EVENT_BUS.subscribe(listener);
         dYaw = dPitch = 0;
 
@@ -32,7 +31,6 @@ public class FreeLook extends Module {
     }
 
     public void onDisable() {
-        super.onDisable();
         Kisman.EVENT_BUS.unsubscribe(listener);
         if(mc.player == null || mc.world == null) return;
         if (autoThirdPerson.getValBoolean()) mc.gameSettings.thirdPersonView = 0;

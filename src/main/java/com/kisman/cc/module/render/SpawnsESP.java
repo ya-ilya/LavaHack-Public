@@ -47,12 +47,10 @@ public class SpawnsESP extends Module {
     }
 
     public void onEnable() {
-        super.onEnable();
         Kisman.EVENT_BUS.subscribe(listener);
     }
 
     public void onDisable() {
-        super.onDisable();
         Kisman.EVENT_BUS.unsubscribe(listener);
     }
 

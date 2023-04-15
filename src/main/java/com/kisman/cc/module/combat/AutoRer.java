@@ -269,7 +269,6 @@ public class AutoRer extends Module {
     }
 
     public void onEnable() {
-        super.onEnable();
         renderer.reset();
         placedList.clear();
         breakTimer.reset();
@@ -291,7 +290,7 @@ public class AutoRer extends Module {
     }
 
     public void onDisable() {
-        super.onDisable();
+        
         if(subscribed) {
             Kisman.EVENT_BUS.unsubscribe(listener);
             Kisman.EVENT_BUS.unsubscribe(listener1);

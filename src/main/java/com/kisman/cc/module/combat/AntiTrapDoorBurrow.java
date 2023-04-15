@@ -44,7 +44,6 @@ public class AntiTrapDoorBurrow extends Module {
     }
 
     public void onEnable() {
-        super.onEnable();
         currentPos = null;
         timer.reset();
     }

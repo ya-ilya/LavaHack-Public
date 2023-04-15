@@ -27,13 +27,11 @@ public class TeamRusherLag extends Module {
     public boolean isBeta() {return true;}
 
     public void onEnable() {
-        super.onEnable();
         Kisman.EVENT_BUS.subscribe(listener);
         lastPacket = 0L;
     }
 
     public void onDisable() {
-        super.onDisable();
         Kisman.EVENT_BUS.unsubscribe(listener);
         lastPacket = 0L;
     }

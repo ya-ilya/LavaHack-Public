@@ -96,7 +96,6 @@ public class AntiTrap extends Module {
             if (!CrystalUtils.canPlaceCrystal(pos)) continue;
 
             placeCrystal(pos);
-            super.onDisable();
             break;
         }
     }

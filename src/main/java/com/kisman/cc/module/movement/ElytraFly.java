@@ -66,7 +66,7 @@ public class ElytraFly extends Module {
 
         elytraSlot = -1;
 
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
 
         if(equipElytra.getValBoolean()) {
             if(mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.ELYTRA) elytraSlot = InventoryUtil.findItem(Items.ELYTRA, 0, 36);

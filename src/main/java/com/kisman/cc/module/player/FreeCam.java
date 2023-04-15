@@ -2,9 +2,9 @@ package com.kisman.cc.module.player;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.Event;
+import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
 import com.kisman.cc.event.events.PlayerPushOutOfBlocksEvent;
-import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.player.freecam.MovementHelper;
@@ -19,8 +19,7 @@ import net.minecraft.network.play.server.SPacketPlayerPosLook;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class FreeCam
-        extends Module {
+public class FreeCam extends Module {
     public final Setting speed = new Setting("Flying Speed",this, 1.0f, 0.1f, 5.0f, false);
     public final Setting disableOnDamage = new Setting("Disable on damage",this,false);
     public final Setting clipOnDisable = new Setting("Clip on disable", this,false);

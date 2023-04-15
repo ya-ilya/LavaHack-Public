@@ -81,7 +81,7 @@ public class CrystalFiller extends Module {
     }
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
 
         target = EntityUtil.getTarget(range.getValFloat());
 

@@ -19,7 +19,7 @@ public class AutoTotem extends Module {
     public boolean isBeta() {return true;}
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
 
         int totemSlot = 0;
 
@@ -39,7 +39,7 @@ public class AutoTotem extends Module {
         }
 
         if(mc.player.getHealth() + mc.player.getAbsorptionAmount() < health) {
-            if(offhand == null || offhand.getItem() == Items.TOTEM_OF_UNDYING) {
+            if(offhand.getItem() == Items.TOTEM_OF_UNDYING) {
                 return;
             }
 

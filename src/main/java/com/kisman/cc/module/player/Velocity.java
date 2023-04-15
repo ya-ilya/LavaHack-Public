@@ -1,10 +1,10 @@
 package com.kisman.cc.module.player;
 
 import com.kisman.cc.Kisman;
+import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.event.events.PlayerApplyCollisionEvent;
 import com.kisman.cc.event.events.PlayerPushOutOfBlocksEvent;
 import com.kisman.cc.event.events.PlayerPushedByWaterEvent;
-import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;

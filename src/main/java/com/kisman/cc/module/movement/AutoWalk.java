@@ -9,13 +9,13 @@ public class AutoWalk extends Module{
     }
 
     public void onDisable() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
 
         mc.gameSettings.keyBindForward.pressed = false;
     }
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
 
         mc.gameSettings.keyBindForward.pressed = true;
     }

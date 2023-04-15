@@ -16,7 +16,7 @@ public class Swing extends Module {
     }
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
 
         if(mode.getValString().equals(Hand.MAINHAND.name())) {
             mc.player.swingingHand = EnumHand.MAIN_HAND;

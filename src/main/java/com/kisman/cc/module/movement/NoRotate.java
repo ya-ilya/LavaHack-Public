@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 public class NoRotate extends Module {
     private final Setting waitDelay = new Setting("Delay", this, 2500, 0, 10000, true);
 
-    private TimerUtils timer = new TimerUtils();
+    private final TimerUtils timer = new TimerUtils();
     private boolean cancelPackets = true;
     private boolean timerReset = false;
 

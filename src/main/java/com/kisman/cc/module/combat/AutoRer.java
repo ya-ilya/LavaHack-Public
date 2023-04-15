@@ -1,8 +1,8 @@
 package com.kisman.cc.module.combat;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
 import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
 import com.kisman.cc.friend.FriendManager;
 import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.module.Category;
@@ -168,7 +168,7 @@ public class AutoRer extends Module {
     private boolean subscribed = false;
 
     private final AutoRerRenderer renderer = new AutoRerRenderer();
-    private RenderingRewritePattern renderer_;
+    private final RenderingRewritePattern renderer_;
 
     public AutoRer() {
         super("AutoRer", Category.COMBAT);

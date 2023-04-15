@@ -62,11 +62,11 @@ public class AutoFirework extends Module {
     private final Setting handLine = new Setting("HandLine", this, "Hand");
     private final Setting fireHand = new Setting("FireworkHand", this, "Default", new ArrayList<>(Arrays.asList("Default", "MainHand", "OffHand")));
 
-    private TimerUtils trapTimer = new TimerUtils();
-    private TimerUtils delayTimer = new TimerUtils();
+    private final TimerUtils trapTimer = new TimerUtils();
+    private final TimerUtils delayTimer = new TimerUtils();
 
-    private Map<BlockPos, Integer> retries = new HashMap<>();
-    private TimerUtils retryTimer = new TimerUtils();
+    private final Map<BlockPos, Integer> retries = new HashMap<>();
+    private final TimerUtils retryTimer = new TimerUtils();
     private boolean didPlace = false;
     private boolean isSneaking;
     private int lastHotbarSlot;
@@ -74,7 +74,7 @@ public class AutoFirework extends Module {
     private boolean smartRotate = false;
     private BlockPos startPos = null;
 
-    private AimBot aimBot;
+    private final AimBot aimBot;
     public EntityPlayer target = null;
 
     public AutoFirework() {
@@ -128,7 +128,7 @@ public class AutoFirework extends Module {
     }
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
 
         if(target != null) super.setDisplayInfo("[" +  target.getDisplayName().getFormattedText() + TextFormatting.GRAY + "]");
         else super.setDisplayInfo("");

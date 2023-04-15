@@ -2,8 +2,8 @@ package com.kisman.cc.module.movement;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.Event;
-import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
 import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;

@@ -55,7 +55,7 @@ public class OffHand extends Module {
     }
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
         if (mc.currentScreen != null && (!(mc.currentScreen instanceof GuiInventory))) return;
 
         super.setDisplayInfo("[" + mode.getValString() + "]");

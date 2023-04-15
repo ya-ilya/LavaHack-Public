@@ -13,13 +13,13 @@ public class StorageESP extends Module{
     private final Setting distance = new Setting("Distance(Squared)", this, 4000, 10, 4000, true);
     private final Setting colorAlpha = new Setting("Color Alpha", this, 255, 0, 255, true);
 
-    boolean chest = true;
-    boolean eChest = true;
-    boolean shulkerBox = true;
-    boolean dispenser = true;
-    boolean furnace = true;
-    boolean hopper = true;
-    boolean dropper = true;
+    private boolean chest = true;
+    private boolean eChest = true;
+    private boolean shulkerBox = true;
+    private boolean dispenser = true;
+    private boolean furnace = true;
+    private boolean hopper = true;
+    private boolean dropper = true;
 
     private final BoxRendererPattern renderer = new BoxRendererPattern(this);
 

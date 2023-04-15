@@ -1,9 +1,9 @@
 package com.kisman.cc.module.movement;
 
 import com.kisman.cc.Kisman;
+import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.event.events.PlayerJumpEvent;
 import com.kisman.cc.event.events.PlayerMoveEvent;
-import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -36,11 +36,8 @@ public class Scaffold extends Module {
     private int oldSlot;
     private int newSlot;
     private double oldTower;
-    private EntityPlayer predictPlayer;
     private BlockPos scaffold;
-    private BlockPos towerPos;
-    private BlockPos downPos;
-    private TimerUtils cancelTimer = new TimerUtils();
+    private final TimerUtils cancelTimer = new TimerUtils();
     private CPacketPlayer.Rotation rotVec = null;
 
     public Scaffold() {
@@ -95,11 +92,11 @@ public class Scaffold extends Module {
     @EventHandler
     private final Listener<PlayerMoveEvent> listener2 = new Listener<>(event -> {
         oldSlot = mc.player.inventory.currentItem;
-        towerPos = new BlockPos(mc.player.posX, mc.player.posY - 1, mc.player.posZ);
-        downPos = new BlockPos(mc.player.posX, mc.player.posY - 2, mc.player.posZ);
+        BlockPos towerPos = new BlockPos(mc.player.posX, mc.player.posY - 1, mc.player.posZ);
+        BlockPos downPos = new BlockPos(mc.player.posX, mc.player.posY - 2, mc.player.posZ);
         if (placeLogic.getValString().equalsIgnoreCase("Predict")) {
             PredictUtil.PredictSettings predictSettings = new PredictUtil.PredictSettings((distance.getValInt()), false, 0, 0, 0, 0, 0, 0, false, 0, false, false, false, false, false, 0, 696969);
-            predictPlayer = PredictUtil.predictPlayer(mc.player, predictSettings);
+            EntityPlayer predictPlayer = PredictUtil.predictPlayer(mc.player, predictSettings);
             scaffold = (new BlockPos(predictPlayer.posX, predictPlayer.posY - 1, predictPlayer.posZ));
         } else if (placeLogic.getValString().equalsIgnoreCase("Player")) {
             double[] dir = MovementUtil.forward(MovementUtil.getMotion(mc.player) * distance.getValDouble());

@@ -50,7 +50,7 @@ public class Refill extends Module {
     }
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
 
         for(int i = 0; i < slots.length; i++) {
             if(getItemFromValue(settings[i]) != null) {

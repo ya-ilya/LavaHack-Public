@@ -27,7 +27,6 @@ public class PopCharms extends Module {
 
     private EntityOtherPlayerMP player;
     private EntityPlayer entity;
-    private Color color;
     public long startTime;
     public float opacity;
     public long time;
@@ -70,7 +69,7 @@ public class PopCharms extends Module {
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
         if(player == null || entity == null) return;
-            color = new Color(255, 255, 255, 255);
+        Color color = new Color(255, 255, 255, 255);
             opacity = Float.intBitsToFloat(Float.floatToIntBits(1.6358529E38f) ^ 0x7EF622C3);
             time = System.currentTimeMillis();
             duration = time - this.startTime;

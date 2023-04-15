@@ -25,7 +25,6 @@ public class CrystalBasePlace extends Module {
 
     private final TimerUtils delayTimer = new TimerUtils();
     private EntityPlayer target;
-    private BlockPos pos;
 
     public CrystalBasePlace() {
         super("CrystalBasePlace", Category.COMBAT);
@@ -52,7 +51,7 @@ public class CrystalBasePlace extends Module {
         target = useAutoRerTarget.getValBoolean() ? AutoRer.currentTarget : EntityUtil.getTarget(targetRange.getValFloat());
         if(target == null) return;
         else super.setDisplayInfo("[" + target.getName() + "]");
-        pos = getAbsBlockWithMaxDamageForTarget();
+        BlockPos pos = getAbsBlockWithMaxDamageForTarget();
         if(pos == null) return;
         if(delayTimer.passedMillis(delay.getValLong())) {
             int obbySlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9), oldSlot = mc.player.inventory.currentItem;

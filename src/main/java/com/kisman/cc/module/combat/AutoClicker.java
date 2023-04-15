@@ -14,9 +14,7 @@ public class AutoClicker extends Module {
 	
 	private double speed;
 	private double holdLength;
-	private double min;
-	private double max;
-	
+
 	public AutoClicker() {
 		super("AutoClicker", "clicks automatically", Category.COMBAT);
 		
@@ -48,8 +46,8 @@ public class AutoClicker extends Module {
 	}
 	
 	private void updateVals() {
-		this.min = setmgr.getSettingByName(this, "MinCPS").getValDouble();
-		this.max = setmgr.getSettingByName(this, "MaxCPS").getValDouble();
+		double min = setmgr.getSettingByName(this, "MinCPS").getValDouble();
+		double max = setmgr.getSettingByName(this, "MaxCPS").getValDouble();
 		
 		if (min >= max) {
 			max = min + 1;

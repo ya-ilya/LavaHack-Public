@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Trails extends Module {
     private final Setting removeTicks = new Setting("RemoveTicks", this, 1, 1, 50, true);
 
-    private ArrayList<TrailUtil> bcs = new ArrayList<>();
+    private final ArrayList<TrailUtil> bcs = new ArrayList<>();
 
     public Trails() {
         super("Trails", "akrien moment", Category.RENDER);

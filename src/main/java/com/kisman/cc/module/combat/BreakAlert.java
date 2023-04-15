@@ -24,8 +24,8 @@ public class BreakAlert extends Module {
     private final Setting messageType = new Setting("Message Type", this, MessageType.Chat);
     private final Setting displayShowDelay = new Setting("Display Show Delay", this, 1000, 1, 5000, Slider.NumberType.TIME);
 
-    private ArrayList<BlockPos> blocksBeginBroken = new ArrayList<>();
-    private TimerUtils renderTimer = new TimerUtils();
+    private final ArrayList<BlockPos> blocksBeginBroken = new ArrayList<>();
+    private final TimerUtils renderTimer = new TimerUtils();
 
     public BreakAlert() {
         super("BreakAlert", Category.COMBAT);

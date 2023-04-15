@@ -17,8 +17,6 @@ public class HoleSnap extends Module {
     private final Setting disableIfNoHole = new Setting("Disable If No Hole", this, true);
 
     private BlockPos hole;
-    private double yawRad,speed, lastDist;
-    private BlockPos distPos;
 
     public HoleSnap() {
         super("HoleSnap", Category.MOVEMENT);
@@ -52,9 +50,10 @@ public class HoleSnap extends Module {
             }
         }
 
-        yawRad = RotationUtils.getRotationTo(mc.player.getPositionVector().add(new Vec3d(-0.5, 0, -0.5)), new Vec3d(hole)).x * Math.PI / 180;
+        double yawRad = RotationUtils.getRotationTo(mc.player.getPositionVector().add(new Vec3d(-0.5, 0, -0.5)), new Vec3d(hole)).x * Math.PI / 180;
         double dist = mc.player.getPositionVector().distanceTo(new Vec3d(hole.getX(), hole.getY(), hole.getZ()));
 
+        double speed;
         if (mc.player.onGround) speed = Math.min(MovementUtil.getBaseMoveSpeed(), Math.abs(dist) / 2); // divide by 2 because motion
         else speed = Math.min((Math.abs(mc.player.motionX) + Math.abs(mc.player.motionZ)), Math.abs(dist) / 2);
 
@@ -82,8 +81,8 @@ public class HoleSnap extends Module {
             }
         });
 
-        distPos = new BlockPos(Double.POSITIVE_INFINITY, 69, 429);
-        lastDist = (int) Double.POSITIVE_INFINITY;
+        BlockPos distPos = new BlockPos(Double.POSITIVE_INFINITY, 69, 429);
+        double lastDist = (int) Double.POSITIVE_INFINITY;
 
         for (BlockPos blockPos : holes) {
             if (mc.player.getDistanceSq(blockPos) < lastDist) {

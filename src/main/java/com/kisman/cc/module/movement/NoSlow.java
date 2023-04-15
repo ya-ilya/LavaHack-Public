@@ -1,11 +1,11 @@
 package com.kisman.cc.module.movement;
 
 import com.kisman.cc.Kisman;
+import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.event.events.PlayerUpdateMoveStateEvent;
+import com.kisman.cc.gui.ClickGui;
 import com.kisman.cc.gui.console.GuiConsole;
 import com.kisman.cc.gui.console.rewrite.ConsoleGui;
-import com.kisman.cc.event.events.PlayerUpdateMoveStateEvent;
-import com.kisman.cc.event.events.PacketEvent;
-import com.kisman.cc.gui.ClickGui;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;

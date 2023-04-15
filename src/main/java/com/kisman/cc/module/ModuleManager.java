@@ -112,7 +112,7 @@ public class ModuleManager {
 		modules.add(new Particle());
 		modules.add(new PopCharms());
 		modules.add(new PortalESP());
-		modules.add(new RangeVisualisator());
+		modules.add(new RangeVisualiser());
 		modules.add(new Reverse());
 		modules.add(new SelfCityESP());
 		modules.add(new ShaderCharms());

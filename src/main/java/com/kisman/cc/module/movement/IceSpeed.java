@@ -6,8 +6,6 @@ import com.kisman.cc.settings.Setting;
 import net.minecraft.init.Blocks;
 
 public class IceSpeed extends Module {
-    private double speed;
-
     public IceSpeed() {
         super("IceSpeed", "IceSpeed", Category.MOVEMENT);
 
@@ -15,10 +13,10 @@ public class IceSpeed extends Module {
     }
 
     public void update() {
-        this.speed = setmgr.getSettingByName(this, "Speed").getValDouble();
-        Blocks.ICE.slipperiness = (float) this.speed;
-        Blocks.PACKED_ICE.slipperiness = (float) this.speed;
-        Blocks.FROSTED_ICE.slipperiness = (float) this.speed;
+        double speed = setmgr.getSettingByName(this, "Speed").getValDouble();
+        Blocks.ICE.slipperiness = (float) speed;
+        Blocks.PACKED_ICE.slipperiness = (float) speed;
+        Blocks.FROSTED_ICE.slipperiness = (float) speed;
     }
 
     public void onDisable() {

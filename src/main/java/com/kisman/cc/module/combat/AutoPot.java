@@ -24,7 +24,7 @@ public class AutoPot extends Module {
     }
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
 
         if(stack == null && timer.hasReached(100)) stack = mc.player.getHeldItemMainhand();
         if (isPotionOnHotBar() && mc.player.onGround) {

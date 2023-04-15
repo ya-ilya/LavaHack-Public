@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Replenish extends Module {
-
     private final Setting mode = register(new Setting("Mode", this, "Amount", Arrays.asList("Amount", "Percent")));
     private final Setting amount = register(new Setting("Amount", this, 5, 0, 63, true).setVisible(() -> mode.getValString().equals("Amount")));
     private final Setting percent = register(new Setting("Percent", this, 10, 0, 99, true).setVisible(() -> mode.getValString().equals("Percent")));

@@ -26,8 +26,6 @@ public class SwingAnimation extends Module {
 
     public final Setting ifKillAura = new Setting("If KillAura", this, true);
 
-    private ArrayList<String> swingMode = new ArrayList<>(Arrays.asList("1", "2", "3"));
-
     private String swingModeString;
 
     public SwingAnimation() {
@@ -38,7 +36,7 @@ public class SwingAnimation extends Module {
         setmgr.rSetting(mode);
 
         setmgr.rSetting(simpleLine);
-        setmgr.rSetting(new Setting("SwingMode", this, "1", swingMode));
+        setmgr.rSetting(new Setting("SwingMode", this, "1", new ArrayList<>(Arrays.asList("1", "2", "3"))));
 
         setmgr.rSetting(strongLine);
         setmgr.rSetting(strongMode);

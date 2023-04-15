@@ -41,8 +41,8 @@ public class  NameTags extends Module {
     private int counter1;
     private int counter2;
     private int color1;
-    private HashMap<String, Integer> tagList = new HashMap<>();
-    private HashMap<String, String> damageList = new HashMap<>();
+    private final HashMap<String, Integer> tagList = new HashMap<>();
+    private final HashMap<String, String> damageList = new HashMap<>();
 
     public NameTags() {
         super("NameTags", Category.RENDER);

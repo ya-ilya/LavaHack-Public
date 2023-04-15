@@ -44,7 +44,7 @@ public class Jesus extends Module {
     }
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
 
         super.setDisplayInfo("[" + mode.getValString() + TextFormatting.GRAY + "]");
 

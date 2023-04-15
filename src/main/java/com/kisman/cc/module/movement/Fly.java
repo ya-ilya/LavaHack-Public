@@ -20,7 +20,7 @@ public class Fly extends Module {
     }
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
 
         this.flySpeed = (float) setmgr.getSettingByName(this, "FlySpeed").getValDouble();
 

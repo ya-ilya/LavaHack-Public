@@ -57,19 +57,19 @@ public class AntiTrap extends Module {
     public void onEnable() {
         Kisman.EVENT_BUS.subscribe(listener);
 
-        if(mc.player == null && mc.world == null) super.setToggled(false);
+        if(mc.player == null || mc.world == null) super.setToggled(false);
     }
 
     public void onDisable() {
         Kisman.EVENT_BUS.unsubscribe(listener);
 
-        if((mc.player == null && mc.world == null)) return;
+        if((mc.player == null || mc.world == null)) return;
 
         switchItem();
     }
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
         super.setDisplayInfo("[" + mode.getValString() + "]");
         if(mode.getValString().equalsIgnoreCase("ClientTick")) doAntiTrap();
     }

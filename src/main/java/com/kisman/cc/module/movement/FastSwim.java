@@ -6,6 +6,7 @@ import com.kisman.cc.util.PlayerUtil;
 
 public class FastSwim extends Module {
     private boolean isSprint = false;
+
     public FastSwim() {
         super("FastSwim", "swim", Category.MOVEMENT);
     }

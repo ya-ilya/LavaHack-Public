@@ -1,9 +1,9 @@
 package com.kisman.cc.module.misc;
 
 import com.kisman.cc.Kisman;
+import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
 import com.kisman.cc.event.events.SpawnEntityEvent;
-import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.combat.AntiTrap;

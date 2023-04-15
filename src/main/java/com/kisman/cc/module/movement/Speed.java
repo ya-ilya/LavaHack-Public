@@ -1,8 +1,8 @@
 package com.kisman.cc.module.movement;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.PlayerUpdateEvent;
 import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.event.events.PlayerUpdateEvent;
 import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.mixin.mixins.accessor.AccessorEntityPlayer;
 import com.kisman.cc.module.Category;
@@ -124,7 +124,7 @@ public class Speed extends Module {
     }
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
 
         super.setDisplayInfo("[" + speedMode.getValString() + TextFormatting.GRAY + "]");
 

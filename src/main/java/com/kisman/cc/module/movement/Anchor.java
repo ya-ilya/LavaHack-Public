@@ -26,7 +26,7 @@ public class Anchor extends Module {
     private final Setting lagTime = new Setting("Fast Fall Lag Time", this, 500, 0, 1000, Slider.NumberType.TIME);
 
     private boolean using = false;
-    private double[] oneblockPositions = new double[] { 0.42, 0.75 };
+    private final double[] oneblockPositions = new double[] { 0.42, 0.75 };
     private int packets;
     private boolean jumped = false;
 

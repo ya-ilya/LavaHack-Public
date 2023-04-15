@@ -13,10 +13,6 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 
 public class TrajectoriesRewrite extends Module {
-    private double motionX, motionZ, motionY;
-    private double r = 0, g = 1, b = 0;
-    private double x, y, z;
-
     public TrajectoriesRewrite() {
         super("TrajectoriesRewrite", Category.RENDER);
     }
@@ -26,20 +22,20 @@ public class TrajectoriesRewrite extends Module {
         EntityPlayerSP player = mc.player;
         if (player.inventory.getCurrentItem() != null) {
             if (this.isThrowable(player.inventory.getCurrentItem().getItem())) {
-                this.x = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) mc.timer.renderPartialTicks - (double) (MathHelper.cos((float) Math.toRadians((double) mc.player.rotationYaw)) * 0.16F);
-                this.y = mc.player.lastTickPosY + (mc.player.posY - mc.player.lastTickPosY) * (double) mc.timer.renderPartialTicks + (double) mc.player.getEyeHeight() - 0.100149011612D;
-                this.z = mc.player.lastTickPosZ + (mc.player.posZ - mc.player.lastTickPosZ) * (double) mc.timer.renderPartialTicks - (double) (MathHelper.sin((float) Math.toRadians( mc.player.rotationYaw)) * 0.16F);
+                double x = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) mc.timer.renderPartialTicks - (double) (MathHelper.cos((float) Math.toRadians((double) mc.player.rotationYaw)) * 0.16F);
+                double y = mc.player.lastTickPosY + (mc.player.posY - mc.player.lastTickPosY) * (double) mc.timer.renderPartialTicks + (double) mc.player.getEyeHeight() - 0.100149011612D;
+                double z = mc.player.lastTickPosZ + (mc.player.posZ - mc.player.lastTickPosZ) * (double) mc.timer.renderPartialTicks - (double) (MathHelper.sin((float) Math.toRadians(mc.player.rotationYaw)) * 0.16F);
                 float con = 1.0F;
                 if (!(mc.player.inventory.getCurrentItem().getItem() instanceof ItemBow)) con = 0.4F;
 
-                this.motionX = (-MathHelper.sin((float) Math.toRadians( mc.player.rotationYaw)) * MathHelper.cos((float) Math.toRadians( mc.player.rotationPitch)) * con);
-                this.motionZ = (MathHelper.cos((float) Math.toRadians( mc.player.rotationYaw)) * MathHelper.cos((float) Math.toRadians( mc.player.rotationPitch)) * con);
-                this.motionY = (-MathHelper.sin((float) Math.toRadians( mc.player.rotationPitch)) * con);
-                double ssum = Math.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+                double motionX = (-MathHelper.sin((float) Math.toRadians(mc.player.rotationYaw)) * MathHelper.cos((float) Math.toRadians(mc.player.rotationPitch)) * con);
+                double motionZ = (MathHelper.cos((float) Math.toRadians(mc.player.rotationYaw)) * MathHelper.cos((float) Math.toRadians(mc.player.rotationPitch)) * con);
+                double motionY = (-MathHelper.sin((float) Math.toRadians(mc.player.rotationPitch)) * con);
+                double ssum = Math.sqrt(motionX * motionX + motionY * motionY + motionZ * motionZ);
 
-                this.motionX /= ssum;
-                this.motionY /= ssum;
-                this.motionZ /= ssum;
+                motionX /= ssum;
+                motionY /= ssum;
+                motionZ /= ssum;
 
                 if (mc.player.inventory.getCurrentItem().getItem() instanceof ItemBow) {
                     float pow = (float) (72000 - mc.player.getItemInUseCount()) / 20.0F;
@@ -51,38 +47,41 @@ public class TrajectoriesRewrite extends Module {
 
                     pow *= 2.0F;
                     pow *= 1.5F;
-                    this.motionX *= pow;
-                    this.motionY *= pow;
-                    this.motionZ *= pow;
+                    motionX *= pow;
+                    motionY *= pow;
+                    motionZ *= pow;
                 } else {
-                    this.motionX *= 1.5D;
-                    this.motionY *= 1.5D;
-                    this.motionZ *= 1.5D;
+                    motionX *= 1.5D;
+                    motionY *= 1.5D;
+                    motionZ *= 1.5D;
                 }
 
                 Vec3d playerVector = new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ);
                 GL11.glPushMatrix();
                 enableDefaults();
                 GL11.glLineWidth(1.8F);
+                double r = 0;
+                double g = 1;
+                double b = 0;
                 GL11.glColor3d(r, g, b);
                 GL11.glBegin(GL11.GL_LINE_STRIP);
                 double gravity = this.getGravity(mc.player.inventory.getCurrentItem().getItem());
 
                 for (int q = 0; q < 1000; ++q) {
-                    double rx = this.x * 1.0D - mc.renderManager.renderPosX;
-                    double ry = this.y * 1.0D - mc.renderManager.renderPosY;
-                    double rz = this.z * 1.0D - mc.renderManager.renderPosZ;
+                    double rx = x - mc.renderManager.renderPosX;
+                    double ry = y - mc.renderManager.renderPosY;
+                    double rz = z - mc.renderManager.renderPosZ;
                     GL11.glVertex3d(rx, ry, rz);
 
-                    this.x += this.motionX;
-                    this.y += this.motionY;
-                    this.z += this.motionZ;
-                    this.motionX *= 0.99D;
-                    this.motionY *= 0.99D;
-                    this.motionZ *= 0.99D;
-                    this.motionY -= gravity;
+                    x += motionX;
+                    y += motionY;
+                    z += motionZ;
+                    motionX *= 0.99D;
+                    motionY *= 0.99D;
+                    motionZ *= 0.99D;
+                    motionY -= gravity;
 
-                    if (mc.world.rayTraceBlocks(playerVector, new Vec3d(this.x, this.y, this.z)) != null) break;
+                    if (mc.world.rayTraceBlocks(playerVector, new Vec3d(x, y, z)) != null) break;
                 }
 
                 GL11.glEnd();

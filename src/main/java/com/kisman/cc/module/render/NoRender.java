@@ -54,7 +54,7 @@ public class NoRender extends Module {
     }
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
 
         boolean potion = setmgr.getSettingByName(this, "Potion").getValBoolean();
         boolean weather = setmgr.getSettingByName(this, "Weather").getValBoolean();

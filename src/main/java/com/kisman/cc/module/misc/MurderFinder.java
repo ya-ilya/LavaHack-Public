@@ -12,7 +12,7 @@ public class MurderFinder extends Module {
     }
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
 
         mc.world.loadedEntityList.stream().filter(entity -> entity instanceof EntityPlayer).filter(entity -> entity == mc.player).forEach(entity -> {
             if(isMurderer((EntityPlayer) entity)) entity.setGlowing(true);
@@ -20,7 +20,7 @@ public class MurderFinder extends Module {
     }
 
     public void onDisable() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
 
         mc.world.loadedEntityList.stream().filter(Entity::isGlowing).filter(entity -> entity != mc.player).forEach(entity -> entity.setGlowing(false));
     }

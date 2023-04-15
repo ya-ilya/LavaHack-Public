@@ -33,7 +33,7 @@ public class AntiBow extends Module {
     }
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
 
         EntityPlayer target = EntityUtil.getTarget(range.getValFloat());
         int oldSlot = -1;

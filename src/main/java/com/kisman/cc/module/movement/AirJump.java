@@ -16,7 +16,7 @@ public class AirJump extends Module {
     }
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
         if (mode.getValString().equalsIgnoreCase("Vanilla")) if (mc.gameSettings.keyBindJump.isPressed()) mc.player.motionY = 0.7;
         else if (mode.getValString().equalsIgnoreCase("NCP")) {
             mc.player.onGround = true;

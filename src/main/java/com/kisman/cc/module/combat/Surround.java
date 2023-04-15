@@ -9,7 +9,6 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import com.kisman.cc.util.*;
 import com.kisman.cc.util.Rotation.Rotate;
-import i.gishreloaded.gishcode.utils.TimerUtils;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.entity.Entity;
@@ -67,10 +66,8 @@ public class Surround extends Module {
     private int tries, tries2;
     private int surroundPlaced = 0;
     private BlockPos oldPos = BlockPos.ORIGIN;
-    private BlockPos surroundPosition = BlockPos.ORIGIN;
     private Rotation surroundRotation = new Rotation(Float.NaN, Float.NaN, (Rotate) rotate.getValEnum());
-    private TimerUtils breakTimer = new TimerUtils();
-    private ArrayList<BlockPos> protectOffsets = new ArrayList<>();
+    private final ArrayList<BlockPos> protectOffsets = new ArrayList<>();
 
     public Surround() {
         super("Surround", "Surround", Category.COMBAT);
@@ -139,7 +136,7 @@ public class Surround extends Module {
     }
 
     public void update() {
-        if(mc.player == null && mc.world == null) return;
+        if(mc.player == null || mc.world == null) return;
         super.setDisplayInfo("[" + (rewrite.getValBoolean() ? (dynamic.getValBoolean() ? "Dynamic" : "Rewrite") : surroundVec.getValString()) + "]");
 
         surroundPlaced = 0;
@@ -200,7 +197,7 @@ public class Surround extends Module {
         if(!rewrite.getValBoolean()) {
             for (Vec3d surroundVectors : getEnumByName(surroundVec.getValString()).vectors) {
                 if (Objects.equals(BlockUtil.getBlockResistance(new BlockPos(surroundVectors.add(new Vec3d(mc.player.posX, Math.round(mc.player.posY), mc.player.posZ)))), BlockUtil.BlockResistance.BLANK) && surroundPlaced <= blocksPerTick.getValDouble()) {
-                    surroundPosition = new BlockPos(surroundVectors.add(new Vec3d(mc.player.posX, Math.round(mc.player.posY), mc.player.posZ)));
+                    BlockPos surroundPosition = new BlockPos(surroundVectors.add(new Vec3d(mc.player.posX, Math.round(mc.player.posY), mc.player.posZ)));
 
                     if (RaytraceUtil.raytraceBlock(surroundPosition, RaytraceUtil.Raytrace.NORMAL) && raytrace.getValBoolean()) return;
                     if (surroundPosition != BlockPos.ORIGIN) {

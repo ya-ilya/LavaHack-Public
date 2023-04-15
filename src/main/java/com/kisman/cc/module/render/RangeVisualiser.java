@@ -18,7 +18,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class RangeVisualisator extends Module {
+public class RangeVisualiser extends Module {
     private final Setting mode = new Setting("Mode", this, "Sphere", new ArrayList<>(Arrays.asList("Sphere", "Circle")));
 
     private final Setting radius = new Setting("Radius", this, 4.5, 0.1, 8, false);
@@ -26,8 +26,8 @@ public class RangeVisualisator extends Module {
     private final Setting own = new Setting("Own", this, "None", new ArrayList<>(Arrays.asList("None", "Sphere", "Circle")));
     private final Setting raytrace = new Setting("RayTrace", this, true);
 
-    public RangeVisualisator() {
-        super("RangeVisualisator", "RangeVisualisator", Category.RENDER);
+    public RangeVisualiser() {
+        super("RangeVisualiser", "RangeVisualiser", Category.RENDER);
 
         setmgr.rSetting(mode);
         setmgr.rSetting(radius);

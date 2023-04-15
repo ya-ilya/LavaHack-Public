@@ -17,7 +17,7 @@ public class TargetStrafe extends Module {
     private final Setting speed = new Setting("Speed", this, 3.19, 0.15f, 50, false);
     private final Setting autoJump = new Setting("Auto Jump", this, false);
     private Entity target;
-    private TimerUtils timer = new TimerUtils();
+    private final TimerUtils timer = new TimerUtils();
     private int direction;
 
     public TargetStrafe() {

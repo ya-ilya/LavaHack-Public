@@ -273,62 +273,6 @@ public class MathUtil {
     }
 
     public static double cot(double x) { return 1 / Math.tan(x); }
-
-    public static Vec2i getEndPortalCoords(int x1, int z1, float a1, int x2, int z2, float a2, boolean debug) {
-        Vec2i coord = new Vec2i();
-        double p = Math.PI / 180;
-
-        if(Math.abs(a1 - a2) < 1) {
-            if(debug) {
-                ChatUtils.error("The angles cannot be equal");
-                return null;
-            }
-        } else if((((a1 < 0) && (a2 > 0)) || ((a1 > 0) && (a2 < 0))) && (Math.abs(Math.abs(Math.abs(a1) - 180) - Math.abs(a2)) < 1)) {
-            if(debug) {
-                ChatUtils.error("The angles cannot be opposite");
-                return null;
-            }
-        } else {
-            switch (Math.round(a1)) {
-                case -180: {}
-                case 0: {}
-                case 180: {
-                    coord.x = Math.round(x1);
-                    coord.y = (int) Math.round(cot(-a2 * p) * x1 - (x2 * cot(-a2 * p) - z2));
-                    break;
-                }
-                case -90: {}
-                case 90: {
-                    coord.x = Math.round(z1);
-                    coord.y = (int) Math.round(Math.round(x2 * cot(-a2 * p) - z2 + z1) / cot(-a2 * p));
-                    break;
-                }
-                default: {
-                    switch (Math.round(a2)) {
-                        case -180: {}
-                        case 0: {}
-                        case 180: {
-                            coord.x = Math.round(x2);
-                            coord.y = (int) Math.round(cot(-a1 * p) * x2 - (x1 * cot(-a1 * p) - z1));
-                            break;
-                        }
-                        case -90: {}
-                        case 90: {
-                            coord.x = Math.round(z2);
-                            coord.y = (int) Math.round(Math.round(x1 * cot(-a1 * p) - z1 + z2) / cot(-a1 * p));
-                            break;
-                        }
-                        default: {
-                            coord.x = (int) Math.round(((x1 * cot(-a1 * p) - z1) - (x2 * cot(-a2 * p) - z2))/(cot(-a1 * p) - cot(-a2 * p)));
-                            coord.y = (int) Math.round(cot(-a1 *p) * coord.x-(x1 * cot(-a1 * p)-z1));
-                        }
-                    }
-                }
-            }
-        }
-
-        return coord;
-    }
     
     public static double lerp(double from, double to, double delta) {
         return from + (to - from) * delta;

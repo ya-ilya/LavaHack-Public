@@ -3,7 +3,7 @@ package com.kisman.cc.util;
 import net.minecraft.client.Minecraft;
 
 public class GCDUtil {
-    private static Minecraft mc = Minecraft.getMinecraft();
+    private static final Minecraft mc = Minecraft.getMinecraft();
 
     public static float getFixedRotation(float rot) {
         return GCDUtil.getDeltaMouse(rot) * getGCDValue();

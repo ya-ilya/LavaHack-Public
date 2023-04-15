@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import static com.kisman.cc.util.BlockUtil.getPlaceableSide;
 
 public class BlockUtil2 {
-    private static Minecraft mc = Minecraft.getMinecraft();
+    private static final Minecraft mc = Minecraft.getMinecraft();
 
     public static boolean isPositionPlaceable(BlockPos position, boolean sideCheck, boolean entityCheck) {
         if (!mc.world.getBlockState(position).getBlock().isReplaceable(mc.world, position)) return false;

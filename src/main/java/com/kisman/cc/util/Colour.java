@@ -1,5 +1,6 @@
 package com.kisman.cc.util;
 
+import com.kisman.cc.util.enums.ColourEnum;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.Vec3d;

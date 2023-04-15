@@ -120,7 +120,7 @@ public class Surround extends Module {
                     zPosition += 0.3 * zDirection;
                 }
 
-                TeleportUtil.teleportPlayer(xPosition, mc.player.posY, zPosition);
+                teleportPlayer(xPosition, mc.player.posY, zPosition);
                 break;
             }
             case "MOTION": {
@@ -160,6 +160,12 @@ public class Surround extends Module {
         }
 
         handleSurround();
+    }
+
+    private static void teleportPlayer(double x, double y, double z) {
+        mc.player.setVelocity(0, 0, 0);
+        mc.player.setPosition(x, y, z);
+        mc.player.connection.sendPacket(new CPacketPlayer.Position(x, y, z, true));
     }
 
     private SurroundVectors getEnumByName(String name) {

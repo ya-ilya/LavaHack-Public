@@ -1,6 +1,7 @@
-package com.kisman.cc.util;
+package com.kisman.cc.util.enums;
 
 import com.kisman.cc.Kisman;
+import com.kisman.cc.util.Colour;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 
 import java.awt.*;

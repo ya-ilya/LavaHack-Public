@@ -6,7 +6,6 @@ import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.hud.hudmodule.HudModule;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.util.Colour;
-import com.kisman.cc.util.TextUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.input.Keyboard;
@@ -261,8 +260,25 @@ public class Setting {
 		if(isCheck()) return String.valueOf(getValBoolean());
 		if(isSlider()) return String.valueOf(onlyint ? getValInt() : getValDouble());
 		if(isString()) return getValString();
-		if(isColorPicker()) return TextUtil.get32BitString((colour != null) ? colour.getRGB() : new Color(1f, 1f, 1f).getRGB()) + "-" + syns + "-" + rainbow;
+		if(isColorPicker()) return get32BitString((colour != null) ? colour.getRGB() : new Color(1f, 1f, 1f).getRGB()) + "-" + syns + "-" + rainbow;
 		return super.toString();
+	}
+
+	/**
+	 * Returns the Integers value as a full 32bit hex string:
+	 * <p>
+	 * <p>get32BitString(-1) -> "FFFFFFFF"
+	 * <p>get32BitString(0) -> "00000000"
+	 * <p>get32BitString(128) -> "00000080"
+	 * <p>...
+	 *
+	 * @param value the integer to get the 32bit string from.
+	 * @return a 32bit string representing the integers value.
+	 */
+	private static String get32BitString(int value) {
+		StringBuilder r = new StringBuilder(Integer.toHexString(value));
+		while (r.length() < 8) r.insert(0, 0);
+		return r.toString().toUpperCase();
 	}
 
 	public boolean isNoneKey() {return key == Keyboard.KEY_NONE;}

@@ -2,7 +2,6 @@ package com.kisman.cc.util.manager;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
-import com.kisman.cc.util.render.PulseManager;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.network.play.server.SPacketPlayerPosLook;
@@ -16,9 +15,7 @@ public class Managers {
     public static Managers instance;
 
     public FPSManager fpsManager;
-    public PulseManager pulseManager;
     public TimerManager timerManager;
-    public ColorManager colorManager;
     public CPSManager cpsManager;
 
     public AtomicLong lagTimer = new AtomicLong();
@@ -29,9 +26,7 @@ public class Managers {
 
     public void init() {
         fpsManager = new FPSManager();
-        pulseManager = new PulseManager();
         timerManager = new TimerManager();
-        colorManager = new ColorManager();
         cpsManager = new CPSManager();
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -40,7 +35,6 @@ public class Managers {
 
     @SubscribeEvent
     public void onUpdate(TickEvent.ClientTickEvent event) {
-        colorManager.update();
         timerManager.onUpdate();
     }
 

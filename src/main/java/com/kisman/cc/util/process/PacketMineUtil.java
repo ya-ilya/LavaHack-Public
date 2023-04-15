@@ -19,7 +19,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 
 public class PacketMineUtil implements Globals {
-    private TimerUtils timer = new TimerUtils();
+    private final TimerUtils timer = new TimerUtils();
     public BlockPos currentPos;
     private long start;
     private int oldSlot, rebreakCount, instantAttempts, packetSpam, range;

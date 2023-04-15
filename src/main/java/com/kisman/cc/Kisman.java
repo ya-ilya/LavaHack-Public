@@ -29,7 +29,6 @@ import com.kisman.cc.module.client.Config;
 import com.kisman.cc.settings.SettingsManager;
 import com.kisman.cc.util.RotationUtils;
 import com.kisman.cc.util.ServerManager;
-import com.kisman.cc.util.VectorUtils;
 import com.kisman.cc.util.customfont.CustomFontRenderer;
 import com.kisman.cc.util.glow.ShaderShell;
 import com.kisman.cc.util.manager.Managers;
@@ -78,7 +77,6 @@ public class Kisman {
 
     private static Minecraft mc;
 
-    public VectorUtils vectorUtils;
 
     public ModuleManager moduleManager;
     public FriendManager friendManager;
@@ -130,8 +128,6 @@ public class Kisman {
 
         managers = new Managers();
         managers.init();
-
-        vectorUtils = new VectorUtils();
 
         friendManager = new FriendManager();
     	settingsManager = new SettingsManager();

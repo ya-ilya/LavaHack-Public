@@ -7,7 +7,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 public class AngleUtil {
-    private static Minecraft mc = Minecraft.getMinecraft();
+    private static final Minecraft mc = Minecraft.getMinecraft();
 
     public static float[] calculateAngles(Entity entity) {
         return calculateAngle(InterpolationUtil.interpolateEntityTime(mc.player, mc.getRenderPartialTicks()), InterpolationUtil.interpolateEntityTime(entity, mc.getRenderPartialTicks()));

@@ -224,10 +224,6 @@ public class ModuleManager {
 		for (Module m : this.modules) if (m.getName().equalsIgnoreCase(name)) return m;
 		return null;
 	}
-	
-	public List<Module> getModuleList() {
-		return modules;
-	}
 
 	public ArrayList<Module> getModulesInCategory(Category c) {
 		ArrayList<Module> mods = new ArrayList<>();

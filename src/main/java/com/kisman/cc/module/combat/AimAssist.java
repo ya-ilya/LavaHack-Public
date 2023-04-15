@@ -14,8 +14,6 @@ public class AimAssist extends Module {
     private final Setting range = new Setting("Range", this, 4.5f, 1, 6, false);
     private final Setting speed = new Setting("Speed", this, 0.5f, 0.1f, 2, false);
 
-    private EntityPlayer target;
-
     public AimAssist() {
         super("AimAssist", Category.COMBAT);
 
@@ -25,7 +23,7 @@ public class AimAssist extends Module {
 
     public void update() {
         if(mc.player == null || mc.world == null) return;
-        target = EntityUtil.getTarget(range.getValFloat());
+        EntityPlayer target = EntityUtil.getTarget(range.getValFloat());
 
         if(target == null) return;
         else super.setDisplayInfo("[" + target.getName() + TextFormatting.GRAY + "]");

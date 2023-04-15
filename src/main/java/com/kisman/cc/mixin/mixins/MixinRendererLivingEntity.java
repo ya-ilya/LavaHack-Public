@@ -1,6 +1,5 @@
 package com.kisman.cc.mixin.mixins;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.module.combat.AutoRer;
 import com.kisman.cc.module.combat.KillAura;
 import com.kisman.cc.module.combat.autocrystal.AutoCrystal;
@@ -13,7 +12,6 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;

@@ -33,7 +33,6 @@ import java.util.Locale;
 import java.util.Objects;
 
 import static java.lang.Math.*;
-import static java.lang.Math.toRadians;
 import static org.lwjgl.opengl.GL11.*;
 
 public class RenderUtil {

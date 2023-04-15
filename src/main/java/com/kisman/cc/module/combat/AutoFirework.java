@@ -259,19 +259,15 @@ public class AutoFirework extends Module {
 
             if (obbySlot == -1 && eChestSot == -1) this.toggle();
 
+            mc.player.inventory.currentItem = ((obbySlot == -1) ? eChestSot : obbySlot);
+            mc.playerController.updateController();
             if (this.smartRotate) {
-                mc.player.inventory.currentItem = ((obbySlot == -1) ? eChestSot : obbySlot);
-                mc.playerController.updateController();
                 isSneaking = BlockUtil.placeBlockSmartRotate(pos, EnumHand.MAIN_HAND, true, true, this.isSneaking);
-                mc.player.inventory.currentItem = originalSlot;
-                mc.playerController.updateController();
             } else {
-                mc.player.inventory.currentItem = ((obbySlot == -1) ? eChestSot : obbySlot);
-                mc.playerController.updateController();
                 isSneaking = BlockUtil.placeBlockSmartRotate(pos, EnumHand.MAIN_HAND, this.rotate.getValBoolean(), true, this.isSneaking);
-                mc.player.inventory.currentItem = originalSlot;
-                mc.playerController.updateController();
             }
+            mc.player.inventory.currentItem = originalSlot;
+            mc.playerController.updateController();
 
             this.didPlace = true;
             ++this.placements;

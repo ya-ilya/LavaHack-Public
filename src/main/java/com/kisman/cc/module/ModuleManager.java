@@ -70,20 +70,19 @@ public class ModuleManager {
 		modules.add(new Cape());
 		modules.add(new Changer());
 		modules.add(new Config());
-		modules.add(new CustomFontModule());
-		modules.add(new CustomMainMenuModule());
-		modules.add(new DiscordRPCModule());
-		modules.add(new GuiModule());
+		modules.add(new CustomFont());
+		modules.add(new CustomMainMenu());
+		modules.add(new DiscordRPC());
+		modules.add(new Gui());
 		modules.add(new HUD());
 		modules.add(new HudEditorTest());
-		modules.add(new NotEnoughCoinsModule());
+		modules.add(new NotEnoughCoins());
 		modules.add(new ToolTip());
 		modules.add(new VegaGui());
 		//chat
-		modules.add(new AntiSpammer());
+		modules.add(new AntiSpam());
 		modules.add(new AutoEZ());
 		modules.add(new ChatModifier());
-		modules.add(new Credits());
 		modules.add(new Notification());
 		modules.add(new Spammer());
 		modules.add(new TotemPopCounter());

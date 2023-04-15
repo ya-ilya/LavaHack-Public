@@ -12,13 +12,13 @@ import net.minecraft.util.text.TextComponentString;
 
 import java.util.ArrayList;
 
-public class AntiSpammer extends Module {
-    public static AntiSpammer instance;
+public class AntiSpam extends Module {
+    public static AntiSpam instance;
 
     public ArrayList<String> illegalWords = new ArrayList<>();
 
-    public AntiSpammer() {
-        super("AntiSpammer", Category.CHAT);
+    public AntiSpam() {
+        super("AntiSpam", Category.CHAT);
         instance = this;
     }
 

@@ -6,11 +6,10 @@ import com.kisman.cc.event.events.TotemPopEvent;
 import com.kisman.cc.hypixel.util.ConfigHandler;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.client.Config;
-import com.kisman.cc.module.client.CustomMainMenuModule;
+import com.kisman.cc.module.client.CustomMainMenu;
 import com.kisman.cc.module.combat.AutoRer;
 import com.kisman.cc.module.player.ElytraEquip;
 import com.kisman.cc.util.TickRateUtil;
-import com.kisman.cc.util.modules.CustomMainMenu;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
@@ -84,7 +83,7 @@ public class EventProcessor {
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event) {
         Kisman.EVENT_BUS.post(this);
-        if(CustomMainMenuModule.instance != null) CustomMainMenu.update();
+        if(CustomMainMenu.instance != null) com.kisman.cc.util.modules.CustomMainMenu.update();
         if(ElytraEquip.instance != null) ElytraEquip.instance.updateState();
         if(Config.instance != null) Kisman.canUseImprAstolfo = Config.instance.astolfoColorMode.checkValString(Config.AstolfoColorMode.Impr.name());
     }

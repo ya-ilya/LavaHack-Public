@@ -1,6 +1,6 @@
 package com.kisman.cc.util.render.objects
 
-import com.kisman.cc.module.client.CustomFontModule
+import com.kisman.cc.module.client.CustomFont
 import com.kisman.cc.util.Colour
 import com.kisman.cc.util.customfont.CustomFontUtil
 import com.kisman.cc.util.enums.Object3dTypes
@@ -26,7 +26,7 @@ class TextOnEntityObject(
                 1f
         )
         GlStateManager.disableDepth()
-        if(CustomFontModule.turnOn) GlStateManager.disableTexture2D()
+        if(CustomFont.turnOn) GlStateManager.disableTexture2D()
         GlStateManager.disableLighting()
         color.glColor()
         GL11.glTranslated(
@@ -38,7 +38,7 @@ class TextOnEntityObject(
         CustomFontUtil.drawStringWithShadow(text, 0.0, 0.0, -1)
 
         GlStateManager.enableLighting()
-        if(CustomFontModule.turnOn) GlStateManager.enableTexture2D()
+        if(CustomFont.turnOn) GlStateManager.enableTexture2D()
         GlStateManager.enableDepth()
 
         GL11.glPopMatrix()

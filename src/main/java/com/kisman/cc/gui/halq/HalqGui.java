@@ -6,7 +6,7 @@ import com.kisman.cc.gui.halq.component.Component;
 import com.kisman.cc.gui.particle.ParticleSystem;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.client.Config;
-import com.kisman.cc.module.client.GuiModule;
+import com.kisman.cc.module.client.Gui;
 import com.kisman.cc.util.Colour;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
@@ -62,12 +62,12 @@ public class HalqGui extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        primaryColor = GuiModule.instance.primaryColor.getColour();
-        background = GuiModule.instance.background.getValBoolean();
-        shadowCheckBox = GuiModule.instance.shadow.getValBoolean();
-        test = GuiModule.instance.test.getValBoolean();
-        shadowRects = GuiModule.instance.shadowRects.getValBoolean();
-        line = GuiModule.instance.line.getValBoolean();
+        primaryColor = Gui.instance.primaryColor.getColour();
+        background = Gui.instance.background.getValBoolean();
+        shadowCheckBox = Gui.instance.shadow.getValBoolean();
+        test = Gui.instance.test.getValBoolean();
+        shadowRects = Gui.instance.shadowRects.getValBoolean();
+        line = Gui.instance.line.getValBoolean();
         diff = Config.instance.guiGradientDiff.getValInt();
 
         if(!background) backgroundColor = new Color(0, 0, 0, 0);

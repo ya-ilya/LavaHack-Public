@@ -1,14 +1,13 @@
 package com.kisman.cc;
 
 import club.minnced.discord.rpc.DiscordEventHandlers;
-import club.minnced.discord.rpc.DiscordRPC;
 import club.minnced.discord.rpc.DiscordRichPresence;
-import com.kisman.cc.module.client.DiscordRPCModule;
+import com.kisman.cc.module.client.DiscordRPC;
 import com.kisman.cc.util.Globals;
 
 public class RPC implements Globals {
     private static final DiscordRichPresence discordRichPresence = new DiscordRichPresence();
-    private static final DiscordRPC discordRPC = DiscordRPC.INSTANCE;
+    private static final club.minnced.discord.rpc.DiscordRPC discordRPC = club.minnced.discord.rpc.DiscordRPC.INSTANCE;
     private static Thread thread;
 
     public static synchronized void startRPC() {
@@ -34,7 +33,7 @@ public class RPC implements Globals {
 
         discordRPC.Discord_UpdatePresence(discordRichPresence);
         thread = new Thread(() -> {
-            if(DiscordRPCModule.instance.impr.getValBoolean()) {
+            if(DiscordRPC.instance.impr.getValBoolean()) {
                 while (!Thread.currentThread().isInterrupted()) {
                     try {
                         String details, state;

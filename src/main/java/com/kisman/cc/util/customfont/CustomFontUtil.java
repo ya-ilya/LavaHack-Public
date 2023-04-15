@@ -1,7 +1,7 @@
 package com.kisman.cc.util.customfont;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.module.client.CustomFontModule;
+import com.kisman.cc.module.client.CustomFont;
 import com.kisman.cc.util.customfont.norules.CFontRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -117,18 +117,18 @@ public class CustomFontUtil {
     }
 
     private static boolean customFont() {
-        return CustomFontModule.turnOn;
+        return CustomFont.turnOn;
     }
 
     public static String getCustomFontName() {
-        return CustomFontModule.instance == null ? null : CustomFontModule.instance.mode.getValString();
+        return CustomFont.instance == null ? null : CustomFont.instance.mode.getValString();
     }
 
     private static String getStringModofiers() {
         String str = "";
-        if(CustomFontModule.instance != null) {
-            if(CustomFontModule.instance.italic.getValBoolean()) str += TextFormatting.ITALIC;
-            if(CustomFontModule.instance.bold.getValBoolean() && getCustomFontName().equalsIgnoreCase("Verdana")) str += TextFormatting.BOLD;
+        if(CustomFont.instance != null) {
+            if(CustomFont.instance.italic.getValBoolean()) str += TextFormatting.ITALIC;
+            if(CustomFont.instance.bold.getValBoolean() && getCustomFontName().equalsIgnoreCase("Verdana")) str += TextFormatting.BOLD;
         }
         return str;
     }

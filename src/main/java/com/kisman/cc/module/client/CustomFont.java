@@ -8,7 +8,7 @@ import com.kisman.cc.util.customfont.CustomFontUtilKt;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CustomFontModule extends Module {
+public class CustomFont extends Module {
     private final Setting antiAlias = new Setting("Anti Alias", this, true);
     private final Setting fractionMetrics = new Setting("Fraction Metrics", this, true);
     public Setting mode = new Setting("Mode", this, "Comfortaa", new ArrayList<>(Arrays.asList("Verdana", "Comfortaa", "Comfortaa Light", "Comfortaa Bold", "Consolas", "LexendDeca", "Futura", "SfUi")));
@@ -17,9 +17,9 @@ public class CustomFontModule extends Module {
 
     public static boolean turnOn = false;
 
-    public static CustomFontModule instance;
+    public static CustomFont instance;
 
-    public CustomFontModule() {
+    public CustomFont() {
         super("CustomFont", "custom font", Category.CLIENT);
         super.setDisplayInfo(() -> "[" + mode.getValString() + "]");
 

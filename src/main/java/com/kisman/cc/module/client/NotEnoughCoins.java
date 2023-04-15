@@ -6,8 +6,8 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 import net.minecraftforge.common.config.Configuration;
 
-public class NotEnoughCoinsModule extends Module {
-    public static NotEnoughCoinsModule instance;
+public class NotEnoughCoins extends Module {
+    public static NotEnoughCoins instance;
 
     public Setting minProfit = new Setting("MinProfit", this, 50000, 1, Integer.MAX_VALUE, true);
     public Setting demand = new Setting("Demand", this, 3, 1, Integer.MAX_VALUE, true);
@@ -15,7 +15,7 @@ public class NotEnoughCoinsModule extends Module {
     public Setting alertSound = new Setting("AlertSound", this, true);
     public Setting onlyHypixelWorking = new Setting("OnlyOnHypixelWorking", this, true);
 
-    public NotEnoughCoinsModule() {
+    public NotEnoughCoins() {
         super("NotEnoughCoins", "NotEnoughCoins", Category.CLIENT);
 
         setmgr.rSetting(minProfit);

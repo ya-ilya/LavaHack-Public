@@ -5,12 +5,12 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.settings.Setting;
 
-public class DiscordRPCModule extends Module {
-    public static DiscordRPCModule instance;
+public class DiscordRPC extends Module {
+    public static DiscordRPC instance;
 
     public Setting impr = new Setting("Impr RPC", this, true);
 
-    public DiscordRPCModule() {
+    public DiscordRPC() {
         super("DiscordRPC", "", Category.CLIENT);
         instance = this;
 

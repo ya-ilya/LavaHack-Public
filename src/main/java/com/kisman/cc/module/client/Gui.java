@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 
 import static org.lwjgl.input.Keyboard.KEY_RSHIFT;
 
-public class GuiModule extends Module {
+public class Gui extends Module {
     public final Setting primaryColor = new Setting("Primary Color", this, "Primary Color", new Colour(255, 0, 0));
     public final Setting background = new Setting("Background", this, true);
     public final Setting shadow = new Setting("Shadow", this, false);
@@ -17,15 +17,13 @@ public class GuiModule extends Module {
     public final Setting shadowRects = new Setting("Shadow Rects", this, false);
     public final Setting line = new Setting("Line", this, true);
 
-    public static GuiModule instance;
+    public static Gui instance;
 
-    public GuiModule() {
+    public Gui() {
         super("Gui", Category.CLIENT);
         super.setKey(KEY_RSHIFT);
 
-
         instance = this;
-
 
         setmgr.rSetting(primaryColor);
         setmgr.rSetting(background);
@@ -33,7 +31,6 @@ public class GuiModule extends Module {
         setmgr.rSetting(test);
         setmgr.rSetting(shadowRects);
         setmgr.rSetting(line);
-
     }
 
     public void onEnable() {

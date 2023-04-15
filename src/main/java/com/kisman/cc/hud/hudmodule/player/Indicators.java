@@ -2,7 +2,7 @@ package com.kisman.cc.hud.hudmodule.player;
 
 import com.kisman.cc.hud.hudmodule.HudCategory;
 import com.kisman.cc.hud.hudmodule.HudModule;
-import com.kisman.cc.module.client.CustomFontModule;
+import com.kisman.cc.module.client.CustomFont;
 import com.kisman.cc.module.client.HUD;
 import com.kisman.cc.util.AnimationUtils;
 import com.kisman.cc.util.Render2DUtil;
@@ -213,17 +213,17 @@ public class Indicators extends HudModule {
     }
 
     private void drawStringWithShadow(String text, double x, double y, int color) {
-        if(CustomFontModule.turnOn) CustomFontUtil.consolas15.drawStringWithShadow(text, x, y, color);
+        if(CustomFont.turnOn) CustomFontUtil.consolas15.drawStringWithShadow(text, x, y, color);
         else mc.fontRenderer.drawStringWithShadow(text, (int) x, (int) y, color);
     }
 
     private int getHeight() {
-        if(CustomFontModule.turnOn) return  CustomFontUtil.consolas15.getStringHeight();
+        if(CustomFont.turnOn) return  CustomFontUtil.consolas15.getStringHeight();
         else return mc.fontRenderer.FONT_HEIGHT;
     }
 
     private int getStringWidth(String text) {
-        if(CustomFontModule.turnOn) return  CustomFontUtil.consolas15.getStringWidth(text);
+        if(CustomFont.turnOn) return  CustomFontUtil.consolas15.getStringWidth(text);
         else return mc.fontRenderer.getStringWidth(text);
     }
 }

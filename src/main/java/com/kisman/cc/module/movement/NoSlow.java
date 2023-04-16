@@ -1,6 +1,5 @@
 package com.kisman.cc.module.movement;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.event.events.PlayerUpdateMoveStateEvent;
 import com.kisman.cc.gui.ClickGui;
@@ -56,18 +55,6 @@ public class NoSlow extends Module {
         register(ignoreClickGui);
     }
 
-    public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(updateMoveStateListener);
-        Kisman.EVENT_BUS.subscribe(updateMoveStateListener1);
-        Kisman.EVENT_BUS.subscribe(packetPostSendListener);
-    }
-
-    public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(updateMoveStateListener);
-        Kisman.EVENT_BUS.unsubscribe(updateMoveStateListener1);
-        Kisman.EVENT_BUS.unsubscribe(packetPostSendListener);
-    }
-
     public void update() {
         if(mc.player == null || mc.world == null) return;
 
@@ -106,7 +93,8 @@ public class NoSlow extends Module {
     }
 
     @EventHandler
-    private final Listener<PlayerUpdateMoveStateEvent> updateMoveStateListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PlayerUpdateMoveStateEvent> updateMoveStateListener = listener(event -> {
         if (invMove.getValBoolean() && mc.currentScreen != null) {
             if(mc.currentScreen instanceof GuiChat && ignoreChat.getValBoolean()) return;
             if((mc.currentScreen instanceof GuiConsole || mc.currentScreen instanceof ConsoleGui) && ignoreConsole.getValBoolean()) return;
@@ -146,7 +134,8 @@ public class NoSlow extends Module {
     });
 
     @EventHandler
-    private final Listener<PlayerUpdateMoveStateEvent> updateMoveStateListener1 = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PlayerUpdateMoveStateEvent> updateMoveStateListener1 = listener(event -> {
         if(items.getValBoolean() && mc.player.isHandActive() && !mc.player.isRiding()) {
             mc.player.movementInput.moveForward /= 0.2;
             mc.player.movementInput.moveStrafe /= 0.2;
@@ -154,7 +143,8 @@ public class NoSlow extends Module {
     });
 
     @EventHandler
-    private final Listener<PacketEvent.PostSend> packetPostSendListener = new Listener<>(event -> {if(event.getPacket() instanceof CPacketPlayer) if(ncpStrict.getValBoolean()) if(items.getValBoolean() && mc.player.isHandActive() && !mc.player.isRiding()) mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.ABORT_DESTROY_BLOCK, PlayerUtil.GetLocalPlayerPosFloored(), EnumFacing.DOWN));});
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.PostSend> packetPostSendListener = listener(event -> {if(event.getPacket() instanceof CPacketPlayer) if(ncpStrict.getValBoolean()) if(items.getValBoolean() && mc.player.isHandActive() && !mc.player.isRiding()) mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.ABORT_DESTROY_BLOCK, PlayerUtil.GetLocalPlayerPosFloored(), EnumFacing.DOWN));});
 
     public enum Mode {None, Sunrise}
 }

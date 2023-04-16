@@ -1,6 +1,5 @@
 package com.kisman.cc.module.render;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -46,14 +45,6 @@ public class SpawnsESP extends Module {
         register(width);
     }
 
-    public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(packetReceiveListener);
-    }
-
-    public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(packetReceiveListener);
-    }
-
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
         for (VecCircle circle : circles) {
@@ -87,7 +78,8 @@ public class SpawnsESP extends Module {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> packetReceiveListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
         if (event.getPacket() instanceof SPacketSpawnObject) {
             if (((SPacketSpawnObject) event.getPacket()).getType() == 51 && crystals.getValBoolean()) {
                 this.circles.add(new VecCircle(new Vec3d(((SPacketSpawnObject) event.getPacket()).getX(), ((SPacketSpawnObject) event.getPacket()).getY(), ((SPacketSpawnObject) event.getPacket()).getZ()), 1.5f, 0.5f));

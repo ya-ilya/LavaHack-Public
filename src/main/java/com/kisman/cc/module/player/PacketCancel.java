@@ -1,6 +1,5 @@
 package com.kisman.cc.module.player;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -31,7 +30,7 @@ public class PacketCancel extends Module {
 
     public void onEnable() {
         MinecraftForge.EVENT_BUS.register(this);
-        Kisman.EVENT_BUS.subscribe(this.packetSendListener);
+
         this.input = settingManager.getSettingByName(this, "CPacketInput").getValBoolean();
         this.player = settingManager.getSettingByName(this, "CPacketPlayer").getValBoolean();
         this.entityAction = settingManager.getSettingByName(this, "CPacketEntityAction").getValBoolean();
@@ -39,12 +38,9 @@ public class PacketCancel extends Module {
         this.vehicleMove = settingManager.getSettingByName(this, "CPacketVehicleMove").getValBoolean();
     }
 
-    public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(this.packetSendListener);
-    }
-
     @EventHandler
-    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
        if(
                (event.getPacket() instanceof CPacketInput && this.input) ||
                        (event.getPacket() instanceof CPacketPlayer && this.player) ||

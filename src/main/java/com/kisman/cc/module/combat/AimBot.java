@@ -1,6 +1,5 @@
 package com.kisman.cc.module.combat;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.Event;
 import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
 import com.kisman.cc.module.Category;
@@ -32,16 +31,9 @@ public class AimBot extends Module {
         register(mode);
     }
 
-    public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(motionUpdateListener);
-    }
-
-    public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(motionUpdateListener);
-    }
-
     @EventHandler
-    private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
         if(event.getEra() != Event.Era.PRE) return;
 
         if(rotationSpoof == null) return;

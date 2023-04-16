@@ -1,6 +1,5 @@
 package com.kisman.cc.module.movement;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.event.events.PlayerUpdateEvent;
 import com.kisman.cc.gui.csgo.components.Slider;
@@ -108,8 +107,6 @@ public class Speed extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(playerUpdateListener);
-        Kisman.EVENT_BUS.subscribe(packetReceiveListener);
         if(mc.player == null || mc.world == null) return;
         stage = 4;
         dist = MovementUtil.getDistance2D();
@@ -117,9 +114,6 @@ public class Speed extends Module {
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(playerUpdateListener);
-        Kisman.EVENT_BUS.unsubscribe(packetReceiveListener);
-
         EntityUtil.resetTimer();
     }
 
@@ -362,7 +356,8 @@ public class Speed extends Module {
     public enum Motion {X,Y,mX,mY}
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> packetReceiveListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
         if(event.getPacket() instanceof SPacketPlayerPosLook) {
             if(mc.player != null) dist = 0;
             speed = 0;
@@ -372,7 +367,8 @@ public class Speed extends Module {
     });
 
     @EventHandler
-    private final Listener<PlayerUpdateEvent> playerUpdateListener = new Listener<>(event -> {if(speedMode.getValString().equalsIgnoreCase("Sti")) mc.timer.tickLength = 50 / getSpeed();});
+    @SuppressWarnings("unused")
+    private final Listener<PlayerUpdateEvent> playerUpdateListener = listener(event -> {if(speedMode.getValString().equalsIgnoreCase("Sti")) mc.timer.tickLength = 50 / getSpeed();});
 
     private float getSpeed() {return Math.max((float) stiSpeed.getValDouble(), 0.1f);}
 }

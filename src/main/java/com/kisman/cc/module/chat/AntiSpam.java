@@ -1,6 +1,5 @@
 package com.kisman.cc.module.chat;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.Event;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
@@ -24,16 +23,9 @@ public class AntiSpam extends Module {
 
     public boolean isBeta() {return true;}
 
-    public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(packetListener);
-    }
-
-    public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(packetListener);
-    }
-
     @EventHandler
-    private final Listener<PacketEvent> packetListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent> packetListener = listener(event -> {
         if (event.getEra().equals(Event.Era.PRE) && event.getPacket() instanceof SPacketChat) {
             if (!((SPacketChat) event.getPacket()).isSystem()) return;
             String message = ((SPacketChat) event.getPacket()).chatComponent.getFormattedText();

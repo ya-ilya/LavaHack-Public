@@ -1,6 +1,5 @@
 package com.kisman.cc.module.player;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.event.events.PlayerApplyCollisionEvent;
 import com.kisman.cc.event.events.PlayerPushOutOfBlocksEvent;
@@ -42,13 +41,6 @@ public class Velocity extends Module{
         register(vertical);
     }
 
-    public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(packetReceiveListener);
-        Kisman.EVENT_BUS.subscribe(applyCollisionListener);
-        Kisman.EVENT_BUS.subscribe(pushedByWaterListener);
-        Kisman.EVENT_BUS.subscribe(pushOutOfBlocksListener);
-    }
-
     public void update() {
         if(mc.player == null || mc.world == null) return;
         String mode = settingManager.getSettingByName(this, "Mode").getValString();
@@ -64,30 +56,27 @@ public class Velocity extends Module{
         }
     }
 
-    public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(packetReceiveListener);
-        Kisman.EVENT_BUS.unsubscribe(applyCollisionListener);
-        Kisman.EVENT_BUS.unsubscribe(pushedByWaterListener);
-        Kisman.EVENT_BUS.unsubscribe(pushOutOfBlocksListener);
-    }
-
     @EventHandler
-    private final Listener<PlayerApplyCollisionEvent> applyCollisionListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PlayerApplyCollisionEvent> applyCollisionListener = listener(event -> {
         if(noPush.getValBoolean()) event.cancel();
     });
 
     @EventHandler
-    private final Listener<PlayerPushedByWaterEvent> pushedByWaterListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PlayerPushedByWaterEvent> pushedByWaterListener = listener(event -> {
         if(noPush.getValBoolean()) event.cancel();
     });
 
     @EventHandler
-    private final Listener<PlayerPushOutOfBlocksEvent> pushOutOfBlocksListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PlayerPushOutOfBlocksEvent> pushOutOfBlocksListener = listener(event -> {
         if(noPush.getValBoolean()) event.cancel();
     });
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> packetReceiveListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
         if(event.getPacket() instanceof SPacketEntityVelocity) if(((SPacketEntityVelocity) event.getPacket()).getEntityID() == mc.player.getEntityId()) event.cancel();
         if(event.getPacket() instanceof SPacketExplosion && exp.getValBoolean()) event.cancel();
         if(event.getPacket() instanceof SPacketEntityStatus && bobbers.getValBoolean()) {

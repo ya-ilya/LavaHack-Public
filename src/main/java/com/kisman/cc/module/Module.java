@@ -4,10 +4,14 @@ import com.kisman.cc.Kisman;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.setting.SettingManager;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import me.zero.alpine.listener.EventHook;
+import me.zero.alpine.listener.Listener;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.MinecraftForge;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class Module {
@@ -24,6 +28,7 @@ public class Module {
 	public boolean hold = false;
 	public boolean block = false;
 	private Supplier<String> fun = null;
+	private final List<Listener<?>> listeners = new ArrayList<>();
 
 	public Module(String name, Category category) {this(name, "", category, 0, true);}
 	public Module(String name, Category category, boolean subscribes) {this(name, "", category, 0, subscribes);}
@@ -65,18 +70,32 @@ public class Module {
 	}
 
 	private void enable() {
+		for (Listener<?> listener : listeners) {
+			Kisman.EVENT_BUS.subscribe(listener);
+		}
+
 		if (subscribes) MinecraftForge.EVENT_BUS.register(this);
 		onEnable();
 	}
 
 	private void disable() {
+		for (Listener<?> listener : listeners) {
+			Kisman.EVENT_BUS.unsubscribe(listener);
+		}
+
 		if (subscribes) MinecraftForge.EVENT_BUS.unregister(this);
 		onDisable();
 	}
 
-	public Setting register(Setting set) {
-		register(set);
-		return set;
+	public Setting register(Setting setting) {
+		settingManager.register(setting);
+		return setting;
+	}
+
+	public <T> Listener<T> listener(EventHook<T> hook) {
+		Listener<T> listener = new Listener<>(hook);
+		listeners.add(listener);
+		return listener;
 	}
 
 	public String getDescription() {return description;}

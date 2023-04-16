@@ -35,7 +35,7 @@ public class AutoEZ extends Module {
 
     public void onEnable() {
         targetedPlayers = new ConcurrentHashMap<>();
-        Kisman.EVENT_BUS.subscribe(packetSendListener);
+        
     }
 
     public void update() {
@@ -62,7 +62,8 @@ public class AutoEZ extends Module {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if(mc.player != null) {
             if(targetedPlayers == null) targetedPlayers = new ConcurrentHashMap<>();
 

@@ -1,6 +1,5 @@
 package com.kisman.cc.module.player;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.Event;
 import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
 import com.kisman.cc.module.Category;
@@ -48,14 +47,6 @@ public class FastPlace extends Module {
         register(fastCrystal);
     }
 
-    public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(motionUpdateListener);
-    }
-
-    public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(motionUpdateListener);
-    }
-
     public void update() {
         if(mc.player == null || mc.world == null) return;
 
@@ -101,7 +92,8 @@ public class FastPlace extends Module {
     }
 
     @EventHandler
-    private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
         if (event.getEra().equals(Event.Era.PRE) && this.feetExp.getValBoolean()) {
             final boolean mainHand = mc.player.getHeldItemMainhand().getItem() == Items.EXPERIENCE_BOTTLE;
             final boolean offHand = (mc.player.getHeldItemOffhand().getItem() == Items.EXPERIENCE_BOTTLE);

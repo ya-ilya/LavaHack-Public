@@ -1,6 +1,5 @@
 package com.kisman.cc.module.player;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -31,16 +30,9 @@ public class NoInteract extends Module {
         register(anvil);
     }
 
-    public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(packetSendListener);
-    }
-
-    public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
-    }
-
     @EventHandler
-    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if(mc.player == null || mc.world == null) return;
 
         if(event.getPacket() instanceof CPacketPlayerTryUseItemOnBlock && mc.objectMouseOver != null &&mc.objectMouseOver.getBlockPos() != null && mc.world.getBlockState(mc.objectMouseOver.getBlockPos()).getBlock() != null) {

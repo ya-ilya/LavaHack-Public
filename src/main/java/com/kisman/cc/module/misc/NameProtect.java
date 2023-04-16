@@ -1,6 +1,5 @@
 package com.kisman.cc.module.misc;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -26,16 +25,9 @@ public class NameProtect extends Module {
 
     public boolean isBeta() {return true;}
 
-    public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(packetReceiveListener);
-    }
-
-    public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(packetReceiveListener);
-    }
-
     @EventHandler
-    private final Listener<PacketEvent.Receive> packetReceiveListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
         SPacketChat packet;
         if (event.getPacket() instanceof SPacketChat && (packet = (SPacketChat)event.getPacket()).getType() != ChatType.GAME_INFO && getChatNames(packet.getChatComponent().getFormattedText())) event.cancel();
     });

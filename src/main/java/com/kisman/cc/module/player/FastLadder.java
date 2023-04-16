@@ -1,6 +1,5 @@
 package com.kisman.cc.module.player;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -14,21 +13,14 @@ public class FastLadder extends Module {
         super("FastLadder", Category.PLAYER);
     }
 
-    public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(packetSendListener);
-    }
-
-    public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
-    }
-
     public void update() {
         if(mc.player == null || mc.world == null) return;
         if(mc.player.isOnLadder()) mc.player.jump();
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if(event.getPacket() instanceof CPacketPlayer && mc.player.isOnLadder() && MovementUtil.isMoving()) ((CPacketPlayer) event.getPacket()).onGround = true;
     });
 }

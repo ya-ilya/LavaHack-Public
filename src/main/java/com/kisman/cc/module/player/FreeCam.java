@@ -1,6 +1,5 @@
 package com.kisman.cc.module.player;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.Event;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
@@ -49,9 +48,6 @@ public class FreeCam extends Module {
         fakePlayer.posY -= 0.0;
         fakePlayer.rotationYawHead = mc.player.rotationYawHead;
         mc.world.addEntityToWorld(-69, fakePlayer);
-        Kisman.EVENT_BUS.subscribe(packetListener);
-        Kisman.EVENT_BUS.subscribe(pushOutOfBlocksListener);
-        Kisman.EVENT_BUS.subscribe(motionUpdateListener);
         if (mc.player == null || mc.world == null || mc.player.ticksExisted < 1) {
             if (this.autoTeleportDisable.getValBoolean()) {
                 this.toggle();
@@ -61,10 +57,6 @@ public class FreeCam extends Module {
 
     @Override
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(packetListener);
-        Kisman.EVENT_BUS.unsubscribe(pushOutOfBlocksListener);
-        Kisman.EVENT_BUS.unsubscribe(motionUpdateListener);
-            
         if (this.clipOnDisable.getValBoolean()) {
             this.oldX = mc.player.posX;
             this.oldY = mc.player.posY;
@@ -85,7 +77,8 @@ public class FreeCam extends Module {
     }
 
     @EventHandler
-    private final Listener<PacketEvent> packetListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent> packetListener = listener(event -> {
         if (event.getPacket() instanceof SPacketPlayerPosLook && reallyWorld.getValBoolean()) {
             event.cancel();
         }
@@ -96,10 +89,12 @@ public class FreeCam extends Module {
     });
 
     @EventHandler
+    @SuppressWarnings("unused")
     private final Listener<PlayerPushOutOfBlocksEvent> pushOutOfBlocksListener = new Listener<>(Cancellable::cancel);
 
     @EventHandler
-    private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
         if (event.getEra() == Event.Era.PRE) {
             event.cancel();
         }

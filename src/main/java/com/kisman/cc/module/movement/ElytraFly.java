@@ -1,6 +1,5 @@
 package com.kisman.cc.module.movement;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PlayerTravelEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -62,8 +61,6 @@ public class ElytraFly extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(playerTravelListener);
-
         elytraSlot = -1;
 
         if(mc.player == null || mc.world == null) return;
@@ -80,8 +77,6 @@ public class ElytraFly extends Module {
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(playerTravelListener);
-
         if(mc.player != null && elytraSlot != -1 && equipElytra.getValBoolean()) {
             boolean hasItem = !mc.player.inventory.getStackInSlot(elytraSlot).isEmpty() || mc.player.inventory.getStackInSlot(elytraSlot).getItem() != Items.AIR;
             mc.playerController.windowClick(mc.player.inventoryContainer.windowId, 6, 0, ClickType.PICKUP, mc.player);
@@ -91,7 +86,8 @@ public class ElytraFly extends Module {
     }
 
     @EventHandler
-    private final Listener<PlayerTravelEvent> playerTravelListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PlayerTravelEvent> playerTravelListener = listener(event -> {
         if (mc.player == null) return;
         if (mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.ELYTRA) return;
 

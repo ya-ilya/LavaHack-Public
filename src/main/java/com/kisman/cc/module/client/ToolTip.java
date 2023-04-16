@@ -1,6 +1,5 @@
 package com.kisman.cc.module.client;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.RenderToolTipEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -29,16 +28,9 @@ public class ToolTip extends Module {
         register(shulkers);
     }
 
-    public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(renderToolTipListener);
-    }
-
-    public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(renderToolTipListener);
-    }
-
     @EventHandler
-    private final Listener<RenderToolTipEvent> renderToolTipListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<RenderToolTipEvent> renderToolTipListener = listener(event -> {
         if (shulkers.getValBoolean() && event.getStack().getItem() instanceof ItemShulkerBox) {
             renderShulkerTip(event.getStack(), event.getX(), event.getY());
             event.cancel();

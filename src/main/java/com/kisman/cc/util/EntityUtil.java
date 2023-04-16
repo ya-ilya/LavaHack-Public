@@ -100,7 +100,7 @@ public class EntityUtil {
         EntityPlayer currentTarget = null;
         for (int size = mc.world.playerEntities.size(), i = 0; i < size; ++i) {
             final EntityPlayer player = mc.world.playerEntities.get(i);
-            if(!antibotCheck(player) && AntiBot.instance.isToggled() && AntiBot.instance.mode.checkValString("Zamorozka")) continue;
+            if(AntiBot.instance.isToggled() && AntiBot.instance.mode.checkValString("Zamorozka") && !antibotCheck(player)) continue;
             if (!isntValid(player, range, wallRange)) {
                 if (currentTarget == null) currentTarget = player;
                 else if (mc.player.getDistanceSq(player) < mc.player.getDistanceSq(currentTarget)) currentTarget = player;
@@ -132,7 +132,7 @@ public class EntityUtil {
     }
 
     public static boolean antibotCheck(EntityLivingBase entity) {
-        return (AntiBot.instance != null && AntiBot.instance.target.equals(entity));
+        return AntiBot.instance != null && AntiBot.instance.target != null && AntiBot.instance.target.equals(entity);
     }
 
     public static boolean isntValid2(final EntityLivingBase entity, boolean players, boolean animals, boolean monsters) {

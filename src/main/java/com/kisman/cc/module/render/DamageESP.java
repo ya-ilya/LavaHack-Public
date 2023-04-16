@@ -1,6 +1,5 @@
 package com.kisman.cc.module.render;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.Render2DEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -48,13 +47,8 @@ public class DamageESP extends Module {
     public boolean isBeta() {return true;}
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(render2DListener);
         entityHealthMap.clear();
         damages.clear();
-    }
-
-    public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(render2DListener);
     }
 
     public void update() {
@@ -90,7 +84,8 @@ public class DamageESP extends Module {
     }
 
     @EventHandler
-    private final Listener<Render2DEvent> render2DListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<Render2DEvent> render2DListener = listener(event -> {
         if(damages.isEmpty()) return;
         for(Damage damage : damages) {
             if(mc.player.getDistance(damage.entity) > range.getValInt()) continue;

@@ -1,6 +1,5 @@
 package com.kisman.cc.module.misc;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.TurnEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -23,7 +22,6 @@ public class FreeLook extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(turnListener);
         dYaw = dPitch = 0;
 
         if(mc.player == null || mc.world == null) return;
@@ -31,7 +29,6 @@ public class FreeLook extends Module {
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(turnListener);
         if(mc.player == null || mc.world == null) return;
         if (autoThirdPerson.getValBoolean()) mc.gameSettings.thirdPersonView = 0;
     }
@@ -45,7 +42,8 @@ public class FreeLook extends Module {
     }
 
     @EventHandler
-    private final Listener<TurnEvent> turnListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<TurnEvent> turnListener = listener(event -> {
         if (mc.gameSettings.thirdPersonView > 0) {
             dYaw = (float) ((double) dYaw + (double) event.getYaw() * 0.15D);
             dPitch = (float) ((double) dPitch - (double) event.getPitch() * 0.15D);

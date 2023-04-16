@@ -1,6 +1,5 @@
 package com.kisman.cc.module.movement;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -32,12 +31,7 @@ public class Jesus extends Module {
         register(speedPixel);
     }
 
-    public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(packetSendListener);
-    }
-
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
         EntityUtil.resetTimer();
         if(mc.player == null || mc.world == null) return;
         mc.player.jumpMovementFactor = 0.02f;
@@ -100,5 +94,6 @@ public class Jesus extends Module {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {if((mode.getValString().equalsIgnoreCase("Matrix 6.3") || mode.getValString().equalsIgnoreCase("MatrixPixel")) && event.getPacket() instanceof CPacketPlayer && EntityUtil.isFluid(0.3)) ((CPacketPlayer) event.getPacket()).onGround = false;});
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {if((mode.getValString().equalsIgnoreCase("Matrix 6.3") || mode.getValString().equalsIgnoreCase("MatrixPixel")) && event.getPacket() instanceof CPacketPlayer && EntityUtil.isFluid(0.3)) ((CPacketPlayer) event.getPacket()).onGround = false;});
 }

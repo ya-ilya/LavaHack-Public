@@ -1,6 +1,5 @@
 package com.kisman.cc.module.combat;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.module.Category;
@@ -37,7 +36,6 @@ public class BreakAlert extends Module {
     public boolean isBeta() {return true;}
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(packetReceiveEvent);
         blocksBeginBroken.clear();
     }
 
@@ -61,7 +59,8 @@ public class BreakAlert extends Module {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> packetReceiveEvent = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.Receive> packetReceiveEvent = listener(event -> {
         if(event.getPacket() instanceof SPacketBlockBreakAnim) {
             SPacketBlockBreakAnim packet = (SPacketBlockBreakAnim) event.getPacket();
 

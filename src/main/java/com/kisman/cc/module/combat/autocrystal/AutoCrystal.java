@@ -1,6 +1,5 @@
 package com.kisman.cc.module.combat.autocrystal;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -70,7 +69,8 @@ public class AutoCrystal extends Module implements Runnable {
     static AI.HalqPos bestCrystalPos = new AI.HalqPos(BlockPos.ORIGIN, 0);
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> packetReceiveListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
         if (event.getPacket() instanceof SPacketSoundEffect && sound.getValBoolean()) {
             final SPacketSoundEffect packet = (SPacketSoundEffect) event.getPacket();
             if (packet.getCategory() == SoundCategory.BLOCKS && packet.getSound() == SoundEvents.ENTITY_GENERIC_EXPLODE) for (Entity e : Minecraft.getMinecraft().world.loadedEntityList) if (e instanceof EntityEnderCrystal && e.getDistance(packet.getX(), packet.getY(), packet.getZ()) <= 6.0f) e.setDead();
@@ -84,14 +84,14 @@ public class AutoCrystal extends Module implements Runnable {
     private AutoCrystal autoCrystal;
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(packetReceiveListener);
-        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
+        
+        
         placeTimer.reset();
         bestCrystalPos = new AI.HalqPos(BlockPos.ORIGIN, 0);
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(packetReceiveListener);
+        
         target = null;
         super.setDisplayInfo("");
     }
@@ -183,7 +183,8 @@ public class AutoCrystal extends Module implements Runnable {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         bestCrystalPos = placeCalculateAI();
         float[] rot = RotationUtils.getRotationToPos(bestCrystalPos.getBlockPos());
         Packet<?> packet = event.getPacket();

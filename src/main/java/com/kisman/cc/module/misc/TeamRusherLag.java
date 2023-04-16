@@ -1,6 +1,5 @@
 package com.kisman.cc.module.misc;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -27,12 +26,10 @@ public class TeamRusherLag extends Module {
     public boolean isBeta() {return true;}
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(packetReceiveListener);
         lastPacket = 0L;
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(packetReceiveListener);
         lastPacket = 0L;
     }
 
@@ -51,5 +48,6 @@ public class TeamRusherLag extends Module {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> packetReceiveListener = new Listener<>(event -> lastPacket = System.currentTimeMillis());
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> lastPacket = System.currentTimeMillis());
 }

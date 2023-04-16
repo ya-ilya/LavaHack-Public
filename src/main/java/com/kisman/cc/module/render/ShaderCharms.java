@@ -1,6 +1,5 @@
 package com.kisman.cc.module.render;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.RenderEntityEvent;
 import com.kisman.cc.friend.FriendManager;
 import com.kisman.cc.gui.csgo.components.Slider;
@@ -138,14 +137,6 @@ public class ShaderCharms extends Module {
         register(ratio);
     }
 
-    public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(renderEntityListener);
-    }
-
-    public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(renderEntityListener);
-    }
-
     public void update() {
         super.setDisplayInfo("[" + mode.getValString() + "]");
     }
@@ -161,7 +152,8 @@ public class ShaderCharms extends Module {
     }
 
     @EventHandler
-    private final Listener<RenderEntityEvent.All.Pre> renderEntityListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<RenderEntityEvent.All.Pre> renderEntityListener = listener(event -> {
         if(mode.checkValString("Outline2") && !mc.renderManager.renderOutlines && hideOriginal.getValBoolean() && mc.player.getDistance(event.getEntity()) <= range.getValFloat() && entityTypeCheck(event.getEntity())) event.cancel();
     });
 

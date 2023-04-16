@@ -1,6 +1,5 @@
 package com.kisman.cc.module.combat;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.mixin.mixins.accessor.ICPacketPlayer;
@@ -101,8 +100,6 @@ public class Surround extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(packetSendListener);
-
         oldPos = new BlockPos(new Vec3d(MathUtil.roundFloat(mc.player.getPositionVector().x, 0), MathUtil.roundFloat(mc.player.getPositionVector().y, 0), MathUtil.roundFloat(mc.player.getPositionVector().z, 0)));
 
         switch (center.getValString()) {
@@ -129,10 +126,6 @@ public class Surround extends Module {
                 break;
             }
         }
-    }
-
-    public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
     }
 
     public void update() {
@@ -180,7 +173,8 @@ public class Surround extends Module {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (event.getPacket() instanceof CPacketPlayer && !Float.isNaN(surroundRotation.getYaw()) && !Float.isNaN(surroundRotation.getPitch())) {
             ((ICPacketPlayer) event.getPacket()).setYaw(surroundRotation.getYaw());
             ((ICPacketPlayer) event.getPacket()).setPitch(surroundRotation.getPitch());

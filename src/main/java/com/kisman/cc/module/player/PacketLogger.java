@@ -1,6 +1,5 @@
 package com.kisman.cc.module.player;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.hud.hudmodule.render.PacketChat;
 import com.kisman.cc.hud.hudmodule.render.packetchat.Message;
@@ -28,18 +27,9 @@ public class PacketLogger extends Module{
 
     public boolean isBeta() {return true;}
 
-    public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(packetSendListener);
-        Kisman.EVENT_BUS.subscribe(packetReceiveListener);
-    }
-
-    public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
-        Kisman.EVENT_BUS.unsubscribe(packetReceiveListener);
-    }
-
     @EventHandler
-    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if(!client.getValBoolean()) return;
 
         StringBuilder message = new StringBuilder("Client -> " + event.getPacket().getClass().getName());
@@ -59,7 +49,8 @@ public class PacketLogger extends Module{
     });
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> packetReceiveListener = new Listener<>(event -> {
+    @SuppressWarnings("unused")
+    private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
         if(!server.getValBoolean()) return;
 
         StringBuilder message = new StringBuilder("Server -> " + event.getPacket().getClass().getName());

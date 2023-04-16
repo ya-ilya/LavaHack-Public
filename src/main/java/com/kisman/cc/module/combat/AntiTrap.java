@@ -1,6 +1,5 @@
 package com.kisman.cc.module.combat;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.event.Event;
 import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
 import com.kisman.cc.module.Category;
@@ -55,14 +54,10 @@ public class AntiTrap extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(motionUpdateListener);
-
         if(mc.player == null || mc.world == null) super.setToggled(false);
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(motionUpdateListener);
-
         if((mc.player == null || mc.world == null)) return;
 
         switchItem();
@@ -75,7 +70,12 @@ public class AntiTrap extends Module {
     }
 
     @EventHandler
-    private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = new Listener<>(event -> {if(event.getEra() == Event.Era.PRE && mode.getValString().equalsIgnoreCase("MotionTick")) doAntiTrap();});
+    @SuppressWarnings("unused")
+    private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
+        if (event.getEra() == Event.Era.PRE && mode.getValString().equalsIgnoreCase("MotionTick")) {
+            doAntiTrap();
+        }
+    });
 
     private void doAntiTrap() {
         if(timer.passedMillis(delay.getValInt())) timer.reset();

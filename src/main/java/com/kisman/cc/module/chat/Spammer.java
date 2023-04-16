@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Spammer extends Module {
-    private final  Setting customMsg = new Setting("CustomMessage", this, false);
+    private final Setting customMsg = new Setting("CustomMessage", this, false);
     private final Setting customMessage = new Setting("CustomMessage", this, "_kisman_ on top!", "_kisman_ on top!", true);
     private final ArrayList<String> spam;
 

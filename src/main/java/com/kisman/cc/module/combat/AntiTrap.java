@@ -41,7 +41,7 @@ public class AntiTrap extends Module {
     private boolean offhand = false;
 
     public AntiTrap() {
-        super("AntiTrap", "", Category.COMBAT);
+        super("AntiTrap", Category.COMBAT);
 
         instance = this;
 

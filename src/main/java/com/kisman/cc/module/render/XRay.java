@@ -47,7 +47,7 @@ public class XRay extends Module {
     public final Setting emerald = new Setting("Emerald", this, false);
 
     public XRay() {
-        super("XRay", "", Category.RENDER);
+        super("XRay", Category.RENDER);
 
         instance = this;
 

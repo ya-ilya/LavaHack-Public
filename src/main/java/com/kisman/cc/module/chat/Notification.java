@@ -7,7 +7,7 @@ public class Notification extends Module {
     public static Notification instance;
 
     public Notification() {
-        super("Notification", "kgdrklbdf", Category.CHAT);
+        super("Notification", Category.CHAT);
 
         instance = this;
     }

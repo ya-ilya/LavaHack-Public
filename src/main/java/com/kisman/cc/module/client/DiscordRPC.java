@@ -11,7 +11,7 @@ public class DiscordRPC extends Module {
     public final Setting impr = new Setting("Impr RPC", this, true);
 
     public DiscordRPC() {
-        super("DiscordRPC", "", Category.CLIENT);
+        super("DiscordRPC", Category.CLIENT);
         instance = this;
 
         register(impr);

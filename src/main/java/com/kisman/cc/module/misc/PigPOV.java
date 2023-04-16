@@ -8,7 +8,7 @@ import net.minecraft.entity.passive.EntityPig;
 
 public class PigPOV extends Module {
     public PigPOV() {
-        super("PigPOV", "", Category.MISC);
+        super("PigPOV", Category.MISC);
     }
 
     public void onEnable() {

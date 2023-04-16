@@ -10,7 +10,7 @@ public class ItemScroller extends Module {
     public final Setting scrollSpeed = new Setting("ScrollSpeed", this, 20, 1, 100, true);
 
     public ItemScroller() {
-        super("ItemScroller", "", Category.MISC);
+        super("ItemScroller", Category.MISC);
 
         instance = this;
 

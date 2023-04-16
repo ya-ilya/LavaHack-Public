@@ -28,7 +28,7 @@ public class AutoEZ extends Module {
     private final Setting random = new Setting("Random message", this, true);
 
     public AutoEZ() {
-        super("AutoEZ", "", Category.CHAT);
+        super("AutoEZ", Category.CHAT);
 
         register(random);
     }

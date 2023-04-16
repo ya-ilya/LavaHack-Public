@@ -78,7 +78,7 @@ public class AutoFirework extends Module {
     public EntityPlayer target = null;
 
     public AutoFirework() {
-        super("AutoFirework", "", Category.COMBAT);
+        super("AutoFirework", Category.COMBAT);
 
         aimBot = AimBot.instance;
         instance = this;

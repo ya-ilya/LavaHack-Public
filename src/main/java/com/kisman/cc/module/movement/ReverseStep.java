@@ -19,7 +19,7 @@ public class ReverseStep extends Module {
     private final TimerUtils lagTimer = new TimerUtils();
 
     public ReverseStep() {
-        super("ReverseStep", "", Category.MOVEMENT);
+        super("ReverseStep", Category.MOVEMENT);
 
         instance = this;
 

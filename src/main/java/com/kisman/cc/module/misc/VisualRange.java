@@ -13,7 +13,7 @@ public class  VisualRange extends Module {
     private final ArrayList<String> newnames;
 
     public VisualRange() {
-        super("VisualRange", "", Category.MISC);
+        super("VisualRange", Category.MISC);
 
         this.names = new ArrayList<>();
         this.newnames = new ArrayList<>();

@@ -12,7 +12,7 @@ public class BowSpam extends Module {
     private final Setting drawLength = new Setting("DrawLength", this, 3, 3, 21, true);
 
     public BowSpam() {
-        super("BowSpam", "", Category.COMBAT);
+        super("BowSpam", Category.COMBAT);
 
         register(drawLength);
     }

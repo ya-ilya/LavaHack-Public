@@ -16,7 +16,7 @@ public class TraceTeleport extends Module {
     private final Setting onlyPlayers = new Setting("Only Players", this, true);
     
     public TraceTeleport() {
-        super("TraceTeleport", "", Category.CHAT);
+        super("TraceTeleport", Category.CHAT);
 
         register(onlyPlayers);
     }

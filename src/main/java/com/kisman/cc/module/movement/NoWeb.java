@@ -13,7 +13,7 @@ public class NoWeb extends Module {
     public final Setting motionY = new Setting("MotionY", this, 1, 0, 20, false);
 
     public NoWeb() {
-        super("NoWeb", "", Category.MOVEMENT);
+        super("NoWeb", Category.MOVEMENT);
 
 //        setmgr.rSetting(disableBB);
         register(onGround);

@@ -35,7 +35,7 @@ public class ItemCharms extends Module {
     public Color color = new Color(red.getRed(), red.getGreen(), red.getBlue(), red.getAlpha());
 
     public ItemCharms() {
-        super("ItemCharms", "", Category.RENDER);
+        super("ItemCharms", Category.RENDER);
 
         instance = this;
 

@@ -16,7 +16,7 @@ public class Criticals extends Module {
     private final Setting onlyKillaura = new Setting("OnlyKillAura", this, false);
 
     public Criticals() {
-        super("Criticals", "", Category.COMBAT);
+        super("Criticals", Category.COMBAT);
 
         register(strict);
         register(onlyKillaura);

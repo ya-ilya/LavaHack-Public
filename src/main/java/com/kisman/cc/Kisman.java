@@ -1,16 +1,14 @@
 package com.kisman.cc;
 
-import com.kisman.cc.util.api.cape.CapeAPI;
 import com.kisman.cc.command.CommandManager;
-import com.kisman.cc.gui.console.rewrite.ConsoleGui;
-import com.kisman.cc.event.EventProcessor;
 import com.kisman.cc.config.ConfigManager;
+import com.kisman.cc.event.EventProcessor;
 import com.kisman.cc.friend.FriendManager;
 import com.kisman.cc.gui.MainGui;
+import com.kisman.cc.gui.console.rewrite.ConsoleGui;
 import com.kisman.cc.gui.csgo.ClickGuiNew;
 import com.kisman.cc.gui.halq.Frame;
 import com.kisman.cc.gui.halq.HalqGui;
-import com.kisman.cc.gui.mainmenu.sandbox.SandBoxShaders;
 import com.kisman.cc.gui.vega.Gui;
 import com.kisman.cc.hud.hudeditor.HudEditorGui;
 import com.kisman.cc.hud.hudgui.HudGui;
@@ -22,11 +20,11 @@ import com.kisman.cc.module.client.Config;
 import com.kisman.cc.settings.SettingsManager;
 import com.kisman.cc.util.RotationUtils;
 import com.kisman.cc.util.ServerManager;
+import com.kisman.cc.util.api.cape.CapeAPI;
 import com.kisman.cc.util.customfont.CustomFontRenderer;
 import com.kisman.cc.util.glow.ShaderShell;
 import com.kisman.cc.util.manager.Managers;
 import com.kisman.cc.util.optimization.aiimpr.MainAiImpr;
-import com.kisman.cc.util.shaders.Shaders;
 import me.zero.alpine.bus.EventManager;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
@@ -87,8 +85,6 @@ public class Kisman {
     public RotationUtils rotationUtils;
     public EventProcessor eventProcessor;
     public ServerManager serverManager;
-    public Shaders shaders;
-    public SandBoxShaders sandBoxShaders;
     public Managers managers;
     public CapeAPI capeAPI;
     public MainAiImpr aiImpr;
@@ -124,7 +120,6 @@ public class Kisman {
         commandManager = new CommandManager();
         rotationUtils = new RotationUtils();
         serverManager = new ServerManager();
-        shaders = new Shaders();
         capeAPI = new CapeAPI();
 
         configManager = new ConfigManager("config");
@@ -207,19 +202,5 @@ public class Kisman {
             Desktop desktop = Desktop.getDesktop();
             if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) desktop.browse(new URI(link));
         } catch (IOException | URISyntaxException e) {e.printStackTrace();}
-    }
-
-    //lua
-    public static void reloadGUIs() {
-        if(mc.player != null || mc.world != null) mc.displayGuiScreen(null);
-        instance.halqGui.frames.forEach(Frame::reload);
-        instance.clickGuiNew = new ClickGuiNew();
-    }
-
-    //lua
-    public static void reloadHudGUIs() {
-        if(mc.player != null || mc.world != null) mc.displayGuiScreen(null);
-        instance.hudGui = new HudGui();
-        instance.hudEditorGui = new HudEditorGui();
     }
 }

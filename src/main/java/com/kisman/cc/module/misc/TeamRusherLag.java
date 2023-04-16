@@ -27,12 +27,12 @@ public class TeamRusherLag extends Module {
     public boolean isBeta() {return true;}
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(listener);
+        Kisman.EVENT_BUS.subscribe(packetReceiveListener);
         lastPacket = 0L;
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(listener);
+        Kisman.EVENT_BUS.unsubscribe(packetReceiveListener);
         lastPacket = 0L;
     }
 
@@ -51,5 +51,5 @@ public class TeamRusherLag extends Module {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> listener = new Listener<>(event -> lastPacket = System.currentTimeMillis());
+    private final Listener<PacketEvent.Receive> packetReceiveListener = new Listener<>(event -> lastPacket = System.currentTimeMillis());
 }

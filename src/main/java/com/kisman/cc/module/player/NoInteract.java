@@ -32,15 +32,15 @@ public class NoInteract extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(sendListener);
+        Kisman.EVENT_BUS.subscribe(packetSendListener);
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(sendListener);
+        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Send> sendListener = new Listener<>(event -> {
+    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
         if(mc.player == null || mc.world == null) return;
 
         if(event.getPacket() instanceof CPacketPlayerTryUseItemOnBlock && mc.objectMouseOver != null &&mc.objectMouseOver.getBlockPos() != null && mc.world.getBlockState(mc.objectMouseOver.getBlockPos()).getBlock() != null) {

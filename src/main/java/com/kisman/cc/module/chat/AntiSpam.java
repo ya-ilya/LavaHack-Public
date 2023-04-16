@@ -25,15 +25,15 @@ public class AntiSpam extends Module {
     public boolean isBeta() {return true;}
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(listener);
+        Kisman.EVENT_BUS.subscribe(packetListener);
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(listener);
+        Kisman.EVENT_BUS.unsubscribe(packetListener);
     }
 
     @EventHandler
-    private final Listener<PacketEvent> listener = new Listener<>(event -> {
+    private final Listener<PacketEvent> packetListener = new Listener<>(event -> {
         if (event.getEra().equals(Event.Era.PRE) && event.getPacket() instanceof SPacketChat) {
             if (!((SPacketChat) event.getPacket()).isSystem()) return;
             String message = ((SPacketChat) event.getPacket()).chatComponent.getFormattedText();

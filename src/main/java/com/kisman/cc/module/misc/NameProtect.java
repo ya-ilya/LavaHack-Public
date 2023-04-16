@@ -27,15 +27,15 @@ public class NameProtect extends Module {
     public boolean isBeta() {return true;}
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(listener);
+        Kisman.EVENT_BUS.subscribe(packetReceiveListener);
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(listener);
+        Kisman.EVENT_BUS.unsubscribe(packetReceiveListener);
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> listener = new Listener<>(event -> {
+    private final Listener<PacketEvent.Receive> packetReceiveListener = new Listener<>(event -> {
         SPacketChat packet;
         if (event.getPacket() instanceof SPacketChat && (packet = (SPacketChat)event.getPacket()).getType() != ChatType.GAME_INFO && getChatNames(packet.getChatComponent().getFormattedText())) event.cancel();
     });

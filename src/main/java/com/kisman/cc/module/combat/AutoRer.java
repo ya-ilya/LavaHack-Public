@@ -282,9 +282,9 @@ public class AutoRer extends Module {
 
         if(!threadMode.getValString().equalsIgnoreCase("None")) processMultiThreading();
 
-        Kisman.EVENT_BUS.subscribe(listener);
-        Kisman.EVENT_BUS.subscribe(listener1);
-        Kisman.EVENT_BUS.subscribe(motion);
+        Kisman.EVENT_BUS.subscribe(packetReceiveListener);
+        Kisman.EVENT_BUS.subscribe(packetSendListener);
+        Kisman.EVENT_BUS.subscribe(motionUpdateListener);
 
         subscribed = true;
     }
@@ -292,9 +292,9 @@ public class AutoRer extends Module {
     public void onDisable() {
         
         if(subscribed) {
-            Kisman.EVENT_BUS.unsubscribe(listener);
-            Kisman.EVENT_BUS.unsubscribe(listener1);
-            Kisman.EVENT_BUS.unsubscribe(motion);
+            Kisman.EVENT_BUS.unsubscribe(packetReceiveListener);
+            Kisman.EVENT_BUS.unsubscribe(packetSendListener);
+            Kisman.EVENT_BUS.unsubscribe(motionUpdateListener);
         }
 
         if(thread != null) shouldInterrupt.set(false);
@@ -413,7 +413,7 @@ public class AutoRer extends Module {
     }
 
     @EventHandler
-    private final Listener<PlayerMotionUpdateEvent> motion = new Listener<>(event -> {
+    private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = new Listener<>(event -> {
         if(!motionCrystal.getValBoolean() || currentTarget == null) return;
         if(motionCalc.getValBoolean() && fastCalc.getValBoolean() && calcTimer.passedMillis(calcDelay.getValLong())) {
             doCalculatePlace();
@@ -598,7 +598,7 @@ public class AutoRer extends Module {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> listener = new Listener<>(event -> {
+    private final Listener<PacketEvent.Receive> packetReceiveListener = new Listener<>(event -> {
         if(event.getPacket() instanceof SPacketSpawnObject && instant.getValBoolean()) {
             SPacketSpawnObject packet =  (SPacketSpawnObject) event.getPacket();
             if (packet.getType() == 51) {
@@ -641,7 +641,7 @@ public class AutoRer extends Module {
     });
 
     @EventHandler
-    private final Listener<PacketEvent.Send> listener1 = new Listener<>(event -> {
+    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
         if (event.getPacket() instanceof CPacketPlayerTryUseItemOnBlock && mc.player.getHeldItem(((CPacketPlayerTryUseItemOnBlock) event.getPacket()).getHand()).getItem() == Items.END_CRYSTAL) try {
             PlaceInfo info = AutoRerUtil.Companion.getPlaceInfo(((CPacketPlayerTryUseItemOnBlock) event.getPacket()).getPos(), currentTarget, terrain.getValBoolean());
             placedList.add(info);

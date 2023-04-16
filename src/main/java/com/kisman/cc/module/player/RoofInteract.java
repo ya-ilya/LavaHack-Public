@@ -15,15 +15,15 @@ public class RoofInteract extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(listener);
+        Kisman.EVENT_BUS.subscribe(packetSendListener);
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(listener);
+        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Send> listener = new Listener<>(event -> {
+    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
         if (event.getPacket() instanceof CPacketPlayerTryUseItemOnBlock) {
             CPacketPlayerTryUseItemOnBlock packet = (CPacketPlayerTryUseItemOnBlock)event.getPacket();
             if (packet.getPos().getY() >= 255 && packet.getDirection() == EnumFacing.UP) {

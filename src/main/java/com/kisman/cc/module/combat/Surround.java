@@ -101,7 +101,7 @@ public class Surround extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(listener);
+        Kisman.EVENT_BUS.subscribe(packetSendListener);
 
         oldPos = new BlockPos(new Vec3d(MathUtil.roundFloat(mc.player.getPositionVector().x, 0), MathUtil.roundFloat(mc.player.getPositionVector().y, 0), MathUtil.roundFloat(mc.player.getPositionVector().z, 0)));
 
@@ -132,7 +132,7 @@ public class Surround extends Module {
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(listener);
+        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
     }
 
     public void update() {
@@ -180,7 +180,7 @@ public class Surround extends Module {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Send> listener = new Listener<>(event -> {
+    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
         if (event.getPacket() instanceof CPacketPlayer && !Float.isNaN(surroundRotation.getYaw()) && !Float.isNaN(surroundRotation.getPitch())) {
             ((ICPacketPlayer) event.getPacket()).setYaw(surroundRotation.getYaw());
             ((ICPacketPlayer) event.getPacket()).setPitch(surroundRotation.getPitch());

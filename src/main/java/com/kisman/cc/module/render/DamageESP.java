@@ -48,13 +48,13 @@ public class DamageESP extends Module {
     public boolean isBeta() {return true;}
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(listener);
+        Kisman.EVENT_BUS.subscribe(render2DListener);
         entityHealthMap.clear();
         damages.clear();
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(listener);
+        Kisman.EVENT_BUS.unsubscribe(render2DListener);
     }
 
     public void update() {
@@ -90,7 +90,7 @@ public class DamageESP extends Module {
     }
 
     @EventHandler
-    private final Listener<Render2DEvent> listener = new Listener<>(event -> {
+    private final Listener<Render2DEvent> render2DListener = new Listener<>(event -> {
         if(damages.isEmpty()) return;
         for(Damage damage : damages) {
             if(mc.player.getDistance(damage.entity) > range.getValInt()) continue;

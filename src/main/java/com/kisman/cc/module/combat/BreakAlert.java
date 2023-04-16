@@ -37,7 +37,7 @@ public class BreakAlert extends Module {
     public boolean isBeta() {return true;}
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(receive);
+        Kisman.EVENT_BUS.subscribe(packetReceiveEvent);
         blocksBeginBroken.clear();
     }
 
@@ -61,7 +61,7 @@ public class BreakAlert extends Module {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> receive = new Listener<>(event -> {
+    private final Listener<PacketEvent.Receive> packetReceiveEvent = new Listener<>(event -> {
         if(event.getPacket() instanceof SPacketBlockBreakAnim) {
             SPacketBlockBreakAnim packet = (SPacketBlockBreakAnim) event.getPacket();
 

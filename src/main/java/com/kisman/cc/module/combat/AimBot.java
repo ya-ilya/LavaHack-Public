@@ -33,15 +33,15 @@ public class AimBot extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(listener);
+        Kisman.EVENT_BUS.subscribe(motionUpdateListener);
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(listener);
+        Kisman.EVENT_BUS.unsubscribe(motionUpdateListener);
     }
 
     @EventHandler
-    private final Listener<PlayerMotionUpdateEvent> listener = new Listener<>(event -> {
+    private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = new Listener<>(event -> {
         if(event.getEra() != Event.Era.PRE) return;
 
         if(rotationSpoof == null) return;

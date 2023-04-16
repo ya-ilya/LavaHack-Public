@@ -108,8 +108,8 @@ public class Speed extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(listener);
-        Kisman.EVENT_BUS.subscribe(listener1);
+        Kisman.EVENT_BUS.subscribe(playerUpdateListener);
+        Kisman.EVENT_BUS.subscribe(packetReceiveListener);
         if(mc.player == null || mc.world == null) return;
         stage = 4;
         dist = MovementUtil.getDistance2D();
@@ -117,8 +117,8 @@ public class Speed extends Module {
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(listener);
-        Kisman.EVENT_BUS.unsubscribe(listener1);
+        Kisman.EVENT_BUS.unsubscribe(playerUpdateListener);
+        Kisman.EVENT_BUS.unsubscribe(packetReceiveListener);
 
         EntityUtil.resetTimer();
     }
@@ -362,7 +362,7 @@ public class Speed extends Module {
     public enum Motion {X,Y,mX,mY}
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> listener1 = new Listener<>(event -> {
+    private final Listener<PacketEvent.Receive> packetReceiveListener = new Listener<>(event -> {
         if(event.getPacket() instanceof SPacketPlayerPosLook) {
             if(mc.player != null) dist = 0;
             speed = 0;
@@ -371,6 +371,8 @@ public class Speed extends Module {
         }
     });
 
-    @EventHandler private final Listener<PlayerUpdateEvent> listener = new Listener<>(event -> {if(speedMode.getValString().equalsIgnoreCase("Sti")) mc.timer.tickLength = 50 / getSpeed();});
+    @EventHandler
+    private final Listener<PlayerUpdateEvent> playerUpdateListener = new Listener<>(event -> {if(speedMode.getValString().equalsIgnoreCase("Sti")) mc.timer.tickLength = 50 / getSpeed();});
+
     private float getSpeed() {return Math.max((float) stiSpeed.getValDouble(), 0.1f);}
 }

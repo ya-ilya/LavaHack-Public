@@ -55,13 +55,13 @@ public class AntiTrap extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(listener);
+        Kisman.EVENT_BUS.subscribe(motionUpdateListener);
 
         if(mc.player == null || mc.world == null) super.setToggled(false);
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(listener);
+        Kisman.EVENT_BUS.unsubscribe(motionUpdateListener);
 
         if((mc.player == null || mc.world == null)) return;
 
@@ -74,7 +74,8 @@ public class AntiTrap extends Module {
         if(mode.getValString().equalsIgnoreCase("ClientTick")) doAntiTrap();
     }
 
-    @EventHandler private final Listener<PlayerMotionUpdateEvent> listener = new Listener<>(event -> {if(event.getEra() == Event.Era.PRE && mode.getValString().equalsIgnoreCase("MotionTick")) doAntiTrap();});
+    @EventHandler
+    private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = new Listener<>(event -> {if(event.getEra() == Event.Era.PRE && mode.getValString().equalsIgnoreCase("MotionTick")) doAntiTrap();});
 
     private void doAntiTrap() {
         if(timer.passedMillis(delay.getValInt())) timer.reset();

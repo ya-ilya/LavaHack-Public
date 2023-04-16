@@ -139,11 +139,11 @@ public class ShaderCharms extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(renderListener);
+        Kisman.EVENT_BUS.subscribe(renderEntityListener);
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(renderListener);
+        Kisman.EVENT_BUS.unsubscribe(renderEntityListener);
     }
 
     public void update() {
@@ -161,7 +161,7 @@ public class ShaderCharms extends Module {
     }
 
     @EventHandler
-    private final Listener<RenderEntityEvent.All.Pre> renderListener = new Listener<>(event -> {
+    private final Listener<RenderEntityEvent.All.Pre> renderEntityListener = new Listener<>(event -> {
         if(mode.checkValString("Outline2") && !mc.renderManager.renderOutlines && hideOriginal.getValBoolean() && mc.player.getDistance(event.getEntity()) <= range.getValFloat() && entityTypeCheck(event.getEntity())) event.cancel();
     });
 

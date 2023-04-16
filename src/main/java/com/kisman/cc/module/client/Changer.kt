@@ -40,12 +40,12 @@ class Changer : Module("Changer", "FullBright + CustomFov + Ambience + CustomTim
     }
 
     override fun onEnable() {
-        Kisman.EVENT_BUS.subscribe(receive)
+        Kisman.EVENT_BUS.subscribe(packetReceiveListener)
         oldFov = mc.gameSettings.fovSetting
     }
 
     override fun onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(receive)
+        Kisman.EVENT_BUS.unsubscribe(packetReceiveListener)
         mc.gameSettings.gammaSetting = 1F
         mc.gameSettings.fovSetting = oldFov
     }
@@ -63,7 +63,7 @@ class Changer : Module("Changer", "FullBright + CustomFov + Ambience + CustomTim
         }
     }
 
-    val receive = Listener<PacketEvent.Receive>({
+    private val packetReceiveListener = Listener<PacketEvent.Receive>({
         if(time.valBoolean && it.packet is SPacketTimeUpdate) {
             it.cancel()
         }

@@ -33,11 +33,11 @@ public class Jesus extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(listener);
+        Kisman.EVENT_BUS.subscribe(packetSendListener);
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(listener);
+        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
         EntityUtil.resetTimer();
         if(mc.player == null || mc.world == null) return;
         mc.player.jumpMovementFactor = 0.02f;
@@ -99,5 +99,6 @@ public class Jesus extends Module {
         }
     }
 
-    @EventHandler private final Listener<PacketEvent.Send> listener = new Listener<>(event -> {if((mode.getValString().equalsIgnoreCase("Matrix 6.3") || mode.getValString().equalsIgnoreCase("MatrixPixel")) && event.getPacket() instanceof CPacketPlayer && EntityUtil.isFluid(0.3)) ((CPacketPlayer) event.getPacket()).onGround = false;});
+    @EventHandler
+    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {if((mode.getValString().equalsIgnoreCase("Matrix 6.3") || mode.getValString().equalsIgnoreCase("MatrixPixel")) && event.getPacket() instanceof CPacketPlayer && EntityUtil.isFluid(0.3)) ((CPacketPlayer) event.getPacket()).onGround = false;});
 }

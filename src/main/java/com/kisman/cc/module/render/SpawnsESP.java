@@ -47,11 +47,11 @@ public class SpawnsESP extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(listener);
+        Kisman.EVENT_BUS.subscribe(packetReceiveListener);
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(listener);
+        Kisman.EVENT_BUS.unsubscribe(packetReceiveListener);
     }
 
     @SubscribeEvent
@@ -87,7 +87,7 @@ public class SpawnsESP extends Module {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> listener = new Listener<>(event -> {
+    private final Listener<PacketEvent.Receive> packetReceiveListener = new Listener<>(event -> {
         if (event.getPacket() instanceof SPacketSpawnObject) {
             if (((SPacketSpawnObject) event.getPacket()).getType() == 51 && crystals.getValBoolean()) {
                 this.circles.add(new VecCircle(new Vec3d(((SPacketSpawnObject) event.getPacket()).getX(), ((SPacketSpawnObject) event.getPacket()).getY(), ((SPacketSpawnObject) event.getPacket()).getZ()), 1.5f, 0.5f));

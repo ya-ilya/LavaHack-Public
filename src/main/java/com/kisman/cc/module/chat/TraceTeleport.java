@@ -22,15 +22,15 @@ public class TraceTeleport extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(listener);
+        Kisman.EVENT_BUS.subscribe(packetReceiveListener);
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(listener);
+        Kisman.EVENT_BUS.unsubscribe(packetReceiveListener);
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> listener = new Listener<>(event -> {
+    private final Listener<PacketEvent.Receive> packetReceiveListener = new Listener<>(event -> {
         if(event.getPacket() instanceof SPacketEntityTeleport) {
             SPacketEntityTeleport packet = (SPacketEntityTeleport) event.getPacket();
 

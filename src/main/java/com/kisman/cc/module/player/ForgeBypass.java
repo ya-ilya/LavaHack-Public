@@ -20,15 +20,15 @@ public class ForgeBypass extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(send);
+        Kisman.EVENT_BUS.subscribe(packetSendListener);
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(send);
+        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Send> send = new Listener<>(event -> {
+    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
         if (!mc.isIntegratedServerRunning()) {
             if (event.getPacket().getClass().getName().equals("net.minecraftforge.fml.common.network.internal.FMLProxyPacket")) event.cancel();
             else if (event.getPacket() instanceof CPacketCustomPayload) if (((CPacketCustomPayload) event.getPacket()).getChannelName().equalsIgnoreCase("MC|Brand")) ((CPacketCustomPayload) event.getPacket()).data = (new PacketBuffer(Unpooled.buffer()).writeString("vanilla"));

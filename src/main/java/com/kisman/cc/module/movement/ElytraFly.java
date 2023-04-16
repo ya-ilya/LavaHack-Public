@@ -62,7 +62,7 @@ public class ElytraFly extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(listener);
+        Kisman.EVENT_BUS.subscribe(playerTravelListener);
 
         elytraSlot = -1;
 
@@ -80,7 +80,7 @@ public class ElytraFly extends Module {
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(listener);
+        Kisman.EVENT_BUS.unsubscribe(playerTravelListener);
 
         if(mc.player != null && elytraSlot != -1 && equipElytra.getValBoolean()) {
             boolean hasItem = !mc.player.inventory.getStackInSlot(elytraSlot).isEmpty() || mc.player.inventory.getStackInSlot(elytraSlot).getItem() != Items.AIR;
@@ -91,7 +91,7 @@ public class ElytraFly extends Module {
     }
 
     @EventHandler
-    private final Listener<PlayerTravelEvent> listener = new Listener<>(event -> {
+    private final Listener<PlayerTravelEvent> playerTravelListener = new Listener<>(event -> {
         if (mc.player == null) return;
         if (mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.ELYTRA) return;
 

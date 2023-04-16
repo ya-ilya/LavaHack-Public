@@ -16,11 +16,16 @@ public class NoFriendDamage extends Module {
         super("NoFriendDamage", Category.COMBAT);
     }
 
-    public void onEnable() {Kisman.EVENT_BUS.subscribe(listener);}
-    public void onDisable() {Kisman.EVENT_BUS.unsubscribe(listener);}
+    public void onEnable() {
+        Kisman.EVENT_BUS.subscribe(packetSendListener);
+    }
+
+    public void onDisable() {
+        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
+    }
 
     @EventHandler
-    private final Listener<PacketEvent.Send> listener = new Listener<>(event -> {
+    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
         if(event.getPacket() instanceof CPacketUseEntity) {
             CPacketUseEntity packet = (CPacketUseEntity) event.getPacket();
             Entity target = packet.getEntityFromWorld(mc.world);

@@ -28,13 +28,13 @@ public class NoRotate extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(sendListener);
+        Kisman.EVENT_BUS.subscribe(packetSendListener);
 
         ChatUtils.message(TextFormatting.GOLD + "[NoRotate] " + TextFormatting.GRAY + "This module might desync you!");
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(sendListener);
+        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
     }
 
     public void update() {
@@ -57,7 +57,7 @@ public class NoRotate extends Module {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> sendListener = new Listener<>(event -> {
+    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
         if(cancelPackets && event.getPacket() instanceof SPacketPlayerPosLook) {
             SPacketPlayerPosLook packet = (SPacketPlayerPosLook) event.getPacket();
             packet.yaw = mc.player.rotationYaw;

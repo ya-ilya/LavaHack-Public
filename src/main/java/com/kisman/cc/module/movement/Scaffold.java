@@ -53,16 +53,16 @@ public class Scaffold extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(listener);
-        Kisman.EVENT_BUS.subscribe(listener1);
-        Kisman.EVENT_BUS.subscribe(listener2);
+        Kisman.EVENT_BUS.subscribe(playerJumpListener);
+        Kisman.EVENT_BUS.subscribe(packetSendListener);
+        Kisman.EVENT_BUS.subscribe(playerMoveListener);
         timer = 0;
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(listener);
-        Kisman.EVENT_BUS.unsubscribe(listener1);
-        Kisman.EVENT_BUS.unsubscribe(listener2);
+        Kisman.EVENT_BUS.unsubscribe(playerJumpListener);
+        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
+        Kisman.EVENT_BUS.unsubscribe(playerMoveListener);
     }
 
     public void update() {
@@ -77,11 +77,12 @@ public class Scaffold extends Module {
     }
 
     @EventHandler
-    private final Listener<PlayerJumpEvent> listener = new Listener<>(event -> {
+    private final Listener<PlayerJumpEvent> playerJumpListener = new Listener<>(event -> {
         if(towerMode.checkValString(TowerMode.FakeJump.name())) event.cancel();
     });
 
-    @EventHandler private final Listener<PacketEvent.Send> listener1 = new Listener<>(event -> {
+    @EventHandler
+    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
         if (event.getPacket() instanceof CPacketPlayer.PositionRotation && rotate.getValBoolean() && rotVec != null) {
             CPacketPlayer.PositionRotation e = (CPacketPlayer.PositionRotation) event.getPacket();
             e.pitch = rotVec.pitch;
@@ -90,7 +91,7 @@ public class Scaffold extends Module {
     });
 
     @EventHandler
-    private final Listener<PlayerMoveEvent> listener2 = new Listener<>(event -> {
+    private final Listener<PlayerMoveEvent> playerMoveListener = new Listener<>(event -> {
         oldSlot = mc.player.inventory.currentItem;
         BlockPos towerPos = new BlockPos(mc.player.posX, mc.player.posY - 1, mc.player.posZ);
         BlockPos downPos = new BlockPos(mc.player.posX, mc.player.posY - 2, mc.player.posZ);

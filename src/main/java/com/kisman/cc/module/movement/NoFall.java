@@ -32,17 +32,17 @@ public class NoFall extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(listener1);
-        Kisman.EVENT_BUS.subscribe(listener2);
+        Kisman.EVENT_BUS.subscribe(motionUpdateListener);
+        Kisman.EVENT_BUS.subscribe(packetSendListener);
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(listener1);
-        Kisman.EVENT_BUS.unsubscribe(listener2);
+        Kisman.EVENT_BUS.unsubscribe(motionUpdateListener);
+        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Send> listener2 = new Listener<>(event -> {
+    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
         if(event.getPacket() instanceof CPacketPlayer) {
             CPacketPlayer packet = (CPacketPlayer) event.getPacket();
             switch(mode.getValString()) {
@@ -74,7 +74,7 @@ public class NoFall extends Module {
     });
 
     @EventHandler
-    private final Listener<PlayerMotionUpdateEvent> listener1 = new Listener<>(event -> {
+    private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = new Listener<>(event -> {
         if(mode.getValString().equalsIgnoreCase(Mode.Bucket.name())) {
             int bucketSlot = InventoryUtil.findItem(Items.WATER_BUCKET, 0, 9);
             int oldSlot = mc.player.inventory.currentItem;

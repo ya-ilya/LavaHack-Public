@@ -15,11 +15,11 @@ public class FastLadder extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(send);
+        Kisman.EVENT_BUS.subscribe(packetSendListener);
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(send);
+        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
     }
 
     public void update() {
@@ -28,7 +28,7 @@ public class FastLadder extends Module {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Send> send = new Listener<>(event -> {
+    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
         if(event.getPacket() instanceof CPacketPlayer && mc.player.isOnLadder() && MovementUtil.isMoving()) ((CPacketPlayer) event.getPacket()).onGround = true;
     });
 }

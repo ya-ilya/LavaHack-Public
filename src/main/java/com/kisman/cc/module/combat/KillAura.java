@@ -63,45 +63,45 @@ public class KillAura extends Module {
 
         instance = this;
 
-        settingManager.register(mode);
+        register(mode);
 
-        settingManager.register(hitLine);
-        settingManager.register(useFallDist);
-        settingManager.register(fallDistance);
-        settingManager.register(shieldBreaker);
-        settingManager.register(new Setting("HitSound", this, false));
-        settingManager.register(packetAttack);
-        settingManager.register(rotations);
-        settingManager.register(betterRots);
-        settingManager.register(packetRots);
-        settingManager.register(preRots);
-        settingManager.register(cooldownCheck);
-        settingManager.register(attackCooldown);
-        settingManager.register(onlyCrits);
-        settingManager.register(resetCd);
-        settingManager.register(packetSwing);
+        register(hitLine);
+        register(useFallDist);
+        register(fallDistance);
+        register(shieldBreaker);
+        register(new Setting("HitSound", this, false));
+        register(packetAttack);
+        register(rotations);
+        register(betterRots);
+        register(packetRots);
+        register(preRots);
+        register(cooldownCheck);
+        register(attackCooldown);
+        register(onlyCrits);
+        register(resetCd);
+        register(packetSwing);
 
-        settingManager.register(new Setting("WeaponLine", this, "Weapon"));
-        settingManager.register(weapon);
+        register(new Setting("WeaponLine", this, "Weapon"));
+        register(weapon);
 
-        settingManager.register(new Setting("TargetsLine", this, "Targets"));
-        settingManager.register(new Setting("Player", this, true));
-        settingManager.register(new Setting("Monster", this, true));
-        settingManager.register(new Setting("Passive", this, true));
-        settingManager.register(invisible);
+        register(new Setting("TargetsLine", this, "Targets"));
+        register(new Setting("Player", this, true));
+        register(new Setting("Monster", this, true));
+        register(new Setting("Passive", this, true));
+        register(invisible);
 
-        settingManager.register(new Setting("DistanceLine", this, "Distance"));
+        register(new Setting("DistanceLine", this, "Distance"));
 
-        settingManager.register(targetRange);
-        settingManager.register(new Setting("Distance", this, 4.25f, 0, 6, false));
-        settingManager.register(wallDistance);
+        register(targetRange);
+        register(new Setting("Distance", this, 4.25f, 0, 6, false));
+        register(wallDistance);
 
-        settingManager.register(renderLine);
-        settingManager.register(targetEsp);
+        register(renderLine);
+        register(targetEsp);
 
-        settingManager.register(new Setting("SwitchLine", this, "Switch"));
-        settingManager.register(switchMode);
-        settingManager.register(packetSwitch);
+        register(new Setting("SwitchLine", this, "Switch"));
+        register(switchMode);
+        register(packetSwitch);
     }
 
     public void update() {

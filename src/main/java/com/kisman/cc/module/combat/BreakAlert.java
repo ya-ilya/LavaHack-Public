@@ -30,8 +30,8 @@ public class BreakAlert extends Module {
     public BreakAlert() {
         super("BreakAlert", Category.COMBAT);
 
-        settingManager.register(messageType);
-        settingManager.register(displayShowDelay);
+        register(messageType);
+        register(displayShowDelay);
     }
 
     public boolean isBeta() {return true;}

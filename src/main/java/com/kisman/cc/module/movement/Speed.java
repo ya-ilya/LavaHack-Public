@@ -76,35 +76,35 @@ public class Speed extends Module {
 
         instance = this;
 
-        settingManager.register(speedMode);
+        register(speedMode);
 
-        settingManager.register(useTimer);
+        register(useTimer);
 
-        settingManager.register(motionXmodifier);
-        settingManager.register(motionZmodifier);
+        register(motionXmodifier);
+        register(motionZmodifier);
 
-        settingManager.register(strafeNewLine);
-        settingManager.register(strafeSpeed);
-        settingManager.register(slow);
-        settingManager.register(cap);
-        settingManager.register(scaleCap);
-        settingManager.register(lagTime);
+        register(strafeNewLine);
+        register(strafeSpeed);
+        register(slow);
+        register(cap);
+        register(scaleCap);
+        register(lagTime);
 
-        settingManager.register(yPortLine);
-        settingManager.register(new Setting("YPortSpeed", this, 0.06f, 0.01f, 0.15f, false).setVisible(() -> speedMode.checkValString("YPort")));
-        settingManager.register(yWater);
-        settingManager.register(yLava);
+        register(yPortLine);
+        register(new Setting("YPortSpeed", this, 0.06f, 0.01f, 0.15f, false).setVisible(() -> speedMode.checkValString("YPort")));
+        register(yWater);
+        register(yLava);
 
-        settingManager.register(stiLine);
-        settingManager.register(stiSpeed);
+        register(stiLine);
+        register(stiSpeed);
 
-        settingManager.register(bhopLine);
-        settingManager.register(useMotion);
-        settingManager.register(useMotionInAir);
-        settingManager.register(jumpMovementFactor);
-        settingManager.register(jumpMovementFactorSpeed);
-        settingManager.register(boostSpeed);
-        settingManager.register(boostFactor);
+        register(bhopLine);
+        register(useMotion);
+        register(useMotionInAir);
+        register(jumpMovementFactor);
+        register(jumpMovementFactorSpeed);
+        register(boostSpeed);
+        register(boostFactor);
     }
 
     public void onEnable() {

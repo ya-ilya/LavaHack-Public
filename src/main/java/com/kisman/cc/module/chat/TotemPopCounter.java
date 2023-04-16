@@ -16,7 +16,7 @@ public class TotemPopCounter extends Module {
     public TotemPopCounter() {
         super("TotemPopCounter", "totem pops count!", Category.CHAT);
 
-        settingManager.register(target);
+        register(target);
     }
 
     @SubscribeEvent

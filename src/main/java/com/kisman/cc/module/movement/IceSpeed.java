@@ -9,7 +9,7 @@ public class IceSpeed extends Module {
     public IceSpeed() {
         super("IceSpeed", "IceSpeed", Category.MOVEMENT);
 
-        settingManager.register(new Setting("Speed", this, 0.4f, 0.2f, 1.5f, false));
+        register(new Setting("Speed", this, 0.4f, 0.2f, 1.5f, false));
     }
 
     public void update() {

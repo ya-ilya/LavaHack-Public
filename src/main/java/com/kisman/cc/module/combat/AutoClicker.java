@@ -17,8 +17,8 @@ public class AutoClicker extends Module {
 	public AutoClicker() {
 		super("AutoClicker", "clicks automatically", Category.COMBAT);
 		
-		settingManager.register(new Setting("MinCPS", this, 8, 1, 20, false));
-		settingManager.register(new Setting("MaxCPS", this, 12, 1, 20, false));
+		register(new Setting("MinCPS", this, 8, 1, 20, false));
+		register(new Setting("MaxCPS", this, 12, 1, 20, false));
 	}
 
 	public void update() {

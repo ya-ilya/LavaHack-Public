@@ -51,34 +51,34 @@ public class CrystalModifier extends Module {
 
         instance = this;
 
-        settingManager.register(mode);
+        register(mode);
 
-        settingManager.register(scaleLine);
-        settingManager.register(scale);
-        settingManager.register(scaleVal);
+        register(scaleLine);
+        register(scale);
+        register(scaleVal);
 
-        settingManager.register(translateLine);
-        settingManager.register(translateX);
-        settingManager.register(translateY);
-        settingManager.register(translateZ);
+        register(translateLine);
+        register(translateX);
+        register(translateY);
+        register(translateZ);
 
-        settingManager.register(crystalSettingLine);
-        settingManager.register(insideCube);
-        settingManager.register(outsideCube);
-        settingManager.register(outsideCube2);
-        settingManager.register(texture);
-        settingManager.register(customColor);
-        settingManager.register(crystalColor);
+        register(crystalSettingLine);
+        register(insideCube);
+        register(outsideCube);
+        register(outsideCube2);
+        register(texture);
+        register(customColor);
+        register(crystalColor);
 
-        settingManager.register(outlineLine);
-        settingManager.register(outline);
-        settingManager.register(outlineMode);
-        settingManager.register(lineWidth);
-        settingManager.register(color);
+        register(outlineLine);
+        register(outline);
+        register(outlineMode);
+        register(lineWidth);
+        register(color);
 
-        settingManager.register(speedLine);
-        settingManager.register(speed);
-        settingManager.register(bounce);
+        register(speedLine);
+        register(speed);
+        register(bounce);
     }
 
     public enum OutlineModes {Wire, Flat}

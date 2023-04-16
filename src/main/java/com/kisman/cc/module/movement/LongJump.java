@@ -10,7 +10,7 @@ public class LongJump extends Module {
     public LongJump() {
         super("LongJump", Category.MOVEMENT);
 
-        settingManager.register(boost);
+        register(boost);
     }
 
     public void update() {

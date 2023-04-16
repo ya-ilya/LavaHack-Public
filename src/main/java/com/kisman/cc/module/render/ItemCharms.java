@@ -39,12 +39,12 @@ public class ItemCharms extends Module {
 
         instance = this;
 
-        settingManager.register(red);
-        settingManager.register(green);
-        settingManager.register(blue);
-        settingManager.register(alpha);
+        register(red);
+        register(green);
+        register(blue);
+        register(alpha);
 
-        settingManager.register(glintModify);
+        register(glintModify);
     }
 
     public void onDisable() {

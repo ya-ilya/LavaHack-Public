@@ -21,9 +21,9 @@ public class HoleSnap extends Module {
     public HoleSnap() {
         super("HoleSnap", Category.MOVEMENT);
 
-        settingManager.register(speedValue);
-        settingManager.register(range);
-        settingManager.register(disableIfNoHole);
+        register(speedValue);
+        register(range);
+        register(disableIfNoHole);
     }
 
     public void onEnable() {

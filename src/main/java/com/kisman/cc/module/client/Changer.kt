@@ -29,14 +29,14 @@ class Changer : Module("Changer", "FullBright + CustomFov + Ambience + CustomTim
     private var oldFov = 0F
 
     init {
-        settingManager.register(gamma)
-        settingManager.register(fov)
-        settingManager.register(ambience)
-        settingManager.register(ambColor)
-        settingManager.register(time)
-        settingManager.register(timeVal)
-        settingManager.register(timeInfCircle)
-        settingManager.register(timeSpeed)
+        register(gamma)
+        register(fov)
+        register(ambience)
+        register(ambColor)
+        register(time)
+        register(timeVal)
+        register(timeInfCircle)
+        register(timeSpeed)
     }
 
     override fun onEnable() {

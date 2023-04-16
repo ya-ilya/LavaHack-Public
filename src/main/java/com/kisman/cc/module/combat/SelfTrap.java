@@ -13,21 +13,21 @@ public class SelfTrap extends AutoTrap {
     public SelfTrap() {
         super("SelfTrap", Category.COMBAT);
 
-        settingManager.register(disableOnComplete);
-        settingManager.register(placeDelay);
-        settingManager.register(rotate);
-        settingManager.register(blocksPerTick);
-        settingManager.register(antiScaffold);
-        settingManager.register(antiStep);
-        settingManager.register(surroundPlacing);
-        settingManager.register(range);
-        settingManager.register(raytrace);
-        settingManager.register(packet);
-        settingManager.register(rewrite);
-        settingManager.register(dynamic);
-        settingManager.register(supportBlocks);
-        settingManager.register(rewriteRetries);
-        settingManager.register(rotateMode);
+        register(disableOnComplete);
+        register(placeDelay);
+        register(rotate);
+        register(blocksPerTick);
+        register(antiScaffold);
+        register(antiStep);
+        register(surroundPlacing);
+        register(range);
+        register(raytrace);
+        register(packet);
+        register(rewrite);
+        register(dynamic);
+        register(supportBlocks);
+        register(rewriteRetries);
+        register(rotateMode);
     }
 
     @Override

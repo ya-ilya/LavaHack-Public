@@ -31,13 +31,13 @@ class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.",
     val glowSetting = GlowRendererPattern(this, {background.valBoolean && glow.valBoolean})
 
     init {
-        settingManager.register(scale)
-        settingManager.register(ping)
+        register(scale)
+        register(ping)
 //        setmgr.rSetting(pops)
-        settingManager.register(health)
-        settingManager.register(background)
-        settingManager.register(backgroundAlpha)
-        settingManager.register(glow)
+        register(health)
+        register(background)
+        register(backgroundAlpha)
+        register(glow)
 
         glowSetting.init()
     }

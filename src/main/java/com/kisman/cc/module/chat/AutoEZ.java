@@ -30,7 +30,7 @@ public class AutoEZ extends Module {
     public AutoEZ() {
         super("AutoEZ", "", Category.CHAT);
 
-        settingManager.register(random);
+        register(random);
     }
 
     public void onEnable() {

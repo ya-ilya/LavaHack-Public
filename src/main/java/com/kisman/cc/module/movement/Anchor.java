@@ -34,14 +34,14 @@ public class Anchor extends Module {
         super("Anchor", "help with holes", Category.MOVEMENT);
         super.setDisplayInfo(() -> "[" + mode.getValString() + "]");
 
-        settingManager.register(mode);
-        settingManager.register(movementStop);
-        settingManager.register(timer);
-        settingManager.register(timerValue);
-        settingManager.register(disableAfterComplete);
-        settingManager.register(fastFall);
-        settingManager.register(fastFallMotion);
-        settingManager.register(new Setting("Pitch", this, 60, 0, 90, false));
+        register(mode);
+        register(movementStop);
+        register(timer);
+        register(timerValue);
+        register(disableAfterComplete);
+        register(fastFall);
+        register(fastFallMotion);
+        register(new Setting("Pitch", this, 60, 0, 90, false));
     }
 
     private boolean isBlockHole(BlockPos blockpos) {

@@ -36,15 +36,15 @@ public class PopCharms extends Module {
     public PopCharms() {
         super("PopCharms", "and?", Category.RENDER);
 
-        settingManager.register(selfPop);
-        settingManager.register(angle);
-        settingManager.register(angleSpeed);
-        settingManager.register(fadeSpeed);
-        settingManager.register(width);
-        settingManager.register(colorR);
-        settingManager.register(colorG);
-        settingManager.register(colorB);
-        settingManager.register(colorA);
+        register(selfPop);
+        register(angle);
+        register(angleSpeed);
+        register(fadeSpeed);
+        register(width);
+        register(colorR);
+        register(colorG);
+        register(colorB);
+        register(colorA);
     }
 
     @SubscribeEvent

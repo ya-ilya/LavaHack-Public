@@ -21,7 +21,7 @@ public class NameProtect extends Module {
 
         instance = this;
 
-        settingManager.register(name);
+        register(name);
     }
 
     public boolean isBeta() {return true;}

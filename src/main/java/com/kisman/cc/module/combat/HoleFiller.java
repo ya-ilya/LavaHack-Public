@@ -38,12 +38,12 @@ public class HoleFiller extends Module {
 
         instance = this;
 
-        settingManager.register(range);
-        settingManager.register(placeMode);
-        settingManager.register(delay);
-        settingManager.register(targetHoleRange);
-        settingManager.register(switchMode);
-        settingManager.register(smartWeb);
+        register(range);
+        register(placeMode);
+        register(delay);
+        register(targetHoleRange);
+        register(switchMode);
+        register(smartWeb);
     }
 
     public boolean isBeta() {return true;}

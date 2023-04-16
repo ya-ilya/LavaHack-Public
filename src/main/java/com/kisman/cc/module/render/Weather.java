@@ -14,9 +14,9 @@ public class Weather extends Module {
 
     public Weather(){
         super("Weather", Category.RENDER);
-        settingManager.register(weatherMode);
-        settingManager.register(weather);
-        settingManager.register(weatherSlider);
+        register(weatherMode);
+        register(weather);
+        register(weatherSlider);
     }
 
     @Override

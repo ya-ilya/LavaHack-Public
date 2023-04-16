@@ -14,6 +14,6 @@ public class Reach extends Module {
 
         instance = this;
 
-        settingManager.register(distance);
+        register(distance);
     }
 }

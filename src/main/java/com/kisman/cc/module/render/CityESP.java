@@ -46,20 +46,20 @@ public class CityESP extends Module {
     public CityESP() {
         super("CityESP", "CityESP", Category.RENDER);
 
-        settingManager.register(range);
-        settingManager.register(down);
-        settingManager.register(sides);
-        settingManager.register(depth);
-        settingManager.register(minDMG);
-        settingManager.register(maxSelfDMG);
-        settingManager.register(ignoreCrystals);
-        settingManager.register(mine);
-        settingManager.register(mineKey);
-        settingManager.register(switchPick);
-        settingManager.register(mineDist);
-        settingManager.register(mineMode);
-        settingManager.register(targetMode);
-        settingManager.register(selectMode);
+        register(range);
+        register(down);
+        register(sides);
+        register(depth);
+        register(minDMG);
+        register(maxSelfDMG);
+        register(ignoreCrystals);
+        register(mine);
+        register(mineKey);
+        register(switchPick);
+        register(mineDist);
+        register(mineMode);
+        register(targetMode);
+        register(selectMode);
     }
 
     public void update() {

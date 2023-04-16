@@ -10,7 +10,7 @@ public class AutoLog extends Module {
     public AutoLog() {
         super("AutoLog", "5", Category.MISC);
 
-        settingManager.register(new Setting("Health", this, 10, 1, 36, true));
+        register(new Setting("Health", this, 10, 1, 36, true));
     }
 
     public void update() {

@@ -12,14 +12,14 @@ public class Particle extends Module {
     public Particle() {
         super("Particle", "Particle", Category.RENDER);
 
-        settingManager.register(new Setting("RenderMode", this, "Single", new ArrayList<>(Arrays.asList("Single", "Multy"))));
+        register(new Setting("RenderMode", this, "Single", new ArrayList<>(Arrays.asList("Single", "Multy"))));
 
-        settingManager.register(new Setting("Particle", this, "Particle"));
+        register(new Setting("Particle", this, "Particle"));
 
-        settingManager.register(new Setting("Heart", this, false));
-        settingManager.register(new Setting("Crit", this, false));
+        register(new Setting("Heart", this, false));
+        register(new Setting("Crit", this, false));
 
-        settingManager.register(new Setting("voidsetting", this, "void", "setting"));
+        register(new Setting("voidsetting", this, "void", "setting"));
     }
 
     public boolean isBeta() {return true;}

@@ -94,48 +94,48 @@ public class ShaderCharms extends Module {
 
         instance = this;
 
-        settingManager.register(range);
+        register(range);
 
-        settingManager.register(mode);
-        settingManager.register(crystals);
-        settingManager.register(players);
-        settingManager.register(friends);
-        settingManager.register(mobs);
-        settingManager.register(animals);
-        settingManager.register(enderPearls);
-        settingManager.register(itemsEntity);
-        settingManager.register(items);
-        settingManager.register(itemsFix);
+        register(mode);
+        register(crystals);
+        register(players);
+        register(friends);
+        register(mobs);
+        register(animals);
+        register(enderPearls);
+        register(itemsEntity);
+        register(items);
+        register(itemsFix);
 //        setmgr.rSetting(storages);
 
-        settingManager.register(animationSpeed);
+        register(animationSpeed);
 
-        settingManager.register(blur);
-        settingManager.register(radius);
-        settingManager.register(mix);
-        settingManager.register(red);
-        settingManager.register(green);
-        settingManager.register(blue);
-        settingManager.register(rainbow);
-        settingManager.register(delay);
-        settingManager.register(saturation);
-        settingManager.register(brightness);
+        register(blur);
+        register(radius);
+        register(mix);
+        register(red);
+        register(green);
+        register(blue);
+        register(rainbow);
+        register(delay);
+        register(saturation);
+        register(brightness);
 
-        settingManager.register(quality);
-        settingManager.register(gradientAlpha);
-        settingManager.register(alphaGradient);
-        settingManager.register(duplicateOutline);
-        settingManager.register(moreGradientOutline);
-        settingManager.register(creepyOutline);
-        settingManager.register(alpha);
-        settingManager.register(numOctavesOutline);
-        settingManager.register(speedOutline);
+        register(quality);
+        register(gradientAlpha);
+        register(alphaGradient);
+        register(duplicateOutline);
+        register(moreGradientOutline);
+        register(creepyOutline);
+        register(alpha);
+        register(numOctavesOutline);
+        register(speedOutline);
 
-        settingManager.register(hideOriginal);
-        settingManager.register(outlineAlpha);
-        settingManager.register(filledAlpha);
-        settingManager.register(width);
-        settingManager.register(ratio);
+        register(hideOriginal);
+        register(outlineAlpha);
+        register(filledAlpha);
+        register(width);
+        register(ratio);
     }
 
     public void onEnable() {

@@ -16,10 +16,10 @@ public class NoWeb extends Module {
         super("NoWeb", "", Category.MOVEMENT);
 
 //        setmgr.rSetting(disableBB);
-        settingManager.register(onGround);
+        register(onGround);
 //        setmgr.rSetting(bbOffset);
-        settingManager.register(motionX);
-        settingManager.register(motionY);
+        register(motionX);
+        register(motionY);
     }
 
     public void update() {

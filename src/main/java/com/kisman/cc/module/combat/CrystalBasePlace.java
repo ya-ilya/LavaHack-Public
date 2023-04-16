@@ -31,14 +31,14 @@ public class CrystalBasePlace extends Module {
 
         instance = this;
 
-        settingManager.register(delay);
-        settingManager.register(placeRange);
-        settingManager.register(targetRange);
-        settingManager.register(useAutoRerTarget);
-        settingManager.register(switchMode);
-        settingManager.register(ignoreY);
-        settingManager.register(minDmg);
-        settingManager.register(packet);
+        register(delay);
+        register(placeRange);
+        register(targetRange);
+        register(useAutoRerTarget);
+        register(switchMode);
+        register(ignoreY);
+        register(minDmg);
+        register(packet);
     }
 
     public void onEnable() {

@@ -55,22 +55,22 @@ public class AutoTrap extends Module {
 
         instance = this;
 
-        settingManager.register(targetRange);
-        settingManager.register(disableOnComplete);
-        settingManager.register(placeDelay);
-        settingManager.register(rotate);
-        settingManager.register(blocksPerTick);
-        settingManager.register(antiScaffold);
-        settingManager.register(antiStep);
-        settingManager.register(surroundPlacing);
-        settingManager.register(range);
-        settingManager.register(raytrace);
-        settingManager.register(packet);
-        settingManager.register(rewrite);
-        settingManager.register(dynamic);
-        settingManager.register(supportBlocks);
-        settingManager.register(rewriteRetries);
-        settingManager.register(rotateMode);
+        register(targetRange);
+        register(disableOnComplete);
+        register(placeDelay);
+        register(rotate);
+        register(blocksPerTick);
+        register(antiScaffold);
+        register(antiStep);
+        register(surroundPlacing);
+        register(range);
+        register(raytrace);
+        register(packet);
+        register(rewrite);
+        register(dynamic);
+        register(supportBlocks);
+        register(rewriteRetries);
+        register(rotateMode);
     }
 
     /**

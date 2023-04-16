@@ -29,8 +29,8 @@
 
          instance = this;
 
-         settingManager.register(delay);
-         settingManager.register(new Setting("NoThorns", this, false));
+         register(delay);
+         register(new Setting("NoThorns", this, false));
      }
 
      public void onEnable() {

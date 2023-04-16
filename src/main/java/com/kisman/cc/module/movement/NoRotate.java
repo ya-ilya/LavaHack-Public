@@ -24,7 +24,7 @@ public class NoRotate extends Module {
     public NoRotate() {
         super("NoRotate", "NoRotate", Category.MOVEMENT);
 
-        settingManager.register(waitDelay);
+        register(waitDelay);
     }
 
     public void onEnable() {

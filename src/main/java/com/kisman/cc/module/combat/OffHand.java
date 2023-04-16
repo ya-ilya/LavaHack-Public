@@ -42,16 +42,16 @@ public class OffHand extends Module {
 
         instance = this;
 
-        settingManager.register(health);
-        settingManager.register(mode);
-        settingManager.register(fallBackMode);
-        settingManager.register(fallBackDistance);
-        settingManager.register(totemOnElytra);
-        settingManager.register(offhandGapOnSword);
-        settingManager.register(hotbarFirst);
-        settingManager.register(useUpdateController);
-        settingManager.register(antiTotemFail);
-        settingManager.register(terrain);
+        register(health);
+        register(mode);
+        register(fallBackMode);
+        register(fallBackDistance);
+        register(totemOnElytra);
+        register(offhandGapOnSword);
+        register(hotbarFirst);
+        register(useUpdateController);
+        register(antiTotemFail);
+        register(terrain);
     }
 
     public void update() {

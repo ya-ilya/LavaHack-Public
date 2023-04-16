@@ -70,56 +70,56 @@ public class HUD extends Module {
 
 		instance = this;
 
-		settingManager.register(astolfoColor);
-		settingManager.register(offsets);
-		settingManager.register(glow);
-		settingManager.register(glowV2);
-		settingManager.register(glowOffset);
-		settingManager.register(glowRadius);
-		settingManager.register(glowAlpha);
-		settingManager.register(background);
-		settingManager.register(bgAlpha);
+		register(astolfoColor);
+		register(offsets);
+		register(glow);
+		register(glowV2);
+		register(glowOffset);
+		register(glowRadius);
+		register(glowAlpha);
+		register(background);
+		register(bgAlpha);
 
-		settingManager.register(arrLine);
-		settingManager.register(arrMode);
-		settingManager.register(arrY);
-		settingManager.register(arrColor);
-		settingManager.register(arrGradient);
-		settingManager.register(arrGradientDiff);
-		settingManager.register(arrGlowBackground);
+		register(arrLine);
+		register(arrMode);
+		register(arrY);
+		register(arrColor);
+		register(arrGradient);
+		register(arrGradientDiff);
+		register(arrGlowBackground);
 
-		settingManager.register(welLine);
-		settingManager.register(welColor);
+		register(welLine);
+		register(welColor);
 
-		settingManager.register(pvpLine);
-		settingManager.register(pvpY);
+		register(pvpLine);
+		register(pvpY);
 
-		settingManager.register(armLine);
-		settingManager.register(armExtra);
-		settingManager.register(armDmg);
+		register(armLine);
+		register(armExtra);
+		register(armDmg);
 
-		settingManager.register(radarLine);
-		settingManager.register(radarDist);
+		register(radarLine);
+		register(radarDist);
 
-		settingManager.register(speedLine);
-		settingManager.register(speedMode);
+		register(speedLine);
+		register(speedMode);
 
-		settingManager.register(logoLine);
-		settingManager.register(logoMode);
-		settingManager.register(logoImage);
-		settingManager.register(logoGlow);
-		settingManager.register(logoBold);
+		register(logoLine);
+		register(logoMode);
+		register(logoImage);
+		register(logoGlow);
+		register(logoBold);
 
-		settingManager.register(indicLine);
-		settingManager.register(indicThemeMode);
-		settingManager.register(indicShadowSliders);
+		register(indicLine);
+		register(indicThemeMode);
+		register(indicShadowSliders);
 
-		settingManager.register(thudLine);
-		settingManager.register(thudTheme);
-		settingManager.register(thudShadowSliders);
+		register(thudLine);
+		register(thudTheme);
+		register(thudShadowSliders);
 
-		settingManager.register(crystalpsLine);
-		settingManager.register(crystalpsY);
+		register(crystalpsLine);
+		register(crystalpsY);
 	}
 
 	public void onEnable() {

@@ -34,10 +34,10 @@ public class Spammer extends Module {
     public Spammer() {
         super("Spammer", "chat spammer", Category.CHAT);
 
-        settingManager.register(new Setting("GlobalMode", this, false));
-        settingManager.register(new Setting("Delay", this, 5000, 0, 10000, true));
-        settingManager.register(customMsg);
-        settingManager.register(customMessage);
+        register(new Setting("GlobalMode", this, false));
+        register(new Setting("Delay", this, 5000, 0, 10000, true));
+        register(customMsg);
+        register(customMessage);
 
         this.spam = new ArrayList<>(Arrays.asList(msg));
     }

@@ -20,13 +20,13 @@ public class PacketCancel extends Module {
     public PacketCancel() {
         super("PacketCancel", "PacketCancel", Category.PLAYER);
 
-        settingManager.register(new Setting("Packets", this, "Packets"));
+        register(new Setting("Packets", this, "Packets"));
 
-        settingManager.register(new Setting("CPacketInput", this, false));
-        settingManager.register(new Setting("CPacketPlayer", this, false));
-        settingManager.register(new Setting("CPacketEntityAction", this, false));
-        settingManager.register(new Setting("CPacketUseEntity", this, false));
-        settingManager.register(new Setting("CPacketVehicleMove", this, false));
+        register(new Setting("CPacketInput", this, false));
+        register(new Setting("CPacketPlayer", this, false));
+        register(new Setting("CPacketEntityAction", this, false));
+        register(new Setting("CPacketUseEntity", this, false));
+        register(new Setting("CPacketVehicleMove", this, false));
     }
 
     public void onEnable() {

@@ -22,13 +22,13 @@ class ChatModifier : Module(
     val ttf = Setting("TTF", this, false)
 
     init {
-        settingManager.register(animation)
-        settingManager.register(suffix)
-        settingManager.register(antiSpamBypass)
-        settingManager.register(autoGlobal)
-        settingManager.register(customY)
-        settingManager.register(customYVal)
-        settingManager.register(ttf)
+        register(animation)
+        register(suffix)
+        register(antiSpamBypass)
+        register(autoGlobal)
+        register(customY)
+        register(customYVal)
+        register(ttf)
     }
 
     @SubscribeEvent

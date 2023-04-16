@@ -20,8 +20,8 @@ public class SilentXp extends Module {
     public SilentXp() {
         super("SilentXP", "SilentXp", Category.COMBAT);
 
-        settingManager.register(lookPitch);
-        settingManager.register(switchMode);
+        register(lookPitch);
+        register(switchMode);
     }
 
     public void update() {

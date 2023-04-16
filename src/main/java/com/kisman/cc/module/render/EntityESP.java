@@ -39,27 +39,27 @@ public class EntityESP extends Module{
     public EntityESP() {
         super("EntityESP", "esp 1", Category.RENDER);
 
-        settingManager.register(range);
+        register(range);
 
-        settingManager.register(new Setting("PlayersLine", this, "Players"));
-        settingManager.register(players);
-        settingManager.register(playerColor);
+        register(new Setting("PlayersLine", this, "Players"));
+        register(players);
+        register(playerColor);
 
-        settingManager.register(new Setting("MonstersLine", this, "Monsters"));
-        settingManager.register(monsters);
-        settingManager.register(monstersColor);
+        register(new Setting("MonstersLine", this, "Monsters"));
+        register(monsters);
+        register(monstersColor);
 
-        settingManager.register(new Setting("ItemsLine", this, "Items"));
-        settingManager.register(items);
-        settingManager.register(itemsColor);
+        register(new Setting("ItemsLine", this, "Items"));
+        register(items);
+        register(itemsColor);
 
-        settingManager.register(new Setting("Passive", this, "Passive"));
-        settingManager.register(passive);
-        settingManager.register(passiveColor);
+        register(new Setting("Passive", this, "Passive"));
+        register(passive);
+        register(passiveColor);
 
-        settingManager.register(new Setting("EntityLine", this, "Entity"));
-        settingManager.register(entities);
-        settingManager.register(entityColor);
+        register(new Setting("EntityLine", this, "Entity"));
+        register(entities);
+        register(entityColor);
     }
 
     public void onDisable() {

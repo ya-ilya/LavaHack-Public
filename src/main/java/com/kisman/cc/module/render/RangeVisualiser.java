@@ -29,11 +29,11 @@ public class RangeVisualiser extends Module {
     public RangeVisualiser() {
         super("RangeVisualiser", "RangeVisualiser", Category.RENDER);
 
-        settingManager.register(mode);
-        settingManager.register(radius);
-        settingManager.register(lineWidth);
-        settingManager.register(own);
-        settingManager.register(raytrace);
+        register(mode);
+        register(radius);
+        register(lineWidth);
+        register(own);
+        register(raytrace);
     }
 
     @SubscribeEvent

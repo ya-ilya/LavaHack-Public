@@ -25,11 +25,11 @@ public class Jesus extends Module {
     public Jesus() {
         super("Jesus", Category.MOVEMENT);
 
-        settingManager.register(mode);
+        register(mode);
 
-        settingManager.register(new Setting("Speed Matrix", this, 0.6f, 0, 1, false));
-        settingManager.register(new Setting("Speed Solid", this, 1, 0, 2, false));
-        settingManager.register(speedPixel);
+        register(new Setting("Speed Matrix", this, 0.6f, 0, 1, false));
+        register(new Setting("Speed Solid", this, 1, 0, 2, false));
+        register(speedPixel);
     }
 
     public void onEnable() {

@@ -75,7 +75,7 @@ public class Module {
 	}
 
 	public Setting register(Setting set) {
-		settingManager.register(set);
+		register(set);
 		return set;
 	}
 

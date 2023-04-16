@@ -13,7 +13,7 @@ public class AutoTotem extends Module {
     public AutoTotem() {
         super("AutoTotem", "simple offhand", Category.COMBAT);
 
-        settingManager.register(new Setting("Health", this, 10, 1, 20, true));
+        register(new Setting("Health", this, 10, 1, 20, true));
     }
 
     public boolean isBeta() {return true;}

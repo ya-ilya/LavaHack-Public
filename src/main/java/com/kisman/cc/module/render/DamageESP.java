@@ -36,13 +36,13 @@ public class DamageESP extends Module {
     public DamageESP() {
         super("DamageESP", "Thank you, gerald(man)", Category.RENDER);
 
-        settingManager.register(timeToRemove);
-        settingManager.register(range);
-        settingManager.register(self);
-        settingManager.register(heal);
-        settingManager.register(healColor);
-        settingManager.register(damage);
-        settingManager.register(damageColor);
+        register(timeToRemove);
+        register(range);
+        register(self);
+        register(heal);
+        register(healColor);
+        register(damage);
+        register(damageColor);
     }
 
     public boolean isBeta() {return true;}

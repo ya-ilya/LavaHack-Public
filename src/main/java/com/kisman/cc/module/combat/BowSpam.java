@@ -14,7 +14,7 @@ public class BowSpam extends Module {
     public BowSpam() {
         super("BowSpam", "", Category.COMBAT);
 
-        settingManager.register(drawLength);
+        register(drawLength);
     }
 
     public void update() {

@@ -16,7 +16,7 @@ public class NoSlowSneak extends Module {
 
         instance = this;
 
-        settingManager.register(mode);
+        register(mode);
     }
 
     public void update() {

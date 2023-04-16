@@ -29,8 +29,8 @@ public class BlockOutline extends Module {
 
         instance = this;
 
-        settingManager.register(colorVal);
-        settingManager.register(new Setting("RenderMode", this, "Outline", new ArrayList<>(Arrays.asList("Outline", "Box", "OutlineBox", "Flat"))));
+        register(colorVal);
+        register(new Setting("RenderMode", this, "Outline", new ArrayList<>(Arrays.asList("Outline", "Box", "OutlineBox", "Flat"))));
     }
 
     public void update() {

@@ -38,14 +38,14 @@ public class FastPlace extends Module {
 
         instance = this;
 
-        settingManager.register(all);
-        settingManager.register(obby);
-        settingManager.register(enderChest);
-        settingManager.register(crystal);
-        settingManager.register(exp);
-        settingManager.register(minecart);
-        settingManager.register(feetExp);
-        settingManager.register(fastCrystal);
+        register(all);
+        register(obby);
+        register(enderChest);
+        register(crystal);
+        register(exp);
+        register(minecart);
+        register(feetExp);
+        register(fastCrystal);
     }
 
     public void onEnable() {

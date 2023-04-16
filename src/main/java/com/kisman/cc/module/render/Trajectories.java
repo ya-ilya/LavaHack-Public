@@ -38,7 +38,7 @@ public class Trajectories extends Module {
     public Trajectories() {
         super("Trajectories", "no salhack pasta!!!", Category.RENDER);
 
-        settingManager.register(width);
+        register(width);
     }
 
     @SubscribeEvent

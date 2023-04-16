@@ -74,16 +74,16 @@ public class CevBreaker extends Module {
     public CevBreaker() {
         super("CevBreaker", Category.COMBAT);
 
-        settingManager.register(blocksPerTick);
-        settingManager.register(antiStep);
-        settingManager.register(surroundPlacing);
-        settingManager.register(range);
-        settingManager.register(raytrace);
-        settingManager.register(packet);
-        settingManager.register(dynamic);
-        settingManager.register(supportBlocks);
-        settingManager.register(rewriteRetries);
-        settingManager.register(rotateMode);
+        register(blocksPerTick);
+        register(antiStep);
+        register(surroundPlacing);
+        register(range);
+        register(raytrace);
+        register(packet);
+        register(dynamic);
+        register(supportBlocks);
+        register(rewriteRetries);
+        register(rotateMode);
     }
 
     public void onEnable() {

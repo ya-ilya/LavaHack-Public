@@ -44,16 +44,16 @@ public class NoSlow extends Module {
 
         instance = this;
 
-        settingManager.register(mode);
+        register(mode);
 
-        settingManager.register(invMove);
-        settingManager.register(items);
-        settingManager.register(ncpStrict);
-        settingManager.register(slimeBlocks);
+        register(invMove);
+        register(items);
+        register(ncpStrict);
+        register(slimeBlocks);
 
-        settingManager.register(ignoreChat);
-        settingManager.register(ignoreConsole);
-        settingManager.register(ignoreClickGui);
+        register(ignoreChat);
+        register(ignoreConsole);
+        register(ignoreClickGui);
     }
 
     public void onEnable() {

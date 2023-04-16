@@ -32,14 +32,14 @@ public class Velocity extends Module{
     public Velocity() {
         super("Velocity", "akb", Category.PLAYER);
 
-        settingManager.register(new Setting("Mode", this, "None", new ArrayList<>(Arrays.asList("None", "Matrix", "Matrix 6.4", "Vanilla"))));
+        register(new Setting("Mode", this, "None", new ArrayList<>(Arrays.asList("None", "Matrix", "Matrix 6.4", "Vanilla"))));
 
-        settingManager.register(exp);
-        settingManager.register(bobbers);
-        settingManager.register(noPush);
+        register(exp);
+        register(bobbers);
+        register(noPush);
 
-        settingManager.register(horizontal);
-        settingManager.register(vertical);
+        register(horizontal);
+        register(vertical);
     }
 
     public void onEnable() {

@@ -24,9 +24,9 @@ public class Breadcrumbs extends Module {
     public Breadcrumbs() {
         super("Breadcrumbs", ", ", Category.RENDER);
 
-        settingManager.register(lineWidth);
-        settingManager.register(removeTicks);
-        settingManager.register(alpha);
+        register(lineWidth);
+        register(removeTicks);
+        register(alpha);
     }
 
     public void onEnable() {positions.clear();}

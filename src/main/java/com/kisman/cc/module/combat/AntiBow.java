@@ -21,11 +21,11 @@ public class AntiBow extends Module {
     public AntiBow() {
         super("AntiBow", Category.COMBAT);
 
-        settingManager.register(packet);
-        settingManager.register(range);
-        settingManager.register(checkUse);
-        settingManager.register(maxUse);
-        settingManager.register(bowInHandCheck);
+        register(packet);
+        register(range);
+        register(checkUse);
+        register(maxUse);
+        register(bowInHandCheck);
     }
 
     public void onEnable() {

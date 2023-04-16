@@ -26,16 +26,16 @@ public class StorageESP extends Module{
     public StorageESP() {
         super("StorageESP", "sosat", Category.RENDER);
 
-        settingManager.register(distance);
-        settingManager.register(colorAlpha);
+        register(distance);
+        register(colorAlpha);
 
-        settingManager.register(new Setting("Chest", this, true));
-        settingManager.register(new Setting("EChest", this, true));
-        settingManager.register(new Setting("ShulkerBox", this, true));
-        settingManager.register(new Setting("Dispenser", this, true));
-        settingManager.register(new Setting("Furnace", this, true));
-        settingManager.register(new Setting("Hopper", this, true));
-        settingManager.register(new Setting("Dropper", this, true));
+        register(new Setting("Chest", this, true));
+        register(new Setting("EChest", this, true));
+        register(new Setting("ShulkerBox", this, true));
+        register(new Setting("Dispenser", this, true));
+        register(new Setting("Furnace", this, true));
+        register(new Setting("Hopper", this, true));
+        register(new Setting("Dropper", this, true));
 
         renderer.init();
     }

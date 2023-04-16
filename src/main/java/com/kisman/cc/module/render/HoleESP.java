@@ -55,33 +55,33 @@ public class HoleESP extends Module {
         super("HoleESP", "HoleESP", Category.RENDER);
         super.setDisplayInfo(() -> "[" + mode.getValString() + "]");
 
-        settingManager.register(mode);
-        settingManager.register(konasMode);
-        settingManager.register(konasLine);
-        settingManager.register(radius);
-        settingManager.register(ignoreOwnHole);
-        settingManager.register(flatOwn);
-        settingManager.register(height);
-        settingManager.register(width);
-        settingManager.register(type);
-        settingManager.register(ufoAlpha);
+        register(mode);
+        register(konasMode);
+        register(konasLine);
+        register(radius);
+        register(ignoreOwnHole);
+        register(flatOwn);
+        register(height);
+        register(width);
+        register(type);
+        register(ufoAlpha);
 
-        settingManager.register(depth);
-        settingManager.register(noLineDepth);
-        settingManager.register(notSelf);
-        settingManager.register(sides);
+        register(depth);
+        register(noLineDepth);
+        register(notSelf);
+        register(sides);
 
-        settingManager.register(obby);
-        settingManager.register(obbyHoles);
-        settingManager.register(obbyColor);
+        register(obby);
+        register(obbyHoles);
+        register(obbyColor);
 
-        settingManager.register(bedrock);
-        settingManager.register(bedrockHoles);
-        settingManager.register(bedrockColor);
+        register(bedrock);
+        register(bedrockHoles);
+        register(bedrockColor);
 
-        settingManager.register(custom);
-        settingManager.register(customMode);
-        settingManager.register(customColor);
+        register(custom);
+        register(customMode);
+        register(customColor);
     }
 
     public void update() {

@@ -20,9 +20,9 @@ public class PortalESP extends Module {
     public PortalESP() {
         super("PortalESP", "Shows nether/end portals", Category.RENDER);
 
-        settingManager.register(range);
-        settingManager.register(nether);
-        settingManager.register(end);
+        register(range);
+        register(nether);
+        register(end);
     }
 
     @SubscribeEvent

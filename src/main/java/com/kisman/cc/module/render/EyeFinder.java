@@ -23,8 +23,8 @@ public class EyeFinder extends Module {
     public EyeFinder() {
         super("EyeFinder", Category.RENDER);
 
-        settingManager.register(color);
-        settingManager.register(range);
+        register(color);
+        register(range);
     }
 
     @SubscribeEvent

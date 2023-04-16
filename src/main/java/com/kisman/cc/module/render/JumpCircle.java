@@ -33,8 +33,8 @@ public class JumpCircle extends Module {
 
         instance = this;
 
-        settingManager.register(rainbow);
-        settingManager.register(color);
+        register(rainbow);
+        register(color);
     }
 
     public void update() {

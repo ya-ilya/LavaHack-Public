@@ -101,32 +101,32 @@ public class AutoCrystal extends Module implements Runnable {
 
         instance = this;
 
-        settingManager.register(logic);
-        settingManager.register(placeRange);
-        settingManager.register(placeWallRange);
-        settingManager.register(hand);
-        settingManager.register(breakRange);
-        settingManager.register(targetRange);
-        settingManager.register(packetBreak);
-        settingManager.register(packetPlace);
-        settingManager.register(minDMG);
-        settingManager.register(maxSelfDMG);
-        settingManager.register(antiSuicide);
-        settingManager.register(multiPlace);
-        settingManager.register(check);
-        settingManager.register(placeDelay);
-        settingManager.register(breakDelay);
-        settingManager.register(lethalMult);
-        settingManager.register(switchMode);
-        settingManager.register(render);
-        settingManager.register(colorVal);
-        settingManager.register(sound);
-        settingManager.register(clientSide);
-        settingManager.register(rotate);
-        settingManager.register(rotateMode);
-        settingManager.register(MultiThread);
-        settingManager.register(MultiThreadValue);
-        settingManager.register(MultiThreadDelay);
+        register(logic);
+        register(placeRange);
+        register(placeWallRange);
+        register(hand);
+        register(breakRange);
+        register(targetRange);
+        register(packetBreak);
+        register(packetPlace);
+        register(minDMG);
+        register(maxSelfDMG);
+        register(antiSuicide);
+        register(multiPlace);
+        register(check);
+        register(placeDelay);
+        register(breakDelay);
+        register(lethalMult);
+        register(switchMode);
+        register(render);
+        register(colorVal);
+        register(sound);
+        register(clientSide);
+        register(rotate);
+        register(rotateMode);
+        register(MultiThread);
+        register(MultiThreadValue);
+        register(MultiThreadDelay);
     }
 
     @SubscribeEvent

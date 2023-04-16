@@ -32,25 +32,25 @@ public class NoRender extends Module {
 
         instance = this;
 
-        settingManager.register(fog);
-        settingManager.register(hurtCam);
-        settingManager.register(armor);
-        settingManager.register(overlay);
-        settingManager.register(guiOverlay);
-        settingManager.register(book);
-        settingManager.register(chatBackground);
-        settingManager.register(bossBar);
-        settingManager.register(scoreboard);
-        settingManager.register(particle);
-        settingManager.register(portal);
-        settingManager.register(items);
-        settingManager.register(defaultBlockHighlight);
-        settingManager.register(handItemsTex);
-        settingManager.register(enchantGlint);
-        settingManager.register(new Setting("Potion", this, false));
-        settingManager.register(new Setting("Weather", this, false));
-        settingManager.register(new Setting("Block", this, false));
-        settingManager.register(new Setting("Lava", this, false));
+        register(fog);
+        register(hurtCam);
+        register(armor);
+        register(overlay);
+        register(guiOverlay);
+        register(book);
+        register(chatBackground);
+        register(bossBar);
+        register(scoreboard);
+        register(particle);
+        register(portal);
+        register(items);
+        register(defaultBlockHighlight);
+        register(handItemsTex);
+        register(enchantGlint);
+        register(new Setting("Potion", this, false));
+        register(new Setting("Weather", this, false));
+        register(new Setting("Block", this, false));
+        register(new Setting("Lava", this, false));
     }
 
     public void update() {

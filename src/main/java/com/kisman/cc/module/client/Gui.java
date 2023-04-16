@@ -25,12 +25,12 @@ public class Gui extends Module {
 
         instance = this;
 
-        settingManager.register(primaryColor);
-        settingManager.register(background);
-        settingManager.register(shadow);
-        settingManager.register(test);
-        settingManager.register(shadowRects);
-        settingManager.register(line);
+        register(primaryColor);
+        register(background);
+        register(shadow);
+        register(test);
+        register(shadowRects);
+        register(line);
     }
 
     public void onEnable() {

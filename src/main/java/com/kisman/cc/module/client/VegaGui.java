@@ -16,7 +16,7 @@ public class VegaGui extends Module {
 
         instance = this;
 
-        settingManager.register(test);
+        register(test);
     }
 
     public boolean isBeta() {return true;}

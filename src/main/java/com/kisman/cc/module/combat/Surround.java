@@ -74,30 +74,30 @@ public class Surround extends Module {
 
         instance = this;
 
-        settingManager.register(surroundVec);
-        settingManager.register(completion);
-        settingManager.register(center);
-        settingManager.register(switch_);
-        settingManager.register(hand);
-        settingManager.register(blocksPerTick);
-        settingManager.register(raytrace);
-        settingManager.register(packet);
-        settingManager.register(confirm);
-        settingManager.register(noInteract);
-        settingManager.register(rewrite);
-        settingManager.register(dynamic);
-        settingManager.register(support);
-        settingManager.register(retries);
-        settingManager.register(protectRetries);
-        settingManager.register(rewriteRotate);
-        settingManager.register(crystalBreaker);
-        settingManager.register(breakDelay);
-        settingManager.register(breakRange);
-        settingManager.register(rewriteProtected);
+        register(surroundVec);
+        register(completion);
+        register(center);
+        register(switch_);
+        register(hand);
+        register(blocksPerTick);
+        register(raytrace);
+        register(packet);
+        register(confirm);
+        register(noInteract);
+        register(rewrite);
+        register(dynamic);
+        register(support);
+        register(retries);
+        register(protectRetries);
+        register(rewriteRotate);
+        register(crystalBreaker);
+        register(breakDelay);
+        register(breakRange);
+        register(rewriteProtected);
 
-        settingManager.register(rotate);
-        settingManager.register(rotateCenter);
-        settingManager.register(rotateRandom);
+        register(rotate);
+        register(rotateCenter);
+        register(rotateRandom);
     }
 
     public void onEnable() {

@@ -23,14 +23,14 @@ public class BoatFly extends Module {
     public BoatFly() {
         super("BoatFly", Category.MOVEMENT);
 
-        settingManager.register(speed);
-        settingManager.register(verticalSpeed);
-        settingManager.register(downKey);
-        settingManager.register(glideSpeed);
-        settingManager.register(staticY);
-        settingManager.register(hover);
-        settingManager.register(bypass);
-        settingManager.register(extraCalc);
+        register(speed);
+        register(verticalSpeed);
+        register(downKey);
+        register(glideSpeed);
+        register(staticY);
+        register(hover);
+        register(bypass);
+        register(extraCalc);
     }
 
     public void update() {

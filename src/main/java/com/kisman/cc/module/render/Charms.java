@@ -18,12 +18,12 @@ public class Charms extends Module {
 
         instance = this;
 
-        settingManager.register(polygonOffset);
+        register(polygonOffset);
 
-        settingManager.register(new Setting("Texture", this, false));
-        settingManager.register(targetRender);
+        register(new Setting("Texture", this, false));
+        register(targetRender);
 
-        settingManager.register(customColor);
-        settingManager.register(color);
+        register(customColor);
+        register(color);
     }
 }

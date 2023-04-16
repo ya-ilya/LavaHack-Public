@@ -25,12 +25,12 @@ public class CustomFont extends Module {
 
         instance = this;
 
-        settingManager.register(antiAlias);
-        settingManager.register(fractionMetrics);
+        register(antiAlias);
+        register(fractionMetrics);
 
-        settingManager.register(mode);
-        settingManager.register(bold);
-        settingManager.register(italic);
+        register(mode);
+        register(bold);
+        register(italic);
     }
 
     public void update() {

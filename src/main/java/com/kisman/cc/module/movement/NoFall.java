@@ -28,7 +28,7 @@ public class NoFall extends Module {
     public NoFall() {
         super("NoFall", Category.MOVEMENT);
 
-        settingManager.register(mode);
+        register(mode);
     }
 
     public void onEnable() {

@@ -40,14 +40,14 @@ class BlockHighlight : Module("BlockHighlight", "Highlights object you are looki
 
         instance = this
 
-        settingManager.register(mode)
-        settingManager.register(entities)
-        settingManager.register(hitSideOnly)
-        settingManager.register(depth)
-        settingManager.register(alpha)
-        settingManager.register(color)
-        settingManager.register(width)
-        settingManager.register(offset)
+        register(mode)
+        register(entities)
+        register(hitSideOnly)
+        register(depth)
+        register(alpha)
+        register(color)
+        register(width)
+        register(offset)
     }
 
     @SubscribeEvent fun onRenderWorld(event: RenderWorldLastEvent) {

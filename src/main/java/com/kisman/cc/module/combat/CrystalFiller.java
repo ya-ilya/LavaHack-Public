@@ -49,15 +49,15 @@ public class CrystalFiller extends Module {
 
         instance = this;
 
-        settingManager.register(range);
-        settingManager.register(placeMode);
-        settingManager.register(delay);
-        settingManager.register(targetHoleRange);
-        settingManager.register(switchMode);
-        settingManager.register(crystalDMGCheck);
-        settingManager.register(minDMG);
-        settingManager.register(maxSelfDMG);
-        settingManager.register(render);
+        register(range);
+        register(placeMode);
+        register(delay);
+        register(targetHoleRange);
+        register(switchMode);
+        register(crystalDMGCheck);
+        register(minDMG);
+        register(maxSelfDMG);
+        register(render);
     }
 
     public boolean isBeta() {return true;}

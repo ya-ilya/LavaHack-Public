@@ -31,11 +31,11 @@ public class FreeCam extends Module {
 
     public FreeCam() {
         super("FreeCam", "Allows you to fly in a FreeCam", Category.PLAYER);
-        settingManager.register(speed);
-        settingManager.register(reallyWorld);
-        settingManager.register(autoTeleportDisable);
-        settingManager.register(clipOnDisable);
-        settingManager.register(disableOnDamage);
+        register(speed);
+        register(reallyWorld);
+        register(autoTeleportDisable);
+        register(clipOnDisable);
+        register(disableOnDamage);
     }
 
     @Override

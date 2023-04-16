@@ -21,7 +21,7 @@ public class Trails extends Module {
     public Trails() {
         super("Trails", "akrien moment", Category.RENDER);
 
-        settingManager.register(removeTicks);
+        register(removeTicks);
     }
 
     public void onEnable() {

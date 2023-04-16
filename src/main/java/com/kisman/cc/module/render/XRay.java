@@ -51,15 +51,15 @@ public class XRay extends Module {
 
         instance = this;
 
-        settingManager.register(range);
+        register(range);
 
-        settingManager.register(coal);
-        settingManager.register(iron);
-        settingManager.register(gold);
-        settingManager.register(redstone);
-        settingManager.register(lapis);
-        settingManager.register(diamond);
-        settingManager.register(emerald);
+        register(coal);
+        register(iron);
+        register(gold);
+        register(redstone);
+        register(lapis);
+        register(diamond);
+        register(emerald);
     }
 
     @SubscribeEvent

@@ -49,14 +49,14 @@ public class  NameTags extends Module {
 
         instance = this;
 
-        settingManager.register(range);
-        settingManager.register(scale);
-        settingManager.register(bgAlpha);
-        settingManager.register(ping);
-        settingManager.register(items);
-        settingManager.register(damageDisplay);
-        settingManager.register(atheist);
-        settingManager.register(desc);
+        register(range);
+        register(scale);
+        register(bgAlpha);
+        register(ping);
+        register(items);
+        register(damageDisplay);
+        register(atheist);
+        register(desc);
     }
 
     @SubscribeEvent

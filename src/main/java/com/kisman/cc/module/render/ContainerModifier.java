@@ -15,7 +15,7 @@ public class ContainerModifier extends Module {
 
         instance = this;
 
-        settingManager.register(containerShadow);
-        settingManager.register(itemESP);
+        register(containerShadow);
+        register(itemESP);
     }
 }

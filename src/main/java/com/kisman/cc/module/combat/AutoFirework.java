@@ -83,35 +83,35 @@ public class AutoFirework extends Module {
         aimBot = AimBot.instance;
         instance = this;
 
-        settingManager.register(targetRange);
+        register(targetRange);
 
-        settingManager.register(delayLine);
-        settingManager.register(delay);
-        settingManager.register(trapDelay);
+        register(delayLine);
+        register(delay);
+        register(trapDelay);
 
-        settingManager.register(placeLine);
-        settingManager.register(placeMode);
-        settingManager.register(rotate);
-        settingManager.register(blocksPerTick);
-        settingManager.register(antiScaffold);
-        settingManager.register(antiStep);
-        settingManager.register(surroundPlacing);
-        settingManager.register(range);
-        settingManager.register(raytrace);
+        register(placeLine);
+        register(placeMode);
+        register(rotate);
+        register(blocksPerTick);
+        register(antiScaffold);
+        register(antiStep);
+        register(surroundPlacing);
+        register(range);
+        register(raytrace);
 
-        settingManager.register(switchLine);
-        settingManager.register(switchMode);
-        settingManager.register(switchObbyReturn);
-        settingManager.register(switchFireReturn);
+        register(switchLine);
+        register(switchMode);
+        register(switchObbyReturn);
+        register(switchFireReturn);
 
-        settingManager.register(pauseLine);
-        settingManager.register(minHealthPause);
-        settingManager.register(requiredHealth);
-        settingManager.register(pauseWhileEating);
-        settingManager.register(pauseIfHittingBlock);
+        register(pauseLine);
+        register(minHealthPause);
+        register(requiredHealth);
+        register(pauseWhileEating);
+        register(pauseIfHittingBlock);
 
-        settingManager.register(handLine);
-        settingManager.register(fireHand);
+        register(handLine);
+        register(fireHand);
     }
 
     public void onEnable() {

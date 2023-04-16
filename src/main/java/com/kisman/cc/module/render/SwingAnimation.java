@@ -33,15 +33,15 @@ public class SwingAnimation extends Module {
 
         instance = this;
 
-        settingManager.register(mode);
+        register(mode);
 
-        settingManager.register(simpleLine);
-        settingManager.register(new Setting("SwingMode", this, "1", new ArrayList<>(Arrays.asList("1", "2", "3"))));
+        register(simpleLine);
+        register(new Setting("SwingMode", this, "1", new ArrayList<>(Arrays.asList("1", "2", "3"))));
 
-        settingManager.register(strongLine);
-        settingManager.register(strongMode);
-        settingManager.register(ignoreEating);
-        settingManager.register(ifKillAura);
+        register(strongLine);
+        register(strongMode);
+        register(ignoreEating);
+        register(ifKillAura);
 
         super.setDisplayInfo(() -> "[" + (mode.getValString().equalsIgnoreCase("Hand") ? settingManager.getSettingByName(this, "SwingMode").getValString() : strongMode.getValString()) + "]");
     }

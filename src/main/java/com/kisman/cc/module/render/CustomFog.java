@@ -19,13 +19,13 @@ public class CustomFog extends Module {
     public CustomFog() {
         super("CustomFog", Category.RENDER);
 
-        settingManager.register(red);
-        settingManager.register(green);
-        settingManager.register(blue);
-        settingManager.register(rainbow);
-        settingManager.register(saturatuon);
-        settingManager.register(bringhtness);
-        settingManager.register(delay);
+        register(red);
+        register(green);
+        register(blue);
+        register(rainbow);
+        register(saturatuon);
+        register(bringhtness);
+        register(delay);
     }
 
     @SubscribeEvent

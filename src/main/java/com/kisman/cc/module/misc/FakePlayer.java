@@ -17,7 +17,7 @@ public class FakePlayer extends Module {
         super("FakePlayer", "FakePlayer", Category.MISC);
         super.setDisplayInfo("[" + name.getValString() + TextFormatting.GRAY + "]");
 
-        settingManager.register(name);
+        register(name);
     }
 
     public void onEnable() {

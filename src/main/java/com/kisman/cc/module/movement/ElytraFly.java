@@ -43,22 +43,22 @@ public class ElytraFly extends Module {
 
         instance = this;
 
-        settingManager.register(mode);
+        register(mode);
 
-        settingManager.register(speedLine);
-        settingManager.register(speed);
-        settingManager.register(upSpeed);
-        settingManager.register(downSpeed);
-        settingManager.register(glideSpeed);
+        register(speedLine);
+        register(speed);
+        register(upSpeed);
+        register(downSpeed);
+        register(glideSpeed);
 
-        settingManager.register(cancelLine);
-        settingManager.register(cancelInWater);
-        settingManager.register(cancelAtHeight);
+        register(cancelLine);
+        register(cancelInWater);
+        register(cancelAtHeight);
 
-        settingManager.register(otherLine);
-        settingManager.register(instantFly);
-        settingManager.register(equipElytra);
-        settingManager.register(pitchSpoof);
+        register(otherLine);
+        register(instantFly);
+        register(equipElytra);
+        register(pitchSpoof);
     }
 
     public void onEnable() {

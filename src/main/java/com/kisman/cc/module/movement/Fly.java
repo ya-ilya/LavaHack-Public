@@ -15,8 +15,8 @@ public class Fly extends Module {
     public Fly() {
         super("Fly", "Your flying", Category.MOVEMENT);
 
-        settingManager.register(new Setting("FlySpeed", this, 0.1f, 0.1f, 100.0f, false));
-        settingManager.register(mode);
+        register(new Setting("FlySpeed", this, 0.1f, 0.1f, 100.0f, false));
+        register(mode);
     }
 
     public void update() {

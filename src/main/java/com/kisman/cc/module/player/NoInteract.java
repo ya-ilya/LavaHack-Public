@@ -23,12 +23,12 @@ public class NoInteract extends Module {
     public NoInteract() {
         super("NoInteract", "NoInteract", Category.PLAYER);
 
-        settingManager.register(enderChest);
-        settingManager.register(craft);
-        settingManager.register(chest);
-        settingManager.register(furnace);
-        settingManager.register(armorStand);
-        settingManager.register(anvil);
+        register(enderChest);
+        register(craft);
+        register(chest);
+        register(furnace);
+        register(armorStand);
+        register(anvil);
     }
 
     public void onEnable() {

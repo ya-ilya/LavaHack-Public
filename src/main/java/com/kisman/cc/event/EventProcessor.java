@@ -32,15 +32,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class EventProcessor {
     private final Minecraft mc = Minecraft.getMinecraft();
 
-    public AtomicBoolean ongoing;
-
     public EventProcessor() {
         MinecraftForge.EVENT_BUS.register(this);
-        Kisman.EVENT_BUS.subscribe(totempop);
-        Kisman.EVENT_BUS.subscribe(TickRateUtil.INSTANCE.listener);
-        Kisman.EVENT_BUS.subscribe(packet);
-
-        ongoing = new AtomicBoolean(false);
+        Kisman.EVENT_BUS.subscribe(totemPopListener);
+        Kisman.EVENT_BUS.subscribe(TickRateUtil.INSTANCE.packetListener);
+        Kisman.EVENT_BUS.subscribe(packetListener);
     }
 
     @SubscribeEvent
@@ -63,7 +59,7 @@ public class EventProcessor {
 
     @SubscribeEvent
     public void onConnect(FMLNetworkEvent.ClientConnectedToServerEvent event) {
-        if(AutoRer.instance.lagProtect.getValBoolean()) disableCa();
+        if (AutoRer.instance.lagProtect.getValBoolean()) disableCa();
     }
 
     @SubscribeEvent
@@ -98,14 +94,14 @@ public class EventProcessor {
     public void onChatMessage(ClientChatEvent event) {
         if(event.getMessage().startsWith(Kisman.instance.commandManager.cmdPrefixStr)) {
             try {
-                Kisman.instance.commandManager.runCommands(event.getMessage());
+                Kisman.instance.commandManager.runCommand(event.getMessage());
                 event.setCanceled(true);
             } catch (Exception ignored) {}
         }
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> packet = new Listener<>(event -> {
+    private final Listener<PacketEvent.Receive> packetListener = new Listener<>(event -> {
         if(event.getPacket() instanceof SPacketRespawn && AutoRer.instance.lagProtect.getValBoolean()) disableCa();
         if(event.getPacket() instanceof SPacketChat && !Kisman.allowToConfiguredAnotherClients && Config.instance.configurate.getValBoolean()) {
             SPacketChat packet = (SPacketChat) event.getPacket();
@@ -128,7 +124,7 @@ public class EventProcessor {
     });
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> totempop = new Listener<>(event -> {
+    private final Listener<PacketEvent.Receive> totemPopListener = new Listener<>(event -> {
         if(event.getPacket() instanceof SPacketEntityStatus && ((SPacketEntityStatus) event.getPacket()).getOpCode() == 35) {
             TotemPopEvent totemPopEvent = new TotemPopEvent(((SPacketEntityStatus) event.getPacket()).getEntity(mc.world));
             MinecraftForge.EVENT_BUS.post(totemPopEvent);

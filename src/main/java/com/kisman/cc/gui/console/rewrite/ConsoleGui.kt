@@ -102,7 +102,7 @@ class ConsoleGui : GuiScreen() {
                         if(entryString.isNotEmpty()) {
                             history += entryString
                         }
-                        Kisman.instance.commandManager.runCommands("-${entryString}")
+                        Kisman.instance.commandManager.runCommand("-${entryString}")
                     }
                 }
             Keyboard.KEY_V ->

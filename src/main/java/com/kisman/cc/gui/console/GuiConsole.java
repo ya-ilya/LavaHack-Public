@@ -111,7 +111,7 @@ public class GuiConsole extends GuiScreen implements ITabCompleter {
 
             if (!s.isEmpty()) {
             	//CommandManager.getInstance().runCommands("." + s);
-                Kisman.instance.commandManager.runCommands("." + s);
+                Kisman.instance.commandManager.runCommand("." + s);
             	if(s.startsWith("login")) {
             		String[] pSplit = s.split(" ");
             		if(pSplit.length >= 3) s = s.replace(pSplit[2], "*");

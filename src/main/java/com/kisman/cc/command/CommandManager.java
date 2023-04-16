@@ -35,7 +35,7 @@ public class CommandManager {
 		commands.add(new TpCommand());
 	}
 
-	public void runCommands(String s) {
+	public void runCommand(String s) {
 		String readString = s.trim().substring(Character.toString(cmdPrefix).length()).trim();
 		boolean commandResolved = false;
 		boolean hasArgs = readString.trim().contains(" ");
@@ -55,6 +55,6 @@ public class CommandManager {
 	@SubscribeEvent
 	public void onKeyPressed(InputEvent.KeyInputEvent event) {
 		if (Wrapper.INSTANCE.mc().currentScreen != null) return;
-		for(Command cmd : commands) if(cmd.getKey() == Keyboard.getEventKey()) Kisman.instance.commandManager.runCommands("." + cmd.getExecute());
+		for(Command cmd : commands) if(cmd.getKey() == Keyboard.getEventKey()) Kisman.instance.commandManager.runCommand("." + cmd.getExecute());
 	}
 }

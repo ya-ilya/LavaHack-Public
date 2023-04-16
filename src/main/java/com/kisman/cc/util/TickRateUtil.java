@@ -20,7 +20,7 @@ public class TickRateUtil {
     private long timeLastTimeUpdate;
 
     @EventHandler
-    public final Listener<PacketEvent.Receive> listener = new Listener<>(event -> {
+    public final Listener<PacketEvent.Receive> packetListener = new Listener<>(event -> {
         if (event.getPacket() instanceof SPacketTimeUpdate) INSTANCE.onTimeUpdate();
     });
 

@@ -29,7 +29,7 @@ public class AimBot extends Module {
 
         instance = this;
 
-        setmgr.rSetting(mode);
+        settingManager.register(mode);
     }
 
     public void onEnable() {

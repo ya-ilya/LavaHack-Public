@@ -25,11 +25,11 @@ public class Jesus extends Module {
     public Jesus() {
         super("Jesus", Category.MOVEMENT);
 
-        setmgr.rSetting(mode);
+        settingManager.register(mode);
 
-        setmgr.rSetting(new Setting("Speed Matrix", this, 0.6f, 0, 1, false));
-        setmgr.rSetting(new Setting("Speed Solid", this, 1, 0, 2, false));
-        setmgr.rSetting(speedPixel);
+        settingManager.register(new Setting("Speed Matrix", this, 0.6f, 0, 1, false));
+        settingManager.register(new Setting("Speed Solid", this, 1, 0, 2, false));
+        settingManager.register(speedPixel);
     }
 
     public void onEnable() {
@@ -49,7 +49,7 @@ public class Jesus extends Module {
         super.setDisplayInfo("[" + mode.getValString() + TextFormatting.GRAY + "]");
 
         if(mode.getValString().equalsIgnoreCase("Matrix")) {
-            float speed = (float) setmgr.getSettingByName(this, "Speed Matrix").getValDouble();
+            float speed = (float) settingManager.getSettingByName(this, "Speed Matrix").getValDouble();
 
             if(mc.world.getBlockState(new BlockPos(mc.player.posX, mc.player.posY - -0.37f, mc.player.posZ)).getBlock() == Blocks.WATER) {
                 mc.player.jump();
@@ -62,7 +62,7 @@ public class Jesus extends Module {
                 if(mc.player.isInWater() || mc.player.isInLava()) mc.player.onGround = false;
             }
         } else if(mode.getValString().equalsIgnoreCase("Solid")) {
-            float speed = (float) setmgr.getSettingByName(this, "Speed Solid").getValDouble();
+            float speed = (float) settingManager.getSettingByName(this, "Speed Solid").getValDouble();
 
             if(mc.world.getBlockState(new BlockPos(mc.player.posX, mc.player.posY + 1, mc.player.posZ)).getBlock() == Block.getBlockById(9)) mc.player.motionY = 0.18f;
             else if(mc.world.getBlockState(new BlockPos(mc.player.posX, mc.player.posY + 0.0000001, mc.player.posZ)).getBlock() == Block.getBlockById(9)) {

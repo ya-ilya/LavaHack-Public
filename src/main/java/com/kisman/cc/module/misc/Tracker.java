@@ -46,8 +46,8 @@ public class Tracker extends Module {
 
         Kisman.EVENT_BUS.subscribe(listener3);
 
-        setmgr.rSetting(autoEnable);
-        setmgr.rSetting(autoDisable);
+        settingManager.register(autoEnable);
+        settingManager.register(autoDisable);
     }
 
     public boolean isBeta() {return true;}

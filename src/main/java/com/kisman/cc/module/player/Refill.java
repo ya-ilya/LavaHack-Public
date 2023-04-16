@@ -38,15 +38,15 @@ public class Refill extends Module {
     public Refill() {
         super("Refill", Category.PLAYER);
 
-        setmgr.rSetting(settings[0]);
-        setmgr.rSetting(settings[1]);
-        setmgr.rSetting(settings[2]);
-        setmgr.rSetting(settings[3]);
-        setmgr.rSetting(settings[4]);
-        setmgr.rSetting(settings[5]);
-        setmgr.rSetting(settings[6]);
-        setmgr.rSetting(settings[7]);
-        setmgr.rSetting(settings[8]);
+        settingManager.register(settings[0]);
+        settingManager.register(settings[1]);
+        settingManager.register(settings[2]);
+        settingManager.register(settings[3]);
+        settingManager.register(settings[4]);
+        settingManager.register(settings[5]);
+        settingManager.register(settings[6]);
+        settingManager.register(settings[7]);
+        settingManager.register(settings[8]);
     }
 
     public void update() {

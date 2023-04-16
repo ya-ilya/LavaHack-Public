@@ -63,45 +63,45 @@ public class KillAura extends Module {
 
         instance = this;
 
-        setmgr.rSetting(mode);
+        settingManager.register(mode);
 
-        setmgr.rSetting(hitLine);
-        setmgr.rSetting(useFallDist);
-        setmgr.rSetting(fallDistance);
-        setmgr.rSetting(shieldBreaker);
-        setmgr.rSetting(new Setting("HitSound", this, false));
-        setmgr.rSetting(packetAttack);
-        setmgr.rSetting(rotations);
-        setmgr.rSetting(betterRots);
-        setmgr.rSetting(packetRots);
-        setmgr.rSetting(preRots);
-        setmgr.rSetting(cooldownCheck);
-        setmgr.rSetting(attackCooldown);
-        setmgr.rSetting(onlyCrits);
-        setmgr.rSetting(resetCd);
-        setmgr.rSetting(packetSwing);
+        settingManager.register(hitLine);
+        settingManager.register(useFallDist);
+        settingManager.register(fallDistance);
+        settingManager.register(shieldBreaker);
+        settingManager.register(new Setting("HitSound", this, false));
+        settingManager.register(packetAttack);
+        settingManager.register(rotations);
+        settingManager.register(betterRots);
+        settingManager.register(packetRots);
+        settingManager.register(preRots);
+        settingManager.register(cooldownCheck);
+        settingManager.register(attackCooldown);
+        settingManager.register(onlyCrits);
+        settingManager.register(resetCd);
+        settingManager.register(packetSwing);
 
-        setmgr.rSetting(new Setting("WeaponLine", this, "Weapon"));
-        setmgr.rSetting(weapon);
+        settingManager.register(new Setting("WeaponLine", this, "Weapon"));
+        settingManager.register(weapon);
 
-        setmgr.rSetting(new Setting("TargetsLine", this, "Targets"));
-        setmgr.rSetting(new Setting("Player", this, true));
-        setmgr.rSetting(new Setting("Monster", this, true));
-        setmgr.rSetting(new Setting("Passive", this, true));
-        setmgr.rSetting(invisible);
+        settingManager.register(new Setting("TargetsLine", this, "Targets"));
+        settingManager.register(new Setting("Player", this, true));
+        settingManager.register(new Setting("Monster", this, true));
+        settingManager.register(new Setting("Passive", this, true));
+        settingManager.register(invisible);
 
-        setmgr.rSetting(new Setting("DistanceLine", this, "Distance"));
+        settingManager.register(new Setting("DistanceLine", this, "Distance"));
 
-        setmgr.rSetting(targetRange);
-        setmgr.rSetting(new Setting("Distance", this, 4.25f, 0, 6, false));
-        setmgr.rSetting(wallDistance);
+        settingManager.register(targetRange);
+        settingManager.register(new Setting("Distance", this, 4.25f, 0, 6, false));
+        settingManager.register(wallDistance);
 
-        setmgr.rSetting(renderLine);
-        setmgr.rSetting(targetEsp);
+        settingManager.register(renderLine);
+        settingManager.register(targetEsp);
 
-        setmgr.rSetting(new Setting("SwitchLine", this, "Switch"));
-        setmgr.rSetting(switchMode);
-        setmgr.rSetting(packetSwitch);
+        settingManager.register(new Setting("SwitchLine", this, "Switch"));
+        settingManager.register(switchMode);
+        settingManager.register(packetSwitch);
     }
 
     public void update() {
@@ -109,13 +109,13 @@ public class KillAura extends Module {
         if(mc.player.isDead) return;
         if(mc.player.getCooledAttackStrength(0) <= (onlyCrits.getValBoolean() ? 0.95f : attackCooldown.getValFloat()) && cooldownCheck.getValBoolean()) return;
 
-        boolean player = setmgr.getSettingByName(this, "Player").getValBoolean();
-        boolean monster = setmgr.getSettingByName(this, "Monster").getValBoolean();
-        boolean passive = setmgr.getSettingByName(this, "Passive").getValBoolean();
+        boolean player = settingManager.getSettingByName(this, "Player").getValBoolean();
+        boolean monster = settingManager.getSettingByName(this, "Monster").getValBoolean();
+        boolean passive = settingManager.getSettingByName(this, "Passive").getValBoolean();
 
-        boolean hitsound = setmgr.getSettingByName(this, "HitSound").getValBoolean();
+        boolean hitsound = settingManager.getSettingByName(this, "HitSound").getValBoolean();
 
-        float distance = setmgr.getSettingByName(this, "Distance").getValFloat();
+        float distance = settingManager.getSettingByName(this, "Distance").getValFloat();
 
         if(mode.getValString().equalsIgnoreCase("Default")) {
             Entity target1 = EntityUtil.getTarget(distance, distance, player, passive, monster);

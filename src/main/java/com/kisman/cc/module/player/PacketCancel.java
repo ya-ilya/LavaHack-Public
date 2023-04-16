@@ -20,23 +20,23 @@ public class PacketCancel extends Module {
     public PacketCancel() {
         super("PacketCancel", "PacketCancel", Category.PLAYER);
 
-        setmgr.rSetting(new Setting("Packets", this, "Packets"));
+        settingManager.register(new Setting("Packets", this, "Packets"));
 
-        setmgr.rSetting(new Setting("CPacketInput", this, false));
-        setmgr.rSetting(new Setting("CPacketPlayer", this, false));
-        setmgr.rSetting(new Setting("CPacketEntityAction", this, false));
-        setmgr.rSetting(new Setting("CPacketUseEntity", this, false));
-        setmgr.rSetting(new Setting("CPacketVehicleMove", this, false));
+        settingManager.register(new Setting("CPacketInput", this, false));
+        settingManager.register(new Setting("CPacketPlayer", this, false));
+        settingManager.register(new Setting("CPacketEntityAction", this, false));
+        settingManager.register(new Setting("CPacketUseEntity", this, false));
+        settingManager.register(new Setting("CPacketVehicleMove", this, false));
     }
 
     public void onEnable() {
         MinecraftForge.EVENT_BUS.register(this);
         Kisman.EVENT_BUS.subscribe(this.sendListener);
-        this.input = setmgr.getSettingByName(this, "CPacketInput").getValBoolean();
-        this.player = setmgr.getSettingByName(this, "CPacketPlayer").getValBoolean();
-        this.entityAction = setmgr.getSettingByName(this, "CPacketEntityAction").getValBoolean();
-        this.useEntity = setmgr.getSettingByName(this, "CPacketUseEntity").getValBoolean();
-        this.vehicleMove = setmgr.getSettingByName(this, "CPacketVehicleMove").getValBoolean();
+        this.input = settingManager.getSettingByName(this, "CPacketInput").getValBoolean();
+        this.player = settingManager.getSettingByName(this, "CPacketPlayer").getValBoolean();
+        this.entityAction = settingManager.getSettingByName(this, "CPacketEntityAction").getValBoolean();
+        this.useEntity = settingManager.getSettingByName(this, "CPacketUseEntity").getValBoolean();
+        this.vehicleMove = settingManager.getSettingByName(this, "CPacketVehicleMove").getValBoolean();
     }
 
     public void onDisable() {

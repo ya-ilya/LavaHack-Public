@@ -14,6 +14,6 @@ public class ItemScroller extends Module {
 
         instance = this;
 
-        setmgr.rSetting(scrollSpeed);
+        settingManager.register(scrollSpeed);
     }
 }

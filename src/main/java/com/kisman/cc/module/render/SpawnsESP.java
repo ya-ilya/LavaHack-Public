@@ -37,13 +37,13 @@ public class SpawnsESP extends Module {
     public SpawnsESP() {
         super("SpawnsESP", "        super(\"SpawnsESP\", )", Category.RENDER);
 
-        setmgr.rSetting(color);
-        setmgr.rSetting(crystals);
-        setmgr.rSetting(players);
-        setmgr.rSetting(mobs);
-        setmgr.rSetting(boats);
-        setmgr.rSetting(duration);
-        setmgr.rSetting(width);
+        settingManager.register(color);
+        settingManager.register(crystals);
+        settingManager.register(players);
+        settingManager.register(mobs);
+        settingManager.register(boats);
+        settingManager.register(duration);
+        settingManager.register(width);
     }
 
     public void onEnable() {

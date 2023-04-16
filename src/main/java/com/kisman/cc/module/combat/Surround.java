@@ -74,30 +74,30 @@ public class Surround extends Module {
 
         instance = this;
 
-        setmgr.rSetting(surroundVec);
-        setmgr.rSetting(completion);
-        setmgr.rSetting(center);
-        setmgr.rSetting(switch_);
-        setmgr.rSetting(hand);
-        setmgr.rSetting(blocksPerTick);
-        setmgr.rSetting(raytrace);
-        setmgr.rSetting(packet);
-        setmgr.rSetting(confirm);
-        setmgr.rSetting(noInteract);
-        setmgr.rSetting(rewrite);
-        setmgr.rSetting(dynamic);
-        setmgr.rSetting(support);
-        setmgr.rSetting(retries);
-        setmgr.rSetting(protectRetries);
-        setmgr.rSetting(rewriteRotate);
-        setmgr.rSetting(crystalBreaker);
-        setmgr.rSetting(breakDelay);
-        setmgr.rSetting(breakRange);
-        setmgr.rSetting(rewriteProtected);
+        settingManager.register(surroundVec);
+        settingManager.register(completion);
+        settingManager.register(center);
+        settingManager.register(switch_);
+        settingManager.register(hand);
+        settingManager.register(blocksPerTick);
+        settingManager.register(raytrace);
+        settingManager.register(packet);
+        settingManager.register(confirm);
+        settingManager.register(noInteract);
+        settingManager.register(rewrite);
+        settingManager.register(dynamic);
+        settingManager.register(support);
+        settingManager.register(retries);
+        settingManager.register(protectRetries);
+        settingManager.register(rewriteRotate);
+        settingManager.register(crystalBreaker);
+        settingManager.register(breakDelay);
+        settingManager.register(breakRange);
+        settingManager.register(rewriteProtected);
 
-        setmgr.rSetting(rotate);
-        setmgr.rSetting(rotateCenter);
-        setmgr.rSetting(rotateRandom);
+        settingManager.register(rotate);
+        settingManager.register(rotateCenter);
+        settingManager.register(rotateRandom);
     }
 
     public void onEnable() {

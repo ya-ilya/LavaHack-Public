@@ -12,7 +12,7 @@ public class AirJump extends Module {
     public AirJump() {
         super("AirJump", "Category", Category.MOVEMENT);
 
-        setmgr.rSetting(mode);
+        settingManager.register(mode);
     }
 
     public void update() {

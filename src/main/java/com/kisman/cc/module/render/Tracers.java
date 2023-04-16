@@ -26,10 +26,10 @@ public class Tracers extends Module {
     public Tracers() {
         super("Tracers", "Tracers", Category.RENDER);
 
-        setmgr.rSetting(players);
+        settingManager.register(players);
 //        setmgr.rSetting(playersColor);
-        setmgr.rSetting(playersAstolfo);
-        setmgr.rSetting(friends);
+        settingManager.register(playersAstolfo);
+        settingManager.register(friends);
 //        setmgr.rSetting(friendsColor);
 //        setmgr.rSetting(friendsAstolfo);
     }

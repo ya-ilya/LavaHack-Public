@@ -23,9 +23,9 @@ public class TargetStrafe extends Module {
     public TargetStrafe() {
         super("TargetStrafe", "TargetStrafe", Category.MOVEMENT);
 
-        setmgr.rSetting(radius);
-        setmgr.rSetting(speed);
-        setmgr.rSetting(autoJump);
+        settingManager.register(radius);
+        settingManager.register(speed);
+        settingManager.register(autoJump);
     }
 
     public double getMovementSpeed() {

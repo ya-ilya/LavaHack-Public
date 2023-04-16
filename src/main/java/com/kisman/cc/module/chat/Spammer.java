@@ -34,10 +34,10 @@ public class Spammer extends Module {
     public Spammer() {
         super("Spammer", "chat spammer", Category.CHAT);
 
-        setmgr.rSetting(new Setting("GlobalMode", this, false));
-        setmgr.rSetting(new Setting("Delay", this, 5000, 0, 10000, true));
-        setmgr.rSetting(customMsg);
-        setmgr.rSetting(customMessage);
+        settingManager.register(new Setting("GlobalMode", this, false));
+        settingManager.register(new Setting("Delay", this, 5000, 0, 10000, true));
+        settingManager.register(customMsg);
+        settingManager.register(customMessage);
 
         this.spam = new ArrayList<>(Arrays.asList(msg));
     }
@@ -45,8 +45,8 @@ public class Spammer extends Module {
     public void update() {
         if(mc.player == null || mc.world == null) return;
 
-        boolean globalMode = setmgr.getSettingByName(this, "GlobalMode").getValBoolean();
-        long delay = (int) setmgr.getSettingByName(this, "Delay").getValDouble();
+        boolean globalMode = settingManager.getSettingByName(this, "GlobalMode").getValBoolean();
+        long delay = (int) settingManager.getSettingByName(this, "Delay").getValDouble();
 
         if (timer.passedMillis(delay)) {
             if(customMsg.getValBoolean()) {

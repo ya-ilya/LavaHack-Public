@@ -17,10 +17,10 @@ public class CustomMainMenu extends Module {
 
         instance = this;
 
-        setmgr.rSetting(watermark);
-        setmgr.rSetting(customSplashText);
-        setmgr.rSetting(customSplashFont);
-        setmgr.rSetting(particles);
+        settingManager.register(watermark);
+        settingManager.register(customSplashText);
+        settingManager.register(customSplashFont);
+        settingManager.register(particles);
     }
 
     public void update() {

@@ -32,32 +32,32 @@ public class NoRender extends Module {
 
         instance = this;
 
-        setmgr.rSetting(fog);
-        setmgr.rSetting(hurtCam);
-        setmgr.rSetting(armor);
-        setmgr.rSetting(overlay);
-        setmgr.rSetting(guiOverlay);
-        setmgr.rSetting(book);
-        setmgr.rSetting(chatBackground);
-        setmgr.rSetting(bossBar);
-        setmgr.rSetting(scoreboard);
-        setmgr.rSetting(particle);
-        setmgr.rSetting(portal);
-        setmgr.rSetting(items);
-        setmgr.rSetting(defaultBlockHighlight);
-        setmgr.rSetting(handItemsTex);
-        setmgr.rSetting(enchantGlint);
-        setmgr.rSetting(new Setting("Potion", this, false));
-        setmgr.rSetting(new Setting("Weather", this, false));
-        setmgr.rSetting(new Setting("Block", this, false));
-        setmgr.rSetting(new Setting("Lava", this, false));
+        settingManager.register(fog);
+        settingManager.register(hurtCam);
+        settingManager.register(armor);
+        settingManager.register(overlay);
+        settingManager.register(guiOverlay);
+        settingManager.register(book);
+        settingManager.register(chatBackground);
+        settingManager.register(bossBar);
+        settingManager.register(scoreboard);
+        settingManager.register(particle);
+        settingManager.register(portal);
+        settingManager.register(items);
+        settingManager.register(defaultBlockHighlight);
+        settingManager.register(handItemsTex);
+        settingManager.register(enchantGlint);
+        settingManager.register(new Setting("Potion", this, false));
+        settingManager.register(new Setting("Weather", this, false));
+        settingManager.register(new Setting("Block", this, false));
+        settingManager.register(new Setting("Lava", this, false));
     }
 
     public void update() {
         if(mc.player == null || mc.world == null) return;
 
-        boolean potion = setmgr.getSettingByName(this, "Potion").getValBoolean();
-        boolean weather = setmgr.getSettingByName(this, "Weather").getValBoolean();
+        boolean potion = settingManager.getSettingByName(this, "Potion").getValBoolean();
+        boolean weather = settingManager.getSettingByName(this, "Weather").getValBoolean();
 
         if(potion) {
             if(mc.player.isPotionActive(Potion.getPotionById(25))) mc.player.removeActivePotionEffect(Potion.getPotionById(25));
@@ -77,8 +77,8 @@ public class NoRender extends Module {
     @SubscribeEvent
     public void renderBlockEvent(RenderBlockOverlayEvent event) {
         if(mc.player != null && mc.world != null) {
-            boolean block = setmgr.getSettingByName(this, "Block").getValBoolean();
-            boolean lava = setmgr.getSettingByName(this, "Lava").getValBoolean();
+            boolean block = settingManager.getSettingByName(this, "Block").getValBoolean();
+            boolean lava = settingManager.getSettingByName(this, "Lava").getValBoolean();
             if(block) event.setCanceled(true);
             if(lava && event.getBlockForOverlay().getBlock().equals(Blocks.LAVA)) event.setCanceled(true);
         }

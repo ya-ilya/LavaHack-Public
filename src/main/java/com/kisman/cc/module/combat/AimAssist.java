@@ -17,8 +17,8 @@ public class AimAssist extends Module {
     public AimAssist() {
         super("AimAssist", Category.COMBAT);
 
-        setmgr.rSetting(range);
-        setmgr.rSetting(speed);
+        settingManager.register(range);
+        settingManager.register(speed);
     }
 
     public void update() {

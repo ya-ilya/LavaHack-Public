@@ -51,34 +51,34 @@ public class CrystalModifier extends Module {
 
         instance = this;
 
-        setmgr.rSetting(mode);
+        settingManager.register(mode);
 
-        setmgr.rSetting(scaleLine);
-        setmgr.rSetting(scale);
-        setmgr.rSetting(scaleVal);
+        settingManager.register(scaleLine);
+        settingManager.register(scale);
+        settingManager.register(scaleVal);
 
-        setmgr.rSetting(translateLine);
-        setmgr.rSetting(translateX);
-        setmgr.rSetting(translateY);
-        setmgr.rSetting(translateZ);
+        settingManager.register(translateLine);
+        settingManager.register(translateX);
+        settingManager.register(translateY);
+        settingManager.register(translateZ);
 
-        setmgr.rSetting(crystalSettingLine);
-        setmgr.rSetting(insideCube);
-        setmgr.rSetting(outsideCube);
-        setmgr.rSetting(outsideCube2);
-        setmgr.rSetting(texture);
-        setmgr.rSetting(customColor);
-        setmgr.rSetting(crystalColor);
+        settingManager.register(crystalSettingLine);
+        settingManager.register(insideCube);
+        settingManager.register(outsideCube);
+        settingManager.register(outsideCube2);
+        settingManager.register(texture);
+        settingManager.register(customColor);
+        settingManager.register(crystalColor);
 
-        setmgr.rSetting(outlineLine);
-        setmgr.rSetting(outline);
-        setmgr.rSetting(outlineMode);
-        setmgr.rSetting(lineWidth);
-        setmgr.rSetting(color);
+        settingManager.register(outlineLine);
+        settingManager.register(outline);
+        settingManager.register(outlineMode);
+        settingManager.register(lineWidth);
+        settingManager.register(color);
 
-        setmgr.rSetting(speedLine);
-        setmgr.rSetting(speed);
-        setmgr.rSetting(bounce);
+        settingManager.register(speedLine);
+        settingManager.register(speed);
+        settingManager.register(bounce);
     }
 
     public enum OutlineModes {Wire, Flat}

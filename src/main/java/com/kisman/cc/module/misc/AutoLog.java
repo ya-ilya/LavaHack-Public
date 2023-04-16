@@ -10,13 +10,13 @@ public class AutoLog extends Module {
     public AutoLog() {
         super("AutoLog", "5", Category.MISC);
 
-        setmgr.rSetting(new Setting("Health", this, 10, 1, 36, true));
+        settingManager.register(new Setting("Health", this, 10, 1, 36, true));
     }
 
     public void update() {
         if(mc.player == null || mc.world == null) return;
 
-        int health = (int) setmgr.getSettingByName(this, "Health").getValDouble();
+        int health = (int) settingManager.getSettingByName(this, "Health").getValDouble();
 
         if(mc.player.getHealth() < health) {
             mc.player.connection.handleDisconnect(new SPacketDisconnect(new TextComponentString("your health < " + health)));

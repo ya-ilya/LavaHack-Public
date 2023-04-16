@@ -34,8 +34,8 @@ public class FramebufferTest extends Module {
 
         shader = ItemShader.ITEM_SHADER;
 
-        setmgr.rSetting(degrees);
-        setmgr.rSetting(radius);
+        settingManager.register(degrees);
+        settingManager.register(radius);
     }
 
     @SubscribeEvent

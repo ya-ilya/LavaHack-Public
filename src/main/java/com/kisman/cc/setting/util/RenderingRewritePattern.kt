@@ -33,10 +33,10 @@ class RenderingRewritePattern(
     }
 
     fun init() {
-        Kisman.instance.settingManager.rSetting(mode)
-        Kisman.instance.settingManager.rSetting(lineWidth)
-        Kisman.instance.settingManager.rSetting(color1)
-        Kisman.instance.settingManager.rSetting(color2)
+        Kisman.instance.settingManager.register(mode)
+        Kisman.instance.settingManager.register(lineWidth)
+        Kisman.instance.settingManager.register(color1)
+        Kisman.instance.settingManager.register(color2)
     }
 
     fun draw(aabb : AxisAlignedBB) {

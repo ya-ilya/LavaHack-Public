@@ -34,14 +34,14 @@ public class Anchor extends Module {
         super("Anchor", "help with holes", Category.MOVEMENT);
         super.setDisplayInfo(() -> "[" + mode.getValString() + "]");
 
-        setmgr.rSetting(mode);
-        setmgr.rSetting(movementStop);
-        setmgr.rSetting(timer);
-        setmgr.rSetting(timerValue);
-        setmgr.rSetting(disableAfterComplete);
-        setmgr.rSetting(fastFall);
-        setmgr.rSetting(fastFallMotion);
-        setmgr.rSetting(new Setting("Pitch", this, 60, 0, 90, false));
+        settingManager.register(mode);
+        settingManager.register(movementStop);
+        settingManager.register(timer);
+        settingManager.register(timerValue);
+        settingManager.register(disableAfterComplete);
+        settingManager.register(fastFall);
+        settingManager.register(fastFallMotion);
+        settingManager.register(new Setting("Pitch", this, 60, 0, 90, false));
     }
 
     private boolean isBlockHole(BlockPos blockpos) {
@@ -78,7 +78,7 @@ public class Anchor extends Module {
         super.setDisplayInfo("[" + mode.getValString() + "]");
         if (mc.player.posY < 0) return;
 
-        double pitch = setmgr.getSettingByName(this, "Pitch").getValDouble();
+        double pitch = settingManager.getSettingByName(this, "Pitch").getValDouble();
 
         if (mc.player.rotationPitch >= pitch) {
             if (isBlockHole(PlayerUtil.getPlayerPos().down(1)) || isBlockHole(PlayerUtil.getPlayerPos().down(2)) || isBlockHole(PlayerUtil.getPlayerPos().down(3)) || isBlockHole(PlayerUtil.getPlayerPos().down(4))) {

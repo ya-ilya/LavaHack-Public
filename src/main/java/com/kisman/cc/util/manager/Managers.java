@@ -13,8 +13,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class Managers {
     public static Managers instance;
-
-    public FPSManager fpsManager;
+    
     public TimerManager timerManager;
     public CPSManager cpsManager;
 
@@ -25,7 +24,6 @@ public class Managers {
     }
 
     public void init() {
-        fpsManager = new FPSManager();
         timerManager = new TimerManager();
         cpsManager = new CPSManager();
 

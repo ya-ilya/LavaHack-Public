@@ -13,7 +13,7 @@ public class AutoTotem extends Module {
     public AutoTotem() {
         super("AutoTotem", "simple offhand", Category.COMBAT);
 
-        setmgr.rSetting(new Setting("Health", this, 10, 1, 20, true));
+        settingManager.register(new Setting("Health", this, 10, 1, 20, true));
     }
 
     public boolean isBeta() {return true;}
@@ -28,7 +28,7 @@ public class AutoTotem extends Module {
         int inventoryIndex;
         inv = mc.player.inventory.mainInventory;
 
-        int health = (int) setmgr.getSettingByName(this, "Health").getValDouble();
+        int health = (int) settingManager.getSettingByName(this, "Health").getValDouble();
 
         for(inventoryIndex = 0; inventoryIndex < inv.size(); inventoryIndex++) {
             if(inv.get(inventoryIndex) != ItemStack.EMPTY) {

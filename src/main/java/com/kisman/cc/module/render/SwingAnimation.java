@@ -33,21 +33,21 @@ public class SwingAnimation extends Module {
 
         instance = this;
 
-        setmgr.rSetting(mode);
+        settingManager.register(mode);
 
-        setmgr.rSetting(simpleLine);
-        setmgr.rSetting(new Setting("SwingMode", this, "1", new ArrayList<>(Arrays.asList("1", "2", "3"))));
+        settingManager.register(simpleLine);
+        settingManager.register(new Setting("SwingMode", this, "1", new ArrayList<>(Arrays.asList("1", "2", "3"))));
 
-        setmgr.rSetting(strongLine);
-        setmgr.rSetting(strongMode);
-        setmgr.rSetting(ignoreEating);
-        setmgr.rSetting(ifKillAura);
+        settingManager.register(strongLine);
+        settingManager.register(strongMode);
+        settingManager.register(ignoreEating);
+        settingManager.register(ifKillAura);
 
-        super.setDisplayInfo(() -> "[" + (mode.getValString().equalsIgnoreCase("Hand") ? setmgr.getSettingByName(this, "SwingMode").getValString() : strongMode.getValString()) + "]");
+        super.setDisplayInfo(() -> "[" + (mode.getValString().equalsIgnoreCase("Hand") ? settingManager.getSettingByName(this, "SwingMode").getValString() : strongMode.getValString()) + "]");
     }
 
     public void update() {
-        this.swingModeString = setmgr.getSettingByName(this, "SwingMode").getValString();
+        this.swingModeString = settingManager.getSettingByName(this, "SwingMode").getValString();
     }
 
     @SubscribeEvent

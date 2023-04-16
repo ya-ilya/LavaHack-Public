@@ -11,7 +11,7 @@ import net.minecraft.util.math.Vec3d;
 import javax.annotation.Nonnull;
 
 public class RotationManager {
-    private static Minecraft mc = Minecraft.getMinecraft();
+    private static final Minecraft mc = Minecraft.getMinecraft();
     private float yaw, pitch;
 
     public void update() {

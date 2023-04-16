@@ -18,7 +18,7 @@ public class TraceTeleport extends Module {
     public TraceTeleport() {
         super("TraceTeleport", "", Category.CHAT);
 
-        setmgr.rSetting(onlyPlayers);
+        settingManager.register(onlyPlayers);
     }
 
     public void onEnable() {

@@ -46,12 +46,12 @@ public class AntiTrap extends Module {
 
         instance = this;
 
-        setmgr.rSetting(mode);
-        setmgr.rSetting(delay);
-        setmgr.rSetting(switchMode);
-        setmgr.rSetting(rotate);
-        setmgr.rSetting(sortY);
-        setmgr.rSetting(onlyInHole);
+        settingManager.register(mode);
+        settingManager.register(delay);
+        settingManager.register(switchMode);
+        settingManager.register(rotate);
+        settingManager.register(sortY);
+        settingManager.register(onlyInHole);
     }
 
     public void onEnable() {

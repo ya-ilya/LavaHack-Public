@@ -14,7 +14,7 @@ public class DiscordRPC extends Module {
         super("DiscordRPC", "", Category.CLIENT);
         instance = this;
 
-        setmgr.rSetting(impr);
+        settingManager.register(impr);
     }
 
     public void onEnable() {

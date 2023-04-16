@@ -26,29 +26,29 @@ public class StorageESP extends Module{
     public StorageESP() {
         super("StorageESP", "sosat", Category.RENDER);
 
-        setmgr.rSetting(distance);
-        setmgr.rSetting(colorAlpha);
+        settingManager.register(distance);
+        settingManager.register(colorAlpha);
 
-        setmgr.rSetting(new Setting("Chest", this, true));
-        setmgr.rSetting(new Setting("EChest", this, true));
-        setmgr.rSetting(new Setting("ShulkerBox", this, true));
-        setmgr.rSetting(new Setting("Dispenser", this, true));
-        setmgr.rSetting(new Setting("Furnace", this, true));
-        setmgr.rSetting(new Setting("Hopper", this, true));
-        setmgr.rSetting(new Setting("Dropper", this, true));
+        settingManager.register(new Setting("Chest", this, true));
+        settingManager.register(new Setting("EChest", this, true));
+        settingManager.register(new Setting("ShulkerBox", this, true));
+        settingManager.register(new Setting("Dispenser", this, true));
+        settingManager.register(new Setting("Furnace", this, true));
+        settingManager.register(new Setting("Hopper", this, true));
+        settingManager.register(new Setting("Dropper", this, true));
 
         renderer.init();
     }
 
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event) {
-        chest = setmgr.getSettingByName(this, "Chest").getValBoolean();
-        eChest = setmgr.getSettingByName(this, "EChest").getValBoolean();
-        shulkerBox = setmgr.getSettingByName(this, "ShulkerBox").getValBoolean();
-        dispenser = setmgr.getSettingByName(this, "Dispenser").getValBoolean();
-        furnace = setmgr.getSettingByName(this, "Furnace").getValBoolean();
-        hopper = setmgr.getSettingByName(this, "Hopper").getValBoolean();
-        dropper = setmgr.getSettingByName(this, "Dropper").getValBoolean();
+        chest = settingManager.getSettingByName(this, "Chest").getValBoolean();
+        eChest = settingManager.getSettingByName(this, "EChest").getValBoolean();
+        shulkerBox = settingManager.getSettingByName(this, "ShulkerBox").getValBoolean();
+        dispenser = settingManager.getSettingByName(this, "Dispenser").getValBoolean();
+        furnace = settingManager.getSettingByName(this, "Furnace").getValBoolean();
+        hopper = settingManager.getSettingByName(this, "Hopper").getValBoolean();
+        dropper = settingManager.getSettingByName(this, "Dropper").getValBoolean();
 
         mc.world.loadedTileEntityList.stream()
             .filter(tileEntity -> tileEntity.getDistanceSq(mc.player.posX, mc.player.posY, mc.player.posZ) <= distance.getValDouble())

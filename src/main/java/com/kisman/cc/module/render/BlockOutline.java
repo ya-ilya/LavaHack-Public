@@ -29,13 +29,13 @@ public class BlockOutline extends Module {
 
         instance = this;
 
-        setmgr.rSetting(colorVal);
-        setmgr.rSetting(new Setting("RenderMode", this, "Outline", new ArrayList<>(Arrays.asList("Outline", "Box", "OutlineBox", "Flat"))));
+        settingManager.register(colorVal);
+        settingManager.register(new Setting("RenderMode", this, "Outline", new ArrayList<>(Arrays.asList("Outline", "Box", "OutlineBox", "Flat"))));
     }
 
     public void update() {
         this.color = new float[] {colorVal.getColour().getColor().getRed() / 255f, colorVal.getColour().getColor().getGreen() / 255f, colorVal.getColour().getColor().getBlue() / 255f};
-        this.renderMode = setmgr.getSettingByName(this, "RenderMode").getValString();
+        this.renderMode = settingManager.getSettingByName(this, "RenderMode").getValString();
     }
 
     @SubscribeEvent

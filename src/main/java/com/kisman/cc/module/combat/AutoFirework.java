@@ -83,35 +83,35 @@ public class AutoFirework extends Module {
         aimBot = AimBot.instance;
         instance = this;
 
-        setmgr.rSetting(targetRange);
+        settingManager.register(targetRange);
 
-        setmgr.rSetting(delayLine);
-        setmgr.rSetting(delay);
-        setmgr.rSetting(trapDelay);
+        settingManager.register(delayLine);
+        settingManager.register(delay);
+        settingManager.register(trapDelay);
 
-        setmgr.rSetting(placeLine);
-        setmgr.rSetting(placeMode);
-        setmgr.rSetting(rotate);
-        setmgr.rSetting(blocksPerTick);
-        setmgr.rSetting(antiScaffold);
-        setmgr.rSetting(antiStep);
-        setmgr.rSetting(surroundPlacing);
-        setmgr.rSetting(range);
-        setmgr.rSetting(raytrace);
+        settingManager.register(placeLine);
+        settingManager.register(placeMode);
+        settingManager.register(rotate);
+        settingManager.register(blocksPerTick);
+        settingManager.register(antiScaffold);
+        settingManager.register(antiStep);
+        settingManager.register(surroundPlacing);
+        settingManager.register(range);
+        settingManager.register(raytrace);
 
-        setmgr.rSetting(switchLine);
-        setmgr.rSetting(switchMode);
-        setmgr.rSetting(switchObbyReturn);
-        setmgr.rSetting(switchFireReturn);
+        settingManager.register(switchLine);
+        settingManager.register(switchMode);
+        settingManager.register(switchObbyReturn);
+        settingManager.register(switchFireReturn);
 
-        setmgr.rSetting(pauseLine);
-        setmgr.rSetting(minHealthPause);
-        setmgr.rSetting(requiredHealth);
-        setmgr.rSetting(pauseWhileEating);
-        setmgr.rSetting(pauseIfHittingBlock);
+        settingManager.register(pauseLine);
+        settingManager.register(minHealthPause);
+        settingManager.register(requiredHealth);
+        settingManager.register(pauseWhileEating);
+        settingManager.register(pauseIfHittingBlock);
 
-        setmgr.rSetting(handLine);
-        setmgr.rSetting(fireHand);
+        settingManager.register(handLine);
+        settingManager.register(fireHand);
     }
 
     public void onEnable() {

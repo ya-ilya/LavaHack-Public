@@ -20,14 +20,14 @@ public class Optimizer extends Module {
 
         instance = this;
 
-        setmgr.rSetting(removeLookAi);
-        setmgr.rSetting(removeLookIdle);
-        setmgr.rSetting(replaceLookHelper);
+        settingManager.register(removeLookAi);
+        settingManager.register(removeLookIdle);
+        settingManager.register(replaceLookHelper);
 
-        setmgr.rSetting(tileEntityRenderRange);
+        settingManager.register(tileEntityRenderRange);
 
-        setmgr.rSetting(customEntityRenderRange);
-        setmgr.rSetting(entityRenderRange);
+        settingManager.register(customEntityRenderRange);
+        settingManager.register(entityRenderRange);
     }
 
     public void onEnable() {

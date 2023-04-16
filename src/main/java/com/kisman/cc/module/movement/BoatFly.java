@@ -23,14 +23,14 @@ public class BoatFly extends Module {
     public BoatFly() {
         super("BoatFly", Category.MOVEMENT);
 
-        setmgr.rSetting(speed);
-        setmgr.rSetting(verticalSpeed);
-        setmgr.rSetting(downKey);
-        setmgr.rSetting(glideSpeed);
-        setmgr.rSetting(staticY);
-        setmgr.rSetting(hover);
-        setmgr.rSetting(bypass);
-        setmgr.rSetting(extraCalc);
+        settingManager.register(speed);
+        settingManager.register(verticalSpeed);
+        settingManager.register(downKey);
+        settingManager.register(glideSpeed);
+        settingManager.register(staticY);
+        settingManager.register(hover);
+        settingManager.register(bypass);
+        settingManager.register(extraCalc);
     }
 
     public void update() {

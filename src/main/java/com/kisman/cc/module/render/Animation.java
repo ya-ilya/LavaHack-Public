@@ -15,6 +15,6 @@ public class Animation extends Module {
 
         instance = this;
 
-        setmgr.rSetting(speed);
+        settingManager.register(speed);
     }
 }

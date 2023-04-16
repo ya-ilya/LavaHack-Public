@@ -15,14 +15,14 @@ public class Fly extends Module {
     public Fly() {
         super("Fly", "Your flying", Category.MOVEMENT);
 
-        setmgr.rSetting(new Setting("FlySpeed", this, 0.1f, 0.1f, 100.0f, false));
-        setmgr.rSetting(mode);
+        settingManager.register(new Setting("FlySpeed", this, 0.1f, 0.1f, 100.0f, false));
+        settingManager.register(mode);
     }
 
     public void update() {
         if(mc.player == null || mc.world == null) return;
 
-        this.flySpeed = (float) setmgr.getSettingByName(this, "FlySpeed").getValDouble();
+        this.flySpeed = (float) settingManager.getSettingByName(this, "FlySpeed").getValDouble();
 
         super.setDisplayInfo("[" + mode.getValString() + "]");
 

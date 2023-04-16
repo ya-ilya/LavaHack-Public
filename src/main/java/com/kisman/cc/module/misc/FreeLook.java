@@ -19,7 +19,7 @@ public class FreeLook extends Module {
     public FreeLook() {
         super("FreeLook", Category.MISC);
 
-        setmgr.rSetting(autoThirdPerson);
+        settingManager.register(autoThirdPerson);
     }
 
     public void onEnable() {

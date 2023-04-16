@@ -55,33 +55,33 @@ public class HoleESP extends Module {
         super("HoleESP", "HoleESP", Category.RENDER);
         super.setDisplayInfo(() -> "[" + mode.getValString() + "]");
 
-        setmgr.rSetting(mode);
-        setmgr.rSetting(konasMode);
-        setmgr.rSetting(konasLine);
-        setmgr.rSetting(radius);
-        setmgr.rSetting(ignoreOwnHole);
-        setmgr.rSetting(flatOwn);
-        setmgr.rSetting(height);
-        setmgr.rSetting(width);
-        setmgr.rSetting(type);
-        setmgr.rSetting(ufoAlpha);
+        settingManager.register(mode);
+        settingManager.register(konasMode);
+        settingManager.register(konasLine);
+        settingManager.register(radius);
+        settingManager.register(ignoreOwnHole);
+        settingManager.register(flatOwn);
+        settingManager.register(height);
+        settingManager.register(width);
+        settingManager.register(type);
+        settingManager.register(ufoAlpha);
 
-        setmgr.rSetting(depth);
-        setmgr.rSetting(noLineDepth);
-        setmgr.rSetting(notSelf);
-        setmgr.rSetting(sides);
+        settingManager.register(depth);
+        settingManager.register(noLineDepth);
+        settingManager.register(notSelf);
+        settingManager.register(sides);
 
-        setmgr.rSetting(obby);
-        setmgr.rSetting(obbyHoles);
-        setmgr.rSetting(obbyColor);
+        settingManager.register(obby);
+        settingManager.register(obbyHoles);
+        settingManager.register(obbyColor);
 
-        setmgr.rSetting(bedrock);
-        setmgr.rSetting(bedrockHoles);
-        setmgr.rSetting(bedrockColor);
+        settingManager.register(bedrock);
+        settingManager.register(bedrockHoles);
+        settingManager.register(bedrockColor);
 
-        setmgr.rSetting(custom);
-        setmgr.rSetting(customMode);
-        setmgr.rSetting(customColor);
+        settingManager.register(custom);
+        settingManager.register(customMode);
+        settingManager.register(customColor);
     }
 
     public void update() {

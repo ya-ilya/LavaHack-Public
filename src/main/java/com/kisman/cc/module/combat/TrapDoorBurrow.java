@@ -29,9 +29,9 @@ public class TrapDoorBurrow extends Module {
     public TrapDoorBurrow() {
         super("TrapDoorBurrow", Category.COMBAT);
 
-        setmgr.rSetting(fallSpeed);
-        setmgr.rSetting(instant);
-        setmgr.rSetting(instantFactor);
+        settingManager.register(fallSpeed);
+        settingManager.register(instant);
+        settingManager.register(instantFactor);
     }
 
     public void onEnable() {

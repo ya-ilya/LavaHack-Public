@@ -94,48 +94,48 @@ public class ShaderCharms extends Module {
 
         instance = this;
 
-        setmgr.rSetting(range);
+        settingManager.register(range);
 
-        setmgr.rSetting(mode);
-        setmgr.rSetting(crystals);
-        setmgr.rSetting(players);
-        setmgr.rSetting(friends);
-        setmgr.rSetting(mobs);
-        setmgr.rSetting(animals);
-        setmgr.rSetting(enderPearls);
-        setmgr.rSetting(itemsEntity);
-        setmgr.rSetting(items);
-        setmgr.rSetting(itemsFix);
+        settingManager.register(mode);
+        settingManager.register(crystals);
+        settingManager.register(players);
+        settingManager.register(friends);
+        settingManager.register(mobs);
+        settingManager.register(animals);
+        settingManager.register(enderPearls);
+        settingManager.register(itemsEntity);
+        settingManager.register(items);
+        settingManager.register(itemsFix);
 //        setmgr.rSetting(storages);
 
-        setmgr.rSetting(animationSpeed);
+        settingManager.register(animationSpeed);
 
-        setmgr.rSetting(blur);
-        setmgr.rSetting(radius);
-        setmgr.rSetting(mix);
-        setmgr.rSetting(red);
-        setmgr.rSetting(green);
-        setmgr.rSetting(blue);
-        setmgr.rSetting(rainbow);
-        setmgr.rSetting(delay);
-        setmgr.rSetting(saturation);
-        setmgr.rSetting(brightness);
+        settingManager.register(blur);
+        settingManager.register(radius);
+        settingManager.register(mix);
+        settingManager.register(red);
+        settingManager.register(green);
+        settingManager.register(blue);
+        settingManager.register(rainbow);
+        settingManager.register(delay);
+        settingManager.register(saturation);
+        settingManager.register(brightness);
 
-        setmgr.rSetting(quality);
-        setmgr.rSetting(gradientAlpha);
-        setmgr.rSetting(alphaGradient);
-        setmgr.rSetting(duplicateOutline);
-        setmgr.rSetting(moreGradientOutline);
-        setmgr.rSetting(creepyOutline);
-        setmgr.rSetting(alpha);
-        setmgr.rSetting(numOctavesOutline);
-        setmgr.rSetting(speedOutline);
+        settingManager.register(quality);
+        settingManager.register(gradientAlpha);
+        settingManager.register(alphaGradient);
+        settingManager.register(duplicateOutline);
+        settingManager.register(moreGradientOutline);
+        settingManager.register(creepyOutline);
+        settingManager.register(alpha);
+        settingManager.register(numOctavesOutline);
+        settingManager.register(speedOutline);
 
-        setmgr.rSetting(hideOriginal);
-        setmgr.rSetting(outlineAlpha);
-        setmgr.rSetting(filledAlpha);
-        setmgr.rSetting(width);
-        setmgr.rSetting(ratio);
+        settingManager.register(hideOriginal);
+        settingManager.register(outlineAlpha);
+        settingManager.register(filledAlpha);
+        settingManager.register(width);
+        settingManager.register(ratio);
     }
 
     public void onEnable() {

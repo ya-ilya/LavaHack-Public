@@ -101,32 +101,32 @@ public class AutoCrystal extends Module implements Runnable {
 
         instance = this;
 
-        setmgr.rSetting(logic);
-        setmgr.rSetting(placeRange);
-        setmgr.rSetting(placeWallRange);
-        setmgr.rSetting(hand);
-        setmgr.rSetting(breakRange);
-        setmgr.rSetting(targetRange);
-        setmgr.rSetting(packetBreak);
-        setmgr.rSetting(packetPlace);
-        setmgr.rSetting(minDMG);
-        setmgr.rSetting(maxSelfDMG);
-        setmgr.rSetting(antiSuicide);
-        setmgr.rSetting(multiPlace);
-        setmgr.rSetting(check);
-        setmgr.rSetting(placeDelay);
-        setmgr.rSetting(breakDelay);
-        setmgr.rSetting(lethalMult);
-        setmgr.rSetting(switchMode);
-        setmgr.rSetting(render);
-        setmgr.rSetting(colorVal);
-        setmgr.rSetting(sound);
-        setmgr.rSetting(clientSide);
-        setmgr.rSetting(rotate);
-        setmgr.rSetting(rotateMode);
-        setmgr.rSetting(MultiThread);
-        setmgr.rSetting(MultiThreadValue);
-        setmgr.rSetting(MultiThreadDelay);
+        settingManager.register(logic);
+        settingManager.register(placeRange);
+        settingManager.register(placeWallRange);
+        settingManager.register(hand);
+        settingManager.register(breakRange);
+        settingManager.register(targetRange);
+        settingManager.register(packetBreak);
+        settingManager.register(packetPlace);
+        settingManager.register(minDMG);
+        settingManager.register(maxSelfDMG);
+        settingManager.register(antiSuicide);
+        settingManager.register(multiPlace);
+        settingManager.register(check);
+        settingManager.register(placeDelay);
+        settingManager.register(breakDelay);
+        settingManager.register(lethalMult);
+        settingManager.register(switchMode);
+        settingManager.register(render);
+        settingManager.register(colorVal);
+        settingManager.register(sound);
+        settingManager.register(clientSide);
+        settingManager.register(rotate);
+        settingManager.register(rotateMode);
+        settingManager.register(MultiThread);
+        settingManager.register(MultiThreadValue);
+        settingManager.register(MultiThreadDelay);
     }
 
     @SubscribeEvent

@@ -29,8 +29,8 @@
 
          instance = this;
 
-         setmgr.rSetting(delay);
-         setmgr.rSetting(new Setting("NoThorns", this, false));
+         settingManager.register(delay);
+         settingManager.register(new Setting("NoThorns", this, false));
      }
 
      public void onEnable() {
@@ -44,7 +44,7 @@
          if (mc.player.ticksExisted % 2 == 0) return;
          if (mc.currentScreen instanceof GuiContainer && !(mc.currentScreen instanceof InventoryEffectRenderer)) return;
 
-         boolean noThorns = setmgr.getSettingByName(this, "NoThorns").getValBoolean();
+         boolean noThorns = settingManager.getSettingByName(this, "NoThorns").getValBoolean();
 
          List<ItemStack> armorInventory = mc.player.inventory.armorInventory;
          List<ItemStack> inventory = mc.player.inventory.mainInventory;

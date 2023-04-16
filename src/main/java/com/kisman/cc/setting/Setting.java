@@ -522,7 +522,7 @@ public class Setting {
 	//#Lua
 	//TODO: доделать
 	public Setting build(Module module) {
-		Kisman.instance.settingManager.rSetting(this);
+		Kisman.instance.settingManager.register(this);
 		return this;
 	}
 	

@@ -12,7 +12,7 @@ public class Spider extends Module{
 	public Spider() {
 		super("Spider", "HackCategory.PLAYER", Category.MOVEMENT);
 
-		setmgr.rSetting(mode);
+		settingManager.register(mode);
 	}
 	
 	public void update() {

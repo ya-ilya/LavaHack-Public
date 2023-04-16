@@ -43,13 +43,13 @@ public class Scaffold extends Module {
     public Scaffold() {
         super("Scaffold", "Scaffold", Category.MOVEMENT);
 
-        setmgr.rSetting(placeLogic);
-        setmgr.rSetting(distance);
-        setmgr.rSetting(towerMode);
-        setmgr.rSetting(downSpeed);
-        setmgr.rSetting(jumpDelay);
-        setmgr.rSetting(rotate);
-        setmgr.rSetting(sneakTest);
+        settingManager.register(placeLogic);
+        settingManager.register(distance);
+        settingManager.register(towerMode);
+        settingManager.register(downSpeed);
+        settingManager.register(jumpDelay);
+        settingManager.register(rotate);
+        settingManager.register(sneakTest);
     }
 
     public void onEnable() {

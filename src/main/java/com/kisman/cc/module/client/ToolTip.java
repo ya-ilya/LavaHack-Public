@@ -26,7 +26,7 @@ public class ToolTip extends Module {
     public ToolTip() {
         super("ToolTip", Category.CLIENT);
 
-        setmgr.rSetting(shulkers);
+        settingManager.register(shulkers);
     }
 
     public void onEnable() {

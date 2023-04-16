@@ -39,12 +39,12 @@ public class ItemCharms extends Module {
 
         instance = this;
 
-        setmgr.rSetting(red);
-        setmgr.rSetting(green);
-        setmgr.rSetting(blue);
-        setmgr.rSetting(alpha);
+        settingManager.register(red);
+        settingManager.register(green);
+        settingManager.register(blue);
+        settingManager.register(alpha);
 
-        setmgr.rSetting(glintModify);
+        settingManager.register(glintModify);
     }
 
     public void onDisable() {

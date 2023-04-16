@@ -36,11 +36,11 @@ public class AntiTrapDoorBurrow extends Module {
 
         instance = this;
 
-        setmgr.rSetting(delay);
-        setmgr.rSetting(range);
-        setmgr.rSetting(render);
-        setmgr.rSetting(color);
-        setmgr.rSetting(rotate);
+        settingManager.register(delay);
+        settingManager.register(range);
+        settingManager.register(render);
+        settingManager.register(color);
+        settingManager.register(rotate);
     }
 
     public void onEnable() {

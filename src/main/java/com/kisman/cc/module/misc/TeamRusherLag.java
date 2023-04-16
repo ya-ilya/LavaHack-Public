@@ -20,8 +20,8 @@ public class TeamRusherLag extends Module {
     public TeamRusherLag() {
         super("TeamRusherLag","TeamRusherLag", Category.MISC);
 
-        setmgr.rSetting(time);
-        setmgr.rSetting(text);
+        settingManager.register(time);
+        settingManager.register(text);
     }
 
     public boolean isBeta() {return true;}

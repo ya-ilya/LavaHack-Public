@@ -15,7 +15,7 @@ public class Sprint extends Module {
 
 		instance = this;
 
-		setmgr.rSetting(mode);
+		settingManager.register(mode);
 	}
 
 	public void update() {

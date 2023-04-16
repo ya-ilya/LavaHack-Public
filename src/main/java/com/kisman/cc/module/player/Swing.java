@@ -12,7 +12,7 @@ public class Swing extends Module {
     public Swing() {
         super("Swing", "swing", Category.PLAYER);
 
-        setmgr.rSetting(mode);
+        settingManager.register(mode);
     }
 
     public void update() {

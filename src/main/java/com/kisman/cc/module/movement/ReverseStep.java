@@ -23,9 +23,9 @@ public class ReverseStep extends Module {
 
         instance = this;
 
-        setmgr.rSetting(height);
-        setmgr.rSetting(lagTime);
-        setmgr.rSetting(lagTimeValue);
+        settingManager.register(height);
+        settingManager.register(lagTime);
+        settingManager.register(lagTimeValue);
     }
 
     public void onEnable() {

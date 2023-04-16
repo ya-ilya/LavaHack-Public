@@ -16,7 +16,7 @@ public class Step extends Module {
 
         instance = this;
 
-        setmgr.rSetting(height);
+        settingManager.register(height);
     }
 
     public void update() {

@@ -70,56 +70,56 @@ public class HUD extends Module {
 
 		instance = this;
 
-		setmgr.rSetting(astolfoColor);
-		setmgr.rSetting(offsets);
-		setmgr.rSetting(glow);
-		setmgr.rSetting(glowV2);
-		setmgr.rSetting(glowOffset);
-		setmgr.rSetting(glowRadius);
-		setmgr.rSetting(glowAlpha);
-		setmgr.rSetting(background);
-		setmgr.rSetting(bgAlpha);
+		settingManager.register(astolfoColor);
+		settingManager.register(offsets);
+		settingManager.register(glow);
+		settingManager.register(glowV2);
+		settingManager.register(glowOffset);
+		settingManager.register(glowRadius);
+		settingManager.register(glowAlpha);
+		settingManager.register(background);
+		settingManager.register(bgAlpha);
 
-		setmgr.rSetting(arrLine);
-		setmgr.rSetting(arrMode);
-		setmgr.rSetting(arrY);
-		setmgr.rSetting(arrColor);
-		setmgr.rSetting(arrGradient);
-		setmgr.rSetting(arrGradientDiff);
-		setmgr.rSetting(arrGlowBackground);
+		settingManager.register(arrLine);
+		settingManager.register(arrMode);
+		settingManager.register(arrY);
+		settingManager.register(arrColor);
+		settingManager.register(arrGradient);
+		settingManager.register(arrGradientDiff);
+		settingManager.register(arrGlowBackground);
 
-		setmgr.rSetting(welLine);
-		setmgr.rSetting(welColor);
+		settingManager.register(welLine);
+		settingManager.register(welColor);
 
-		setmgr.rSetting(pvpLine);
-		setmgr.rSetting(pvpY);
+		settingManager.register(pvpLine);
+		settingManager.register(pvpY);
 
-		setmgr.rSetting(armLine);
-		setmgr.rSetting(armExtra);
-		setmgr.rSetting(armDmg);
+		settingManager.register(armLine);
+		settingManager.register(armExtra);
+		settingManager.register(armDmg);
 
-		setmgr.rSetting(radarLine);
-		setmgr.rSetting(radarDist);
+		settingManager.register(radarLine);
+		settingManager.register(radarDist);
 
-		setmgr.rSetting(speedLine);
-		setmgr.rSetting(speedMode);
+		settingManager.register(speedLine);
+		settingManager.register(speedMode);
 
-		setmgr.rSetting(logoLine);
-		setmgr.rSetting(logoMode);
-		setmgr.rSetting(logoImage);
-		setmgr.rSetting(logoGlow);
-		setmgr.rSetting(logoBold);
+		settingManager.register(logoLine);
+		settingManager.register(logoMode);
+		settingManager.register(logoImage);
+		settingManager.register(logoGlow);
+		settingManager.register(logoBold);
 
-		setmgr.rSetting(indicLine);
-		setmgr.rSetting(indicThemeMode);
-		setmgr.rSetting(indicShadowSliders);
+		settingManager.register(indicLine);
+		settingManager.register(indicThemeMode);
+		settingManager.register(indicShadowSliders);
 
-		setmgr.rSetting(thudLine);
-		setmgr.rSetting(thudTheme);
-		setmgr.rSetting(thudShadowSliders);
+		settingManager.register(thudLine);
+		settingManager.register(thudTheme);
+		settingManager.register(thudShadowSliders);
 
-		setmgr.rSetting(crystalpsLine);
-		setmgr.rSetting(crystalpsY);
+		settingManager.register(crystalpsLine);
+		settingManager.register(crystalpsY);
 	}
 
 	public void onEnable() {

@@ -12,7 +12,7 @@ public class SkyColor extends Module {
 
     public SkyColor() {
         super("SkyColor", "You can change fog color", Category.RENDER);
-        setmgr.rSetting(color);
+        settingManager.register(color);
     }
 
     @SubscribeEvent

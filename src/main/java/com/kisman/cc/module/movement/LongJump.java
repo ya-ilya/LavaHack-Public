@@ -10,7 +10,7 @@ public class LongJump extends Module {
     public LongJump() {
         super("LongJump", Category.MOVEMENT);
 
-        setmgr.rSetting(boost);
+        settingManager.register(boost);
     }
 
     public void update() {

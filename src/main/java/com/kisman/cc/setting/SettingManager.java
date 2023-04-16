@@ -19,7 +19,7 @@ public class SettingManager {
 		this.settings = new ArrayList<>();
 	}
 
-	public void rSetting(Setting in){
+	public void register(Setting in){
 		this.settings.add(in);
 	}
 

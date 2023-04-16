@@ -21,8 +21,8 @@ public class ElytraEquip extends Module {
 
         instance = this;
 
-        setmgr.rSetting(synsWithElytraFly);
-        setmgr.rSetting(autoDisable);
+        settingManager.register(synsWithElytraFly);
+        settingManager.register(autoDisable);
     }
 
     public boolean isBeta() {return true;}

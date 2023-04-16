@@ -21,9 +21,9 @@ public class PacketLogger extends Module{
     public PacketLogger() {
         super("PacketLogger", Category.PLAYER);
 
-        setmgr.rSetting(client);
-        setmgr.rSetting(server);
-        setmgr.rSetting(values);
+        settingManager.register(client);
+        settingManager.register(server);
+        settingManager.register(values);
     }
 
     public boolean isBeta() {return true;}

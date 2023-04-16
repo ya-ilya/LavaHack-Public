@@ -20,10 +20,10 @@ public class HotbarModifier extends Module {
 
         instance = this;
 
-        setmgr.rSetting(containerShadow);
-        setmgr.rSetting(primaryAstolfo);
-        setmgr.rSetting(offhand);
-        setmgr.rSetting(offhandGradient);
+        settingManager.register(containerShadow);
+        settingManager.register(primaryAstolfo);
+        settingManager.register(offhand);
+        settingManager.register(offhandGradient);
     }
 
     public static Color getPrimaryColor() {

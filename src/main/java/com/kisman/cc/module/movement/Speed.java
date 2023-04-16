@@ -76,35 +76,35 @@ public class Speed extends Module {
 
         instance = this;
 
-        setmgr.rSetting(speedMode);
+        settingManager.register(speedMode);
 
-        setmgr.rSetting(useTimer);
+        settingManager.register(useTimer);
 
-        setmgr.rSetting(motionXmodifier);
-        setmgr.rSetting(motionZmodifier);
+        settingManager.register(motionXmodifier);
+        settingManager.register(motionZmodifier);
 
-        setmgr.rSetting(strafeNewLine);
-        setmgr.rSetting(strafeSpeed);
-        setmgr.rSetting(slow);
-        setmgr.rSetting(cap);
-        setmgr.rSetting(scaleCap);
-        setmgr.rSetting(lagTime);
+        settingManager.register(strafeNewLine);
+        settingManager.register(strafeSpeed);
+        settingManager.register(slow);
+        settingManager.register(cap);
+        settingManager.register(scaleCap);
+        settingManager.register(lagTime);
 
-        setmgr.rSetting(yPortLine);
-        setmgr.rSetting(new Setting("YPortSpeed", this, 0.06f, 0.01f, 0.15f, false).setVisible(() -> speedMode.checkValString("YPort")));
-        setmgr.rSetting(yWater);
-        setmgr.rSetting(yLava);
+        settingManager.register(yPortLine);
+        settingManager.register(new Setting("YPortSpeed", this, 0.06f, 0.01f, 0.15f, false).setVisible(() -> speedMode.checkValString("YPort")));
+        settingManager.register(yWater);
+        settingManager.register(yLava);
 
-        setmgr.rSetting(stiLine);
-        setmgr.rSetting(stiSpeed);
+        settingManager.register(stiLine);
+        settingManager.register(stiSpeed);
 
-        setmgr.rSetting(bhopLine);
-        setmgr.rSetting(useMotion);
-        setmgr.rSetting(useMotionInAir);
-        setmgr.rSetting(jumpMovementFactor);
-        setmgr.rSetting(jumpMovementFactorSpeed);
-        setmgr.rSetting(boostSpeed);
-        setmgr.rSetting(boostFactor);
+        settingManager.register(bhopLine);
+        settingManager.register(useMotion);
+        settingManager.register(useMotionInAir);
+        settingManager.register(jumpMovementFactor);
+        settingManager.register(jumpMovementFactorSpeed);
+        settingManager.register(boostSpeed);
+        settingManager.register(boostFactor);
     }
 
     public void onEnable() {
@@ -128,7 +128,7 @@ public class Speed extends Module {
 
         super.setDisplayInfo("[" + speedMode.getValString() + TextFormatting.GRAY + "]");
 
-        yPortSpeed = (float) setmgr.getSettingByName(this, "YPortSpeed").getValDouble();
+        yPortSpeed = (float) settingManager.getSettingByName(this, "YPortSpeed").getValDouble();
         dist = MovementUtil.getDistance2D();
 
         if(mc.player.moveForward > 0 && mc.player.hurtTime < 5 && speedMode.getValString().equalsIgnoreCase("Strafe")) {

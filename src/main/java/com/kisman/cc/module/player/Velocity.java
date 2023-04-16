@@ -32,14 +32,14 @@ public class Velocity extends Module{
     public Velocity() {
         super("Velocity", "akb", Category.PLAYER);
 
-        setmgr.rSetting(new Setting("Mode", this, "None", new ArrayList<>(Arrays.asList("None", "Matrix", "Matrix 6.4", "Vanilla"))));
+        settingManager.register(new Setting("Mode", this, "None", new ArrayList<>(Arrays.asList("None", "Matrix", "Matrix 6.4", "Vanilla"))));
 
-        setmgr.rSetting(exp);
-        setmgr.rSetting(bobbers);
-        setmgr.rSetting(noPush);
+        settingManager.register(exp);
+        settingManager.register(bobbers);
+        settingManager.register(noPush);
 
-        setmgr.rSetting(horizontal);
-        setmgr.rSetting(vertical);
+        settingManager.register(horizontal);
+        settingManager.register(vertical);
     }
 
     public void onEnable() {
@@ -51,7 +51,7 @@ public class Velocity extends Module{
 
     public void update() {
         if(mc.player == null || mc.world == null) return;
-        String mode = setmgr.getSettingByName(this, "Mode").getValString();
+        String mode = settingManager.getSettingByName(this, "Mode").getValString();
         super.setDisplayInfo("[" + mode + "]");
 
         if(mode.equalsIgnoreCase("Matrix")) {

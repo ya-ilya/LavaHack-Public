@@ -15,7 +15,7 @@ public class BowAimBot extends Module {
     public BowAimBot() {
         super("BowAimBot", "", Category.COMBAT);
 
-        setmgr.rSetting(maxDist);
+        settingManager.register(maxDist);
     }
 
     public void update() {

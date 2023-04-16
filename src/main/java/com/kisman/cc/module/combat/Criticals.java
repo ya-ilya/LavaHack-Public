@@ -19,8 +19,8 @@ public class Criticals extends Module {
     public Criticals() {
         super("Criticals", "", Category.COMBAT);
 
-        setmgr.rSetting(strict);
-        setmgr.rSetting(onlyKillaura);
+        settingManager.register(strict);
+        settingManager.register(onlyKillaura);
     }
 
     public void onEnable() {

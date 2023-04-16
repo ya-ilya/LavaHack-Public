@@ -16,10 +16,10 @@ class GlowRendererPattern(val module: Module, val visible: Supplier<Boolean>) {
     val boxSize = Setting("Glow Box Size", module, 0.0, 0.0, 20.0, true).setVisible {mode.valEnum.equals(GlowModes.Shader) && visible.get()}
 
     fun init() {
-        Kisman.instance.settingManager.rSetting(mode)
-        Kisman.instance.settingManager.rSetting(offset)
-        Kisman.instance.settingManager.rSetting(radius)
-        Kisman.instance.settingManager.rSetting(boxSize)
+        Kisman.instance.settingManager.register(mode)
+        Kisman.instance.settingManager.register(offset)
+        Kisman.instance.settingManager.register(radius)
+        Kisman.instance.settingManager.register(boxSize)
     }
 
     fun draw(ticks: Float, color: Colour, x: Int, y: Int, width: Int, height: Int) {

@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 
 public class Module {
 	protected static Minecraft mc = Minecraft.getMinecraft();
-	protected static SettingManager setmgr;
+	protected static SettingManager settingManager;
 
 	private String name, description, displayInfo;
 	private int key;
@@ -39,7 +39,7 @@ public class Module {
 		this.subscribes = subscribes;
 		this.priority = 1;
 
-		setmgr = Kisman.instance.settingManager;
+		settingManager = Kisman.instance.settingManager;
 	}
 
 	public void setToggled(boolean toggled) {
@@ -75,7 +75,7 @@ public class Module {
 	}
 
 	public Setting register(Setting set) {
-		setmgr.rSetting(set);
+		settingManager.register(set);
 		return set;
 	}
 

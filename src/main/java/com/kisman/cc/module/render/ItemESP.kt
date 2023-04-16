@@ -18,9 +18,9 @@ class ItemESP : Module("ItemESP", "Renders a items name and quantity ft Dallas",
     val astolfo = Setting("Astolfo", this, false)
 
     init {
-        setmgr.rSetting(scale)
-        setmgr.rSetting(count)
-        setmgr.rSetting(astolfo)
+        settingManager.register(scale)
+        settingManager.register(count)
+        settingManager.register(astolfo)
     }
 
     @SubscribeEvent fun onRender(event: RenderGameOverlayEvent.Text) {

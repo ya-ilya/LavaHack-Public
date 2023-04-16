@@ -49,14 +49,14 @@ public class  NameTags extends Module {
 
         instance = this;
 
-        setmgr.rSetting(range);
-        setmgr.rSetting(scale);
-        setmgr.rSetting(bgAlpha);
-        setmgr.rSetting(ping);
-        setmgr.rSetting(items);
-        setmgr.rSetting(damageDisplay);
-        setmgr.rSetting(atheist);
-        setmgr.rSetting(desc);
+        settingManager.register(range);
+        settingManager.register(scale);
+        settingManager.register(bgAlpha);
+        settingManager.register(ping);
+        settingManager.register(items);
+        settingManager.register(damageDisplay);
+        settingManager.register(atheist);
+        settingManager.register(desc);
     }
 
     @SubscribeEvent

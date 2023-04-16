@@ -4,8 +4,8 @@ import com.kisman.cc.event.Event;
 import net.minecraft.entity.MoverType;
 
 public class PlayerMoveEvent extends Event {
-    public MoverType type;
-    public double x, y, z;
+    private final MoverType type;
+    private final double x, y, z;
 
     public PlayerMoveEvent(MoverType type, double x, double y, double z) {
         this.type = type;
@@ -14,7 +14,19 @@ public class PlayerMoveEvent extends Event {
         this.z = z;
     }
 
-    public String getName() {
-        return "player_move";
+    public MoverType getType() {
+        return type;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getZ() {
+        return z;
     }
 }

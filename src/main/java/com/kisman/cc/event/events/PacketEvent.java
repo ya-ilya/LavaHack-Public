@@ -20,19 +20,11 @@ public class PacketEvent extends Event {
 		public Receive(Packet<?> packet) {
 			super(packet);
 		}
-
-		public String getName() {
-			return "packet_receive";
-		}
 	}
  
 	public static class Send extends PacketEvent {
 		public Send(Packet<?> packet) {
 			super(packet);
-		}
-
-		public String getName() {
-			return "packet_send";
 		}
 	}
  

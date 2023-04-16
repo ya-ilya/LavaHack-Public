@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 @Cancelable
 public class TotemPopEvent extends Event {
 
-    private Entity popEntity;
+    private final Entity popEntity;
 
     public TotemPopEvent(Entity popEntity) {
         this.popEntity = popEntity;

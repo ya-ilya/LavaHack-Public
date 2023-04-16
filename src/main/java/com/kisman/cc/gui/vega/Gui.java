@@ -1,9 +1,5 @@
 package com.kisman.cc.gui.vega;
 
-import com.kisman.cc.Kisman;
-import com.kisman.cc.event.events.gui.GuiRenderPostEvent;
-import com.kisman.cc.event.events.gui.MouseClickedPreEvent;
-import com.kisman.cc.event.events.gui.MouseReleasedPreEvent;
 import com.kisman.cc.gui.particle.ParticleSystem;
 import com.kisman.cc.gui.vega.component.Component;
 import com.kisman.cc.gui.vega.component.Frame;
@@ -56,9 +52,6 @@ public class Gui extends GuiScreen {
                 for(Component comp : b.comp)  comp.updateComponent(mouseX, mouseY);
             }
         }
-
-        GuiRenderPostEvent event = new GuiRenderPostEvent(mouseX, mouseY, partialTicks, GuiRenderPostEvent.Gui.NewGui);
-        Kisman.EVENT_BUS.post(event);
     }
 
     @Override
@@ -69,11 +62,6 @@ public class Gui extends GuiScreen {
 
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
-        MouseClickedPreEvent event = new MouseClickedPreEvent(mouseX, mouseY, mouseButton, GuiRenderPostEvent.Gui.NewGui);
-        Kisman.EVENT_BUS.post(event);
-
-        if(event.isCancelled()) return;
-
         for(Frame frame : frames) {
             if(frame.isMouseOnButton(mouseX, mouseY) && mouseButton == 0) {
                 frame.dragging = true;
@@ -89,10 +77,6 @@ public class Gui extends GuiScreen {
 
     @Override
     protected void mouseReleased(int mouseX, int mouseY, int state) {
-        MouseReleasedPreEvent event = new MouseReleasedPreEvent(mouseX, mouseY, state, GuiRenderPostEvent.Gui.NewGui);
-        Kisman.EVENT_BUS.post(event);
-
-        if(event.isCancelled()) return;
         for(Frame frame : frames) frame.dragging = false;
         for(Frame frame : frames) if(frame.open && !frame.buttons.isEmpty()) for(Button b : frame.buttons) b.mouseReleased(mouseX, mouseY, state);
     }

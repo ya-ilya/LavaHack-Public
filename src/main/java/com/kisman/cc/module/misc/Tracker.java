@@ -13,6 +13,7 @@ import i.gishreloaded.gishcode.utils.TimerUtils;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.item.EntityExpBottle;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,7 +45,7 @@ public class Tracker extends Module {
     public Tracker() {
         super("Tracker", "Tracks players in 1v1s. Only good in duels tho!", Category.MISC);
 
-        Kisman.EVENT_BUS.subscribe(listener3);
+        Kisman.EVENT_BUS.subscribe(motionUpdateListener);
 
         register(autoEnable);
         register(autoDisable);
@@ -53,9 +54,9 @@ public class Tracker extends Module {
     public boolean isBeta() {return true;}
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(listener1);
-        Kisman.EVENT_BUS.subscribe(listener2);
-        Kisman.EVENT_BUS.subscribe(listener4);
+        Kisman.EVENT_BUS.subscribe(packetSendListener);
+        Kisman.EVENT_BUS.subscribe(packetReceiveListener);
+        Kisman.EVENT_BUS.subscribe(spawnEntityListener);
 
         this.manuallyPlaced.clear();
         this.shouldEnable = false;
@@ -75,9 +76,9 @@ public class Tracker extends Module {
         this.usedCrystals = 0;
         this.usedCStacks = 0;
 
-        Kisman.EVENT_BUS.unsubscribe(listener1);
-        Kisman.EVENT_BUS.unsubscribe(listener2);
-        Kisman.EVENT_BUS.unsubscribe(listener4);
+        Kisman.EVENT_BUS.unsubscribe(packetSendListener);
+        Kisman.EVENT_BUS.unsubscribe(packetReceiveListener);
+        Kisman.EVENT_BUS.unsubscribe(spawnEntityListener);
     }
 
     public void update() {
@@ -120,7 +121,7 @@ public class Tracker extends Module {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Send> listener1 = new Listener<>(event -> {
+    private final Listener<PacketEvent.Send> packetSendListener = new Listener<>(event -> {
         if (mc.player != null && mc.world != null && event.getPacket() instanceof CPacketPlayerTryUseItemOnBlock) {
             final CPacketPlayerTryUseItemOnBlock packet = (CPacketPlayerTryUseItemOnBlock)event.getPacket();
             if (Tracker.mc.player.getHeldItem(packet.hand).getItem() == Items.END_CRYSTAL && !AntiTrap.instance.placedPos.contains(packet.position) && !AutoRer.instance.placedList.contains(packet.position)) {
@@ -130,7 +131,7 @@ public class Tracker extends Module {
     });
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> listener2 = new Listener<>(event -> {
+    private final Listener<PacketEvent.Receive> packetReceiveListener = new Listener<>(event -> {
         if (mc.player != null && mc.world != null && (this.autoEnable.getValBoolean() || this.autoDisable.getValBoolean()) && event.getPacket() instanceof SPacketChat) {
             final SPacketChat packet = (SPacketChat)event.getPacket();
             final String message = packet.getChatComponent().getFormattedText();
@@ -146,24 +147,26 @@ public class Tracker extends Module {
     });
 
     @EventHandler
-    private final Listener<PlayerMotionUpdateEvent> listener3 = new Listener<>(event -> {
+    private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = new Listener<>(event -> {
         if(shouldEnable && timer.passedSec(5L) && !super.isToggled()) {
             super.setToggled(true);
         }
     });
 
     @EventHandler
-    private final Listener<SpawnEntityEvent> listener4 = new Listener<>(event -> {
-        if (event.entity instanceof EntityExpBottle && Objects.equals(mc.world.getClosestPlayerToEntity(event.entity, 3.0), this.trackedPlayer)) {
+    private final Listener<SpawnEntityEvent> spawnEntityListener = new Listener<>(event -> {
+        Entity entity = event.getEntity();
+        
+        if (entity instanceof EntityExpBottle && Objects.equals(mc.world.getClosestPlayerToEntity(entity, 3.0), this.trackedPlayer)) {
             ++this.usedExp;
         }
 
-        if (event.entity instanceof EntityEnderCrystal) {
-            if (AntiTrap.instance.placedPos.contains(event.entity.getPosition().down())) {
-                AntiTrap.instance.placedPos.remove(event.entity.getPosition().down());
-            } else if (this.manuallyPlaced.contains(event.entity.getPosition().down())) {
-                this.manuallyPlaced.remove(event.entity.getPosition().down());
-            } else if (!AutoRer.instance.placedList.contains(event.entity.getPosition().down())) {
+        if (entity instanceof EntityEnderCrystal) {
+            if (AntiTrap.instance.placedPos.contains(entity.getPosition().down())) {
+                AntiTrap.instance.placedPos.remove(entity.getPosition().down());
+            } else if (this.manuallyPlaced.contains(entity.getPosition().down())) {
+                this.manuallyPlaced.remove(entity.getPosition().down());
+            } else if (!AutoRer.instance.placedList.contains(entity.getPosition().down())) {
                 ++this.usedCrystals;
             }
         }

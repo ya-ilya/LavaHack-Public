@@ -4,12 +4,16 @@ import com.kisman.cc.event.Event;
 import net.minecraft.util.math.BlockPos;
 
 public class DestroyBlockEvent extends Event {
+    private final Era era;
     private BlockPos blockPos;
-    public Era era;
 
     public DestroyBlockEvent(Era era, BlockPos blockPos) {
         this.era = era;
         this.blockPos = blockPos;
+    }
+
+    public Era getEra() {
+        return this.era;
     }
 
     public BlockPos getBlockPos() {

@@ -40,7 +40,6 @@
     "MixinScreenShotHelper",
     "MixinTileEntity",
     "MixinWorld",
-    "accessor.AccessorCPacketUseEntity",
     "accessor.AccessorEntityPlayer",
     "accessor.AccessorPlayerControllerMP",
     "accessor.AccessorShaderGroup",

@@ -47,8 +47,8 @@ public class FreeLook extends Module {
     @EventHandler
     private final Listener<TurnEvent> listener = new Listener<>(event -> {
         if (mc.gameSettings.thirdPersonView > 0) {
-            dYaw = (float) ((double) dYaw + (double) event.yaw * 0.15D);
-            dPitch = (float) ((double) dPitch - (double) event.pitch * 0.15D);
+            dYaw = (float) ((double) dYaw + (double) event.getYaw() * 0.15D);
+            dPitch = (float) ((double) dPitch - (double) event.getPitch() * 0.15D);
             dPitch = MathHelper.clamp(dPitch, -90.0F, 90.0F);
             event.cancel();
         }

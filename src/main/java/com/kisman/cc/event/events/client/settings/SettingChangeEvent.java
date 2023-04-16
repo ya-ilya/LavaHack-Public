@@ -4,13 +4,26 @@ import com.kisman.cc.event.Event;
 import com.kisman.cc.setting.Setting;
 
 public class SettingChangeEvent extends Event {
-    public Setting setting;
-    public Type type;
-    public Action action;
+    private final Setting setting;
+    private final Type type;
+    private final Action action;
+
     public SettingChangeEvent(Setting setting, Type type, Action action) {
         this.setting = setting;
         this.type = type;
         this.action = action;
+    }
+
+    public Setting getSetting() {
+        return setting;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public Action getAction() {
+        return action;
     }
 
     public static class BooleanSetting extends SettingChangeEvent {

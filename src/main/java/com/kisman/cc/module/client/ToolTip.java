@@ -30,17 +30,17 @@ public class ToolTip extends Module {
     }
 
     public void onEnable() {
-        Kisman.EVENT_BUS.subscribe(tooltip);
+        Kisman.EVENT_BUS.subscribe(renderToolTipListener);
     }
 
     public void onDisable() {
-        Kisman.EVENT_BUS.unsubscribe(tooltip);
+        Kisman.EVENT_BUS.unsubscribe(renderToolTipListener);
     }
 
     @EventHandler
-    private final Listener<RenderToolTipEvent> tooltip = new Listener<>(event -> {
-        if (shulkers.getValBoolean() && event.stack.getItem() instanceof ItemShulkerBox) {
-            renderShulkerTip(event.stack, event.x, event.y);
+    private final Listener<RenderToolTipEvent> renderToolTipListener = new Listener<>(event -> {
+        if (shulkers.getValBoolean() && event.getStack().getItem() instanceof ItemShulkerBox) {
+            renderShulkerTip(event.getStack(), event.getX(), event.getY());
             event.cancel();
         }
     });

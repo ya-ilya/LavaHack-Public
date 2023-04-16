@@ -40,7 +40,7 @@ public class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
         PlayerMoveEvent event = new PlayerMoveEvent(type, x, y, z);
         Kisman.EVENT_BUS.post(event);
         if (event.isCancelled()) {
-            move(type, event.x, event.y, event.z);
+            move(type, event.getX(), event.getY(), event.getX());
             ci.cancel();
         }
     }

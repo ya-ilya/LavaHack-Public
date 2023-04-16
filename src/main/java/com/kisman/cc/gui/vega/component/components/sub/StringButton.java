@@ -2,7 +2,6 @@ package com.kisman.cc.gui.vega.component.components.sub;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.Event;
-import com.kisman.cc.event.events.StringEvent;
 import com.kisman.cc.gui.vega.component.Component;
 import com.kisman.cc.gui.vega.component.components.Button;
 import com.kisman.cc.setting.Setting;
@@ -119,13 +118,6 @@ public class StringButton extends Component {
     }
 
     public void keyTyped(char typedChar, int key) {
-        StringEvent event1 = new StringEvent(set, "" + typedChar, com.kisman.cc.event.Event.Era.PRE, active);
-        Kisman.EVENT_BUS.post(event1);
-
-        if(event1.isCancelled()) {
-            return;
-        }
-
         if(key == 1) return;
 
         if(Keyboard.KEY_RETURN == key && this.active) {
@@ -140,14 +132,6 @@ public class StringButton extends Component {
             }
         } else if(ChatAllowedCharacters.isAllowedCharacter(typedChar) && this.active && !set.isOnlyNumbers()) {
             this.setString(this.currentString + typedChar);
-
-            StringEvent event2 = new StringEvent(set, "" + typedChar, Event.Era.POST, active);
-            Kisman.EVENT_BUS.post(event2);
-
-            if(event2.isCancelled()) {
-                active = false;
-                return;
-            }
 
             if(set.isOnlyOneWord() && this.active) {
                 this.active = false;

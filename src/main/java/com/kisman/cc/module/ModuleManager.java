@@ -197,7 +197,7 @@ public class ModuleManager {
 		modules.add(new Teleport());
 		modules.add(new TickShift());
 		modules.add(new Timer());
-		modules.add(new WaterLeave());
+		modules.add(new LiquidLeave());
 		modules.add(new WebLeave());
 		//misc
 		modules.add(new AntiRegear());

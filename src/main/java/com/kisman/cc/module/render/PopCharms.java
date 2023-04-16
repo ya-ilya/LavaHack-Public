@@ -49,10 +49,10 @@ public class PopCharms extends Module {
 
     @SubscribeEvent
     public void onPop(TotemPopEvent event) {
-        if(!selfPop.getValBoolean() && event.getPopEntity() == mc.player) return;
-        if(!(event.getPopEntity() instanceof EntityPlayer)) return;
+        if(!selfPop.getValBoolean() && event.getEntity() == mc.player) return;
+        if(!(event.getEntity() instanceof EntityPlayer)) return;
 
-        entity = (EntityPlayer) event.getPopEntity();
+        entity = (EntityPlayer) event.getEntity();
 
         GameProfile profile = new GameProfile(entity.getUniqueID(), "");
         player = new EntityOtherPlayerMP(mc.world, profile);

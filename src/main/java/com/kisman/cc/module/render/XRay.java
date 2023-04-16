@@ -14,8 +14,6 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class XRay extends Module {
-    public static XRay instance;
-
     public Block[] xrayBlocks = new Block[]{
             Blocks.COAL_ORE,
             Blocks.IRON_ORE,
@@ -49,10 +47,7 @@ public class XRay extends Module {
     public XRay() {
         super("XRay", Category.RENDER);
 
-        instance = this;
-
         register(range);
-
         register(coal);
         register(iron);
         register(gold);

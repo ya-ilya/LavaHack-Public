@@ -8,7 +8,7 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.combat.AntiTrap;
 import com.kisman.cc.module.combat.AutoRer;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import i.gishreloaded.gishcode.utils.TimerUtils;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 import me.zero.alpine.listener.EventHandler;

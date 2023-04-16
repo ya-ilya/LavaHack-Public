@@ -1,6 +1,6 @@
 package com.kisman.cc.util;
 
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 import net.minecraft.util.text.TextFormatting;
 

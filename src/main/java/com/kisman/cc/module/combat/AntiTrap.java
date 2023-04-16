@@ -5,7 +5,7 @@ import com.kisman.cc.event.Event;
 import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.*;
 import i.gishreloaded.gishcode.utils.TimerUtils;
 import me.zero.alpine.listener.EventHandler;

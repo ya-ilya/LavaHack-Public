@@ -2,8 +2,8 @@ package com.kisman.cc.module.render;
 
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import com.kisman.cc.settings.Setting;
-import com.kisman.cc.settings.util.BoxRendererPattern;
+import com.kisman.cc.setting.Setting;
+import com.kisman.cc.setting.util.BoxRendererPattern;
 import com.kisman.cc.util.ColourUtilKt;
 import net.minecraft.tileentity.*;
 import net.minecraftforge.client.event.RenderWorldLastEvent;

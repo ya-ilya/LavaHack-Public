@@ -3,7 +3,7 @@ package com.kisman.cc.module.render;
 import com.kisman.cc.friend.FriendManager;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.Colour;
 import com.kisman.cc.util.Rendering;
 import net.minecraft.block.Block;

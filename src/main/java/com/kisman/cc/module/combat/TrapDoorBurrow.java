@@ -2,7 +2,7 @@ package com.kisman.cc.module.combat;
 
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.EntityUtil;
 import com.kisman.cc.util.InventoryUtil;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;

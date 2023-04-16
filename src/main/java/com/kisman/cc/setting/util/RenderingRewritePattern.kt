@@ -1,8 +1,8 @@
-package com.kisman.cc.settings.util
+package com.kisman.cc.setting.util
 
 import com.kisman.cc.Kisman
 import com.kisman.cc.module.Module
-import com.kisman.cc.settings.Setting
+import com.kisman.cc.setting.Setting
 import com.kisman.cc.util.Colour
 import com.kisman.cc.util.Rendering
 import com.kisman.cc.util.enums.RenderingRewriteModes
@@ -33,10 +33,10 @@ class RenderingRewritePattern(
     }
 
     fun init() {
-        Kisman.instance.settingsManager.rSetting(mode)
-        Kisman.instance.settingsManager.rSetting(lineWidth)
-        Kisman.instance.settingsManager.rSetting(color1)
-        Kisman.instance.settingsManager.rSetting(color2)
+        Kisman.instance.settingManager.rSetting(mode)
+        Kisman.instance.settingManager.rSetting(lineWidth)
+        Kisman.instance.settingManager.rSetting(color1)
+        Kisman.instance.settingManager.rSetting(color2)
     }
 
     fun draw(aabb : AxisAlignedBB) {

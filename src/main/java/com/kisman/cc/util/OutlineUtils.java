@@ -1,6 +1,6 @@
 package com.kisman.cc.util;
 
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.shader.Framebuffer;

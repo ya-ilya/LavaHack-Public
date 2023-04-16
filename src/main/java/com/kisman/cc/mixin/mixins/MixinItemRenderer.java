@@ -4,7 +4,7 @@ import com.kisman.cc.Kisman;
 import com.kisman.cc.module.combat.KillAura;
 import com.kisman.cc.module.render.SwingAnimation;
 import com.kisman.cc.module.render.ViewModel;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.PlayerUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
@@ -99,6 +99,6 @@ public class MixinItemRenderer {
     }
 
     private Setting getSet(String name) {
-        return Kisman.instance.settingsManager.getSettingByName(Kisman.instance.moduleManager.getModule("ViewModel"), name);
+        return Kisman.instance.settingManager.getSettingByName(Kisman.instance.moduleManager.getModule("ViewModel"), name);
     }
 }

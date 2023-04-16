@@ -5,7 +5,7 @@ import com.kisman.cc.module.combat.KillAura;
 import com.kisman.cc.module.combat.autocrystal.AutoCrystal;
 import com.kisman.cc.module.misc.Optimizer;
 import com.kisman.cc.module.render.Charms;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.RenderUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;

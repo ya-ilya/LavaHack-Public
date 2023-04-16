@@ -3,7 +3,7 @@ package com.kisman.cc.module.client;
 import com.kisman.cc.Kisman;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import net.minecraft.util.ResourceLocation;
 
 public class VegaGui extends Module {

@@ -8,7 +8,7 @@ import com.kisman.cc.gui.console.GuiConsole;
 import com.kisman.cc.gui.console.rewrite.ConsoleGui;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.MovementUtil;
 import com.kisman.cc.util.PlayerUtil;
 import me.zero.alpine.listener.EventHandler;

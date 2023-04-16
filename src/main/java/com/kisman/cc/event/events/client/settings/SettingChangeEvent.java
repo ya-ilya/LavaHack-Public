@@ -1,7 +1,7 @@
 package com.kisman.cc.event.events.client.settings;
 
 import com.kisman.cc.event.Event;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 
 public class SettingChangeEvent extends Event {
     public Setting setting;

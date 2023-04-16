@@ -7,7 +7,7 @@ import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.mixin.mixins.accessor.AccessorEntityPlayer;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.EntityUtil;
 import com.kisman.cc.util.MovementUtil;
 import com.kisman.cc.util.PlayerUtil;

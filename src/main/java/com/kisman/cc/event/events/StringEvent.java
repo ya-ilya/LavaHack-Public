@@ -1,7 +1,7 @@
 package com.kisman.cc.event.events;
 
 import com.kisman.cc.event.Event;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 
 public class StringEvent extends Event {
     public Setting set;

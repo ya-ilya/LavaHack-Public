@@ -1,4 +1,4 @@
-package com.kisman.cc.settings;
+package com.kisman.cc.setting;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.gui.csgo.components.Slider;
@@ -522,7 +522,7 @@ public class Setting {
 	//#Lua
 	//TODO: доделать
 	public Setting build(Module module) {
-		Kisman.instance.settingsManager.rSetting(this);
+		Kisman.instance.settingManager.rSetting(this);
 		return this;
 	}
 	

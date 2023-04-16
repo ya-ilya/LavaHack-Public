@@ -9,7 +9,7 @@ import com.kisman.cc.gui.halq.component.components.sub.modules.VisibleBox;
 import com.kisman.cc.gui.halq.util.LayerMap;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.client.Config;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.Render2DUtil;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import com.kisman.cc.util.render.objects.AbstractGradient;
@@ -46,8 +46,8 @@ public class Button extends Component {
         comps.add(new BindModeButton(mod, x, y, offsetY, count1++));
         offsetY += HalqGui.height;
 
-        if (Kisman.instance.settingsManager.getSettingsByMod(mod) != null) {
-            for (Setting set : Kisman.instance.settingsManager.getSettingsByMod(mod)) {
+        if (Kisman.instance.settingManager.getSettingsByMod(mod) != null) {
+            for (Setting set : Kisman.instance.settingManager.getSettingsByMod(mod)) {
                 if (set == null) continue;
                 if (set.isSlider()) {
                     comps.add(new Slider(set, x, y, offsetY, count1++));

@@ -8,7 +8,7 @@ import com.kisman.cc.friend.FriendManager;
 import com.kisman.cc.hud.hudmodule.HudModule;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.player.TeleportBack;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.ColourUtilKt;
 import org.lwjgl.input.Keyboard;
 
@@ -48,8 +48,8 @@ public class ConfigLoader {
             boolean settings;
 
             try {
-                if(Kisman.instance.settingsManager.getSettingsByMod(module) == null) settings = false;
-                else settings = !Kisman.instance.settingsManager.getSettingsByMod(module).isEmpty();
+                if(Kisman.instance.settingManager.getSettingsByMod(module) == null) settings = false;
+                else settings = !Kisman.instance.settingManager.getSettingsByMod(module).isEmpty();
                 loadModuleDirect(Kisman.fileName + Kisman.moduleName, module, settings);
             } catch (IOException e) {
                 System.out.println(module.getName());
@@ -76,7 +76,7 @@ public class ConfigLoader {
         JsonElement keyObject = settingObject.get("key");
 
         if(settings) {
-            for (Setting setting : Kisman.instance.settingsManager.getSettingsByMod(module)) {
+            for (Setting setting : Kisman.instance.settingManager.getSettingsByMod(module)) {
                 JsonElement dataObject = settingObject.get(setting.getName());
 
                 try {

@@ -71,7 +71,7 @@ class ConfigManager(
                                     } catch(ignored : Exception) {}
                                 }
                                 config.settingsPrefix -> {
-                                    val setting = Kisman.instance.settingsManager.getSettingByName(module, split2[3])
+                                    val setting = Kisman.instance.settingManager.getSettingByName(module, split2[3])
                                     if(setting != null) {
                                         try {
                                             if(setting.isCheck) setting.valBoolean = java.lang.Boolean.parseBoolean(split1[1])
@@ -143,8 +143,8 @@ class ConfigManager(
                 writer.newLine()
                 writer.write("${config.modulesPrefix}.${module.name}.key=${module.key}")
                 writer.newLine()
-                if(Kisman.instance.settingsManager.getSettingsByMod(module) != null) {
-                    for(setting in Kisman.instance.settingsManager.getSettingsByMod(module)) {
+                if(Kisman.instance.settingManager.getSettingsByMod(module) != null) {
+                    for(setting in Kisman.instance.settingManager.getSettingsByMod(module)) {
                         if(setting  != null) {
                             if(setting.isCheck) {
                                 writer.write("${config.modulesPrefix}.${module.name}.${config.settingsPrefix}.${setting.name}=${setting.valBoolean}")

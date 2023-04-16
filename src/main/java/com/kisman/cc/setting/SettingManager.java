@@ -1,4 +1,4 @@
-package com.kisman.cc.settings;
+package com.kisman.cc.setting;
 
 import com.kisman.cc.module.Module;
 
@@ -11,11 +11,11 @@ import java.util.ArrayList;
  *
  *  @author HeroCode
  */
-public class SettingsManager {
+public class SettingManager {
 	
 	private final ArrayList<Setting> settings;
 
-	public SettingsManager(){
+	public SettingManager(){
 		this.settings = new ArrayList<>();
 	}
 

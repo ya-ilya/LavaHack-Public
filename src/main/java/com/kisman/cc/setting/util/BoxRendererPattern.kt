@@ -1,8 +1,8 @@
-package com.kisman.cc.settings.util
+package com.kisman.cc.setting.util
 
 import com.kisman.cc.Kisman
 import com.kisman.cc.module.Module
-import com.kisman.cc.settings.Setting
+import com.kisman.cc.setting.Setting
 import com.kisman.cc.util.Colour
 import com.kisman.cc.util.enums.BoxRenderModes
 import com.kisman.cc.util.render.objects.Box
@@ -18,11 +18,11 @@ class BoxRendererPattern(val module: Module) {
     val offset = Setting("Offset", module, 0.002, 0.002, 0.2, false)
 
     fun init() {
-        Kisman.instance.settingsManager.rSetting(mode)
-        Kisman.instance.settingsManager.rSetting(depth)
-        Kisman.instance.settingsManager.rSetting(alpha)
-        Kisman.instance.settingsManager.rSetting(width)
-        Kisman.instance.settingsManager.rSetting(offset)
+        Kisman.instance.settingManager.rSetting(mode)
+        Kisman.instance.settingManager.rSetting(depth)
+        Kisman.instance.settingManager.rSetting(alpha)
+        Kisman.instance.settingManager.rSetting(width)
+        Kisman.instance.settingManager.rSetting(offset)
     }
 
     fun draw(ticks: Float, color: Colour, pos: BlockPos, alphaVal: Int) {

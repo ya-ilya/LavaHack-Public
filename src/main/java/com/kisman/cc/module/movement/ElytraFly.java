@@ -4,7 +4,7 @@ import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PlayerTravelEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.InventoryUtil;
 import com.kisman.cc.util.MathUtil;
 import i.gishreloaded.gishcode.utils.TimerUtils;

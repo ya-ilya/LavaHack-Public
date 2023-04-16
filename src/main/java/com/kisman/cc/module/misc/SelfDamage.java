@@ -2,7 +2,7 @@ package com.kisman.cc.module.misc;
 
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 
 public class SelfDamage extends Module {
     private final Setting jump;

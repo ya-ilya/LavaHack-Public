@@ -14,7 +14,7 @@ import com.kisman.cc.gui.particle.ParticleSystem;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.client.Config;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.MathUtil;
 import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.input.Keyboard;
@@ -124,9 +124,9 @@ public class ClickGuiNew extends GuiScreen {
                 }
 
                 {
-                    if (Kisman.instance.settingsManager.getSettingsByMod(module) != null) {
-                        if(!Kisman.instance.settingsManager.getSettingsByMod(module).isEmpty()) {
-                            for (Setting set : Kisman.instance.settingsManager.getSettingsByMod(module)) {
+                    if (Kisman.instance.settingManager.getSettingsByMod(module) != null) {
+                        if(!Kisman.instance.settingManager.getSettingsByMod(module).isEmpty()) {
+                            for (Setting set : Kisman.instance.settingManager.getSettingsByMod(module)) {
                                 if(set.isLine()) {
                                     String label = set.getTitle();
                                     if(count % 4 != 0) {

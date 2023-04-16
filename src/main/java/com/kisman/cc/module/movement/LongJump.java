@@ -2,7 +2,7 @@ package com.kisman.cc.module.movement;
 
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 
 public class LongJump extends Module {
     private final Setting boost = new Setting("Boost", this, 1, 1, 2.5f, false);

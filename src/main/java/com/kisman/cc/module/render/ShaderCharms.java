@@ -12,7 +12,7 @@ import com.kisman.cc.module.render.shader.FramebufferShader;
 import com.kisman.cc.module.render.shader.ShaderUtil;
 import com.kisman.cc.module.render.shader.shaders.*;
 import com.kisman.cc.module.render.shader.shaders.troll.ShaderHelper;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.MathUtil;
 import com.kisman.cc.util.enums.ShaderModes;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;

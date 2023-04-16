@@ -4,8 +4,8 @@ import com.kisman.cc.friend.FriendManager
 import com.kisman.cc.module.Category
 import com.kisman.cc.module.Module
 import com.kisman.cc.module.combat.autorer.util.ProjectionUtils
-import com.kisman.cc.settings.Setting
-import com.kisman.cc.settings.util.GlowRendererPattern
+import com.kisman.cc.setting.Setting
+import com.kisman.cc.setting.util.GlowRendererPattern
 import com.kisman.cc.util.Colour
 import com.kisman.cc.util.ColourUtilKt
 import com.kisman.cc.util.Render2DUtil

@@ -1,8 +1,8 @@
 package com.kisman.cc.module;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.settings.Setting;
-import com.kisman.cc.settings.SettingsManager;
+import com.kisman.cc.setting.Setting;
+import com.kisman.cc.setting.SettingManager;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.TextFormatting;
@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 
 public class Module {
 	protected static Minecraft mc = Minecraft.getMinecraft();
-	protected static SettingsManager setmgr;
+	protected static SettingManager setmgr;
 
 	private String name, description, displayInfo;
 	private int key;
@@ -39,7 +39,7 @@ public class Module {
 		this.subscribes = subscribes;
 		this.priority = 1;
 
-		setmgr = Kisman.instance.settingsManager;
+		setmgr = Kisman.instance.settingManager;
 	}
 
 	public void setToggled(boolean toggled) {

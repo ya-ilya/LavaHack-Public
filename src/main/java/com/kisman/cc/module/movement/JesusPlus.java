@@ -2,7 +2,7 @@ package com.kisman.cc.module.movement;
 
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.PlayerUtil;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.util.math.BlockPos;

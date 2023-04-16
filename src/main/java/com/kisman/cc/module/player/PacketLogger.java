@@ -6,7 +6,7 @@ import com.kisman.cc.hud.hudmodule.render.PacketChat;
 import com.kisman.cc.hud.hudmodule.render.packetchat.Message;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;

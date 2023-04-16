@@ -2,7 +2,7 @@ package com.kisman.cc.module.combat;
 
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import io.netty.util.internal.ThreadLocalRandom;
 import net.minecraft.client.settings.KeyBinding;
 import org.lwjgl.input.Mouse;

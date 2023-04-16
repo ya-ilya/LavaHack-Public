@@ -7,7 +7,6 @@ import com.kisman.cc.friend.FriendManager;
 import com.kisman.cc.gui.MainGui;
 import com.kisman.cc.gui.console.rewrite.ConsoleGui;
 import com.kisman.cc.gui.csgo.ClickGuiNew;
-import com.kisman.cc.gui.halq.Frame;
 import com.kisman.cc.gui.halq.HalqGui;
 import com.kisman.cc.gui.vega.Gui;
 import com.kisman.cc.hud.hudeditor.HudEditorGui;
@@ -17,7 +16,7 @@ import com.kisman.cc.hud.hudmodule.HudModuleManager;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.ModuleManager;
 import com.kisman.cc.module.client.Config;
-import com.kisman.cc.settings.SettingsManager;
+import com.kisman.cc.setting.SettingManager;
 import com.kisman.cc.util.RotationUtils;
 import com.kisman.cc.util.ServerManager;
 import com.kisman.cc.util.api.cape.CapeAPI;
@@ -71,7 +70,7 @@ public class Kisman {
     public ModuleManager moduleManager;
     public FriendManager friendManager;
     public HudModuleManager hudModuleManager;
-    public SettingsManager settingsManager;
+    public SettingManager settingManager;
     public ClickGuiNew clickGuiNew;
     public ConsoleGui consoleGui;
     public HudGui hudGui;
@@ -110,7 +109,7 @@ public class Kisman {
         managers.init();
 
         friendManager = new FriendManager();
-    	settingsManager = new SettingsManager();
+    	settingManager = new SettingManager();
     	moduleManager = new ModuleManager();
         hudModuleManager = new HudModuleManager();
         clickGuiNew = new ClickGuiNew();

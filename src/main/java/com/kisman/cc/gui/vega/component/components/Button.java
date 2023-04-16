@@ -9,7 +9,7 @@ import com.kisman.cc.gui.vega.component.components.sub.Slider;
 import com.kisman.cc.gui.vega.component.components.sub.StringButton;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.client.VegaGui;
-import com.kisman.cc.settings.Setting;
+import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.Render2DUtil;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
@@ -47,8 +47,8 @@ public class Button {
             comp.add(new KeyBind(this, opY));
             opY += 12;
 
-            if(Kisman.instance.settingsManager.getSettingsByMod(mod) != null) {
-                for(Setting set : Kisman.instance.settingsManager.getSettingsByMod(mod)) {
+            if(Kisman.instance.settingManager.getSettingsByMod(mod) != null) {
+                for(Setting set : Kisman.instance.settingManager.getSettingsByMod(mod)) {
                     if(set.isCheck()) {
                         comp.add(new ModeButton(this, set, opY));
                         opY += height;
@@ -91,7 +91,7 @@ public class Button {
 
         CustomFontUtil.drawStringWithShadow(mod.getName(), x + 6, y + (float) (((VegaGui.instance.test.getValBoolean() ? height : height / 2) - CustomFontUtil.getFontHeight()) / 2) + offset, mod.isToggled() ? ColorUtils.astolfoColors(100, 100) : -1);
 
-        if(Kisman.instance.settingsManager.getSettingsByMod(mod) != null && Kisman.instance.settingsManager.getSettingsByMod(mod).size() > 2) CustomFontUtil.drawStringWithShadow(open ? "<" : "=", x + width - 8, y + (float) (((VegaGui.instance.test.getValBoolean() ? height : height / 2) - CustomFontUtil.getFontHeight()) / 2) + offset, open ? ColorUtils.astolfoColors(100, 100) : -1);
+        if(Kisman.instance.settingManager.getSettingsByMod(mod) != null && Kisman.instance.settingManager.getSettingsByMod(mod).size() > 2) CustomFontUtil.drawStringWithShadow(open ? "<" : "=", x + width - 8, y + (float) (((VegaGui.instance.test.getValBoolean() ? height : height / 2) - CustomFontUtil.getFontHeight()) / 2) + offset, open ? ColorUtils.astolfoColors(100, 100) : -1);
         if(open && !comp.isEmpty()) for(Component comp : comp) comp.renderComponent();
     }
 

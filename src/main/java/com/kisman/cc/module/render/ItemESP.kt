@@ -27,7 +27,7 @@ class ItemESP : Module("ItemESP", "Renders a items name and quantity ft Dallas",
         for(entity in mc.world.loadedEntityList) {
             if(entity is EntityItem) {
                 if(entity.item.displayName.length > 50) continue
-                
+
                 val text = (if (count.valBoolean) if (entity.item.count == 1) "" else "x" + entity.item.count.toString() + " " else "") + entity.item.displayName
 
                 TextOnEntityObject(text, entity, Colour(255, 255, 255, 255)).draw(event.partialTicks)

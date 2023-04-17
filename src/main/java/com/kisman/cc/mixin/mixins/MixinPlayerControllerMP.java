@@ -2,8 +2,8 @@ package com.kisman.cc.mixin.mixins;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.Event;
-import com.kisman.cc.event.events.DestroyBlockEvent;
 import com.kisman.cc.event.events.DamageBlockEvent;
+import com.kisman.cc.event.events.DestroyBlockEvent;
 import com.kisman.cc.module.player.Reach;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.util.EnumFacing;

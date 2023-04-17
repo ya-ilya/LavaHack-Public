@@ -250,7 +250,7 @@ public class Setting {
 	@Override
 	public boolean equals(Object obj) {
 		if(isCombo()) return sval.equals(obj);
-		return false;
+		return super.equals(obj);
 	}
 
 	@Override

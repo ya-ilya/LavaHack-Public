@@ -64,7 +64,7 @@ class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.",
             var ping = -1
             try {
                 ping = mc.player.connection.getPlayerInfo(player.uniqueID).responseTime
-            } catch (e : Exception) {}
+            } catch (_: Exception) {}
             if(this.ping.valBoolean) builder.append(" $ping ms")
             //TODO: Pops
             if(this.health.valBoolean) builder.append(" ${ColourUtilKt.healthColor(player)}${MathHelper.ceil(health)}${TextFormatting.RESET}")
@@ -72,16 +72,16 @@ class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.",
             if(glow.valBoolean) {
                 glowSetting.draw(
                     event.partialTicks,
-                    Colour(12, 12, 12, (backgroundAlpha.valInt)),
-                    (-((CustomFontUtil.getStringWidth(builder.toString()) - 2) / 2)),
-                    (-(CustomFontUtil.getFontHeight() + 2)),
+                    Colour(12, 12, 12, backgroundAlpha.valInt),
+                    -((CustomFontUtil.getStringWidth(builder.toString()) - 2) / 2),
+                    -(CustomFontUtil.getFontHeight() + 2),
                     CustomFontUtil.getStringWidth(builder.toString()) + 4,
                     CustomFontUtil.getFontHeight()
                 )
             }
             Render2DUtil.drawRect(
-                (-((CustomFontUtil.getStringWidth(builder.toString()) - 2) / 2)).toDouble(),
-                (-(CustomFontUtil.getFontHeight() + 2)).toDouble(),
+                -((CustomFontUtil.getStringWidth(builder.toString()) - 2) / 2).toDouble(),
+                -(CustomFontUtil.getFontHeight() + 2).toDouble(),
                 ((CustomFontUtil.getStringWidth(builder.toString()) + 2) / 2).toDouble(),
                 1.0,
                 Colour(12, 12, 12, (if(glow.valBoolean) 0 else backgroundAlpha.valInt)).rgb
@@ -89,8 +89,8 @@ class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.",
 
             CustomFontUtil.drawStringWithShadow(
                 builder.toString(),
-                (-((CustomFontUtil.getStringWidth(builder.toString())) / 2)).toDouble(),
-                (-(CustomFontUtil.getFontHeight())).toDouble(),
+                -(CustomFontUtil.getStringWidth(builder.toString()) / 2).toDouble(),
+                -CustomFontUtil.getFontHeight().toDouble(),
                 -1
             )
 

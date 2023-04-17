@@ -50,7 +50,7 @@ class MainGui {
             if(mouseX >= startX && mouseX <= startX + getSelectionBarWidth() && mouseY >= 0 && mouseY <= CustomFontUtil.getFontHeight() + offset * 2) {
                 for((count, gui) in Guis.values().withIndex()) {
                     println("Click k $startX")
-                    if(mouseX >= startX + (count * (offset * 2 + CustomFontUtil.getStringWidth(gui.displayName))) && mouseX <= startX + (count * (offset * 2 + CustomFontUtil.getStringWidth(gui.displayName))) + (offset * 2 + CustomFontUtil.getStringWidth(gui.displayName))) {
+                    if(mouseX >= startX + count * (offset * 2 + CustomFontUtil.getStringWidth(gui.displayName)) && mouseX <= startX + count * (offset * 2 + CustomFontUtil.getStringWidth(gui.displayName)) + (offset * 2 + CustomFontUtil.getStringWidth(gui.displayName))) {
                         selection = gui
                         return false
                     }

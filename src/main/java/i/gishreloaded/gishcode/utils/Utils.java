@@ -417,7 +417,6 @@ public class Utils {
 			} else if (name.contains("\u00a7f")) {
 				return "\u00a7f";
 			}
-			;
 		}
 		return "null";
 	}
@@ -568,7 +567,8 @@ public class Utils {
 			Method onUpdateWalkingPlayer = pl.getClass().getDeclaredMethod(Mapping.onUpdateWalkingPlayer);
 			onUpdateWalkingPlayer.setAccessible(true);
 			onUpdateWalkingPlayer.invoke(pl, new Object[0]);
-		} catch (Exception ex) {
+		} catch (Exception ignored) {
+
 		}
 
 		pl.rotationYaw = preYaw;

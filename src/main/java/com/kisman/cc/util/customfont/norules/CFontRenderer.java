@@ -385,15 +385,6 @@ public class CFontRenderer extends CustomFont {
                 case ' ':
                     k = j;
 
-                default:
-                    f += this.getCharWidthFloat(c0);
-
-                    if (flag) {
-                        ++f;
-                    }
-
-                    break;
-
                 case '\u00a7':
                     if (j < i - 1) {
                         ++j;
@@ -407,6 +398,15 @@ public class CFontRenderer extends CustomFont {
                             flag = true;
                         }
                     }
+
+                default:
+                    f += this.getCharWidthFloat(c0);
+
+                    if (flag) {
+                        ++f;
+                    }
+
+                    break;
             }
 
             if (c0 == '\n') {

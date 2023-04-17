@@ -65,7 +65,7 @@ public class AltCreatorGUI extends GuiScreen
 				AltEntry alt = new AltEntry(this.emailField.getText(), this.passField.getText());
 				AltManager.getAlts().add(alt);
 				mc.displayGuiScreen(this.lastGui);
-				/* TODO add alts via configging */
+				// TODO: Add alts via configging.
 				break;
 			}
 			case 4 : {

@@ -97,7 +97,7 @@ public class AltManagerGUI extends GuiScreen {
 					AltEntry e = this.altList.getAlts().get(this.altList.getSelectedId());
 					this.altList.getAlts().remove(e);
 					AltManager.getAlts().remove(e);
-					/* TODO handle removing alts in config */
+					// TODO: Handle removing alts in config.
 				}
 				break;
 			}
@@ -118,9 +118,8 @@ public class AltManagerGUI extends GuiScreen {
 		
 		public AltSlotList(AltManagerGUI parentGui, Minecraft mc, int width, int height, int top, int bottom, int slotHeight) {
 			super(mc, width, height, top, bottom, slotHeight);
-			alts.clear();
 			this.alts.addAll(AltManager.getAlts());
-			/* TODO Add saved alts here once configging is done. */
+			// TODO: Add saved alts here once configging is done.
 		}
 
 		@Override

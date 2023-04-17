@@ -1,7 +1,5 @@
 package com.kisman.cc.gui.vega.component.components.sub;
 
-import com.kisman.cc.Kisman;
-import com.kisman.cc.event.Event;
 import com.kisman.cc.gui.vega.component.Component;
 import com.kisman.cc.gui.vega.component.components.Button;
 import com.kisman.cc.setting.Setting;

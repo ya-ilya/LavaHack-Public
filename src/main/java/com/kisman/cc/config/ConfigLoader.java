@@ -94,7 +94,9 @@ public class ConfigLoader {
             }
         }
 
-        if(keyObject != null && keyObject.isJsonPrimitive()) module.setKey(Keyboard.getKeyIndex(keyObject.getAsString()));
+        if(keyObject != null && keyObject.isJsonPrimitive()) {
+            module.setKey(Keyboard.getKeyIndex(keyObject.getAsString()));
+        }
 
         inputStream.close();
     }
@@ -114,7 +116,15 @@ public class ConfigLoader {
         for(Module module : Kisman.instance.moduleManager.modules) {
             JsonElement dataObject = settingObject.get(module.getName());
 
-            if(dataObject != null && dataObject.isJsonPrimitive()) try {if(!(module instanceof TeleportBack)) module.setToggled(dataObject.getAsBoolean());} catch (NullPointerException ignored) {}
+            if(dataObject != null && dataObject.isJsonPrimitive()) {
+                try {
+                    if(!(module instanceof TeleportBack)) {
+                        module.setToggled(dataObject.getAsBoolean());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         inputStream.close();
@@ -135,7 +145,13 @@ public class ConfigLoader {
         for(Module module : Kisman.instance.moduleManager.modules) {
             JsonElement dataObject = settingObject.get(module.getName());
 
-            if(dataObject != null && dataObject.isJsonPrimitive()) try {module.visible = dataObject.getAsBoolean();} catch (NullPointerException e) {e.printStackTrace();}
+            if(dataObject != null && dataObject.isJsonPrimitive()) {
+                try {
+                    module.visible = dataObject.getAsBoolean();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         inputStream.close();
@@ -157,8 +173,10 @@ public class ConfigLoader {
             JsonElement dataObject = settingObject.get(module.getName());
 
             if(dataObject != null && dataObject.isJsonPrimitive()) try {
-                if(module.isToggled() != dataObject.getAsBoolean()) module.setToggled(dataObject.getAsBoolean());
-            } catch (NullPointerException e) {e.printStackTrace();}
+                if(module.isToggled() != dataObject.getAsBoolean()) {
+                    module.setToggled(dataObject.getAsBoolean());
+                }
+            } catch (Exception e) {e.printStackTrace();}
         }
 
         inputStream.close();
@@ -179,7 +197,11 @@ public class ConfigLoader {
         for(Module module : Kisman.instance.moduleManager.modules) {
             JsonElement dataObject = settingObject.get(module.getName());
 
-            if(dataObject != null && dataObject.isJsonPrimitive()) try {module.hold = (dataObject.getAsBoolean());} catch (NullPointerException e) {e.printStackTrace();}
+            if(dataObject != null && dataObject.isJsonPrimitive()) {
+                try {
+                    module.hold = (dataObject.getAsBoolean());
+                } catch (Exception e) {e.printStackTrace();}
+            }
         }
 
         inputStream.close();

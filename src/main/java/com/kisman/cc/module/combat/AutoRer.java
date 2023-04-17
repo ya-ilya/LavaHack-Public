@@ -1012,7 +1012,11 @@ public class AutoRer extends Module {
                     autoRer.threadOngoing.set(true);
                     autoRer.doAutoRerForThread();
                     autoRer.threadOngoing.set(false);
-                    try {Thread.sleep(autoRer.threadDelay.getValLong());} catch (InterruptedException e) {autoRer.thread.interrupt();}
+                    try {
+                        Thread.sleep(autoRer.threadDelay.getValLong());
+                    } catch (InterruptedException e) {
+                        autoRer.thread.interrupt();
+                    }
                 }
             } else if(!autoRer.threadMode.getValString().equalsIgnoreCase("None")) {
                 autoRer.threadOngoing.set(true);

@@ -1,8 +1,8 @@
 package com.kisman.cc.command;
 
 import com.kisman.cc.Kisman;
-import com.kisman.cc.gui.console.rewrite.ConsoleGui;
 import com.kisman.cc.event.events.client.console.ConsoleMessageEvent;
+import com.kisman.cc.gui.console.rewrite.ConsoleGui;
 import i.gishreloaded.gishcode.utils.visual.ChatUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.TextFormatting;

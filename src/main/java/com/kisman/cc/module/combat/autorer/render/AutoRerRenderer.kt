@@ -75,7 +75,7 @@ class AutoRerRenderer {
                     TextOnBlockObject(
                             formattedText,
                             placeInfo.blockPos,
-                            (if (scale == 1.0f) Colour(255, 255, 255) else Colour(255, 255, 255, (255.0f * scale).toInt()))
+                            if (scale == 1.0f) Colour(255, 255, 255) else Colour(255, 255, 255, (255.0f * scale).toInt())
                     )
                 }
             }

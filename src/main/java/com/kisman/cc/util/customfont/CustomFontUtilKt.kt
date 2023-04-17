@@ -64,9 +64,9 @@ class CustomFontUtilKt {
         fun setFractionalMetrics(fractionalMetrics: Boolean) {
             val font = getCustomFont(CustomFontUtil.getCustomFontName());
             if(font is CFontRenderer) {
-                font.fractionalMetrics = (fractionalMetrics)
+                font.fractionalMetrics = fractionalMetrics
             } else if (font is CustomFontRenderer) {
-                font.fractionalMetrics = (fractionalMetrics)
+                font.fractionalMetrics = fractionalMetrics
             }
         }
 

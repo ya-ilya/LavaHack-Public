@@ -155,7 +155,11 @@ public class AuthSys {
         final Minecraft minecraft = Minecraft.getMinecraft();
         minecraft.addScheduledTask(() -> {
             if (minecraft.currentScreen == gui) {
-                try {AltManager.setSession(new Session(name, uuid, token, "mojang"));} catch (Exception e) {e.printStackTrace();}
+                try {
+                    AltManager.setSession(new Session(name, uuid, token, "mojang"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 minecraft.displayGuiScreen(null);
             }
         });

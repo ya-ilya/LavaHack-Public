@@ -27,8 +27,6 @@ import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 public class EventProcessor {
     private final Minecraft mc = Minecraft.getMinecraft();
 

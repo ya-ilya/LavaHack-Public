@@ -14,7 +14,9 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL14;
 
@@ -555,5 +557,13 @@ public class Render2DUtil extends GuiScreen {
 
     public static void stopScissor() {
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
+    }
+
+    public static double[] getDeltas(Float ticks, EntityPlayer player) {
+        return new double[] {
+                MathHelper.clampedLerp(player.lastTickPosX, player.posX, ticks.doubleValue()),
+                MathHelper.clampedLerp(player.lastTickPosY, player.posY, ticks.doubleValue()),
+                MathHelper.clampedLerp(player.lastTickPosZ, player.posZ, ticks.doubleValue())
+        };
     }
 }

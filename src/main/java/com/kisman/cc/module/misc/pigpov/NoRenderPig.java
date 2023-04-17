@@ -1,4 +1,4 @@
-package com.kisman.cc.util;
+package com.kisman.cc.module.misc.pigpov;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;

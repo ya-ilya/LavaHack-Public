@@ -9,7 +9,6 @@ import com.kisman.cc.setting.util.GlowRendererPattern
 import com.kisman.cc.util.Colour
 import com.kisman.cc.util.ColourUtilKt
 import com.kisman.cc.util.Render2DUtil
-import com.kisman.cc.util.Render2DUtilKt
 import com.kisman.cc.util.customfont.CustomFontUtil
 import net.minecraft.util.math.MathHelper
 import net.minecraft.util.math.Vec3d
@@ -49,7 +48,7 @@ class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.",
             val health = player.health + player.getAbsorptionAmount()
             val builder = StringBuilder()
             val yOffset = if(player.isSneaking) 1.75 else 2.25
-            val deltas = Render2DUtilKt.getDeltas(event.partialTicks, player)
+            val deltas = Render2DUtil.getDeltas(event.partialTicks, player)
             val projection = ProjectionUtils.toScaledScreenPos(
                 Vec3d(deltas[0], deltas[1], deltas[2]).add(0.0, yOffset, 0.0)
             )

@@ -33,7 +33,7 @@ public class ServerManager {
         serverBrand = "";
 
         MinecraftForge.EVENT_BUS.register(this);
-        Kisman.EVENT_BUS.subscribe(listener1);
+        Kisman.EVENT_BUS.subscribe(packetReceiveEvent);
     }
 
     @SubscribeEvent
@@ -75,7 +75,7 @@ public class ServerManager {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> listener1 = new Listener<>(event -> timer.reset());
+    private final Listener<PacketEvent.Receive> packetReceiveEvent = new Listener<>(event -> timer.reset());
 
     public void reset() {
         Arrays.fill(tpsCount, 20);

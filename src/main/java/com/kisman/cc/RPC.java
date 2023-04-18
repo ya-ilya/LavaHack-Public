@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class RPC implements Globals {
     private static final DiscordRichPresence discordRichPresence = new DiscordRichPresence();
     private static final club.minnced.discord.rpc.DiscordRPC discordRPC = club.minnced.discord.rpc.DiscordRPC.INSTANCE;
+    private static final ScheduledExecutorService scheduledService = Executors.newScheduledThreadPool(1);
     private static ScheduledFuture<?> schedule;
 
     public static synchronized void startRPC() {
@@ -38,9 +39,7 @@ public class RPC implements Globals {
 
         discordRPC.Discord_UpdatePresence(discordRichPresence);
         if (DiscordRPC.instance.impr.getValBoolean()) {
-            ScheduledExecutorService service = Executors.newScheduledThreadPool(1);
-
-            schedule = service.scheduleWithFixedDelay(() -> {
+            schedule = scheduledService.scheduleWithFixedDelay(() -> {
                 try {
                     String details, state;
                     discordRPC.Discord_RunCallbacks();

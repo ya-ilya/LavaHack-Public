@@ -589,7 +589,7 @@ public class AutoRer extends Module {
             SPacketSpawnObject packet =  (SPacketSpawnObject) event.getPacket();
             if (packet.getType() == 51) {
                 if(!(mc.world.getEntityByID(packet.getEntityID()) instanceof EntityEnderCrystal)) return;
-                BlockPos toRemove = null;
+                PlaceInfo toRemove = null;
                 for (PlaceInfo placeInfo : placedList) {
                     BlockPos pos = placeInfo.getBlockPos();
                     boolean canSee = EntityUtil.canSee(pos);
@@ -600,14 +600,14 @@ public class AutoRer extends Module {
                         if(targetDamage > minDMG.getValInt() || targetDamage * lethalMult.getValDouble() > currentTarget.getHealth() + currentTarget.getAbsorptionAmount() || InventoryUtil.isArmorUnderPercent(currentTarget, armorBreaker.getValInt())) {
                             float selfDamage = CrystalUtils.calculateDamage(pos, mc.player, terrain.getValBoolean());
                             if(selfDamage <= maxSelfDMG.getValInt() && selfDamage + 2 <= mc.player.getHealth() + mc.player.getAbsorptionAmount() && selfDamage < targetDamage) {
-                                toRemove = pos;
+                                toRemove = placeInfo;
                                 if (inhibit.getValBoolean()) try {lastHitEntity = mc.world.getEntityByID(packet.getEntityID());} catch (Exception ignored) {}
                                 attackCrystalPredict(packet.getEntityID(), pos);
                                 swing();
                             }
                         }
                     } else {
-                        toRemove = pos;
+                        toRemove = placeInfo;
                         if (inhibit.getValBoolean()) try {lastHitEntity = mc.world.getEntityByID(packet.getEntityID());} catch (Exception ignored) {}
                         attackCrystalPredict(packet.getEntityID(), pos);
                         swing();
@@ -873,12 +873,17 @@ public class AutoRer extends Module {
             mc.player.rotationPitch = oldRots[1];
         }
 
-        BlockPos toRemove = null;
+        PlaceInfo toRemove = null;
 
-        if(syns.getValBoolean()) for(PlaceInfo info : placedList) {
-            BlockPos pos = info.getBlockPos();
-            if(crystal.getDistance(pos.getX(), pos.getY(), pos.getZ()) <= 3) toRemove = pos;
+        if(syns.getValBoolean()) {
+            for(PlaceInfo info : placedList) {
+                BlockPos pos = info.getBlockPos();
+                if(crystal.getDistance(pos.getX(), pos.getY(), pos.getZ()) <= 3) {
+                    toRemove = info;
+                }
+            }
         }
+
         if(toRemove != null) placedList.remove(toRemove);
     }
 

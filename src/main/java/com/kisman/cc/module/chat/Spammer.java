@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Spammer extends Module {
+    private final Setting globalMode = new Setting("GlobalMode", this, false);
+    private final Setting delay = new Setting("Delay", this, 5000, 0, 10000, true);
     private final Setting customMsg = new Setting("CustomMessage", this, false);
     private final Setting customMessage = new Setting("CustomMessage", this, "_kisman_ on top!", "_kisman_ on top!", true);
     private final List<String> messages = Arrays.asList("L3g3ndry on top!",
@@ -30,8 +32,8 @@ public class Spammer extends Module {
     public Spammer() {
         super("Spammer", "chat spammer", Category.CHAT);
 
-        register(new Setting("GlobalMode", this, false));
-        register(new Setting("Delay", this, 5000, 0, 10000, true));
+        register(globalMode);
+        register(delay);
         register(customMsg);
         register(customMessage);
     }
@@ -39,8 +41,8 @@ public class Spammer extends Module {
     public void update() {
         if(mc.player == null || mc.world == null) return;
 
-        boolean globalMode = settingManager.getSettingByName(this, "GlobalMode").getValBoolean();
-        long delay = (int) settingManager.getSettingByName(this, "Delay").getValDouble();
+        boolean globalMode = this.globalMode.getValBoolean();
+        long delay = (int) this.delay.getValDouble();
 
         if (timer.passedMillis(delay)) {
             if(customMsg.getValBoolean()) {

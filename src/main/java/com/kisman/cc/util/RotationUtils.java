@@ -27,9 +27,9 @@ import static com.kisman.cc.util.BlockUtil.getEyesPos;
 
 @SideOnly(Side.CLIENT)
 public class RotationUtils {
-    private static Minecraft mc = Minecraft.getMinecraft();
+    private static final Minecraft mc = Minecraft.getMinecraft();
 
-    private Random random;
+    private final Random random;
     private int keepLength;
     public Rotation targetRotation;
     public Rotation serverRotation;

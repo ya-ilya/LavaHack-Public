@@ -22,7 +22,7 @@ import net.minecraft.util.math.Vec3d;
 public class NoFall extends Module {
     private final Setting mode = new Setting("Mode", this, Mode.Packet);
 
-    private TimerUtils timer = new TimerUtils();
+    private final TimerUtils timer = new TimerUtils();
 
     public NoFall() {
         super("NoFall", Category.MOVEMENT);

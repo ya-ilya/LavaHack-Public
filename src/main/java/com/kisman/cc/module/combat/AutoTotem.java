@@ -10,10 +10,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
 public class AutoTotem extends Module {
+    private final Setting health = new Setting("Health", this, 10, 1, 20, true);
+
     public AutoTotem() {
         super("AutoTotem", "simple offhand", Category.COMBAT);
 
-        register(new Setting("Health", this, 10, 1, 20, true));
+        register(health);
     }
 
     public boolean isBeta() {return true;}
@@ -28,7 +30,7 @@ public class AutoTotem extends Module {
         int inventoryIndex;
         inv = mc.player.inventory.mainInventory;
 
-        int health = (int) settingManager.getSettingByName(this, "Health").getValDouble();
+        int health = (int) this.health.getValDouble();
 
         for(inventoryIndex = 0; inventoryIndex < inv.size(); inventoryIndex++) {
             if(inv.get(inventoryIndex) != ItemStack.EMPTY) {

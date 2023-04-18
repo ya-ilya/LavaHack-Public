@@ -20,7 +20,7 @@ import net.minecraft.util.math.*;
 import java.util.LinkedList;
 
 public final class BlockUtils {
-	private static Minecraft mc = Minecraft.getMinecraft();
+	private static final Minecraft mc = Minecraft.getMinecraft();
 
 	public static IBlockState getState(BlockPos pos)
 	{

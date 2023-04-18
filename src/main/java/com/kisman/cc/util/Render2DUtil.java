@@ -32,7 +32,7 @@ import static org.lwjgl.opengl.GL11.*;
 public class Render2DUtil extends GuiScreen {
     public static Render2DUtil instance = new Render2DUtil();
     private static final Minecraft mc = Minecraft.getMinecraft();
-    private static HashMap<Integer, Integer> shadowCache = new HashMap<>();
+    private static final HashMap<Integer, Integer> shadowCache = new HashMap<>();
 
     public double getZLevel() {return this.zLevel;}
 

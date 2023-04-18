@@ -14,13 +14,13 @@ import org.lwjgl.opengl.GL11;
 import java.util.Map;
 
 public class AltEntry implements IGuiListEntry {
-	private Minecraft mc = Minecraft.getMinecraft();
-	private String email;
-	private String nick;
-	private String password;
-	private YggdrasilUserAuthentication auth;
-	private ResourceLocation unknown = new ResourceLocation("textures/misc/unknown_server.png");
-	private ResourceLocation selected = new ResourceLocation("textures/gui/world_selection.png");
+	private final Minecraft mc = Minecraft.getMinecraft();
+	private final String email;
+	private final String nick;
+	private final String password;
+	private final YggdrasilUserAuthentication auth;
+	private final ResourceLocation unknown = new ResourceLocation("textures/misc/unknown_server.png");
+	private final ResourceLocation selected = new ResourceLocation("textures/gui/world_selection.png");
 	
 	public AltEntry(String email, String password) {
 		this.email = email;

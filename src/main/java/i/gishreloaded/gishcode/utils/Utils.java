@@ -89,7 +89,7 @@ public class Utils {
 	}
 
 	public static void faceVectorPacketInstant(final Vec3d vec) {
-		Utils.rotationsToBlock = getNeededRotations(vec);
+		rotationsToBlock = getNeededRotations(vec);
 	}
 
 	public static List<Entity> getEntityList() {
@@ -232,7 +232,7 @@ public class Utils {
 		}
 		Wrapper.INSTANCE.player().motionX *= 0.2;
 		Wrapper.INSTANCE.player().motionZ *= 0.2;
-		Utils.swingMainHand();
+		swingMainHand();
 	}
 
 	public static String getPlayerName(EntityPlayer player) {
@@ -252,7 +252,7 @@ public class Utils {
 	}
 
 	public static boolean isMurder(EntityLivingBase entity) {
-		Utils.mysteryFind(entity, 0);
+		mysteryFind(entity, 0);
 		if (!EnemyManager.murders.isEmpty()) {
 			if (entity instanceof EntityPlayer) {
 				EntityPlayer murder = (EntityPlayer) entity;
@@ -267,7 +267,7 @@ public class Utils {
 	}
 
 	public static boolean isDetect(EntityLivingBase entity) {
-		Utils.mysteryFind(entity, 1);
+		mysteryFind(entity, 1);
 		if (!EnemyManager.detects.isEmpty()) {
 			if (entity instanceof EntityPlayer) {
 				EntityPlayer murder = (EntityPlayer) entity;
@@ -285,7 +285,7 @@ public class Utils {
 		if (target == 0) {
 			if (!EnemyManager.murders.isEmpty()) {
 				for (int index = 0; index < EnemyManager.murders.size(); index++) {
-					EntityLivingBase murder = Utils.getWorldEntityByName(EnemyManager.murders.get(index));
+					EntityLivingBase murder = getWorldEntityByName(EnemyManager.murders.get(index));
 					if (murder == null) {
 						EnemyManager.murders.remove(index);
 					}
@@ -294,7 +294,7 @@ public class Utils {
 		} else if (target == 1) {
 			if (!EnemyManager.detects.isEmpty()) {
 				for (int index = 0; index < EnemyManager.detects.size(); index++) {
-					EntityLivingBase detect = Utils.getWorldEntityByName(EnemyManager.detects.get(index));
+					EntityLivingBase detect = getWorldEntityByName(EnemyManager.detects.get(index));
 					if (detect == null) {
 						EnemyManager.detects.remove(index);
 					}
@@ -471,7 +471,7 @@ public class Utils {
 
 	public static EntityLivingBase getWorldEntityByName(String name) {
 		EntityLivingBase entity = null;
-		for (Object object : Utils.getEntityList()) {
+		for (Object object : getEntityList()) {
 			if (object instanceof EntityLivingBase) {
 				EntityLivingBase entityForCheck = (EntityLivingBase) object;
 				if (entityForCheck.getName().contains(name)) {
@@ -576,7 +576,7 @@ public class Utils {
 	}
 
 	public static void setEntityBoundingBoxSize(Entity entity, float width, float height) {
-		EntitySize size = Utils.getEntitySize(entity);
+		EntitySize size = getEntitySize(entity);
 		entity.width = size.width;
 		entity.height = size.height;
 		double d0 = (double) (width) / 2.0D;
@@ -585,7 +585,7 @@ public class Utils {
 	}
 	
 	public static void setEntityBoundingBoxSize(Entity entity) {
-		EntitySize size = Utils.getEntitySize(entity);
+		EntitySize size = getEntitySize(entity);
 		entity.width = size.width;
 		entity.height = size.height;
 		double d0 = (double) (entity.width) / 2.0D;
@@ -643,8 +643,8 @@ public class Utils {
 				final Vec3d hitVec = new Vec3d(neighbor).add(0.5, 0.5, 0.5)
 						.add(new Vec3d(side2.getDirectionVec()).scale(0.5));
 				if (eyesPos.squareDistanceTo(hitVec) <= 18.0625) {
-					Utils.faceVectorPacketInstant(hitVec);
-					Utils.swingMainHand();
+					faceVectorPacketInstant(hitVec);
+					swingMainHand();
 					Wrapper.INSTANCE.controller().processRightClickBlock(Wrapper.INSTANCE.player(),
 							Wrapper.INSTANCE.world(), neighbor, side2, hitVec, EnumHand.MAIN_HAND);
 					try {

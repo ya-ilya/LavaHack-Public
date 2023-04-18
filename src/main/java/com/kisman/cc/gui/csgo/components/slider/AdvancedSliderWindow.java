@@ -12,19 +12,18 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 
 public class AdvancedSliderWindow extends GuiScreen {
-    private Minecraft mc = Minecraft.getMinecraft();
     private String title;
     public int x, y, width, height;
     private int headerHeight;
 
-    private Pane buttonPane;
-    private IRenderer renderer;
+    private final Pane buttonPane;
+    private final IRenderer renderer;
 
     private boolean beingDragged;
     private int dragX, dragY;
     private int oldMouseX, oldMouseY;
 
-    private GuiTextField guiTextField;
+    private final GuiTextField guiTextField;
 
     public AdvancedSliderWindow(IRenderer renderer, String title, int x, int y, int width, int height) {
         this.title = title;
@@ -32,6 +31,7 @@ public class AdvancedSliderWindow extends GuiScreen {
         this.y = y;
         this.width = width;
         this.height = height;
+        Minecraft mc = Minecraft.getMinecraft();
         this.guiTextField = new GuiTextField(1, mc.fontRenderer, 0, 0, 140, 22);
         this.renderer = renderer;
         this.buttonPane = new Pane(renderer, new FlowLayout());

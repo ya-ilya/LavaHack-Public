@@ -36,7 +36,7 @@ public class Setting {
 	private Module parent;
 	private Setting setparent;
 	private HudModule hudParent;
-	private String mode;
+	private final String mode;
 
 	private String title;
 
@@ -516,13 +516,6 @@ public class Setting {
 
 	public Setting setOptions(List<String> options) {
 		this.options = new ArrayList<>(options);
-		return this;
-	}
-
-	//#Lua
-	//TODO: доделать
-	public Setting build(Module module) {
-		Kisman.instance.settingManager.register(this);
 		return this;
 	}
 	

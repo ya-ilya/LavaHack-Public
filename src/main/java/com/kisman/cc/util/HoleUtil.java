@@ -10,7 +10,6 @@ import net.minecraft.util.math.BlockPos;
 import java.util.HashMap;
 
 public class HoleUtil {
-
     private static final Minecraft mc = Minecraft.getMinecraft();
 
     public static boolean isInHole(Entity e, boolean onlyOneWide, boolean ignoreDown) {

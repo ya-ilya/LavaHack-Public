@@ -184,8 +184,8 @@ public class Trajectories extends Module {
         public float getGravity() { return gravity; }
     }
 
-    public class FlightPath {
-        private EntityPlayerSP shooter;
+    public static class FlightPath {
+        private final EntityPlayerSP shooter;
         private Vec3d position;
         private Vec3d motion;
         private float yaw;
@@ -193,7 +193,7 @@ public class Trajectories extends Module {
         private AxisAlignedBB boundingBox;
         private boolean collided;
         private RayTraceResult target;
-        private ThrowableType throwableType;
+        private final ThrowableType throwableType;
 
         public FlightPath(EntityPlayerSP player, ThrowableType throwableType) {
             this.shooter = player;

@@ -14,9 +14,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class FormatButton extends ActionButton {
 
-  private TextFormatting format;
+  private final TextFormatting format;
 
-  private FontRenderer fontRenderer;
+  private final FontRenderer fontRenderer;
 
   public FormatButton(int id, int x, int y, FontRenderer fontRenderer, TextFormatting format) {
     super(id, x, y, 0, 0, null);

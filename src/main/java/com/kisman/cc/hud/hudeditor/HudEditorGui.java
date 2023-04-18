@@ -9,7 +9,7 @@ import net.minecraft.client.gui.GuiScreen;
 import java.util.ArrayList;
 
 public class HudEditorGui extends GuiScreen {
-    private ArrayList<Component> components = new ArrayList<>();
+    private final ArrayList<Component> components = new ArrayList<>();
 
     public HudEditorGui() {
         for(HudModule mod : Kisman.instance.hudModuleManager.modules) if(mod.drag) components.add(new Draggable(mod));

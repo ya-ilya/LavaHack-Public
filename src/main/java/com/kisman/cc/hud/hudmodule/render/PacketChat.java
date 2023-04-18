@@ -15,17 +15,17 @@ public class PacketChat extends HudModule {
 
     public static PacketChat Instance;
 
-    private int width = 200;
+    private final int width = 200;
 
     private final String header = "PacketChat";
-    private double borderOffset = 5;
+    private final double borderOffset = 5;
 
     public Log logs = new Log();
 
     public PacketChat() {
         super("PacketChat", "", HudCategory.PLAYER);
-        logs.ActiveMessages.add(new Message("lol"));
-        logs.ActiveMessages.add(new Message("lmao"));
+        logs.activeMessages.add(new Message("lol"));
+        logs.activeMessages.add(new Message("lmao"));
         Instance = this;
     }
 
@@ -43,8 +43,8 @@ public class PacketChat extends HudModule {
 
     private void drawRewrite() {
 
-        if(logs.ActiveMessages.size()>=30) logs.ActiveMessages.clear();
-        if(logs.PassiveMessages.size()>=30) logs.PassiveMessages.clear();
+        if(logs.activeMessages.size()>=30) logs.activeMessages.clear();
+        if(logs.passiveMessages.size()>=30) logs.passiveMessages.clear();
 
         scrollWheelCheck();
 
@@ -81,39 +81,39 @@ public class PacketChat extends HudModule {
         int pcount = 0;
 
         //draws messages
-        logs.Iterator = logs.ActiveMessages.iterator();
-        while(logs.Iterator.hasNext())
+        logs.messageIterator = logs.activeMessages.iterator();
+        while(logs.messageIterator.hasNext())
         {
-            Message message = logs.Iterator.next();
+            Message message = logs.messageIterator.next();
             pcount++;
 
-            CustomFontUtil.drawStringWithShadow(message.message, x + borderOffset, y + CustomFontUtil.getFontHeight() + (offset * count), ColorUtils.astolfoColors(100, 100));
+            CustomFontUtil.drawStringWithShadow(message.getMessage(), x + borderOffset, y + CustomFontUtil.getFontHeight() + (offset * count), ColorUtils.astolfoColors(100, 100));
             count++;
 
             if(pcount>=height/borderOffset)
                 up();
 
-            if(logs.ActiveMessages.size()>=30) logs.ActiveMessages.clear();
-            if(logs.PassiveMessages.size()>=30) logs.PassiveMessages.clear();
+            if(logs.activeMessages.size()>=30) logs.activeMessages.clear();
+            if(logs.passiveMessages.size()>=30) logs.passiveMessages.clear();
 
-            logs.Iterator = logs.ActiveMessages.iterator();
+            logs.messageIterator = logs.activeMessages.iterator();
         }
     }
 
     public void up()
     {
-        if(!logs.ActiveMessages.isEmpty()) {
-            logs.PassiveMessages.add(logs.ActiveMessages.get(0));
-            logs.ActiveMessages.remove(0);
+        if(!logs.activeMessages.isEmpty()) {
+            logs.passiveMessages.add(logs.activeMessages.get(0));
+            logs.activeMessages.remove(0);
         }
     }
 
     public void down()
     {
-        if(!logs.PassiveMessages.isEmpty())
+        if(!logs.passiveMessages.isEmpty())
         {
-            logs.ActiveMessages.add(0, logs.PassiveMessages.get(logs.PassiveMessages.size()-1));
-            logs.PassiveMessages.remove(logs.PassiveMessages.size()-1);
+            logs.activeMessages.add(0, logs.passiveMessages.get(logs.passiveMessages.size()-1));
+            logs.passiveMessages.remove(logs.passiveMessages.size()-1);
         }
     }
 

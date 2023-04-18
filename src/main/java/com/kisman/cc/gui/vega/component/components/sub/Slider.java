@@ -16,7 +16,8 @@ public class Slider extends Component {
     public int offset;
 
     private int x, y;
-    private int width, height;
+    private final int width;
+    private final int height;
     private double renderWidth;
     private boolean drag = false;
 

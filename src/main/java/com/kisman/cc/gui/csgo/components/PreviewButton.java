@@ -17,9 +17,9 @@ public class PreviewButton extends AbstractComponent {
     private static final int PREFERRED_WIDTH = 180;
     private static final int PREFERRED_HEIGHT = 22;
 
-    private Entity entity;
-    private int preferredWidth;
-    private int preferredHeight;
+    private final Entity entity;
+    private final int preferredWidth;
+    private final int preferredHeight;
     private boolean hovered;
 
     private boolean opened;

@@ -85,7 +85,7 @@ public class Trails extends Module {
         GL11.glPopMatrix();
     }
 
-    public class TrailUtil {
+    public static class TrailUtil {
         private final Vec3d vector;
         private final TimerUtils timer;
 

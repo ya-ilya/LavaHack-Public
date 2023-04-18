@@ -20,6 +20,7 @@
 
  public class AutoArmor extends Module {
      private final Setting delay = new Setting("Delay", this, 0, 0, 100, Slider.NumberType.TIME);
+     private final Setting noThorns = new Setting("NoThorns", this, false);
 
      public static AutoArmor instance;
      private final TimerUtils timer = new TimerUtils();
@@ -30,7 +31,7 @@
          instance = this;
 
          register(delay);
-         register(new Setting("NoThorns", this, false));
+         register(noThorns);
      }
 
      public void onEnable() {
@@ -44,7 +45,7 @@
          if (mc.player.ticksExisted % 2 == 0) return;
          if (mc.currentScreen instanceof GuiContainer && !(mc.currentScreen instanceof InventoryEffectRenderer)) return;
 
-         boolean noThorns = settingManager.getSettingByName(this, "NoThorns").getValBoolean();
+         boolean noThorns = this.noThorns.getValBoolean();
 
          List<ItemStack> armorInventory = mc.player.inventory.armorInventory;
          List<ItemStack> inventory = mc.player.inventory.mainInventory;

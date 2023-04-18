@@ -36,7 +36,7 @@ public class GuiConsole extends GuiScreen implements ITabCompleter {
     protected net.minecraft.client.gui.GuiTextField inputField;
     /** is the text that appears when you press the chat key and the input box appears pre-filled */
     private String defaultInputFieldText = "";
-    private ArrayList<String> cmds = new ArrayList<>();
+    private final ArrayList<String> commands = new ArrayList<>();
 
     public GuiConsole() { this.init(); }
 
@@ -46,8 +46,8 @@ public class GuiConsole extends GuiScreen implements ITabCompleter {
     }
     
     void init() {
-		this.cmds.clear();
-        for(Command c : Kisman.instance.commandManager.commands) this.cmds.add(c.getCommand() + " - " + c.getDescription());
+		this.commands.clear();
+        for(Command c : Kisman.instance.commandManager.commands) this.commands.add(c.getCommand() + " - " + c.getDescription());
     }
 
     /**

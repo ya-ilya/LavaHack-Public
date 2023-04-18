@@ -21,14 +21,14 @@ public class Config extends Module {
     public final Setting astolfoColorMode = new Setting("Astolfo Color Mode", this, AstolfoColorMode.Old);
     public final Setting friends = new Setting("Friends", this, true);
     public final Setting nameMode = new Setting("Name Mode", this, NameMode.kismancc);
-    public final Setting customName = new Setting("Custom Name", this, "kisman.cc", "kisman.cc", true).setVisible(() -> nameMode.getValBoolean());
+    public final Setting customName = new Setting("Custom Name", this, "kisman.cc", "kisman.cc", true).setVisible(nameMode::getValBoolean);
     public final Setting scrollSpeed = new Setting("Scroll Speed", this, 15, 0, 100, Slider.NumberType.PERCENT);
     public final Setting horizontalScroll = new Setting("Horizontal Scroll", this, false);
-    public final Setting keyForHorizontalScroll = new Setting("Key for Horizontal Scroll", this, Keyboard.KEY_LSHIFT).setVisible(() -> horizontalScroll.getValBoolean());
+    public final Setting keyForHorizontalScroll = new Setting("Key for Horizontal Scroll", this, Keyboard.KEY_LSHIFT).setVisible(horizontalScroll::getValBoolean);
     public final Setting guiGlow = new Setting("Gui Glow", this, false);
-    public final Setting glowOffset = new Setting("Glow Offset", this, 6, 1, 20, true).setVisible(() -> guiGlow.getValBoolean());
-    public final Setting glowRadius = new Setting("Glow Radius", this, 15, 0, 20, true).setVisible(() -> guiGlow.getValBoolean());
-    public final Setting glowBoxSize = new Setting("Glow Box Size", this, 0, 0, 20, true).setVisible(() -> guiGlow.getValBoolean());
+    public final Setting glowOffset = new Setting("Glow Offset", this, 6, 1, 20, true).setVisible(guiGlow::getValBoolean);
+    public final Setting glowRadius = new Setting("Glow Radius", this, 15, 0, 20, true).setVisible(guiGlow::getValBoolean);
+    public final Setting glowBoxSize = new Setting("Glow Box Size", this, 0, 0, 20, true).setVisible(guiGlow::getValBoolean);
     public final Setting guiGradient = new Setting("Gui Gradient", this, HUD.Gradient.None);
     public final Setting guiGradientDiff = new Setting("Gui Gradient Diff", this, 1, 0, 1000, Slider.NumberType.TIME);
     public final Setting guiDesc = new Setting("Gui Desc", this, false);
@@ -46,7 +46,7 @@ public class Config extends Module {
     public final Setting saveConfig = new Setting("Save Config", this, false);
     public final Setting loadConfig = new Setting("Load Config", this, false);
     public final Setting configurate = new Setting("Configurate", this, true);
-    public final Setting particlesColor = new Setting("Particles Color", this, "Particles Dots Color", new Colour(0, 0, 255)).setVisible(() -> guiParticles.getValBoolean());
+    public final Setting particlesColor = new Setting("Particles Color", this, "Particles Dots Color", new Colour(0, 0, 255)).setVisible(guiParticles::getValBoolean);
 
     public final Setting particlesRenderLine = new Setting("Particles Render Lines", this, true);
 

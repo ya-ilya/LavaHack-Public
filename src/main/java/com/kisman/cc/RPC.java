@@ -5,14 +5,19 @@ import club.minnced.discord.rpc.DiscordRichPresence;
 import com.kisman.cc.module.client.DiscordRPC;
 import com.kisman.cc.util.Globals;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+
 public class RPC implements Globals {
     private static final DiscordRichPresence discordRichPresence = new DiscordRichPresence();
     private static final club.minnced.discord.rpc.DiscordRPC discordRPC = club.minnced.discord.rpc.DiscordRPC.INSTANCE;
-    private static Thread thread;
+    private static ScheduledFuture<?> schedule;
 
     public static synchronized void startRPC() {
-        if (thread != null)
-            thread.interrupt();
+        if (schedule != null)
+            schedule.cancel(false);
 
         DiscordEventHandlers eventHandlers = new DiscordEventHandlers();
         eventHandlers.disconnected = ((var1, var2) -> System.out.println("Discord RPC disconnected, var1: " + var1 + ", var2: " + var2));
@@ -32,37 +37,42 @@ public class RPC implements Globals {
         discordRichPresence.joinSecret = "join";
 
         discordRPC.Discord_UpdatePresence(discordRichPresence);
-        thread = new Thread(() -> {
-            if(DiscordRPC.instance.impr.getValBoolean()) {
-                while (!Thread.currentThread().isInterrupted()) {
-                    try {
-                        String details, state;
-                        discordRPC.Discord_RunCallbacks();
-                        if (mc.isIntegratedServerRunning() || mc.world == null) details = Kisman.getVersion();
-                        else details = Kisman.getVersion() + " - Playing Multiplayer";
-                        state = "";
-                        if (mc.isIntegratedServerRunning()) state = Kisman.getName() + " on tope!";
-                        else if (mc.getCurrentServerData() != null) if (!mc.getCurrentServerData().serverIP.equals("")) state = "Playing on " + mc.getCurrentServerData().serverIP;
-                        else state = "Main Menu";
-                        discordRichPresence.details = details;
-                        discordRichPresence.state = state;
-                        discordRPC.Discord_UpdatePresence(discordRichPresence);
-                    } catch (Exception e2) {e2.printStackTrace();}
-                    try {
-                        Thread.sleep(5000L);
-                    } catch (InterruptedException e3) {e3.printStackTrace();}
+        if (DiscordRPC.instance.impr.getValBoolean()) {
+            ScheduledExecutorService service = Executors.newScheduledThreadPool(1);
+
+            schedule = service.scheduleWithFixedDelay(() -> {
+                try {
+                    String details, state;
+                    discordRPC.Discord_RunCallbacks();
+
+                    if (mc.isIntegratedServerRunning() || mc.world == null) {
+                        details = Kisman.getVersion();
+                    } else {
+                        details = Kisman.getVersion() + " - Playing Multiplayer";
+                    }
+
+                    if (mc.isIntegratedServerRunning()) {
+                        state = Kisman.getName() + " on tope!";
+                    } else if (mc.getCurrentServerData() != null && !mc.getCurrentServerData().serverIP.equals("")) {
+                        state = "Playing on " + mc.getCurrentServerData().serverIP;
+                    } else {
+                        state = "Main Menu";
+                    }
+
+                    discordRichPresence.details = details;
+                    discordRichPresence.state = state;
+                    discordRPC.Discord_UpdatePresence(discordRichPresence);
+                } catch (Exception e2) {
+                    e2.printStackTrace();
                 }
-            }
-        }, "Discord-RPC-Callback-Handler");
-        thread.setDaemon(true);
-        thread.start();
+            }, 0, 5000, TimeUnit.MILLISECONDS);
+        }
     }
 
-    public static synchronized void stopRPC()
-    {
-        if (thread != null && !thread.isInterrupted()) {
-            thread.interrupt();
-            thread = null;
+    public static synchronized void stopRPC() {
+        if (schedule != null && !schedule.isCancelled()) {
+            schedule.cancel(false);
+            schedule = null;
         }
         discordRPC.Discord_Shutdown();
     }

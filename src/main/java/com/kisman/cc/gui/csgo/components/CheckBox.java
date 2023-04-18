@@ -13,7 +13,7 @@ public class CheckBox extends AbstractComponent {
 
     private boolean selected;
     private String title;
-    private int preferredHeight;
+    private final int preferredHeight;
     private boolean hovered;
     private ValueChangeListener<Boolean> listener;
 

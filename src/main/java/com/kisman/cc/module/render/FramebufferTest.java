@@ -27,7 +27,7 @@ public class FramebufferTest extends Module {
     private final Setting saturation = new Setting("Saturation", this, 36, 0, 100, Slider.NumberType.PERCENT);
     private final Setting brightness = new Setting("Brightness", this, 100, 0, 100, Slider.NumberType.PERCENT);
 
-    private ItemShader shader;
+    private final ItemShader shader;
 
     public FramebufferTest() {
         super("FramebufferTest", Category.RENDER);

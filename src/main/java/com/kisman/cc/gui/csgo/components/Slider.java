@@ -14,21 +14,19 @@ public class Slider extends AbstractComponent {
     private static final int PREFERRED_WIDTH = 180;
     private static final int PREFERRED_HEIGHT = 24;
 
-    private int preferredWidth;
-    private int preferredHeight;
+    private final int preferredWidth;
+    private final int preferredHeight;
     private boolean hovered;
 
     private double value;
-    private double minValue;
-    private double maxValue;
+    private final double minValue;
+    private final double maxValue;
 
-    private NumberType numberType;
+    private final NumberType numberType;
 
     private ValueChangeListener<Number> listener;
 
     private boolean changing = false;
-    private boolean open = false;
-    private final String[] values = new String[] {"Change", "Reset"};
 
     public Slider(IRenderer renderer, double value, double minValue, double maxValue, NumberType numberType, int preferredWidth, int preferredHeight) {
         super(renderer);

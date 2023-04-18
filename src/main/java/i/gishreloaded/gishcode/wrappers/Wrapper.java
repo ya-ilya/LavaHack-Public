@@ -33,7 +33,7 @@ public class Wrapper {
         return Wrapper.INSTANCE.mc().fontRenderer;
     }
     
-    public void sendPacket(Packet packet) {
+    public void sendPacket(Packet<?> packet) {
         this.player().connection.sendPacket(packet);
     }
     

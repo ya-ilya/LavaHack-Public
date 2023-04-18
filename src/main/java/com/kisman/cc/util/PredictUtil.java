@@ -13,7 +13,7 @@ import net.minecraft.util.math.Vec3d;
 import java.util.UUID;
 
 public class PredictUtil {
-    static final Minecraft mc = Minecraft.getMinecraft();
+    private static final Minecraft mc = Minecraft.getMinecraft();
 
     public static EntityPlayer predictPlayer(EntityPlayer entity, PredictSettings settings) {
         // Position of the player

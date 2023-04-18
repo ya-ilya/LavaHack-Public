@@ -28,7 +28,6 @@ public class HalqGui extends GuiScreen {
     public static Color backgroundColor = new Color(30, 30, 30, 121);
     public static boolean background = true, line = true, shadow = true, shadowCheckBox = false, test = true, shadowRects = false;
     public static int diff = 0;
-    public static float testLight; /**@range 0-1*/
 
     //constants
     public static final int height = 13;

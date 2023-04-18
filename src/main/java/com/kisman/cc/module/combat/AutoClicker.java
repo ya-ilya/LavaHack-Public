@@ -8,6 +8,9 @@ import net.minecraft.client.settings.KeyBinding;
 import org.lwjgl.input.Mouse;
 
 public class AutoClicker extends Module {
+	private final Setting minCps = new Setting("MinCPS", this, 8, 1, 20, false);
+	private final Setting maxCps = new Setting("MaxCPS", this, 12, 1, 20, false);
+
 	private long lastClick;
 	private long hold;
 	
@@ -17,8 +20,8 @@ public class AutoClicker extends Module {
 	public AutoClicker() {
 		super("AutoClicker", "clicks automatically", Category.COMBAT);
 		
-		register(new Setting("MinCPS", this, 8, 1, 20, false));
-		register(new Setting("MaxCPS", this, 12, 1, 20, false));
+		register(minCps);
+		register(maxCps);
 	}
 
 	public void update() {
@@ -45,8 +48,8 @@ public class AutoClicker extends Module {
 	}
 	
 	private void updateVals() {
-		double min = settingManager.getSettingByName(this, "MinCPS").getValDouble();
-		double max = settingManager.getSettingByName(this, "MaxCPS").getValDouble();
+		double min = this.minCps.getValDouble();
+		double max = this.maxCps.getValDouble();
 		
 		if (min >= max) {
 			max = min + 1;

@@ -14,12 +14,13 @@ class CPSManager {
     var usage: Int = 0
     var cps: Int = 0
 
-    @EventHandler val send = Listener({ event: PacketEvent.Send ->
+    @EventHandler
+    val sendPacketListener = Listener({ event: PacketEvent.Send ->
         if (event.packet is CPacketPlayerTryUseItemOnBlock) if (Minecraft.getMinecraft().player.heldItemMainhand.getItem() == Items.END_CRYSTAL || Minecraft.getMinecraft().player.heldItemOffhand.getItem() == Items.END_CRYSTAL) usage++
     })
 
     init {
-        Kisman.EVENT_BUS.subscribe(send)
+        Kisman.EVENT_BUS.subscribe(sendPacketListener)
     }
 
     fun getCPS(): Int {

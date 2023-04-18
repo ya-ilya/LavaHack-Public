@@ -240,8 +240,7 @@ public class ModuleManager {
 		ArrayList<Module> sorted = new ArrayList<>();
 		getEnabledModules().stream().filter(module -> module.visible)
 				.sorted(Comparator.comparing(module -> CustomFontUtil.getStringWidth(module.getName() + " " + module.getDisplayInfo()) * (reverse ? -1 : 1)))
-				.collect(Collectors.toList());
-
+				.forEach(sorted::add);
 		return sorted;
 	}
 

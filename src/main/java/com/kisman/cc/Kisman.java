@@ -52,7 +52,6 @@ public class Kisman {
     public static final String hudName = "Hud/";
     public static final String mainName = "Main/";
     public static final String miscName = "Misc/";
-    public static final String luaName = "Lua/";
     public static final String mappingName = "Mapping/";
 
     public static Kisman instance = new Kisman();
@@ -147,15 +146,23 @@ public class Kisman {
                 if (Keyboard.getEventKeyState()) {
                     int keyCode = Keyboard.getEventKey();
                     if (keyCode <= 1) return;
-                    for (Module m : moduleManager.modules) if (m.getKey() == keyCode) m.toggle();
-                    for (HudModule m : hudModuleManager.modules) if (m.getKey() == keyCode) m.toggle();
-                } else if(Keyboard.getEventKey() > 1) onRelease(Keyboard.getEventKey());
+                    for (Module m : moduleManager.modules) {
+                        if (m.getKey() == keyCode) m.toggle();
+                    }
+                    for (HudModule m : hudModuleManager.modules) {
+                        if (m.getKey() == keyCode) m.toggle();
+                    }
+                } else if(Keyboard.getEventKey() > 1) {
+                    onRelease(Keyboard.getEventKey());
+                }
             }
         } catch (Exception ignored) {}
     }
 
     private void onRelease(int key) {
-        for(Module m : moduleManager.modules) if(m.getKey() == key) if(m.hold) m.toggle();
+        for(Module m : moduleManager.modules) {
+            if(m.getKey() == key) if(m.hold) m.toggle();
+        }
     }
 
     public static String getName() {
@@ -185,10 +192,6 @@ public class Kisman {
         if (!Files.exists(Paths.get(fileName))) {
             Files.createDirectories(Paths.get(fileName));
             LOGGER.info("Root dir created");
-        }
-        if (!Files.exists(Paths.get(fileName + luaName))) {
-            Files.createDirectories(Paths.get(fileName + luaName));
-            LOGGER.info("Lua dir created");
         }
         if (!Files.exists(Paths.get(fileName + mappingName))) {
             Files.createDirectories(Paths.get(fileName + mappingName));

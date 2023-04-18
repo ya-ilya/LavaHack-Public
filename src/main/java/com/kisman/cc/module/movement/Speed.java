@@ -368,7 +368,13 @@ public class Speed extends Module {
 
     @EventHandler
     @SuppressWarnings("unused")
-    private final Listener<PlayerUpdateEvent> playerUpdateListener = listener(event -> {if(speedMode.getValString().equalsIgnoreCase("Sti")) mc.timer.tickLength = 50 / getSpeed();});
+    private final Listener<PlayerUpdateEvent> playerUpdateListener = listener(event -> {
+        if(speedMode.getValString().equalsIgnoreCase("Sti")) {
+            mc.timer.tickLength = 50 / getSpeed();
+        }}
+    );
 
-    private float getSpeed() {return Math.max((float) stiSpeed.getValDouble(), 0.1f);}
+    private float getSpeed() {
+        return Math.max((float) stiSpeed.getValDouble(), 0.1f);
+    }
 }

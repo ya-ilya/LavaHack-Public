@@ -13,8 +13,8 @@ import org.lwjgl.input.Keyboard;
 
 
 public class StringButton extends Component {
-    private Minecraft mc = Minecraft.getMinecraft();
-    private FontRenderer fr = mc.fontRenderer;
+    private final Minecraft mc = Minecraft.getMinecraft();
+    private FontRenderer fontRenderer = mc.fontRenderer;
     private int modeIndex = 0;
     public Setting set;
     public Button b;
@@ -22,8 +22,6 @@ public class StringButton extends Component {
     public int x, y;
     private int width, height;
     private String currentString = "";
-    private String dString;
-    private String regex = "-*[1-9][0-9]*";
     public boolean drag = false;
     private boolean active = false;
 
@@ -35,7 +33,6 @@ public class StringButton extends Component {
         this.y = b.parent.y;
         this.width = b.parent.width;
         this.height = b.parent.height;
-        this.dString = set.getdString();
     }
 
     public void setOff(int offset) {

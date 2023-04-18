@@ -30,7 +30,7 @@ public class FriendManager {
 
     public ArrayList<String> getFriends() {return friendsName;}
     public void addFriend(String name) {if(!friendsName.contains(name.toLowerCase())) friendsName.add(name.toLowerCase());}
-    public void removeFriend(String name) {if(!friendsName.isEmpty() && friendsName.contains(name.toLowerCase())) friendsName.remove(name.toLowerCase());}
+    public void removeFriend(String name) {if(!friendsName.isEmpty()) friendsName.remove(name.toLowerCase());}
     public boolean isFriend(EntityPlayer player) {return friendsName.contains(player.getName().toLowerCase()) && Config.instance.friends.getValBoolean();}
     public boolean isFriend(String name) {return friendsName.contains(name.toLowerCase()) && Config.instance.friends.getValBoolean();}
     public void setFriendsList(ArrayList<String> list) {friendsName = list;}

@@ -30,8 +30,7 @@ public class TargetHUD extends HudModule {
     private final TimerUtils timer = new TimerUtils();
     private double hpBarWidth;
     private double cdBarWidth;
-    private double[] circleProgressBarDegreeses = new double[] {0, 0, 0, 0, 0, 0, 0};
-    private double borderOffset = 5;
+    private final double borderOffset = 5;
 
     public TargetHUD() {
         super("TargetHud", HudCategory.COMBAT, true);

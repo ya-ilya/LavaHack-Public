@@ -10,7 +10,7 @@ import net.minecraft.util.text.TextFormatting;
 public abstract class Command {
 	protected static Minecraft mc = Minecraft.getMinecraft();
 	
-	private String command;
+	private final String command;
 	private String execute;
 	private int key;
 	

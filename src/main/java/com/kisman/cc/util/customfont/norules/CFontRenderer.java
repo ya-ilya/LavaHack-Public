@@ -16,7 +16,7 @@ public class CFontRenderer extends CustomFont {
     protected CharData[] italicChars = new CharData['§'];
     protected CharData[] boldItalicChars = new CharData['§'];
 
-    private float[] charWidthFloat = new float[256];
+    private final float[] charWidthFloat = new float[256];
     private final byte[] glyphWidth = new byte[65536];
     private final int[] charWidth = new int[256];
     private final int[] colorCode = new int[32];

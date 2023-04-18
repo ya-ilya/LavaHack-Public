@@ -30,11 +30,11 @@ import java.util.List;
 public class ClickGuiNew extends GuiScreen {
     private final HashMap<Category, Pane> categoryPaneMap;
     private final Pane spoilerPane;
-    private Window window;
-    private VisualPreviewWindow window2;
-    private IRenderer renderer;
-    private ParticleSystem particleSystem;
-    private List<ActionEventListener> onRenderListeners = new ArrayList<>();
+    private final Window window;
+    private final VisualPreviewWindow window2;
+    private final IRenderer renderer;
+    private final ParticleSystem particleSystem;
+    private final List<ActionEventListener> onRenderListeners = new ArrayList<>();
 
     public ClickGuiNew() {
         particleSystem = new ParticleSystem(300);

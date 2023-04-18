@@ -37,7 +37,7 @@ public class PeekCommand extends Command {
 
             double distance = 0;
             ItemStack stack = null;
-            for(Entity entity : mc.world.<Entity>getEntitiesWithinAABB(Entity.class, mc.player.getEntityBoundingBox().grow(12.0D, 4.0D, 12.0D))) {
+            for(Entity entity : mc.world.getEntitiesWithinAABB(Entity.class, mc.player.getEntityBoundingBox().grow(12.0D, 4.0D, 12.0D))) {
                 if(entity == mc.player) continue;
 
                 ItemStack current = null;

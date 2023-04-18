@@ -8,7 +8,7 @@ public class StringButton extends Button {
     private ValueChangeListener<String> listener;
     private boolean listening;
     private String value;
-    private String dString;
+    private final String dString;
 
     public StringButton(IRenderer renderer, int preferredWidth, int preferredHeight, String dString) {
         super(renderer, "", preferredWidth, preferredHeight);

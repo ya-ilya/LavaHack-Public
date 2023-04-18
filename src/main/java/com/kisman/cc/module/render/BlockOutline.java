@@ -18,11 +18,8 @@ import java.util.Arrays;
 public class BlockOutline extends Module {
     public static BlockOutline instance;
 
-    private float[] color = new float[] {0, 0, 1f, 1f};
-
-    private String renderMode = "";
-
     private final Setting colorVal = new Setting("Color", this, "Color", new Colour(0, 0, 255));
+    private final Setting renderMode = new Setting("RenderMode", this, "Outline", new ArrayList<>(Arrays.asList("Outline", "Box", "OutlineBox", "Flat")));
 
     public BlockOutline() {
         super("BlockOutline", "BlockOutline", Category.RENDER);
@@ -30,12 +27,7 @@ public class BlockOutline extends Module {
         instance = this;
 
         register(colorVal);
-        register(new Setting("RenderMode", this, "Outline", new ArrayList<>(Arrays.asList("Outline", "Box", "OutlineBox", "Flat"))));
-    }
-
-    public void update() {
-        this.color = new float[] {colorVal.getColour().getColor().getRed() / 255f, colorVal.getColour().getColor().getGreen() / 255f, colorVal.getColour().getColor().getBlue() / 255f};
-        this.renderMode = settingManager.getSettingByName(this, "RenderMode").getValString();
+        register(renderMode);
     }
 
     @SubscribeEvent
@@ -46,26 +38,28 @@ public class BlockOutline extends Module {
             BlockPos blockPos = mc.objectMouseOver.getBlockPos();
 
             if (Block.getIdFromBlock(block) == 0) return;
-            if(this.renderMode.equalsIgnoreCase("OutlineBox")) {
+            float[] color = new float[] {colorVal.getColour().getColor().getRed() / 255f, colorVal.getColour().getColor().getGreen() / 255f, colorVal.getColour().getColor().getBlue() / 255f};
+            String renderMode = this.renderMode.getValString();
+            if(renderMode.equalsIgnoreCase("OutlineBox")) {
                 RenderUtil.drawBlockESP(
                         blockPos,
-                        this.color[0],
-                        this.color[1],
-                        this.color[2]
+                        color[0],
+                        color[1],
+                        color[2]
                 );
-            } else if(this.renderMode.equalsIgnoreCase("Flat")) {
+            } else if(renderMode.equalsIgnoreCase("Flat")) {
                 RenderUtil.drawBlockFlatESP(
                         blockPos,
-                        this.color[0],
-                        this.color[1],
-                        this.color[2]
+                        color[0],
+                        color[1],
+                        color[2]
                 );
-            } else if(this.renderMode.equalsIgnoreCase("Outline")) {
+            } else if(renderMode.equalsIgnoreCase("Outline")) {
                 RenderUtil.drawBlockOutlineESP(
                         blockPos,
-                        this.color[0],
-                        this.color[1],
-                        this.color[2]
+                        color[0],
+                        color[1],
+                        color[2]
                 );
             }
         }

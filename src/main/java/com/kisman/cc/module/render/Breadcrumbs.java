@@ -19,7 +19,7 @@ public class Breadcrumbs extends Module {
     private final Setting removeTicks =  new Setting("Remove Ticks", this, 10, 0, 50, true);
     private final Setting alpha = new Setting("Alpha", this, 100, 0, 255, true);
 
-    private ArrayList<Helper> positions = new ArrayList<>();
+    private final ArrayList<Helper> positions = new ArrayList<>();
 
     public Breadcrumbs() {
         super("Breadcrumbs", ", ", Category.RENDER);

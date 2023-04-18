@@ -6,15 +6,15 @@ import java.util.HashMap;
 
 public final class GeometryMasks {
 
-    public static final HashMap<EnumFacing, Integer> FACEMAP = new HashMap<>();
+    public static final HashMap<EnumFacing, Integer> FACINGS = new HashMap<>();
 
     static {
-        FACEMAP.put(EnumFacing.DOWN, Quad.DOWN);
-        FACEMAP.put(EnumFacing.WEST, Quad.WEST);
-        FACEMAP.put(EnumFacing.NORTH, Quad.NORTH);
-        FACEMAP.put(EnumFacing.SOUTH, Quad.SOUTH);
-        FACEMAP.put(EnumFacing.EAST, Quad.EAST);
-        FACEMAP.put(EnumFacing.UP, Quad.UP);
+        FACINGS.put(EnumFacing.DOWN, Quad.DOWN);
+        FACINGS.put(EnumFacing.WEST, Quad.WEST);
+        FACINGS.put(EnumFacing.NORTH, Quad.NORTH);
+        FACINGS.put(EnumFacing.SOUTH, Quad.SOUTH);
+        FACINGS.put(EnumFacing.EAST, Quad.EAST);
+        FACINGS.put(EnumFacing.UP, Quad.UP);
     }
 
     public static final class Quad {

@@ -290,12 +290,11 @@ public class AutoCrystal extends Module implements Runnable {
             if (threadDelay.passedMs(MultiThreadDelay.getValLong())) {
                 if (thread == null)
                     thread = new Thread(AutoCrystal.get(this));
-                if (thread != null && (thread.isInterrupted() || thread.isAlive()))
+                if (thread.isInterrupted() || thread.isAlive())
                     thread = new Thread(AutoCrystal.get(this));
-                if (thread != null && thread.getState().equals(Thread.State.NEW)) {
+                if (thread.getState().equals(Thread.State.NEW)) {
                     try {
                         thread.start();
-                        thread.run();
                     } catch (Exception ignored) {}
                 }
                 threadDelay.reset();

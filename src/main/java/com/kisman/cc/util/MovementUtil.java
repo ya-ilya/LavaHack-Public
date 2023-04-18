@@ -106,7 +106,6 @@ public class MovementUtil {
         double defaultSpeed = 0.0;
 
         if (mc.player.isPotionActive(MobEffects.JUMP_BOOST)) {
-            //noinspection ConstantConditions
             int amplifier = mc.player.getActivePotionEffect(MobEffects.JUMP_BOOST).getAmplifier();
             defaultSpeed += (amplifier + 1) * 0.1;
         }

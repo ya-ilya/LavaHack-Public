@@ -109,7 +109,6 @@ public class Module {
 	public void onDisable() { }
 	public String getName() {return this.name;}
 	public Category getCategory() {return this.category;}
-	public String getCategoryName() {return this.category.name();} //lua
 	public String getDisplayInfo() {return fun == null ? displayInfo : fun.get();}
 	public void setDisplayInfo(String displayInfo) {this.displayInfo = displayInfo;}
 	public void setDisplayInfo(Supplier<String> fun) {this.fun = fun;}

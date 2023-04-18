@@ -10,10 +10,10 @@ public class Spoiler extends AbstractComponent {
     private static final int PREFERRED_HEIGHT = 28;
     public int preferredWidth;
     private String title;
-    private int preferredHeight;
+    private final int preferredHeight;
     private boolean hovered;
     private ActionEventListener listener;
-    private Pane contentPane;
+    private final Pane contentPane;
     private boolean opened = false;
     private Module mod = null;
     private final int[] mouseCoords = new int[] {0, 0};

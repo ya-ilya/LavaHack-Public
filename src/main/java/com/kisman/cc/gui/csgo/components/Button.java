@@ -11,8 +11,8 @@ public class Button extends AbstractComponent {
     public static final int PREFERRED_HEIGHT = 22;
 
     public String title;
-    private int preferredWidth;
-    private int preferredHeight;
+    private final int preferredWidth;
+    private final int preferredHeight;
     private boolean hovered;
     private ActionEventListener listener, listener2;
 

@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class Log {
 
-    public ArrayList<Message> ActiveMessages = new ArrayList<>();
-    public ArrayList<Message> PassiveMessages = new ArrayList<>();
-    public Iterator<Message> Iterator;
+    public ArrayList<Message> activeMessages = new ArrayList<>();
+    public ArrayList<Message> passiveMessages = new ArrayList<>();
+    public Iterator<Message> messageIterator;
 }

@@ -70,10 +70,6 @@ dependencies {
         exclude module: 'gson'
     }
 
-    library(group: 'org.reflections', name: 'reflections', version: '0.9.11') {
-        exclude module: 'guava'
-    }
-
     library group: 'com.github.ZeroMemes', name: 'alpine', version: '1.9'
     library group: 'club.minnced', name: 'java-discord-rpc', version: '2.0.1'
 
@@ -84,7 +80,6 @@ dependencies {
     library group: 'com.viaversion', name: 'viabackwards', version: '4.2.1-SNAPSHOT'
 
     library group: 'com.sun.net.httpserver', name: 'http', version: '20070405'
-    library group: 'com.neovisionaries', name: 'nv-websocket-client', version: '2.14'
 
     library group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jdk8", version: "$kotlin_version"
     library group: "org.jetbrains.kotlin", name: "kotlin-reflect", version: "$kotlin_version"

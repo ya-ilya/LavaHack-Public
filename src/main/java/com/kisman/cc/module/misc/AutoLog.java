@@ -7,16 +7,18 @@ import net.minecraft.network.play.server.SPacketDisconnect;
 import net.minecraft.util.text.TextComponentString;
 
 public class AutoLog extends Module {
+    private final Setting health = new Setting("Health", this, 10, 1, 36, true);
+
     public AutoLog() {
         super("AutoLog", "5", Category.MISC);
 
-        register(new Setting("Health", this, 10, 1, 36, true));
+        register(health);
     }
 
     public void update() {
         if(mc.player == null || mc.world == null) return;
 
-        int health = (int) settingManager.getSettingByName(this, "Health").getValDouble();
+        int health = (int) this.health.getValDouble();
 
         if(mc.player.getHealth() < health) {
             mc.player.connection.handleDisconnect(new SPacketDisconnect(new TextComponentString("your health < " + health)));

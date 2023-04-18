@@ -16,7 +16,6 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ArmorHUD extends HudModule {
-    private int offHandHeldItemCount;
     private int armourCompress;
     private int armourSpacing;
 
@@ -62,7 +61,7 @@ public class ArmorHUD extends HudModule {
             if (HUD.instance.armExtra.getValBoolean()) {
                 final ItemStack itemStack = mc.player.getHeldItemOffhand();
                 Item helfInOffHand = Wrapper.INSTANCE.player().getHeldItemOffhand().getItem();
-                offHandHeldItemCount = getItemsOffHand(helfInOffHand);
+                int offHandHeldItemCount = getItemsOffHand(helfInOffHand);
                 GlStateManager.pushMatrix();
                 GlStateManager.disableAlpha();
                 GlStateManager.clear(256);

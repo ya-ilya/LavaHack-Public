@@ -10,19 +10,23 @@ public class AngleUtil {
     private static final Minecraft mc = Minecraft.getMinecraft();
 
     public static float[] calculateAngles(Entity entity) {
-        return calculateAngle(InterpolationUtil.interpolateEntityTime(mc.player, mc.getRenderPartialTicks()), InterpolationUtil.interpolateEntityTime(entity, mc.getRenderPartialTicks()));
+        return calculateAngle(interpolateEntityTime(mc.player, mc.getRenderPartialTicks()), interpolateEntityTime(entity, mc.getRenderPartialTicks()));
     }
 
     public static float[] calculateAngles(BlockPos blockPos) {
-        return calculateAngle(InterpolationUtil.interpolateEntityTime(mc.player, mc.getRenderPartialTicks()), new Vec3d(blockPos));
+        return calculateAngle(interpolateEntityTime(mc.player, mc.getRenderPartialTicks()), new Vec3d(blockPos));
     }
 
     public static float[] calculateCenter(Entity entity) {
-        return calculateAngle(InterpolationUtil.interpolateEntityTime(mc.player, mc.getRenderPartialTicks()), InterpolationUtil.interpolateEntityTime(entity, mc.getRenderPartialTicks()).add(new Vec3d(entity.width / 2, entity.getEyeHeight() / 2, entity.width / 2)));
+        return calculateAngle(interpolateEntityTime(mc.player, mc.getRenderPartialTicks()), interpolateEntityTime(entity, mc.getRenderPartialTicks()).add(new Vec3d(entity.width / 2, entity.getEyeHeight() / 2, entity.width / 2)));
     }
 
     public static float[] calculateCenter(BlockPos blockPos) {
-        return calculateAngle(InterpolationUtil.interpolateEntityTime(mc.player, mc.getRenderPartialTicks()), new Vec3d(blockPos).add(new Vec3d(0.5, 0, 0.5)));
+        return calculateAngle(interpolateEntityTime(mc.player, mc.getRenderPartialTicks()), new Vec3d(blockPos).add(new Vec3d(0.5, 0, 0.5)));
+    }
+
+    private static Vec3d interpolateEntityTime(Entity entity, float time) {
+        return new Vec3d(entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double) time, entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double) time, entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double) time);
     }
 
     public static float[] calculateAngle(Vec3d from, Vec3d to) {

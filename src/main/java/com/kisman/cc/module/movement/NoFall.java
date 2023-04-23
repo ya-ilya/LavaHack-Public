@@ -8,7 +8,6 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.EntityUtil;
 import com.kisman.cc.util.InventoryUtil;
-import com.kisman.cc.util.Locks;
 import i.gishreloaded.gishcode.utils.TimerUtils;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
@@ -79,11 +78,8 @@ public class NoFall extends Module {
                 else {
                     RayTraceResult rayTraceBlocks2 = mc.world.rayTraceBlocks(positionVector, new Vec3d(positionVector.x, positionVector.y - 5.0, positionVector.z), true);
                     if (rayTraceBlocks2 != null && rayTraceBlocks2.typeOfHit == RayTraceResult.Type.BLOCK && !(mc.world.getBlockState(rayTraceBlocks2.getBlockPos()).getBlock() instanceof BlockLiquid) && timer.passedMillis(1000)) {
-                        Locks.acquire(Locks.PLACE_SWITCH_LOCK, () -> {
-                            InventoryUtil.switchToSlot(bucketSlot, true);
-                            mc.playerController.processRightClick(mc.player, mc.world, bucketSlot == -2 ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND);
-                        });
-
+                        InventoryUtil.switchToSlot(bucketSlot, true);
+                        mc.playerController.processRightClick(mc.player, mc.world, bucketSlot == -2 ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND);
                         InventoryUtil.switchToSlot(oldSlot, true);
                         timer.reset();
                     }

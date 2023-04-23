@@ -2,7 +2,7 @@ package com.kisman.cc.config
 
 import com.kisman.cc.Kisman
 import com.kisman.cc.manager.managers.FriendManager
-import com.kisman.cc.util.ColourUtilKt
+import com.kisman.cc.util.ColourUtil
 import java.io.*
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -77,7 +77,7 @@ class ConfigManager(
                                             if(setting.isCheck) setting.valBoolean = java.lang.Boolean.parseBoolean(split1[1])
                                             if(setting.isCombo) setting.valString = split1[1].split("\"")[1]
                                             if(setting.isSlider) setting.valDouble = java.lang.Double.parseDouble(split1[1])
-                                            if(setting.isColorPicker) setting.colour = ColourUtilKt.fromConfig(split1[1], setting.colour)
+                                            if(setting.isColorPicker) setting.colour = ColourUtil.fromConfig(split1[1], setting.colour)
                                         } catch(_: Exception) {}
                                     }
                                 }
@@ -159,7 +159,7 @@ class ConfigManager(
                                 writer.newLine()
                             }
                             if(setting.isColorPicker) {
-                                writer.write("${config.modulesPrefix}.${module.name}.${config.settingsPrefix}.${setting.name}=${ColourUtilKt.toConfig(setting.colour)}")
+                                writer.write("${config.modulesPrefix}.${module.name}.${config.settingsPrefix}.${setting.name}=${ColourUtil.toConfig(setting.colour)}")
                                 writer.newLine()
                             }
                         }

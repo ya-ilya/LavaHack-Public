@@ -7,7 +7,7 @@ import com.kisman.cc.module.combat.autorer.util.ProjectionUtils
 import com.kisman.cc.setting.Setting
 import com.kisman.cc.setting.util.GlowRendererPattern
 import com.kisman.cc.util.Colour
-import com.kisman.cc.util.ColourUtilKt
+import com.kisman.cc.util.ColourUtil
 import com.kisman.cc.util.Render2DUtil
 import com.kisman.cc.util.customfont.CustomFontUtil
 import net.minecraft.util.math.MathHelper
@@ -67,7 +67,7 @@ class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.",
             } catch (_: Exception) {}
             if(this.ping.valBoolean) builder.append(" $ping ms")
             //TODO: Pops
-            if(this.health.valBoolean) builder.append(" ${ColourUtilKt.healthColor(player)}${MathHelper.ceil(health)}${TextFormatting.RESET}")
+            if(this.health.valBoolean) builder.append(" ${ColourUtil.healthColor(player)}${MathHelper.ceil(health)}${TextFormatting.RESET}")
 
             if(glow.valBoolean) {
                 glowSetting.draw(

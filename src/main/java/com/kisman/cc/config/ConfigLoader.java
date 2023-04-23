@@ -9,7 +9,7 @@ import com.kisman.cc.manager.managers.FriendManager;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.player.TeleportBack;
 import com.kisman.cc.setting.Setting;
-import com.kisman.cc.util.ColourUtilKt;
+import com.kisman.cc.util.ColourUtil;
 import org.lwjgl.input.Keyboard;
 
 import java.io.BufferedReader;
@@ -84,7 +84,7 @@ public class ConfigLoader {
                         if (setting.isCheck()) setting.setValBoolean(dataObject.getAsBoolean());
                         if (setting.isCombo()) setting.setValString(dataObject.getAsString());
                         if (setting.isSlider()) setting.setValDouble(dataObject.getAsDouble());
-                        if(setting.isColorPicker()) setting.setColour(ColourUtilKt.Companion.fromConfig(dataObject.getAsString(), setting.getColour()));
+                        if(setting.isColorPicker()) setting.setColour(ColourUtil.Companion.fromConfig(dataObject.getAsString(), setting.getColour()));
                         if(setting.isBind()) setting.setKey(dataObject.getAsInt());
                     }
                 } catch (NumberFormatException e) {

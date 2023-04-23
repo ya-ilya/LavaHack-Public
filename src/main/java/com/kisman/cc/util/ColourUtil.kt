@@ -4,7 +4,7 @@ import net.minecraft.entity.EntityLivingBase
 import net.minecraft.util.text.TextFormatting
 import java.awt.Color
 
-class ColourUtilKt {
+class ColourUtil {
     companion object {
         fun getDefaultColor(): Colour {
             return Colour(255, 255, 255, 255)

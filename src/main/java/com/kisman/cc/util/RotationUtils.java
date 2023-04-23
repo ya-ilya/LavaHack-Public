@@ -489,24 +489,6 @@ public class RotationUtils {
         this.targetRotation = null;
     }
 
-    public static float[] getMatrixRotations(Entity e, boolean oldPositionUse) {
-        double diffY;
-        double diffX = (oldPositionUse ? e.prevPosX : e.posX) - (oldPositionUse ? mc.player.prevPosX : mc.player.posX);
-        double diffZ = (oldPositionUse ? e.prevPosZ : e.posZ) - (oldPositionUse ? mc.player.prevPosZ : mc.player.posZ);
-        if (e instanceof EntityLivingBase) {
-            EntityLivingBase entitylivingbase = (EntityLivingBase)e;
-            float randomed = RandomUtils.nextFloat((float)(entitylivingbase.posY + (double)(entitylivingbase.getEyeHeight() / 1.5f)), (float)(entitylivingbase.posY + (double)entitylivingbase.getEyeHeight() - (double)(entitylivingbase.getEyeHeight() / 3.0f)));
-            diffY = (double)randomed - (mc.player.posY + (double) mc.player.getEyeHeight());
-        } else diffY = (double)RandomUtils.nextFloat((float)e.getEntityBoundingBox().minY, (float)e.getEntityBoundingBox().maxY) - (mc.player.posY + (double) mc.player.getEyeHeight());
-        double dist = MathHelper.sqrt(diffX * diffX + diffZ * diffZ);
-        float yaw = (float)(Math.atan2(diffZ, diffX) * 180.0 / Math.PI - 90.0) + RandomUtils.nextFloat(-2.0f, 2.0f);
-        float pitch = (float)(-(Math.atan2(diffY, dist) * 180.0 / Math.PI)) + RandomUtils.nextFloat(-2.0f, 2.0f);
-        yaw = mc.player.rotationYaw + GCDUtil.getFixedRotation(MathHelper.wrapDegrees(yaw - mc.player.rotationYaw));
-        pitch = mc.player.rotationPitch + GCDUtil.getFixedRotation(MathHelper.wrapDegrees(pitch - mc.player.rotationPitch));
-        pitch = MathHelper.clamp(pitch, -90.0f, 90.0f);
-        return new float[]{yaw, pitch};
-    }
-
     public static boolean isInFOV(Entity player, Entity entity, double angle) {
         final double angleDiff = getAngle360(player.rotationYaw, getLookNeeded(player, entity.posX, entity.posY, entity.posZ)[0]);
         return (angleDiff > 0.0 && angleDiff < (angle *= 0.5)) || (-angle < angleDiff && angleDiff < 0.0);

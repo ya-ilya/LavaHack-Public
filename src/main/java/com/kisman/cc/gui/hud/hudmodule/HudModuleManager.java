@@ -1,14 +1,12 @@
 package com.kisman.cc.gui.hud.hudmodule;
 
 import com.kisman.cc.gui.hud.hudmodule.combat.*;
-import com.kisman.cc.gui.hud.hudmodule.render.*;
-import com.kisman.cc.hud.hudmodule.combat.*;
 import com.kisman.cc.gui.hud.hudmodule.movement.Speed;
 import com.kisman.cc.gui.hud.hudmodule.player.Indicators;
 import com.kisman.cc.gui.hud.hudmodule.player.Ping;
 import com.kisman.cc.gui.hud.hudmodule.player.ServerIp;
 import com.kisman.cc.gui.hud.hudmodule.player.Tps;
-import com.kisman.cc.hud.hudmodule.render.*;
+import com.kisman.cc.gui.hud.hudmodule.render.*;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

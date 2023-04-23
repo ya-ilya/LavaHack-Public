@@ -1,7 +1,7 @@
 package com.kisman.cc.config
 
 import com.kisman.cc.Kisman
-import com.kisman.cc.util.manager.FriendManager
+import com.kisman.cc.manager.managers.FriendManager
 import com.kisman.cc.util.ColourUtilKt
 import java.io.*
 import java.nio.file.Files

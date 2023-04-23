@@ -1,13 +1,13 @@
 package com.kisman.cc.module.movement;
 
 import com.kisman.cc.gui.csgo.components.Slider;
+import com.kisman.cc.manager.Managers;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.BlockUtil;
 import com.kisman.cc.util.EntityUtil;
 import com.kisman.cc.util.PlayerUtil;
-import com.kisman.cc.util.manager.Managers;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.network.play.client.CPacketPlayer;

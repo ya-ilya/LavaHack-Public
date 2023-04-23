@@ -1,8 +1,8 @@
 package com.kisman.cc.module.render;
 
 import com.kisman.cc.event.events.RenderEntityEvent;
-import com.kisman.cc.util.manager.FriendManager;
 import com.kisman.cc.gui.csgo.components.Slider;
+import com.kisman.cc.manager.managers.FriendManager;
 import com.kisman.cc.mixin.mixins.accessor.AccessorShaderGroup;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;

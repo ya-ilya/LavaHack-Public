@@ -1,7 +1,7 @@
-package com.kisman.cc.util.manager;
+package com.kisman.cc.manager.managers;
 
+import com.kisman.cc.manager.Manager;
 import com.kisman.cc.util.Rotation;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -10,8 +10,7 @@ import net.minecraft.util.math.Vec3d;
 
 import javax.annotation.Nonnull;
 
-public class RotationManager {
-    private static final Minecraft mc = Minecraft.getMinecraft();
+public class RotationManager implements Manager {
     private float yaw, pitch;
 
     public void update() {

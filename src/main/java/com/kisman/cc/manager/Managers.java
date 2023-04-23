@@ -1,7 +1,9 @@
-package com.kisman.cc.util.manager;
+package com.kisman.cc.manager;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.manager.managers.CPSManager;
+import com.kisman.cc.manager.managers.TimerManager;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.network.play.server.SPacketPlayerPosLook;
@@ -13,7 +15,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class Managers {
     public static Managers instance;
-    
+
     public TimerManager timerManager;
     public CPSManager cpsManager;
 
@@ -36,9 +38,18 @@ public class Managers {
         timerManager.onUpdate();
     }
 
-    @EventHandler private final Listener<PacketEvent.Receive> listener = new Listener<>(event -> {if(event.getPacket() instanceof SPacketPlayerPosLook) lagTimer.set(System.currentTimeMillis());});
+    @EventHandler
+    private final Listener<PacketEvent.Receive> listener = new Listener<>(event -> {
+        if (event.getPacket() instanceof SPacketPlayerPosLook) {
+            lagTimer.set(System.currentTimeMillis());
+        }
+    });
 
-    public boolean passed(int ms) {return System.currentTimeMillis() - lagTimer.get() >= ms;}
-    public void reset() {lagTimer.set(System.currentTimeMillis());}
-    public long getTimeStamp() {return lagTimer.get();}
+    public boolean passed(int ms) {
+        return System.currentTimeMillis() - lagTimer.get() >= ms;
+    }
+
+    public void reset() {
+        lagTimer.set(System.currentTimeMillis());
+    }
 }

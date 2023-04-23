@@ -1,11 +1,12 @@
-package com.kisman.cc.util.manager;
+package com.kisman.cc.manager.managers;
 
+import com.kisman.cc.manager.Manager;
 import com.kisman.cc.module.client.Config;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.ArrayList;
 
-public class FriendManager {
+public class FriendManager implements Manager {
     public static FriendManager instance;
 
     private ArrayList<String> friendsName;

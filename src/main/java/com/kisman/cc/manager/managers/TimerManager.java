@@ -1,4 +1,4 @@
-package com.kisman.cc.util.manager;
+package com.kisman.cc.manager.managers;
 
 import com.kisman.cc.module.Module;
 import com.kisman.cc.util.TickRateUtil;
@@ -34,7 +34,7 @@ public class TimerManager {
             return;
         }
         if (tpsSync && TickRateUtil.INSTANCE.getLatestTickRate() > 0.125D)  // 0.125D check is nessasary to avoid 0tps when joining server
-           Minecraft.getMinecraft().timer.tickLength = Math.min(500, 50F * (20F / TickRateUtil.INSTANCE.getLatestTickRate()));
+            Minecraft.getMinecraft().timer.tickLength = Math.min(500, 50F * (20F / TickRateUtil.INSTANCE.getLatestTickRate()));
         else Minecraft.getMinecraft().timer.tickLength = active ? (50.0f / timerSpeed) : 50.0f;
     }
 

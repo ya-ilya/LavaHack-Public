@@ -1,6 +1,6 @@
 package com.kisman.cc.module.render;
 
-import com.kisman.cc.util.manager.FriendManager;
+import com.kisman.cc.manager.managers.FriendManager;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;

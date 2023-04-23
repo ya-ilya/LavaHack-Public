@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = Minecraft.class, priority = 10000)
-public class MixinMinecraft {
+public abstract class MixinMinecraft {
     @Shadow
     public GameSettings gameSettings;
     @Shadow
@@ -26,8 +26,7 @@ public class MixinMinecraft {
     private boolean mt_isHittingBlock = false;
 
     @Shadow
-    private void clickMouse() {
-    }
+    protected abstract void clickMouse();
 
     @Inject(
             method = "init",

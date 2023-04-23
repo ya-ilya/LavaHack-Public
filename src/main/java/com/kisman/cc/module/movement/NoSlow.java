@@ -73,6 +73,7 @@ public class NoSlow extends Module {
 
     @SubscribeEvent
     public void onLivingUpdate(LivingUpdateEvent event) {
+        if (mc.player == null || mc.world == null) return;
         if (mc.player.isHandActive() && !mc.player.isRiding() && mode.getValString().equals("Sunrise")) {
             mc.player.movementInput.moveStrafe *= 0.2F;
             mc.player.movementInput.moveForward *= 0.2F;

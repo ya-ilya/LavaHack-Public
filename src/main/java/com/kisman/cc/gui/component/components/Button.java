@@ -3,7 +3,7 @@ package com.kisman.cc.gui.component.components;
 import com.kisman.cc.gui.ClickGui;
 import com.kisman.cc.gui.component.Component;
 import com.kisman.cc.gui.component.Frame;
-import com.kisman.cc.hud.hudmodule.HudModule;
+import com.kisman.cc.gui.hud.hudmodule.HudModule;
 import com.kisman.cc.util.enums.LineMode;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;

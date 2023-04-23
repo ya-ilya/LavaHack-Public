@@ -2,7 +2,7 @@ package com.kisman.cc.module.combat;
 
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
-import com.kisman.cc.friend.FriendManager;
+import com.kisman.cc.util.manager.FriendManager;
 import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;

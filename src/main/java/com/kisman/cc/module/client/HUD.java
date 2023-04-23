@@ -2,7 +2,7 @@ package com.kisman.cc.module.client;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.gui.csgo.components.Slider;
-import com.kisman.cc.hud.hudmodule.render.ArrayListModule;
+import com.kisman.cc.gui.hud.hudmodule.render.ArrayListModule;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;

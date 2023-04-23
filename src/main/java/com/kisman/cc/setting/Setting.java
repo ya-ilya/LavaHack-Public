@@ -1,8 +1,7 @@
 package com.kisman.cc.setting;
 
-import com.kisman.cc.Kisman;
 import com.kisman.cc.gui.csgo.components.Slider;
-import com.kisman.cc.hud.hudmodule.HudModule;
+import com.kisman.cc.gui.hud.hudmodule.HudModule;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.util.Colour;
 import net.minecraft.entity.Entity;

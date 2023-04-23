@@ -1,6 +1,6 @@
 package com.kisman.cc.util;
 
-import com.kisman.cc.friend.FriendManager;
+import com.kisman.cc.util.manager.FriendManager;
 import com.kisman.cc.module.combat.AntiBot;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;

@@ -1,8 +1,8 @@
 package com.kisman.cc.module.player;
 
 import com.kisman.cc.event.events.PacketEvent;
-import com.kisman.cc.hud.hudmodule.render.PacketChat;
-import com.kisman.cc.hud.hudmodule.render.packetchat.Message;
+import com.kisman.cc.gui.hud.hudmodule.render.PacketChat;
+import com.kisman.cc.gui.hud.hudmodule.render.packetchat.Message;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;

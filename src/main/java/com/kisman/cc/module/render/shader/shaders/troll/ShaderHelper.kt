@@ -43,6 +43,7 @@ class ShaderHelper(shaderIn: ResourceLocation) {
     }
 
     @SubscribeEvent
+    @Suppress("UNUSED_PARAMETER")
     fun onTick(event: TickEvent.ClientTickEvent) {
         if (!frameBuffersInitialized) {
             shader?.createBindFramebuffers(mc.displayWidth, mc.displayHeight)

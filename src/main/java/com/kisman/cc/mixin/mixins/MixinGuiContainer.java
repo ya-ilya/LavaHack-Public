@@ -44,7 +44,7 @@ public class MixinGuiContainer extends GuiScreen {
 
     @Inject(method = "initGui", at = @At("RETURN"))
     private void doInitGui(CallbackInfo ci) {
-        itemESP.init(guiLeft, guiTop, xSize, ySize);
+        itemESP.init(guiLeft, guiTop, xSize);
     }
 
     @Inject(method = "drawScreen", at = @At("TAIL"))
@@ -76,6 +76,7 @@ public class MixinGuiContainer extends GuiScreen {
 
     /**
      * @author _kisman_
+     * @reason .
      */
     @Overwrite
     protected void keyTyped(char typedChar, int keyCode) {

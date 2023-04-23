@@ -81,7 +81,8 @@ enum class DynamicVAO(private val vertexSize: Int, private val buildVAO: () -> U
             MinecraftForge.EVENT_BUS.register(this)
         }
 
-        @SubscribeEvent fun onTick(event: TickEvent.ClientTickEvent) {
+        @SubscribeEvent
+        fun onTick(event: TickEvent.ClientTickEvent) {
             if (timer.passedTicks(5)) {
                 timer.reset()
                 values().forEach {

@@ -15,8 +15,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(ItemBlock.class)
-public class MixinItemBlock {
-    @Shadow public boolean placeBlockAt(ItemStack stack,EntityPlayer player,World world,BlockPos pos,EnumFacing facing,float hitX,float hitY,float hitZ,IBlockState state) {return false;}
+public abstract class MixinItemBlock {
+    @Dynamic
+    @Shadow(remap = false)
+    public abstract boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState);
 
         /**
      * {@link ItemBlock#placeBlockAt(ItemStack, EntityPlayer, World,

@@ -22,7 +22,7 @@ class GlowRendererPattern(val module: Module, val visible: Supplier<Boolean>) {
         Kisman.instance.settingManager.register(boxSize)
     }
 
-    fun draw(ticks: Float, color: Colour, x: Int, y: Int, width: Int, height: Int) {
+    fun draw(color: Colour, x: Int, y: Int, width: Int, height: Int) {
         when(mode.valEnum as GlowModes) {
             GlowModes.Default -> {
                 val offset = this.offset.valInt

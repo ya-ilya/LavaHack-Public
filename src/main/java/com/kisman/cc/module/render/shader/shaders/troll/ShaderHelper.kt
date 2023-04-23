@@ -42,7 +42,8 @@ class ShaderHelper(shaderIn: ResourceLocation) {
         MinecraftForge.EVENT_BUS.register(this)
     }
 
-    @SubscribeEvent fun onTick(event: TickEvent.ClientTickEvent) {
+    @SubscribeEvent
+    fun onTick(event: TickEvent.ClientTickEvent) {
         if (!frameBuffersInitialized) {
             shader?.createBindFramebuffers(mc.displayWidth, mc.displayHeight)
 

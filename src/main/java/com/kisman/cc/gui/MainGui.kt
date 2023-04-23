@@ -30,7 +30,7 @@ class MainGui {
             selection = defaultSelection
         }
 
-        fun drawScreen(mouseX : Int, mouseY : Int) {
+        fun drawScreen() {
             var startX = ScaledResolution(Minecraft.getMinecraft()).scaledWidth / 2 - getSelectionBarWidth() / 2
             Render2DUtil.drawRectWH(startX.toDouble(), 0.0, getSelectionBarWidth().toDouble(), (CustomFontUtil.getFontHeight() + offset * 2).toDouble(), backgroundColor.rgb)
 

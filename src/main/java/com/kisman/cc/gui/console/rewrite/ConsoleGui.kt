@@ -77,7 +77,7 @@ class ConsoleGui : GuiScreen() {
         fontRenderer.drawStringWithShadow(entryString + "_", (x + 2).toFloat(),
             (y + height1 - fontRenderer.FONT_HEIGHT).toFloat(), -1)
 
-        Kisman.instance.selectionBar.drawScreen(mouseX, mouseY)
+        Kisman.instance.selectionBar.drawScreen()
     }
 
     override fun mouseClicked(mouseX: Int, mouseY: Int, mouseButton: Int) {

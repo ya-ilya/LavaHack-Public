@@ -338,7 +338,7 @@ public class ClickGuiNew extends GuiScreen {
 
         super.drawScreen(mouseX, mouseY, partialTicks);
 
-        Kisman.instance.selectionBar.drawScreen(mouseX, mouseY);
+        Kisman.instance.selectionBar.drawScreen();
     }
 
     @Override

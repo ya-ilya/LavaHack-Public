@@ -15,7 +15,7 @@ class ItemESP {
         guiTextField = GuiTextField(9999, Minecraft.getMinecraft().fontRenderer, 0, 0, 0, 0)
     }
 
-    fun init(x: Int, y: Int, width: Int, height: Int) {
+    fun init(x: Int, y: Int, width: Int) {
         guiTextField = GuiTextField(9999, Minecraft.getMinecraft().fontRenderer, x, y - offset - this.height, width, this.height)
     }
 }

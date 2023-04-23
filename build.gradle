@@ -6,7 +6,7 @@ buildscript {
         maven { url = 'https://jitpack.io' }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:5.+'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:4.+'
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
         classpath 'com.github.jengelman.gradle.plugins:shadow:6.1.0'
     }
@@ -33,7 +33,6 @@ repositories {
     maven { url = 'https://repo.spongepowered.org/maven/' }
     maven { url = 'https://impactdevelopment.github.io/maven/' }
     maven { url = 'https://jitpack.io' }
-    maven { url = 'https://repo.viaversion.com'}
 }
 
 minecraft {
@@ -74,10 +73,6 @@ dependencies {
     library group: 'club.minnced', name: 'java-discord-rpc', version: '2.0.1'
 
     library group: 'com.google.code.gson', name: 'gson', version: '2.10.1'
-    library group: 'org.yaml', name: 'snakeyaml', version: '1.19' // for ViaVersions
-
-    library group: 'com.viaversion', name: 'viaversion', version: '4.2.2-SNAPSHOT'
-    library group: 'com.viaversion', name: 'viabackwards', version: '4.2.1-SNAPSHOT'
 
     library group: 'com.sun.net.httpserver', name: 'http', version: '20070405'
 

@@ -71,7 +71,6 @@ class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.",
 
             if(glow.valBoolean) {
                 glowSetting.draw(
-                    event.partialTicks,
                     Colour(12, 12, 12, backgroundAlpha.valInt),
                     -((CustomFontUtil.getStringWidth(builder.toString()) - 2) / 2),
                     -(CustomFontUtil.getFontHeight() + 2),

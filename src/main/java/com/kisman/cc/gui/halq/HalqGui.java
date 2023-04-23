@@ -98,7 +98,7 @@ public class HalqGui extends GuiScreen {
             particleSystem.onUpdate();
         }
 
-        Kisman.instance.selectionBar.drawScreen(mouseX, mouseY);
+        Kisman.instance.selectionBar.drawScreen();
     }
 
     @Override

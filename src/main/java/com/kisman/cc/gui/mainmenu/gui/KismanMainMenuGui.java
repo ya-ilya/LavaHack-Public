@@ -4,7 +4,6 @@ import com.kisman.cc.Kisman;
 import com.kisman.cc.gui.alts.AltManagerGUI;
 import com.kisman.cc.gui.halq.HalqGui;
 import com.kisman.cc.util.customfont.CustomFontUtil;
-import com.kisman.cc.viaforge.gui.GuiProtocolSelector;
 import i.gishreloaded.gishcode.utils.visual.ColorUtils;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -56,12 +55,9 @@ public class KismanMainMenuGui extends GuiScreen {
                 Kisman.openLink("https://www.youtube.com/channel/UCWxQLRT9CXqcK6YyiKHrrNw");
                 break;
             case 4:
-                mc.displayGuiScreen(new GuiProtocolSelector(this));
-                break;
-            case 5:
                 mc.displayGuiScreen(new AltManagerGUI(this));
                 break;
-            case 6:
+            case 5:
                 mc.displayGuiScreen(lastGui);
                 break;
         }
@@ -77,8 +73,7 @@ public class KismanMainMenuGui extends GuiScreen {
         buttonList.add(new GuiButton(1, width / 2 - 100, y, "Gui"));
         buttonList.add(new GuiButton(2, width / 2 - 100, y + offset, "Discord"));
         buttonList.add(new GuiButton(3, width / 2 - 100, y + offset * 2, "YouTube"));
-        buttonList.add(new GuiButton(4, width / 2 - 100, y + offset * 4, 98, 20, "Version"));
-        buttonList.add(new GuiButton(5, width / 2 + 2, y + offset * 4, 98, 20, "Alts"));
-        buttonList.add(new GuiButton(6, width / 2 - 100, y + offset * 5, "Back"));
+        buttonList.add(new GuiButton(4, width / 2 + 2, y + offset * 4, 98, 20, "Alts"));
+        buttonList.add(new GuiButton(5, width / 2 - 100, y + offset * 5, "Back"));
     }
 }

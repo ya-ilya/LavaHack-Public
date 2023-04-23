@@ -32,6 +32,10 @@ public class ElytraEquip extends Module {
     }
 
     public void update() {
+        if(synsWithElytraFly.getValBoolean()) {
+            if(ElytraFly.instance.isToggled()) state = State.NeedElytra;
+            else state = State.NeedChest;
+        }
         if(state != State.None || mc.player == null || mc.world == null) return;
         int slot;
         if(mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.ELYTRA) slot = InventoryUtil.findItem(Items.ELYTRA, 0, 36);
@@ -43,13 +47,6 @@ public class ElytraEquip extends Module {
         if(armorOnChest) mc.playerController.windowClick(mc.player.inventoryContainer.windowId, slot, 0, ClickType.PICKUP, mc.player);
         state = State.None;
         if(autoDisable.getValBoolean()) super.setToggled(false);
-    }
-
-    public void updateState() {
-        if(synsWithElytraFly.getValBoolean()) {
-            if(ElytraFly.instance.isToggled()) state = State.NeedElytra;
-            else state = State.NeedChest;
-        }
     }
 
     public enum State {NeedElytra, NeedChest, None}

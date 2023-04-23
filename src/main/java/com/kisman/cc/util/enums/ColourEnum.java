@@ -22,7 +22,7 @@ public enum ColourEnum {
 
         public Colour getColour() {
                 if(mode == Colour.COLOR_RAINBOW) return new Colour(ColorUtils.rainbow(delay, offset));
-                if(mode == Colour.COLOR_ASTOLFO) return Kisman.canUseImprAstolfo ? new Colour(ColorUtils.getAstolfoRainbow(offset)) : new Colour(ColorUtils.astolfoColors(offset, offset));
+                if(mode == Colour.COLOR_ASTOLFO) return Kisman.canUseImplAstolfo() ? new Colour(ColorUtils.getAstolfoRainbow(offset)) : new Colour(ColorUtils.astolfoColors(offset, offset));
                 return primary;
         }
 }

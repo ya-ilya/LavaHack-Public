@@ -22,18 +22,4 @@ public class CustomMainMenu extends Module {
         register(customSplashFont);
         register(particles);
     }
-
-    public void update() {
-        com.kisman.cc.util.modules.CustomMainMenu.WATERMARK = watermark.getValBoolean();
-        com.kisman.cc.util.modules.CustomMainMenu.CUSTOM_SPLASH_TEXT = customSplashText.getValBoolean();
-        com.kisman.cc.util.modules.CustomMainMenu.CUSTOM_SPLASH_FONT = customSplashFont.getValBoolean();
-        com.kisman.cc.util.modules.CustomMainMenu.PARTICLES = particles.getValBoolean();
-    }
-
-    public void onDisable() {
-        com.kisman.cc.util.modules.CustomMainMenu.WATERMARK = false;
-        com.kisman.cc.util.modules.CustomMainMenu.CUSTOM_SPLASH_TEXT = false;
-        com.kisman.cc.util.modules.CustomMainMenu.CUSTOM_SPLASH_FONT = false;
-        com.kisman.cc.util.modules.CustomMainMenu.PARTICLES = false;
-    }
 }

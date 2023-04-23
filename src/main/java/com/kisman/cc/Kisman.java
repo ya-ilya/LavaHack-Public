@@ -59,7 +59,6 @@ public class Kisman {
     public static final Logger LOGGER = LogManager.getLogger(NAME);
 
     public static boolean allowToConfiguredAnotherClients = true, remapped = false;
-    public static boolean canUseImprAstolfo = false;
 
     public boolean init = false;
 
@@ -204,5 +203,9 @@ public class Kisman {
             Desktop desktop = Desktop.getDesktop();
             if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) desktop.browse(new URI(link));
         } catch (IOException | URISyntaxException e) {e.printStackTrace();}
+    }
+
+    public static boolean canUseImplAstolfo() {
+        return Config.instance.astolfoColorMode.checkValString(Config.AstolfoColorMode.Impr.name());
     }
 }

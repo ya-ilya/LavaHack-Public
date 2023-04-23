@@ -2,13 +2,10 @@ package com.kisman.cc.event;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
-import com.kisman.cc.event.events.Render2DEvent;
 import com.kisman.cc.event.events.TotemPopEvent;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.client.Config;
-import com.kisman.cc.module.client.CustomMainMenu;
 import com.kisman.cc.module.combat.AutoRer;
-import com.kisman.cc.module.player.ElytraEquip;
 import com.kisman.cc.util.TickRateUtil;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
@@ -17,14 +14,9 @@ import net.minecraft.network.play.server.SPacketChat;
 import net.minecraft.network.play.server.SPacketEntityStatus;
 import net.minecraft.network.play.server.SPacketRespawn;
 import net.minecraftforge.client.event.ClientChatEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 
 public class EventProcessor {
@@ -34,12 +26,7 @@ public class EventProcessor {
         MinecraftForge.EVENT_BUS.register(this);
         Kisman.EVENT_BUS.subscribe(totemPopListener);
         Kisman.EVENT_BUS.subscribe(TickRateUtil.INSTANCE.packetListener);
-        Kisman.EVENT_BUS.subscribe(packetListener);
-    }
-
-    @SubscribeEvent
-    public void onEntityJoinWorldEvent(EntityJoinWorldEvent event) {
-        if(Kisman.instance.aiImpr != null) Kisman.instance.aiImpr.onEntityJoinWorld(event);
+        Kisman.EVENT_BUS.subscribe(packetReceiveListener);
     }
 
     @SubscribeEvent
@@ -60,34 +47,6 @@ public class EventProcessor {
         if (AutoRer.instance.lagProtect.getValBoolean()) disableCa();
     }
 
-    @SubscribeEvent
-    public void onKey(KeyInputEvent event) {
-        Kisman.EVENT_BUS.post(this);
-    }
-
-    @SubscribeEvent
-    public void onTick(TickEvent.ClientTickEvent event) {
-        Kisman.EVENT_BUS.post(this);
-        if(CustomMainMenu.instance != null) com.kisman.cc.util.modules.CustomMainMenu.update();
-        if(ElytraEquip.instance != null) ElytraEquip.instance.updateState();
-        if(Config.instance != null) Kisman.canUseImprAstolfo = Config.instance.astolfoColorMode.checkValString(Config.AstolfoColorMode.Impr.name());
-    }
-
-    @SubscribeEvent
-    public void onRender(RenderGameOverlayEvent event) {
-        Kisman.EVENT_BUS.post(this);
-    }
-
-    @SubscribeEvent
-    public void onRenderText(RenderGameOverlayEvent.Text event) {
-        Kisman.EVENT_BUS.post(new Render2DEvent(event.getPartialTicks()));
-    }
-
-    @SubscribeEvent
-    public void onRenderWorld(RenderWorldLastEvent event) {
-        Kisman.EVENT_BUS.post(this);
-    }
-
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onChatMessage(ClientChatEvent event) {
         if(event.getMessage().startsWith(Kisman.instance.commandManager.cmdPrefixStr)) {
@@ -99,7 +58,7 @@ public class EventProcessor {
     }
 
     @EventHandler
-    private final Listener<PacketEvent.Receive> packetListener = new Listener<>(event -> {
+    private final Listener<PacketEvent.Receive> packetReceiveListener = new Listener<>(event -> {
         if(event.getPacket() instanceof SPacketRespawn && AutoRer.instance.lagProtect.getValBoolean()) disableCa();
         if(event.getPacket() instanceof SPacketChat && !Kisman.allowToConfiguredAnotherClients && Config.instance.configurate.getValBoolean()) {
             SPacketChat packet = (SPacketChat) event.getPacket();

@@ -9,7 +9,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.UUID;
 
 /* Store real durability inside special NBTTagCompound */
-
 @SideOnly(Side.CLIENT)
 public class SpecialTagCompound extends NBTTagCompound {
 

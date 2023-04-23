@@ -77,7 +77,6 @@ dependencies {
     library group: 'com.sun.net.httpserver', name: 'http', version: '20070405'
 
     library group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jdk8", version: "$kotlin_version"
-    library group: "org.jetbrains.kotlin", name: "kotlin-reflect", version: "$kotlin_version"
     library group: "org.jetbrains", name: "annotations", version: "$annotations_version"
 
     implementation configurations.library

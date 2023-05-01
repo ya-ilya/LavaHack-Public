@@ -38,6 +38,7 @@ public abstract class Command {
 	public void setExecute(String execute) {
 		this.execute = execute;
 	}
+
 	public static void message(String message) {
 		if(mc.currentScreen instanceof ConsoleGui) new ConsoleMessageEvent(TextFormatting.GRAY + "[" + TextFormatting.WHITE + Kisman.getName() + TextFormatting.GRAY + "] " + message).post();
 		else ChatUtils.message(message);

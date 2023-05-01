@@ -27,9 +27,9 @@ public class TpCommand extends Command {
 
             //tp to coord
 
-            int x = getCoord(args[0]);
-            int y = getCoord(args[1]);
-            int z = getCoord(args[2]);
+            int x = parseCoordinate(args[0]);
+            int y = parseCoordinate(args[1]);
+            int z = parseCoordinate(args[2]);
 
             mc.player.connection.sendPacket(new CPacketPlayer.Position(x, y, z, false));
             mc.player.connection.sendPacket(new CPacketPlayer.Position(x, y, z, true));
@@ -62,7 +62,7 @@ public class TpCommand extends Command {
         return "tp <x> <y> <z> or tp <player nickname>";
     }
 
-    private int getCoord(String str) {
+    private int parseCoordinate(String str) {
         if(str.matches(regex1)) {
             return -(Integer.parseInt(str));
         } else if(str.matches(regex2)) {

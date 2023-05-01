@@ -3,7 +3,6 @@ package com.kisman.cc.util;
 import com.kisman.cc.module.render.NameTags;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import com.kisman.cc.util.customfont.norules.CFontRenderer;
-import com.kisman.cc.util.render.objects.Vec3dSimple;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -472,7 +471,7 @@ public class RenderUtil {
         glPopMatrix();
     }
 
-    public static void drawBlockESP(Vec3dSimple pos, float red, float green, float blue) {
+    public static void drawBlockESP(Vec3d pos, float red, float green, float blue) {
         glPushMatrix();
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

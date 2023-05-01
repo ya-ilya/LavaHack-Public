@@ -55,6 +55,8 @@ public class CommandManager {
 	@SubscribeEvent
 	public void onKeyPressed(InputEvent.KeyInputEvent event) {
 		if (Wrapper.INSTANCE.mc().currentScreen != null) return;
-		for(Command cmd : commands) if(cmd.getKey() == Keyboard.getEventKey()) Kisman.instance.commandManager.runCommand("." + cmd.getExecute());
+		for(Command cmd : commands) if(cmd.getKey() == Keyboard.getEventKey()) {
+			Kisman.instance.commandManager.runCommand("." + cmd.getExecute());
+		}
 	}
 }

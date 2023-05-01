@@ -80,7 +80,11 @@ public class Module {
 
 	private void disable() {
 		for (Listener<?> listener : listeners) {
-			Kisman.EVENT_BUS.unsubscribe(listener);
+			try {
+				Kisman.EVENT_BUS.unsubscribe(listener);
+			} catch (Exception ignored) {
+
+			}
 		}
 
 		if (subscribes) MinecraftForge.EVENT_BUS.unregister(this);

@@ -1,5 +1,15 @@
 <h1 align="center">💸🛠️ LavaHack Public</h1>
 
+<div align="center">
+
+![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/TheKisDevs/LavaHack-Public?color=royalblue)
+![Build Status](https://img.shields.io/github/actions/workflow/status/TheKisDevs/LavaHack-Public/build.yml?branch=main&logo=gradle)
+[![Discord](https://img.shields.io/discord/955736148091748393?color=skyblue&logo=discord&logoColor=white&label=discord)](https://discord.gg/FvhWJVbGKW)
+![GitHub Repo Size](https://img.shields.io/github/repo-size/TheKisDevs/LavaHack-Public)
+![Lines Of Code](https://img.shields.io/tokei/lines/github/TheKisDevs/LavaHack-Public?color=red&label=lines%20of%20code)
+
+</div>
+
 **LavaHack Public** is leaked version of [LavaHack](https://github.com/TheKisDevs/LavaHack), but any pull requests are welcome
 
 - Version of minecraft: **1.12.2**

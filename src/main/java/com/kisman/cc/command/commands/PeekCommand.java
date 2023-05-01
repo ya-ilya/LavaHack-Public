@@ -80,7 +80,7 @@ public class PeekCommand extends Command {
                     stack.getTagCompound().setString("author", "No author");
                 }
 
-                if(! stack.getTagCompound().hasKey("pages", 9)) {
+                if(!stack.getTagCompound().hasKey("pages", 9)) {
                     ChatUtils.error("Book has no data");
 
                     return;

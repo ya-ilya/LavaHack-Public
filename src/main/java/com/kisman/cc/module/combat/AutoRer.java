@@ -277,7 +277,9 @@ public class AutoRer extends Module {
         rotating = false;
         renderPos = null;
 
-        if(!threadMode.getValString().equalsIgnoreCase("None")) processMultiThreading();
+        if(!threadMode.getValString().equalsIgnoreCase("None")) {
+            processMultiThreading();
+        }
     }
 
     public void onDisable() {
@@ -296,36 +298,56 @@ public class AutoRer extends Module {
     }
 
     private void processMultiThreading() {
-        if(threadMode.getValString().equalsIgnoreCase("While")) handleWhile();
-        else if(!threadMode.getValString().equalsIgnoreCase("None")) handlePool(false);
+        switch (threadMode.getValString()) {
+            case "None":
+                break;
+            case "While":
+                handleWhile();
+                break;
+            default:
+                handlePool(false);
+                break;
+        }
     }
 
-    private ScheduledExecutorService getExecutor() {
+    private ScheduledExecutorService createExecutorService() {
         final ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
         service.scheduleAtFixedRate(RAutoRer.getInstance(this), 0L, this.threadDelay.getValLong(), TimeUnit.MILLISECONDS);
         return service;
     }
 
     private void handleWhile() {
-        if(thread == null || thread.isInterrupted() || thread.isAlive() || (synsTimer.passedMillis(threadSynsValue.getValLong()) &&threadSyns.getValBoolean())) {
-            if(thread == null) thread = new Thread(RAutoRer.getInstance(this));
-            else if(synsTimer.passedMillis(threadSynsValue.getValLong()) && !shouldInterrupt.get() && threadSyns.getValBoolean()) {
-                shouldInterrupt.set(true);
-                synsTimer.reset();
-                return;
-            }
-            if(thread != null && (thread.isInterrupted() || !thread.isAlive())) thread = new Thread(RAutoRer.getInstance(this));
-            if(thread != null && thread.getState().equals(Thread.State.NEW)) {
-                try {thread.start();} catch (Exception ignored) {}
-                synsTimer.reset();
-            }
+        if (thread != null && !thread.isInterrupted() && !thread.isAlive() && (!synsTimer.passedMillis(threadSynsValue.getValLong()) || !threadSyns.getValBoolean())) {
+            return;
+        }
+
+        if(thread == null) {
+            thread = new Thread(RAutoRer.getInstance(this));
+        } else if(synsTimer.passedMillis(threadSynsValue.getValLong()) && !shouldInterrupt.get() && threadSyns.getValBoolean()) {
+            shouldInterrupt.set(true);
+            synsTimer.reset();
+            return;
+        }
+
+        if(thread != null && (thread.isInterrupted() || !thread.isAlive())) {
+            thread = new Thread(RAutoRer.getInstance(this));
+        }
+
+        if(thread != null && thread.getState().equals(Thread.State.NEW)) {
+            try {
+                thread.start();
+            } catch (Exception ignored) {}
+            synsTimer.reset();
         }
     }
 
     private void handlePool(boolean justDoIt) {
         if(justDoIt || executor == null || executor.isTerminated() || executor.isShutdown() || (synsTimer.passedMillis(threadSynsValue.getValLong()) && threadSyns.getValBoolean())) {
-            if(executor != null) executor.shutdown();
-            executor = getExecutor();
+            if(executor != null) {
+                executor.shutdown();
+            }
+
+            executor = createExecutorService();
             synsTimer.reset();
         }
     }
@@ -333,39 +355,81 @@ public class AutoRer extends Module {
     public void update() {
         if(mc.player == null || mc.world == null || mc.isGamePaused) return;
 
+        updateRenderTimer();
+
+        currentTarget = EntityUtil.getTarget(targetRange.getValFloat());
+
+        updateThreads();
+        updateDisplayInfo();
+        updateCalculation();
+        updateStart();
+    }
+
+    private void updateRenderTimer() {
         if(renderTimer.passedMillis(clearDelay.getValLong())) {
             placedList.clear();
             renderTimer.reset();
             renderPos = null;
         }
+    }
 
-        currentTarget = EntityUtil.getTarget(targetRange.getValFloat());
-
+    private void updateThreads() {
         if(!lastThreadMode.equalsIgnoreCase(threadMode.getValString())) {
-            if (this.executor != null) this.executor.shutdown();
-            if (this.thread != null) this.shouldInterrupt.set(true);
+            if (this.executor != null) {
+                this.executor.shutdown();
+            }
+
+            if (this.thread != null) {
+                this.shouldInterrupt.set(true);
+            }
+
             lastThreadMode = threadMode.getValString();
         }
+    }
 
-        if(currentTarget == null) return;
-        else super.setDisplayInfo("[" + currentTarget.getName() + " | Thread: " + threadMode.getValString() + "]");
-
-        calc: {
-            if (fastCalc.getValBoolean() && calcTimer.passedMillis(calcDelay.getValLong())) {
-                if (threadCalc.getValBoolean() && !threadMode.getValString().equalsIgnoreCase("None")) break calc;
-                doCalculatePlace();
-                if (placePos != null) if (!mc.world.getBlockState(placePos.getBlockPos()).getBlock().equals(Blocks.OBSIDIAN) && !mc.world.getBlockState(placePos.getBlockPos()).getBlock().equals(Blocks.BEDROCK)) placePos = null;
-                calcTimer.reset();
-            }
+    private void updateDisplayInfo() {
+        if (currentTarget != null) {
+            super.setDisplayInfo("[" + currentTarget.getName() + " | Thread: " + threadMode.getValString() + "]");
         }
+    }
 
-        if(threadMode.getValString().equalsIgnoreCase("None")) {
-            if (manualBreaker.getValBoolean()) manualBreaker();
-            if (motionCrystal.getValBoolean()) return;
-            else if (motionCalc.getValBoolean() && fastCalc.getValBoolean()) return;
-            if (multiplication.getValInt() == 1) doAutoRerLogic(null, false);
-            else for (int i = 0; i < multiplication.getValInt(); i++) doAutoRerLogic(null, false);
-        } else processMultiThreading();
+    private void updateCalculation() {
+        if (fastCalc.getValBoolean() && calcTimer.passedMillis(calcDelay.getValLong())) {
+            if (threadCalc.getValBoolean() && !threadMode.getValString().equalsIgnoreCase("None")) {
+                return;
+            }
+            doCalculatePlace();
+
+            if (placePos != null) {
+                if (!mc.world.getBlockState(placePos.getBlockPos()).getBlock().equals(Blocks.OBSIDIAN) && !mc.world.getBlockState(placePos.getBlockPos()).getBlock().equals(Blocks.BEDROCK)) {
+                    placePos = null;
+                }
+            }
+
+            calcTimer.reset();
+        }
+    }
+
+    private void updateStart() {
+        if (threadMode.getValString().equals("None")) {
+            if (manualBreaker.getValBoolean()) {
+                manualBreaker();
+            }
+
+            if (motionCrystal.getValBoolean()) {
+                return;
+            }
+
+            if (motionCalc.getValBoolean() && fastCalc.getValBoolean()) {
+                return;
+            }
+
+            for (int i = 0; i < multiplication.getValInt(); i++) {
+                doAutoRerLogic(null, false);
+            }
+        } else {
+            processMultiThreading();
+        }
     }
 
     public synchronized void doAutoRerForThread() {
@@ -376,8 +440,9 @@ public class AutoRer extends Module {
             calcTimer.reset();
         }
 
-        if(multiplication.getValInt() == 1) doAutoRerLogic(null, true);
-        else for(int i = 0; i < multiplication.getValInt(); i++) doAutoRerLogic(null, true);
+        for(int i = 0; i < multiplication.getValInt(); i++) {
+            doAutoRerLogic(null, true);
+        }
     }
 
     private void manualBreaker() {
@@ -404,8 +469,10 @@ public class AutoRer extends Module {
             doCalculatePlace();
             calcTimer.reset();
         }
-        if(multiplication.getValInt() == 1) doAutoRerLogic(event, false);
-        else for(int i = 0; i < multiplication.getValInt(); i++) doAutoRerLogic(event, false);
+
+        for(int i = 0; i < multiplication.getValInt(); i++) {
+            doAutoRerLogic(event, false);
+        }
     });
 
     private void doAutoRerLogic(PlayerMotionUpdateEvent event, boolean thread) {
@@ -420,152 +487,150 @@ public class AutoRer extends Module {
 
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
-        if(targetCharms.getValBoolean()) {
-            if(currentTarget != null) {
-                try {
-                    {
-                        FramebufferShader framebufferShader = null;
-                        boolean itemglow = false, gradient = false, glow = false, outline = false;
+        if(targetCharms.getValBoolean() && currentTarget != null) {
+            try {
+                FramebufferShader framebufferShader = null;
+                boolean itemglow = false, gradient = false, glow = false, outline = false;
 
-                        switch (targetCharmsShader.getValString()) {
-                            case "AQUA":
-                                framebufferShader = AquaShader.AQUA_SHADER;
-                                break;
-                            case "RED":
-                                framebufferShader = RedShader.RED_SHADER;
-                                break;
-                            case "SMOKE":
-                                framebufferShader = SmokeShader.SMOKE_SHADER;
-                                break;
-                            case "FLOW":
-                                framebufferShader = FlowShader.FLOW_SHADER;
-                                break;
-                            case "ITEMGLOW":
-                                framebufferShader = ItemShader.ITEM_SHADER;
-                                itemglow = true;
-                                break;
-                            case "PURPLE":
-                                framebufferShader = PurpleShader.PURPLE_SHADER;
-                                break;
-                            case "GRADIENT":
-                                framebufferShader = GradientOutlineShader.INSTANCE;
-                                gradient = true;
-                                break;
-                            case "UNU":
-                                framebufferShader = UnuShader.UNU_SHADER;
-                                break;
-                            case "GLOW":
-                                framebufferShader = GlowShader.GLOW_SHADER;
-                                glow = true;
-                                break;
-                            case "OUTLINE":
-                                framebufferShader = OutlineShader.OUTLINE_SHADER;
-                                outline = true;
-                                break;
-                            case "BlueFlames":
-                                framebufferShader = BlueFlamesShader.BlueFlames_SHADER;
-                                break;
-                            case "CodeX":
-                                framebufferShader = CodeXShader.CodeX_SHADER;
-                                break;
-                            case "Crazy":
-                                framebufferShader = CrazyShader.CRAZY_SHADER;
-                                break;
-                            case "Golden":
-                                framebufferShader = GoldenShader.GOLDEN_SHADER;
-                                break;
-                            case "HideF":
-                                framebufferShader = HideFShader.HideF_SHADER;
-                                break;
-                            case "HolyFuck":
-                                framebufferShader = HolyFuckShader.HolyFuckF_SHADER;
-                                break;
-                            case "HotShit":
-                                framebufferShader = HotShitShader.HotShit_SHADER;
-                                break;
-                            case "Kfc":
-                                framebufferShader = KfcShader.KFC_SHADER;
-                                break;
-                            case "Sheldon":
-                                framebufferShader = SheldonShader.SHELDON_SHADER;
-                                break;
-                            case "Smoky":
-                                framebufferShader = SmokyShader.SMOKY_SHADER;
-                                break;
-                            case "SNOW":
-                                framebufferShader = SnowShader.SNOW_SHADER;
-                                break;
-                            case "Techno":
-                                framebufferShader = TechnoShader.TECHNO_SHADER;
-                                break;
-                        }
+                switch (targetCharmsShader.getValString()) {
+                    case "AQUA":
+                        framebufferShader = AquaShader.AQUA_SHADER;
+                        break;
+                    case "RED":
+                        framebufferShader = RedShader.RED_SHADER;
+                        break;
+                    case "SMOKE":
+                        framebufferShader = SmokeShader.SMOKE_SHADER;
+                        break;
+                    case "FLOW":
+                        framebufferShader = FlowShader.FLOW_SHADER;
+                        break;
+                    case "ITEMGLOW":
+                        framebufferShader = ItemShader.ITEM_SHADER;
+                        itemglow = true;
+                        break;
+                    case "PURPLE":
+                        framebufferShader = PurpleShader.PURPLE_SHADER;
+                        break;
+                    case "GRADIENT":
+                        framebufferShader = GradientOutlineShader.INSTANCE;
+                        gradient = true;
+                        break;
+                    case "UNU":
+                        framebufferShader = UnuShader.UNU_SHADER;
+                        break;
+                    case "GLOW":
+                        framebufferShader = GlowShader.GLOW_SHADER;
+                        glow = true;
+                        break;
+                    case "OUTLINE":
+                        framebufferShader = OutlineShader.OUTLINE_SHADER;
+                        outline = true;
+                        break;
+                    case "BlueFlames":
+                        framebufferShader = BlueFlamesShader.BlueFlames_SHADER;
+                        break;
+                    case "CodeX":
+                        framebufferShader = CodeXShader.CodeX_SHADER;
+                        break;
+                    case "Crazy":
+                        framebufferShader = CrazyShader.CRAZY_SHADER;
+                        break;
+                    case "Golden":
+                        framebufferShader = GoldenShader.GOLDEN_SHADER;
+                        break;
+                    case "HideF":
+                        framebufferShader = HideFShader.HideF_SHADER;
+                        break;
+                    case "HolyFuck":
+                        framebufferShader = HolyFuckShader.HolyFuckF_SHADER;
+                        break;
+                    case "HotShit":
+                        framebufferShader = HotShitShader.HotShit_SHADER;
+                        break;
+                    case "Kfc":
+                        framebufferShader = KfcShader.KFC_SHADER;
+                        break;
+                    case "Sheldon":
+                        framebufferShader = SheldonShader.SHELDON_SHADER;
+                        break;
+                    case "Smoky":
+                        framebufferShader = SmokyShader.SMOKY_SHADER;
+                        break;
+                    case "SNOW":
+                        framebufferShader = SnowShader.SNOW_SHADER;
+                        break;
+                    case "Techno":
+                        framebufferShader = TechnoShader.TECHNO_SHADER;
+                        break;
+                }
 
-                        if (framebufferShader == null) return;
+                if (framebufferShader == null) return;
 
-                        framebufferShader.animationSpeed = targetCharmsAnimationSpeed.getValInt();
+                framebufferShader.animationSpeed = targetCharmsAnimationSpeed.getValInt();
 
-                        GlStateManager.matrixMode(5889);
-                        GlStateManager.pushMatrix();
-                        GlStateManager.matrixMode(5888);
-                        GlStateManager.pushMatrix();
-                        if (itemglow) {
-                            ((ItemShader) framebufferShader).red = targetCharmsColor.getColour().r1;
-                            ((ItemShader) framebufferShader).green = targetCharmsColor.getColour().g1;
-                            ((ItemShader) framebufferShader).blue = targetCharmsColor.getColour().b1;
-                            ((ItemShader) framebufferShader).radius = targetCharmsRadius.getValFloat();
-                            ((ItemShader) framebufferShader).quality = targetCharmsQuality.getValFloat();
-                            ((ItemShader) framebufferShader).blur = targetCharmsBlur.getValBoolean();
-                            ((ItemShader) framebufferShader).mix = targetCharmsMix.getValFloat();
-                            ((ItemShader) framebufferShader).alpha = 1f;
-                            ((ItemShader) framebufferShader).useImage = false;
-                        } else if (gradient) {
-                            ((GradientOutlineShader) framebufferShader).color = targetCharmsColor.getColour().getColor();
-                            ((GradientOutlineShader) framebufferShader).radius = targetCharmsRadius.getValFloat();
-                            ((GradientOutlineShader) framebufferShader).quality = targetCharmsQuality.getValFloat();
-                            ((GradientOutlineShader) framebufferShader).gradientAlpha = targetCharmsGradientAlpha.getValBoolean();
-                            ((GradientOutlineShader) framebufferShader).alphaOutline = targetCharmsAlphaGradient.getValInt();
-                            ((GradientOutlineShader) framebufferShader).duplicate = targetCharmsDuplicateOutline.getValFloat();
-                            ((GradientOutlineShader) framebufferShader).moreGradient = targetCharmsMoreGradientOutline.getValFloat();
-                            ((GradientOutlineShader) framebufferShader).creepy = targetCharmsCreepyOutline.getValFloat();
-                            ((GradientOutlineShader) framebufferShader).alpha = targetCharmsAlpha.getValFloat();
-                            ((GradientOutlineShader) framebufferShader).numOctaves = targetCharmsNumOctavesOutline.getValInt();
-                        } else if(glow) {
-                            ((GlowShader) framebufferShader).red = targetCharmsColor.getColour().r1;
-                            ((GlowShader) framebufferShader).green = targetCharmsColor.getColour().g1;
-                            ((GlowShader) framebufferShader).blue = targetCharmsColor.getColour().b1;
-                            ((GlowShader) framebufferShader).radius = targetCharmsRadius.getValFloat();
-                            ((GlowShader) framebufferShader).quality = targetCharmsQuality.getValFloat();
-                        } else if(outline) {
-                            ((OutlineShader) framebufferShader).red = targetCharmsColor.getColour().r1;
-                            ((OutlineShader) framebufferShader).green = targetCharmsColor.getColour().g1;
-                            ((OutlineShader) framebufferShader).blue = targetCharmsColor.getColour().b1;
-                            ((OutlineShader) framebufferShader).radius = targetCharmsRadius.getValFloat();
-                            ((OutlineShader) framebufferShader).quality = targetCharmsQuality.getValFloat();
-                        }
-                        framebufferShader.startDraw(event.getPartialTicks());
-                        for (Entity entity : mc.world.loadedEntityList) {
-                            if (entity == mc.player || entity == mc.getRenderViewEntity() || !entity.equals(currentTarget)) continue;
-                            Vec3d vector = MathUtil.getInterpolatedRenderPos(entity, event.getPartialTicks());
-                            Objects.requireNonNull(mc.getRenderManager().getEntityRenderObject(entity)).doRender(entity, vector.x, vector.y, vector.z, entity.rotationYaw, event.getPartialTicks());
-                        }
-                        framebufferShader.stopDraw();
-                        if (gradient) ((GradientOutlineShader) framebufferShader).update(targetCharmsSpeedOutline.getValDouble());
-                        GlStateManager.color(1f, 1f, 1f);
-                        GlStateManager.matrixMode(5889);
-                        GlStateManager.popMatrix();
-                        GlStateManager.matrixMode(5888);
-                        GlStateManager.popMatrix();
-                    }
-                } catch (Exception ignored) {
-                    if(Config.instance.antiOpenGLCrash.getValBoolean() || lagProtect.getValBoolean()) {
-                        super.setToggled(false);
-                        ChatUtils.error("[AutoRer] Error, Config -> AntiOpenGLCrash disabled AutoRer");
-                    }
+                GlStateManager.matrixMode(5889);
+                GlStateManager.pushMatrix();
+                GlStateManager.matrixMode(5888);
+                GlStateManager.pushMatrix();
+                if (itemglow) {
+                    ((ItemShader) framebufferShader).red = targetCharmsColor.getColour().r1;
+                    ((ItemShader) framebufferShader).green = targetCharmsColor.getColour().g1;
+                    ((ItemShader) framebufferShader).blue = targetCharmsColor.getColour().b1;
+                    ((ItemShader) framebufferShader).radius = targetCharmsRadius.getValFloat();
+                    ((ItemShader) framebufferShader).quality = targetCharmsQuality.getValFloat();
+                    ((ItemShader) framebufferShader).blur = targetCharmsBlur.getValBoolean();
+                    ((ItemShader) framebufferShader).mix = targetCharmsMix.getValFloat();
+                    ((ItemShader) framebufferShader).alpha = 1f;
+                    ((ItemShader) framebufferShader).useImage = false;
+                } else if (gradient) {
+                    ((GradientOutlineShader) framebufferShader).color = targetCharmsColor.getColour().getColor();
+                    ((GradientOutlineShader) framebufferShader).radius = targetCharmsRadius.getValFloat();
+                    ((GradientOutlineShader) framebufferShader).quality = targetCharmsQuality.getValFloat();
+                    ((GradientOutlineShader) framebufferShader).gradientAlpha = targetCharmsGradientAlpha.getValBoolean();
+                    ((GradientOutlineShader) framebufferShader).alphaOutline = targetCharmsAlphaGradient.getValInt();
+                    ((GradientOutlineShader) framebufferShader).duplicate = targetCharmsDuplicateOutline.getValFloat();
+                    ((GradientOutlineShader) framebufferShader).moreGradient = targetCharmsMoreGradientOutline.getValFloat();
+                    ((GradientOutlineShader) framebufferShader).creepy = targetCharmsCreepyOutline.getValFloat();
+                    ((GradientOutlineShader) framebufferShader).alpha = targetCharmsAlpha.getValFloat();
+                    ((GradientOutlineShader) framebufferShader).numOctaves = targetCharmsNumOctavesOutline.getValInt();
+                } else if(glow) {
+                    ((GlowShader) framebufferShader).red = targetCharmsColor.getColour().r1;
+                    ((GlowShader) framebufferShader).green = targetCharmsColor.getColour().g1;
+                    ((GlowShader) framebufferShader).blue = targetCharmsColor.getColour().b1;
+                    ((GlowShader) framebufferShader).radius = targetCharmsRadius.getValFloat();
+                    ((GlowShader) framebufferShader).quality = targetCharmsQuality.getValFloat();
+                } else if(outline) {
+                    ((OutlineShader) framebufferShader).red = targetCharmsColor.getColour().r1;
+                    ((OutlineShader) framebufferShader).green = targetCharmsColor.getColour().g1;
+                    ((OutlineShader) framebufferShader).blue = targetCharmsColor.getColour().b1;
+                    ((OutlineShader) framebufferShader).radius = targetCharmsRadius.getValFloat();
+                    ((OutlineShader) framebufferShader).quality = targetCharmsQuality.getValFloat();
+                }
+                framebufferShader.startDraw(event.getPartialTicks());
+                for (Entity entity : mc.world.loadedEntityList) {
+                    if (entity == mc.player || entity == mc.getRenderViewEntity() || !entity.equals(currentTarget)) continue;
+                    Vec3d vector = MathUtil.getInterpolatedRenderPos(entity, event.getPartialTicks());
+                    Objects.requireNonNull(mc.getRenderManager().getEntityRenderObject(entity)).doRender(entity, vector.x, vector.y, vector.z, entity.rotationYaw, event.getPartialTicks());
+                }
+                framebufferShader.stopDraw();
+                if (gradient) ((GradientOutlineShader) framebufferShader).update(targetCharmsSpeedOutline.getValDouble());
+                GlStateManager.color(1f, 1f, 1f);
+                GlStateManager.matrixMode(5889);
+                GlStateManager.popMatrix();
+                GlStateManager.matrixMode(5888);
+                GlStateManager.popMatrix();
+            } catch (Exception ignored) {
+                if(Config.instance.antiOpenGLCrash.getValBoolean() || lagProtect.getValBoolean()) {
+                    super.setToggled(false);
+                    ChatUtils.error("[AutoRer] Error, Config -> AntiOpenGLCrash disabled AutoRer");
                 }
             }
         }
 
-        if(render.getValBoolean()) if(placePos != null) renderer.onRenderWorld(movingLength.getValFloat(), fadeLength.getValFloat(), renderer_, placePos, text.getValBoolean());
+        if(render.getValBoolean() && placePos != null) {
+            renderer.onRenderWorld(movingLength.getValFloat(), fadeLength.getValFloat(), renderer_, placePos, text.getValBoolean());
+        }
     }
 
     private void attackCrystalPredict(int entityID, BlockPos pos) {
@@ -596,12 +661,18 @@ public class AutoRer extends Module {
                     if (mc.player.getDistance(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5) >= (canSee ? breakRange.getValDouble() : breakWallRange.getValDouble())) break;
 
                     if(instantCalc.getValBoolean() && currentTarget != null) {
-                        float targetDamage = CrystalUtils.calculateDamage(pos, currentTarget, terrain.getValBoolean());
-                        if(targetDamage > minDMG.getValInt() || targetDamage * lethalMult.getValDouble() > currentTarget.getHealth() + currentTarget.getAbsorptionAmount() || InventoryUtil.isArmorUnderPercent(currentTarget, armorBreaker.getValInt())) {
-                            float selfDamage = CrystalUtils.calculateDamage(pos, mc.player, terrain.getValBoolean());
-                            if(selfDamage <= maxSelfDMG.getValInt() && selfDamage + 2 <= mc.player.getHealth() + mc.player.getAbsorptionAmount() && selfDamage < targetDamage) {
+                        float targetDamage = calculateCrystalDamage(pos, currentTarget);
+
+                        if (checkTargetDamage(targetDamage)) {
+                            float selfDamage = calculateCrystalDamage(pos, mc.player);
+
+                            if (checkSelfDamage(selfDamage, targetDamage)) {
                                 toRemove = placeInfo;
-                                if (inhibit.getValBoolean()) try {lastHitEntity = mc.world.getEntityByID(packet.getEntityID());} catch (Exception ignored) {}
+                                if (inhibit.getValBoolean()) try {
+                                    lastHitEntity = mc.world.getEntityByID(packet.getEntityID());
+                                } catch (Exception ignored) {
+
+                                }
                                 attackCrystalPredict(packet.getEntityID(), pos);
                                 swing();
                             }
@@ -637,7 +708,11 @@ public class AutoRer extends Module {
             CPacketUseEntity packet = (CPacketUseEntity) event.getPacket();
             if(packet.getAction().equals(CPacketUseEntity.Action.ATTACK) && packet.getEntityFromWorld(mc.world) instanceof EntityEnderCrystal) {
                 Objects.requireNonNull(packet.getEntityFromWorld(mc.world)).setDead();
-                try {mc.world.removeEntityFromWorld(packet.entityId);} catch(Exception ignored) {}
+                try {
+                    mc.world.removeEntityFromWorld(packet.entityId);
+                } catch(Exception ignored) {
+
+                }
             }
         }
     });
@@ -650,7 +725,9 @@ public class AutoRer extends Module {
         try {
             calculatePlace();
             if(recalc.getValBoolean() && placePos == null) recalculatePlace();
-        } catch (Exception e) {if(lagProtect.getValBoolean()) super.setToggled(false);}
+        } catch (Exception exception) {
+            lagProtect(exception);
+        }
     }
 
     private void recalculatePlace() {
@@ -671,7 +748,7 @@ public class AutoRer extends Module {
 
         validPos.forEach(pos -> {
             if(CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget, terrain.getValBoolean()) > maxDamage[0]) {
-                maxDamage[0] = CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget, terrain.getValBoolean());
+                maxDamage[0] = calculateCrystalDamage(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget);
                 placePos[0] = pos;
             }
         });
@@ -684,30 +761,38 @@ public class AutoRer extends Module {
         BlockPos placePos = null;
         List<BlockPos> sphere = CrystalUtils.getSphere(placeRange.getValFloat(), true, false);
 
-        if(calcDistSort.getValBoolean()) {
+        if (calcDistSort.getValBoolean()) {
             Collections.sort(sphere);
             Collections.reverse(sphere);
         }
 
-        for(int size = sphere.size(), i = 0; i < size; ++i) {
-            BlockPos pos = sphere.get(i);
+        for (BlockPos pos : sphere) {
+            if (thirdCheck.getValBoolean() && !isPosValid(pos)) {
+                continue;
+            }
 
-            if(thirdCheck.getValBoolean() && !isPosValid(pos)) continue;
-            if(CrystalUtils.canPlaceCrystal(pos, secondCheck.getValBoolean(), true, multiPlace.getValBoolean(), firePlace.getValBoolean())) {
-                float targetDamage = CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget, terrain.getValBoolean());
+            if (!CrystalUtils.canPlaceCrystal(pos, secondCheck.getValBoolean(), true, multiPlace.getValBoolean(), firePlace.getValBoolean())) {
+                continue;
+            }
 
-                if(targetDamage > minDMG.getValInt() || targetDamage * lethalMult.getValDouble() > currentTarget.getHealth() + currentTarget.getAbsorptionAmount() || InventoryUtil.isArmorUnderPercent(currentTarget, armorBreaker.getValInt())) {
-                    float selfDamage = CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, mc.player, terrain.getValBoolean());
+            float targetDamage = calculateCrystalDamage(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget);
 
-                    if(selfDamage <= maxSelfDMG.getValInt() && selfDamage + 2 < mc.player.getHealth() + mc.player.getAbsorptionAmount() && selfDamage < targetDamage) {
-                        if(maxDamage <= targetDamage) {
-                            maxDamage = targetDamage;
-                            placePos = pos;
-                        }
-                    }
-                }
+            if (!checkTargetDamage(targetDamage)) {
+                continue;
+            }
+
+            float selfDamage = calculateCrystalDamage(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, mc.player);
+
+            if (!checkSelfDamage(selfDamage, targetDamage)) {
+                continue;
+            }
+
+            if(maxDamage <= targetDamage) {
+                maxDamage = targetDamage;
+                placePos = pos;
             }
         }
+
         this.placePos = placePos == null ? null : AutoRerUtil.Companion.getPlaceInfo(placePos, currentTarget, terrain.getValBoolean());
     }
 
@@ -726,78 +811,134 @@ public class AutoRer extends Module {
         boolean offhand = mc.player.getHeldItemOffhand().getItem().equals(Items.END_CRYSTAL);
         boolean silentBypass = switch_.getValString().equals("SilentBypass");
         int oldSlot = mc.player.inventory.currentItem;
+
+        placeSwitch(bypass, silentBypass, offhand);
+
+        if(mc.player.getHeldItemMainhand().getItem() != Items.END_CRYSTAL && mc.player.getHeldItemOffhand().getItem() != Items.END_CRYSTAL) {
+            return;
+        }
+
+        if(mc.player.isHandActive()) {
+            hand = mc.player.getActiveHand();
+        }
+
+        float[] oldRotations = placeRotate(event, thread);
+
+        placePlaceCrystal(offhand);
+        placeRotatePost(oldRotations);
+        placeSwingPost(bypass, silentBypass, hand, oldSlot);
+    }
+
+    private void placeSwitch(SilentSwitchBypass bypass, boolean silentBypass, boolean offhand) {
+        if (switch_.getValString().equals("None")) {
+            return;
+        }
+
         int crystalSlot = InventoryUtil.findItem(Items.END_CRYSTAL, 0, 9);
 
         if(crystalSlot == -1 && !silentBypass && !offhand) return;
 
         if(mc.player.getHeldItemMainhand().getItem() != Items.END_CRYSTAL && !offhand) {
-            if(switch_.getValString().equals("None")) return;
-            else if ("Normal".equals(switch_.getValString())) InventoryUtil.switchToSlot(crystalSlot, false);
-            else if ("Silent".equals(switch_.getValString())) InventoryUtil.switchToSlot(crystalSlot, true);
-            else if (silentBypass) bypass.doSwitch();
+            switch (switch_.getValString()) {
+                case "Normal":
+                    InventoryUtil.switchToSlot(crystalSlot, false);
+                    break;
+                case "Silent":
+                    InventoryUtil.switchToSlot(crystalSlot, true);
+                    break;
+                default:
+                    if (silentBypass) bypass.doSwitch();
+                    break;
+            }
+        }
+    }
+
+    private void placeSwingPost(SilentSwitchBypass bypass, boolean silentBypass, EnumHand hand, int oldSlot) {
+        if(hand != null) {
+            mc.player.setActiveHand(hand);
         }
 
-        if(mc.player == null) return;
-        if(mc.player.getHeldItemMainhand().getItem() != Items.END_CRYSTAL && mc.player.getHeldItemOffhand().getItem() != Items.END_CRYSTAL) return;
-        if(mc.player.isHandActive()) hand = mc.player.getActiveHand();
+        if(oldSlot != -1 && !silentBypass) {
+            if (switch_.getValString().equals(SwitchMode.Silent.name())) InventoryUtil.switchToSlot(oldSlot, true);
+        } else if (silentBypass) {
+            bypass.doSwitch();
+        }
+    }
 
-        float[] oldRots = new float[] {mc.player.rotationYaw, mc.player.rotationPitch};
+    private float[] placeRotate(PlayerMotionUpdateEvent event, boolean thread) {
+        float[] oldRotations = new float[] {mc.player.rotationYaw, mc.player.rotationPitch};
 
-        if(rotate.getValString().equalsIgnoreCase("Place") || rotate.getValString().equalsIgnoreCase("All") && currentTarget != null) {
+        if (currentTarget == null) return oldRotations;
+
+        if (rotate.getValString().equalsIgnoreCase("Place") || rotate.getValString().equalsIgnoreCase("All")) {
             try {
-                float[] rots = RotationUtils.calcAngle(mc.player.getPositionEyes(mc.getRenderPartialTicks()), new Vec3d((placePos.getBlockPos().getX() + 0.5f), (placePos.getBlockPos().getY() - 0.5f), (placePos.getBlockPos().getZ() + 0.5f)));
+                float[] rotations = RotationUtils.calcAngle(mc.player.getPositionEyes(mc.getRenderPartialTicks()), new Vec3d((placePos.getBlockPos().getX() + 0.5f), (placePos.getBlockPos().getY() - 0.5f), (placePos.getBlockPos().getZ() + 0.5f)));
                 if (!thread) {
                     if (!motionCrystal.getValBoolean()) {
-                        mc.player.rotationYaw = rots[0];
-                        mc.player.rotationPitch = rots[1];
+                        mc.player.rotationYaw = rotations[0];
+                        mc.player.rotationPitch = rotations[1];
                     } else if (event != null) {
-                        event.setYaw(rots[0]);
-                        event.setPitch(rots[1]);
+                        event.setYaw(rotations[0]);
+                        event.setPitch(rotations[1]);
                     }
-                } else if (threadPacketRots.getValBoolean()) mc.player.connection.sendPacket(new CPacketPlayer.Rotation(rots[0], rots[1], mc.player.onGround));
-            } catch (Exception ignored) {}
+                } else if (threadPacketRots.getValBoolean()) {
+                    mc.player.connection.sendPacket(new CPacketPlayer.Rotation(rotations[0], rotations[1], mc.player.onGround));
+                }
+            } catch (Exception ignored) {
+
+            }
         }
 
+        return oldRotations;
+    }
+
+    private void placeRotatePost(float[] rotations) {
+        if((rotate.getValString().equalsIgnoreCase("Place") || rotate.getValString().equalsIgnoreCase("All")) && rotateMode.getValString().equalsIgnoreCase("Silent")) {
+            mc.player.rotationYaw = rotations[0];
+            mc.player.rotationPitch = rotations[1];
+        }
+    }
+
+    private void placePlaceCrystal(boolean offhand) {
         RayTraceResult result = mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + ( double ) mc.player.getEyeHeight(), mc.player.posZ), new Vec3d(( double ) placePos.getBlockPos().getX() + 0.5, ( double ) placePos.getBlockPos().getY() - 0.5, ( double ) placePos.getBlockPos().getZ() + 0.5));
         EnumFacing facing = result == null || result.sideHit == null ? EnumFacing.UP : result.sideHit;
         mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(placePos.getBlockPos(), facing, offhand ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND, 0, 0, 0));
         if(!swing.checkValString(SwingMode.None.name())) mc.player.connection.sendPacket(new CPacketAnimation(swing.getValString().equals(SwingMode.MainHand.name()) ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND));
         placeTimer.reset();
-
         renderPos = placePos;
-
-        if((rotate.getValString().equalsIgnoreCase("Place") || rotate.getValString().equalsIgnoreCase("All")) && rotateMode.getValString().equalsIgnoreCase("Silent")) {
-            mc.player.rotationYaw = oldRots[0];
-            mc.player.rotationPitch = oldRots[1];
-        }
-        if(hand != null) mc.player.setActiveHand(hand);
-        if(oldSlot != -1 && !silentBypass) if (switch_.getValString().equals(SwitchMode.Silent.name())) InventoryUtil.switchToSlot(oldSlot, true);
-        else if(silentBypass) bypass.doSwitch();
     }
 
-    private Entity getCrystalForAntiCevBreaker() {
+    private Entity findCrystalForAntiCevBreaker() {
         Entity crystal = null;
-        String mode = antiCevBreakerMode.getValString();
 
-        if(!mode.equals("None")) {
-            if(mode.equals("Cev") || mode.equals("Both")) {
-                for(Vec3i vec : AntiCevBreakerVectors.Cev.vectors) {
-                    BlockPos pos = mc.player.getPosition().add(vec);
-                    for(Entity entity : mc.world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(pos))) {
-                        if(entity instanceof EntityEnderCrystal) {
-                            crystal = entity;
-                        }
-                    }
-                }
-            }
-            if(mode.equals("Civ") || mode.equals("Both")) {
-                for(Vec3i vec : AntiCevBreakerVectors.Civ.vectors) {
-                    BlockPos pos = mc.player.getPosition().add(vec);
-                    for(Entity entity : mc.world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(pos))) {
-                        if(entity instanceof EntityEnderCrystal) {
-                            crystal = entity;
-                        }
-                    }
+        switch (antiCevBreakerMode.getValString()) {
+            case "Both":
+                crystal = findBothCrystal();
+                break;
+            case "Cev":
+                crystal = findCevCrystal();
+                break;
+            case "Civ":
+                crystal = findCivCrystal();
+                break;
+        }
+
+        return crystal;
+    }
+
+    private Entity findBothCrystal() {
+        Entity crystal = findCevCrystal();
+        return crystal == null ? findCivCrystal() : crystal;
+    }
+
+    private Entity findCevCrystal() {
+        Entity crystal = null;
+
+        for(Vec3i vec : AntiCevBreakerVectors.Cev.vectors) {
+            BlockPos pos = mc.player.getPosition().add(vec);
+            for(Entity entity : mc.world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(pos))) {
+                if(entity instanceof EntityEnderCrystal) {
+                    crystal = entity;
                 }
             }
         }
@@ -805,74 +946,145 @@ public class AutoRer extends Module {
         return crystal;
     }
 
-    private Entity getCrystalWithMaxDamage() {
+    private Entity findCivCrystal() {
+        Entity crystal = null;
+
+        for(Vec3i vec : AntiCevBreakerVectors.Civ.vectors) {
+            BlockPos pos = mc.player.getPosition().add(vec);
+            for(Entity entity : mc.world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(pos))) {
+                if(entity instanceof EntityEnderCrystal) {
+                    crystal = entity;
+                }
+            }
+        }
+
+        return crystal;
+    }
+
+    private Entity findCrystalWithMaxDamage() {
         Entity crystal = null;
         double maxDamage = 0.5;
 
         try {
-            for (int i = 0; i < mc.world.loadedEntityList.size(); ++i) {
-                Entity entity = mc.world.loadedEntityList.get(i);
-                if (entity == null) continue;
+            for (Entity entity : mc.world.loadedEntityList) {
+                if (!(entity instanceof EntityEnderCrystal)) {
+                    continue;
+                }
 
-                if (entity instanceof EntityEnderCrystal && mc.player.getDistance(entity) < (mc.player.canEntityBeSeen(entity) ? breakRange.getValDouble() : breakWallRange.getValDouble())) {
-                    Friend friend = getNearFriendWithMaxDamage(entity);
-                    double targetDamage = CrystalUtils.calculateDamage(mc.world, entity.posX, entity.posY, entity.posZ, currentTarget, terrain.getValBoolean());
+                if (mc.player.getDistance(entity) > (mc.player.canEntityBeSeen(entity) ? breakRange.getValDouble() : breakWallRange.getValDouble())) {
+                    continue;
+                }
 
-                    if (friend != null && !friend_.getValString().equalsIgnoreCase(FriendMode.None.name())) {
-                        if (friend_.getValString().equalsIgnoreCase(FriendMode.AntiTotemPop.name()) && friend.isTotemPopped) return null;
-                        else if (friend.isTotemFailed) return null;
-                        if (friend.damage >= maxFriendDMG.getValInt()) return null;
-                    }
+                if (checkFriend(entity)) {
+                    return null;
+                }
 
-                    if (targetDamage > minDMG.getValInt() || targetDamage * lethalMult.getValDouble() > currentTarget.getHealth() + currentTarget.getAbsorptionAmount() || InventoryUtil.isArmorUnderPercent(currentTarget, armorBreaker.getValInt())) {
-                        double selfDamage = CrystalUtils.calculateDamage(mc.world, entity.posX, entity.posY, entity.posZ, mc.player, terrain.getValBoolean());
+                double targetDamage = calculateCrystalDamage(entity.posX, entity.posY, entity.posZ, currentTarget);
 
-                        if (selfDamage <= maxSelfDMG.getValInt() && selfDamage + 2 <= mc.player.getHealth() + mc.player.getAbsorptionAmount() && selfDamage < targetDamage) {
-                            if (maxDamage <= targetDamage) {
-                                maxDamage = targetDamage;
-                                crystal = entity;
-                            }
-                        }
-                    }
+                if (!checkTargetDamage(targetDamage)) {
+                    continue;
+                }
+
+                double selfDamage = calculateCrystalDamage(entity.posX, entity.posY, entity.posZ, mc.player);
+
+                if (!checkSelfDamage(selfDamage, targetDamage)) {
+                    continue;
+                }
+
+                if (maxDamage <= targetDamage) {
+                    maxDamage = targetDamage;
+                    crystal = entity;
                 }
             }
-        } catch(NullPointerException ignored) {
-            if(lagProtect.getValBoolean()) super.setToggled(false);
+        } catch(Exception exception) {
+            lagProtect(exception);
         }
 
         return crystal;
+    }
+
+    private boolean checkFriend(Entity entity) {
+        Friend friend = getNearFriendWithMaxDamage(entity);
+
+        if (friend != null && !friend_.getValString().equalsIgnoreCase(FriendMode.None.name())) {
+            if (friend_.getValString().equalsIgnoreCase(FriendMode.AntiTotemPop.name()) && friend.isTotemPopped) {
+                return true;
+            } else if (friend.isTotemFailed) {
+                return true;
+            } else return friend.damage >= maxFriendDMG.getValInt();
+        }
+
+        return false;
+    }
+
+    private boolean checkTargetDamage(double damage) {
+        if (damage >= minDMG.getValInt()) {
+            return true;
+        }
+
+        if (damage * lethalMult.getValDouble() > currentTarget.getHealth() + currentTarget.getAbsorptionAmount()) {
+            return true;
+        }
+
+        return InventoryUtil.isArmorUnderPercent(currentTarget, armorBreaker.getValInt());
+    }
+
+    private boolean checkSelfDamage(double selfDamage, double targetDamage) {
+        if (selfDamage > maxSelfDMG.getValInt()) return false;
+        if (selfDamage + 2 > mc.player.getHealth() + mc.player.getAbsorptionAmount()) return false;
+        return !(selfDamage > targetDamage);
     }
 
     private void doBreak() {
         if(!break_.getValBoolean() || !breakTimer.passedMillis(breakDelay.getValLong())) return;
 
-        Entity crystal, crystalWithMaxDamage = getCrystalWithMaxDamage();
-        
-        if(breakPriority.getValString().equals("Damage")) crystal = crystalWithMaxDamage;
-        else crystal = getCrystalForAntiCevBreaker();
+        Entity crystal = findBreakCrystal();
+        if (crystal != null) {
+            float[] oldRotations = breakRotate(crystal);
+            breakAttack(crystal);
+            breakRotatePost(oldRotations);
+            breakRemove(crystal);
+        }
+    }
 
-        if(crystal == null) crystal = crystalWithMaxDamage;
-        if(crystal == null) return;
+    private Entity findBreakCrystal() {
+        Entity crystalWithMaxDamage = findCrystalWithMaxDamage();
+        Entity crystal = breakPriority.getValString().equals("Damage") ? crystalWithMaxDamage : findCrystalForAntiCevBreaker();
+        return crystal == null ? crystalWithMaxDamage : crystal;
+    }
 
-        float[] oldRots = new float[] {mc.player.rotationYaw, mc.player.rotationPitch};
+    private float[] breakRotate(Entity crystal) {
+        float[] oldRotations = new float[] {mc.player.rotationYaw, mc.player.rotationPitch};
 
-        if(rotate.getValString().equalsIgnoreCase("Break") || rotate.getValString().equalsIgnoreCase("All")) {
+        if (rotate.getValString().equalsIgnoreCase("Break") || rotate.getValString().equalsIgnoreCase("All")) {
             float[] rots = RotationUtils.getRotation(crystal);
             mc.player.rotationYaw = rots[0];
             mc.player.rotationPitch = rots[1];
         }
 
+        return oldRotations;
+    }
+
+    private void breakRotatePost(float[] rotations) {
+        if((rotate.getValString().equalsIgnoreCase("Break") || rotate.getValString().equalsIgnoreCase("All")) && rotateMode.getValString().equalsIgnoreCase("Silent")) {
+            mc.player.rotationYaw = rotations[0];
+            mc.player.rotationPitch = rotations[1];
+        }
+    }
+
+    private void breakAttack(Entity crystal) {
         lastHitEntity = crystal;
         mc.player.connection.sendPacket(new CPacketUseEntity(crystal));
         swing();
-        try {if(clientSide.getValBoolean()) mc.world.removeEntityFromWorld(crystal.entityId);} catch (Exception ignored) {}
+        try {
+            if(clientSide.getValBoolean()) {
+                mc.world.removeEntityFromWorld(crystal.entityId);
+            }
+        } catch (Exception ignored) {}
         breakTimer.reset();
+    }
 
-        if((rotate.getValString().equalsIgnoreCase("Break") || rotate.getValString().equalsIgnoreCase("All")) && rotateMode.getValString().equalsIgnoreCase("Silent")) {
-            mc.player.rotationYaw = oldRots[0];
-            mc.player.rotationPitch = oldRots[1];
-        }
-
+    private void breakRemove(Entity crystal) {
         PlaceInfo toRemove = null;
 
         if(syns.getValBoolean()) {
@@ -899,7 +1111,7 @@ public class AutoRer extends Module {
         for(EntityPlayer player : mc.world.playerEntities) {
             if(mc.player == player) continue;
             if(FriendManager.instance.isFriend(player)) {
-                double friendDamage = CrystalUtils.calculateDamage(mc.world, entity.posX, entity.posY, entity.posZ, currentTarget, terrain.getValBoolean());
+                double friendDamage = calculateCrystalDamage(entity.posX, entity.posY, entity.posZ, currentTarget);
                 if(friendDamage <= maxFriendDMG.getValInt() || friendDamage * lethalMult.getValDouble() >= player.getHealth() + player.getAbsorptionAmount()) friendsWithMaxDamage.add(new Friend(player, friendDamage, friendDamage * lethalMult.getValDouble() >= player.getHealth() + player.getAbsorptionAmount()));
             }
         }
@@ -908,7 +1120,7 @@ public class AutoRer extends Module {
         double maxDamage = 0.5;
 
         for(Friend friend : friendsWithMaxDamage) {
-            double friendDamage = CrystalUtils.calculateDamage(mc.world, entity.posX, entity.posY, entity.posZ, currentTarget, terrain.getValBoolean());
+            double friendDamage = calculateCrystalDamage(entity.posX, entity.posY, entity.posZ, currentTarget);
             if(friendDamage > maxDamage) {
                 maxDamage = friendDamage;
                 nearFriendWithMaxDamage = new Friend(friend.friend, friendDamage);
@@ -916,6 +1128,21 @@ public class AutoRer extends Module {
         }
 
         return nearFriendWithMaxDamage;
+    }
+
+    private void lagProtect(Exception exception) {
+        if (lagProtect.getValBoolean()) {
+            new RuntimeException("Lag Protect Exception", exception).printStackTrace();
+            super.setToggled(false);
+        }
+    }
+    
+    private float calculateCrystalDamage(double posX, double posY, double posZ, Entity entity) {
+        return CrystalUtils.calculateDamage(mc.world, posX, posY, posZ, entity, terrain.getValBoolean());
+    }
+
+    private float calculateCrystalDamage(BlockPos pos, Entity entity) {
+        return CrystalUtils.calculateDamage(pos, entity, terrain.getValBoolean());
     }
 
     public enum ThreadMode {None, Pool, Sound, While}
@@ -958,38 +1185,6 @@ public class AutoRer extends Module {
             this.damage = damage;
             if(isTotemPopped) isTotemFailed = !(mc.player.getHeldItemMainhand().getItem().equals(Items.TOTEM_OF_UNDYING) || mc.player.getHeldItemMainhand().getItem().equals(Items.TOTEM_OF_UNDYING));
             this.isTotemPopped = isTotemPopped;
-        }
-    }
-
-    /**
-     * @author XuluPlus
-     */
-    public static class Util {
-        public static List<BlockPos> possiblePlacePositions(float placeRange, boolean secondCheck, boolean thirdCheck, boolean multiPlace, boolean firePlace) {
-            NonNullList<BlockPos> list = NonNullList.create();
-            list.addAll(getSphere(mc.player.getPosition(), placeRange, (int) placeRange, false, true, 0).stream().filter(pos -> CrystalUtils.canPlaceCrystal(pos, secondCheck, thirdCheck, multiPlace, firePlace)).collect(Collectors.toList()));
-            return list;
-        }
-
-        public static List<BlockPos> getSphere(BlockPos pos, float r, int h, boolean hollow, boolean sphere, int plus_y) {
-            final ArrayList<BlockPos> circleblocks = new ArrayList<>();
-            final int cx = pos.getX();
-            final int cy = pos.getY();
-            final int cz = pos.getZ();
-            for (int x = cx - (int)r; x <= cx + r; ++x) {
-                for (int z = cz - (int)r; z <= cz + r; ++z) {
-                    int y = sphere ? (cy - (int)r) : cy;
-                    while (true) {
-                        final float f = (float)y;
-                        final float f2 = sphere ? (cy + r) : ((float)(cy + h));
-                        if (f >= f2) break;
-                        final double dist = (cx - x) * (cx - x) + (cz - z) * (cz - z) + (sphere ? ((cy - y) * (cy - y)) : 0);
-                        if (dist < r * r && (!hollow || dist >= (r - 1.0f) * (r - 1.0f))) circleblocks.add(new BlockPos(x, y + plus_y, z));
-                        ++y;
-                    }
-                }
-            }
-            return circleblocks;
         }
     }
 

@@ -27,6 +27,7 @@ public class Vec4d {
     public float getMinY() {return (float) Math.min(y1, Math.min(y2, Math.min(y3, y4)));}
     public float getMaxX() {return (float) Math.max(x1, Math.max(x2, Math.max(x3, x4)));}
     public float getMaxY() {return (float) Math.max(y1, Math.max(y2, Math.max(y3, y4)));}
+
     public void setupVectors() {
         GL11.glVertex2d(x1, y1);
         GL11.glVertex2d(x2, y2);

@@ -68,11 +68,13 @@ public class ComboBox extends AbstractComponent {
                 offset += height;
             }
         }
-        renderer.drawRect(x + getWidth() - preferredHeight, y, preferredHeight, getHeight(), (hovered || opened) ? Window.TERTIARY_FOREGROUND : Window.SECONDARY_FOREGROUND);
 
+        renderer.drawRect(x + getWidth() - preferredHeight, y, preferredHeight, getHeight(), (hovered || opened) ? Window.TERTIARY_FOREGROUND : Window.SECONDARY_FOREGROUND);
         renderer.drawOutline(x, y, getWidth(), getHeight(), 1.0f, (hovered && !opened) ? Window.SECONDARY_OUTLINE : Window.SECONDARY_FOREGROUND);
 
-        if(Config.instance.guiGlow.getValBoolean()) Render2DUtil.drawRoundedRect((x + getWidth() - preferredHeight) / 2, y / 2, (x + getWidth()) / 2, (y + getHeight()) / 2, (hovered || opened) ? Window.TERTIARY_FOREGROUND : Window.SECONDARY_FOREGROUND, Config.instance.glowBoxSize.getValDouble());
+        if(Config.instance.guiGlow.getValBoolean()) {
+            Render2DUtil.drawRoundedRect((x + getWidth() - preferredHeight) / 2.0, y / 2.0, (x + getWidth()) / 2.0, (y + getHeight()) / 2.0, (hovered || opened) ? Window.TERTIARY_FOREGROUND : Window.SECONDARY_FOREGROUND, Config.instance.glowBoxSize.getValDouble());
+        }
 
         String text = selectedIndex != -1 ?  values[selectedIndex] : TextFormatting.RED + "ERROR";
 

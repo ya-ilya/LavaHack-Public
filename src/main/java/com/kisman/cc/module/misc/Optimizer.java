@@ -3,7 +3,6 @@ package com.kisman.cc.module.misc;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
-import com.kisman.cc.util.optimization.aiimpr.MainAiImpr;
 
 public class Optimizer extends Module {
     public final Setting removeLookAi = new Setting("Remove Entity AI Watch Closest", this, false);

@@ -399,12 +399,20 @@ public class BlockUtil {
     }
 
     public static boolean canPlaceBlock(BlockPos pos) {
-        try {for (Entity entity : mc.world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(pos))) if (!(entity instanceof EntityItem)) return false;} catch (ConcurrentModificationException ignored) { }
+        try {
+            for (Entity entity : mc.world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(pos)))  {
+                if (!(entity instanceof EntityItem)) return false;
+            }
+        } catch (ConcurrentModificationException ignored) { }
         return !isSolid(pos) && canBeClicked(pos);
     }
 
     public static boolean isSolid(BlockPos pos) {
-        try {return mc.world.getBlockState(pos).getMaterial().isSolid();} catch (NullPointerException e) {return false;}
+        try {
+            return mc.world.getBlockState(pos).getMaterial().isSolid();
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 
     public enum BlockResistance {

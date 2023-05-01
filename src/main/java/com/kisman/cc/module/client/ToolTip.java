@@ -61,7 +61,11 @@ public class ToolTip extends Module {
 
             GuiScreen.drawRect(offsetX - 3, offsetT - 3, (int) (offsetX + width + 3), offsetT + height + 3, modifiedColor.getRGB());
 
-            try {CustomFontUtil.drawStringWithShadow(shulkerStack.getDisplayName(), x + 12, y - 12, 0xFFFFFFFF);} catch (NullPointerException exception) {System.out.println("Error rendering font");}
+            try {
+                CustomFontUtil.drawStringWithShadow(shulkerStack.getDisplayName(), x + 12, y - 12, 0xFFFFFFFF);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
 
             GlStateManager.enableBlend();
             GlStateManager.enableAlpha();

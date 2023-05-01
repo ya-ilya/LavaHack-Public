@@ -12,6 +12,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 /**
@@ -250,6 +251,14 @@ public class Setting {
 	public boolean equals(Object obj) {
 		if(isCombo()) return sval.equals(obj);
 		return super.equals(obj);
+	}
+
+	@Override
+	public int hashCode() {
+		int result = Objects.hash(colour, entity, index, color, key, name, parent, setparent, hudParent, mode, title, sval, dString, options, optionEnum, bval, rainbow, syns, hud, opening, onlyOneWord, onlyNumbers, minus, enumCombo, dval, r, g, b, a, x1, y1, x2, y2, red, green, blue, alpha, onlyint);
+		result = 31 * result + Arrays.hashCode(colorHSB);
+		result = 31 * result + Arrays.hashCode(items);
+		return result;
 	}
 
 	@Override

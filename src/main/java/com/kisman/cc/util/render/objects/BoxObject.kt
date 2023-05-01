@@ -13,8 +13,8 @@ class BoxObject(val box: Box , override val color: Colour, val mode: BoxRenderMo
         GlStateManager.pushMatrix()
         prepare(depth,alpha)
 
-        if(mode != BoxRenderModes.Outline) TessellatorUtil.drawBox(box.toAABB(), color);
-        if(mode != BoxRenderModes.Filled) TessellatorUtil.drawBoundingBox(box.toAABB(), width.toDouble(), color.withAlpha(255));
+        if(mode != BoxRenderModes.Outline) TessellatorUtil.drawBox(box.toAABB(), color)
+        if(mode != BoxRenderModes.Filled) TessellatorUtil.drawBoundingBox(box.toAABB(), width.toDouble(), color.withAlpha(255))
 
         GlStateManager.color(1F, 1F, 1F, 1F);
 

@@ -83,7 +83,7 @@ class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.",
                 -(CustomFontUtil.getFontHeight() + 2).toDouble(),
                 ((CustomFontUtil.getStringWidth(builder.toString()) + 2) / 2).toDouble(),
                 1.0,
-                Colour(12, 12, 12, (if(glow.valBoolean) 0 else backgroundAlpha.valInt)).rgb
+                Colour(12, 12, 12, if(glow.valBoolean) 0 else backgroundAlpha.valInt).rgb
             )
 
             CustomFontUtil.drawStringWithShadow(

@@ -59,13 +59,12 @@ public class AltCreatorGUI extends GuiScreen
 	}
 	
 	@Override
-	protected void actionPerformed(GuiButton button) throws IOException {
+	protected void actionPerformed(GuiButton button) {
 		switch(button.id) {
 			case 3 : {
 				AltEntry alt = new AltEntry(this.emailField.getText(), this.passField.getText());
 				AltManager.getAlts().add(alt);
 				mc.displayGuiScreen(this.lastGui);
-				// TODO: Add alts via configging.
 				break;
 			}
 			case 4 : {

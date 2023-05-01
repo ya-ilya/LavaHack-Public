@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -30,12 +31,15 @@ public class ConfigLoader {
             loadEnabledHudModules();
             loadBindModes();
             loadFriends();
+            loadHud();
         } catch (Exception ignored) {}
     }
 
     private static void loadFriends() throws IOException {
-        if (!Files.exists(Paths.get(Kisman.fileName + Kisman.miscName + "friends.txt"))) return;
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(Files.newInputStream(Paths.get(Kisman.fileName + Kisman.miscName + "friends.txt"))))) {
+        Path friendsPath = Paths.get(Kisman.fileName + Kisman.miscName + "friends.txt");
+
+        if (!Files.exists(friendsPath)) return;
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(Files.newInputStream(friendsPath)))) {
             ArrayList<String> friends = new ArrayList<>();
             String inputLine;
             while ((inputLine = br.readLine()) != null) friends.add(inputLine);
@@ -43,14 +47,14 @@ public class ConfigLoader {
         }
     }
 
-    private static void loadModules() throws IOException {
+    private static void loadModules() {
         for (Module module : Kisman.instance.moduleManager.modules) {
             boolean settings;
 
             try {
                 if(Kisman.instance.settingManager.getSettingsByMod(module) == null) settings = false;
                 else settings = !Kisman.instance.settingManager.getSettingsByMod(module).isEmpty();
-                loadModuleDirect(Kisman.fileName + Kisman.moduleName, module, settings);
+                loadModuleDirect(module, settings);
             } catch (IOException e) {
                 System.out.println(module.getName());
                 e.printStackTrace();
@@ -58,10 +62,12 @@ public class ConfigLoader {
         }
     }
 
-    private static void loadModuleDirect(String moduleLocation, Module module, boolean settings)  throws IOException {
-        if (!Files.exists(Paths.get(moduleLocation + module.getName() + ".json"))) return;
+    private static void loadModuleDirect(Module module, boolean settings)  throws IOException {
+        Path modulesPath = Paths.get(Kisman.fileName + Kisman.moduleName + module.getName() + ".json");
 
-        InputStream inputStream = Files.newInputStream(Paths.get(moduleLocation + module.getName() + ".json"));
+        if (!Files.exists(modulesPath)) return;
+
+        InputStream inputStream = Files.newInputStream(modulesPath);
         JsonObject moduleObject;
 
         try {
@@ -102,11 +108,11 @@ public class ConfigLoader {
     }
 
     private static void loadEnabledModules() throws IOException{
-        String enabledLocation = Kisman.fileName + Kisman.mainName;
+        Path enabledPath = Paths.get(Kisman.fileName + Kisman.mainName + "Toggle.json");
 
-        if (!Files.exists(Paths.get(enabledLocation + "Toggle.json"))) return;
+        if (!Files.exists(enabledPath)) return;
 
-        InputStream inputStream = Files.newInputStream(Paths.get(enabledLocation + "Toggle.json"));
+        InputStream inputStream = Files.newInputStream(enabledPath);
         JsonObject moduleObject = JsonParser.parseReader(new InputStreamReader(inputStream)).getAsJsonObject();
 
         if (moduleObject.get("Modules") == null) return;
@@ -131,11 +137,11 @@ public class ConfigLoader {
     }
 
     private static void loadVisibledModules() throws IOException {
-        String enabledLocation = Kisman.fileName + Kisman.mainName;
+        Path visiblePath = Paths.get(Kisman.fileName + Kisman.mainName + "Visible.json");
 
-        if (!Files.exists(Paths.get(enabledLocation + "Visible" + ".json"))) return;
+        if (!Files.exists(visiblePath)) return;
 
-        InputStream inputStream = Files.newInputStream(Paths.get(enabledLocation + "Visible" + ".json"));
+        InputStream inputStream = Files.newInputStream(visiblePath);
         JsonObject moduleObject = JsonParser.parseReader(new InputStreamReader(inputStream)).getAsJsonObject();
 
         if (moduleObject.get("Modules") == null) return;
@@ -158,11 +164,11 @@ public class ConfigLoader {
     }
 
     private static void loadEnabledHudModules() throws IOException {
-        String enabledLocation = Kisman.fileName + Kisman.mainName;
+        Path hudEnabledPath = Paths.get(Kisman.fileName + Kisman.mainName + "HudToggle.json");
 
-        if (!Files.exists(Paths.get(enabledLocation + "HudToggle" + ".json"))) return;
+        if (!Files.exists(hudEnabledPath)) return;
 
-        InputStream inputStream = Files.newInputStream(Paths.get(enabledLocation + "HudToggle" + ".json"));
+        InputStream inputStream = Files.newInputStream(hudEnabledPath);
         JsonObject moduleObject = JsonParser.parseReader(new InputStreamReader(inputStream)).getAsJsonObject();
 
         if (moduleObject.get("Modules") == null) return;
@@ -183,11 +189,11 @@ public class ConfigLoader {
     }
 
     private static void loadBindModes() throws IOException {
-        String enabledLocation = Kisman.fileName + Kisman.mainName;
+        Path bindModes = Paths.get(Kisman.fileName + Kisman.mainName + "BindModes.json");
 
-        if (!Files.exists(Paths.get(enabledLocation + "BindModes" + ".json"))) return;
+        if (!Files.exists(bindModes)) return;
 
-        InputStream inputStream = Files.newInputStream(Paths.get(enabledLocation + "BindModes" + ".json"));
+        InputStream inputStream = Files.newInputStream(bindModes);
         JsonObject moduleObject = JsonParser.parseReader(new InputStreamReader(inputStream)).getAsJsonObject();
 
         if (moduleObject.get("Modules") == null) return;
@@ -212,9 +218,11 @@ public class ConfigLoader {
     }
 
     private static void loadHudDirect(HudModule module) throws IOException {
-        if (!Files.exists(Paths.get(Kisman.fileName + Kisman.hudName + module.getName() + ".json"))) return;
+        Path hudModulePath = Paths.get(Kisman.fileName + Kisman.hudName + module.getName() + ".json");
 
-        InputStream inputStream = Files.newInputStream(Paths.get(Kisman.fileName + Kisman.hudName + module.getName() + ".json"));
+        if (!Files.exists(hudModulePath)) return;
+
+        InputStream inputStream = Files.newInputStream(hudModulePath);
         JsonObject moduleObject;
 
         try {

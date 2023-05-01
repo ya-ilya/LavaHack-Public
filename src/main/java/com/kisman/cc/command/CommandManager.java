@@ -14,7 +14,7 @@ public class CommandManager {
     public static ArrayList<Command> commands = new ArrayList<>();
 	
 	public char cmdPrefix = ';';
-	public String cmdPrefixStr = "" + cmdPrefix;
+	public String cmdPrefixStr = String.valueOf(cmdPrefix);
 
 	public CommandManager()
 	{

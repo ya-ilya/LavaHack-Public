@@ -7,8 +7,6 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 
 public class ChatUtils {
-	// TODO: Rewrite to LogManager
-	
 	public static void component(ITextComponent component) {
 		if(Wrapper.INSTANCE.player() == null || Wrapper.INSTANCE.mc().ingameGUI.getChatGUI() == null)
 			return;

@@ -134,8 +134,6 @@ public class HoleFiller extends Module {
         if(placeMode.getValString().equals(PlaceMode.Smart.name())) if(WorldUtil.getDistance(target, hole.pos) > targetHoleRange.getValDouble()) return false;
 
         return mc.world.getBlockState(hole.pos.up(1)).getBlock().equals(Blocks.AIR) && mc.world.getBlockState(hole.pos.up(2)).getBlock().equals(Blocks.AIR) && mc.world.getBlockState(hole.pos.up(3)).getBlock().equals(Blocks.AIR);
-        //TODO: update hole validation!!!
-        //TODO: added a crystal check!!!
     }
 
     private boolean isBlockHole(BlockPos blockpos) {

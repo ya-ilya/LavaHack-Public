@@ -34,7 +34,7 @@ public class AltManagerGUI extends GuiScreen {
 		buttonList.add(new GuiButton(4, 4 + 4 + 95, 20, "Microsoft"));
 		this.crackedNameField.setText(mc.getSession().getUsername());
 		this.crackedNameField.setMaxStringLength(16);
-		this.altList = new AltSlotList(this, this.mc, this.width, this.height, 40, this.height - 60, 36);
+		this.altList = new AltSlotList(this.mc, this.width, this.height, 40, this.height - 60, 36);
 		buttonList.add(new GuiButton(1, this.width / 2 - 75, this.height - 52, 75, 20, "Add"));
 		this.delete = new GuiButton(2, this.width / 2 + 1, this.height - 52, 75, 20, "Delete");
 		buttonList.add(delete);
@@ -97,7 +97,6 @@ public class AltManagerGUI extends GuiScreen {
 					AltEntry e = this.altList.getAlts().get(this.altList.getSelectedId());
 					this.altList.getAlts().remove(e);
 					AltManager.getAlts().remove(e);
-					// TODO: Handle removing alts in config.
 				}
 				break;
 			}
@@ -116,10 +115,9 @@ public class AltManagerGUI extends GuiScreen {
 		private final List<AltEntry> alts = new ArrayList<>();
 		private int selectedId = -1;
 		
-		public AltSlotList(AltManagerGUI parentGui, Minecraft mc, int width, int height, int top, int bottom, int slotHeight) {
+		public AltSlotList(Minecraft mc, int width, int height, int top, int bottom, int slotHeight) {
 			super(mc, width, height, top, bottom, slotHeight);
 			this.alts.addAll(AltManager.getAlts());
-			// TODO: Add saved alts here once configging is done.
 		}
 
 		@Override

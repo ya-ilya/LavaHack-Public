@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.entity.Entity
 import org.lwjgl.opengl.GL11
 
-//TODO: need to finish
 class TextOnEntityObject(
         val text : String,
         val entity : Entity,

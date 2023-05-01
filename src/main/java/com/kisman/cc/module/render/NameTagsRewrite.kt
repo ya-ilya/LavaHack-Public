@@ -66,7 +66,7 @@ class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.",
                 ping = mc.player.connection.getPlayerInfo(player.uniqueID).responseTime
             } catch (_: Exception) {}
             if(this.ping.valBoolean) builder.append(" $ping ms")
-            //TODO: Pops
+            // if (this.pops.valBoolean) ...
             if(this.health.valBoolean) builder.append(" ${ColourUtil.healthColor(player)}${MathHelper.ceil(health)}${TextFormatting.RESET}")
 
             if(glow.valBoolean) {

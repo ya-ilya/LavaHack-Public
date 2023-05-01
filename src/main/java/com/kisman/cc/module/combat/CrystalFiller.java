@@ -155,7 +155,13 @@ public class CrystalFiller extends Module {
 
     private void findHoles(EntityPlayer player, float range) {
         holes.clear();
-        for(BlockPos pos : CrystalUtils.getSphere(player, range, true, false)) if(mc.world.getBlockState(pos).getBlock().equals(Blocks.AIR)) if(isBlockHole(pos)) holes.add(new Hole(pos, (float) mc.player.getDistanceSq(pos), (float) player.getDistanceSq(pos)));
+        for(BlockPos pos : CrystalUtils.getSphere(player, range, true, false)) {
+            if(mc.world.getBlockState(pos).getBlock().equals(Blocks.AIR)) {
+                if(isBlockHole(pos)) {
+                    holes.add(new Hole(pos, (float) mc.player.getDistanceSq(pos), (float) player.getDistanceSq(pos)));
+                }
+            }
+        }
     }
 
     private boolean isValidHole(Hole hole) {
@@ -171,8 +177,6 @@ public class CrystalFiller extends Module {
         }
 
         return mc.world.getBlockState(hole.pos.up(1)).getBlock().equals(Blocks.AIR) && mc.world.getBlockState(hole.pos.up(2)).getBlock().equals(Blocks.AIR) && mc.world.getBlockState(hole.pos.up(3)).getBlock().equals(Blocks.AIR);
-        //TODO: update hole validation!!!
-        //TODO: added a crystal check!!!
     }
 
     private boolean isBlockHole(BlockPos blockpos) {

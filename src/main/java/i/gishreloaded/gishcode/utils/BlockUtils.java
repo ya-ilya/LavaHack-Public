@@ -91,7 +91,6 @@ public final class BlockUtils {
 			EnumFacing side2 = side.getOpposite();
 			
 			// check if side is visible (facing away from player)
-			// TODO: actual line-of-sight check
 			if(eyesPos.squareDistanceTo(
 				new Vec3d(pos).add(0.5, 0.5, 0.5)) >= eyesPos
 					.squareDistanceTo(
@@ -152,8 +151,6 @@ public final class BlockUtils {
 		
 		return false;
 	}
-	
-	// TODO: RotationUtils class for all the faceSomething() methods
 	
 	public static void faceVectorPacket(Vec3d vec) {
 		double diffX = vec.x - Wrapper.INSTANCE.player().posX;

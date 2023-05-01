@@ -47,7 +47,6 @@ public class AltEntry implements IGuiListEntry {
 			mc.fontRenderer.drawStringWithShadow(this.email, x + 36, y + 12, 0xFF888888);
 			mc.fontRenderer.drawStringWithShadow("Premium", x + 36, y + 22, 0xFF55FF55);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			// TODO: Fix skin ResourceLocation
 			ResourceLocation resourcelocation = DefaultPlayerSkin.getDefaultSkinLegacy();
 			Map<Type, MinecraftProfileTexture> map = mc.getSkinManager().loadSkinFromCache(this.auth.getSelectedProfile());
 			if (map.containsKey(Type.SKIN)) {

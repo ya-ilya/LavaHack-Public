@@ -5,7 +5,7 @@ import com.kisman.cc.util.BlockUtil2;
 import com.kisman.cc.util.EntityUtil;
 import com.kisman.cc.util.InventoryUtil;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.ChatUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 
@@ -72,7 +72,7 @@ public class SelfTrap extends AutoTrap {
             retryTimer.reset();
         }
         if (obbySlot3 == -1) {
-            ChatUtils.error(ChatFormatting.RED + "No Obsidian in hotbar, SelfTrap disabling...");
+            ChatUtil.error(ChatFormatting.RED + "No Obsidian in hotbar, SelfTrap disabling...");
             setToggled(false);
             return true;
         }

@@ -2,7 +2,7 @@ package com.kisman.cc.command.commands;
 
 import com.kisman.cc.command.Command;
 import com.kisman.cc.gui.misc.PreviewGui;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.ChatUtil;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiScreenBook;
@@ -28,7 +28,7 @@ public class PeekCommand extends Command {
     public void runCommand(String s, String[] args) {
         try {
             if(!args[0].equalsIgnoreCase("book") && !args[0].equalsIgnoreCase("shulker")) {
-                ChatUtils.error("Usage: " + getSyntax());
+                ChatUtil.error("Usage: " + getSyntax());
 
                 return;
             }
@@ -67,7 +67,7 @@ public class PeekCommand extends Command {
             }
 
             if(stack == null) {
-                ChatUtils.error("No " + (book ? "book" : "shulker") + " item close to you");
+                ChatUtil.error("No " + (book ? "book" : "shulker") + " item close to you");
 
                 return;
             }
@@ -81,12 +81,12 @@ public class PeekCommand extends Command {
                 }
 
                 if(!stack.getTagCompound().hasKey("pages", 9)) {
-                    ChatUtils.error("Book has no data");
+                    ChatUtil.error("Book has no data");
 
                     return;
                 }
 
-                ChatUtils.message("Book size: " + getItemSize(stack) + " bytes");
+                ChatUtil.message("Book size: " + getItemSize(stack) + " bytes");
 
                 this.screen = new GuiScreenBook(mc.player, stack, false);
                 MinecraftForge.EVENT_BUS.register(this);
@@ -101,10 +101,10 @@ public class PeekCommand extends Command {
                     }
                 }
 
-                ChatUtils.error("Shulker is empty, or the server did not communicate its content");
+                ChatUtil.error("Shulker is empty, or the server did not communicate its content");
             }
         } catch (Exception e) {
-            ChatUtils.error("Usage: " + getSyntax());
+            ChatUtil.error("Usage: " + getSyntax());
         }
     }
 

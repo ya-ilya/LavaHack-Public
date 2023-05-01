@@ -4,8 +4,8 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.PlayerUtil;
-import i.gishreloaded.gishcode.utils.TimerUtils;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.TimerUtil;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -56,7 +56,7 @@ public class Breadcrumbs extends Module {
         GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
         for (int i = 0; i < positions.size(); i++) {
             Helper bc = positions.get(i);
-            ColorUtils.glColor(ColorUtils.astolfoColors(100, 100), alpha.getValInt());
+            ColorUtil.glColor(ColorUtil.astolfoColors(100, 100), alpha.getValInt());
 
             if (bc.timer.hasReached(removeTicks.getValInt())) positions.remove(bc);
 
@@ -84,11 +84,11 @@ public class Breadcrumbs extends Module {
     }
 
     public static class Helper {
-        public TimerUtils timer;
+        public TimerUtil timer;
         public Vec3d vec;
 
         public Helper(Vec3d vec) {
-            this.timer = new TimerUtils();
+            this.timer = new TimerUtil();
             this.vec = vec;
         }
 

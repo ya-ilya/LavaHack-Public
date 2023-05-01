@@ -1,18 +1,20 @@
-package i.gishreloaded.gishcode.utils.visual;
+package com.kisman.cc.util;
 
 import com.kisman.cc.Kisman;
-import i.gishreloaded.gishcode.wrappers.Wrapper;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 
-public class ChatUtils {
+public class ChatUtil {
+	private static final Minecraft mc = Minecraft.getMinecraft();
+
 	public static void component(ITextComponent component) {
-		if(Wrapper.INSTANCE.player() == null || Wrapper.INSTANCE.mc().ingameGUI.getChatGUI() == null)
-			return;
-			Wrapper.INSTANCE.mc().ingameGUI.getChatGUI()
+		if (mc.player == null || mc.ingameGUI == null) return;
+
+		mc.ingameGUI.getChatGUI()
 				.printChatMessage(new TextComponentTranslation(TextFormatting.WHITE + "")
-					.appendSibling(component));
+				.appendSibling(component));
 	}
 
 	public static void simpleMessage(Object message) {

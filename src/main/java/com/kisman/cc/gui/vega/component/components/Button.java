@@ -12,7 +12,7 @@ import com.kisman.cc.module.client.VegaGui;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.Render2DUtil;
 import com.kisman.cc.util.customfont.CustomFontUtil;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.gui.Gui;
 import org.lwjgl.opengl.GL11;
 
@@ -69,18 +69,18 @@ public class Button {
     }
 
     public void renderComponent() {
-        Gui.drawRect(this.x - 3, this.y + 3 + offset, this.x + this.width + 3, this.y + this.height + 3 + offset, (ColorUtils.getColor(33, 33, 42)));
-        Gui.drawRect(this.x - 3, this.y + offset, this.x + this.width + 3, this.y + this.height + offset, (ColorUtils.getColor(33, 33, 42)));
-        Gui.drawRect(this.x - 2, this.y + 2 + offset, this.x + this.width + 2, this.y + this.height + 2 + offset, (ColorUtils.getColor(45, 45, 55)));
-        Gui.drawRect(this.x - 2, this.y + offset, this.x + this.width + 2, this.y + this.height + offset, (ColorUtils.getColor(45, 45, 55)));
-        Gui.drawRect(this.x - 1, this.y + 1 + offset, this.x + this.width + 1, this.y + this.height + 1 + offset, (ColorUtils.getColor(60, 60, 70)));
-        Gui.drawRect(this.x - 1, this.y + offset, this.x + this.width + 1, this.y + this.height + offset, (ColorUtils.getColor(60, 60, 70)));
-        Gui.drawRect(this.x, this.y + offset, this.x + this.width, this.y + this.height + offset, (ColorUtils.getColor(34, 34, 40)));
+        Gui.drawRect(this.x - 3, this.y + 3 + offset, this.x + this.width + 3, this.y + this.height + 3 + offset, (ColorUtil.getColor(33, 33, 42)));
+        Gui.drawRect(this.x - 3, this.y + offset, this.x + this.width + 3, this.y + this.height + offset, (ColorUtil.getColor(33, 33, 42)));
+        Gui.drawRect(this.x - 2, this.y + 2 + offset, this.x + this.width + 2, this.y + this.height + 2 + offset, (ColorUtil.getColor(45, 45, 55)));
+        Gui.drawRect(this.x - 2, this.y + offset, this.x + this.width + 2, this.y + this.height + offset, (ColorUtil.getColor(45, 45, 55)));
+        Gui.drawRect(this.x - 1, this.y + 1 + offset, this.x + this.width + 1, this.y + this.height + 1 + offset, (ColorUtil.getColor(60, 60, 70)));
+        Gui.drawRect(this.x - 1, this.y + offset, this.x + this.width + 1, this.y + this.height + offset, (ColorUtil.getColor(60, 60, 70)));
+        Gui.drawRect(this.x, this.y + offset, this.x + this.width, this.y + this.height + offset, (ColorUtil.getColor(34, 34, 40)));
 
         GL11.glPushMatrix();
-        Gui.drawRect(this.x + 3, this.y + offset, this.x + this.animation, this.y + this.height + offset,(ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(this.x + 2, this.y + 0.5 + offset, this.x + this.animation, this.y + this.height + offset,(ColorUtils.getColor(33, 33, 42)));
-        Gui.drawRect(this.x, this.y + 1 + offset, this.x + this.animation, this.y + this.height + offset, (ColorUtils.astolfoColors(100, 100)));
+        Gui.drawRect(this.x + 3, this.y + offset, this.x + this.animation, this.y + this.height + offset,(ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(this.x + 2, this.y + 0.5 + offset, this.x + this.animation, this.y + this.height + offset,(ColorUtil.getColor(33, 33, 42)));
+        Gui.drawRect(this.x, this.y + 1 + offset, this.x + this.animation, this.y + this.height + offset, (ColorUtil.astolfoColors(100, 100)));
         GL11.glPopMatrix();
 
         if(mod.isToggled() && animation <= width - 113) ++animation;
@@ -89,9 +89,9 @@ public class Button {
             if(animation < 0) animation = 0;
         }
 
-        CustomFontUtil.drawStringWithShadow(mod.getName(), x + 6, y + (float) (((VegaGui.instance.test.getValBoolean() ? height : height / 2) - CustomFontUtil.getFontHeight()) / 2) + offset, mod.isToggled() ? ColorUtils.astolfoColors(100, 100) : -1);
+        CustomFontUtil.drawStringWithShadow(mod.getName(), x + 6, y + (float) (((VegaGui.instance.test.getValBoolean() ? height : height / 2) - CustomFontUtil.getFontHeight()) / 2) + offset, mod.isToggled() ? ColorUtil.astolfoColors(100, 100) : -1);
 
-        if(Kisman.instance.settingManager.getSettingsByMod(mod) != null && Kisman.instance.settingManager.getSettingsByMod(mod).size() > 2) CustomFontUtil.drawStringWithShadow(open ? "<" : "=", x + width - 8, y + (float) (((VegaGui.instance.test.getValBoolean() ? height : height / 2) - CustomFontUtil.getFontHeight()) / 2) + offset, open ? ColorUtils.astolfoColors(100, 100) : -1);
+        if(Kisman.instance.settingManager.getSettingsByMod(mod) != null && Kisman.instance.settingManager.getSettingsByMod(mod).size() > 2) CustomFontUtil.drawStringWithShadow(open ? "<" : "=", x + width - 8, y + (float) (((VegaGui.instance.test.getValBoolean() ? height : height / 2) - CustomFontUtil.getFontHeight()) / 2) + offset, open ? ColorUtil.astolfoColors(100, 100) : -1);
         if(open && !comp.isEmpty()) for(Component comp : comp) comp.renderComponent();
     }
 

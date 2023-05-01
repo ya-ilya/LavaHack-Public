@@ -5,7 +5,7 @@ import com.kisman.cc.util.glow.ShaderShell;
 import com.kisman.cc.util.render.objects.AbstractGradient;
 import com.kisman.cc.util.render.objects.AbstractObject;
 import com.kisman.cc.util.render.objects.ObjectWithGlow;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
@@ -142,7 +142,7 @@ public class Render2DUtil extends GuiScreen {
     public static void drawRectWH(double x, double y, double width, double height, int color) {drawRect(x, y, x + width, y + height, color);}
 
     public static void drawCircle(double cx, double cy, double radius, Color color, float width, int segments) {
-        ColorUtils.glColor(color);
+        ColorUtil.glColor(color);
         glLineWidth(width);
         glBegin(GL_LINE_LOOP);
         for(int i = 0; i < segments; i++) {
@@ -157,7 +157,7 @@ public class Render2DUtil extends GuiScreen {
     }
 
     public static void drawProgressCircle(double cx, double cy, double radius, Color color, float width, double degrees, int segments) {
-        ColorUtils.glColor(color);
+        ColorUtil.glColor(color);
         glLineWidth(width);
         glBegin(GL_LINE);
         for(int i = 0; i < segments; i++) {
@@ -279,13 +279,13 @@ public class Render2DUtil extends GuiScreen {
         GlStateManager.disableAlpha();
         GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         GlStateManager.shadeModel(7425);
-        drawVGradientRect((float)(int)x, (float)(int)y, (float)(int)x1, (float)(int)(y + (y1 - y) / 2.0), ColorUtil.injectAlpha(new Color(color), 0).getRGB(), color);
-        drawVGradientRect((float)(int)x, (float)(int)(y + (y1 - y) / 2.0), (float)(int)x1, (float)(int)y1, color, ColorUtil.injectAlpha(new Color(color), 0).getRGB());
+        drawVGradientRect((float)(int)x, (float)(int)y, (float)(int)x1, (float)(int)(y + (y1 - y) / 2.0), com.kisman.cc.util.ColorUtil.injectAlpha(new Color(color), 0).getRGB(), color);
+        drawVGradientRect((float)(int)x, (float)(int)(y + (y1 - y) / 2.0), (float)(int)x1, (float)(int)y1, color, com.kisman.cc.util.ColorUtil.injectAlpha(new Color(color), 0).getRGB());
         final int radius = (int)((y1 - y) / 2.0);
-        drawPolygonPart(x, y + (y1 - y) / 2.0, radius, 0, color, ColorUtil.injectAlpha(new Color(color), 0).getRGB());
-        drawPolygonPart(x, y + (y1 - y) / 2.0, radius, 1, color, ColorUtil.injectAlpha(new Color(color), 0).getRGB());
-        drawPolygonPart(x1, y + (y1 - y) / 2.0, radius, 2, color, ColorUtil.injectAlpha(new Color(color), 0).getRGB());
-        drawPolygonPart(x1, y + (y1 - y) / 2.0, radius, 3, color, ColorUtil.injectAlpha(new Color(color), 0).getRGB());
+        drawPolygonPart(x, y + (y1 - y) / 2.0, radius, 0, color, com.kisman.cc.util.ColorUtil.injectAlpha(new Color(color), 0).getRGB());
+        drawPolygonPart(x, y + (y1 - y) / 2.0, radius, 1, color, com.kisman.cc.util.ColorUtil.injectAlpha(new Color(color), 0).getRGB());
+        drawPolygonPart(x1, y + (y1 - y) / 2.0, radius, 2, color, com.kisman.cc.util.ColorUtil.injectAlpha(new Color(color), 0).getRGB());
+        drawPolygonPart(x1, y + (y1 - y) / 2.0, radius, 3, color, com.kisman.cc.util.ColorUtil.injectAlpha(new Color(color), 0).getRGB());
         GlStateManager.shadeModel(7424);
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();

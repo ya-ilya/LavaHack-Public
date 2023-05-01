@@ -145,7 +145,14 @@ public class NoSlow extends Module {
 
     @EventHandler
     @SuppressWarnings("unused")
-    private final Listener<PacketEvent.PostSend> packetPostSendListener = listener(event -> {if(event.getPacket() instanceof CPacketPlayer) if(ncpStrict.getValBoolean()) if(items.getValBoolean() && mc.player.isHandActive() && !mc.player.isRiding()) mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.ABORT_DESTROY_BLOCK, PlayerUtil.GetLocalPlayerPosFloored(), EnumFacing.DOWN));});
+    private final Listener<PacketEvent.PostSend> packetPostSendListener = listener(event -> {
+        if(event.getPacket() instanceof CPacketPlayer) {
+            if(ncpStrict.getValBoolean()) {
+                if(items.getValBoolean() && mc.player.isHandActive() && !mc.player.isRiding()) {
+                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.ABORT_DESTROY_BLOCK, PlayerUtil.GetLocalPlayerPosFloored(), EnumFacing.DOWN));
+                }
+            }
+        }});
 
     public enum Mode {None, Sunrise}
 }

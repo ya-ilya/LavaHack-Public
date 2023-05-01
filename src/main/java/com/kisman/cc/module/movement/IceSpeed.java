@@ -5,6 +5,7 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import net.minecraft.init.Blocks;
 
+@SuppressWarnings("deprecation")
 public class IceSpeed extends Module {
     public IceSpeed() {
         super("IceSpeed", "IceSpeed", Category.MOVEMENT);

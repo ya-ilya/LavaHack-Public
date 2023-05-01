@@ -4,7 +4,7 @@ import com.kisman.cc.gui.hud.hudmodule.HudCategory;
 import com.kisman.cc.gui.hud.hudmodule.HudModule;
 import com.kisman.cc.manager.Managers;
 import com.kisman.cc.util.customfont.CustomFontUtil;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -19,7 +19,7 @@ public class CrystalPerSecond extends HudModule {
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent.Text event) {
         String text = "Crystal/Sec: " + TextFormatting.GRAY + Managers.instance.cpsManager.getCPS();
-        CustomFontUtil.drawStringWithShadow(text, getX(), getY(), ColorUtils.astolfoColors(100, 100));
+        CustomFontUtil.drawStringWithShadow(text, getX(), getY(), ColorUtil.astolfoColors(100, 100));
 
         setW(CustomFontUtil.getStringWidth(text));
         setH(CustomFontUtil.getFontHeight());

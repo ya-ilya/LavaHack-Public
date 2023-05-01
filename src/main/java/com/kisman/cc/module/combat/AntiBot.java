@@ -7,7 +7,7 @@ import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.EntityUtil;
 import com.kisman.cc.util.RotationUtils;
 import com.kisman.cc.util.mixin.util.GuiPlayerTabOverlayUtil;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.ChatUtil;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -48,7 +48,7 @@ public class AntiBot extends Module {
                 Entity entity = mc.objectMouseOver.entityHit;
                 if(!(entity instanceof EntityPlayer)) return;
                 target = (EntityPlayer) entity;
-                ChatUtils.complete("[AntiBot] Current target is " + entity.getName());
+                ChatUtil.complete("[AntiBot] Current target is " + entity.getName());
             } else clicked = false;
         }
 
@@ -65,14 +65,14 @@ public class AntiBot extends Module {
                         if (!contains || !speedAnalysis || entity.isDead) continue;
                     } else if(!entity.isInvisible()) continue;
                     entity.isDead = true;
-                    ChatUtils.complete(entity.getName() + " was been deleted!");
+                    ChatUtil.complete(entity.getName() + " was been deleted!");
                 }
             }
         }
 
         if(mode.getValString().equalsIgnoreCase("Classic")) for(EntityPlayer bot : bots) {
             bot.isDead = true;
-            ChatUtils.complete(bot.getName() + " was been deleted!");
+            ChatUtil.complete(bot.getName() + " was been deleted!");
         }
 	}
 

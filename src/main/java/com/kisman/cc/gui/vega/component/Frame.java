@@ -7,7 +7,7 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.module.client.Config;
 import com.kisman.cc.util.Timer;
 import com.kisman.cc.util.customfont.CustomFontUtil;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.gui.Gui;
 
 import java.util.ArrayList;
@@ -41,27 +41,27 @@ public class Frame {
     }
 
     public void renderComponent() {
-        Gui.drawRect(this.x + 3, this.y + 3, this.x + this.width + 3, this.y + this.height - 3, (ColorUtils.getColor(33, 33, 42)));
-        Gui.drawRect(this.x + 3, this.y, this.x + this.width + 3, this.y + this.height, (ColorUtils.getColor(33, 33, 42)));
-        Gui.drawRect(this.x + 2, this.y + 2, this.x + this.width + 2, this.y + this.height - 2, (ColorUtils.getColor(45, 45, 55)));
-        Gui.drawRect(this.x + 2, this.y, this.x + this.width + 2, this.y + this.height, (ColorUtils.getColor(45, 45, 55)));
-        Gui.drawRect(this.x + 1, this.y + 1, this.x + this.width + 1, this.y + this.height - 1, (ColorUtils.getColor(60, 60, 70)));
-        Gui.drawRect(this.x + 1, this.y, this.x + this.width + 1, this.y + this.height, (ColorUtils.getColor(60, 60, 70)));
-        Gui.drawRect(this.x - 3, this.y - 8, this.x + this.width + 3, this.y + this.height - 3, (ColorUtils.getColor(33, 33, 42)));
-        Gui.drawRect(this.x - 3, this.y, this.x + this.width + 3, this.y + this.height, (ColorUtils.getColor(33, 33, 42)));
-        Gui.drawRect(this.x - 2, this.y - 7, this.x + this.width + 2, this.y + this.height - 2, (ColorUtils.getColor(45, 45, 55)));
-        Gui.drawRect(this.x - 2, this.y, this.x + this.width + 2, this.y + this.height, (ColorUtils.getColor(45, 45, 55)));
-        Gui.drawRect(this.x - 1, this.y - 6, this.x + this.width + 1, this.y + this.height - 1, (ColorUtils.getColor(60, 60, 70)));
-        Gui.drawRect(this.x - 1, this.y, this.x + this.width + 1, this.y + this.height, (ColorUtils.getColor(60, 60, 70)));
-        Gui.drawRect(this.x, this.y - 5, this.x + this.width, this.y + this.height, (ColorUtils.astolfoColors(100, 100)));
-        Gui.drawRect(this.x - 3, this.y - 1, this.x + this.width + 3, this.y + this.height + 3, (ColorUtils.getColor(33, 33, 42)));
-        Gui.drawRect(this.x - 2, this.y - 2, this.x + this.width + 2, this.y + this.height + 2, (ColorUtils.getColor(45, 45, 55)));
-        Gui.drawRect(this.x - 1, this.y - 3, this.x + this.width + 1, this.y + this.height + 1, (ColorUtils.getColor(60, 60, 70)));
-        Gui.drawRect(this.x, this.y - 4, this.x + this.width, this.y + this.height, (ColorUtils.getColor(34, 34, 40)));
+        Gui.drawRect(this.x + 3, this.y + 3, this.x + this.width + 3, this.y + this.height - 3, (ColorUtil.getColor(33, 33, 42)));
+        Gui.drawRect(this.x + 3, this.y, this.x + this.width + 3, this.y + this.height, (ColorUtil.getColor(33, 33, 42)));
+        Gui.drawRect(this.x + 2, this.y + 2, this.x + this.width + 2, this.y + this.height - 2, (ColorUtil.getColor(45, 45, 55)));
+        Gui.drawRect(this.x + 2, this.y, this.x + this.width + 2, this.y + this.height, (ColorUtil.getColor(45, 45, 55)));
+        Gui.drawRect(this.x + 1, this.y + 1, this.x + this.width + 1, this.y + this.height - 1, (ColorUtil.getColor(60, 60, 70)));
+        Gui.drawRect(this.x + 1, this.y, this.x + this.width + 1, this.y + this.height, (ColorUtil.getColor(60, 60, 70)));
+        Gui.drawRect(this.x - 3, this.y - 8, this.x + this.width + 3, this.y + this.height - 3, (ColorUtil.getColor(33, 33, 42)));
+        Gui.drawRect(this.x - 3, this.y, this.x + this.width + 3, this.y + this.height, (ColorUtil.getColor(33, 33, 42)));
+        Gui.drawRect(this.x - 2, this.y - 7, this.x + this.width + 2, this.y + this.height - 2, (ColorUtil.getColor(45, 45, 55)));
+        Gui.drawRect(this.x - 2, this.y, this.x + this.width + 2, this.y + this.height, (ColorUtil.getColor(45, 45, 55)));
+        Gui.drawRect(this.x - 1, this.y - 6, this.x + this.width + 1, this.y + this.height - 1, (ColorUtil.getColor(60, 60, 70)));
+        Gui.drawRect(this.x - 1, this.y, this.x + this.width + 1, this.y + this.height, (ColorUtil.getColor(60, 60, 70)));
+        Gui.drawRect(this.x, this.y - 5, this.x + this.width, this.y + this.height, (ColorUtil.astolfoColors(100, 100)));
+        Gui.drawRect(this.x - 3, this.y - 1, this.x + this.width + 3, this.y + this.height + 3, (ColorUtil.getColor(33, 33, 42)));
+        Gui.drawRect(this.x - 2, this.y - 2, this.x + this.width + 2, this.y + this.height + 2, (ColorUtil.getColor(45, 45, 55)));
+        Gui.drawRect(this.x - 1, this.y - 3, this.x + this.width + 1, this.y + this.height + 1, (ColorUtil.getColor(60, 60, 70)));
+        Gui.drawRect(this.x, this.y - 4, this.x + this.width, this.y + this.height, (ColorUtil.getColor(34, 34, 40)));
 
         String str = cat.getName() + (Config.instance.guiRenderSize.getValBoolean() && !buttons.isEmpty() ? " [" + buttons.size() + "]" : "");
 
-        CustomFontUtil.drawCenteredStringWithShadow(str, x + (width / 2), y + ((height - CustomFontUtil.getFontHeight()) / 2), open ? ColorUtils.astolfoColors(100, 100) : -1);
+        CustomFontUtil.drawCenteredStringWithShadow(str, x + (width / 2), y + ((height - CustomFontUtil.getFontHeight()) / 2), open ? ColorUtil.astolfoColors(100, 100) : -1);
 
         if(open && !buttons.isEmpty()) for (Button button : buttons) button.renderComponent();
     }

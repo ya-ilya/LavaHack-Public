@@ -2,7 +2,7 @@ package com.kisman.cc.module.misc;
 
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.ChatUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -38,10 +38,10 @@ public class BurrowCounter extends Module {
         if (players.containsKey(player)) {
             int value = players.get(player) + 1;
             players.put(player, value);
-            ChatUtils.warning(player.getName() + TextFormatting.DARK_RED + " has burrowed " + value + " times");
+            ChatUtil.warning(player.getName() + TextFormatting.DARK_RED + " has burrowed " + value + " times");
         } else {
             players.put(player, 1);
-            ChatUtils.warning(player.getName() + TextFormatting.DARK_RED + " has burrowed");
+            ChatUtil.warning(player.getName() + TextFormatting.DARK_RED + " has burrowed");
         }
     }
 }

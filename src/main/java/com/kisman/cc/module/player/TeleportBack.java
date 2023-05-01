@@ -3,7 +3,7 @@ package com.kisman.cc.module.player;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.movement.Sprint;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.ChatUtil;
 import net.minecraft.network.play.client.CPacketPlayer;
 
 public class TeleportBack extends Module {
@@ -18,14 +18,14 @@ public class TeleportBack extends Module {
     public void onEnable() {
         if(mc.player != null && mc.world != null) {
             savePosition();
-            ChatUtils.complete("Position saved!");
+            ChatUtil.complete("Position saved!");
         }
     }
 
     public void onDisable() {
         if(mc.player != null && mc.world != null) {
             loadPosition();
-            ChatUtils.complete("Teleported!");
+            ChatUtil.complete("Teleported!");
         }
     }
 

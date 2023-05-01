@@ -8,8 +8,8 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.*;
-import i.gishreloaded.gishcode.utils.TimerUtils;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.TimerUtil;
+import com.kisman.cc.util.ChatUtil;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.block.Block;
@@ -36,7 +36,7 @@ public class Scaffold extends Module {
     private int newSlot;
     private double oldTower;
     private BlockPos scaffold;
-    private final TimerUtils cancelTimer = new TimerUtils();
+    private final TimerUtil cancelTimer = new TimerUtil();
     private CPacketPlayer.Rotation rotVec = null;
 
     public Scaffold() {
@@ -110,7 +110,7 @@ public class Scaffold extends Module {
 
         if (newSlot == -1) {
             newSlot = 1;
-            ChatUtils.error("[Scaffold] Out of valid blocks. Disabling!");
+            ChatUtil.error("[Scaffold] Out of valid blocks. Disabling!");
             super.setToggled(false);
         }
 

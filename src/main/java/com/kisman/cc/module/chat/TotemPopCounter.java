@@ -5,7 +5,7 @@ import com.kisman.cc.event.events.TotemPopEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.ChatUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -26,7 +26,7 @@ public class TotemPopCounter extends Module {
             if(isFriend && target.getValString().equals("Only Other Players")) return;
             if(!isFriend && target.getValString().equals("Only Friends")) return;
 
-            ChatUtils.warning((isFriend ? TextFormatting.AQUA : TextFormatting.GRAY) + event.getEntity().getName() + TextFormatting.GRAY + " was popped totem!");
+            ChatUtil.warning((isFriend ? TextFormatting.AQUA : TextFormatting.GRAY) + event.getEntity().getName() + TextFormatting.GRAY + " was popped totem!");
         }
     }
 

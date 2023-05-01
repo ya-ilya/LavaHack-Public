@@ -14,7 +14,7 @@ import com.kisman.cc.util.enums.RectSides;
 import com.kisman.cc.util.render.objects.AbstractGradient;
 import com.kisman.cc.util.render.objects.ShadowRectObject;
 import com.kisman.cc.util.render.objects.Vec4d;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -71,8 +71,8 @@ public class Frame {
             obj.draw();
         } else {
             Render2DUtil.drawRectWH(x, y, HalqGui.width, HalqGui.height, HalqGui.getGradientColour(count).getRGB());
-            if (HalqGui.shadow) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[]{x - HalqGui.headerOffset, y}, new double[]{x, y}, new double[]{x, y + HalqGui.height}, new double[]{x - HalqGui.headerOffset, y + HalqGui.height}), ColorUtils.injectAlpha(HalqGui.getGradientColour(count).getColor(), 0), HalqGui.getGradientColour(count).getColor()));
-            if (HalqGui.shadow) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[]{x + HalqGui.width, y}, new double[]{x + HalqGui.width + HalqGui.headerOffset, y}, new double[]{x + HalqGui.width + HalqGui.headerOffset, y + HalqGui.height}, new double[]{x + HalqGui.width, y + HalqGui.height}), HalqGui.getGradientColour(count).getColor(), ColorUtils.injectAlpha(HalqGui.getGradientColour(count).getColor(), 0)));
+            if (HalqGui.shadow) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[]{x - HalqGui.headerOffset, y}, new double[]{x, y}, new double[]{x, y + HalqGui.height}, new double[]{x - HalqGui.headerOffset, y + HalqGui.height}), ColorUtil.injectAlpha(HalqGui.getGradientColour(count).getColor(), 0), HalqGui.getGradientColour(count).getColor()));
+            if (HalqGui.shadow) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[]{x + HalqGui.width, y}, new double[]{x + HalqGui.width + HalqGui.headerOffset, y}, new double[]{x + HalqGui.width + HalqGui.headerOffset, y + HalqGui.height}, new double[]{x + HalqGui.width, y + HalqGui.height}), HalqGui.getGradientColour(count).getColor(), ColorUtil.injectAlpha(HalqGui.getGradientColour(count).getColor(), 0)));
         }
 
         HalqGui.drawString(cat.getName() + (Config.instance.guiRenderSize.getValBoolean() ? " [" + Kisman.instance.moduleManager.getModulesInCategory(cat).size() + "]": ""), x, y, HalqGui.width, HalqGui.height);

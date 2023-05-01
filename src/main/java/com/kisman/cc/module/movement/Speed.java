@@ -11,7 +11,6 @@ import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.EntityUtil;
 import com.kisman.cc.util.MovementUtil;
 import com.kisman.cc.util.PlayerUtil;
-import i.gishreloaded.gishcode.utils.Utils;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.block.Block;
@@ -128,14 +127,14 @@ public class Speed extends Module {
         if(mc.player.moveForward > 0 && mc.player.hurtTime < 5 && speedMode.getValString().equalsIgnoreCase("Strafe")) {
             if(mc.player.onGround) {
                 mc.player.motionY = 0.405;
-                float f = Utils.getDirection();
+                float direction = getDirection();
 
-                mc.player.motionX -= (MathHelper.sin(f) * 0.2F);
-                mc.player.motionZ += (MathHelper.cos(f) * 0.2F);
+                mc.player.motionX -= (MathHelper.sin(direction) * 0.2F);
+                mc.player.motionZ += (MathHelper.cos(direction) * 0.2F);
             } else {
                 double currentSpeed = Math.sqrt(mc.player.motionX * mc.player.motionX + mc.player.motionZ * mc.player.motionZ);
                 double speed = Math.abs(mc.player.rotationYawHead - mc.player.rotationYaw) < 90 ? 1.0064 : 1.001;
-                double direction = Utils.getDirection();
+                double direction =getDirection();
 
                 mc.player.motionX = -Math.sin(direction) * speed * currentSpeed;
                 mc.player.motionZ = Math.cos(direction) * speed * currentSpeed;
@@ -376,5 +375,26 @@ public class Speed extends Module {
 
     private float getSpeed() {
         return Math.max((float) stiSpeed.getValDouble(), 0.1f);
+    }
+
+    private static float getDirection() {
+        float var1 = mc.player.rotationYaw;
+        if (mc.player.moveForward < 0.0F) {
+            var1 += 180.0F;
+        }
+        float forward = 1.0F;
+        if (mc.player.moveForward < 0.0F) {
+            forward = -0.5F;
+        } else if (mc.player.moveForward > 0.0F) {
+            forward = 0.5F;
+        }
+        if (mc.player.moveStrafing > 0.0F) {
+            var1 -= 90.0F * forward;
+        }
+        if (mc.player.moveStrafing < 0.0F) {
+            var1 += 90.0F * forward;
+        }
+        var1 *= 0.017453292F;
+        return var1;
     }
 }

@@ -6,7 +6,7 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.InventoryUtil;
 import com.kisman.cc.util.MathUtil;
-import i.gishreloaded.gishcode.utils.TimerUtils;
+import com.kisman.cc.util.TimerUtil;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.init.Items;
@@ -32,7 +32,7 @@ public class ElytraFly extends Module {
     private final Setting equipElytra = new Setting("EquipElytra", this, true);
     private final Setting pitchSpoof = new Setting("PitchSpoof", this, false);
 
-    private final TimerUtils instantFlyTimer = new TimerUtils();
+    private final TimerUtil instantFlyTimer = new TimerUtil();
     public static ElytraFly instance;
     private int elytraSlot = -1;
 

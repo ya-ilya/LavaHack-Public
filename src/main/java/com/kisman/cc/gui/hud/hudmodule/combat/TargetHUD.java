@@ -9,8 +9,8 @@ import com.kisman.cc.module.combat.KillAura;
 import com.kisman.cc.util.*;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import i.gishreloaded.gishcode.utils.TimerUtils;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.TimerUtil;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiInventory;
@@ -27,7 +27,7 @@ import java.util.Objects;
 
 public class TargetHUD extends HudModule {
     private EntityPlayer target = null;
-    private final TimerUtils timer = new TimerUtils();
+    private final TimerUtil timer = new TimerUtil();
     private double hpBarWidth;
     private double cdBarWidth;
     private final double borderOffset = 5;
@@ -71,7 +71,7 @@ public class TargetHUD extends HudModule {
     }
 
     private void drawAstolfo() {
-        Color color = HUD.instance.astolfoColor.getValBoolean() ? ColorUtils.astolfoColorsToColorObj(100, 100) : new Color(255, 0, 89);
+        Color color = HUD.instance.astolfoColor.getValBoolean() ? ColorUtil.astolfoColorsToColorObj(100, 100) : new Color(255, 0, 89);
 
         float x = (float) getX(), y = (float) getY();
         setW(155);
@@ -137,29 +137,29 @@ public class TargetHUD extends HudModule {
         //img width: borderOffset + 27
 
         //draw background
-        Render2DUtil.drawRect(x + 3, y + 3, x + width + 3, y + height - 3, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x + 3, y, x + width + 3, y + height, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x + 2, y + 2, x + width + 2, y + height - 2, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x + 2, y, x + width + 2, y + height, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x + 1, y + 1, x + width + 1, y + height - 1, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x + 1, y, x + width + 1, y + height, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x - 3, y - 8, x + width + 3, y + height - 3, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x - 3, y, x + width + 3, y + height, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x - 2, y - 7, x + width + 2, y + height - 2, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x - 2, y, x + width + 2, y + height, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x - 1, y - 6, x + width + 1, y + height - 1, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x - 1, y, x + width + 1, y + height, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x, y - 5, x + width, y + height, (ColorUtils.astolfoColors(100, 100)));
-        Render2DUtil.drawRect(x - 3, y - 1, x + width + 3, y + height + 3, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x - 2, y - 2, x + width + 2, y + height + 2, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x - 1, y - 3, x + width + 1, y + height + 1, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x, y - 4, x + width, y + height, (ColorUtils.getColor(34, 34, 40)));
+        Render2DUtil.drawRect(x + 3, y + 3, x + width + 3, y + height - 3, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x + 3, y, x + width + 3, y + height, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x + 2, y + 2, x + width + 2, y + height - 2, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x + 2, y, x + width + 2, y + height, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x + 1, y + 1, x + width + 1, y + height - 1, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x + 1, y, x + width + 1, y + height, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x - 3, y - 8, x + width + 3, y + height - 3, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x - 3, y, x + width + 3, y + height, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x - 2, y - 7, x + width + 2, y + height - 2, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x - 2, y, x + width + 2, y + height, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x - 1, y - 6, x + width + 1, y + height - 1, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x - 1, y, x + width + 1, y + height, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x, y - 5, x + width, y + height, (ColorUtil.astolfoColors(100, 100)));
+        Render2DUtil.drawRect(x - 3, y - 1, x + width + 3, y + height + 3, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x - 2, y - 2, x + width + 2, y + height + 2, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x - 1, y - 3, x + width + 1, y + height + 1, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x, y - 4, x + width, y + height, (ColorUtil.getColor(34, 34, 40)));
 
         //draw target's name
-        CustomFontUtil.drawCenteredStringWithShadow(target.getName(), x + width / 2, y + borderOffset, ColorUtils.astolfoColors(100, 100));
+        CustomFontUtil.drawCenteredStringWithShadow(target.getName(), x + width / 2, y + borderOffset, ColorUtil.astolfoColors(100, 100));
 
         //draw face background
-        Render2DUtil.drawRect(x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight(), (x + borderOffset + radius), borderOffset * 3 + CustomFontUtil.getFontHeight() + radius, ColorUtils.astolfoColors(100, 100));
+        Render2DUtil.drawRect(x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight(), (x + borderOffset + radius), borderOffset * 3 + CustomFontUtil.getFontHeight() + radius, ColorUtil.astolfoColors(100, 100));
 
         //draw face texture
         try {
@@ -175,10 +175,10 @@ public class TargetHUD extends HudModule {
 
         //draw health circle
         double healthX = x + borderOffset * 2 + 12 + radius, healthY = y + borderOffset * 3 + CustomFontUtil.getFontHeight() + radius, circleOffset = 3, healthDegrees = 360 * (target.getMaxHealth() / target.getHealth());
-        Render2DUtil.drawProgressCircle2(healthX, healthY, radius, ColorUtils.astolfoColors(100, 100), healthDegrees, 1);
+        Render2DUtil.drawProgressCircle2(healthX, healthY, radius, ColorUtil.astolfoColors(100, 100), healthDegrees, 1);
         double[] circleCentre = MathUtil.getCircleCentre(new double[] {healthX, healthY}, radius);
         String text = String.valueOf((int) target.getHealth());
-        CustomFontUtil.drawCenteredStringWithShadow(text, circleCentre[0], circleCentre[1] - CustomFontUtil.getFontHeight() / 2, ColorUtils.astolfoColors(100, 100));
+        CustomFontUtil.drawCenteredStringWithShadow(text, circleCentre[0], circleCentre[1] - CustomFontUtil.getFontHeight() / 2, ColorUtil.astolfoColors(100, 100));
 
         //draw armor and items in hands
         double posX = healthX;
@@ -190,7 +190,7 @@ public class TargetHUD extends HudModule {
             RenderUtil.renderItemOverlayIntoGUI(CustomFontUtil.comfortaab18, item, 0, 0, null, false);
             GL11.glPopMatrix();
             double[] centre = MathUtil.getCircleCentre(new double[] {posX, healthY + circleOffset}, radius);
-            Render2DUtil.drawProgressCircle2(centre[0], centre[1], radius, ColorUtils.astolfoColors(100, 100), InventoryUtil.getDamageInFloat(item), 1);
+            Render2DUtil.drawProgressCircle2(centre[0], centre[1], radius, ColorUtil.astolfoColors(100, 100), InventoryUtil.getDamageInFloat(item), 1);
             posX += 16;
         }
         if(!target.getHeldItemMainhand().isEmpty) {
@@ -200,7 +200,7 @@ public class TargetHUD extends HudModule {
             RenderUtil.renderItemOverlayIntoGUI(CustomFontUtil.comfortaab18, target.getHeldItemMainhand(), 0, 0, null, false);
             GL11.glPopMatrix();
             double[] centre = MathUtil.getCircleCentre(new double[] {posX, healthY + circleOffset}, radius);
-            Render2DUtil.drawProgressCircle2(centre[0], centre[1], radius, ColorUtils.astolfoColors(100, 100), InventoryUtil.getDamageInFloat(target.getHeldItemMainhand()), 1);
+            Render2DUtil.drawProgressCircle2(centre[0], centre[1], radius, ColorUtil.astolfoColors(100, 100), InventoryUtil.getDamageInFloat(target.getHeldItemMainhand()), 1);
             posX += 16;
         }
         if(!target.getHeldItemOffhand().isEmpty){
@@ -210,7 +210,7 @@ public class TargetHUD extends HudModule {
             RenderUtil.renderItemOverlayIntoGUI(CustomFontUtil.comfortaab18, target.getHeldItemOffhand(), 0, 0, null, false);
             GL11.glPopMatrix();
             double[] centre = MathUtil.getCircleCentre(new double[] {posX, healthY + circleOffset}, radius);
-            Render2DUtil.drawProgressCircle2(centre[0], centre[1], radius, ColorUtils.astolfoColors(100, 100), InventoryUtil.getDamageInFloat(target.getHeldItemOffhand()), 1);
+            Render2DUtil.drawProgressCircle2(centre[0], centre[1], radius, ColorUtil.astolfoColors(100, 100), InventoryUtil.getDamageInFloat(target.getHeldItemOffhand()), 1);
         }
     }
 
@@ -227,7 +227,7 @@ public class TargetHUD extends HudModule {
             CustomFontUtil.drawStringWithShadow("Distance: " + ChatFormatting.GRAY + MathUtil.round(mc.player.getDistance(target), 2), x + 47, y + 13, -1);
             CustomFontUtil.drawStringWithShadow("Ping: " + ChatFormatting.GRAY + (mc.isSingleplayer() ? 0 : Kisman.instance.serverManager.getPing()) + " ms", x + 47, y + 22.5, -1);
             Render2DUtil.drawRoundedRect2(x + 45, y + h - 16, w - 49, 10, 6, 0x40575656);
-            Render2DUtil.drawRoundedRect2(x + 47, y + h - 12, 95 * hpBarWidth, 3, 4, ColorUtils.healthColor(target.getHealth() + target.getAbsorptionAmount(), target.getMaxHealth()).getRGB());
+            Render2DUtil.drawRoundedRect2(x + 47, y + h - 12, 95 * hpBarWidth, 3, 4, ColorUtil.healthColor(target.getHealth() + target.getAbsorptionAmount(), target.getMaxHealth()).getRGB());
             GL11.glEnable(GL11.GL_DEPTH_TEST);
             try {GuiInventory.drawEntityOnScreen((int) x + 21, (int) (y + 44), 18, -30, -target.rotationPitch, target);} catch (Exception ignored) {}
         }
@@ -246,29 +246,29 @@ public class TargetHUD extends HudModule {
         int count = 0;
 
         //draw background
-        Render2DUtil.drawRect(x + 3, y + 3, x + width + 3, y + height - 3, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x + 3, y, x + width + 3, y + height, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x + 2, y + 2, x + width + 2, y + height - 2, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x + 2, y, x + width + 2, y + height, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x + 1, y + 1, x + width + 1, y + height - 1, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x + 1, y, x + width + 1, y + height, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x - 3, y - 8, x + width + 3, y + height - 3, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x - 3, y, x + width + 3, y + height, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x - 2, y - 7, x + width + 2, y + height - 2, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x - 2, y, x + width + 2, y + height, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x - 1, y - 6, x + width + 1, y + height - 1, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x - 1, y, x + width + 1, y + height, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x, y - 5, x + width, y + height, (ColorUtils.astolfoColors(100, 100)));
-        Render2DUtil.drawRect(x - 3, y - 1, x + width + 3, y + height + 3, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x - 2, y - 2, x + width + 2, y + height + 2, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x - 1, y - 3, x + width + 1, y + height + 1, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x, y - 4, x + width, y + height, (ColorUtils.getColor(34, 34, 40)));
+        Render2DUtil.drawRect(x + 3, y + 3, x + width + 3, y + height - 3, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x + 3, y, x + width + 3, y + height, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x + 2, y + 2, x + width + 2, y + height - 2, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x + 2, y, x + width + 2, y + height, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x + 1, y + 1, x + width + 1, y + height - 1, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x + 1, y, x + width + 1, y + height, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x - 3, y - 8, x + width + 3, y + height - 3, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x - 3, y, x + width + 3, y + height, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x - 2, y - 7, x + width + 2, y + height - 2, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x - 2, y, x + width + 2, y + height, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x - 1, y - 6, x + width + 1, y + height - 1, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x - 1, y, x + width + 1, y + height, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x, y - 5, x + width, y + height, (ColorUtil.astolfoColors(100, 100)));
+        Render2DUtil.drawRect(x - 3, y - 1, x + width + 3, y + height + 3, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x - 2, y - 2, x + width + 2, y + height + 2, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x - 1, y - 3, x + width + 1, y + height + 1, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x, y - 4, x + width, y + height, (ColorUtil.getColor(34, 34, 40)));
 
         //draw target's name
-        CustomFontUtil.drawCenteredStringWithShadow(target.getName(), x + width / 2, y + borderOffset, ColorUtils.astolfoColors(100, 100));
+        CustomFontUtil.drawCenteredStringWithShadow(target.getName(), x + width / 2, y + borderOffset, ColorUtil.astolfoColors(100, 100));
 
         //draw face background
-        Render2DUtil.drawRect(x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight(), (x + borderOffset + 27), y + borderOffset * 3 + CustomFontUtil.getFontHeight() + 27, ColorUtils.astolfoColors(100, 100));
+        Render2DUtil.drawRect(x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight(), (x + borderOffset + 27), y + borderOffset * 3 + CustomFontUtil.getFontHeight() + 27, ColorUtil.astolfoColors(100, 100));
 
         //draw face texture
         try {
@@ -282,9 +282,9 @@ public class TargetHUD extends HudModule {
         }
 
         //draw health & dist & onGround
-        CustomFontUtil.drawString("Health: " + (int) target.getHealth(), x + borderOffset + 27 + 4, y + borderOffset * 3 + CustomFontUtil.getFontHeight(), ColorUtils.astolfoColors(100, 100));
-        CustomFontUtil.drawString("Distance: " + (int) mc.player.getDistance(target), x + borderOffset + 27 + 4, y + borderOffset * 3 + CustomFontUtil.getFontHeight() * 2 + 2, ColorUtils.astolfoColors(100, 100));
-        CustomFontUtil.drawString("On Ground: " + target.onGround, x + borderOffset + 27 + 4, y + borderOffset * 3 + CustomFontUtil.getFontHeight() * 3 + 4, ColorUtils.astolfoColors(100, 100));
+        CustomFontUtil.drawString("Health: " + (int) target.getHealth(), x + borderOffset + 27 + 4, y + borderOffset * 3 + CustomFontUtil.getFontHeight(), ColorUtil.astolfoColors(100, 100));
+        CustomFontUtil.drawString("Distance: " + (int) mc.player.getDistance(target), x + borderOffset + 27 + 4, y + borderOffset * 3 + CustomFontUtil.getFontHeight() * 2 + 2, ColorUtil.astolfoColors(100, 100));
+        CustomFontUtil.drawString("On Ground: " + target.onGround, x + borderOffset + 27 + 4, y + borderOffset * 3 + CustomFontUtil.getFontHeight() * 3 + 4, ColorUtil.astolfoColors(100, 100));
 
         //draw armor and items in hands
         double posX = x + borderOffset;
@@ -316,7 +316,7 @@ public class TargetHUD extends HudModule {
         //draw cooldown slider
         double cooldownPercentage = MathHelper.clamp(target.getCooledAttackStrength(0), 0.1, 1);
         cdBarWidth = AnimationUtils.animate(cooldownPercentage * maxSlidersWidth, cdBarWidth, 0.05);
-        CustomFontUtil.drawStringWithShadow("Cooldown", x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight() + 27 + 4 + 12, ColorUtils.astolfoColors(100, 100));
+        CustomFontUtil.drawStringWithShadow("Cooldown", x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight() + 27 + 4 + 12, ColorUtil.astolfoColors(100, 100));
         drawSlider(x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight() * 2 + 27 + 6 + 12, cdBarWidth, CustomFontUtil.getFontHeight());
         count++;
 
@@ -325,13 +325,13 @@ public class TargetHUD extends HudModule {
             hpBarWidth = AnimationUtils.animate((target.getHealth() / target.getMaxHealth()) * maxSlidersWidth, hpBarWidth, 0.05);
             timer.reset();
         }
-        CustomFontUtil.drawStringWithShadow("Health", x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight() + 27 + 4 + (count * offset) + 12, ColorUtils.astolfoColors(100, 100));
+        CustomFontUtil.drawStringWithShadow("Health", x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight() + 27 + 4 + (count * offset) + 12, ColorUtil.astolfoColors(100, 100));
         drawSlider(x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight() * 2 + 27 + 6 + (count * offset) + 12, hpBarWidth, CustomFontUtil.getFontHeight());
     }
 
     private void drawSlider(double x, double y, double sliderWidth, double sliderHeight) {
-        if(HUD.instance.thudShadowSliders.getValBoolean()) Render2DUtil.drawShadowSliders(x, y, sliderWidth, sliderHeight, ColorUtils.astolfoColors(100, 100), 1);
-        else Render2DUtil.drawRect(x, y, x + sliderWidth, y + sliderHeight, ColorUtils.astolfoColors(100, 100));
+        if(HUD.instance.thudShadowSliders.getValBoolean()) Render2DUtil.drawShadowSliders(x, y, sliderWidth, sliderHeight, ColorUtil.astolfoColors(100, 100), 1);
+        else Render2DUtil.drawRect(x, y, x + sliderWidth, y + sliderHeight, ColorUtil.astolfoColors(100, 100));
     }
 
     private void drawVega() {
@@ -345,16 +345,16 @@ public class TargetHUD extends HudModule {
             hpBarWidth = AnimationUtils.animate((target.getHealth() / target.getMaxHealth()) * maxX, hpBarWidth, 0.05);
             timer.reset();
         }
-        int color  = HUD.instance.astolfoColor.getValBoolean() ? ColorUtils.astolfoColors(100, 100) : ColorUtils.rainbow(1, 1);
-        Render2DUtil.drawRect(renderX - 4, renderY - 3, (renderX + 4 + maxX), (int) renderY + 49, ColorUtils.getColor(55, 55, 63));
-        Render2DUtil.drawRect(renderX - 3, renderY - 2, (renderX + 3 + maxX), (int) renderY + 48, ColorUtils.getColor(95, 95, 103));
-        Render2DUtil.drawRect(renderX - 2, renderY - 1, (renderX + 2 + maxX), (int) renderY + 47, ColorUtils.getColor(65, 65, 73));
-        Render2DUtil.drawRect(renderX - 1, renderY, (renderX + 1 + maxX), (int) renderY + 46, ColorUtils.getColor(25, 25, 33));
-        Render2DUtil.drawRect(renderX + 2, renderY + 42, (renderX + maxX), (int) renderY + 45, ColorUtils.getColor(48, 48, 58));
+        int color  = HUD.instance.astolfoColor.getValBoolean() ? ColorUtil.astolfoColors(100, 100) : ColorUtil.rainbow(1, 1);
+        Render2DUtil.drawRect(renderX - 4, renderY - 3, (renderX + 4 + maxX), (int) renderY + 49, ColorUtil.getColor(55, 55, 63));
+        Render2DUtil.drawRect(renderX - 3, renderY - 2, (renderX + 3 + maxX), (int) renderY + 48, ColorUtil.getColor(95, 95, 103));
+        Render2DUtil.drawRect(renderX - 2, renderY - 1, (renderX + 2 + maxX), (int) renderY + 47, ColorUtil.getColor(65, 65, 73));
+        Render2DUtil.drawRect(renderX - 1, renderY, (renderX + 1 + maxX), (int) renderY + 46, ColorUtil.getColor(25, 25, 33));
+        Render2DUtil.drawRect(renderX + 2, renderY + 42, (renderX + maxX), (int) renderY + 45, ColorUtil.getColor(48, 48, 58));
         Render2DUtil.drawRect(renderX + 1, renderY + 2, (renderX + 28), (int) renderY + 29, color);
-        Render2DUtil.drawRect(renderX + 2, renderY + 3, (int) (renderX + 27), (int) renderY + 28, ColorUtils.getColor(25, 25, 33));
+        Render2DUtil.drawRect(renderX + 2, renderY + 3, (int) (renderX + 27), (int) renderY + 28, ColorUtil.getColor(25, 25, 33));
         Gui.drawRect((int) renderX, (int) renderY + 37 + 5, (int) (renderX + hpBarWidth), (int) renderY + 40 + 5, color);
-        Gui.drawRect((int) renderX + 1, (int) renderY + 38 + 5, (int) (renderX - 1 + hpBarWidth), (int) renderY + 39 + 5, ColorUtils.getColor(0, 0, 0));
+        Gui.drawRect((int) renderX + 1, (int) renderY + 38 + 5, (int) (renderX - 1 + hpBarWidth), (int) renderY + 39 + 5, ColorUtil.getColor(0, 0, 0));
 
         try {
             mc.getTextureManager().bindTexture(mc.getConnection().getPlayerInfo(target.getName()).getLocationSkin());

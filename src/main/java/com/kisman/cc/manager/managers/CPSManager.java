@@ -3,14 +3,14 @@ package com.kisman.cc.manager.managers;
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.manager.Manager;
-import i.gishreloaded.gishcode.utils.TimerUtils;
+import com.kisman.cc.util.TimerUtil;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.init.Items;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 
 public class CPSManager implements Manager {
-    private final TimerUtils timer = new TimerUtils();
+    private final TimerUtil timer = new TimerUtil();
     private int usage = 0;
     private int cps = 0;
 

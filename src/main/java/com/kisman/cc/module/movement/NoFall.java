@@ -8,7 +8,7 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.EntityUtil;
 import com.kisman.cc.util.InventoryUtil;
-import i.gishreloaded.gishcode.utils.TimerUtils;
+import com.kisman.cc.util.TimerUtil;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.block.BlockLiquid;
@@ -21,7 +21,7 @@ import net.minecraft.util.math.Vec3d;
 public class NoFall extends Module {
     private final Setting mode = new Setting("Mode", this, Mode.Packet);
 
-    private final TimerUtils timer = new TimerUtils();
+    private final TimerUtil timer = new TimerUtil();
 
     public NoFall() {
         super("NoFall", Category.MOVEMENT);

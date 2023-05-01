@@ -8,4 +8,10 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 public interface AccessorPlayerControllerMP {
     @Accessor("isHittingBlock")
     void mm_setIsHittingBlock(boolean value);
+
+    @Accessor("blockHitDelay")
+    void setBlockHitDelay(int value);
+
+    @Accessor("curBlockDamageMP")
+    float getCurBlockDamageMP();
 }

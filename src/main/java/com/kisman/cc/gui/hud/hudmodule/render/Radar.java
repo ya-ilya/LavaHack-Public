@@ -6,7 +6,7 @@ import com.kisman.cc.module.client.HUD;
 import com.kisman.cc.util.Colour;
 import com.kisman.cc.util.Render2DUtil;
 import com.kisman.cc.util.customfont.CustomFontUtil;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,7 +32,7 @@ public class Radar extends HudModule {
         x = (int) getX();
         y = (int) getY();
 
-        int color = HUD.instance.astolfoColor.getValBoolean() ? ColorUtils.astolfoColors(100, 100) : -1;
+        int color = HUD.instance.astolfoColor.getValBoolean() ? ColorUtil.astolfoColors(100, 100) : -1;
 
         //draw background
         Gui.drawRect(x, y, 150 + x, 150 + y, new Colour(70, 70, 70, 150).getRGB());
@@ -74,7 +74,7 @@ public class Radar extends HudModule {
     }
 
     private void renderEntityPoint(Entity entity) {
-        int color = HUD.instance.astolfoColor.getValBoolean() ? ColorUtils.astolfoColors(100, 100) : -1;
+        int color = HUD.instance.astolfoColor.getValBoolean() ? ColorUtil.astolfoColors(100, 100) : -1;
         int distanceX = findDistance1D(mc.player.posX, entity.posX);
         int distanceY = findDistance1D(mc.player.posZ, entity.posZ);
         int maxRange = HUD.instance.radarDist.getValInt();

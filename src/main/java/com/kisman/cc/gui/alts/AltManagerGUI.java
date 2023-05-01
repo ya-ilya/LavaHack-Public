@@ -3,7 +3,7 @@ package com.kisman.cc.gui.alts;
 import com.kisman.cc.gui.alts.microsoft.MSAuthScreen;
 import com.kisman.cc.mixin.mixins.accessor.ISession;
 import com.kisman.cc.util.customfont.CustomFontUtil;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiListExtended;
@@ -46,7 +46,7 @@ public class AltManagerGUI extends GuiScreen {
 		this.altList.drawScreen(mouseX, mouseY, partialTicks);
 		GL11.glPushMatrix();
 		GL11.glScalef(2.0F, 2.0F, 2.0F);
-		CustomFontUtil.drawCenteredStringWithShadow("Alts", width / 4, 6, ColorUtils.astolfoColors(100, 100));
+		CustomFontUtil.drawCenteredStringWithShadow("Alts", width / 4, 6, ColorUtil.astolfoColors(100, 100));
 		GL11.glPopMatrix();
 		String s = "Signed in as ";
 		this.drawString(mc.fontRenderer, s, 4, 6, 0xFFAAAAAA);

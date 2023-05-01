@@ -1,7 +1,7 @@
 package com.kisman.cc.util.customfont.norules;
 
 import com.kisman.cc.util.customfont.CustomFont;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import org.lwjgl.opengl.GL11;
@@ -72,13 +72,13 @@ public class CFontRenderer extends CustomFont {
     public void drawBorderedString(String text, double d, double e, int color) {
         GlStateManager.pushMatrix();
         GL11.glTranslated(0.5D, 0.0D, 0.0D);
-        this.drawString(text, d, e, ColorUtils.getColor(0, color >> 24 & 255), false);
+        this.drawString(text, d, e, ColorUtil.getColor(0, color >> 24 & 255), false);
         GL11.glTranslated(1.0D, 0.0D, 0.0D);
-        this.drawString(text, d, e, ColorUtils.getColor(0, color >> 24 & 255), false);
+        this.drawString(text, d, e, ColorUtil.getColor(0, color >> 24 & 255), false);
         GL11.glTranslated(-0.5D, 0.5D, 0.0D);
-        this.drawString(text, d, e, ColorUtils.getColor(0, color >> 24 & 255), false);
+        this.drawString(text, d, e, ColorUtil.getColor(0, color >> 24 & 255), false);
         GL11.glTranslated(0.0D, -1.0D, 0.0D);
-        this.drawString(text, d, e, ColorUtils.getColor(0, color >> 24 & 255), false);
+        this.drawString(text, d, e, ColorUtil.getColor(0, color >> 24 & 255), false);
         GL11.glTranslated(0.0D, 0.5D, 0.0D);
         this.drawString(text, d, e, color, false);
         GL11.glTranslated(-1.0D, -1.0D, 0.0D);

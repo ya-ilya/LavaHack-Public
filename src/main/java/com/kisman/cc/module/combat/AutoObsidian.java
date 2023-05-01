@@ -4,7 +4,7 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.*;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.ChatUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -82,7 +82,7 @@ public class AutoObsidian extends Module {
         if(singlePlace.getValBoolean()){
             BlockUtil.placeBlockSmartRotate(blockPos.get(0), EnumHand.MAIN_HAND, rotate.getValBoolean(), packet.getValBoolean(), false);
             last = blockPos.get(0);
-            ChatUtils.message(last.getX() + " " + last.getY() + " " + last.getZ());
+            ChatUtil.message(last.getX() + " " + last.getY() + " " + last.getZ());
         } else {
             for(BlockPos pos : blockPos){
                 BlockUtil.placeBlockSmartRotate(pos, EnumHand.MAIN_HAND, rotate.getValBoolean(), packet.getValBoolean(), false);

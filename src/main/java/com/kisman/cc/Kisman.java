@@ -17,6 +17,7 @@ import com.kisman.cc.manager.managers.FriendManager;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.ModuleManager;
 import com.kisman.cc.module.client.Config;
+import com.kisman.cc.module.render.shader.FramebufferShader;
 import com.kisman.cc.setting.SettingManager;
 import com.kisman.cc.util.RotationUtils;
 import com.kisman.cc.util.ServerManager;
@@ -105,6 +106,8 @@ public class Kisman {
 
         managers = new Managers();
         managers.init();
+
+        FramebufferShader.initShaders();
 
         friendManager = new FriendManager();
     	settingManager = new SettingManager();

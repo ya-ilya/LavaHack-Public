@@ -3,7 +3,7 @@ package com.kisman.cc.module.render;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 
 import java.awt.*;
 
@@ -27,6 +27,6 @@ public class HotbarModifier extends Module {
     }
 
     public static Color getPrimaryColor() {
-        return instance.primaryAstolfo.getValBoolean() ? ColorUtils.astolfoColorsToColorObj(100, 100) : new Color(255, 255, 255, 152);
+        return instance.primaryAstolfo.getValBoolean() ? ColorUtil.astolfoColorsToColorObj(100, 100) : new Color(255, 255, 255, 152);
     }
 }

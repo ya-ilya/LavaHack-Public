@@ -5,7 +5,7 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.module.combat.holefiller.Hole;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.*;
-import i.gishreloaded.gishcode.utils.TimerUtils;
+import com.kisman.cc.util.TimerUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -28,7 +28,7 @@ public class HoleFiller extends Module {
     public static HoleFiller instance;
 
     private final ArrayList<Hole> holes = new ArrayList<>();
-    private final TimerUtils timer = new TimerUtils();
+    private final TimerUtil timer = new TimerUtil();
 
     public EntityPlayer target;
     public Hole targetHole;

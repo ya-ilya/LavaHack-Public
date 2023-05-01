@@ -4,7 +4,7 @@ import com.kisman.cc.gui.hud.hudmodule.HudCategory;
 import com.kisman.cc.gui.hud.hudmodule.HudModule;
 import com.kisman.cc.module.client.HUD;
 import com.kisman.cc.util.customfont.CustomFontUtil;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -26,7 +26,7 @@ public class Fps extends HudModule {
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent.Text event) {
         if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
-            int color = HUD.instance.astolfoColor.getValBoolean() ? ColorUtils.astolfoColors(100, 100) : -1;
+            int color = HUD.instance.astolfoColor.getValBoolean() ? ColorUtil.astolfoColors(100, 100) : -1;
             CustomFontUtil.drawStringWithShadow("Fps: " + TextFormatting.GRAY + Minecraft.getDebugFPS(), getX(), getY(), color);
         }
     }

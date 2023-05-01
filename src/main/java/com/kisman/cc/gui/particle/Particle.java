@@ -2,7 +2,7 @@ package com.kisman.cc.gui.particle;
 
 import com.kisman.cc.module.client.Config;
 import com.kisman.cc.util.Colour;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector2f;
 
@@ -21,7 +21,7 @@ public class Particle
         this.velocity = velocity;
         this.pos = new Vector2f(x, y);
         this.size = size;
-        this.color = ColorUtils.getRandomColour();
+        this.color = ColorUtil.getRandomColour();
     }
 
     public static Particle generateParticle() {

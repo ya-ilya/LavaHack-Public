@@ -4,7 +4,7 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.Colour;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Vec3d;
@@ -91,7 +91,7 @@ public class JumpCircle extends Module {
     }
 
     public void handleEntityJump(Entity entity) {
-        circles.add(new Circle(entity.getPositionVector(), rainbow.getValBoolean() ? new Colour(ColorUtils.rainbow(1, 1)).toVec3d() : color.getColour().toVec3d()));
+        circles.add(new Circle(entity.getPositionVector(), rainbow.getValBoolean() ? new Colour(ColorUtil.rainbow(1, 1)).toVec3d() : color.getColour().toVec3d()));
     }
 
     public class Circle {

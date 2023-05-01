@@ -9,7 +9,7 @@ import com.kisman.cc.module.client.Config;
 import com.kisman.cc.module.client.Gui;
 import com.kisman.cc.util.Colour;
 import com.kisman.cc.util.customfont.CustomFontUtil;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -162,9 +162,9 @@ public class HalqGui extends GuiScreen {
     public static Colour getGradientColour(int count) {
         switch(Config.instance.guiGradient.getValString()) {
             case "None": return primaryColor;
-            case "Rainbow": return new Colour(ColorUtils.rainbow(count * diff, 1, 1));
-            case "Astolfo": return new Colour(ColorUtils.getAstolfoRainbow(count * diff));
-            case "Pulsive": return ColorUtils.twoColorEffect(primaryColor, primaryColor.setBrightness(0.25f), Math.abs(System.currentTimeMillis() / 10L) / 100.0 + 6.0 * (count * diff) / 60.0);
+            case "Rainbow": return new Colour(ColorUtil.rainbow(count * diff, 1, 1));
+            case "Astolfo": return new Colour(ColorUtil.getAstolfoRainbow(count * diff));
+            case "Pulsive": return ColorUtil.twoColorEffect(primaryColor, primaryColor.setBrightness(0.25f), Math.abs(System.currentTimeMillis() / 10L) / 100.0 + 6.0 * (count * diff) / 60.0);
         }
         return primaryColor;
     }

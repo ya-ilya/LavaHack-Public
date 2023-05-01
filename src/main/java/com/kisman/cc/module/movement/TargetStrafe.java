@@ -6,7 +6,7 @@ import com.kisman.cc.module.combat.KillAura;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.EntityUtil;
 import com.kisman.cc.util.RotationUtils;
-import i.gishreloaded.gishcode.utils.TimerUtils;
+import com.kisman.cc.util.TimerUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.potion.Potion;
 
@@ -17,7 +17,7 @@ public class TargetStrafe extends Module {
     private final Setting speed = new Setting("Speed", this, 3.19, 0.15f, 50, false);
     private final Setting autoJump = new Setting("Auto Jump", this, false);
     private Entity target;
-    private final TimerUtils timer = new TimerUtils();
+    private final TimerUtil timer = new TimerUtil();
     private int direction;
 
     public TargetStrafe() {

@@ -5,7 +5,7 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.*;
-import i.gishreloaded.gishcode.utils.TimerUtils;
+import com.kisman.cc.util.TimerUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumHand;
@@ -23,7 +23,7 @@ public class CrystalBasePlace extends Module {
 
     public static CrystalBasePlace instance;
 
-    private final TimerUtils delayTimer = new TimerUtils();
+    private final TimerUtil delayTimer = new TimerUtil();
     private EntityPlayer target;
 
     public CrystalBasePlace() {

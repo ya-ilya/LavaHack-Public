@@ -2,8 +2,7 @@ package com.kisman.cc.gui.console;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.command.Command;
-import com.kisman.cc.util.ColorUtil;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ITabCompleter;
@@ -204,7 +203,7 @@ public class GuiConsole extends GuiScreen implements ITabCompleter {
      * Draws the screen and all the components in it.
      */
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        int color = ColorUtil.injectAlpha(ColorUtils.astolfoColors(100, 100), 140).getRGB();
+        int color = com.kisman.cc.util.ColorUtil.injectAlpha(ColorUtil.astolfoColors(100, 100), 140).getRGB();
 
         drawRect(2, this.height - 14, this.width - 2, this.height - 2, color);
         this.inputField.drawTextBox();

@@ -1,4 +1,4 @@
-package i.gishreloaded.gishcode.utils.visual;
+package com.kisman.cc.util.gish;
 
 import com.kisman.cc.util.Colour;
 import net.minecraft.client.renderer.GlStateManager;
@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 import java.util.Random;
 
-public class ColorUtils {
+public class ColorUtil {
     public static Colour getRandomColour() {
         return Colour.fromHSB(new float[] {new Random().nextFloat(), 1, 1}, 255);
     }
@@ -91,9 +91,9 @@ public class ColorUtils {
     public static int getBlue(int color) {return new Color(color).getBlue();}
     public static int getAlpha(int color) {return new Color(color).getAlpha();}
     public static Color rainbowRGB(int delay, float s, float b) {return new Color(getRed((Color.HSBtoRGB((System.currentTimeMillis() + delay) % 11520L / 11520.0f, s, b))), getGreen(Color.HSBtoRGB((System.currentTimeMillis() + delay) % 11520L / 11520.0f, s, b)), getBlue(Color.HSBtoRGB((System.currentTimeMillis() + delay) % 11520L / 11520.0f, s, b)));}
-    public static int getColor(int brightness) {return ColorUtils.getColor(brightness, brightness, brightness, 255);}
-    public static int getColor(int brightness, int alpha) {return ColorUtils.getColor(brightness, brightness, brightness, alpha);}
+    public static int getColor(int brightness) {return ColorUtil.getColor(brightness, brightness, brightness, 255);}
+    public static int getColor(int brightness, int alpha) {return ColorUtil.getColor(brightness, brightness, brightness, alpha);}
     public static Color injectAlpha(final Color color, final int alpha) {return new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);}
-    public static Color injectAlpha(int color, int alpha) {return new Color(ColorUtils.getRed(color), ColorUtils.getGreen(color), ColorUtils.getBlue(color), alpha);}
+    public static Color injectAlpha(int color, int alpha) {return new Color(ColorUtil.getRed(color), ColorUtil.getGreen(color), ColorUtil.getBlue(color), alpha);}
     public static void glColor(Color color) {GL11.glColor4f(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, color.getAlpha() / 255f);}
 }

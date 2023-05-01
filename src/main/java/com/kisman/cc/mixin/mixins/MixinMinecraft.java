@@ -28,10 +28,7 @@ public abstract class MixinMinecraft {
     @Shadow
     protected abstract void clickMouse();
 
-    @Inject(
-            method = "init",
-            at = @At("RETURN")
-    )
+    @Inject(method = "init", at = @At("RETURN"))
     private void initHook(CallbackInfo ci) {
         try {
             Kisman.instance.init();
@@ -43,8 +40,9 @@ public abstract class MixinMinecraft {
     @Inject(method = "processKeyBinds", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/settings/KeyBinding;isKeyDown()Z", shift = At.Shift.BEFORE, ordinal = 2))
     public void mt_processKeyBinds(CallbackInfo info) {
         if (MultiTask.instance.isToggled()) {
-            while (gameSettings.keyBindAttack.isPressed())
+            while (gameSettings.keyBindAttack.isPressed()) {
                 clickMouse();
+            }
         }
     }
 

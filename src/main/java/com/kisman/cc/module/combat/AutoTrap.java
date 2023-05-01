@@ -5,8 +5,8 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.*;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import i.gishreloaded.gishcode.utils.TimerUtils;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.TimerUtil;
+import com.kisman.cc.util.ChatUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -36,10 +36,10 @@ public class AutoTrap extends Module {
     protected final Setting switch_ = new Setting("Rewrite Switch Mode", this, RewriteSwitchModes.Silent);
     protected final Setting rotateMode = new Setting("Rewrite Rotate Mode", this, RewriteRotateModes.Silent);
 
-    protected TimerUtils timer = new TimerUtils();
+    protected TimerUtil timer = new TimerUtil();
     protected Map<BlockPos, Integer> retries = new HashMap<>();
     protected int tries;
-    protected TimerUtils retryTimer = new TimerUtils();
+    protected TimerUtil retryTimer = new TimerUtil();
     public EntityPlayer target;
     protected boolean didPlace = false;
     protected boolean isSneaking;
@@ -206,7 +206,7 @@ public class AutoTrap extends Module {
             retryTimer.reset();
         }
         if (obbySlot3 == -1) {
-            ChatUtils.error(ChatFormatting.RED + "No Obsidian in hotbar, AutoTrap disabling...");
+            ChatUtil.error(ChatFormatting.RED + "No Obsidian in hotbar, AutoTrap disabling...");
             setToggled(false);
             return true;
         }

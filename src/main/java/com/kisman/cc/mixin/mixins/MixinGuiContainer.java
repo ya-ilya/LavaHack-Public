@@ -5,7 +5,7 @@ import com.kisman.cc.module.render.ContainerModifier;
 import com.kisman.cc.util.Render2DUtil;
 import com.kisman.cc.util.render.objects.AbstractGradient;
 import com.kisman.cc.util.render.objects.Vec4d;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
@@ -106,6 +106,6 @@ public class MixinGuiContainer extends GuiScreen {
     
     @Inject(method = "drawSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GlStateManager;enableDepth()V"))
     private void drawSlotHook(Slot slot, CallbackInfo ci) {
-        if(ContainerModifier.instance.isToggled() && ContainerModifier.instance.itemESP.getValBoolean() && !itemESP.getItemStacks().isEmpty() && itemESP.getItemStacks().contains(slot.getStack())) drawRect(slot.xPos, slot.yPos, slot.xPos + 16, slot.yPos + 16, ColorUtils.astolfoColors(100, 100));
+        if(ContainerModifier.instance.isToggled() && ContainerModifier.instance.itemESP.getValBoolean() && !itemESP.getItemStacks().isEmpty() && itemESP.getItemStacks().contains(slot.getStack())) drawRect(slot.xPos, slot.yPos, slot.xPos + 16, slot.yPos + 16, ColorUtil.astolfoColors(100, 100));
     }
 }

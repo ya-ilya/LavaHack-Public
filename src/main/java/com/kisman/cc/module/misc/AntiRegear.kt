@@ -6,7 +6,7 @@ import com.kisman.cc.setting.Setting
 import com.kisman.cc.util.BlockInteractionHelper
 import com.kisman.cc.util.InventoryUtil
 import com.kisman.cc.util.PlayerUtil
-import i.gishreloaded.gishcode.utils.visual.ChatUtils
+import com.kisman.cc.util.ChatUtil
 import net.minecraft.block.BlockShulkerBox
 import net.minecraft.item.ItemPickaxe
 import net.minecraft.network.play.client.CPacketPlayerDigging
@@ -32,7 +32,7 @@ class AntiRegear : Module(
         if(mc.player == null || mc.world == null) return
         if(breakQueue.isEmpty()) {
             if(oldSlot != -1 && mc.player.heldItemMainhand.item is ItemPickaxe && switchToPick.valBoolean) {
-                ChatUtils.message("[AntiRegear] Switching back to original slot.")
+                ChatUtil.message("[AntiRegear] Switching back to original slot.")
                 InventoryUtil.switchToSlot(oldSlot, false)
                 oldSlot = -1
             }

@@ -7,7 +7,7 @@ import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.Colour;
 import com.kisman.cc.util.CrystalUtils;
 import com.kisman.cc.util.RenderUtil;
-import i.gishreloaded.gishcode.utils.TimerUtils;
+import com.kisman.cc.util.TimerUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -28,7 +28,7 @@ public class AntiTrapDoorBurrow extends Module {
     public static AntiTrapDoorBurrow instance;
 
     private final Vec3d interactVector = (new Vec3d(0.5, 1, 0.5));
-    private final TimerUtils timer = new TimerUtils();
+    private final TimerUtil timer = new TimerUtil();
     private BlockPos currentPos = null;
 
     public AntiTrapDoorBurrow() {

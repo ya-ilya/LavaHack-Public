@@ -6,8 +6,8 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.customfont.CustomFontUtil;
-import i.gishreloaded.gishcode.utils.TimerUtils;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.TimerUtil;
+import com.kisman.cc.util.ChatUtil;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.gui.ScaledResolution;
@@ -24,7 +24,7 @@ public class BreakAlert extends Module {
     private final Setting displayShowDelay = new Setting("Display Show Delay", this, 1000, 1, 5000, Slider.NumberType.TIME);
 
     private final ArrayList<BlockPos> blocksBeginBroken = new ArrayList<>();
-    private final TimerUtils renderTimer = new TimerUtils();
+    private final TimerUtil renderTimer = new TimerUtil();
 
     public BreakAlert() {
         super("BreakAlert", Category.COMBAT);
@@ -42,7 +42,7 @@ public class BreakAlert extends Module {
     public void update() {
         if(mc.player == null || mc.world == null || blocksBeginBroken.isEmpty()) return;
 
-        for(int i = 0; i < blocksBeginBroken.size(); i++) if(messageType.getValString().equalsIgnoreCase(MessageType.Chat.name())) ChatUtils.warning(TextFormatting.DARK_PURPLE + "Break Alert! " + TextFormatting.LIGHT_PURPLE + "Your surround blocks is mining!");
+        for(int i = 0; i < blocksBeginBroken.size(); i++) if(messageType.getValString().equalsIgnoreCase(MessageType.Chat.name())) ChatUtil.warning(TextFormatting.DARK_PURPLE + "Break Alert! " + TextFormatting.LIGHT_PURPLE + "Your surround blocks is mining!");
     }
 
     @SubscribeEvent

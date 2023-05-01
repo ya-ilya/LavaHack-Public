@@ -1,5 +1,6 @@
 package com.kisman.cc.module.render.shader;
 
+import com.kisman.cc.module.render.shader.shaders.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
@@ -8,11 +9,26 @@ import net.minecraft.client.shader.Framebuffer;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class FramebufferShader extends Shader {
     public Minecraft mc;
     public static Framebuffer framebuffer;
     public boolean entityShadows;
     public int animationSpeed;
+
+    public static Map<String, FramebufferShader> SHADERS = new HashMap<>();
+
+    public static void initShaders() {
+        ResolutionAndTimeShader.initShaders();
+
+        SHADERS.putAll(ResolutionAndTimeShader.SHADERS);
+        SHADERS.put("glow", new GlowShader());
+        SHADERS.put("gradient", new GradientOutlineShader());
+        SHADERS.put("item", new ItemShader());
+        SHADERS.put("outline", new OutlineShader());
+    }
 
     public FramebufferShader(final String fragmentShader) {
         super(fragmentShader);

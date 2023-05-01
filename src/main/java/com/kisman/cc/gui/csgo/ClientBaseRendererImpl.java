@@ -3,7 +3,7 @@ package com.kisman.cc.gui.csgo;
 import com.kisman.cc.module.client.Config;
 import com.kisman.cc.util.Render2DUtil;
 import com.kisman.cc.util.customfont.CustomFontUtil;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -50,11 +50,12 @@ public  void drawCheckMark(float x, float y, int width, int color) {
     public void drawOutline(double x, double y, double w, double h, float lineWidth, Color c) {
         if(!Config.instance.guiOutline.getValBoolean()) return;
         glLineWidth(lineWidth);
-        Render2DUtil.drawRect(GL_LINE_LOOP, (int) x / 2, (int) y / 2, (int) x / 2 + (int) w / 2, (int) y / 2 + (int) h / 2, ColorUtils.getColor(c));
+        Render2DUtil.drawRect(GL_LINE_LOOP, (int) x / 2, (int) y / 2, (int) x / 2 + (int) w / 2, (int) y / 2 + (int) h / 2, ColorUtil.getColor(c));
     }
 
-    @Override public void setColor(Color c) {ColorUtils.glColor(c);}
-    @Override public void drawString(int x, int y, String text, Color color) {CustomFontUtil.drawString(text, x / 2f, y / 2f, ColorUtils.getColor(color), true);}
+    @Override public void setColor(Color c) {
+        ColorUtil.glColor(c);}
+    @Override public void drawString(int x, int y, String text, Color color) {CustomFontUtil.drawString(text, x / 2f, y / 2f, ColorUtil.getColor(color), true);}
     @Override public int getStringWidth(String str) {return CustomFontUtil.getStringWidth(str) * 2;}
     @Override public int getStringHeight(String str) {return CustomFontUtil.getFontHeight(true) * 2;}
     @Override public void drawTriangle(double x1, double y1, double x2, double y2, double x3, double y3, Color color) {}
@@ -85,6 +86,6 @@ public  void drawCheckMark(float x, float y, int width, int color) {
         glDepthMask(false);
     }
 
-    @Override public int astolfoColor() {return ColorUtils.astolfoColors(100, 100);}
-    @Override public Color astolfoColorToObj() {return ColorUtils.astolfoColorsToColorObj(100, 100);}
+    @Override public int astolfoColor() {return ColorUtil.astolfoColors(100, 100);}
+    @Override public Color astolfoColorToObj() {return ColorUtil.astolfoColorsToColorObj(100, 100);}
 }

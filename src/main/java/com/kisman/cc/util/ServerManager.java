@@ -2,7 +2,6 @@ package com.kisman.cc.util;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
-import i.gishreloaded.gishcode.utils.TimerUtils;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.Minecraft;
@@ -19,7 +18,7 @@ public class ServerManager {
 
     private final float[] tpsCount;
     private final DecimalFormat format;
-    private TimerUtils timer;
+    private TimerUtil timer;
     private float tps;
     private long lastUpdate;
     private String serverBrand;
@@ -27,7 +26,7 @@ public class ServerManager {
     public ServerManager() {
         tpsCount = new float[10];
         format = new DecimalFormat("##.00##");
-        timer = new TimerUtils();
+        timer = new TimerUtil();
         tps = 20;
         lastUpdate = -1L;
         serverBrand = "";

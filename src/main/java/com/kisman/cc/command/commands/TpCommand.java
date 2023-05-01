@@ -1,7 +1,7 @@
 package com.kisman.cc.command.commands;
 
 import com.kisman.cc.command.Command;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.ChatUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.play.client.CPacketPlayer;
 
@@ -16,11 +16,11 @@ public class TpCommand extends Command {
 
     public void runCommand(String s, String[] args) {
         if(args.length > 3) {
-            ChatUtils.error("Usage: " + getSyntax());
+            ChatUtil.error("Usage: " + getSyntax());
         } else if(args.length == 3) {
             for(String str : args) {
                 if(str.matches(regex3)) {
-                    ChatUtils.error("Usage: " + getSyntax());
+                    ChatUtil.error("Usage: " + getSyntax());
                     return;
                 }
             }
@@ -40,7 +40,7 @@ public class TpCommand extends Command {
             EntityPlayer player = getPlayer(args[0]);
 
             if(player == null) {
-                ChatUtils.error("The player" + args[0] + " does not exist!");
+                ChatUtil.error("The player" + args[0] + " does not exist!");
                 return;
             }
 

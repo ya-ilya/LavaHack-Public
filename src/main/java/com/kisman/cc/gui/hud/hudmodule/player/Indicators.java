@@ -7,14 +7,14 @@ import com.kisman.cc.module.client.HUD;
 import com.kisman.cc.util.AnimationUtils;
 import com.kisman.cc.util.Render2DUtil;
 import com.kisman.cc.util.customfont.CustomFontUtil;
-import i.gishreloaded.gishcode.utils.TimerUtils;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.TimerUtil;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class Indicators extends HudModule {
-    private final  TimerUtils timer = new TimerUtils();
+    private final TimerUtil timer = new TimerUtil();
     private final int sliderWidth = 51;
     private final int sliderHeight = 2;
 
@@ -92,50 +92,50 @@ public class Indicators extends HudModule {
         }
 
         //draw background
-        Render2DUtil.drawRect(x + 3, y + 3, x + width + 3, y + height - 3, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x + 3, y, x + width + 3, y + height, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x + 2, y + 2, x + width + 2, y + height - 2, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x + 2, y, x + width + 2, y + height, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x + 1, y + 1, x + width + 1, y + height - 1, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x + 1, y, x + width + 1, y + height, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x - 3, y - 8, x + width + 3, y + height - 3, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x - 3, y, x + width + 3, y + height, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x - 2, y - 7, x + width + 2, y + height - 2, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x - 2, y, x + width + 2, y + height, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x - 1, y - 6, x + width + 1, y + height - 1, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x - 1, y, x + width + 1, y + height, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x, y - 5, x + width, y + height, (ColorUtils.astolfoColors(100, 100)));
-        Render2DUtil.drawRect(x - 3, y - 1, x + width + 3, y + height + 3, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x - 2, y - 2, x + width + 2, y + height + 2, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x - 1, y - 3, x + width + 1, y + height + 1, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x, y - 4, x + width, y + height, (ColorUtils.getColor(34, 34, 40)));
+        Render2DUtil.drawRect(x + 3, y + 3, x + width + 3, y + height - 3, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x + 3, y, x + width + 3, y + height, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x + 2, y + 2, x + width + 2, y + height - 2, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x + 2, y, x + width + 2, y + height, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x + 1, y + 1, x + width + 1, y + height - 1, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x + 1, y, x + width + 1, y + height, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x - 3, y - 8, x + width + 3, y + height - 3, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x - 3, y, x + width + 3, y + height, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x - 2, y - 7, x + width + 2, y + height - 2, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x - 2, y, x + width + 2, y + height, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x - 1, y - 6, x + width + 1, y + height - 1, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x - 1, y, x + width + 1, y + height, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x, y - 5, x + width, y + height, (ColorUtil.astolfoColors(100, 100)));
+        Render2DUtil.drawRect(x - 3, y - 1, x + width + 3, y + height + 3, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x - 2, y - 2, x + width + 2, y + height + 2, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x - 1, y - 3, x + width + 1, y + height + 1, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x, y - 4, x + width, y + height, (ColorUtil.getColor(34, 34, 40)));
 
         //draw header
-        CustomFontUtil.drawCenteredStringWithShadow(header, x + width / 2, y + borderOffset, ColorUtils.astolfoColors(100, 100));
+        CustomFontUtil.drawCenteredStringWithShadow(header, x + width / 2, y + borderOffset, ColorUtil.astolfoColors(100, 100));
 
         //draw cooldown
-        CustomFontUtil.drawStringWithShadow("Cooldown", x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight(), ColorUtils.astolfoColors(100, 100));
+        CustomFontUtil.drawStringWithShadow("Cooldown", x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight(), ColorUtil.astolfoColors(100, 100));
         drawSlider(x + borderOffset * 2 + CustomFontUtil.getStringWidth(stringWithMaxLength), y + borderOffset * 3 + CustomFontUtil.getFontHeight(), cooldownBarWidth, CustomFontUtil.getFontHeight());
         count++;
 
         //draw hurttime
-        CustomFontUtil.drawStringWithShadow("HurtTime", x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight() + (offset * count), ColorUtils.astolfoColors(100, 100));
+        CustomFontUtil.drawStringWithShadow("HurtTime", x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight() + (offset * count), ColorUtil.astolfoColors(100, 100));
         drawSlider(x + borderOffset * 2 + CustomFontUtil.getStringWidth(stringWithMaxLength), y + borderOffset * 3 + CustomFontUtil.getFontHeight() + (offset * count), hurttimeBarWidth, CustomFontUtil.getFontHeight());
         count++;
 
         //draw speed
-        CustomFontUtil.drawStringWithShadow("Speed", x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight() + (offset * count), ColorUtils.astolfoColors(100, 100));
+        CustomFontUtil.drawStringWithShadow("Speed", x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight() + (offset * count), ColorUtil.astolfoColors(100, 100));
         drawSlider(x + borderOffset * 2 + CustomFontUtil.getStringWidth(stringWithMaxLength), y + borderOffset * 3 + CustomFontUtil.getFontHeight() + (offset * count), speedBarWidth, CustomFontUtil.getFontHeight());
         count++;
 
         //draw health
-        CustomFontUtil.drawStringWithShadow("Health", x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight() + (offset * count), ColorUtils.astolfoColors(100, 100));
+        CustomFontUtil.drawStringWithShadow("Health", x + borderOffset, y + borderOffset * 3 + CustomFontUtil.getFontHeight() + (offset * count), ColorUtil.astolfoColors(100, 100));
         drawSlider(x + borderOffset * 2 + CustomFontUtil.getStringWidth(stringWithMaxLength), y + borderOffset * 3 + CustomFontUtil.getFontHeight() + (offset * count), healthBarWidth, CustomFontUtil.getFontHeight());
     }
 
     private void drawSlider(double x, double y, double sliderWidth, double sliderHeight) {
-        if(HUD.instance.indicShadowSliders.getValBoolean()) Render2DUtil.drawShadowSliders(x, y, sliderWidth, sliderHeight, ColorUtils.astolfoColors(100, 100), 1);
-        else Render2DUtil.drawRect(x, y, x + sliderWidth, y + sliderHeight, ColorUtils.astolfoColors(100, 100));
+        if(HUD.instance.indicShadowSliders.getValBoolean()) Render2DUtil.drawShadowSliders(x, y, sliderWidth, sliderHeight, ColorUtil.astolfoColors(100, 100), 1);
+        else Render2DUtil.drawRect(x, y, x + sliderWidth, y + sliderHeight, ColorUtil.astolfoColors(100, 100));
     }
 
     private void drawDefault() {
@@ -170,46 +170,46 @@ public class Indicators extends HudModule {
         }
 
         //draw background
-        Render2DUtil.drawRect(x + 3, y + 3, x + width + 3, y + height - 3, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x + 3, y, x + width + 3, y + height, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x + 2, y + 2, x + width + 2, y + height - 2, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x + 2, y, x + width + 2, y + height, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x + 1, y + 1, x + width + 1, y + height - 1, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x + 1, y, x + width + 1, y + height, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x - 3, y - 8, x + width + 3, y + height - 3, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x - 3, y, x + width + 3, y + height, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x - 2, y - 7, x + width + 2, y + height - 2, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x - 2, y, x + width + 2, y + height, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x - 1, y - 6, x + width + 1, y + height - 1, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x - 1, y, x + width + 1, y + height, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x, y - 5, x + width, y + height, (ColorUtils.astolfoColors(100, 100)));
-        Render2DUtil.drawRect(x - 3, y - 1, x + width + 3, y + height + 3, (ColorUtils.getColor(33, 33, 42)));
-        Render2DUtil.drawRect(x - 2, y - 2, x + width + 2, y + height + 2, (ColorUtils.getColor(45, 45, 55)));
-        Render2DUtil.drawRect(x - 1, y - 3, x + width + 1, y + height + 1, (ColorUtils.getColor(60, 60, 70)));
-        Render2DUtil.drawRect(x, y - 4, x + width, y + height, (ColorUtils.getColor(34, 34, 40)));
+        Render2DUtil.drawRect(x + 3, y + 3, x + width + 3, y + height - 3, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x + 3, y, x + width + 3, y + height, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x + 2, y + 2, x + width + 2, y + height - 2, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x + 2, y, x + width + 2, y + height, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x + 1, y + 1, x + width + 1, y + height - 1, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x + 1, y, x + width + 1, y + height, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x - 3, y - 8, x + width + 3, y + height - 3, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x - 3, y, x + width + 3, y + height, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x - 2, y - 7, x + width + 2, y + height - 2, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x - 2, y, x + width + 2, y + height, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x - 1, y - 6, x + width + 1, y + height - 1, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x - 1, y, x + width + 1, y + height, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x, y - 5, x + width, y + height, (ColorUtil.astolfoColors(100, 100)));
+        Render2DUtil.drawRect(x - 3, y - 1, x + width + 3, y + height + 3, (ColorUtil.getColor(33, 33, 42)));
+        Render2DUtil.drawRect(x - 2, y - 2, x + width + 2, y + height + 2, (ColorUtil.getColor(45, 45, 55)));
+        Render2DUtil.drawRect(x - 1, y - 3, x + width + 1, y + height + 1, (ColorUtil.getColor(60, 60, 70)));
+        Render2DUtil.drawRect(x, y - 4, x + width, y + height, (ColorUtil.getColor(34, 34, 40)));
 
         //draw header
-        drawStringWithShadow(header, x + (width / 2 - getStringWidth(header) / 2), y + 2, ColorUtils.astolfoColors(100, 100));
+        drawStringWithShadow(header, x + (width / 2 - getStringWidth(header) / 2), y + 2, ColorUtil.astolfoColors(100, 100));
         offset += getHeight() + 6;
 
         //draw cooldown
-        drawStringWithShadow("Cooldown", x + 2, y + offset, ColorUtils.astolfoColors(100, 100));
-        Render2DUtil.drawRect(x + 2, y + offset + getHeight() + 1, x + cooldownBarWidth, y + offset + getHeight() + 3, ColorUtils.astolfoColors(100, 100));
+        drawStringWithShadow("Cooldown", x + 2, y + offset, ColorUtil.astolfoColors(100, 100));
+        Render2DUtil.drawRect(x + 2, y + offset + getHeight() + 1, x + cooldownBarWidth, y + offset + getHeight() + 3, ColorUtil.astolfoColors(100, 100));
         offset += offsetHeight;
 
         //draw hurttime
-        drawStringWithShadow("HurtTime", x + 2, y + offset, ColorUtils.astolfoColors(100, 100));
-        if(hurttimeBarWidth > 0) Render2DUtil.drawRect(x + 2, y + offset + getHeight() + 1, x + hurttimeBarWidth, y + offset + getHeight() + 3, ColorUtils.astolfoColors(100, 100));
+        drawStringWithShadow("HurtTime", x + 2, y + offset, ColorUtil.astolfoColors(100, 100));
+        if(hurttimeBarWidth > 0) Render2DUtil.drawRect(x + 2, y + offset + getHeight() + 1, x + hurttimeBarWidth, y + offset + getHeight() + 3, ColorUtil.astolfoColors(100, 100));
         offset += offsetHeight;
 
         //draw speed
-        drawStringWithShadow("Speed", x + 2, y + offset, ColorUtils.astolfoColors(100, 100));
-        Render2DUtil.drawRect(x + 2, y + offset + getHeight() + 1, x + speedBarWidth, y + offset + getHeight() + 3, ColorUtils.astolfoColors(100, 100));
+        drawStringWithShadow("Speed", x + 2, y + offset, ColorUtil.astolfoColors(100, 100));
+        Render2DUtil.drawRect(x + 2, y + offset + getHeight() + 1, x + speedBarWidth, y + offset + getHeight() + 3, ColorUtil.astolfoColors(100, 100));
         offset += offsetHeight;
 
         //draw health
-        drawStringWithShadow("Health", x + 2, y + offset, ColorUtils.astolfoColors(100, 100));
-        Render2DUtil.drawRect(x + 2, y + offset + getHeight() + 1, x + healthBarWidth, y + offset + getHeight() + 3, ColorUtils.astolfoColors(100, 100));
+        drawStringWithShadow("Health", x + 2, y + offset, ColorUtil.astolfoColors(100, 100));
+        Render2DUtil.drawRect(x + 2, y + offset + getHeight() + 1, x + healthBarWidth, y + offset + getHeight() + 3, ColorUtil.astolfoColors(100, 100));
     }
 
     private void drawStringWithShadow(String text, double x, double y, int color) {

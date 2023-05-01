@@ -3,8 +3,8 @@ package com.kisman.cc.module.render;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
-import i.gishreloaded.gishcode.utils.TimerUtils;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.TimerUtil;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -56,7 +56,7 @@ public class Trails extends Module {
         GL11.glBegin(GL11.GL_QUADS);
         for (int i = 0; i < bcs.size(); i++) {
             TrailUtil bc = bcs.get(i);
-            ColorUtils.glColor(ColorUtils.astolfoColors(100, 100), 100);
+            ColorUtil.glColor(ColorUtil.astolfoColors(100, 100), 100);
 
             if (bc.getTimer().hasReached(time)) {
                 bcs.remove(bc);
@@ -87,14 +87,14 @@ public class Trails extends Module {
 
     public static class TrailUtil {
         private final Vec3d vector;
-        private final TimerUtils timer;
+        private final TimerUtil timer;
 
         public TrailUtil (Vec3d vector) {
-            timer = new TimerUtils();
+            timer = new TimerUtil();
             this.vector = vector;
         }
 
-        public TimerUtils getTimer() {
+        public TimerUtil getTimer() {
             return timer;
         }
 

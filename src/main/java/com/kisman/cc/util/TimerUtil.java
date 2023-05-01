@@ -1,10 +1,10 @@
-package i.gishreloaded.gishcode.utils;
+package com.kisman.cc.util;
 
-public class TimerUtils {
+public class TimerUtil {
 	private long lastMS = 0L;
 	private long prevMS = 0L;
 	private long nanoTime = -1L;
-	
+
 	public boolean isDelay(long delay) {
 		if(System.currentTimeMillis() - lastMS >= delay) {
 			return true;
@@ -31,7 +31,7 @@ public class TimerUtils {
 
 		return false;
 	}
-	
+
     public long getCurrentMS(){
 		return System.nanoTime() / 1000000L;
 	}

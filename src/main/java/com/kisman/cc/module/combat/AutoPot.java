@@ -2,7 +2,7 @@ package com.kisman.cc.module.combat;
 
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import i.gishreloaded.gishcode.utils.TimerUtils;
+import com.kisman.cc.util.TimerUtil;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,7 +16,7 @@ import net.minecraft.util.EnumHand;
 import java.util.Objects;
 
 public class AutoPot extends Module {
-    private final TimerUtils timer = new TimerUtils();
+    private final TimerUtil timer = new TimerUtil();
     private ItemStack stack = null;
 
     public AutoPot() {

@@ -3,7 +3,7 @@ package com.kisman.cc.module;
 import com.kisman.cc.Kisman;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.setting.SettingManager;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.ChatUtil;
 import me.zero.alpine.listener.EventHook;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.Minecraft;
@@ -50,7 +50,7 @@ public class Module {
 	public void setToggled(boolean toggled) {
 		if(block) return;
 		this.toggled = toggled;
-		if (Kisman.instance.init && Kisman.instance.moduleManager.getModule("Notification").isToggled()) ChatUtils.message(TextFormatting.GRAY + "Module " + (isToggled() ? TextFormatting.GREEN : TextFormatting.RED) + getName() + TextFormatting.GRAY + " has been " + (isToggled() ? "enabled" : "disabled") + "!");
+		if (Kisman.instance.init && Kisman.instance.moduleManager.getModule("Notification").isToggled()) ChatUtil.message(TextFormatting.GRAY + "Module " + (isToggled() ? TextFormatting.GREEN : TextFormatting.RED) + getName() + TextFormatting.GRAY + " has been " + (isToggled() ? "enabled" : "disabled") + "!");
 		if (this.toggled) {
 			enable();
 		} else {
@@ -61,7 +61,7 @@ public class Module {
 	public void toggle() {
 		if(block) return;
 		toggled = !toggled;
-		if (Kisman.instance.init && Kisman.instance.moduleManager.getModule("Notification").isToggled()) ChatUtils.message(TextFormatting.GRAY + "Module " + (isToggled() ? TextFormatting.GREEN : TextFormatting.RED) + getName() + TextFormatting.GRAY + " has been " + (isToggled() ? "enabled" : "disabled") + "!");
+		if (Kisman.instance.init && Kisman.instance.moduleManager.getModule("Notification").isToggled()) ChatUtil.message(TextFormatting.GRAY + "Module " + (isToggled() ? TextFormatting.GREEN : TextFormatting.RED) + getName() + TextFormatting.GRAY + " has been " + (isToggled() ? "enabled" : "disabled") + "!");
 		if (toggled) {
 			enable();
 		} else {

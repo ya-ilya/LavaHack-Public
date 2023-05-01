@@ -1,6 +1,6 @@
 package com.kisman.cc.util.render.objects;
 
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class AbstractObject {
     }
 
     public void render() {
-        ColorUtils.glColor(color);
+        ColorUtil.glColor(color);
         if(line) {
             glLineWidth(width);
             glBegin(GL_POINTS);

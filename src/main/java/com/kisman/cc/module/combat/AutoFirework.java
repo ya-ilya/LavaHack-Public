@@ -5,8 +5,8 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.*;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import i.gishreloaded.gishcode.utils.TimerUtils;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.TimerUtil;
+import com.kisman.cc.util.ChatUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -62,11 +62,11 @@ public class AutoFirework extends Module {
     private final Setting handLine = new Setting("HandLine", this, "Hand");
     private final Setting fireHand = new Setting("FireworkHand", this, "Default", new ArrayList<>(Arrays.asList("Default", "MainHand", "OffHand")));
 
-    private final TimerUtils trapTimer = new TimerUtils();
-    private final TimerUtils delayTimer = new TimerUtils();
+    private final TimerUtil trapTimer = new TimerUtil();
+    private final TimerUtil delayTimer = new TimerUtil();
 
     private final Map<BlockPos, Integer> retries = new HashMap<>();
-    private final TimerUtils retryTimer = new TimerUtils();
+    private final TimerUtil retryTimer = new TimerUtil();
     private boolean didPlace = false;
     private boolean isSneaking;
     private int lastHotbarSlot;
@@ -239,7 +239,7 @@ public class AutoFirework extends Module {
             retryTimer.reset();
         }
         if (obbySlot3 == -1) {
-            ChatUtils.error(ChatFormatting.RED + "No Obsidian in hotbar, AutoTrap disabling...");
+            ChatUtil.error(ChatFormatting.RED + "No Obsidian in hotbar, AutoTrap disabling...");
             setToggled(false);
             return true;
         }

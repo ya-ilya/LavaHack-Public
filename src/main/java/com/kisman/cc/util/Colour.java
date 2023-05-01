@@ -1,7 +1,7 @@
 package com.kisman.cc.util;
 
 import com.kisman.cc.util.enums.ColourEnum;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.Vec3d;
 
@@ -195,7 +195,7 @@ public class Colour {
     }
 
     public static Colour fromHSB(float[] hsb, int alpha) {
-        return new Colour(ColorUtils.injectAlpha(Color.getHSBColor(hsb[0], hsb[1], hsb[2]), alpha));
+        return new Colour(ColorUtil.injectAlpha(Color.getHSBColor(hsb[0], hsb[1], hsb[2]), alpha));
     }
 
     public float getHue() {return RGBtoHSB()[0];}

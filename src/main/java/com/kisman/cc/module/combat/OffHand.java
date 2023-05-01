@@ -7,7 +7,7 @@ import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.CrystalUtils;
 import com.kisman.cc.util.PlayerUtil;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.ChatUtil;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
@@ -129,7 +129,7 @@ public class OffHand extends Module {
                 mc.playerController.windowClick(mc.player.inventoryContainer.windowId, slot, 0, ClickType.PICKUP, mc.player);
                 if(useUpdateController.getValBoolean()) mc.playerController.updateController();
 
-                ChatUtils.complete(ChatFormatting.BLUE + "Offhand now has a " + display);
+                ChatUtil.complete(ChatFormatting.BLUE + "Offhand now has a " + display);
             }
         }
     }

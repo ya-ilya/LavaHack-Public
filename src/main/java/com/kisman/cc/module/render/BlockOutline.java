@@ -3,9 +3,9 @@ package com.kisman.cc.module.render;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
+import com.kisman.cc.util.BlockUtil;
 import com.kisman.cc.util.Colour;
 import com.kisman.cc.util.RenderUtil;
-import i.gishreloaded.gishcode.utils.BlockUtils;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -34,7 +34,7 @@ public class BlockOutline extends Module {
     public void onRenderWorldLast(RenderWorldLastEvent event) {
         if(mc.objectMouseOver == null) return;
         if (mc.objectMouseOver.typeOfHit == RayTraceResult.Type.BLOCK) {
-            Block block = BlockUtils.getBlock(mc.objectMouseOver.getBlockPos());
+            Block block = BlockUtil.getBlock(mc.objectMouseOver.getBlockPos());
             BlockPos blockPos = mc.objectMouseOver.getBlockPos();
 
             if (Block.getIdFromBlock(block) == 0) return;

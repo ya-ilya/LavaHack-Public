@@ -5,7 +5,7 @@
  import com.kisman.cc.module.Module;
  import com.kisman.cc.setting.Setting;
  import com.kisman.cc.util.InventoryUtil;
- import i.gishreloaded.gishcode.utils.TimerUtils;
+ import com.kisman.cc.util.TimerUtil;
  import net.minecraft.client.gui.inventory.GuiContainer;
  import net.minecraft.client.renderer.InventoryEffectRenderer;
  import net.minecraft.enchantment.Enchantment;
@@ -23,7 +23,7 @@
      private final Setting noThorns = new Setting("NoThorns", this, false);
 
      public static AutoArmor instance;
-     private final TimerUtils timer = new TimerUtils();
+     private final TimerUtil timer = new TimerUtil();
 
      public AutoArmor() {
          super("AutoArmor", "ebate srate lox!", Category.COMBAT);

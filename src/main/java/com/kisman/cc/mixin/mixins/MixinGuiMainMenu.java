@@ -38,7 +38,7 @@ public class MixinGuiMainMenu extends GuiScreen {
 
     @Inject(method = "drawScreen", at = @At("RETURN"))
     public void down(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
-        if (CustomMainMenu.instance != null) {
+        if (CustomMainMenu.instance != null && CustomMainMenu.instance.toggled) {
             if(CustomMainMenu.instance.watermark.getValBoolean()) {
                 CustomFontUtil.drawStringWithShadow(TextFormatting.WHITE + Kisman.getName() + " " + TextFormatting.GRAY + Kisman.getVersion(), 1, 1, -1);
                 CustomFontUtil.drawStringWithShadow(TextFormatting.WHITE + "made by " + TextFormatting.GRAY + "_kisman_#5039", 1, CustomFontUtil.getFontHeight() + 2, -1);
@@ -53,7 +53,7 @@ public class MixinGuiMainMenu extends GuiScreen {
 
     @Redirect(method = "drawScreen", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiMainMenu;drawCenteredString(Lnet/minecraft/client/gui/FontRenderer;Ljava/lang/String;III)V"))
     private void injectForCustomSplash(GuiMainMenu instance, FontRenderer fontRenderer, String s, int x, int y, int color) {
-        if (CustomMainMenu.instance != null) {
+        if (CustomMainMenu.instance != null && CustomMainMenu.instance.toggled) {
             String customSplash = CustomMainMenu.instance.customSplashText.getValBoolean() ? customSplashSrt : s;
             if(CustomMainMenu.instance.customSplashFont.getValBoolean()) CustomFontUtil.drawCenteredStringWithShadow(customSplash, x, y, color);
             else instance.drawCenteredString(fontRenderer, customSplash, x, y, color);

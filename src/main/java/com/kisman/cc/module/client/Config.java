@@ -7,7 +7,7 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.Colour;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.ChatUtil;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -117,7 +117,7 @@ public class Config extends Module {
                 e.printStackTrace();
             }
             saveConfig.setValBoolean(false);
-            if(mc.player != null && mc.world != null) ChatUtils.complete("Config saved");
+            if(mc.player != null && mc.world != null) ChatUtil.complete("Config saved");
         }
 
         if(loadConfig.getValBoolean()) {
@@ -128,7 +128,7 @@ public class Config extends Module {
                 e.printStackTrace();
             }
             loadConfig.setValBoolean(false);
-            if(mc.player != null && mc.world != null) ChatUtils.complete("Config loaded");
+            if(mc.player != null && mc.world != null) ChatUtil.complete("Config loaded");
         }
     }
 

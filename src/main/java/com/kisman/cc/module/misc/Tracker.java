@@ -8,8 +8,8 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.module.combat.AntiTrap;
 import com.kisman.cc.module.combat.AutoRer;
 import com.kisman.cc.setting.Setting;
-import i.gishreloaded.gishcode.utils.TimerUtils;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.TimerUtil;
+import com.kisman.cc.util.ChatUtil;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.entity.Entity;
@@ -32,7 +32,7 @@ public class Tracker extends Module {
     private final Setting autoEnable = new Setting("AutoEnable", this, false);
     private final Setting autoDisable = new Setting("AutoDisable", this, true);
 
-    private final TimerUtils timer = new TimerUtils();
+    private final TimerUtil timer = new TimerUtil();
     private final Set<BlockPos> manuallyPlaced = new HashSet<>();
     private EntityPlayer trackedPlayer;
     private int usedExp = 0;
@@ -81,12 +81,12 @@ public class Tracker extends Module {
 
         if (this.usedStacks != this.usedExp / 64) {
             this.usedStacks = this.usedExp / 64;
-            ChatUtils.message(this.trackedPlayer.getName() + " used: " + this.usedStacks + " Stacks of EXP.");
+            ChatUtil.message(this.trackedPlayer.getName() + " used: " + this.usedStacks + " Stacks of EXP.");
         }
 
         if (this.usedCStacks != this.usedCrystals / 64) {
             this.usedCStacks = this.usedCrystals / 64;
-            ChatUtils.message(this.trackedPlayer.getName() + " used: " + this.usedCStacks + " Stacks of Crystals.");
+            ChatUtil.message(this.trackedPlayer.getName() + " used: " + this.usedCStacks + " Stacks of Crystals.");
         }
     }
 
@@ -129,7 +129,7 @@ public class Tracker extends Module {
             final SPacketChat packet = (SPacketChat)event.getPacket();
             final String message = packet.getChatComponent().getFormattedText();
             if (this.autoEnable.getValBoolean() && (message.contains("has accepted your duel request") || message.contains("Accepted the duel request from")) && !message.contains("<")) {
-                ChatUtils.message("Tracker will enable in 5 seconds.");
+                ChatUtil.message("Tracker will enable in 5 seconds.");
                 this.timer.reset();
                 this.shouldEnable = true;
             }

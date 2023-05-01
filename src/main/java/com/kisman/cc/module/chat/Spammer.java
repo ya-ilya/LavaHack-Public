@@ -3,7 +3,7 @@ package com.kisman.cc.module.chat;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
-import i.gishreloaded.gishcode.utils.TimerUtils;
+import com.kisman.cc.util.TimerUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +27,7 @@ public class Spammer extends Module {
             "FakePearl enjoyers on tope",
             "https://github.com/TheKisDevs/LavaHack");
 
-    private final TimerUtils timer = new TimerUtils();
+    private final TimerUtil timer = new TimerUtil();
 
     public Spammer() {
         super("Spammer", "chat spammer", Category.CHAT);

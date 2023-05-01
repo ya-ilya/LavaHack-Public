@@ -4,7 +4,7 @@ import com.kisman.cc.gui.vega.component.Component;
 import com.kisman.cc.gui.vega.component.components.Button;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.customfont.CustomFontUtil;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.gui.Gui;
 
 import java.math.BigDecimal;
@@ -34,15 +34,15 @@ public class Slider extends Component {
 
     public void renderComponent() {
         int height = this.height-1;
-        Gui.drawRect(this.x -3, this.y + 3 + offset, (int)((double)this.x + (double)this.width + 3), this.y + this.height + 3 + offset, (ColorUtils.getColor(40, 40, 50)));
-        Gui.drawRect(this.x - 2, this.y + 4 + offset, (int)((double)this.x + (double)this.width + 2), this.y + this.height + 1 + offset, (ColorUtils.getColor(60, 60, 70)));
-        Gui.drawRect(this.x - 1, this.y + 5 + offset, (int)((double)this.x + (double)this.width + 1), this.y + this.height + offset, (ColorUtils.getColor(34, 34, 40)));
-        Gui.drawRect(this.x - 1, this.y + 5 + offset, (int)((double)this.x + this.renderWidth + 1), this.y + this.height + offset, (ColorUtils.getColor(24, 24, 30)));
-        Gui.drawRect(this.x, this.y + 6 + offset, (int)((double)this.x + 3 + this.renderWidth - 3), this.y + this.height - 1 + offset, (ColorUtils.getColor(65, 65, 80)));
-        Gui.drawRect(this.x, this.y + 7 + offset, (int)((double)this.x + 3 + this.renderWidth - 3), this.y + this.height - 2 + offset, (ColorUtils.getColor(80, 80, 95)));
-        Gui.drawRect(this.x, this.y + 8 + offset, (int)((double)this.x + 3 + this.renderWidth - 3), this.y + this.height - 3 + offset, (ColorUtils.getColor(95, 95, 115)));
+        Gui.drawRect(this.x -3, this.y + 3 + offset, (int)((double)this.x + (double)this.width + 3), this.y + this.height + 3 + offset, (ColorUtil.getColor(40, 40, 50)));
+        Gui.drawRect(this.x - 2, this.y + 4 + offset, (int)((double)this.x + (double)this.width + 2), this.y + this.height + 1 + offset, (ColorUtil.getColor(60, 60, 70)));
+        Gui.drawRect(this.x - 1, this.y + 5 + offset, (int)((double)this.x + (double)this.width + 1), this.y + this.height + offset, (ColorUtil.getColor(34, 34, 40)));
+        Gui.drawRect(this.x - 1, this.y + 5 + offset, (int)((double)this.x + this.renderWidth + 1), this.y + this.height + offset, (ColorUtil.getColor(24, 24, 30)));
+        Gui.drawRect(this.x, this.y + 6 + offset, (int)((double)this.x + 3 + this.renderWidth - 3), this.y + this.height - 1 + offset, (ColorUtil.getColor(65, 65, 80)));
+        Gui.drawRect(this.x, this.y + 7 + offset, (int)((double)this.x + 3 + this.renderWidth - 3), this.y + this.height - 2 + offset, (ColorUtil.getColor(80, 80, 95)));
+        Gui.drawRect(this.x, this.y + 8 + offset, (int)((double)this.x + 3 + this.renderWidth - 3), this.y + this.height - 3 + offset, (ColorUtil.getColor(95, 95, 115)));
 
-        CustomFontUtil.drawCenteredStringWithShadow(s.getName() + ": " + s.getValDouble(), x + (width / 2), y + 3 + offset + ((height - CustomFontUtil.getFontHeight()) / 2), drag ? ColorUtils.astolfoColors(100, 100) : -1);
+        CustomFontUtil.drawCenteredStringWithShadow(s.getName() + ": " + s.getValDouble(), x + (width / 2), y + 3 + offset + ((height - CustomFontUtil.getFontHeight()) / 2), drag ? ColorUtil.astolfoColors(100, 100) : -1);
     }
 
     public void updateComponent(int mouseX, int mouseY) {

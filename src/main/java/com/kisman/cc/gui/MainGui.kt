@@ -4,7 +4,7 @@ import com.kisman.cc.Kisman
 import com.kisman.cc.util.Colour
 import com.kisman.cc.util.Render2DUtil
 import com.kisman.cc.util.customfont.CustomFontUtil
-import i.gishreloaded.gishcode.utils.visual.ColorUtils
+import com.kisman.cc.util.gish.ColorUtil
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.ScaledResolution
 
@@ -39,7 +39,7 @@ class MainGui {
                         gui.displayName,
                         (startX + offset).toDouble(),
                         offset.toDouble(),
-                        if(gui == selection) ColorUtils.astolfoColors(100, 100) else -1
+                        if(gui == selection) ColorUtil.astolfoColors(100, 100) else -1
                 )
                 startX += offset * 2 + CustomFontUtil.getStringWidth(gui.displayName)
             }

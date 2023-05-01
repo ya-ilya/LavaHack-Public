@@ -2,8 +2,8 @@ package com.kisman.cc.command;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.command.commands.*;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
-import i.gishreloaded.gishcode.wrappers.Wrapper;
+import com.kisman.cc.util.ChatUtil;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import org.lwjgl.input.Keyboard;
@@ -49,12 +49,12 @@ public class CommandManager {
 				break;
 			}
 		}
-		if(!commandResolved) ChatUtils.error("Cannot resolve internal command: \u00a7c" + commandName);
+		if(!commandResolved) ChatUtil.error("Cannot resolve internal command: \u00a7c" + commandName);
 	}
 
 	@SubscribeEvent
 	public void onKeyPressed(InputEvent.KeyInputEvent event) {
-		if (Wrapper.INSTANCE.mc().currentScreen != null) return;
+		if (Minecraft.getMinecraft().currentScreen != null) return;
 		for(Command cmd : commands) if(cmd.getKey() == Keyboard.getEventKey()) {
 			Kisman.instance.commandManager.runCommand("." + cmd.getExecute());
 		}

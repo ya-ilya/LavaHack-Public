@@ -9,7 +9,7 @@ import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.Render2DUtil;
 import com.kisman.cc.util.render.objects.AbstractGradient;
 import com.kisman.cc.util.render.objects.Vec4d;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import org.lwjgl.input.Keyboard;
 
 import java.math.BigDecimal;
@@ -53,7 +53,7 @@ public class Slider extends Component {
         Render2DUtil.drawRectWH(x, y + offset, width, HalqGui.height, HalqGui.backgroundColor.getRGB());
 
         int width = (int) (this.width * (setting.getValDouble() - min) / (max - min));
-        if(HalqGui.shadowCheckBox) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x, y + offset}, new double[] {x + width, y + offset}, new double[] {x + width, y + offset + HalqGui.height}, new double[] {x, y + offset + HalqGui.height}), HalqGui.getGradientColour(count).getColor(), ColorUtils.injectAlpha(HalqGui.backgroundColor, 4)));
+        if(HalqGui.shadowCheckBox) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x, y + offset}, new double[] {x + width, y + offset}, new double[] {x + width, y + offset + HalqGui.height}, new double[] {x, y + offset + HalqGui.height}), HalqGui.getGradientColour(count).getColor(), ColorUtil.injectAlpha(HalqGui.backgroundColor, 4)));
         else Render2DUtil.drawRectWH(x, y + offset, width, HalqGui.height, HalqGui.getGradientColour(count).getRGB());
 
         HalqGui.drawString(toRender, x, y + offset, width, HalqGui.height);

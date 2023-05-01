@@ -4,7 +4,7 @@ import com.kisman.cc.Kisman;
 import com.kisman.cc.gui.alts.AltManagerGUI;
 import com.kisman.cc.gui.halq.HalqGui;
 import com.kisman.cc.util.customfont.CustomFontUtil;
-import i.gishreloaded.gishcode.utils.visual.ColorUtils;
+import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.opengl.GL11;
@@ -22,7 +22,7 @@ public class KismanMainMenuGui extends GuiScreen {
         super.drawScreen(mouseX, mouseY, partialTicks);
         GL11.glPushMatrix();
         GL11.glScalef(2.0F, 2.0F, 2.0F);
-        CustomFontUtil.drawCenteredStringWithShadow(Kisman.getName() + " " + Kisman.getVersion(), width / 4, 6, ColorUtils.astolfoColors(100, 100));
+        CustomFontUtil.drawCenteredStringWithShadow(Kisman.getName() + " " + Kisman.getVersion(), width / 4, 6, ColorUtil.astolfoColors(100, 100));
         GL11.glPopMatrix();
     }
 

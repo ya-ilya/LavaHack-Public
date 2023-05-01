@@ -5,7 +5,6 @@ import com.kisman.cc.gui.csgo.IRenderer;
 import com.kisman.cc.gui.csgo.Window;
 import com.kisman.cc.module.client.Config;
 import com.kisman.cc.util.Render2DUtil;
-import i.gishreloaded.gishcode.utils.Utils;
 
 import java.util.Locale;
 import java.util.function.Function;
@@ -135,7 +134,7 @@ public class Slider extends AbstractComponent {
 
     public enum NumberType {
         PERCENT(number -> String.format(Locale.ENGLISH, "%.1f%%", number.floatValue())),
-        TIME(number -> Utils.formatTime(number.longValue())),
+        TIME(number -> formatTime(number.longValue())),
         DECIMAL(number -> String.format(Locale.ENGLISH, "%.4f", number.floatValue())),
         INTEGER(number -> Long.toString(number.longValue()));
 
@@ -147,6 +146,18 @@ public class Slider extends AbstractComponent {
 
         public Function<Number, String> getFormatter() {
             return formatter;
+        }
+
+        private static String formatTime(long l) {
+            long minutes = l / 1000 / 60;
+            l -= minutes * 1000 * 60;
+            long seconds = l / 1000;
+            l -= seconds * 1000;
+            StringBuilder sb = new StringBuilder();
+            if (minutes != 0) sb.append(minutes).append("min ");
+            if (seconds != 0) sb.append(seconds).append("s ");
+            if (l != 0 || minutes == 0 && seconds == 0) sb.append(l).append("ms ");
+            return sb.substring(0, sb.length() - 1);
         }
     }
 }

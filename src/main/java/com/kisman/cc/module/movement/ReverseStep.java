@@ -4,7 +4,7 @@ import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
-import i.gishreloaded.gishcode.utils.TimerUtils;
+import com.kisman.cc.util.TimerUtil;
 
 import java.util.Locale;
 
@@ -16,7 +16,7 @@ public class ReverseStep extends Module {
     private final Setting lagTime = new Setting("Lag Time", this, false);
     private final Setting lagTimeValue = new Setting("Lag Time Value", this, 500, 0, 2000, Slider.NumberType.TIME);
 
-    private final TimerUtils lagTimer = new TimerUtils();
+    private final TimerUtil lagTimer = new TimerUtil();
 
     public ReverseStep() {
         super("ReverseStep", Category.MOVEMENT);

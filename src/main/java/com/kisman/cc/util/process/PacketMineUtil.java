@@ -6,7 +6,7 @@ import com.kisman.cc.util.BlockUtil;
 import com.kisman.cc.util.Globals;
 import com.kisman.cc.util.InventoryUtil;
 import com.kisman.cc.util.MathUtil;
-import i.gishreloaded.gishcode.utils.TimerUtils;
+import com.kisman.cc.util.TimerUtil;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.block.Block;
@@ -19,7 +19,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 
 public class PacketMineUtil implements Globals {
-    private final TimerUtils timer = new TimerUtils();
+    private final TimerUtil timer = new TimerUtil();
     public BlockPos currentPos;
     private long start;
     private int oldSlot, rebreakCount, instantAttempts, packetSpam, range;

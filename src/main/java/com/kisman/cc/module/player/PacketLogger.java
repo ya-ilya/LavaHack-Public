@@ -6,7 +6,7 @@ import com.kisman.cc.gui.hud.hudmodule.render.packetchat.Message;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.ChatUtil;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 
@@ -36,7 +36,7 @@ public class PacketLogger extends Module{
 
         if(values.getValBoolean()) for(Field field : event.getPacket().getClass().getDeclaredFields()) message.append(" ").append(field.getName()).append("[").append(field).append("]");
         
-        ChatUtils.simpleMessage(message.toString());
+        ChatUtil.simpleMessage(message.toString());
         if(PacketChat.Instance.logs.activeMessages.size()+1>10)
         {
             if(PacketChat.Instance.logs.passiveMessages.size()+1>10)
@@ -57,6 +57,6 @@ public class PacketLogger extends Module{
 
         if(values.getValBoolean()) for(Field field : event.getPacket().getClass().getDeclaredFields()) message.append(" ").append(field.getName()).append("[").append(field).append("]");
         
-        ChatUtils.simpleMessage(message.toString());
+        ChatUtil.simpleMessage(message.toString());
     });
 }

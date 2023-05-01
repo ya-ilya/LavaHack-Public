@@ -12,8 +12,8 @@ import com.kisman.cc.util.process.DynamicTrapUtil.RewriteRotateModes;
 import com.kisman.cc.util.process.DynamicTrapUtil.RewriteSupportModes;
 import com.kisman.cc.util.process.DynamicTrapUtil.RewriteSwitchModes;
 import com.kisman.cc.util.process.PacketMineUtil;
-import i.gishreloaded.gishcode.utils.TimerUtils;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.TimerUtil;
+import com.kisman.cc.util.ChatUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.network.play.client.CPacketAnimation;
@@ -66,7 +66,7 @@ public class CevBreaker extends Module {
     private BlockPos posToUse;
 
     private BlockPos currentPos;
-    private final TimerUtils timer = new TimerUtils();
+    private final TimerUtil timer = new TimerUtil();
     private long start;
     private int oldSlot, delay, rebreakCount;
     private boolean swap = false, checked, strictCheck;
@@ -115,7 +115,7 @@ public class CevBreaker extends Module {
         } else {
             BlockPos pos = PlayerUtil.getPlayerPos(target).up(2);
             if(!BlockUtil.canBlockBeBroken(pos)) {
-                ChatUtils.error("block for break cant be broken :( shutdown!");
+                ChatUtil.error("block for break cant be broken :( shutdown!");
                 super.setToggled(false);
                 return;
             }

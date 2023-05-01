@@ -11,14 +11,17 @@ import com.kisman.cc.module.combat.autorer.AutoRerUtil;
 import com.kisman.cc.module.combat.autorer.PlaceInfo;
 import com.kisman.cc.module.combat.autorer.render.AutoRerRenderer;
 import com.kisman.cc.module.render.shader.FramebufferShader;
-import com.kisman.cc.module.render.shader.shaders.*;
+import com.kisman.cc.module.render.shader.shaders.GlowShader;
+import com.kisman.cc.module.render.shader.shaders.GradientOutlineShader;
+import com.kisman.cc.module.render.shader.shaders.ItemShader;
+import com.kisman.cc.module.render.shader.shaders.OutlineShader;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.setting.util.RenderingRewritePattern;
 import com.kisman.cc.util.*;
 import com.kisman.cc.util.bypasses.SilentSwitchBypass;
 import com.kisman.cc.util.enums.ShaderModes;
-import i.gishreloaded.gishcode.utils.TimerUtils;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.TimerUtil;
+import com.kisman.cc.util.ChatUtil;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.renderer.GlStateManager;
@@ -36,7 +39,6 @@ import net.minecraft.network.play.server.SPacketSoundEffect;
 import net.minecraft.network.play.server.SPacketSpawnObject;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.*;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -47,7 +49,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.Collectors;
 
 /**
  * @author _kisman_(Logic, Renderer logic), Cubic(Renderer)
@@ -148,13 +149,13 @@ public class AutoRer extends Module {
     public static AutoRer instance;
 
     public final List<PlaceInfo> placedList = new ArrayList<>();
-    private final TimerUtils placeTimer = new TimerUtils();
-    private final TimerUtils breakTimer = new TimerUtils();
-    private final TimerUtils calcTimer = new TimerUtils();
-    private final TimerUtils renderTimer = new TimerUtils();
-    private final TimerUtils predictTimer = new TimerUtils();
-    private final TimerUtils manualTimer = new TimerUtils();
-    private final TimerUtils synsTimer = new TimerUtils();
+    private final TimerUtil placeTimer = new TimerUtil();
+    private final TimerUtil breakTimer = new TimerUtil();
+    private final TimerUtil calcTimer = new TimerUtil();
+    private final TimerUtil renderTimer = new TimerUtil();
+    private final TimerUtil predictTimer = new TimerUtil();
+    private final TimerUtil manualTimer = new TimerUtil();
+    private final TimerUtil synsTimer = new TimerUtil();
     private ScheduledExecutorService executor;
     private final AtomicBoolean shouldInterrupt = new AtomicBoolean(false);
     private final AtomicBoolean threadOngoing = new AtomicBoolean(false);
@@ -489,81 +490,7 @@ public class AutoRer extends Module {
     public void onRenderWorld(RenderWorldLastEvent event) {
         if(targetCharms.getValBoolean() && currentTarget != null) {
             try {
-                FramebufferShader framebufferShader = null;
-                boolean itemglow = false, gradient = false, glow = false, outline = false;
-
-                switch (targetCharmsShader.getValString()) {
-                    case "AQUA":
-                        framebufferShader = AquaShader.AQUA_SHADER;
-                        break;
-                    case "RED":
-                        framebufferShader = RedShader.RED_SHADER;
-                        break;
-                    case "SMOKE":
-                        framebufferShader = SmokeShader.SMOKE_SHADER;
-                        break;
-                    case "FLOW":
-                        framebufferShader = FlowShader.FLOW_SHADER;
-                        break;
-                    case "ITEMGLOW":
-                        framebufferShader = ItemShader.ITEM_SHADER;
-                        itemglow = true;
-                        break;
-                    case "PURPLE":
-                        framebufferShader = PurpleShader.PURPLE_SHADER;
-                        break;
-                    case "GRADIENT":
-                        framebufferShader = GradientOutlineShader.INSTANCE;
-                        gradient = true;
-                        break;
-                    case "UNU":
-                        framebufferShader = UnuShader.UNU_SHADER;
-                        break;
-                    case "GLOW":
-                        framebufferShader = GlowShader.GLOW_SHADER;
-                        glow = true;
-                        break;
-                    case "OUTLINE":
-                        framebufferShader = OutlineShader.OUTLINE_SHADER;
-                        outline = true;
-                        break;
-                    case "BlueFlames":
-                        framebufferShader = BlueFlamesShader.BlueFlames_SHADER;
-                        break;
-                    case "CodeX":
-                        framebufferShader = CodeXShader.CodeX_SHADER;
-                        break;
-                    case "Crazy":
-                        framebufferShader = CrazyShader.CRAZY_SHADER;
-                        break;
-                    case "Golden":
-                        framebufferShader = GoldenShader.GOLDEN_SHADER;
-                        break;
-                    case "HideF":
-                        framebufferShader = HideFShader.HideF_SHADER;
-                        break;
-                    case "HolyFuck":
-                        framebufferShader = HolyFuckShader.HolyFuckF_SHADER;
-                        break;
-                    case "HotShit":
-                        framebufferShader = HotShitShader.HotShit_SHADER;
-                        break;
-                    case "Kfc":
-                        framebufferShader = KfcShader.KFC_SHADER;
-                        break;
-                    case "Sheldon":
-                        framebufferShader = SheldonShader.SHELDON_SHADER;
-                        break;
-                    case "Smoky":
-                        framebufferShader = SmokyShader.SMOKY_SHADER;
-                        break;
-                    case "SNOW":
-                        framebufferShader = SnowShader.SNOW_SHADER;
-                        break;
-                    case "Techno":
-                        framebufferShader = TechnoShader.TECHNO_SHADER;
-                        break;
-                }
+                FramebufferShader framebufferShader = FramebufferShader.SHADERS.get(targetCharmsShader.getValString().toLowerCase());
 
                 if (framebufferShader == null) return;
 
@@ -573,40 +500,46 @@ public class AutoRer extends Module {
                 GlStateManager.pushMatrix();
                 GlStateManager.matrixMode(5888);
                 GlStateManager.pushMatrix();
-                if (itemglow) {
-                    ((ItemShader) framebufferShader).red = targetCharmsColor.getColour().r1;
-                    ((ItemShader) framebufferShader).green = targetCharmsColor.getColour().g1;
-                    ((ItemShader) framebufferShader).blue = targetCharmsColor.getColour().b1;
-                    ((ItemShader) framebufferShader).radius = targetCharmsRadius.getValFloat();
-                    ((ItemShader) framebufferShader).quality = targetCharmsQuality.getValFloat();
-                    ((ItemShader) framebufferShader).blur = targetCharmsBlur.getValBoolean();
-                    ((ItemShader) framebufferShader).mix = targetCharmsMix.getValFloat();
-                    ((ItemShader) framebufferShader).alpha = 1f;
-                    ((ItemShader) framebufferShader).useImage = false;
-                } else if (gradient) {
-                    ((GradientOutlineShader) framebufferShader).color = targetCharmsColor.getColour().getColor();
-                    ((GradientOutlineShader) framebufferShader).radius = targetCharmsRadius.getValFloat();
-                    ((GradientOutlineShader) framebufferShader).quality = targetCharmsQuality.getValFloat();
-                    ((GradientOutlineShader) framebufferShader).gradientAlpha = targetCharmsGradientAlpha.getValBoolean();
-                    ((GradientOutlineShader) framebufferShader).alphaOutline = targetCharmsAlphaGradient.getValInt();
-                    ((GradientOutlineShader) framebufferShader).duplicate = targetCharmsDuplicateOutline.getValFloat();
-                    ((GradientOutlineShader) framebufferShader).moreGradient = targetCharmsMoreGradientOutline.getValFloat();
-                    ((GradientOutlineShader) framebufferShader).creepy = targetCharmsCreepyOutline.getValFloat();
-                    ((GradientOutlineShader) framebufferShader).alpha = targetCharmsAlpha.getValFloat();
-                    ((GradientOutlineShader) framebufferShader).numOctaves = targetCharmsNumOctavesOutline.getValInt();
-                } else if(glow) {
-                    ((GlowShader) framebufferShader).red = targetCharmsColor.getColour().r1;
-                    ((GlowShader) framebufferShader).green = targetCharmsColor.getColour().g1;
-                    ((GlowShader) framebufferShader).blue = targetCharmsColor.getColour().b1;
-                    ((GlowShader) framebufferShader).radius = targetCharmsRadius.getValFloat();
-                    ((GlowShader) framebufferShader).quality = targetCharmsQuality.getValFloat();
-                } else if(outline) {
-                    ((OutlineShader) framebufferShader).red = targetCharmsColor.getColour().r1;
-                    ((OutlineShader) framebufferShader).green = targetCharmsColor.getColour().g1;
-                    ((OutlineShader) framebufferShader).blue = targetCharmsColor.getColour().b1;
-                    ((OutlineShader) framebufferShader).radius = targetCharmsRadius.getValFloat();
-                    ((OutlineShader) framebufferShader).quality = targetCharmsQuality.getValFloat();
+
+                if (framebufferShader instanceof ItemShader) {
+                    ItemShader itemShader = (ItemShader) framebufferShader; 
+                    itemShader.red = targetCharmsColor.getColour().r1;
+                    itemShader.green = targetCharmsColor.getColour().g1;
+                    itemShader.blue = targetCharmsColor.getColour().b1;
+                    itemShader.radius = targetCharmsRadius.getValFloat();
+                    itemShader.quality = targetCharmsQuality.getValFloat();
+                    itemShader.blur = targetCharmsBlur.getValBoolean();
+                    itemShader.mix = targetCharmsMix.getValFloat();
+                    itemShader.alpha = 1f;
+                    itemShader.useImage = false;
+                } else if (framebufferShader instanceof GradientOutlineShader) {
+                    GradientOutlineShader gradientShader = (GradientOutlineShader) framebufferShader; 
+                    gradientShader.color = targetCharmsColor.getColour().getColor();
+                    gradientShader.radius = targetCharmsRadius.getValFloat();
+                    gradientShader.quality = targetCharmsQuality.getValFloat();
+                    gradientShader.gradientAlpha = targetCharmsGradientAlpha.getValBoolean();
+                    gradientShader.alphaOutline = targetCharmsAlphaGradient.getValInt();
+                    gradientShader.duplicate = targetCharmsDuplicateOutline.getValFloat();
+                    gradientShader.moreGradient = targetCharmsMoreGradientOutline.getValFloat();
+                    gradientShader.creepy = targetCharmsCreepyOutline.getValFloat();
+                    gradientShader.alpha = targetCharmsAlpha.getValFloat();
+                    gradientShader.numOctaves = targetCharmsNumOctavesOutline.getValInt();
+                } else if (framebufferShader instanceof GlowShader) {
+                    GlowShader glowShader = (GlowShader) framebufferShader; 
+                    glowShader.red = targetCharmsColor.getColour().r1;
+                    glowShader.green = targetCharmsColor.getColour().g1;
+                    glowShader.blue = targetCharmsColor.getColour().b1;
+                    glowShader.radius = targetCharmsRadius.getValFloat();
+                    glowShader.quality = targetCharmsQuality.getValFloat();
+                } else if (framebufferShader instanceof OutlineShader) {
+                    OutlineShader outlineShader = (OutlineShader) framebufferShader; 
+                    outlineShader.red = targetCharmsColor.getColour().r1;
+                    outlineShader.green = targetCharmsColor.getColour().g1;
+                    outlineShader.blue = targetCharmsColor.getColour().b1;
+                    outlineShader.radius = targetCharmsRadius.getValFloat();
+                    outlineShader.quality = targetCharmsQuality.getValFloat();
                 }
+
                 framebufferShader.startDraw(event.getPartialTicks());
                 for (Entity entity : mc.world.loadedEntityList) {
                     if (entity == mc.player || entity == mc.getRenderViewEntity() || !entity.equals(currentTarget)) continue;
@@ -614,7 +547,9 @@ public class AutoRer extends Module {
                     Objects.requireNonNull(mc.getRenderManager().getEntityRenderObject(entity)).doRender(entity, vector.x, vector.y, vector.z, entity.rotationYaw, event.getPartialTicks());
                 }
                 framebufferShader.stopDraw();
-                if (gradient) ((GradientOutlineShader) framebufferShader).update(targetCharmsSpeedOutline.getValDouble());
+                if (framebufferShader instanceof GradientOutlineShader) {
+                    ((GradientOutlineShader) framebufferShader).update(targetCharmsSpeedOutline.getValDouble());
+                }
                 GlStateManager.color(1f, 1f, 1f);
                 GlStateManager.matrixMode(5889);
                 GlStateManager.popMatrix();
@@ -623,7 +558,7 @@ public class AutoRer extends Module {
             } catch (Exception ignored) {
                 if(Config.instance.antiOpenGLCrash.getValBoolean() || lagProtect.getValBoolean()) {
                     super.setToggled(false);
-                    ChatUtils.error("[AutoRer] Error, Config -> AntiOpenGLCrash disabled AutoRer");
+                    ChatUtil.error("[AutoRer] Error, Config -> AntiOpenGLCrash disabled AutoRer");
                 }
             }
         }

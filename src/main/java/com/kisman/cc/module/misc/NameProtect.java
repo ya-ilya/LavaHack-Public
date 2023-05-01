@@ -4,7 +4,7 @@ import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.ChatUtil;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.network.play.server.SPacketChat;
@@ -36,7 +36,7 @@ public class NameProtect extends Module {
         if (mc.player == null) return false;
         String out = message;
         out = out.replace(mc.player.getName(), name.getValString());
-        ChatUtils.simpleMessage(out);
+        ChatUtil.simpleMessage(out);
         return true;
     }
 }

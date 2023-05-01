@@ -2,7 +2,7 @@ package com.kisman.cc.module.misc;
 
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import i.gishreloaded.gishcode.utils.visual.ChatUtils;
+import com.kisman.cc.util.ChatUtil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -24,8 +24,8 @@ public class  VisualRange extends Module {
         try {
             for (final Entity entity : mc.world.loadedEntityList) if (entity instanceof EntityPlayer && !entity.getName().equalsIgnoreCase(mc.player.getName())) this.newNames.add(entity.getName());
             if (!this.names.equals(this.newNames)) {
-                for (final String name : this.newNames) if (!this.names.contains(name)) ChatUtils.warning(name + " entered in visual range!");
-                for (final String name : this.names) if (!this.newNames.contains(name)) ChatUtils.message(name + " left from visual range!");
+                for (final String name : this.newNames) if (!this.names.contains(name)) ChatUtil.warning(name + " entered in visual range!");
+                for (final String name : this.names) if (!this.newNames.contains(name)) ChatUtil.message(name + " left from visual range!");
                 this.names.clear();
                 this.names.addAll(this.newNames);
             }

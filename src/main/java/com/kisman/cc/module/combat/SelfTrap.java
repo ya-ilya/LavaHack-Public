@@ -2,10 +2,10 @@ package com.kisman.cc.module.combat;
 
 import com.kisman.cc.module.Category;
 import com.kisman.cc.util.BlockUtil2;
+import com.kisman.cc.util.ChatUtil;
 import com.kisman.cc.util.EntityUtil;
 import com.kisman.cc.util.InventoryUtil;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import com.kisman.cc.util.ChatUtil;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 

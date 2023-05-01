@@ -6,9 +6,9 @@ import com.kisman.cc.gui.halq.HalqGui;
 import com.kisman.cc.gui.halq.component.Component;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.Render2DUtil;
+import com.kisman.cc.util.gish.ColorUtil;
 import com.kisman.cc.util.render.objects.AbstractGradient;
 import com.kisman.cc.util.render.objects.Vec4d;
-import com.kisman.cc.util.gish.ColorUtil;
 
 public class CheckBox extends Component {
     private final Setting setting;

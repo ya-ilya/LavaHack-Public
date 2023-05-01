@@ -63,7 +63,6 @@ class AutoRerRenderer {
 
                 lastRenderPos = renderPos
 
-
                 //Text
                 if (text) {
                     val formattedText = buildString {

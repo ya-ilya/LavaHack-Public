@@ -1,11 +1,11 @@
 package com.kisman.cc.util;
 
 import com.kisman.cc.module.client.Config;
+import com.kisman.cc.util.gish.ColorUtil;
 import com.kisman.cc.util.glow.ShaderShell;
 import com.kisman.cc.util.render.objects.AbstractGradient;
 import com.kisman.cc.util.render.objects.AbstractObject;
 import com.kisman.cc.util.render.objects.ObjectWithGlow;
-import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;

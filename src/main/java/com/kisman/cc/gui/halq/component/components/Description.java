@@ -4,9 +4,9 @@ import com.kisman.cc.gui.halq.HalqGui;
 import com.kisman.cc.gui.halq.component.Component;
 import com.kisman.cc.util.Render2DUtil;
 import com.kisman.cc.util.customfont.CustomFontUtil;
+import com.kisman.cc.util.gish.ColorUtil;
 import com.kisman.cc.util.render.objects.AbstractGradient;
 import com.kisman.cc.util.render.objects.Vec4d;
-import com.kisman.cc.util.gish.ColorUtil;
 
 public class Description extends Component {
     public final String title;

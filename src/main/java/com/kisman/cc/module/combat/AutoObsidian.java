@@ -4,7 +4,6 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.*;
-import com.kisman.cc.util.ChatUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;

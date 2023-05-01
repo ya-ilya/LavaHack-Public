@@ -8,8 +8,6 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.*;
-import com.kisman.cc.util.TimerUtil;
-import com.kisman.cc.util.ChatUtil;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.block.Block;
@@ -89,7 +87,7 @@ public class Scaffold extends Module {
         BlockPos towerPos = new BlockPos(mc.player.posX, mc.player.posY - 1, mc.player.posZ);
         BlockPos downPos = new BlockPos(mc.player.posX, mc.player.posY - 2, mc.player.posZ);
         if (placeLogic.getValString().equalsIgnoreCase("Predict")) {
-            PredictUtil.PredictSettings predictSettings = new PredictUtil.PredictSettings((distance.getValInt()), false, 0, 0, 0, 0, 0, 0, false, 0, false, false, false, false, false, 0, 696969);
+            PredictUtil.PredictSettings predictSettings = new PredictUtil.PredictSettings((distance.getValInt()), 0, 0, 0, 0, 0, 0, 0, 0, 696969);
             EntityPlayer predictPlayer = PredictUtil.predictPlayer(mc.player, predictSettings);
             scaffold = (new BlockPos(predictPlayer.posX, predictPlayer.posY - 1, predictPlayer.posZ));
         } else if (placeLogic.getValString().equalsIgnoreCase("Player")) {

@@ -5,8 +5,6 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.*;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import com.kisman.cc.util.TimerUtil;
-import com.kisman.cc.util.ChatUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;

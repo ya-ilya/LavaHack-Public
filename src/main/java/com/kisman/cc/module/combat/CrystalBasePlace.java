@@ -5,7 +5,6 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.*;
-import com.kisman.cc.util.TimerUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumHand;

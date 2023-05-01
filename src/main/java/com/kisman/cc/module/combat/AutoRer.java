@@ -20,10 +20,9 @@ import com.kisman.cc.setting.util.RenderingRewritePattern;
 import com.kisman.cc.util.*;
 import com.kisman.cc.util.bypasses.SilentSwitchBypass;
 import com.kisman.cc.util.enums.ShaderModes;
-import com.kisman.cc.util.TimerUtil;
-import com.kisman.cc.util.ChatUtil;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
@@ -343,14 +342,16 @@ public class AutoRer extends Module {
     }
 
     private void handlePool(boolean justDoIt) {
-        if(justDoIt || executor == null || executor.isTerminated() || executor.isShutdown() || (synsTimer.passedMillis(threadSynsValue.getValLong()) && threadSyns.getValBoolean())) {
-            if(executor != null) {
-                executor.shutdown();
-            }
-
-            executor = createExecutorService();
-            synsTimer.reset();
+        if (!justDoIt && executor != null && !executor.isTerminated() && !executor.isShutdown() && (!synsTimer.passedMillis(threadSynsValue.getValLong()) || !threadSyns.getValBoolean())) {
+            return;
         }
+
+        if(executor != null) {
+            executor.shutdown();
+        }
+
+        executor = createExecutorService();
+        synsTimer.reset();
     }
 
     public void update() {
@@ -477,94 +478,14 @@ public class AutoRer extends Module {
     });
 
     private void doAutoRerLogic(PlayerMotionUpdateEvent event, boolean thread) {
+        if (mc.isGamePaused) return;
+
         if(logic.getValString().equalsIgnoreCase("PlaceBreak")) {
             doPlace(event, thread);
             if(placePos != null) doBreak();
         } else {
             doBreak();
             doPlace(event, thread);
-        }
-    }
-
-    @SubscribeEvent
-    public void onRenderWorld(RenderWorldLastEvent event) {
-        if(targetCharms.getValBoolean() && currentTarget != null) {
-            try {
-                FramebufferShader framebufferShader = FramebufferShader.SHADERS.get(targetCharmsShader.getValString().toLowerCase());
-
-                if (framebufferShader == null) return;
-
-                framebufferShader.animationSpeed = targetCharmsAnimationSpeed.getValInt();
-
-                GlStateManager.matrixMode(5889);
-                GlStateManager.pushMatrix();
-                GlStateManager.matrixMode(5888);
-                GlStateManager.pushMatrix();
-
-                if (framebufferShader instanceof ItemShader) {
-                    ItemShader itemShader = (ItemShader) framebufferShader; 
-                    itemShader.red = targetCharmsColor.getColour().r1;
-                    itemShader.green = targetCharmsColor.getColour().g1;
-                    itemShader.blue = targetCharmsColor.getColour().b1;
-                    itemShader.radius = targetCharmsRadius.getValFloat();
-                    itemShader.quality = targetCharmsQuality.getValFloat();
-                    itemShader.blur = targetCharmsBlur.getValBoolean();
-                    itemShader.mix = targetCharmsMix.getValFloat();
-                    itemShader.alpha = 1f;
-                    itemShader.useImage = false;
-                } else if (framebufferShader instanceof GradientOutlineShader) {
-                    GradientOutlineShader gradientShader = (GradientOutlineShader) framebufferShader; 
-                    gradientShader.color = targetCharmsColor.getColour().getColor();
-                    gradientShader.radius = targetCharmsRadius.getValFloat();
-                    gradientShader.quality = targetCharmsQuality.getValFloat();
-                    gradientShader.gradientAlpha = targetCharmsGradientAlpha.getValBoolean();
-                    gradientShader.alphaOutline = targetCharmsAlphaGradient.getValInt();
-                    gradientShader.duplicate = targetCharmsDuplicateOutline.getValFloat();
-                    gradientShader.moreGradient = targetCharmsMoreGradientOutline.getValFloat();
-                    gradientShader.creepy = targetCharmsCreepyOutline.getValFloat();
-                    gradientShader.alpha = targetCharmsAlpha.getValFloat();
-                    gradientShader.numOctaves = targetCharmsNumOctavesOutline.getValInt();
-                } else if (framebufferShader instanceof GlowShader) {
-                    GlowShader glowShader = (GlowShader) framebufferShader; 
-                    glowShader.red = targetCharmsColor.getColour().r1;
-                    glowShader.green = targetCharmsColor.getColour().g1;
-                    glowShader.blue = targetCharmsColor.getColour().b1;
-                    glowShader.radius = targetCharmsRadius.getValFloat();
-                    glowShader.quality = targetCharmsQuality.getValFloat();
-                } else if (framebufferShader instanceof OutlineShader) {
-                    OutlineShader outlineShader = (OutlineShader) framebufferShader; 
-                    outlineShader.red = targetCharmsColor.getColour().r1;
-                    outlineShader.green = targetCharmsColor.getColour().g1;
-                    outlineShader.blue = targetCharmsColor.getColour().b1;
-                    outlineShader.radius = targetCharmsRadius.getValFloat();
-                    outlineShader.quality = targetCharmsQuality.getValFloat();
-                }
-
-                framebufferShader.startDraw(event.getPartialTicks());
-                for (Entity entity : mc.world.loadedEntityList) {
-                    if (entity == mc.player || entity == mc.getRenderViewEntity() || !entity.equals(currentTarget)) continue;
-                    Vec3d vector = MathUtil.getInterpolatedRenderPos(entity, event.getPartialTicks());
-                    Objects.requireNonNull(mc.getRenderManager().getEntityRenderObject(entity)).doRender(entity, vector.x, vector.y, vector.z, entity.rotationYaw, event.getPartialTicks());
-                }
-                framebufferShader.stopDraw();
-                if (framebufferShader instanceof GradientOutlineShader) {
-                    ((GradientOutlineShader) framebufferShader).update(targetCharmsSpeedOutline.getValDouble());
-                }
-                GlStateManager.color(1f, 1f, 1f);
-                GlStateManager.matrixMode(5889);
-                GlStateManager.popMatrix();
-                GlStateManager.matrixMode(5888);
-                GlStateManager.popMatrix();
-            } catch (Exception ignored) {
-                if(Config.instance.antiOpenGLCrash.getValBoolean() || lagProtect.getValBoolean()) {
-                    super.setToggled(false);
-                    ChatUtil.error("[AutoRer] Error, Config -> AntiOpenGLCrash disabled AutoRer");
-                }
-            }
-        }
-
-        if(render.getValBoolean() && placePos != null) {
-            renderer.onRenderWorld(movingLength.getValFloat(), fadeLength.getValFloat(), renderer_, placePos, text.getValBoolean());
         }
     }
 
@@ -736,10 +657,9 @@ public class AutoRer extends Module {
     }
 
     private void doPlace(PlayerMotionUpdateEvent event, boolean thread) {
-        if(!place.getValBoolean() || !placeTimer.passedMillis(placeDelay.getValLong()) || (placePos == null && fastCalc.getValBoolean())) return;
-        if(!fastCalc.getValBoolean() || (thread && threadCalc.getValBoolean())) doCalculatePlace();
-        if(placePos == null || (!mc.world.getBlockState(placePos.getBlockPos()).getBlock().equals(Blocks.OBSIDIAN) && !mc.world.getBlockState(placePos.getBlockPos()).getBlock().equals(Blocks.BEDROCK))) return;
-        if(syns.getValBoolean() && placedList.contains(placePos)) return;
+        if (!placeCheck(thread)) {
+            return;
+        }
 
         SilentSwitchBypass bypass = new SilentSwitchBypass(Items.END_CRYSTAL);
         EnumHand hand = null;
@@ -762,6 +682,30 @@ public class AutoRer extends Module {
         placePlaceCrystal(offhand);
         placeRotatePost(oldRotations);
         placeSwingPost(bypass, silentBypass, hand, oldSlot);
+    }
+
+    private boolean placeCheck(boolean thread) {
+        if (!place.getValBoolean() || !placeTimer.passedMillis(placeDelay.getValLong())) {
+            return false;
+        }
+
+        if (placePos == null && fastCalc.getValBoolean()) {
+            return false;
+        }
+
+        if(!fastCalc.getValBoolean() || (thread && threadCalc.getValBoolean())) {
+            doCalculatePlace();
+        }
+
+        if(placePos != null) {
+            Block placeBlock = mc.world.getBlockState(placePos.getBlockPos()).getBlock();
+
+            if (placeBlock != Blocks.OBSIDIAN && placeBlock != Blocks.BEDROCK) {
+                return false;
+            }
+        }
+
+        return !syns.getValBoolean() || !placedList.contains(placePos);
     }
 
     private void placeSwitch(SilentSwitchBypass bypass, boolean silentBypass, boolean offhand) {
@@ -1080,6 +1024,88 @@ public class AutoRer extends Module {
         return CrystalUtils.calculateDamage(pos, entity, terrain.getValBoolean());
     }
 
+    @SubscribeEvent
+    public void onRenderWorld(RenderWorldLastEvent event) {
+        if(targetCharms.getValBoolean() && currentTarget != null) {
+            try {
+                FramebufferShader framebufferShader = FramebufferShader.SHADERS.get(targetCharmsShader.getValString().toLowerCase());
+
+                if (framebufferShader == null) return;
+
+                framebufferShader.animationSpeed = targetCharmsAnimationSpeed.getValInt();
+
+                GlStateManager.matrixMode(5889);
+                GlStateManager.pushMatrix();
+                GlStateManager.matrixMode(5888);
+                GlStateManager.pushMatrix();
+
+                if (framebufferShader instanceof ItemShader) {
+                    ItemShader itemShader = (ItemShader) framebufferShader;
+                    itemShader.red = targetCharmsColor.getColour().r1;
+                    itemShader.green = targetCharmsColor.getColour().g1;
+                    itemShader.blue = targetCharmsColor.getColour().b1;
+                    itemShader.radius = targetCharmsRadius.getValFloat();
+                    itemShader.quality = targetCharmsQuality.getValFloat();
+                    itemShader.blur = targetCharmsBlur.getValBoolean();
+                    itemShader.mix = targetCharmsMix.getValFloat();
+                    itemShader.alpha = 1f;
+                    itemShader.useImage = false;
+                } else if (framebufferShader instanceof GradientOutlineShader) {
+                    GradientOutlineShader gradientShader = (GradientOutlineShader) framebufferShader;
+                    gradientShader.color = targetCharmsColor.getColour().getColor();
+                    gradientShader.radius = targetCharmsRadius.getValFloat();
+                    gradientShader.quality = targetCharmsQuality.getValFloat();
+                    gradientShader.gradientAlpha = targetCharmsGradientAlpha.getValBoolean();
+                    gradientShader.alphaOutline = targetCharmsAlphaGradient.getValInt();
+                    gradientShader.duplicate = targetCharmsDuplicateOutline.getValFloat();
+                    gradientShader.moreGradient = targetCharmsMoreGradientOutline.getValFloat();
+                    gradientShader.creepy = targetCharmsCreepyOutline.getValFloat();
+                    gradientShader.alpha = targetCharmsAlpha.getValFloat();
+                    gradientShader.numOctaves = targetCharmsNumOctavesOutline.getValInt();
+                } else if (framebufferShader instanceof GlowShader) {
+                    GlowShader glowShader = (GlowShader) framebufferShader;
+                    glowShader.red = targetCharmsColor.getColour().r1;
+                    glowShader.green = targetCharmsColor.getColour().g1;
+                    glowShader.blue = targetCharmsColor.getColour().b1;
+                    glowShader.radius = targetCharmsRadius.getValFloat();
+                    glowShader.quality = targetCharmsQuality.getValFloat();
+                } else if (framebufferShader instanceof OutlineShader) {
+                    OutlineShader outlineShader = (OutlineShader) framebufferShader;
+                    outlineShader.red = targetCharmsColor.getColour().r1;
+                    outlineShader.green = targetCharmsColor.getColour().g1;
+                    outlineShader.blue = targetCharmsColor.getColour().b1;
+                    outlineShader.radius = targetCharmsRadius.getValFloat();
+                    outlineShader.quality = targetCharmsQuality.getValFloat();
+                }
+
+                framebufferShader.startDraw(event.getPartialTicks());
+                for (Entity entity : mc.world.loadedEntityList) {
+                    if (entity == mc.player || entity == mc.getRenderViewEntity() || !entity.equals(currentTarget)) continue;
+                    Vec3d vector = MathUtil.getInterpolatedRenderPos(entity, event.getPartialTicks());
+                    Objects.requireNonNull(mc.getRenderManager().getEntityRenderObject(entity)).doRender(entity, vector.x, vector.y, vector.z, entity.rotationYaw, event.getPartialTicks());
+                }
+                framebufferShader.stopDraw();
+                if (framebufferShader instanceof GradientOutlineShader) {
+                    ((GradientOutlineShader) framebufferShader).update(targetCharmsSpeedOutline.getValDouble());
+                }
+                GlStateManager.color(1f, 1f, 1f);
+                GlStateManager.matrixMode(5889);
+                GlStateManager.popMatrix();
+                GlStateManager.matrixMode(5888);
+                GlStateManager.popMatrix();
+            } catch (Exception ignored) {
+                if(Config.instance.antiOpenGLCrash.getValBoolean() || lagProtect.getValBoolean()) {
+                    super.setToggled(false);
+                    ChatUtil.error("[AutoRer] Error, Config -> AntiOpenGLCrash disabled AutoRer");
+                }
+            }
+        }
+
+        if(render.getValBoolean() && placePos != null) {
+            renderer.onRenderWorld(movingLength.getValFloat(), fadeLength.getValFloat(), renderer_, placePos, text.getValBoolean());
+        }
+    }
+
     public enum ThreadMode {None, Pool, Sound, While}
     public enum Render {None, Default, Advanced}
     public enum Rotate {Off, Place, Break, All}
@@ -1136,6 +1162,7 @@ public class AutoRer extends Module {
         }
 
         @Override
+        @SuppressWarnings("BusyWait")
         public void run() {
             if(autoRer.threadMode.getValString().equalsIgnoreCase("While")) {
                 while (autoRer.isToggled() && autoRer.threadMode.getValString().equalsIgnoreCase("While")) {

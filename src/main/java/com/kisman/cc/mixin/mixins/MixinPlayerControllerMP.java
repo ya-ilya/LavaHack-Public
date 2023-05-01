@@ -20,7 +20,6 @@ public class MixinPlayerControllerMP {
     public void getBlockReachDistance(CallbackInfoReturnable<Float> callback) {
         if (Reach.instance.isToggled()) {
             callback.setReturnValue(Reach.instance.distance.getValFloat());
-            callback.cancel();
         }
     }
 
@@ -30,7 +29,6 @@ public class MixinPlayerControllerMP {
         Kisman.EVENT_BUS.post(event);
         if (event.isCancelled()) {
             cir.setReturnValue(false);
-            cir.cancel();
         }
     }
 

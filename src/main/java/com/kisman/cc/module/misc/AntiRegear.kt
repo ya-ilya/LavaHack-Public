@@ -4,9 +4,9 @@ import com.kisman.cc.module.Category
 import com.kisman.cc.module.Module
 import com.kisman.cc.setting.Setting
 import com.kisman.cc.util.BlockInteractionHelper
+import com.kisman.cc.util.ChatUtil
 import com.kisman.cc.util.InventoryUtil
 import com.kisman.cc.util.PlayerUtil
-import com.kisman.cc.util.ChatUtil
 import net.minecraft.block.BlockShulkerBox
 import net.minecraft.item.ItemPickaxe
 import net.minecraft.network.play.client.CPacketPlayerDigging

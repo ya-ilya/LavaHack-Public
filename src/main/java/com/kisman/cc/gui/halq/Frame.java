@@ -11,10 +11,10 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.module.client.Config;
 import com.kisman.cc.util.Render2DUtil;
 import com.kisman.cc.util.enums.RectSides;
+import com.kisman.cc.util.gish.ColorUtil;
 import com.kisman.cc.util.render.objects.AbstractGradient;
 import com.kisman.cc.util.render.objects.ShadowRectObject;
 import com.kisman.cc.util.render.objects.Vec4d;
-import com.kisman.cc.util.gish.ColorUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;

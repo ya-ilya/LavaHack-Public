@@ -124,92 +124,53 @@ public class Speed extends Module {
         yPortSpeed = (float) settingManager.getSettingByName(this, "YPortSpeed").getValDouble();
         dist = MovementUtil.getDistance2D();
 
-        if(mc.player.moveForward > 0 && mc.player.hurtTime < 5 && speedMode.getValString().equalsIgnoreCase("Strafe")) {
-            if(mc.player.onGround) {
-                mc.player.motionY = 0.405;
-                float direction = getDirection();
+        switch (speedMode.getValString()) {
+            case "Strafe":
+                doStrafeSpeed();
+                break;
+            case "YPort":
+                doYPortSpeed();
+                break;
+            case "Strafe New":
+                doStrafeNewSpeed();
+                break;
+            case "Matrix Bhop":
+                doMatrixBhopSpeed();
+                break;
+            case "Matrix 6.4":
+                doMatrixSixFourSpeed();
+                break;
+            case "Sunrise Strafe":
+                doSunriseStrafeSpeed();
+                break;
+            case "Bhop":
+                doBhopSpeed();
+                break;
+            case "Strafe2":
+                doStrafeTwoSpeed();
+                break;
+            case "Matrix":
+                doMatrixSpeed();
+                break;
+        }
+    }
 
-                mc.player.motionX -= (MathHelper.sin(direction) * 0.2F);
-                mc.player.motionZ += (MathHelper.cos(direction) * 0.2F);
-            } else {
-                double currentSpeed = Math.sqrt(mc.player.motionX * mc.player.motionX + mc.player.motionZ * mc.player.motionZ);
-                double speed = Math.abs(mc.player.rotationYawHead - mc.player.rotationYaw) < 90 ? 1.0064 : 1.001;
-                double direction =getDirection();
+    private void doStrafeSpeed() {
+        if (!(mc.player.moveForward > 0) || mc.player.hurtTime >= 5) return;
 
-                mc.player.motionX = -Math.sin(direction) * speed * currentSpeed;
-                mc.player.motionZ = Math.cos(direction) * speed * currentSpeed;
-            }
-        } else if(speedMode.getValString().equalsIgnoreCase("YPort")) doYPortSpeed();
-        else if(speedMode.getValString().equalsIgnoreCase("Strafe New") && !mc.player.isElytraFlying()) {
-            if(useTimer.getValBoolean() && Managers.instance.passed(250)) EntityUtil.setTimer(1.0888f);
-            if(!Managers.instance.passed(lagTime.getValInt())) return;
-            if(stage == 1 && PlayerUtil.isMoving(mc.player)) speed = 1.35 * MovementUtil.getSpeed(slow.getValBoolean(), strafeSpeed.getValDouble()) - 0.01;
-            else if(stage == 2 && PlayerUtil.isMoving(mc.player) && mc.player.onGround) {
-                mc.player.motionY = 0.3999 + MovementUtil.getJumpSpeed();
-                speed *= boost ? 1.6835 : 1.395;
-            } else if(stage == 3) {
-                speed = dist  - 0.66 * (dist - MovementUtil.getSpeed(slow.getValBoolean(), strafeSpeed.getValDouble()));
-                boost = !boost;
-            } else {
-                if((mc.world.getCollisionBoxes(null, mc.player.getEntityBoundingBox().offset(0.0, mc.player.motionY, 0.0)).size() > 0 || mc.player.collidedVertically) && stage > 0) stage = PlayerUtil.isMoving(mc.player) ? 1 : 0;
-                speed = dist - dist / 159;
-            }
+        if(mc.player.onGround) {
+            mc.player.motionY = 0.405;
+            float direction = getDirection();
 
-            speed = Math.min(speed, getCap());
-            speed = Math.max(speed, MovementUtil.getSpeed(slow.getValBoolean(), strafeSpeed.getValDouble()));
-            MovementUtil.strafe((float) speed);
+            mc.player.motionX -= (MathHelper.sin(direction) * 0.2F);
+            mc.player.motionZ += (MathHelper.cos(direction) * 0.2F);
+        } else {
+            double currentSpeed = Math.sqrt(mc.player.motionX * mc.player.motionX + mc.player.motionZ * mc.player.motionZ);
+            double speed = Math.abs(mc.player.rotationYawHead - mc.player.rotationYaw) < 90 ? 1.0064 : 1.001;
+            double direction =getDirection();
 
-            if(PlayerUtil.isMoving(mc.player)) stage++;
-        } else if(speedMode.getValString().equalsIgnoreCase("Matrix Bhop") && PlayerUtil.isMoving(mc.player)) {
-            mc.gameSettings.keyBindJump.pressed = false;
-
-            if (mc.player.onGround) {
-                mc.player.jump();
-                ((AccessorEntityPlayer) mc.player).setSpeedInAir(0.0208f);
-                mc.player.jumpMovementFactor = 0.1f;
-                EntityUtil.setTimer(0.94f);
-            }
-            if (mc.player.fallDistance > 0.6 && mc.player.fallDistance < 1.3) {
-                ((AccessorEntityPlayer) mc.player).setSpeedInAir(0.0208f);
-                EntityUtil.setTimer(1.8f);
-            }
-        } else if(speedMode.getValString().equalsIgnoreCase("Matrix 6.4")) {
-            if (mc.player.ticksExisted % 4 == 0) mc.getConnection().sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_FALL_FLYING));
-            if (!PlayerUtil.isMoving(mc.player)) return;
-            if (mc.player.onGround) {
-                mc.gameSettings.keyBindJump.pressed = false;
-                mc.player.jump();
-            } else if (mc.player.fallDistance <= 0.1) {
-                ((AccessorEntityPlayer) mc.player).setSpeedInAir(0.0202f);
-                mc.player.jumpMovementFactor = 0.027f;
-                EntityUtil.setTimer(1.5f);
-            } else if (mc.player.fallDistance > 0.1 && mc.player.fallDistance < 1.3) EntityUtil.setTimer(0.7f);
-            else if (mc.player.fallDistance >= 1.3) {
-                EntityUtil.resetTimer();
-                ((AccessorEntityPlayer) mc.player).setSpeedInAir(0.0202f);
-                mc.player.jumpMovementFactor = 0.025f;
-            }
-        } else if(speedMode.getValString().equalsIgnoreCase("Sunrise Strafe")) {
-            if (PlayerUtil.isMoving(mc.player)) {
-                if (mc.player.onGround) {
-                    mc.player.jump();
-                    MovementUtil.strafe(MovementUtil.calcMoveYaw(mc.player.rotationYaw), MovementUtil.getSpeed() * 1.02);
-                }
-            } else {
-                mc.player.motionX = 0.0;
-                mc.player.motionZ = 0.0;
-            }
-        } else if(speedMode.getValString().equalsIgnoreCase("Bhop")) doBhop();
-        else if(speedMode.getValString().equalsIgnoreCase("Strafe2") && MovementUtil.isMoving()) {
-            if(mc.player.onGround) mc.player.jump();
-            else {
-                double yaw = MovementUtil.getDirection();
-                mc.player.motionX = -Math.sin(yaw) * motionXmodifier.getValFloat();
-                mc.player.motionZ = Math.cos(yaw) * motionZmodifier.getValFloat();
-            }
-        } else if(speedMode.getValString().equalsIgnoreCase("Matrix") && MovementUtil.isMoving() && mc.player.ticksExisted % 2 == 0) {
-            if(mc.player.onGround) mc.player.jump();
-            else MovementUtil.setMotion(MovementUtil.WALK_SPEED * 1.025);
+            mc.player.motionX = -Math.sin(direction) * speed * currentSpeed;
+            mc.player.motionZ = Math.cos(direction) * speed * currentSpeed;
         }
     }
 
@@ -223,6 +184,100 @@ public class Speed extends Module {
             mc.player.motionY = -1;
             EntityUtil.resetTimer();
         }
+    }
+
+    private void doStrafeNewSpeed() {
+        if (mc.player.isElytraFlying()) return;
+        if(useTimer.getValBoolean() && Managers.instance.passed(250)) EntityUtil.setTimer(1.0888f);
+        if(!Managers.instance.passed(lagTime.getValInt())) return;
+        if(stage == 1 && PlayerUtil.isMoving(mc.player)) speed = 1.35 * MovementUtil.getSpeed(slow.getValBoolean(), strafeSpeed.getValDouble()) - 0.01;
+        else if(stage == 2 && PlayerUtil.isMoving(mc.player) && mc.player.onGround) {
+            mc.player.motionY = 0.3999 + MovementUtil.getJumpSpeed();
+            speed *= boost ? 1.6835 : 1.395;
+        } else if(stage == 3) {
+            speed = dist  - 0.66 * (dist - MovementUtil.getSpeed(slow.getValBoolean(), strafeSpeed.getValDouble()));
+            boost = !boost;
+        } else {
+            if((mc.world.getCollisionBoxes(null, mc.player.getEntityBoundingBox().offset(0.0, mc.player.motionY, 0.0)).size() > 0 || mc.player.collidedVertically) && stage > 0) stage = PlayerUtil.isMoving(mc.player) ? 1 : 0;
+            speed = dist - dist / 159;
+        }
+
+        speed = Math.min(speed, getCap());
+        speed = Math.max(speed, MovementUtil.getSpeed(slow.getValBoolean(), strafeSpeed.getValDouble()));
+        MovementUtil.strafe((float) speed);
+
+        if(PlayerUtil.isMoving(mc.player)) stage++;
+    }
+
+    private void doMatrixBhopSpeed() {
+        if (!PlayerUtil.isMoving(mc.player)) return;
+
+        mc.gameSettings.keyBindJump.pressed = false;
+
+        if (mc.player.onGround) {
+            mc.player.jump();
+            ((AccessorEntityPlayer) mc.player).setSpeedInAir(0.0208f);
+            mc.player.jumpMovementFactor = 0.1f;
+            EntityUtil.setTimer(0.94f);
+        }
+        if (mc.player.fallDistance > 0.6 && mc.player.fallDistance < 1.3) {
+            ((AccessorEntityPlayer) mc.player).setSpeedInAir(0.0208f);
+            EntityUtil.setTimer(1.8f);
+        }
+    }
+
+    private void doMatrixSixFourSpeed() {
+        if (mc.player.ticksExisted % 4 == 0) {
+            mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_FALL_FLYING));
+        }
+
+        if (!PlayerUtil.isMoving(mc.player)) return;
+
+        if (mc.player.onGround) {
+            mc.gameSettings.keyBindJump.pressed = false;
+            mc.player.jump();
+        } else if (mc.player.fallDistance <= 0.1) {
+            ((AccessorEntityPlayer) mc.player).setSpeedInAir(0.0202f);
+            mc.player.jumpMovementFactor = 0.027f;
+            EntityUtil.setTimer(1.5f);
+        } else if (mc.player.fallDistance > 0.1 && mc.player.fallDistance < 1.3) {
+            EntityUtil.setTimer(0.7f);
+        } else if (mc.player.fallDistance >= 1.3) {
+            EntityUtil.resetTimer();
+            ((AccessorEntityPlayer) mc.player).setSpeedInAir(0.0202f);
+            mc.player.jumpMovementFactor = 0.025f;
+        }
+    }
+
+    private void doSunriseStrafeSpeed() {
+        if (PlayerUtil.isMoving(mc.player)) {
+            if (mc.player.onGround) {
+                mc.player.jump();
+                MovementUtil.strafe(MovementUtil.calcMoveYaw(mc.player.rotationYaw), MovementUtil.getSpeed() * 1.02);
+            }
+        } else {
+            mc.player.motionX = 0.0;
+            mc.player.motionZ = 0.0;
+        }
+    }
+
+    private void doStrafeTwoSpeed() {
+        if (!MovementUtil.isMoving()) return;
+
+        if (mc.player.onGround) {
+            mc.player.jump();
+        } else {
+            double yaw = MovementUtil.getDirection();
+            mc.player.motionX = -Math.sin(yaw) * motionXmodifier.getValFloat();
+            mc.player.motionZ = Math.cos(yaw) * motionZmodifier.getValFloat();
+        }
+    }
+
+    private void doMatrixSpeed() {
+        if (!MovementUtil.isMoving() || mc.player.ticksExisted % 2 != 0) return;
+
+        if(mc.player.onGround) mc.player.jump();
+        else MovementUtil.setMotion(MovementUtil.WALK_SPEED * 1.025);
     }
 
     public double getCap() {
@@ -271,7 +326,7 @@ public class Speed extends Module {
         return baseSpeed;
     }
 
-    private void doBhop() {
+    private void doBhopSpeed() {
         currentMotion = getMotion();
         mc.player.setSprinting(true);
 

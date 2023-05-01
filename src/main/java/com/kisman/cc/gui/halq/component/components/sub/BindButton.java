@@ -5,9 +5,9 @@ import com.kisman.cc.gui.halq.component.Component;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.Render2DUtil;
+import com.kisman.cc.util.gish.ColorUtil;
 import com.kisman.cc.util.render.objects.AbstractGradient;
 import com.kisman.cc.util.render.objects.Vec4d;
-import com.kisman.cc.util.gish.ColorUtil;
 import org.lwjgl.input.Keyboard;
 
 public class BindButton extends Component {

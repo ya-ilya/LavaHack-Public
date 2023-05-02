@@ -14,11 +14,11 @@ class ChatModifier : Module(
         Category.CHAT
 ) {
     val animation = Setting("Animation", this, false)
-    val suffix = Setting("Suffix", this, false)
-    val antiSpamBypass = Setting("Anti Spam Bypass", this, false)
-    val autoGlobal = Setting("Auto Global", this, false)
+    private val suffix = Setting("Suffix", this, false)
+    private val antiSpamBypass = Setting("Anti Spam Bypass", this, false)
+    private val autoGlobal = Setting("Auto Global", this, false)
     val customY = Setting("Custom Y", this, false)
-    val customYVal = Setting("Custom Y Value", this, 50.0, 0.0, 100.0, true).setVisible { customY.valBoolean }
+    val customYVal: Setting = Setting("Custom Y Value", this, 50.0, 0.0, 100.0, true).setVisible { customY.valBoolean }
     val ttf = Setting("TTF", this, false)
 
     init {

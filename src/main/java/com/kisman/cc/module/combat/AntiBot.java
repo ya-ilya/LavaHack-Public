@@ -1,13 +1,13 @@
 package com.kisman.cc.module.combat;
 
 import com.google.common.collect.Ordering;
+import com.kisman.cc.mixin.mixins.accessor.AccessorGuiPlayerTabOverlay;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.ChatUtil;
 import com.kisman.cc.util.EntityUtil;
 import com.kisman.cc.util.RotationUtils;
-import com.kisman.cc.util.mixin.util.GuiPlayerTabOverlayUtil;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -86,7 +86,7 @@ public class AntiBot extends Module {
 
     private List<EntityPlayer> getTabPlayerList() {
         final List<EntityPlayer> list = new ArrayList<>();
-        final Ordering<NetworkPlayerInfo> ENTRY_ORDERING = GuiPlayerTabOverlayUtil.getEntityOrdering();
+        final Ordering<NetworkPlayerInfo> ENTRY_ORDERING = AccessorGuiPlayerTabOverlay.getEntryOrdering();
         if (ENTRY_ORDERING == null) return list;
         final List<NetworkPlayerInfo> players = ENTRY_ORDERING.sortedCopy(mc.playerController.connection.getPlayerInfoMap());
         for (final NetworkPlayerInfo info : players) {

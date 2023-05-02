@@ -139,11 +139,6 @@ public class HalqGui extends GuiScreen {
         super.onGuiClosed();
     }
 
-    @Override
-    public boolean doesGuiPauseGame() {
-        return true;
-    }
-
     public static void drawString(String text, int x, int y, int width, int height) {
         switch (stringLocateMode) {
             case Center:

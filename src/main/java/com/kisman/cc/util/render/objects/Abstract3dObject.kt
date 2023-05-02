@@ -52,7 +52,7 @@ abstract class Abstract3dObject {
         GL11.glScalef(scaleDist, scaleDist, scaleDist)
     }
 
-    fun glBillboard(vec : Vec3d) {
+    private fun glBillboard(vec : Vec3d) {
         val scale = 0.2666667f
         val mc = Minecraft.getMinecraft()
         GL11.glTranslated(
@@ -69,38 +69,5 @@ abstract class Abstract3dObject {
                 0f
         )
         GL11.glScalef(-scale, -scale, -scale)
-    }
-
-    class CubicRendering {
-        companion object {
-            fun setup() {
-                setup(true)
-            }
-
-            fun release() {
-                release(true)
-            }
-
-            fun setup(customFont : Boolean) {
-                GlStateManager.pushMatrix()
-                GlStateManager.enableBlend()
-                GlStateManager.disableDepth()
-                GlStateManager.tryBlendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ZERO, GL11.GL_ONE)
-                if(customFont) GlStateManager.enableTexture2D() else GlStateManager.disableTexture2D()
-                GlStateManager.depthMask(false)
-                GL11.glEnable(GL11.GL_LINE_SMOOTH)
-                GL11.glHint(GL11.GL_LINE_SMOOTH_HINT, GL11.GL_NICEST)
-                GL11.glLineWidth(1.5f)
-            }
-
-            fun release(customFont : Boolean) {
-                GL11.glDisable(GL11.GL_LINE_SMOOTH)
-                GlStateManager.depthMask(true)
-                GlStateManager.enableDepth()
-                if(customFont) GlStateManager.disableTexture2D() else GlStateManager.enableTexture2D()
-                GlStateManager.disableBlend()
-                GlStateManager.popMatrix()
-            }
-        }
     }
 }

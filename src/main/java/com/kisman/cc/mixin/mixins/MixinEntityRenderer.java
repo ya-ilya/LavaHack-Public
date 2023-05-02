@@ -35,6 +35,7 @@ public class MixinEntityRenderer {
         if(NoRender.instance.isToggled() && NoRender.instance.fog.getValBoolean()) ci.cancel();
     }
 
+    @SuppressWarnings("Guava")
     @Redirect(method = "getMouseOver", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/WorldClient;getEntitiesInAABBexcluding(Lnet/minecraft/entity/Entity;Lnet/minecraft/util/math/AxisAlignedBB;Lcom/google/common/base/Predicate;)Ljava/util/List;"))
     public List<Entity> getEntitiesInAABBexcluding(WorldClient worldClient, Entity entityIn, AxisAlignedBB boundingBox, Predicate<? super Entity> predicate) {
         EntitiesInAABBEvent event = new EntitiesInAABBEvent();

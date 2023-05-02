@@ -16,7 +16,7 @@ import org.lwjgl.opengl.GL11.*
 import kotlin.math.pow
 
 object Outline2Shader {
-    private val mc = Minecraft.getMinecraft();
+    private val mc = Minecraft.getMinecraft()
 
     private var outlineAlpha: ShaderUtil.UniformFloat? = null
     private var filledAlpha: ShaderUtil.UniformFloat? = null
@@ -27,9 +27,9 @@ object Outline2Shader {
     fun setupUniforms(outlineAlpha: Float, filledAlpha: Float, width: Float, ratio: Float) {
         this.outlineAlpha = ShaderUtil.UniformFloat("outlineAlpha", outlineAlpha)
         this.filledAlpha = ShaderUtil.UniformFloat("filledAlpha", filledAlpha)
-        this.width = ShaderUtil.UniformFloat("width", width);
-        this.widthSq = ShaderUtil.UniformFloat("widthSq", width.pow(2));
-        this.ratio = ShaderUtil.UniformFloat("ratio", ratio);
+        this.width = ShaderUtil.UniformFloat("width", width)
+        this.widthSq = ShaderUtil.UniformFloat("widthSq", width.pow(2))
+        this.ratio = ShaderUtil.UniformFloat("ratio", ratio)
     }
 
     fun drawShader(shaderHelper: ShaderHelper, frameBufferFinal: Framebuffer, partialTicks: Float) {

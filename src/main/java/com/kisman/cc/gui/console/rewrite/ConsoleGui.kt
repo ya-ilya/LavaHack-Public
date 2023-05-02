@@ -17,19 +17,20 @@ import java.awt.datatransfer.DataFlavor
 import java.awt.datatransfer.StringSelection
 import java.io.UnsupportedEncodingException
 
-/**@author Dallas/gerald0mc
+/**
+ * @author Dallas/gerald0mc
  */
 class ConsoleGui : GuiScreen() {
-    var width1: Int = 300
-    var height1: Int = 250 - 25
+    private var width1: Int = 300
+    private var height1: Int = 250 - 25
     var x: Int = 25
     var y: Int = 25
 
-    val history = ArrayList<String>()
-    var entryString = ""
+    private val history = ArrayList<String>()
+    private var entryString = ""
 
     @EventHandler val onMessage = Listener({ event: ConsoleMessageEvent ->
-        history.add(event.message);
+        history.add(event.message)
     })
 
     init {
@@ -145,9 +146,11 @@ class ConsoleGui : GuiScreen() {
         var max = 0
 
         for(string in strings) {
-            if(Minecraft.getMinecraft().fontRenderer.getStringWidth(string) > max) max = Minecraft.getMinecraft().fontRenderer.getStringWidth(string)
+            if(Minecraft.getMinecraft().fontRenderer.getStringWidth(string) > max) {
+                max = Minecraft.getMinecraft().fontRenderer.getStringWidth(string)
+            }
         }
-        return max;
+        return max
     }
 
 }

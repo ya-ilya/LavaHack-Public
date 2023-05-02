@@ -41,11 +41,6 @@ public class KeybindButton extends Button {
     }
 
     @Override
-    public void render() {
-        super.render();
-    }
-
-    @Override
     public void setOnClickListener(ActionEventListener listener) {
         if (getOnClickListener() != null) {
             ActionEventListener old = getOnClickListener();

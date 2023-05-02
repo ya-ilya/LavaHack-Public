@@ -18,8 +18,8 @@ object ProjectionUtils {
     private val projectionMatrix = Matrix4f()
 
     var resolution = ScaledResolution(mc); private set
-    var projectPos = Vec3d.ZERO; private set
-    var camPos = Vec3d.ZERO; private set
+    private var projectPos = Vec3d.ZERO; private set
+    private var camPos = Vec3d.ZERO; private set
 
 
     fun distToCamera(pos: Vec3d): Double {
@@ -34,7 +34,7 @@ object ProjectionUtils {
         return toScreenPos(pos, resolution.scaledWidth_double.toFloat(), resolution.scaledHeight_double.toFloat())
     }
 
-    fun toScreenPos(pos: Vec3d, width: Float, height: Float): Vec3d {
+    private fun toScreenPos(pos: Vec3d, width: Float, height: Float): Vec3d {
         val vector4f = transformVec3(pos)
 
         vector4f.x = width / 2.0f + (0.5f * vector4f.x * width + 0.5f)

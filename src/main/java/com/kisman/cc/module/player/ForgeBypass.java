@@ -18,14 +18,6 @@ public class ForgeBypass extends Module {
         instance = this;
     }
 
-    public void onEnable() {
-        
-    }
-
-    public void onDisable() {
-        
-    }
-
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {

@@ -6,10 +6,7 @@ public class TimerUtil {
 	private long nanoTime = -1L;
 
 	public boolean isDelay(long delay) {
-		if(System.currentTimeMillis() - lastMS >= delay) {
-			return true;
-		}
-		return false;
+		return System.currentTimeMillis() - lastMS >= delay;
 	}
 
 	public boolean hasTimeElapsed(long time, boolean reset) {

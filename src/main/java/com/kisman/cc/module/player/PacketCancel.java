@@ -10,43 +10,32 @@ import net.minecraft.network.play.client.*;
 import net.minecraftforge.common.MinecraftForge;
 
 public class PacketCancel extends Module {
-    private boolean input;
-    private boolean player;
-    private boolean entityAction;
-    private boolean useEntity;
-    private boolean vehicleMove;
+    private final Setting input = new Setting("CPacketInput", this, false);
+    private final Setting player = new Setting("CPacketPlayer", this, false);
+    private final Setting entityAction = new Setting("CPacketEntityAction", this, false);
+    private final Setting useEntity = new Setting("CPacketUseEntity", this, false);
+    private final Setting vehicleMove = new Setting("CPacketVehicleMove", this, false);
 
     public PacketCancel() {
         super("PacketCancel", "PacketCancel", Category.PLAYER);
 
         register(new Setting("Packets", this, "Packets"));
-
-        register(new Setting("CPacketInput", this, false));
-        register(new Setting("CPacketPlayer", this, false));
-        register(new Setting("CPacketEntityAction", this, false));
-        register(new Setting("CPacketUseEntity", this, false));
-        register(new Setting("CPacketVehicleMove", this, false));
-    }
-
-    public void onEnable() {
-        MinecraftForge.EVENT_BUS.register(this);
-
-        this.input = settingManager.getSettingByName(this, "CPacketInput").getValBoolean();
-        this.player = settingManager.getSettingByName(this, "CPacketPlayer").getValBoolean();
-        this.entityAction = settingManager.getSettingByName(this, "CPacketEntityAction").getValBoolean();
-        this.useEntity = settingManager.getSettingByName(this, "CPacketUseEntity").getValBoolean();
-        this.vehicleMove = settingManager.getSettingByName(this, "CPacketVehicleMove").getValBoolean();
+        register(input);
+        register(player);
+        register(entityAction);
+        register(useEntity);
+        register(vehicleMove);
     }
 
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
        if(
-               (event.getPacket() instanceof CPacketInput && this.input) ||
-                       (event.getPacket() instanceof CPacketPlayer && this.player) ||
-                       (event.getPacket() instanceof CPacketEntityAction && this.entityAction) ||
-                       (event.getPacket() instanceof CPacketUseEntity && this.useEntity) ||
-                       (event.getPacket() instanceof CPacketVehicleMove && this.vehicleMove)
+               (event.getPacket() instanceof CPacketInput && input.getValBoolean()) ||
+                       (event.getPacket() instanceof CPacketPlayer && player.getValBoolean()) ||
+                       (event.getPacket() instanceof CPacketEntityAction && entityAction.getValBoolean()) ||
+                       (event.getPacket() instanceof CPacketUseEntity && useEntity.getValBoolean()) ||
+                       (event.getPacket() instanceof CPacketVehicleMove && vehicleMove.getValBoolean())
        ) {
             event.cancel();
            System.out.println("test");

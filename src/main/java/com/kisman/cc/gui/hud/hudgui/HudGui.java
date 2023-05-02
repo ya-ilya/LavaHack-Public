@@ -56,9 +56,4 @@ public class HudGui extends GuiScreen {
 		for(Frame frame : frames) frame.setDrag(false);
 		for(Frame frame : frames) if(frame.isOpen()) if(!frame.getComponents().isEmpty()) for(Component component : frame.getComponents()) component.mouseReleased(mouseX, mouseY, state);
 	}
-
-	@Override
-	public boolean doesGuiPauseGame() {
-		return true;
-	}
 }

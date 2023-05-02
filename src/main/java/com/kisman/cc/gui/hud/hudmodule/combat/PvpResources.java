@@ -37,19 +37,19 @@ public class PvpResources extends HudModule {
         int offset = 0;
 
         mc.getRenderItem().renderItemAndEffectIntoGUI(new ItemStack(Item.getItemById(426), 1), x , y + offset);
-        renderItemOverlayIntoGUI(x, y + offset , "" + getItemCount(Item.getItemById(426)));
+        renderItemOverlayIntoGUI(x, y + offset , String.valueOf(getItemCount(Item.getItemById(426))));
         offset += 20;
 
         mc.getRenderItem().renderItemAndEffectIntoGUI(new ItemStack(Item.getItemById(384), 1), x, y + offset);
-        renderItemOverlayIntoGUI(x , y +  offset, "" + getItemCount(Item.getItemById(384)));
+        renderItemOverlayIntoGUI(x , y +  offset, String.valueOf(getItemCount(Item.getItemById(384))));
         offset += 20;
 
         mc.getRenderItem().renderItemAndEffectIntoGUI(new ItemStack(Item.getItemById(322), 1), x, y + offset);
-        renderItemOverlayIntoGUI(x, y + offset, "" + getItemCount(Item.getItemById(322)));
+        renderItemOverlayIntoGUI(x, y + offset, String.valueOf(getItemCount(Item.getItemById(322))));
         offset += 20;
 
         mc.getRenderItem().renderItemAndEffectIntoGUI(new ItemStack(Item.getItemById(449), 1), x, y + offset);
-        renderItemOverlayIntoGUI(x , y + offset, "" + getItemCount(Item.getItemById(449)));
+        renderItemOverlayIntoGUI(x , y + offset, String.valueOf(getItemCount(Item.getItemById(449))));
 
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         GL11.glDisable(GL11.GL_LIGHTING);

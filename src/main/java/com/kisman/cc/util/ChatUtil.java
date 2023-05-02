@@ -13,7 +13,7 @@ public class ChatUtil {
 		if (mc.player == null || mc.ingameGUI == null) return;
 
 		mc.ingameGUI.getChatGUI()
-				.printChatMessage(new TextComponentTranslation(TextFormatting.WHITE + "")
+				.printChatMessage(new TextComponentTranslation(TextFormatting.WHITE.toString())
 				.appendSibling(component));
 	}
 

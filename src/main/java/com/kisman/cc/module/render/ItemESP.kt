@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 class ItemESP : Module("ItemESP", "Renders a items name and quantity ft Dallas", Category.RENDER) {
     val scale = Setting("Scale", this, 1.0, 0.0, 5.0, true)
     val count = Setting("Count", this, false)
-    val astolfo = Setting("Astolfo", this, false)
+    private val astolfo = Setting("Astolfo", this, false)
 
     init {
         register(scale)

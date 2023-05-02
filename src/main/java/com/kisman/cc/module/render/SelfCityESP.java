@@ -108,7 +108,6 @@ public class SelfCityESP extends Module {
     }
 
     public void checkSmart(){
-
         BlockPos playerPos = new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ);
 
         BlockPos pos;
@@ -322,9 +321,5 @@ public class SelfCityESP extends Module {
 
     public double diff(double a, double b){
         return Math.abs(a - b);
-    }
-
-    public boolean isPlayerNotInArea(BlockPos pos){
-        return mc.world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos)).isEmpty();
     }
 }

@@ -194,79 +194,94 @@ public class Surround extends Module {
     }
 
     public void placeSurround() {
-        if(!rewrite.getValBoolean()) {
-            for (Vec3d surroundVectors : getEnumByName(surroundVec.getValString()).vectors) {
-                if (Objects.equals(BlockUtil.getBlockResistance(new BlockPos(surroundVectors.add(new Vec3d(mc.player.posX, Math.round(mc.player.posY), mc.player.posZ)))), BlockUtil.BlockResistance.BLANK) && surroundPlaced <= blocksPerTick.getValDouble()) {
-                    BlockPos surroundPosition = new BlockPos(surroundVectors.add(new Vec3d(mc.player.posX, Math.round(mc.player.posY), mc.player.posZ)));
+        if(rewrite.getValBoolean()) {
+            placeSourrondRewrite();
+        } else {
+            placeSurroundDefault();
+        }
+    }
 
-                    if (RaytraceUtil.raytraceBlock(surroundPosition, RaytraceUtil.Raytrace.NORMAL) && raytrace.getValBoolean()) return;
-                    if (surroundPosition != BlockPos.ORIGIN) {
-                        if (!rotate.getValString().equals(Rotate.NONE.name())) {
-                            float[] surroundAngles = rotateCenter.getValBoolean() ? AngleUtil.calculateCenter(surroundPosition) : AngleUtil.calculateAngles(surroundPosition);
-                            surroundRotation = new Rotation((float) (surroundAngles[0] + (rotateRandom.getValBoolean() ? ThreadLocalRandom.current().nextDouble(-4, 4) : 0)), (float) (surroundAngles[1] + (rotateRandom.getValBoolean() ? ThreadLocalRandom.current().nextDouble(-4, 4) : 0)), (Rotate) rotate.getValEnum());
-                            if (!Float.isNaN(surroundRotation.getYaw()) && !Float.isNaN(surroundRotation.getPitch())) surroundRotation.updateModelRotations();
-                        }
-                    }
+    private void placeSurroundDefault() {
+        for (Vec3d surroundVectors : getEnumByName(surroundVec.getValString()).vectors) {
+            if (!Objects.equals(BlockUtil.getBlockResistance(new BlockPos(surroundVectors.add(new Vec3d(mc.player.posX, Math.round(mc.player.posY), mc.player.posZ)))), BlockUtil.BlockResistance.BLANK) || !(surroundPlaced <= blocksPerTick.getValDouble())) {
+                return;
+            }
 
-                    for (Entity item : mc.world.loadedEntityList) {
-                        if (item instanceof EntityItem && ((EntityItem) item).getItem().getItem().equals(Item.getItemFromBlock(Blocks.OBSIDIAN))) {
-                            item.setDead();
-                            mc.world.removeEntityFromWorld(item.getEntityId());
-                        }
-                    }
+            BlockPos surroundPosition = new BlockPos(surroundVectors.add(new Vec3d(mc.player.posX, Math.round(mc.player.posY), mc.player.posZ)));
 
-                    boolean sneak = mc.player.isSneaking();
-                    if(noInteract.getValBoolean()) mc.player.setSneaking(true);
-                    BlockUtil.placeBlock(new BlockPos(surroundVectors.add(new Vec3d(mc.player.posX, Math.round(mc.player.posY), mc.player.posZ))), packet.getValBoolean(), confirm.getValBoolean());
-                    if(noInteract.getValBoolean()) mc.player.setSneaking(sneak);
-                    PlayerUtil.swingArm((PlayerUtil.Hand) hand.getValEnum());
-                    surroundPlaced++;
+            if (RaytraceUtil.raytraceBlock(surroundPosition, RaytraceUtil.Raytrace.NORMAL) && raytrace.getValBoolean()) return;
+            if (surroundPosition != BlockPos.ORIGIN) {
+                if (!rotate.getValString().equals(Rotate.NONE.name())) {
+                    float[] surroundAngles = rotateCenter.getValBoolean() ? AngleUtil.calculateCenter(surroundPosition) : AngleUtil.calculateAngles(surroundPosition);
+                    surroundRotation = new Rotation((float) (surroundAngles[0] + (rotateRandom.getValBoolean() ? ThreadLocalRandom.current().nextDouble(-4, 4) : 0)), (float) (surroundAngles[1] + (rotateRandom.getValBoolean() ? ThreadLocalRandom.current().nextDouble(-4, 4) : 0)), (Rotate) rotate.getValEnum());
+                    if (!Float.isNaN(surroundRotation.getYaw()) && !Float.isNaN(surroundRotation.getPitch())) surroundRotation.updateModelRotations();
                 }
             }
-        } else {
-            if(!getUnsafeBlocks().isEmpty()) {
-                int blockSlot;
-                if(InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9) != -1) blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
-                else if(InventoryUtil.findBlock(Blocks.ENDER_CHEST, 0, 9) != -1) blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
-                else return;
 
-                InventoryUtil.switchToSlot(blockSlot, switch_.getValString().equals("Silent"));
-                float[] oldRots = new float[] {mc.player.rotationYaw, mc.player.rotationPitch};
-                for(BlockPos pos : getUnsafeBlocks()) {
-                    if(!rewriteRotate.getValString().equalsIgnoreCase(RotateModes.None.name())) {
-                        float[] rots = RotationUtils.getRotationToPos(pos);
-                        mc.player.rotationYaw = rots[0];
-                        mc.player.rotationPitch = rots[1];
-                    }
-                    if(!support.getValString().equalsIgnoreCase(SupportModes.None.name())) if(BlockUtil.getPlaceableSide(pos) == null || support.getValString().equalsIgnoreCase(SupportModes.Static.name()) && BlockUtil2.isPositionPlaceable(pos, true, true)) {
-                        if(crystalBreaker.getValBoolean()) doCrystalBreaker(pos.down());
-                        place(pos.down());
-                    }
-                    if(!BlockUtil2.isPositionPlaceable(pos, true, true, tries <= retries.getValInt())) continue;
+            for (Entity item : mc.world.loadedEntityList) {
+                if (item instanceof EntityItem && ((EntityItem) item).getItem().getItem().equals(Item.getItemFromBlock(Blocks.OBSIDIAN))) {
+                    item.setDead();
+                    mc.world.removeEntityFromWorld(item.getEntityId());
+                }
+            }
+
+            boolean sneak = mc.player.isSneaking();
+            if(noInteract.getValBoolean()) mc.player.setSneaking(true);
+            BlockUtil.placeBlock(new BlockPos(surroundVectors.add(new Vec3d(mc.player.posX, Math.round(mc.player.posY), mc.player.posZ))), packet.getValBoolean(), confirm.getValBoolean());
+            if(noInteract.getValBoolean()) mc.player.setSneaking(sneak);
+            PlayerUtil.swingArm((PlayerUtil.Hand) hand.getValEnum());
+            surroundPlaced++;
+        }
+    }
+
+    private void placeSourrondRewrite() {
+        if(!getUnsafeBlocks().isEmpty()) {
+            int blockSlot;
+            if (InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9) != -1) {
+                blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+            } else if (InventoryUtil.findBlock(Blocks.ENDER_CHEST, 0, 9) != -1) {
+                blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+            }
+            else {
+                return;
+            }
+
+            InventoryUtil.switchToSlot(blockSlot, switch_.getValString().equals("Silent"));
+            float[] oldRots = new float[] {mc.player.rotationYaw, mc.player.rotationPitch};
+            for(BlockPos pos : getUnsafeBlocks()) {
+                if(!rewriteRotate.getValString().equalsIgnoreCase(RotateModes.None.name())) {
+                    float[] rots = RotationUtils.getRotationToPos(pos);
+                    mc.player.rotationYaw = rots[0];
+                    mc.player.rotationPitch = rots[1];
+                }
+                if(!support.getValString().equalsIgnoreCase(SupportModes.None.name())) if(BlockUtil.getPlaceableSide(pos) == null || support.getValString().equalsIgnoreCase(SupportModes.Static.name()) && BlockUtil2.isPositionPlaceable(pos, true, true)) {
+                    if(crystalBreaker.getValBoolean()) doCrystalBreaker(pos.down());
+                    place(pos.down());
+                }
+                if(!BlockUtil2.isPositionPlaceable(pos, true, true, tries <= retries.getValInt())) continue;
+                if(crystalBreaker.getValBoolean()) doCrystalBreaker(pos);
+                place(pos);
+                tries++;
+            }
+            block0: {
+                if(protectOffsets.isEmpty() || !rewriteProtected.getValBoolean()) break block0;
+                for(BlockPos pos : protectOffsets) {
+                    if(!BlockUtil2.isPositionPlaceable(pos, true, true, tries2 <= protectRetries.getValInt())) continue;
                     if(crystalBreaker.getValBoolean()) doCrystalBreaker(pos);
                     place(pos);
-                    tries++;
-                }
-                block0: {
-                    if(protectOffsets.isEmpty() || !rewriteProtected.getValBoolean()) break block0;
-                    for(BlockPos pos : protectOffsets) {
-                        if(!BlockUtil2.isPositionPlaceable(pos, true, true, tries2 <= protectRetries.getValInt())) continue;
-                        if(crystalBreaker.getValBoolean()) doCrystalBreaker(pos);
-                        place(pos);
-                    }
-                }
-                if(switch_.getValString().equals("Silent")) InventoryUtil.switchToSlot(oldSlot, true);
-                if(rewriteRotate.getValString().equalsIgnoreCase(RotateModes.Silent.name())) {
-                    mc.player.rotationYaw = oldRots[0];
-                    mc.player.rotationPitch = oldRots[1];
                 }
             }
-            placement = 0;
-            if(!getUnsafeBlocks().isEmpty()) return;
-            if(protectOffsets.isEmpty()) tries2 = 0;
-            tries = 0;
-            if(completion.getValString().equalsIgnoreCase(Completion.ToggleAfterComplete.name())) setToggled(false);
+            if(switch_.getValString().equals("Silent")) InventoryUtil.switchToSlot(oldSlot, true);
+            if(rewriteRotate.getValString().equalsIgnoreCase(RotateModes.Silent.name())) {
+                mc.player.rotationYaw = oldRots[0];
+                mc.player.rotationPitch = oldRots[1];
+            }
         }
+        placement = 0;
+        if(!getUnsafeBlocks().isEmpty()) return;
+        if(protectOffsets.isEmpty()) tries2 = 0;
+        tries = 0;
+        if(completion.getValString().equalsIgnoreCase(Completion.ToggleAfterComplete.name())) setToggled(false);
     }
 
     private void doCrystalBreaker(BlockPos pos) {

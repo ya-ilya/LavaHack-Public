@@ -1,27 +1,19 @@
 package com.kisman.cc.util;
 
 import net.minecraft.block.BlockAir;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.client.CPacketAnimation;
-import net.minecraft.network.play.client.CPacketEntityAction;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PlayerUtil {
     private static final Minecraft mc = Minecraft.getMinecraft();
@@ -56,116 +48,6 @@ public class PlayerUtil {
 
     public static BlockPos getPlayerPos(EntityPlayer player) {
         return new BlockPos(Math.floor(player.posX), Math.floor(player.posY), Math.floor(player.posZ));
-    }
-
-    public static List<EntityPlayer> getPlayersInRadius(double range) {
-        return getPlayersInRadius(mc.player.getPositionVector(), range);
-    }
-
-    public static List<EntityPlayer> getPlayersInRadius(Vec3d center, double range) {
-        return getEntitiesInRadius(EntityPlayer.class, center, range);
-    }
-
-    public static <T extends Entity> List<T> getEntitiesInRadius(Class<T> entityClass, Vec3d center, double range) {
-        List<T> entity = new ArrayList<>();
-
-        for(Entity entity1 : mc.world.loadedEntityList) {
-            if(entity1.getDistance(mc.player) <= range) {
-                entity.add((T) entity1);
-            }
-        }
-
-        return entity;
-    }
-
-    // Find closest target
-    // 0b00101010: replaced getDistance with getDistanceSq as speeds up calculation
-    public static EntityPlayer findClosestTarget(double rangeMax, EntityPlayer aimTarget) {
-        rangeMax *= rangeMax;
-        List<EntityPlayer> playerList = mc.world.playerEntities;
-        EntityPlayer closestTarget = null;
-
-        for (EntityPlayer entityPlayer : playerList) {
-            if (EntityUtil.basicChecksEntity(entityPlayer)) continue;
-
-            if (aimTarget == null && mc.player.getDistanceSq(entityPlayer) <= rangeMax) {
-                closestTarget = entityPlayer;
-                continue;
-            }
-            if (aimTarget != null && mc.player.getDistanceSq(entityPlayer) <= rangeMax && mc.player.getDistanceSq(entityPlayer) < mc.player.getDistanceSq(aimTarget)) {
-                closestTarget = entityPlayer;
-            }
-        }
-        return closestTarget;
-    }
-
-    // 0b00101010: replaced getDistance with getDistanceSq as speeds up calculation
-    public static EntityPlayer findClosestTarget() {
-        List<EntityPlayer> playerList = mc.world.playerEntities;
-        EntityPlayer closestTarget = null;
-
-        for (EntityPlayer entityPlayer : playerList) {
-            if (EntityUtil.basicChecksEntity(entityPlayer)) continue;
-
-            if (closestTarget == null) {
-                closestTarget = entityPlayer;
-                continue;
-            }
-            if (mc.player.getDistanceSq(entityPlayer) < mc.player.getDistanceSq(closestTarget)) {
-                closestTarget = entityPlayer;
-            }
-        }
-
-        return closestTarget;
-    }
-
-    public static double getEyeY(EntityPlayer player) {
-        return player.getPositionVector().y + player.getEyeHeight();
-    }
-
-    // Find player you are looking
-    public static EntityPlayer findLookingPlayer(double rangeMax) {
-        // Get player
-        ArrayList<EntityPlayer> listPlayer = new ArrayList<>();
-        // Only who is in a distance of enemyRange
-        for (EntityPlayer playerSin : mc.world.playerEntities) {
-            if (EntityUtil.basicChecksEntity(playerSin))
-                continue;
-            if (mc.player.getDistance(playerSin) <= rangeMax) {
-                listPlayer.add(playerSin);
-            }
-        }
-
-        EntityPlayer target = null;
-        // Get coordinate eyes + rotation
-        Vec3d positionEyes = mc.player.getPositionEyes(mc.getRenderPartialTicks());
-        Vec3d rotationEyes = mc.player.getLook(mc.getRenderPartialTicks());
-        // Precision
-        int precision = 2;
-        // Iterate for every blocks
-        for (int i = 0; i < (int) rangeMax; i++) {
-            // Iterate for the precision
-            for (int j = precision; j > 0; j--) {
-                // Iterate for all players
-                for (EntityPlayer targetTemp : listPlayer) {
-                    // Get box of the player
-                    AxisAlignedBB playerBox = targetTemp.getEntityBoundingBox();
-                    // Get coordinate of the vec3d
-                    double xArray = positionEyes.x + (rotationEyes.x * i) + rotationEyes.x / j;
-                    double yArray = positionEyes.y + (rotationEyes.y * i) + rotationEyes.y / j;
-                    double zArray = positionEyes.z + (rotationEyes.z * i) + rotationEyes.z / j;
-                    // If it's inside
-                    if (playerBox.maxY >= yArray && playerBox.minY <= yArray
-                            && playerBox.maxX >= xArray && playerBox.minX <= xArray
-                            && playerBox.maxZ >= zArray && playerBox.minZ <= zArray) {
-                        // Get target
-                        target = targetTemp;
-                    }
-                }
-            }
-        }
-
-        return target;
     }
 
     // TechAle: Return the health of the player
@@ -270,22 +152,8 @@ public class PlayerUtil {
         return mc.getRenderViewEntity() == mc.player;
     }
 
-    public static boolean CanSeeBlock(BlockPos p_Pos) {
-        if (mc.player == null) return false;
-
-        return mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + (double)mc.player.getEyeHeight(), mc.player.posZ), new Vec3d(p_Pos.getX(), p_Pos.getY(), p_Pos.getZ()), false, true, false) == null;
-    }
-
     public static BlockPos GetLocalPlayerPosFloored() {
         return new BlockPos(Math.floor(mc.player.posX), Math.floor(mc.player.posY), Math.floor(mc.player.posZ));
-    }
-
-    public static BlockPos GetPlayerPosFloored(EntityPlayer player) {
-        return new BlockPos(Math.floor(player.posX), Math.floor(player.posY), Math.floor(player.posZ));
-    }
-
-    public static BlockPos entityPosToFloorBlockPos(Entity e) {
-        return new BlockPos(Math.floor(e.posX), Math.floor(e.posY), Math.floor(e.posZ));
     }
 
     public static int GetItemSlot(Item input) {
@@ -314,113 +182,6 @@ public class PlayerUtil {
             if (s.getItem() == input) return i;
         }
         return -1;
-    }
-
-    public static void packetFacePitchAndYaw(float p_Pitch, float p_Yaw) {
-        boolean l_IsSprinting = mc.player.isSprinting();
-
-        if (l_IsSprinting != mc.player.serverSprintState) {
-            if (l_IsSprinting) mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SPRINTING));
-            else mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.STOP_SPRINTING));
-            mc.player.serverSprintState = l_IsSprinting;
-        }
-
-        boolean l_IsSneaking = mc.player.isSneaking();
-
-        if (l_IsSneaking != mc.player.serverSneakState) {
-            if (l_IsSneaking) mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
-            else mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.STOP_SNEAKING));
-            mc.player.serverSneakState = l_IsSneaking;
-        }
-
-        if (PlayerUtil.isCurrentViewEntity()) {
-            AxisAlignedBB axisalignedbb = mc.player.getEntityBoundingBox();
-            double l_PosXDifference = mc.player.posX - mc.player.lastReportedPosX;
-            double l_PosYDifference = axisalignedbb.minY - mc.player.lastReportedPosY;
-            double l_PosZDifference = mc.player.posZ - mc.player.lastReportedPosZ;
-            double l_YawDifference = p_Yaw - mc.player.lastReportedYaw;
-            double l_RotationDifference = p_Pitch - mc.player.lastReportedPitch;
-            ++mc.player.positionUpdateTicks;
-            boolean l_MovedXYZ = l_PosXDifference * l_PosXDifference + l_PosYDifference * l_PosYDifference + l_PosZDifference * l_PosZDifference > 9.0E-4D || mc.player.positionUpdateTicks >= 20;
-            boolean l_MovedRotation = l_YawDifference != 0.0D || l_RotationDifference != 0.0D;
-
-            if (mc.player.isRiding()) {
-                mc.player.connection.sendPacket(new CPacketPlayer.PositionRotation(mc.player.motionX, -999.0D, mc.player.motionZ, p_Yaw, p_Pitch, mc.player.onGround));
-                l_MovedXYZ = false;
-            } else if (l_MovedXYZ && l_MovedRotation) {
-                mc.player.connection.sendPacket(new CPacketPlayer.PositionRotation(mc.player.posX, axisalignedbb.minY, mc.player.posZ, p_Yaw, p_Pitch, mc.player.onGround));
-            } else if (l_MovedXYZ) {
-                mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, axisalignedbb.minY, mc.player.posZ, mc.player.onGround));
-            } else if (l_MovedRotation) {
-                mc.player.connection.sendPacket(new CPacketPlayer.Rotation(p_Yaw, p_Pitch, mc.player.onGround));
-            } else if (mc.player.prevOnGround != mc.player.onGround) {
-                mc.player.connection.sendPacket(new CPacketPlayer(mc.player.onGround));
-            }
-
-            if (l_MovedXYZ) {
-                mc.player.lastReportedPosX = mc.player.posX;
-                mc.player.lastReportedPosY = axisalignedbb.minY;
-                mc.player.lastReportedPosZ = mc.player.posZ;
-                mc.player.positionUpdateTicks = 0;
-            }
-
-            if (l_MovedRotation) {
-                mc.player.lastReportedYaw = p_Yaw;
-                mc.player.lastReportedPitch = p_Pitch;
-            }
-
-            mc.player.prevOnGround = mc.player.onGround;
-            mc.player.autoJumpEnabled = mc.player.mc.gameSettings.autoJump;
-        }
-    }
-
-    public static boolean isPlayerTrapped() {
-        BlockPos playerPos = GetLocalPlayerPosFloored();
-
-        final BlockPos[] trapPos = {
-                playerPos.down(),
-                playerPos.up().up(),
-                playerPos.north(),
-                playerPos.south(),
-                playerPos.east(),
-                playerPos.west(),
-                playerPos.north().up(),
-                playerPos.south().up(),
-                playerPos.east().up(),
-                playerPos.west().up(),
-        };
-
-        for (BlockPos pos : trapPos) {
-            IBlockState state = mc.world.getBlockState(pos);
-
-            if (state.getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(pos).getBlock() != Blocks.BEDROCK) return false;
-        }
-
-        return true;
-    }
-
-    public static boolean isEntityTrapped(Entity e) {
-        BlockPos playerPos = entityPosToFloorBlockPos(e);
-
-        final BlockPos[] l_TrapPositions = {
-                playerPos.up().up(),
-                playerPos.north(),
-                playerPos.south(),
-                playerPos.east(),
-                playerPos.west(),
-                playerPos.north().up(),
-                playerPos.south().up(),
-                playerPos.east().up(),
-                playerPos.west().up(),
-        };
-
-        for (BlockPos l_Pos : l_TrapPositions) {
-            IBlockState l_State = mc.world.getBlockState(l_Pos);
-
-            if (l_State.getBlock() != Blocks.OBSIDIAN && mc.world.getBlockState(l_Pos).getBlock() != Blocks.BEDROCK) return false;
-        }
-
-        return true;
     }
 
     public enum Hand {

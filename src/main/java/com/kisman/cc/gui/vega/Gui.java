@@ -81,11 +81,6 @@ public class Gui extends GuiScreen {
         for(Frame frame : frames) if(frame.open && !frame.buttons.isEmpty()) for(Button b : frame.buttons) b.mouseReleased(mouseX, mouseY, state);
     }
 
-    @Override
-    public void initGui() {
-        super.initGui();
-    }
-
     private void scrollWheelCheck() {
         int dWheel = Mouse.getDWheel();
         if(dWheel < 0) for(Frame frame : frames) frame.y = frame.y - (int) Config.instance.scrollSpeed.getValDouble();

@@ -92,11 +92,6 @@ public class BindModeButton extends Component {
         return count;
     }
 
-    @Override
-    public boolean visible() {
-        return true;
-    }
-
     public void setWidth(int width) {this.width = width;}
     public void setX(int x) {this.x = x;}
     public int getX() {return x;}

@@ -25,12 +25,12 @@ class ColourUtil {
 
         fun healthColor(entity: EntityLivingBase): TextFormatting {
             if (entity.health + entity.getAbsorptionAmount() > 14.0f) {
-                return TextFormatting.GREEN;
+                return TextFormatting.GREEN
             }
             if (entity.health + entity.getAbsorptionAmount() > 6.0f) {
-                return TextFormatting.YELLOW;
+                return TextFormatting.YELLOW
             }
-            return TextFormatting.RED;
+            return TextFormatting.RED
         }
     }
 

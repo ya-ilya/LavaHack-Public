@@ -59,7 +59,7 @@ public class Kisman {
     public static final EventManager EVENT_BUS = new EventManager();
     public static final Logger LOGGER = LogManager.getLogger(NAME);
 
-    public static boolean allowToConfiguredAnotherClients = true, remapped = false;
+    public static boolean allowToConfiguredAnotherClients = true;
 
     public boolean init = false;
 
@@ -89,12 +89,6 @@ public class Kisman {
     public ConfigManager configManager;
 
     public void init() throws IOException, NoSuchFieldException, IllegalAccessException {
-        try {
-            Minecraft.class.getDeclaredField("player");
-        } catch(Exception e) {
-            remapped = true;
-        }
-
         Display.setTitle(NAME + " | " + VERSION);
     	MinecraftForge.EVENT_BUS.register(this);
 

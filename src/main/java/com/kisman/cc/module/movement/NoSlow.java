@@ -58,11 +58,20 @@ public class NoSlow extends Module {
     public void update() {
         if(mc.player == null || mc.world == null) return;
 
-        if (mc.player.isHandActive() && items.getValBoolean()) if (mc.player.getHeldItem(mc.player.getActiveHand()).getItem() instanceof ItemShield) if (mc.player.movementInput.moveStrafe != 0 || mc.player.movementInput.moveForward != 0 && mc.player.getItemInUseMaxCount() >= 8) mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.RELEASE_USE_ITEM, BlockPos.ORIGIN, mc.player.getHorizontalFacing()));
+        if (mc.player.isHandActive() && items.getValBoolean()) {
+            if (mc.player.getHeldItem(mc.player.getActiveHand()).getItem() instanceof ItemShield) {
+                if (mc.player.movementInput.moveStrafe != 0 || mc.player.movementInput.moveForward != 0 && mc.player.getItemInUseMaxCount() >= 8) {
+                    mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.RELEASE_USE_ITEM, BlockPos.ORIGIN, mc.player.getHorizontalFacing()));
+                }
+            }
+        }
 
         if(slimeBlocks.getValBoolean()) {
-            if(mc.player.getRidingEntity() != null) Blocks.SLIME_BLOCK.setDefaultSlipperiness(0.8f);
-            else Blocks.SLIME_BLOCK.setDefaultSlipperiness(0.6f);
+            if (mc.player.getRidingEntity() != null) {
+                Blocks.SLIME_BLOCK.setDefaultSlipperiness(0.8f);
+            } else {
+                Blocks.SLIME_BLOCK.setDefaultSlipperiness(0.6f);
+            }
         }
 
         if (mc.player.isHandActive() && !mc.player.isRiding() && mc.player.fallDistance > 0.7 && PlayerUtil.isMoving(mc.player) && mode.getValString().equals("None")) {

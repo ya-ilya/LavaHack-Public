@@ -85,7 +85,7 @@ public class AltManagerGUI extends GuiScreen {
 	}
 	
 	@Override
-	protected void actionPerformed(GuiButton button) throws IOException {
+	protected void actionPerformed(GuiButton button) {
 		this.altList.actionPerformed(button);
 		switch(button.id) {
 			case 1 : {

@@ -134,12 +134,12 @@ enum class Easing {
         return dec0(x)
     }
 
-    abstract val opposite: Easing;
+    abstract val opposite: Easing
 
     protected abstract fun inc0(x: Float): Float
 
     private fun dec0(x: Float): Float {
-        return 1.0f - inc0(x);
+        return 1.0f - inc0(x)
     }
 
     companion object {

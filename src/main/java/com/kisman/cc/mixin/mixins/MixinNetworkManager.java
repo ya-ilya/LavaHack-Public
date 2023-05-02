@@ -33,7 +33,11 @@ public class MixinNetworkManager {
         if (event.isCancelled()) callbackInfo.cancel();
     }
 
-    @Inject(method = "channelRead0", at = @At("TAIL"), cancellable = true)
+    @Inject(
+        method = "channelRead0(Lio/netty/channel/ChannelHandlerContext;Lnet/minecraft/network/Packet;)V",
+        at = @At("TAIL"),
+        cancellable = true
+    )
     private void postChannelRead(ChannelHandlerContext context, Packet<?> packet, CallbackInfo callbackInfo) {
         PacketEvent.PostReceive event = new PacketEvent.PostReceive(packet);
         Kisman.EVENT_BUS.post(event);

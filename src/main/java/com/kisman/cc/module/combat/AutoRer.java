@@ -317,28 +317,40 @@ public class AutoRer extends Module {
     }
 
     private void handleWhile() {
-        if (thread != null && !thread.isInterrupted() && !thread.isAlive() && (!synsTimer.passedMillis(threadSynsValue.getValLong()) || !threadSyns.getValBoolean())) {
+        if (isThreadAlive()) {
             return;
         }
 
-        if(thread == null) {
+        if (thread == null) {
             thread = new Thread(RAutoRer.getInstance(this));
-        } else if(synsTimer.passedMillis(threadSynsValue.getValLong()) && !shouldInterrupt.get() && threadSyns.getValBoolean()) {
+        } else if (checkThreadSync() && !shouldInterrupt.get()) {
             shouldInterrupt.set(true);
             synsTimer.reset();
             return;
         }
 
-        if(thread != null && (thread.isInterrupted() || !thread.isAlive())) {
+        if (thread != null && (thread.isInterrupted() || !thread.isAlive())) {
             thread = new Thread(RAutoRer.getInstance(this));
-        }
 
-        if(thread != null && thread.getState().equals(Thread.State.NEW)) {
             try {
                 thread.start();
-            } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+
+            }
+
             synsTimer.reset();
         }
+    }
+
+    private boolean isThreadAlive() {
+        if (thread == null) return false;
+        if (thread.isInterrupted()) return false;
+        if (checkThreadSync()) return false;
+        return thread.isAlive();
+    }
+
+    private boolean checkThreadSync() {
+        return threadSyns.getValBoolean() && synsTimer.passedMillis(threadSynsValue.getValLong());
     }
 
     private void handlePool(boolean justDoIt) {
@@ -1166,6 +1178,9 @@ public class AutoRer extends Module {
         public void run() {
             if(autoRer.threadMode.getValString().equalsIgnoreCase("While")) {
                 while (autoRer.isToggled() && autoRer.threadMode.getValString().equalsIgnoreCase("While")) {
+                    if (mc.player == null || mc.world == null) break;
+                    if (mc.isGamePaused()) continue;
+
                     if(autoRer.shouldInterrupt.get()) {
                         autoRer.shouldInterrupt.set(false);
                         autoRer.synsTimer.reset();
@@ -1184,6 +1199,10 @@ public class AutoRer extends Module {
                 autoRer.threadOngoing.set(true);
                 autoRer.doAutoRerForThread();
                 autoRer.threadOngoing.set(false);
+            }
+
+            if (!autoRer.thread.isInterrupted()) {
+                autoRer.thread.interrupt();
             }
         }
     }

@@ -1,10 +1,11 @@
 package com.kisman.cc.manager.managers;
 
+import com.kisman.cc.manager.Manager;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.util.TickRateUtil;
 import net.minecraft.client.Minecraft;
 
-public class TimerManager {
+public class TimerManager implements Manager {
     private Module currentModule;
     private int priority;
     private float timerSpeed;
@@ -29,8 +30,8 @@ public class TimerManager {
     }
 
     public void onUpdate() {
-        if (Minecraft.getMinecraft().world == null || Minecraft.getMinecraft().player == null) {
-            Minecraft.getMinecraft().timer.tickLength=50;
+        if (mc.world == null || mc.player == null) {
+            mc.timer.tickLength = 50;
             return;
         }
         if (tpsSync && TickRateUtil.INSTANCE.getLatestTickRate() > 0.125D)  // 0.125D check is nessasary to avoid 0tps when joining server

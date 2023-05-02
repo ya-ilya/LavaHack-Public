@@ -6,7 +6,6 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.text.TextFormatting;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class MSAuthScreen extends GuiScreen {
         this.addButton(new GuiButton(0, this.width / 2 - 50, this.height - 24, 100, 20, "Cancel"));
     }
     
-    protected void actionPerformed(final GuiButton button) throws IOException {
+    protected void actionPerformed(final GuiButton button) {
         if (button.id == 0) this.mc.displayGuiScreen(this.prev);
     }
     

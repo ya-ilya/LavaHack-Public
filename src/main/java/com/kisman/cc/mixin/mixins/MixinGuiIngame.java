@@ -51,8 +51,8 @@ public class MixinGuiIngame extends Gui {
 
     /**
      * @author _kisman_
-     * @credits wild
      * @reason .
+     * Credits: wild
      */
     @Overwrite
     protected void renderHotbar(ScaledResolution sr, float partialTicks) {

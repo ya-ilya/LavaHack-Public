@@ -25,7 +25,7 @@ class Changer : Module("Changer", "FullBright + CustomFov + Ambience + CustomTim
     private val timeInfCircle = Setting("Time Infinity Circle", this, true).setVisible { time.valBoolean }
     private val timeSpeed = Setting("Time Speed", this, 100.0, 10.0, 1000.0, Slider.NumberType.TIME).setVisible { time.valBoolean }
 
-    var circle = 0
+    private var circle = 0
     private var oldFov = 0F
 
     init {

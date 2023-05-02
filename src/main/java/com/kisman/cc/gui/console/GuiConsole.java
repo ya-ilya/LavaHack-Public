@@ -2,6 +2,7 @@ package com.kisman.cc.gui.console;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.command.Command;
+import com.kisman.cc.command.CommandManager;
 import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -46,7 +47,7 @@ public class GuiConsole extends GuiScreen implements ITabCompleter {
     
     void init() {
 		this.commands.clear();
-        for(Command c : Kisman.instance.commandManager.commands) this.commands.add(c.getCommand() + " - " + c.getDescription());
+        for(Command c : CommandManager.commands) this.commands.add(c.getCommand() + " - " + c.getDescription());
     }
 
     /**

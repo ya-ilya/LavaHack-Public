@@ -19,11 +19,11 @@ import org.lwjgl.opengl.GL11
 
 class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.", Category.RENDER) {
     val scale = Setting("Scale", this, 2.5, 0.1, 5.0, false)
-    val ping = Setting("Ping", this, true)
+    private val ping = Setting("Ping", this, true)
     val pops = Setting("Pops", this, true)
     val health = Setting("Health", this, true)
     val background = Setting("Background", this, false)
-    val backgroundAlpha = Setting("BG Alpha", this, 100.0, 0.0, 255.0, true).setVisible {background.valBoolean}
+    private val backgroundAlpha = Setting("BG Alpha", this, 100.0, 0.0, 255.0, true).setVisible {background.valBoolean}
 
     val glow = Setting("Glow Background", this, false).setVisible {background.valBoolean}
 

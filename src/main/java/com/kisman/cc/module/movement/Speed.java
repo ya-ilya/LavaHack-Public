@@ -188,18 +188,30 @@ public class Speed extends Module {
 
     private void doStrafeNewSpeed() {
         if (mc.player.isElytraFlying()) return;
-        if(useTimer.getValBoolean() && Managers.instance.passed(250)) EntityUtil.setTimer(1.0888f);
-        if(!Managers.instance.passed(lagTime.getValInt())) return;
-        if(stage == 1 && PlayerUtil.isMoving(mc.player)) speed = 1.35 * MovementUtil.getSpeed(slow.getValBoolean(), strafeSpeed.getValDouble()) - 0.01;
-        else if(stage == 2 && PlayerUtil.isMoving(mc.player) && mc.player.onGround) {
-            mc.player.motionY = 0.3999 + MovementUtil.getJumpSpeed();
-            speed *= boost ? 1.6835 : 1.395;
-        } else if(stage == 3) {
-            speed = dist  - 0.66 * (dist - MovementUtil.getSpeed(slow.getValBoolean(), strafeSpeed.getValDouble()));
-            boost = !boost;
-        } else {
-            if((mc.world.getCollisionBoxes(null, mc.player.getEntityBoundingBox().offset(0.0, mc.player.motionY, 0.0)).size() > 0 || mc.player.collidedVertically) && stage > 0) stage = PlayerUtil.isMoving(mc.player) ? 1 : 0;
-            speed = dist - dist / 159;
+        if (useTimer.getValBoolean() && Managers.instance.passed(250)) EntityUtil.setTimer(1.0888f);
+        if (!Managers.instance.passed(lagTime.getValInt())) return;
+
+        switch (stage) {
+            case 1:
+                if (!PlayerUtil.isMoving(mc.player)) break;
+                speed = 1.35 * MovementUtil.getSpeed(slow.getValBoolean(), strafeSpeed.getValDouble()) - 0.01;
+                break;
+            case 2:
+                if (!PlayerUtil.isMoving(mc.player) || mc.player.onGround) break;
+                mc.player.motionY = 0.3999 + MovementUtil.getJumpSpeed();
+                speed *= boost ? 1.6835 : 1.395;
+                break;
+            case 3:
+                speed = dist  - 0.66 * (dist - MovementUtil.getSpeed(slow.getValBoolean(), strafeSpeed.getValDouble()));
+                boost = !boost;
+                break;
+            default:
+                if (stage > 0 && (mc.world.getCollisionBoxes(null, mc.player.getEntityBoundingBox().offset(0.0, mc.player.motionY, 0.0)).size() > 0 || mc.player.collidedVertically)) {
+                    stage = PlayerUtil.isMoving(mc.player) ? 1 : 0;
+                }
+
+                speed = dist - dist / 159;
+                break;
         }
 
         speed = Math.min(speed, getCap());
@@ -330,62 +342,68 @@ public class Speed extends Module {
         currentMotion = getMotion();
         mc.player.setSprinting(true);
 
-        if(mc.gameSettings.keyBindForward.isKeyDown()) {
-            if(mc.player.onGround) {
-                if(useMotion.getValBoolean() && currentMotion != null) {
-                    switch (currentMotion) {
-                        case mX:
-                            mc.player.motionX=mc.player.motionX-0.1;
-                            break;
-                        case X:
-                            mc.player.motionX=mc.player.motionX+0.1;
-                            break;
-                        case mY:
-                            mc.player.motionY=mc.player.motionY-0.1;
-                            break;
-                        case Y:
-                            mc.player.motionY=mc.player.motionY+0.1;
-                            break;
-                    }
-                }
-                y = 1;
-                EntityUtil.resetTimer();
-                if(useTimer.getValBoolean()) Managers.instance.timerManager.updateTimer(this, 2, 1.3f);
-                mc.player.jump();
-                double[] dirSpeed = directionSpeed((getBaseMotionSpeed() * boostSpeed.getValDouble()) + (boostFactor.getValBoolean() ? 0.3 : 0));
-                mc.player.motionX = dirSpeed[0];
-                mc.player.motionZ = dirSpeed[1];
+        if (!mc.gameSettings.keyBindForward.isKeyDown()) return;
+
+        if (mc.player.onGround) {
+            if (useMotion.getValBoolean()) {
+                bhopSpeedDoMotion(false);
+            }
+
+            y = 1;
+            EntityUtil.resetTimer();
+
+            if(useTimer.getValBoolean()) {
+                Managers.instance.timerManager.updateTimer(this, 2, 1.3f);
+            }
+
+            mc.player.jump();
+            double[] dirSpeed = directionSpeed((getBaseMotionSpeed() * boostSpeed.getValDouble()) + (boostFactor.getValBoolean() ? 0.3 : 0));
+            mc.player.motionX = dirSpeed[0];
+            mc.player.motionZ = dirSpeed[1];
+        } else {
+            if(jumpMovementFactor.getValBoolean()) {
+                mc.player.jumpMovementFactor = jumpMovementFactorSpeed.getValFloat();
+            }
+
+            if (y == 1) {
+                y = mc.player.getPositionVector().y;
+                return;
+            }
+
+            if(mc.player.getPositionVector().y < y) {
+                y = mc.player.getPositionVector().y;
+                mc.player.motionX = 0;
+                mc.player.motionZ = 0;
+                if(useTimer.getValBoolean()) EntityUtil.resetTimer();
+                Managers.instance.timerManager.updateTimer(this, 2, 16);
             } else {
-                if(jumpMovementFactor.getValBoolean()) mc.player.jumpMovementFactor = jumpMovementFactorSpeed.getValFloat();
-                if(y == 1) y = mc.player.getPositionVector().y;
-                else {
-                    if(mc.player.getPositionVector().y < y) {
-                        y = mc.player.getPositionVector().y;
-                        mc.player.motionX = 0;
-                        mc.player.motionZ = 0;
-                        if(useTimer.getValBoolean()) EntityUtil.resetTimer();
-                        Managers.instance.timerManager.updateTimer(this, 2, 16);
-                    } else {
-                        y = mc.player.getPositionVector().y;
-                        if(useMotionInAir.getValBoolean() && currentMotion != null) {
-                            switch (currentMotion) {
-                                case mX:
-                                    mc.player.motionX = mc.player.motionX - 0.2;
-                                    break;
-                                case X:
-                                    mc.player.motionX = mc.player.motionX + 0.2;
-                                    break;
-                                case mY:
-                                    mc.player.motionY = mc.player.motionY - 0.2;
-                                    break;
-                                case Y:
-                                    mc.player.motionY = mc.player.motionY + 0.2;
-                                    break;
-                            }
-                        }
-                    }
+                y = mc.player.getPositionVector().y;
+
+                if (useMotionInAir.getValBoolean()) {
+                    bhopSpeedDoMotion(true);
                 }
             }
+        }
+    }
+
+    private void bhopSpeedDoMotion(boolean inAir) {
+        if (currentMotion == null) return;
+
+        double offset = inAir ? 0.2 : 0.1;
+
+        switch (currentMotion) {
+            case mX:
+                mc.player.motionX = mc.player.motionX - offset;
+                break;
+            case X:
+                mc.player.motionX = mc.player.motionX + offset;
+                break;
+            case mY:
+                mc.player.motionY = mc.player.motionY - offset;
+                break;
+            case Y:
+                mc.player.motionY = mc.player.motionY + offset;
+                break;
         }
     }
 

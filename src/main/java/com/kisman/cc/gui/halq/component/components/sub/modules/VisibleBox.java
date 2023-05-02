@@ -53,8 +53,6 @@ public class VisibleBox extends Component {
         return HalqGui.height;
     }
 
-    public boolean visible() {return true;}
-
     public void setCount(int count) {this.count = count;}
     public int getCount() {return count;}
     public void setWidth(int width) {this.width = width;}

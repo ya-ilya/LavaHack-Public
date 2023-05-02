@@ -21,8 +21,8 @@ class RenderingRewritePattern(
     }
 
     //Colors
-    val color1 = Setting("Render Color", module, "Render Color", Colour(255, 0, 0, 255)).setVisible { visible.get() }
-    val color2 = Setting("Render Second Color", module, "Render Second Color", Colour(0, 120, 255, 255)).setVisible {
+    private val color1 = Setting("Render Color", module, "Render Color", Colour(255, 0, 0, 255)).setVisible { visible.get() }
+    private val color2 = Setting("Render Second Color", module, "Render Second Color", Colour(0, 120, 255, 255)).setVisible {
         visible.get() && (
                 mode.valEnum == RenderingRewriteModes.FilledGradient ||
                         mode.valEnum == RenderingRewriteModes.OutlineGradient ||

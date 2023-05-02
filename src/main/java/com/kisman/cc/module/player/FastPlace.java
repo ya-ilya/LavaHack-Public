@@ -55,8 +55,8 @@ public class FastPlace extends Module {
             if (mc.player.inventory.getStackInSlot(mc.player.inventory.currentItem).getItem().equals(Blocks.OBSIDIAN) && this.obby.getValBoolean()) mc.rightClickDelayTimer = 0;
             if (mc.player.inventory.getStackInSlot(mc.player.inventory.currentItem).getItem().equals(Blocks.ENDER_CHEST) && this.enderChest.getValBoolean()) mc.rightClickDelayTimer = 0;
             if (mc.player.inventory.getStackInSlot(mc.player.inventory.currentItem).getItem().equals(Items.MINECART) && this.minecart.getValBoolean()) mc.rightClickDelayTimer = 0;
-            if (this.all.getValBoolean()) mc.rightClickDelayTimer = 0;
             if (mc.player.inventory.getStackInSlot(mc.player.inventory.currentItem).getItem().equals(Items.END_CRYSTAL) && (this.crystal.getValBoolean() || this.all.getValBoolean())) mc.rightClickDelayTimer = 0;
+            if (this.all.getValBoolean()) mc.rightClickDelayTimer = 0;
         } catch(ArrayIndexOutOfBoundsException ignored) {}
 
         if (this.fastCrystal.getValBoolean() && mc.gameSettings.keyBindUseItem.isKeyDown()) {

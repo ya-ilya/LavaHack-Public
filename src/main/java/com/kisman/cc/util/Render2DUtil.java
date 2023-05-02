@@ -26,9 +26,9 @@ import java.util.HashMap;
 import static org.lwjgl.opengl.GL11.*;
 
 /**
-* @author _kisman_
-* @credits github.com/TheKisDevs/loader & NoneCode Free
-*/
+ * @author _kisman_
+ * Credits: github.com/TheKisDevs/loader & NoneCode Free
+ */
 public class Render2DUtil extends GuiScreen {
     public static Render2DUtil instance = new Render2DUtil();
     private static final Minecraft mc = Minecraft.getMinecraft();

@@ -8,6 +8,7 @@ import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.*;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -132,17 +133,39 @@ public class AntiTrap extends Module {
 
     private boolean isBlockHole(BlockPos blockpos) {
         int holeblocks = 0;
-        if (mc.world.getBlockState(blockpos.add(0, 3, 0)).getBlock() == Blocks.AIR) ++holeblocks;
-        if (mc.world.getBlockState(blockpos.add(0, 2, 0)).getBlock() == Blocks.AIR) ++holeblocks;
-        if (mc.world.getBlockState(blockpos.add(0, 1, 0)).getBlock() == Blocks.AIR) ++holeblocks;
-        if (mc.world.getBlockState(blockpos.add(0, 0, 0)).getBlock() == Blocks.AIR) ++holeblocks;
-        if (mc.world.getBlockState(blockpos.add(0, -1, 0)).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(blockpos.add(0, -1, 0)).getBlock() == Blocks.BEDROCK || mc.world.getBlockState(blockpos.add(0, -1, 0)).getBlock() == Blocks.ENDER_CHEST) ++holeblocks;
-        if (mc.world.getBlockState(blockpos.add(1, 0, 0)).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(blockpos.add(1, 0, 0)).getBlock() == Blocks.BEDROCK || mc.world.getBlockState(blockpos.add(1, 0, 0)).getBlock() == Blocks.ENDER_CHEST) ++holeblocks;
-        if (mc.world.getBlockState(blockpos.add(-1, 0, 0)).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(blockpos.add(-1, 0, 0)).getBlock() == Blocks.BEDROCK || mc.world.getBlockState(blockpos.add(-1, 0, 0)).getBlock() == Blocks.ENDER_CHEST) ++holeblocks;
-        if (mc.world.getBlockState(blockpos.add(0, 0, 1)).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(blockpos.add(0, 0, 1)).getBlock() == Blocks.BEDROCK || mc.world.getBlockState(blockpos.add(0, 0, 1)).getBlock() == Blocks.ENDER_CHEST) ++holeblocks;
-        if (mc.world.getBlockState(blockpos.add(0, 0, -1)).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(blockpos.add(0, 0, -1)).getBlock() == Blocks.BEDROCK || mc.world.getBlockState(blockpos.add(0, 0, -1)).getBlock() == Blocks.ENDER_CHEST) ++holeblocks;
+
+        for (int y = 3; y >= -1; y--) {
+            if (y != -1) {
+                if (mc.world.getBlockState(blockpos.add(0, y, 0)).getBlock() == Blocks.AIR) {
+                    holeblocks++;
+                }
+            } else if (isBlockHoleCheck(blockpos.add(0, y, 0))) {
+                holeblocks++;
+            }
+        }
+
+        if (isBlockHoleCheck(blockpos.add(1, 0, 0))) {
+            holeblocks++;
+        }
+
+        if (isBlockHoleCheck(blockpos.add(-1, 0, 0))) {
+            holeblocks++;
+        }
+
+        if (isBlockHoleCheck(blockpos.add(0, 0, 1))) {
+            holeblocks++;
+        }
+
+        if (isBlockHoleCheck(blockpos.add(0, 0, -1))) {
+            holeblocks++;
+        }
 
         return holeblocks >= 9;
+    }
+
+    private boolean isBlockHoleCheck(BlockPos pos) {
+        Block block = mc.world.getBlockState(pos).getBlock();
+        return block == Blocks.OBSIDIAN || block == Blocks.BEDROCK || block == Blocks.ENDER_CHEST;
     }
 
     public enum Rotate {

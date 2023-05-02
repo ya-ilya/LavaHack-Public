@@ -73,10 +73,4 @@ public class WorldUtil {
         }
         return positions;
     }
-
-    private static double absSub(double a, double b){
-        double x = Math.max(a, b);
-        double y = Math.min(a, b);
-        return x - y;
-    }
 }

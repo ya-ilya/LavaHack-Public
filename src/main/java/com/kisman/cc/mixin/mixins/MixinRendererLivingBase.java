@@ -28,15 +28,15 @@ import java.awt.*;
 import static org.lwjgl.opengl.GL11.*;
 
 @Mixin(value = RenderLivingBase.class, priority = 10000)
-public class MixinRendererLivingEntity<T extends EntityLivingBase> extends Render<T> {
+public class MixinRendererLivingBase<T extends EntityLivingBase> extends Render<T> {
     @Shadow protected ModelBase mainModel;
 
-    protected MixinRendererLivingEntity() {
+    protected MixinRendererLivingBase() {
         super(null);
     }
 
     @Inject(method = "doRender(Lnet/minecraft/entity/EntityLivingBase;DDDFF)V", at = @At("HEAD"), cancellable = true)
-    private void doDoRender(T f3, double flag1, double flag, double f, float f1, float f2, CallbackInfo ci) {
+    private void doRenderHook(T f3, double flag1, double flag, double f, float f1, float f2, CallbackInfo ci) {
         Minecraft mc = Minecraft.getMinecraft();
         if(mc.world != null && mc.player != null && Optimizer.instance.isToggled() && Optimizer.instance.customEntityRenderRange.getValBoolean() && mc.player.getDistance(f3) > Optimizer.instance.entityRenderRange.getValInt()) ci.cancel();
     }

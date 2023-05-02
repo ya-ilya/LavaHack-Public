@@ -18,7 +18,7 @@ public class MixinC00Handshake {
     @Shadow private EnumConnectionState requestedState;
 
     @Inject(method = "writePacketData", at = @At(value = "HEAD"), cancellable = true)
-    public void writePacketData(PacketBuffer buf, CallbackInfo ci) {
+    public void writePacketDataHook(PacketBuffer buf, CallbackInfo ci) {
         if (ForgeBypass.instance.isToggled()) {
             ci.cancel();
             buf.writeVarInt(protocolVersion);

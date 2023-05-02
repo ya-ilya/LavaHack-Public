@@ -18,14 +18,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = EntityPlayer.class, priority = Integer.MAX_VALUE)
-public class MixinEntityPlayer extends MixinEntityLivingBase {
+public abstract class MixinEntityPlayer extends MixinEntityLivingBase {
     public MixinEntityPlayer(World worldIn) {super(worldIn);}
 
-    @Shadow protected void doWaterSplashEffect() {}
-    @Shadow public String getName() {return null;}
+    @Shadow protected abstract void doWaterSplashEffect();
+    @Shadow public abstract String getName();
 
     @Inject(method = "jump", at = @At("HEAD"), cancellable = true)
-    private void onJump(CallbackInfo ci) {
+    private void jumpHook(CallbackInfo ci) {
         if(Minecraft.getMinecraft().player.getName().equals(getName())) {
             PlayerJumpEvent event = new PlayerJumpEvent();
             Kisman.EVENT_BUS.post(event);
@@ -34,7 +34,7 @@ public class MixinEntityPlayer extends MixinEntityLivingBase {
     }
 
     @Inject(method = "travel", at = @At("HEAD"), cancellable = true)
-    private void onTravel(float strafe, float vertical, float forward, CallbackInfo ci) {
+    private void travelHook(float strafe, float vertical, float forward, CallbackInfo ci) {
         PlayerTravelEvent event = new PlayerTravelEvent(strafe, vertical, forward);
         Kisman.EVENT_BUS.post(event);
 
@@ -45,7 +45,7 @@ public class MixinEntityPlayer extends MixinEntityLivingBase {
     }
 
     @Inject(method = "applyEntityCollision", at = @At("HEAD"), cancellable = true)
-    private void applyEntityCollision(Entity entity, CallbackInfo ci) {
+    private void applyEntityCollisionHook(Entity entity, CallbackInfo ci) {
         PlayerApplyCollisionEvent event = new PlayerApplyCollisionEvent(entity);
         Kisman.EVENT_BUS.post(event);
 
@@ -53,7 +53,7 @@ public class MixinEntityPlayer extends MixinEntityLivingBase {
     }
 
     @Inject(method = "isPushedByWater()Z", at = @At("HEAD"), cancellable = true)
-    private void isPushedByWater(CallbackInfoReturnable<Boolean> cir) {
+    private void isPushedByWaterHook(CallbackInfoReturnable<Boolean> cir) {
         PlayerPushedByWaterEvent event = new PlayerPushedByWaterEvent();
         Kisman.EVENT_BUS.post(event);
 

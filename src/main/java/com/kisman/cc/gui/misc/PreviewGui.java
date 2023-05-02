@@ -28,7 +28,8 @@ import java.util.List;
 public class PreviewGui extends RightPanel {
 
     private static final ResourceLocation GUI_TEXTURE = new ResourceLocation("kismancc:gui/preview.png");
-    private static int guiWidth = 176;    private static final int INNER_BORDER = PreviewGui.INNER_BORDER;
+    private static int guiWidth = 176;
+    private static final int INNER_BORDER = PreviewGui.INNER_BORDER;
     private static int guiHeight = 80;
     private int x, y, x_end, y_end;
     private InventoryBasic inventory;

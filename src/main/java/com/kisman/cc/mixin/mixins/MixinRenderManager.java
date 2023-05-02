@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(value = RenderManager.class, priority = 114514)
 public class MixinRenderManager {
     @Inject(method = "renderEntity", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/Render;setRenderOutlines(Z)V", shift = At.Shift.BEFORE), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
-    public void renderEntityPre(Entity entity, double x, double y, double z, float yaw, float partialTicks, boolean debug, CallbackInfo ci) {
+    public void renderEntityHook(Entity entity, double x, double y, double z, float yaw, float partialTicks, boolean debug, CallbackInfo ci) {
         if (entity == null || !RenderEntityEvent.getRenderingEntities()) return;
 
         RenderEntityEvent eventAll = new RenderEntityEvent.All.Pre(entity, x, y, z, yaw, partialTicks);
@@ -24,7 +24,7 @@ public class MixinRenderManager {
     }
 
     @Inject(method = "renderEntity", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILHARD)
-    public void renderEntityPost(Entity entity, double x, double y, double z, float yaw, float partialTicks, boolean debug, CallbackInfo ci) {
+    public void renderEntityPostHook(Entity entity, double x, double y, double z, float yaw, float partialTicks, boolean debug, CallbackInfo ci) {
         if (entity == null || !RenderEntityEvent.getRenderingEntities()) return;
 
         RenderEntityEvent event = new RenderEntityEvent.All.Post(entity, x, y, z, yaw, partialTicks);

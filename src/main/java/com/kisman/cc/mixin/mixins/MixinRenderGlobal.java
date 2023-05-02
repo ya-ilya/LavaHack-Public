@@ -15,17 +15,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = RenderGlobal.class, priority = 10000)
 public class MixinRenderGlobal {
     @Inject(method = "drawSelectionBox", at = @At("HEAD"), cancellable = true)
-    public void onDrawSelectionBox(EntityPlayer player, RayTraceResult movingObjectPositionIn, int execute, float partialTicks, CallbackInfo ci) {
+    public void drawSelectionBoxHook(EntityPlayer player, RayTraceResult movingObjectPositionIn, int execute, float partialTicks, CallbackInfo ci) {
         if(NoRender.instance.isToggled() && NoRender.instance.defaultBlockHighlight.getValBoolean()) ci.cancel();
     }
 
     @Inject(method = "renderEntities", at = @At("HEAD"))
-    public void renderEntitiesHead(Entity renderViewEntity, ICamera camera, float partialTicks, CallbackInfo ci) {
+    public void renderEntitiesHook(Entity renderViewEntity, ICamera camera, float partialTicks, CallbackInfo ci) {
         RenderEntityEvent.setRenderingEntities(true);
     }
 
     @Inject(method = "renderEntities", at = @At("RETURN"))
-    public void renderEntitiesReturn(Entity renderViewEntity, ICamera camera, float partialTicks, CallbackInfo ci) {
+    public void renderEntitiesPostHook(Entity renderViewEntity, ICamera camera, float partialTicks, CallbackInfo ci) {
         RenderEntityEvent.setRenderingEntities(false);
     }
 }

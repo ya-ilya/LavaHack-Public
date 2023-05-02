@@ -29,13 +29,13 @@ import java.awt.*;
 import static net.minecraft.client.gui.GuiIngame.WIDGETS_TEX_PATH;
 
 @Mixin(value = GuiIngame.class, priority = 10000)
-public class MixinGuiIngame extends Gui {
+public abstract class MixinGuiIngame extends Gui {
     @Shadow @Final public Minecraft mc;
-    @Shadow protected void renderHotbarItem(int p_184044_1_, int p_184044_2_, float p_184044_3_, EntityPlayer player, ItemStack stack) {}
-    @Shadow public FontRenderer getFontRenderer() {return null;}
+    @Shadow protected abstract void renderHotbarItem(int p_184044_1_, int p_184044_2_, float p_184044_3_, EntityPlayer player, ItemStack stack);
+    @Shadow public abstract FontRenderer getFontRenderer();
 
     @Inject(method = "renderPortal", at = @At("HEAD"), cancellable = true)
-    protected void antiPortal(float timeInPortal, ScaledResolution scaledRes, CallbackInfo ci) {
+    protected void renderPortalHook(float timeInPortal, ScaledResolution scaledRes, CallbackInfo ci) {
         if(NoRender.instance.isToggled() && NoRender.instance.portal.getValBoolean()) ci.cancel();
     }
 

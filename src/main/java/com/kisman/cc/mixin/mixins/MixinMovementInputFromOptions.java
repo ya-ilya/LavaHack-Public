@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = MovementInputFromOptions.class, priority = 10000)
 public class MixinMovementInputFromOptions extends MovementInput {
     @Inject(method = "updatePlayerMoveState", at = @At("RETURN"))
-    public void updatePlayerMoveState(CallbackInfo ci) {
+    public void updatePlayerMoveStateHook(CallbackInfo ci) {
         Kisman.EVENT_BUS.post(new PlayerUpdateMoveStateEvent());
     }
 }

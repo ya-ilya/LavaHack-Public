@@ -38,7 +38,7 @@ public abstract class MixinMinecraft {
     }
 
     @Inject(method = "processKeyBinds", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/settings/KeyBinding;isKeyDown()Z", shift = At.Shift.BEFORE, ordinal = 2))
-    public void mt_processKeyBinds(CallbackInfo info) {
+    public void processKeyBindsHook(CallbackInfo info) {
         if (MultiTask.instance.isToggled()) {
             while (gameSettings.keyBindAttack.isPressed()) {
                 clickMouse();
@@ -47,7 +47,7 @@ public abstract class MixinMinecraft {
     }
 
     @Inject(method = "rightClickMouse", at = @At("HEAD"))
-    public void mt_rightClickMouse(CallbackInfo info) {
+    public void rightClickMouseHook(CallbackInfo info) {
         if (MultiTask.instance.isToggled()) {
             mt_isHittingBlock = playerController.getIsHittingBlock();
             ((AccessorPlayerControllerMP) playerController).mm_setIsHittingBlock(false);
@@ -55,13 +55,13 @@ public abstract class MixinMinecraft {
     }
 
     @Inject(method = "rightClickMouse", at = @At("RETURN"))
-    public void mt_rightClickMousePost(CallbackInfo ci) {
+    public void rightClickMousePostHook(CallbackInfo ci) {
         if (MultiTask.instance.isToggled() && !playerController.getIsHittingBlock())
             ((AccessorPlayerControllerMP) playerController).mm_setIsHittingBlock(mt_isHittingBlock);
     }
 
     @Inject(method = "sendClickBlockToController", at = @At("HEAD"))
-    public void mt_sendClickBlockToControllerPre(boolean leftClick, CallbackInfo ci) {
+    public void sendClickBlockToControllerHook(boolean leftClick, CallbackInfo ci) {
         if (MultiTask.instance.isToggled()) {
             mt_handActive = player.isHandActive();
             ((IEntityPlayerSP) player).mm_setHandActive(false);
@@ -69,7 +69,7 @@ public abstract class MixinMinecraft {
     }
 
     @Inject(method = "sendClickBlockToController", at = @At("RETURN"))
-    public void mt_sendClickBlockToControllerPost(boolean leftClick, CallbackInfo ci) {
+    public void sendClickBlockToControllerPostHook(boolean leftClick, CallbackInfo ci) {
         if (MultiTask.instance.isToggled() && !player.isHandActive())
             ((IEntityPlayerSP) player).mm_setHandActive(mt_handActive);
     }

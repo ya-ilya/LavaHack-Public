@@ -17,14 +17,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(value = PlayerControllerMP.class, priority = 10000)
 public class MixinPlayerControllerMP {
     @Inject(method = "getBlockReachDistance", at = @At("HEAD"), cancellable = true)
-    public void getBlockReachDistance(CallbackInfoReturnable<Float> callback) {
+    public void getBlockReachDistanceHook(CallbackInfoReturnable<Float> callback) {
         if (Reach.instance.isToggled()) {
             callback.setReturnValue(Reach.instance.distance.getValFloat());
         }
     }
 
     @Inject(method = "clickBlock", at = @At("HEAD"), cancellable = true)
-    private void clickBlock(BlockPos posBlock, EnumFacing directionFacing, CallbackInfoReturnable<Boolean> cir) {
+    private void clickBlockHook(BlockPos posBlock, EnumFacing directionFacing, CallbackInfoReturnable<Boolean> cir) {
         DamageBlockEvent event = new DamageBlockEvent(posBlock, directionFacing);
         Kisman.EVENT_BUS.post(event);
         if (event.isCancelled()) {

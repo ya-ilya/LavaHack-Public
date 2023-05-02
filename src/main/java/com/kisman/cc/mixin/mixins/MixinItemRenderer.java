@@ -21,13 +21,17 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = ItemRenderer.class, priority = 10000)
-public class MixinItemRenderer {
+public abstract class MixinItemRenderer {
     private final Minecraft mc = Minecraft.getMinecraft();
-    @Shadow private void transformSideFirstPerson(EnumHandSide hand, float p_187459_2_) {}
+
+    @Shadow
+    protected abstract void transformSideFirstPerson(EnumHandSide hand, float p_187459_2_);
 
     @Inject(method = "renderItemInFirstPerson(Lnet/minecraft/client/entity/AbstractClientPlayer;FFLnet/minecraft/util/EnumHand;FLnet/minecraft/item/ItemStack;F)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GlStateManager;pushMatrix()V", shift = At.Shift.AFTER))
-    private void transformSideFirstPersonInvokePushMatrix(AbstractClientPlayer player, float partialTicks, float pitch, EnumHand hand, float swingProgress, ItemStack stack, float equippedProgress, CallbackInfo ci) {
-        if(ViewModel.instance.hands.getValBoolean()) ViewModel.instance.hand(hand.equals(EnumHand.MAIN_HAND) ? player.getPrimaryHand() : player.getPrimaryHand().opposite());
+    private void renderItemInFirstPersonHook(AbstractClientPlayer player, float partialTicks, float pitch, EnumHand hand, float swingProgress, ItemStack stack, float equippedProgress, CallbackInfo ci) {
+        if(ViewModel.instance.hands.getValBoolean()) {
+            ViewModel.instance.hand(hand.equals(EnumHand.MAIN_HAND) ? player.getPrimaryHand() : player.getPrimaryHand().opposite());
+        }
     }
 
     @Redirect(method = "renderItemInFirstPerson(Lnet/minecraft/client/entity/AbstractClientPlayer;FFLnet/minecraft/util/EnumHand;FLnet/minecraft/item/ItemStack;F)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/ItemRenderer;transformSideFirstPerson(Lnet/minecraft/util/EnumHandSide;F)V"))

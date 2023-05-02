@@ -13,8 +13,9 @@ import java.io.File;
 import java.io.IOException;
 
 @Mixin(ScreenShotHelper.class)
-public class MixinScreenShotHelper {
-    @Shadow public static ITextComponent saveScreenshot(File gameDirectory, @Nullable String screenshotName, int width, int height, Framebuffer buffer) {return null;}
+public class MixinScreenshotHelper {
+    @Shadow
+    public static ITextComponent saveScreenshot(File gameDirectory, @Nullable String screenshotName, int width, int height, Framebuffer buffer) {return null;}
 
     /**
      * @author BloomWareClient

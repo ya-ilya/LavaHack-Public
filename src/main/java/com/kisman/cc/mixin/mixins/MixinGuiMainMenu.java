@@ -24,7 +24,7 @@ public class MixinGuiMainMenu extends GuiScreen {
     private String customSplashSrt = "";
 
     @Inject(method = "initGui", at = @At("RETURN"))
-    private void init(CallbackInfo ci) {
+    private void initGuiHook(CallbackInfo ci) {
         int j = this.height / 4 + 48;
         buttonList.add(new GuiButton(893, width / 2 - 100, j + 72 + 12 + 24, "LavaHack Public"));
         particleSystem = new ParticleSystem(300);
@@ -32,12 +32,12 @@ public class MixinGuiMainMenu extends GuiScreen {
     }
 
     @Inject(method = "actionPerformed", at = @At("RETURN"))
-    public void injectActionPerformed(GuiButton p_actionPerformed_1_, CallbackInfo ci) {
+    public void actionPerformedHook(GuiButton p_actionPerformed_1_, CallbackInfo ci) {
         if(p_actionPerformed_1_.id == 893) mc.displayGuiScreen(new KismanMainMenuGui(this));
     }
 
     @Inject(method = "drawScreen", at = @At("RETURN"))
-    public void down(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
+    public void drawStringHook(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
         if (CustomMainMenu.instance != null && CustomMainMenu.instance.toggled) {
             if(CustomMainMenu.instance.watermark.getValBoolean()) {
                 CustomFontUtil.drawStringWithShadow(TextFormatting.WHITE + Kisman.getName() + " " + TextFormatting.GRAY + Kisman.getVersion(), 1, 1, -1);
@@ -52,7 +52,7 @@ public class MixinGuiMainMenu extends GuiScreen {
     }
 
     @Redirect(method = "drawScreen", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiMainMenu;drawCenteredString(Lnet/minecraft/client/gui/FontRenderer;Ljava/lang/String;III)V"))
-    private void injectForCustomSplash(GuiMainMenu instance, FontRenderer fontRenderer, String s, int x, int y, int color) {
+    private void drawScreenSplashHook(GuiMainMenu instance, FontRenderer fontRenderer, String s, int x, int y, int color) {
         if (CustomMainMenu.instance != null && CustomMainMenu.instance.toggled) {
             String customSplash = CustomMainMenu.instance.customSplashText.getValBoolean() ? customSplashSrt : s;
             if(CustomMainMenu.instance.customSplashFont.getValBoolean()) CustomFontUtil.drawCenteredStringWithShadow(customSplash, x, y, color);

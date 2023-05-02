@@ -7,21 +7,16 @@ import com.kisman.cc.util.render.objects.AbstractGradient;
 import com.kisman.cc.util.render.objects.AbstractObject;
 import com.kisman.cc.util.render.objects.ObjectWithGlow;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL14;
 
 import java.awt.*;
-import java.util.HashMap;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -31,19 +26,6 @@ import static org.lwjgl.opengl.GL11.*;
  */
 public class Render2DUtil extends GuiScreen {
     public static Render2DUtil instance = new Render2DUtil();
-    private static final Minecraft mc = Minecraft.getMinecraft();
-    private static final HashMap<Integer, Integer> shadowCache = new HashMap<>();
-
-    public double getZLevel() {return this.zLevel;}
-
-    public static void disableGL2D() {
-        GL11.glEnable(3553);
-        GL11.glDisable(3042);
-        GL11.glEnable(2929);
-        GL11.glDisable(2848);
-        GL11.glHint(3154, 4352);
-        GL11.glHint(3155, 4352);
-    }
 
     public static void drawRect(int mode, int left, int top, int right, int bottom, int color) {
         if (left < right) {
@@ -102,18 +84,6 @@ public class Render2DUtil extends GuiScreen {
         if (!flag) GL11.glDisable(GL11.GL_BLEND);
     }
 
-    public static void drawSmoothRect(float left, float top, float right, float bottom, int color) {
-        GL11.glEnable(3042);
-        GL11.glEnable(2848);
-        drawRect(left, top, right, bottom, color);
-        GL11.glScalef(0.5f, 0.5f, 0.5f);
-        drawRect(left * 2.0f - 1.0f, top * 2.0f, left * 2.0f, bottom * 2.0f - 1.0f, color);
-        drawRect(left * 2.0f, top * 2.0f - 1.0f, right * 2.0f, top * 2.0f, color);
-        drawRect(right * 2.0f, top * 2.0f, right * 2.0f + 1.0f, bottom * 2.0f - 1.0f, color);
-        GL11.glDisable(3042);
-        GL11.glScalef(2.0f, 2.0f, 2.0f);
-    }
-
     public static void drawModalRectWithCustomSizedTexture(double x, double y, float u, float v, double width, double height, double textureWidth, double textureHeight) {
         float f = 1.0F / (float) textureWidth;
         float f1 = 1.0F / (float) textureHeight;
@@ -141,21 +111,6 @@ public class Render2DUtil extends GuiScreen {
 
     public static void drawRectWH(double x, double y, double width, double height, int color) {drawRect(x, y, x + width, y + height, color);}
 
-    public static void drawCircle(double cx, double cy, double radius, Color color, float width, int segments) {
-        ColorUtil.glColor(color);
-        glLineWidth(width);
-        glBegin(GL_LINE_LOOP);
-        for(int i = 0; i < segments; i++) {
-            float theta = (float) (2f * Math.PI * i / segments);
-
-            float x = (float) (radius * Math.cos(theta));
-            float y = (float) (radius * Math.sin(theta));
-
-            glVertex2d(x + cx, y + cy);
-        }
-        glEnd();
-    }
-
     public static void drawProgressCircle(double cx, double cy, double radius, Color color, float width, double degrees, int segments) {
         ColorUtil.glColor(color);
         glLineWidth(width);
@@ -170,16 +125,6 @@ public class Render2DUtil extends GuiScreen {
             glVertex2d(x + cx, y + cy);
         }
         glEnd();
-    }
-
-    public static void drawTexture(ResourceLocation texture, int x, int y, int width, int height) {
-        mc.getTextureManager().bindTexture(texture);
-        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        GuiScreen.drawModalRectWithCustomSizedTexture(x, y, 0, 0, width, height, width, height);
-    }
-
-    public static void drawBox(int x1, int y1, int x2, int y2, int thickness, Color color) {
-        Gui.drawRect(x1, y1, x2, y2, new Color(71, 67, 67, 150).getRGB());
     }
 
     public static void drawRect(double left, double top, double right, double bottom, int color) {
@@ -462,101 +407,6 @@ public class Render2DUtil extends GuiScreen {
         GlStateManager.disableBlend();
         GlStateManager.enableAlpha();
         GlStateManager.enableTexture2D();
-    }
-
-    public static void drawTexturedRect(float x, float y, float width, float height) {
-        drawTexturedRect(x, y, width, height, 0, 1, 0 , 1);
-    }
-
-    public static void drawTexturedRect(float x, float y, float width, float height, int filter) {
-        drawTexturedRect(x, y, width, height, 0, 1, 0 , 1, filter);
-    }
-
-    public static void drawTexturedRect(float x, float y, float width, float height, float uMin, float uMax, float vMin, float vMax) {
-        drawTexturedRect(x, y, width, height, uMin, uMax, vMin , vMax, GL11.GL_NEAREST);
-    }
-
-    public static void drawTexturedRect(float x, float y, float width, float height, float uMin, float uMax, float vMin, float vMax, int filter) {
-        GlStateManager.enableBlend();
-        GL14.glBlendFuncSeparate(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ONE_MINUS_SRC_ALPHA);
-
-        drawTexturedRectNoBlend(x, y, width, height, uMin, uMax, vMin, vMax, filter);
-
-        GlStateManager.disableBlend();
-    }
-
-    public static void drawTexturedRectNoBlend(float x, float y, float width, float height, float uMin, float uMax, float vMin, float vMax, int filter) {
-        GlStateManager.enableTexture2D();
-
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, filter);
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, filter);
-
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder builder = tessellator.getBuffer();
-        builder.begin(7, DefaultVertexFormats.POSITION_TEX);
-        builder.pos(x, y+height, 0.0D).tex(uMin, vMax).endVertex();
-        builder.pos(x+width, y+height, 0.0D).tex(uMax, vMax).endVertex();
-        builder.pos(x+width, y, 0.0D).tex(uMax, vMin).endVertex();
-        builder.pos(x, y, 0.0D).tex(uMin, vMin).endVertex();
-        tessellator.draw();
-
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-    }
-
-    public static void drawBorderedRect(double x, double y, double width, double height, float lineWidth, int lineColor, int bgColor) {
-        drawRect(x, y, x + width, y + height, bgColor);
-        float f = (float) (lineColor >> 24 & 255) / 255.0F;
-        float f1 = (float) (lineColor >> 16 & 255) / 255.0F;
-        float f2 = (float) (lineColor >> 8 & 255) / 255.0F;
-        float f3 = (float) (lineColor & 255) / 255.0F;
-        GL11.glPushMatrix();
-        GL11.glPushAttrib(1048575);
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glDisable(GL11.GL_CULL_FACE);
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        GL11.glColor4f(f1, f2, f3, f);
-        GL11.glLineWidth(lineWidth);
-        GL11.glEnable(GL11.GL_LINE_SMOOTH);
-        GL11.glBegin(GL11.GL_LINES);
-        GL11.glVertex2d( x,  y);
-        GL11.glVertex2d( x + width,  y);
-        GL11.glVertex2d( x + width,  y);
-        GL11.glVertex2d( x + width,  y + height);
-        GL11.glVertex2d( x + width,  y + height);
-        GL11.glVertex2d( x,  y + height);
-        GL11.glVertex2d( x,  y + height);
-        GL11.glVertex2d( x,  y);
-        GL11.glEnd();
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glEnable(GL11.GL_CULL_FACE);
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glPopAttrib();
-        GL11.glPopMatrix();
-    }
-
-    public static boolean isHovered(double mouseX, double mouseY, double x, double y, double width, double height) {
-        return mouseX >= x && mouseX - width <= x && mouseY >= y && mouseY - height <= y;
-    }
-
-    public static void startScissor(double x, double y, double width, double height) {
-        startScissor(x, y, width, height, 1);
-    }
-
-    public static void startScissor(double x, double y, double width, double height, double factor) {
-        ScaledResolution resolution = new ScaledResolution(mc);
-        double scaleWidth = (double) mc.displayWidth / resolution.getScaledWidth_double();
-        double scaleHeight = (double) mc.displayHeight / resolution.getScaledHeight_double();
-
-        scaleWidth *= factor;
-        scaleHeight *= factor;
-
-        GL11.glScissor((int) (x * scaleWidth), (mc.displayHeight) - (int) ((y + height) * scaleHeight), (int) (width * scaleWidth), (int) (height * scaleHeight));
-        GL11.glEnable(GL11.GL_SCISSOR_TEST);
-    }
-
-    public static void stopScissor() {
-        GL11.glDisable(GL11.GL_SCISSOR_TEST);
     }
 
     public static double[] getDeltas(Float ticks, EntityPlayer player) {

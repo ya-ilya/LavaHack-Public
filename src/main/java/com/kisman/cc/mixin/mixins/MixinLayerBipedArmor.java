@@ -16,7 +16,7 @@ public class MixinLayerBipedArmor {
         at = @At(value = "HEAD"),
         cancellable = true
     )
-    protected void setModelSlotVisible(ModelBiped model, EntityEquipmentSlot slotIn, CallbackInfo callbackInfo) {
+    protected void setModelSlotVisibleHook(ModelBiped model, EntityEquipmentSlot slotIn, CallbackInfo callbackInfo) {
         if (NoRender.instance.isToggled() && NoRender.instance.armor.getValBoolean()) {
             callbackInfo.cancel();
             switch (slotIn) {

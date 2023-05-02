@@ -16,8 +16,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.util.Iterator;
 
 public class MainAiImpr {
-    public static boolean ENABLED = false;
-
     public void init() {
         FastTrig.init();
         MinecraftForge.EVENT_BUS.register(this);

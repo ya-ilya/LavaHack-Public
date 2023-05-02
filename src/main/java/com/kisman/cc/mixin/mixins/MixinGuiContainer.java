@@ -43,12 +43,12 @@ public class MixinGuiContainer extends GuiScreen {
     public ItemESP itemESP = new ItemESP();
 
     @Inject(method = "initGui", at = @At("RETURN"))
-    private void doInitGui(CallbackInfo ci) {
+    private void initGuiHook(CallbackInfo ci) {
         itemESP.init(guiLeft, guiTop, xSize);
     }
 
     @Inject(method = "drawScreen", at = @At("TAIL"))
-    public void drawee(int mouseX, int mouseY, float particalTicks, CallbackInfo ci) {
+    public void drawScreenTailHook(int mouseX, int mouseY, float particalTicks, CallbackInfo ci) {
         if(ContainerModifier.instance.isToggled() && ContainerModifier.instance.containerShadow.getValBoolean()) {
             if(ContainerModifier.instance.containerShadow.getValBoolean()) {
                 {
@@ -69,7 +69,7 @@ public class MixinGuiContainer extends GuiScreen {
     }
 
     @Inject(method = "drawScreen", at = @At("HEAD"))
-    private void doDrawScreen(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
+    private void drawScreenHeadHook(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
         itemESP.getItemStacks().clear();
         if(!itemESP.getGuiTextField().getText().isEmpty()) for(Slot slot : inventorySlots.inventorySlots) if(slot.getHasStack() && slot.getStack().getDisplayName().toLowerCase().contains(itemESP.getGuiTextField().getText().toLowerCase()))  itemESP.getItemStacks().add(slot.getStack());
     }
@@ -97,7 +97,7 @@ public class MixinGuiContainer extends GuiScreen {
     }
 
     @Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
-    private void doMouseClicked(int mouseX, int mouseY, int mouseButton, CallbackInfo ci) {
+    private void mouseClickedHook(int mouseX, int mouseY, int mouseButton, CallbackInfo ci) {
         if(ContainerModifier.instance.isToggled() && ContainerModifier.instance.itemESP.getValBoolean()) {
             itemESP.getGuiTextField().mouseClicked(mouseX, mouseY, mouseButton);
             if(itemESP.getGuiTextField().isFocused()) ci.cancel();

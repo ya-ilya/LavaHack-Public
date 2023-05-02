@@ -36,12 +36,12 @@ public class MixinEntityLivingBase extends Entity {
     @Shadow @Override public void writeEntityToNBT(NBTTagCompound nbtTagCompound) {}
 
     @Inject(method = "jump", at = @At("HEAD"))
-    private void onJump(CallbackInfo ci) {
+    private void jumpHook(CallbackInfo ci) {
         JumpCircle.instance.handleEntityJump(this);
     }
 
     @Inject(method = "getArmSwingAnimationEnd", at = @At("HEAD"), cancellable = true)
-    private void yesido(CallbackInfoReturnable<Integer> cir) {
+    private void getArmSwingAnimationEndHook(CallbackInfoReturnable<Integer> cir) {
         if(Animation.instance.isToggled()) {
             if(isPotionActive(MobEffects.HASTE)) cir.setReturnValue(Animation.instance.speed.getValInt() - (getActivePotionEffect(MobEffects.HASTE).getAmplifier()));
             else cir.setReturnValue(isPotionActive(MobEffects.MINING_FATIGUE) ? Animation.instance.speed.getValInt() + (getActivePotionEffect(MobEffects.MINING_FATIGUE).getAmplifier() + 1) * 2 : Animation.instance.speed.getValInt());

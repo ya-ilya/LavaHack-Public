@@ -25,7 +25,7 @@ public class MixinRenderEnderCrystal {
     @Final @Shadow private static ResourceLocation ENDER_CRYSTAL_TEXTURES;
 
     @Inject(method = "doRender(Lnet/minecraft/entity/item/EntityEnderCrystal;DDDFF)V", at = @At("HEAD"), cancellable = true)
-    public void IdoRender(EntityEnderCrystal entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo ci) {
+    public void doRenderHook(EntityEnderCrystal entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo ci) {
         Minecraft mc = Minecraft.getMinecraft();
         mc.gameSettings.fancyGraphics = false;
 

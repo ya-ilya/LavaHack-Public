@@ -28,7 +28,7 @@ public class MixinAbstractClientPlayer extends EntityPlayer {
     @Override public boolean isCreative() {return false;}
 
     @Inject(method = "getLocationCape", at = @At("HEAD"), cancellable = true)
-    private void getLocationCape(CallbackInfoReturnable<ResourceLocation> cir) {
+    private void getLocationCapeHook(CallbackInfoReturnable<ResourceLocation> cir) {
         if(Cape.instance.isToggled() && playerInfo == Minecraft.getMinecraft().player.getPlayerInfo() || Kisman.instance.capeAPI.is(playerInfo.getGameProfile().getId())) {
             switch(Cape.instance.mode.getValString()) {
                 case "Gif":

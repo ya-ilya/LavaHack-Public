@@ -24,7 +24,7 @@ public class AimBot extends Module {
     public RotationSpoof rotationSpoof = null;
 
     public AimBot() {
-        super("AimBot", "f", Category.COMBAT);
+        super("AimBot", Category.COMBAT);
 
         instance = this;
 

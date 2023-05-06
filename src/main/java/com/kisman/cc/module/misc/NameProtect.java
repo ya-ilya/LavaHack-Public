@@ -16,7 +16,7 @@ public class NameProtect extends Module {
     public static NameProtect instance;
 
     public NameProtect() {
-        super("NameProtect", "NameProtect", Category.MISC);
+        super("NameProtect", Category.MISC);
 
         instance = this;
 

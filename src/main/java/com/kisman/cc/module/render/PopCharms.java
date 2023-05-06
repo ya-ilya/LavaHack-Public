@@ -34,7 +34,7 @@ public class PopCharms extends Module {
     public float startAlpha;
 
     public PopCharms() {
-        super("PopCharms", "and?", Category.RENDER);
+        super("PopCharms", Category.RENDER);
 
         register(selfPop);
         register(angle);

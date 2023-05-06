@@ -41,7 +41,6 @@
     "MixinTileEntity",
     "MixinWorld",
     "accessor.AccessorEntityPlayer",
-    "accessor.AccessorGuiScreenBook",
     "accessor.AccessorGuiPlayerTabOverlay",
     "accessor.AccessorPlayerControllerMP",
     "accessor.AccessorShaderGroup",

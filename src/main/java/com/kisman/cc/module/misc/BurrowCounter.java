@@ -17,7 +17,7 @@ public class BurrowCounter extends Module {
     private final List<EntityPlayer> anti_spam = new ArrayList<>();
 
     public BurrowCounter() {
-        super("BurrowCounter", "BurrowCounter", Category.MISC);
+        super("BurrowCounter", Category.MISC);
     }
 
     public void update() {

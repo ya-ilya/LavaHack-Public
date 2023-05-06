@@ -59,7 +59,7 @@ public class KillAura extends Module {
     private final Setting packetSwitch = new Setting("Packet Switch", this, true).setVisible(!switchMode.checkValString("None"));
 
     public KillAura() {
-        super("KillAura", "8", Category.COMBAT);
+        super("KillAura", Category.COMBAT);
 
         instance = this;
 

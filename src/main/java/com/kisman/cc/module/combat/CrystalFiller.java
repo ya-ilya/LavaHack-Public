@@ -45,7 +45,7 @@ public class CrystalFiller extends Module {
     public Hole targetHole;
 
     public CrystalFiller() {
-        super("CrystalFiller", "gay's module xd", Category.COMBAT);
+        super("CrystalFiller", Category.COMBAT);
 
         instance = this;
 

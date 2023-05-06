@@ -12,7 +12,7 @@ public class TeleportBack extends Module {
     private double z;
 
     public TeleportBack() {
-        super("TeleportBack", "TeleportBack", Category.PLAYER);
+        super("TeleportBack", Category.PLAYER);
     }
 
     public void onEnable() {

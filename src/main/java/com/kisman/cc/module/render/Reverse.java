@@ -7,7 +7,7 @@ public class Reverse extends Module {
     public static Reverse instance;
 
     public Reverse() {
-        super("Reverse", "Reverse", Category.RENDER);
+        super("Reverse", Category.RENDER);
 
         instance = this;
     }

@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 public class Particle extends Module {
     public Particle() {
-        super("Particle", "Particle", Category.RENDER);
+        super("Particle", Category.RENDER);
 
         register(new Setting("RenderMode", this, "Single", new ArrayList<>(Arrays.asList("Single", "Multy"))));
 

@@ -11,7 +11,7 @@ public class SelfDamage extends Module {
     private int jumpCount;
 
     public SelfDamage() {
-        super("SelfDamage", "SelfDamage", Category.MISC);
+        super("SelfDamage", Category.MISC);
 
         register(this.jump = new Setting("Jumps", this, 3, 3, 50, true));
         register(this.timer = new Setting("JumpTimer", this, 3, 1, 1000, true));

@@ -38,7 +38,7 @@ public class Scaffold extends Module {
     private CPacketPlayer.Rotation rotVec = null;
 
     public Scaffold() {
-        super("Scaffold", "Scaffold", Category.MOVEMENT);
+        super("Scaffold", Category.MOVEMENT);
 
         register(placeLogic);
         register(distance);

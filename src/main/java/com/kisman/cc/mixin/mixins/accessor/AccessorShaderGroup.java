@@ -10,6 +10,9 @@ import java.util.List;
 
 @Mixin(ShaderGroup.class)
 public interface AccessorShaderGroup {
-    @Accessor(value = "listShaders") List<Shader> getListShaders();
-    @Accessor(value = "listFramebuffers") List<Framebuffer> getListFramebuffers();
+    @Accessor(value = "listShaders")
+    List<Shader> getListShaders();
+
+    @Accessor(value = "listFramebuffers")
+    List<Framebuffer> getListFramebuffers();
 }

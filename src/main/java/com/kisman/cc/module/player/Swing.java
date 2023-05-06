@@ -10,7 +10,7 @@ public class Swing extends Module {
     private final Setting mode = new Setting("Mode", this, Hand.MAINHAND);
 
     public Swing() {
-        super("Swing", "swing", Category.PLAYER);
+        super("Swing", Category.PLAYER);
 
         register(mode);
     }

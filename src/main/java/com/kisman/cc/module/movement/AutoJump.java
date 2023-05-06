@@ -5,7 +5,7 @@ import com.kisman.cc.module.Module;
 
 public class AutoJump extends Module {
     public AutoJump() {
-        super("AutoJump", "Automatic jump", Category.MOVEMENT);
+        super("AutoJump", Category.MOVEMENT);
     }
 
     public void onDisable() {

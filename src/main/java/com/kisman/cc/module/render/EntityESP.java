@@ -37,7 +37,7 @@ public class EntityESP extends Module{
     private final ArrayList<Entity> glowings = new ArrayList<>();
 
     public EntityESP() {
-        super("EntityESP", "esp 1", Category.RENDER);
+        super("EntityESP", Category.RENDER);
 
         register(range);
 

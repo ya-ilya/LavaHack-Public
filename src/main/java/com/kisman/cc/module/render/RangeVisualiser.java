@@ -27,7 +27,7 @@ public class RangeVisualiser extends Module {
     private final Setting raytrace = new Setting("RayTrace", this, true);
 
     public RangeVisualiser() {
-        super("RangeVisualiser", "RangeVisualiser", Category.RENDER);
+        super("RangeVisualiser", Category.RENDER);
 
         register(mode);
         register(radius);

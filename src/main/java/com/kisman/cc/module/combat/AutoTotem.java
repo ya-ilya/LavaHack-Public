@@ -13,7 +13,7 @@ public class AutoTotem extends Module {
     private final Setting health = new Setting("Health", this, 10, 1, 20, true);
 
     public AutoTotem() {
-        super("AutoTotem", "simple offhand", Category.COMBAT);
+        super("AutoTotem", Category.COMBAT);
 
         register(health);
     }

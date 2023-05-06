@@ -18,7 +18,7 @@ public class SilentXp extends Module {
     private final Setting switchMode = new Setting("SwitchMode", this, "Packet", new ArrayList<>(Arrays.asList("Packet", "Client")));
 
     public SilentXp() {
-        super("SilentXP", "SilentXp", Category.COMBAT);
+        super("SilentXP", Category.COMBAT);
 
         register(lookPitch);
         register(switchMode);

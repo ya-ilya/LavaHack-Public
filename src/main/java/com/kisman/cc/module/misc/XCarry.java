@@ -9,7 +9,7 @@ import net.minecraft.network.play.client.CPacketCloseWindow;
 
 public class XCarry extends Module {
     public XCarry() {
-        super("XCarry", "XCarry", Category.MISC);
+        super("XCarry", Category.MISC);
     }
 
     @EventHandler

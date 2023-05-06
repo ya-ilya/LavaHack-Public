@@ -12,7 +12,7 @@ public class NoSlowSneak extends Module {
     public static NoSlowSneak instance;
 
     public NoSlowSneak() {
-        super("NoSlowSneak", "NoSlowSneak", Category.MOVEMENT);
+        super("NoSlowSneak", Category.MOVEMENT);
 
         instance = this;
 

@@ -20,15 +20,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = EntityLivingBase.class, priority = 10000)
 public class MixinEntityLivingBase extends Entity {
-    @Shadow public EnumHand swingingHand;
-    @Shadow public ItemStack activeItemStack;
-    @Shadow public float moveStrafing;
-    @Shadow public float moveVertical;
-    @Shadow public float moveForward;
     @Shadow protected void jump() {}
-    @Shadow public boolean isElytraFlying() {return true;}
     @Shadow public  boolean isPotionActive(Potion potionIn) {return false;}
     @Shadow public  PotionEffect getActivePotionEffect(Potion potionIn) {return null;}
+
     public MixinEntityLivingBase(World worldIn) {super(worldIn);}
 
     @Shadow @Override protected void entityInit() {}

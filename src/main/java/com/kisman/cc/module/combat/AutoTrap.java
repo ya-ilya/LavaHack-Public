@@ -48,7 +48,7 @@ public class AutoTrap extends Module {
     protected BlockPos startPos = null;
 
     public AutoTrap() {
-        super("AutoTrap", "trapping all players", Category.COMBAT);
+        super("AutoTrap", Category.COMBAT);
         super.setToggled(false);
 
         instance = this;

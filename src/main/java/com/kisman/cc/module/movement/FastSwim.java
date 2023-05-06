@@ -8,7 +8,7 @@ public class FastSwim extends Module {
     private boolean isSprint = false;
 
     public FastSwim() {
-        super("FastSwim", "swim", Category.MOVEMENT);
+        super("FastSwim", Category.MOVEMENT);
     }
 
     public void onDisable() {

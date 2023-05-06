@@ -20,7 +20,7 @@ public class AutoPot extends Module {
     private ItemStack stack = null;
 
     public AutoPot() {
-        super("AutoPot", "auto potion", Category.COMBAT);
+        super("AutoPot", Category.COMBAT);
     }
 
     public void update() {

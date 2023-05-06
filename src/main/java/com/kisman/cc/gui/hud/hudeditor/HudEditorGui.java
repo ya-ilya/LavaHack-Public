@@ -12,7 +12,9 @@ public class HudEditorGui extends GuiScreen {
     private final ArrayList<Component> components = new ArrayList<>();
 
     public HudEditorGui() {
-        for(HudModule mod : Kisman.instance.hudModuleManager.modules) if(mod.drag) components.add(new Draggable(mod));
+        for(HudModule mod : Kisman.instance.hudModuleManager.modules) {
+            if(mod.drag) components.add(new Draggable(mod));
+        }
     }
 
     @Override

@@ -105,7 +105,7 @@ public class ShaderCharms extends Module {
         register(itemsEntity);
         register(items);
         register(itemsFix);
-//        setmgr.rSetting(storages);
+//      register(storages);
 
         register(animationSpeed);
 

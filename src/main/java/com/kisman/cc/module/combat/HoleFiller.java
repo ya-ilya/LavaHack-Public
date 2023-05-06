@@ -33,7 +33,7 @@ public class HoleFiller extends Module {
     public Hole targetHole;
 
     public HoleFiller() {
-        super("HoleFiller", "HoleFiller", Category.COMBAT);
+        super("HoleFiller", Category.COMBAT);
 
         instance = this;
 

@@ -37,7 +37,7 @@ public class ElytraFly extends Module {
     private int elytraSlot = -1;
 
     public ElytraFly() {
-        super("ElytraFly", "ElytraFly", Category.MOVEMENT);
+        super("ElytraFly", Category.MOVEMENT);
         super.setDisplayInfo(() -> "[" + mode.getValString() + "|" + speed.getValInt() + "]");
 
         instance = this;

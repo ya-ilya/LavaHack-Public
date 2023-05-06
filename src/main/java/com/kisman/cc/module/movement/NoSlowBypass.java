@@ -14,7 +14,7 @@ public class NoSlowBypass extends Module {
     private boolean sneaking;
 
     public NoSlowBypass() {
-        super("NoSlowBypass", "NoSlowBypass", Category.MOVEMENT);
+        super("NoSlowBypass", Category.MOVEMENT);
     }
 
     public void update() {

@@ -10,7 +10,7 @@ public class Sprint extends Module {
 	private final Setting mode = new Setting("Mode", this, Mode.Rage);
 
 	public Sprint() {
-		super("Sprint", "i like sprinting", Category.MOVEMENT);
+		super("Sprint", Category.MOVEMENT);
 		super.setDisplayInfo(() -> "[" + mode.getValString() + "]");
 
 		instance = this;

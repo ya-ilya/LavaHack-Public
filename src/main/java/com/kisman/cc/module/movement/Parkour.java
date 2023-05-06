@@ -5,7 +5,7 @@ import com.kisman.cc.module.Module;
 
 public class Parkour extends Module {
     public Parkour() {
-        super("Parkour", "555", Category.MOVEMENT);
+        super("Parkour", Category.MOVEMENT);
     }
 
     public void update() {

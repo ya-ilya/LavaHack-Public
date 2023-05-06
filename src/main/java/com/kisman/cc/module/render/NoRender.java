@@ -28,7 +28,7 @@ public class NoRender extends Module {
     public final Setting enchantGlint = new Setting("Enchant Glint", this, false);
 
     public NoRender() {
-        super("NoRender", "no render", Category.RENDER);
+        super("NoRender", Category.RENDER);
 
         instance = this;
 

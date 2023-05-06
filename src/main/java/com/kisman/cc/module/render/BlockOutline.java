@@ -22,7 +22,7 @@ public class BlockOutline extends Module {
     private final Setting renderMode = new Setting("RenderMode", this, "Outline", new ArrayList<>(Arrays.asList("Outline", "Box", "OutlineBox", "Flat")));
 
     public BlockOutline() {
-        super("BlockOutline", "BlockOutline", Category.RENDER);
+        super("BlockOutline", Category.RENDER);
 
         instance = this;
 

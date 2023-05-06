@@ -31,7 +31,7 @@ public class Anchor extends Module {
     private boolean jumped = false;
 
     public Anchor() {
-        super("Anchor", "help with holes", Category.MOVEMENT);
+        super("Anchor", Category.MOVEMENT);
         super.setDisplayInfo(() -> "[" + mode.getValString() + "]");
 
         register(mode);

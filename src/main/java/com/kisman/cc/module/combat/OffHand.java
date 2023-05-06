@@ -38,7 +38,7 @@ public class OffHand extends Module {
     private final Setting terrain = new Setting("Terrain", this, true);
 
     public OffHand() {
-        super("OffHand", "gg", Category.COMBAT);
+        super("OffHand", Category.COMBAT);
 
         instance = this;
 

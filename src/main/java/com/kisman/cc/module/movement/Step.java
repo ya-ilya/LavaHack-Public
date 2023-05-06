@@ -12,7 +12,7 @@ public class Step extends Module {
     public final Setting height = new Setting("Height", this, 0.5f, 0.5f, 4, false);
 
     public Step() {
-        super("Step", "setting your step", Category.MOVEMENT);
+        super("Step", Category.MOVEMENT);
 
         instance = this;
 

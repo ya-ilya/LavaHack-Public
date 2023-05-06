@@ -29,7 +29,7 @@ public class Velocity extends Module{
     private final Setting vertical = new Setting("Vertical", this, 100, 0, 100, true);
 
     public Velocity() {
-        super("Velocity", "akb", Category.PLAYER);
+        super("Velocity", Category.PLAYER);
 
         register(new Setting("Mode", this, "None", new ArrayList<>(Arrays.asList("None", "Matrix", "Matrix 6.4", "Vanilla"))));
 

@@ -29,13 +29,6 @@ import java.util.Set;
 public class MixinGuiContainer extends GuiScreen {
     @Shadow protected int guiLeft, guiTop, xSize, ySize;
     @Shadow public Container inventorySlots;
-    @Shadow private ItemStack draggedStack;
-    @Shadow private Slot clickedSlot;
-    @Shadow private boolean isRightMouseClick;
-    @Shadow protected boolean dragSplitting;
-    @Shadow @Final protected Set<Slot> dragSplittingSlots;
-    @Shadow private void updateDragSplitting() {}
-    @Shadow private int dragSplittingLimit;
     @Shadow protected boolean checkHotbarKeys(int keyCode) {return false;}
     @Shadow private Slot hoveredSlot;
     @Shadow protected void handleMouseClick(Slot slotIn, int slotId, int mouseButton, ClickType type) {}

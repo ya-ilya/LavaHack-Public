@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(Render.class)
 public class MixinRender<T extends Entity> {
     @Inject(method = "getTeamColor", at = @At("HEAD"), cancellable = true)
-    public void getTeamColor$Inject$HEAD(T entityIn, CallbackInfoReturnable<Integer> cir) {
+    public void getTeamColorHook(T entityIn, CallbackInfoReturnable<Integer> cir) {
         if(ShaderCharms.instance.isToggled() && ShaderCharms.instance.mode.checkValString("Outline2")) cir.setReturnValue(ShaderCharms.instance.getColor().getRGB());
     }
 }

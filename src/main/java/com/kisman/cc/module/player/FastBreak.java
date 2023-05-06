@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class FastBreak extends Module{
     public FastBreak() {
-        super("FastBreak", "fast++", Category.PLAYER);
+        super("FastBreak", Category.PLAYER);
     }
 
     public void update() {

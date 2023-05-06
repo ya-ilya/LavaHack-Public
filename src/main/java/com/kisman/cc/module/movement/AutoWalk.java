@@ -5,7 +5,7 @@ import com.kisman.cc.module.Module;
 
 public class AutoWalk extends Module{
     public AutoWalk() {
-        super("AutoWalk", "auto walking", Category.MOVEMENT);
+        super("AutoWalk", Category.MOVEMENT);
     }
 
     public void onDisable() {

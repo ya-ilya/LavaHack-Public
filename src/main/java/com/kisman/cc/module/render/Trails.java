@@ -19,7 +19,7 @@ public class Trails extends Module {
     private final ArrayList<TrailUtil> bcs = new ArrayList<>();
 
     public Trails() {
-        super("Trails", "akrien moment", Category.RENDER);
+        super("Trails", Category.RENDER);
 
         register(removeTicks);
     }

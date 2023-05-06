@@ -17,7 +17,7 @@ public class PacketCancel extends Module {
     private final Setting vehicleMove = new Setting("CPacketVehicleMove", this, false);
 
     public PacketCancel() {
-        super("PacketCancel", "PacketCancel", Category.PLAYER);
+        super("PacketCancel", Category.PLAYER);
 
         register(new Setting("Packets", this, "Packets"));
         register(input);

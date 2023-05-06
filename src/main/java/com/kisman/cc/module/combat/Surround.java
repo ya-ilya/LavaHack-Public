@@ -69,7 +69,7 @@ public class Surround extends Module {
     private final ArrayList<BlockPos> protectOffsets = new ArrayList<>();
 
     public Surround() {
-        super("Surround", "Surround", Category.COMBAT);
+        super("Surround", Category.COMBAT);
 
         instance = this;
 

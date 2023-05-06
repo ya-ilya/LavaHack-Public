@@ -21,7 +21,7 @@ public class NoRotate extends Module {
     private boolean timerReset = false;
 
     public NoRotate() {
-        super("NoRotate", "NoRotate", Category.MOVEMENT);
+        super("NoRotate", Category.MOVEMENT);
 
         register(waitDelay);
     }

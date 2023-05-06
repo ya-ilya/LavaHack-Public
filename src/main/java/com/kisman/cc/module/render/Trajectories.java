@@ -36,7 +36,7 @@ public class Trajectories extends Module {
     private final Queue<Vec3d> flightPoint = new ConcurrentLinkedQueue<>();
 
     public Trajectories() {
-        super("Trajectories", "no salhack pasta!!!", Category.RENDER);
+        super("Trajectories", Category.RENDER);
 
         register(width);
     }

@@ -44,7 +44,7 @@ public class CityESP extends Module {
     private BlockPos coordsPacketMined = new BlockPos(-1, -1, -1);
 
     public CityESP() {
-        super("CityESP", "CityESP", Category.RENDER);
+        super("CityESP", Category.RENDER);
 
         register(range);
         register(down);

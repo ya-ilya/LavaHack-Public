@@ -17,7 +17,7 @@ public class TeamRusherLag extends Module {
     private long lastPacket = 0L;
 
     public TeamRusherLag() {
-        super("TeamRusherLag","TeamRusherLag", Category.MISC);
+        super("TeamRusherLag", Category.MISC);
 
         register(time);
         register(text);

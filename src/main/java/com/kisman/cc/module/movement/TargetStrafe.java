@@ -21,7 +21,7 @@ public class TargetStrafe extends Module {
     private int direction;
 
     public TargetStrafe() {
-        super("TargetStrafe", "TargetStrafe", Category.MOVEMENT);
+        super("TargetStrafe", Category.MOVEMENT);
 
         register(radius);
         register(speed);

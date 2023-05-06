@@ -18,6 +18,7 @@ public class SwingAnimation extends Module {
 
 
     private final Setting simpleLine = new Setting("SimpleLine", this, "Hand");
+    private final Setting swingMode = new Setting("SwingMode", this, "1", new ArrayList<>(Arrays.asList("1", "2", "3")));
 
     private final Setting strongLine = new Setting("StrongLine", this, "Strong");
     public final Setting ignoreEating = new Setting("IgnoreEating", this, true);
@@ -26,17 +27,15 @@ public class SwingAnimation extends Module {
 
     public final Setting ifKillAura = new Setting("If KillAura", this, true);
 
-    private String swingModeString;
-
     public SwingAnimation() {
-        super("SwingAnimation", "SwingAnimation", Category.RENDER);
+        super("SwingAnimation", Category.RENDER);
 
         instance = this;
 
         register(mode);
 
         register(simpleLine);
-        register(new Setting("SwingMode", this, "1", new ArrayList<>(Arrays.asList("1", "2", "3"))));
+        register(swingMode);
 
         register(strongLine);
         register(strongMode);
@@ -46,17 +45,13 @@ public class SwingAnimation extends Module {
         super.setDisplayInfo(() -> "[" + (mode.getValString().equalsIgnoreCase("Hand") ? settingManager.getSettingByName(this, "SwingMode").getValString() : strongMode.getValString()) + "]");
     }
 
-    public void update() {
-        this.swingModeString = settingManager.getSettingByName(this, "SwingMode").getValString();
-    }
-
     @SubscribeEvent
     public void onRenderArms(final RenderSpecificHandEvent event) {
         if(mode.getValString().equalsIgnoreCase("Hand")) {
             if (event.getSwingProgress() > 0) {
                 final float angle = (1f - event.getSwingProgress()) * 360f;
 
-                switch (swingModeString) {
+                switch (swingMode.getValString()) {
                     case "1":
                         glRotatef(angle, 1, 0, 0);
                         break;

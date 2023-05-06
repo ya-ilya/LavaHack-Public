@@ -10,7 +10,7 @@ public class Spider extends Module{
 	private final Setting mode = new Setting("Mode", this, Mode.Default);
 
 	public Spider() {
-		super("Spider", "HackCategory.PLAYER", Category.MOVEMENT);
+		super("Spider", Category.MOVEMENT);
 
 		register(mode);
 	}
@@ -21,10 +21,10 @@ public class Spider extends Module{
 				if(!mc.player.isOnLadder() && mc.player.collidedHorizontally && mc.player.motionY < 0.2) mc.player.motionY = 0.2;
 			} else {
 				if (mc.player.collidedHorizontally && mc.player.ticksExisted % 8 == 0) {
-					mc.getConnection().sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_FALL_FLYING));
+					mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_FALL_FLYING));
 					mc.player.motionY = 0.42;
 					mc.player.fallDistance = 0f;
-					mc.getConnection().sendPacket(new CPacketPlayer(true));
+					mc.player.connection.sendPacket(new CPacketPlayer(true));
 					mc.player.motionX = 0.0;
 					mc.player.motionZ = 0.0;
 				}

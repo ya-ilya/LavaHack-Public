@@ -11,8 +11,7 @@ import java.util.Arrays;
 
 public class JesusPlus extends Module {
      public final Setting speedX = register(new Setting("Speed", this, 1.0f, 0.01f, 5.0f,  false));
-     private final Setting jesusmode = register(new Setting("Mode", this, "Matrix Zoom", Arrays.asList("Matrix Zoom", "SunRise", "Packet")));
-     
+
      public JesusPlus(){
         super("JesusPlus", Category.MOVEMENT);
      }

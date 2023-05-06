@@ -22,7 +22,7 @@ public class Breadcrumbs extends Module {
     private final ArrayList<Helper> positions = new ArrayList<>();
 
     public Breadcrumbs() {
-        super("Breadcrumbs", ", ", Category.RENDER);
+        super("Breadcrumbs", Category.RENDER);
 
         register(lineWidth);
         register(removeTicks);

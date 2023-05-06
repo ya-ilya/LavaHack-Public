@@ -33,7 +33,7 @@ public class FastPlace extends Module {
     private BlockPos mousePos = null;
 
     public FastPlace() {
-        super("FastPlace", "FastPlace", Category.PLAYER);
+        super("FastPlace", Category.PLAYER);
 
         instance = this;
 

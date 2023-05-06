@@ -14,7 +14,7 @@ public class Charms extends Module {
     public static Charms instance;
 
     public Charms() {
-        super("Charms", "Charms", Category.RENDER);
+        super("Charms", Category.RENDER);
 
         instance = this;
 

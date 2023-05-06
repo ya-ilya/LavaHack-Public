@@ -10,7 +10,7 @@ public class AirJump extends Module {
     private final Setting mode = new Setting("Mode", this, "Vanilla", Arrays.asList("Vanilla", "NCP", "Matrix"));
 
     public AirJump() {
-        super("AirJump", "Category", Category.MOVEMENT);
+        super("AirJump", Category.MOVEMENT);
 
         register(mode);
     }

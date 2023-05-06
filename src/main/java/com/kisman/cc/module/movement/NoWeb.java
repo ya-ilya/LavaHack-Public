@@ -15,9 +15,9 @@ public class NoWeb extends Module {
     public NoWeb() {
         super("NoWeb", Category.MOVEMENT);
 
-//        setmgr.rSetting(disableBB);
+//      register(disableBB);
         register(onGround);
-//        setmgr.rSetting(bbOffset);
+//      register(bbOffset);
         register(motionX);
         register(motionY);
     }

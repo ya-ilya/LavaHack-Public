@@ -34,7 +34,7 @@ public class SpawnsESP extends Module {
     public ConcurrentHashMap<BlockPos, Long> blocks = new ConcurrentHashMap<>();
 
     public SpawnsESP() {
-        super("SpawnsESP", "        super(\"SpawnsESP\", )", Category.RENDER);
+        super("SpawnsESP", Category.RENDER);
 
         register(color);
         register(crystals);

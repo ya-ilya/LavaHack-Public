@@ -41,19 +41,29 @@ public class HudGui extends GuiScreen {
 				frame.dragY = mouseY - frame.getY();
 			}
 			if(frame.isWithinHeader(mouseX, mouseY) && mouseButton == 1) frame.setOpen(!frame.isOpen());
-			if(frame.isOpen()) if(!frame.getComponents().isEmpty()) for(Component component : frame.getComponents()) component.mouseClicked(mouseX, mouseY, mouseButton);
+			if(frame.isOpen() && !frame.getComponents().isEmpty()) {
+				for(Component component : frame.getComponents()) component.mouseClicked(mouseX, mouseY, mouseButton);
+			}
 		}
 	}
 
 	@Override
 	protected void keyTyped(char typedChar, int keyCode) {
-		for(Frame frame : frames) if(frame.isOpen() && keyCode != 1) if(!frame.getComponents().isEmpty()) for(Component component : frame.getComponents()) component.keyTyped(typedChar, keyCode);
+		for(Frame frame : frames) {
+			if(frame.isOpen() && keyCode != 1 && !frame.getComponents().isEmpty()) {
+				for(Component component : frame.getComponents()) component.keyTyped(typedChar, keyCode);
+			}
+		}
 		if (keyCode == 1) this.mc.displayGuiScreen(null);
 	}
 
 	@Override
     protected void mouseReleased(int mouseX, int mouseY, int state) {
 		for(Frame frame : frames) frame.setDrag(false);
-		for(Frame frame : frames) if(frame.isOpen()) if(!frame.getComponents().isEmpty()) for(Component component : frame.getComponents()) component.mouseReleased(mouseX, mouseY, state);
+		for(Frame frame : frames) {
+			if(frame.isOpen() && !frame.getComponents().isEmpty()) {
+				for(Component component : frame.getComponents()) component.mouseReleased(mouseX, mouseY, state);
+			}
+		}
 	}
 }

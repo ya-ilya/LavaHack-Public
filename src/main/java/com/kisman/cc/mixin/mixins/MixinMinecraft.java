@@ -50,27 +50,27 @@ public abstract class MixinMinecraft {
     public void rightClickMouseHook(CallbackInfo info) {
         if (MultiTask.instance.isToggled()) {
             mt_isHittingBlock = playerController.getIsHittingBlock();
-            ((AccessorPlayerControllerMP) playerController).mm_setIsHittingBlock(false);
+            ((AccessorPlayerControllerMP) playerController).setIsHittingBlock(false);
         }
     }
 
     @Inject(method = "rightClickMouse", at = @At("RETURN"))
     public void rightClickMousePostHook(CallbackInfo ci) {
         if (MultiTask.instance.isToggled() && !playerController.getIsHittingBlock())
-            ((AccessorPlayerControllerMP) playerController).mm_setIsHittingBlock(mt_isHittingBlock);
+            ((AccessorPlayerControllerMP) playerController).setIsHittingBlock(mt_isHittingBlock);
     }
 
     @Inject(method = "sendClickBlockToController", at = @At("HEAD"))
     public void sendClickBlockToControllerHook(boolean leftClick, CallbackInfo ci) {
         if (MultiTask.instance.isToggled()) {
             mt_handActive = player.isHandActive();
-            ((IEntityPlayerSP) player).mm_setHandActive(false);
+            ((IEntityPlayerSP) player).setHandActive(false);
         }
     }
 
     @Inject(method = "sendClickBlockToController", at = @At("RETURN"))
     public void sendClickBlockToControllerPostHook(boolean leftClick, CallbackInfo ci) {
         if (MultiTask.instance.isToggled() && !player.isHandActive())
-            ((IEntityPlayerSP) player).mm_setHandActive(mt_handActive);
+            ((IEntityPlayerSP) player).setHandActive(mt_handActive);
     }
 }

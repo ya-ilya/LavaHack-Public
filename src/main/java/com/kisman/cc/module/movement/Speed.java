@@ -70,7 +70,7 @@ public class Speed extends Module {
     private double y = 1;
 
     public Speed() {
-        super("Speed", "speed", Category.MOVEMENT);
+        super("Speed", Category.MOVEMENT);
 
         instance = this;
 

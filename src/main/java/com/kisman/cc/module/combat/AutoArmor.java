@@ -26,7 +26,7 @@
      private final TimerUtil timer = new TimerUtil();
 
      public AutoArmor() {
-         super("AutoArmor", "ebate srate lox!", Category.COMBAT);
+         super("AutoArmor", Category.COMBAT);
 
          instance = this;
 

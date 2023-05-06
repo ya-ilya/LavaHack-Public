@@ -8,27 +8,24 @@ import net.minecraft.network.play.client.CPacketEntityAction;
 import java.util.Arrays;
 
 public class Fly extends Module {
+    private final Setting flySpeed = new Setting("FlySpeed", this, 0.1f, 0.1f, 100.0f, false);
     private final Setting mode = new Setting("Mode", this, "Vanilla", Arrays.asList("Vanilla", "WellMore", "ReallyWorld"));
 
-    private float flySpeed;
-
     public Fly() {
-        super("Fly", "Your flying", Category.MOVEMENT);
+        super("Fly", Category.MOVEMENT);
 
-        register(new Setting("FlySpeed", this, 0.1f, 0.1f, 100.0f, false));
+        register(flySpeed);
         register(mode);
     }
 
     public void update() {
         if(mc.player == null || mc.world == null) return;
 
-        this.flySpeed = (float) settingManager.getSettingByName(this, "FlySpeed").getValDouble();
-
         super.setDisplayInfo("[" + mode.getValString() + "]");
 
         if(mode.getValString().equalsIgnoreCase("Vanilla")) {
             mc.player.capabilities.isFlying = true;
-            mc.player.capabilities.setFlySpeed(flySpeed);
+            mc.player.capabilities.setFlySpeed(flySpeed.getValFloat());
         } else if(mode.getValString().equalsIgnoreCase("WellMore")) {
             if(mc.player.onGround) mc.player.motionY = 1.0;
             else {

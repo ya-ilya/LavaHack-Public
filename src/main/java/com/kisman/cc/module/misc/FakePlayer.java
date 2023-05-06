@@ -14,7 +14,7 @@ public class FakePlayer extends Module {
     private final Setting name = new Setting("Name", this, "FinLicorice", "FinLicorice", true);
 
     public FakePlayer() {
-        super("FakePlayer", "FakePlayer", Category.MISC);
+        super("FakePlayer", Category.MISC);
         super.setDisplayInfo("[" + name.getValString() + TextFormatting.GRAY + "]");
 
         register(name);

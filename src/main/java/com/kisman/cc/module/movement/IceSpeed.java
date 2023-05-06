@@ -6,6 +6,7 @@ import com.kisman.cc.setting.Setting;
 import net.minecraft.init.Blocks;
 
 public class IceSpeed extends Module {
+    @SuppressWarnings("FieldCanBeLocal")
     private final float DEFAULT_SLIPPERINESS = 0.98f;
 
     private final Setting speed = new Setting("Speed", this, 0.4f, 0.2f, 1.5f, false);

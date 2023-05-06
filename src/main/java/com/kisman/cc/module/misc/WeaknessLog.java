@@ -8,7 +8,7 @@ import net.minecraft.util.text.TextComponentString;
 
 public class WeaknessLog extends Module {
     public WeaknessLog() {
-        super("WeaknessLog", "WeaknessLog", Category.MISC);
+        super("WeaknessLog", Category.MISC);
     }
 
     public void update() {

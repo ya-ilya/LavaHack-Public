@@ -29,7 +29,8 @@ public class FreeCam extends Module {
     private double oldZ;
 
     public FreeCam() {
-        super("FreeCam", "Allows you to fly in a FreeCam", Category.PLAYER);
+        super("FreeCam", Category.PLAYER);
+
         register(speed);
         register(reallyWorld);
         register(autoTeleportDisable);

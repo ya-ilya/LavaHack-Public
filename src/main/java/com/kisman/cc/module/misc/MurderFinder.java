@@ -8,7 +8,7 @@ import net.minecraft.item.*;
 
 public class MurderFinder extends Module {
     public MurderFinder() {
-        super("MurderFinder", "MurderFinder", Category.MISC);
+        super("MurderFinder", Category.MISC);
     }
 
     public void update() {

@@ -20,7 +20,7 @@ public class NoInteract extends Module {
     private final Setting anvil = new Setting("Anvil", this, true);
 
     public NoInteract() {
-        super("NoInteract", "NoInteract", Category.PLAYER);
+        super("NoInteract", Category.PLAYER);
 
         register(enderChest);
         register(craft);

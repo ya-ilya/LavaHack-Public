@@ -32,7 +32,7 @@ class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.",
     init {
         register(scale)
         register(ping)
-//        setmgr.rSetting(pops)
+//      register(pops)
         register(health)
         register(background)
         register(backgroundAlpha)

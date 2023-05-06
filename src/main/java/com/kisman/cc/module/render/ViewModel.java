@@ -69,7 +69,7 @@ public class ViewModel extends Module {
 
 
     public ViewModel() {
-        super("ViewModel", "modeL vieM", Category.RENDER);
+        super("ViewModel", Category.RENDER);
         instance = this;
 
         register(customEating);

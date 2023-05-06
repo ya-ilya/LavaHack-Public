@@ -12,6 +12,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -28,11 +29,11 @@ import java.awt.*;
 import static org.lwjgl.opengl.GL11.*;
 
 @Mixin(value = RenderLivingBase.class, priority = 10000)
-public class MixinRendererLivingBase<T extends EntityLivingBase> extends Render<T> {
+public abstract class MixinRendererLivingBase<T extends EntityLivingBase> extends Render<T> {
     @Shadow protected ModelBase mainModel;
 
-    protected MixinRendererLivingBase() {
-        super(null);
+    protected MixinRendererLivingBase(RenderManager renderManager) {
+        super(renderManager);
     }
 
     @Inject(method = "doRender(Lnet/minecraft/entity/EntityLivingBase;DDDFF)V", at = @At("HEAD"), cancellable = true)

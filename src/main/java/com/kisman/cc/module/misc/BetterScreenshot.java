@@ -18,7 +18,7 @@ public class BetterScreenshot extends Module {
     public static BetterScreenshot instance;
 
     public BetterScreenshot() {
-        super("BetterScreenshot", "offix sori no mne 'eto otchen nado ni termay repy poshaluysta", Category.MISC);
+        super("BetterScreenshot", Category.MISC);
 
         instance = this;
     }

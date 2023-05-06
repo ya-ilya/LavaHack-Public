@@ -5,7 +5,7 @@ import com.kisman.cc.module.Module;
 
 public class NoJumpDelay extends Module {
     public NoJumpDelay() {
-        super("NoJumpDelay", "disable jump", Category.MOVEMENT);
+        super("NoJumpDelay", Category.MOVEMENT);
     }
 
     public void update() {

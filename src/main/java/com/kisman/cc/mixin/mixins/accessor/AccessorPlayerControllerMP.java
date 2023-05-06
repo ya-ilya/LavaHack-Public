@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 @Mixin(PlayerControllerMP.class)
 public interface AccessorPlayerControllerMP {
     @Accessor("isHittingBlock")
-    void mm_setIsHittingBlock(boolean value);
+    void setIsHittingBlock(boolean value);
 
     @Accessor("blockHitDelay")
     void setBlockHitDelay(int value);

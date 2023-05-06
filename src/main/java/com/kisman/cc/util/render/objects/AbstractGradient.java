@@ -60,7 +60,7 @@ public class AbstractGradient extends Gui {
         } else {
             float startA = (start.getRGB() >> 24 & 0xFF) / 255.0f;
             float startR = (start.getRGB() >> 16 & 0xFF) / 255.0f;
-            final float startG= (start.getRGB() >> 8 & 0xFF) / 255.0f;
+            float startG = (start.getRGB() >> 8 & 0xFF) / 255.0f;
             float startB = (start.getRGB() & 0xFF) / 255.0f;
 
             float endA = (end.getRGB() >> 24 & 0xFF) / 255.0f;

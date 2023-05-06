@@ -546,7 +546,7 @@ public class RotationUtils {
         }
 
         public static float getGCD() {
-            final float f1;
+            float f1;
             return (f1 = (float)(mc.gameSettings.mouseSensitivity * 0.6 + 0.2)) * f1 * f1 * 8.0f;
         }
 

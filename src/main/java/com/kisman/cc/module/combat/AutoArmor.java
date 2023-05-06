@@ -28,6 +28,8 @@
      public AutoArmor() {
          super("AutoArmor", Category.COMBAT);
 
+         setDisplayInfo(() -> "[" + delay.getValInt() + "]");
+
          instance = this;
 
          register(delay);
@@ -40,7 +42,6 @@
 
      public void update() {
          if (mc.player == null || mc.world == null) return;
-         super.setDisplayInfo("[" + delay.getValInt() + "]");
          if (!timer.passedMillis(delay.getValLong())) {
              return;
          } else {

@@ -44,21 +44,6 @@ public class Anchor extends Module {
         register(new Setting("Pitch", this, 60, 0, 90, false));
     }
 
-    private boolean isBlockHole(BlockPos blockpos) {
-        int holeblocks = 0;
-        if (mc.world.getBlockState(blockpos.add(0, 3, 0)).getBlock() == Blocks.AIR) ++holeblocks;
-        if (mc.world.getBlockState(blockpos.add(0, 2, 0)).getBlock() == Blocks.AIR) ++holeblocks;
-        if (mc.world.getBlockState(blockpos.add(0, 1, 0)).getBlock() == Blocks.AIR) ++holeblocks;
-        if (mc.world.getBlockState(blockpos.add(0, 0, 0)).getBlock() == Blocks.AIR) ++holeblocks;
-        if (mc.world.getBlockState(blockpos.add(0, -1, 0)).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(blockpos.add(0, -1, 0)).getBlock() == Blocks.BEDROCK || mc.world.getBlockState(blockpos.add(0, -1, 0)).getBlock() == Blocks.ENDER_CHEST) ++holeblocks;
-        if (mc.world.getBlockState(blockpos.add(1, 0, 0)).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(blockpos.add(1, 0, 0)).getBlock() == Blocks.BEDROCK || mc.world.getBlockState(blockpos.add(1, 0, 0)).getBlock() == Blocks.ENDER_CHEST) ++holeblocks;
-        if (mc.world.getBlockState(blockpos.add(-1, 0, 0)).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(blockpos.add(-1, 0, 0)).getBlock() == Blocks.BEDROCK || mc.world.getBlockState(blockpos.add(-1, 0, 0)).getBlock() == Blocks.ENDER_CHEST) ++holeblocks;
-        if (mc.world.getBlockState(blockpos.add(0, 0, 1)).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(blockpos.add(0, 0, 1)).getBlock() == Blocks.BEDROCK || mc.world.getBlockState(blockpos.add(0, 0, 1)).getBlock() == Blocks.ENDER_CHEST) ++holeblocks;
-        if (mc.world.getBlockState(blockpos.add(0, 0, -1)).getBlock() == Blocks.OBSIDIAN || mc.world.getBlockState(blockpos.add(0, 0, -1)).getBlock() == Blocks.BEDROCK || mc.world.getBlockState(blockpos.add(0, 0, -1)).getBlock() == Blocks.ENDER_CHEST) ++holeblocks;
-
-        return holeblocks >= 9;
-    }
-
     private Vec3d center = Vec3d.ZERO;
 
     private Vec3d getCenter(double posX, double posY, double posZ) {
@@ -81,7 +66,7 @@ public class Anchor extends Module {
         double pitch = settingManager.getSettingByName(this, "Pitch").getValDouble();
 
         if (mc.player.rotationPitch >= pitch) {
-            if (isBlockHole(PlayerUtil.getPlayerPos().down(1)) || isBlockHole(PlayerUtil.getPlayerPos().down(2)) || isBlockHole(PlayerUtil.getPlayerPos().down(3)) || isBlockHole(PlayerUtil.getPlayerPos().down(4))) {
+            if (BlockUtil.isBlockHole(PlayerUtil.getPlayerPos().down(1)) || BlockUtil.isBlockHole(PlayerUtil.getPlayerPos().down(2)) || BlockUtil.isBlockHole(PlayerUtil.getPlayerPos().down(3)) || BlockUtil.isBlockHole(PlayerUtil.getPlayerPos().down(4))) {
                 if (mode.getValString().equals(Mode.Motion.name())) {
                     center = getCenter(mc.player.posX, mc.player.posY, mc.player.posZ);
 
@@ -116,12 +101,12 @@ public class Anchor extends Module {
             } else using = false;
         }
 
-        if (isBlockHole(PlayerUtil.getPlayerPos())) using = false;
+        if (BlockUtil.isBlockHole(PlayerUtil.getPlayerPos())) using = false;
 
         if (using && timer.getValBoolean()) EntityUtil.setTimer(timerValue.getValFloat());
         else EntityUtil.resetTimer();
 
-        if (isBlockHole(PlayerUtil.getPlayerPos())) {
+        if (BlockUtil.isBlockHole(PlayerUtil.getPlayerPos())) {
             if (disableAfterComplete.getValBoolean()) super.setToggled(false);
             if (using) using = false;
         }

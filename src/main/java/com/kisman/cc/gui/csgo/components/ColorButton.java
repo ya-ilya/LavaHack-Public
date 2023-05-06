@@ -345,7 +345,7 @@ public class ColorButton extends AbstractComponent {
         if (left) {
             float startA = (startColor >> 24 & 0xFF) / 255.0f;
             float startR = (startColor >> 16 & 0xFF) / 255.0f;
-            final float startG= (startColor >> 8 & 0xFF) / 255.0f;
+            float startG = (startColor >> 8 & 0xFF) / 255.0f;
             float startB = (startColor & 0xFF) / 255.0f;
 
             float endA = (endColor >> 24 & 0xFF) / 255.0f;

@@ -81,7 +81,7 @@ public class AntiTrap extends Module {
         if (timer.passedMillis(delay.getValInt())) timer.reset();
         else return;
 
-        if (onlyInHole.getValBoolean() && !isBlockHole(mc.player.getPosition())) return;
+        if (onlyInHole.getValBoolean() && !BlockUtil.isBlockHole(mc.player.getPosition())) return;
 
         this.offhand = mc.player.getHeldItemOffhand().getItem() == Items.END_CRYSTAL;
         if (!this.offhand && InventoryUtil.findItem(Items.END_CRYSTAL, 0, 9) == -1) return;
@@ -129,43 +129,6 @@ public class AntiTrap extends Module {
 
         InventoryUtil.switchToSlot(InventoryUtil.findItem(Items.END_CRYSTAL, 0, 9), this.switchMode.getValString().equals("Silent"));
         return true;
-    }
-
-    private boolean isBlockHole(BlockPos blockpos) {
-        int holeblocks = 0;
-
-        for (int y = 3; y >= -1; y--) {
-            if (y != -1) {
-                if (mc.world.getBlockState(blockpos.add(0, y, 0)).getBlock() == Blocks.AIR) {
-                    holeblocks++;
-                }
-            } else if (isBlockHoleCheck(blockpos.add(0, y, 0))) {
-                holeblocks++;
-            }
-        }
-
-        if (isBlockHoleCheck(blockpos.add(1, 0, 0))) {
-            holeblocks++;
-        }
-
-        if (isBlockHoleCheck(blockpos.add(-1, 0, 0))) {
-            holeblocks++;
-        }
-
-        if (isBlockHoleCheck(blockpos.add(0, 0, 1))) {
-            holeblocks++;
-        }
-
-        if (isBlockHoleCheck(blockpos.add(0, 0, -1))) {
-            holeblocks++;
-        }
-
-        return holeblocks >= 9;
-    }
-
-    private boolean isBlockHoleCheck(BlockPos pos) {
-        Block block = mc.world.getBlockState(pos).getBlock();
-        return block == Blocks.OBSIDIAN || block == Blocks.BEDROCK || block == Blocks.ENDER_CHEST;
     }
 
     public enum Rotate {

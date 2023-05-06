@@ -65,10 +65,10 @@ public class MovementUtil {
             if (forward > 0.0f) forward = 1.0f;
             else if (forward < 0.0f) forward = -1.0f;
         }
-        final double sin = Math.sin(Math.toRadians(yaw + 90.0f));
-        final double cos = Math.cos(Math.toRadians(yaw + 90.0f));
-        final double posX = forward * speed * cos + side * speed * sin;
-        final double posZ = forward * speed * sin - side * speed * cos;
+        double sin = Math.sin(Math.toRadians(yaw + 90.0f));
+        double cos = Math.cos(Math.toRadians(yaw + 90.0f));
+        double posX = forward * speed * cos + side * speed * sin;
+        double posZ = forward * speed * sin - side * speed * cos;
         return new double[]{posX, posZ};
     }
 
@@ -80,7 +80,7 @@ public class MovementUtil {
     public static double getBaseMoveSpeed() {
         double baseSpeed = .2873;
         if (mc.player != null && mc.player.isPotionActive(Objects.requireNonNull(Potion.getPotionById(1)))) {
-            final int amplifier = Objects.requireNonNull(mc.player.getActivePotionEffect(Objects.requireNonNull(Potion.getPotionById(1)))).getAmplifier();
+            int amplifier = Objects.requireNonNull(mc.player.getActivePotionEffect(Objects.requireNonNull(Potion.getPotionById(1)))).getAmplifier();
             baseSpeed *= 1.0 + 0.2 * (amplifier + 1);
         }
         return baseSpeed;

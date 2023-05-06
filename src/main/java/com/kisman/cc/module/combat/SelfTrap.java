@@ -59,9 +59,9 @@ public class SelfTrap extends AutoTrap {
 
         didPlace = false;
         placements = 0;
-        final int obbySlot2 = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+        int obbySlot2 = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
         if (obbySlot2 == -1) setToggled(false);
-        final int obbySlot3 = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+        int obbySlot3 = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
         if (!super.isToggled()) return true;
         if (!startPos.equals(EntityUtil.getRoundedBlockPos(mc.player))) {
             setToggled(false);

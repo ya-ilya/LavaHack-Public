@@ -58,15 +58,15 @@ public class AbstractGradient extends Gui {
             GlStateManager.enableAlpha();
             GlStateManager.enableTexture2D();
         } else {
-            final float startA = (start.getRGB() >> 24 & 0xFF) / 255.0f;
-            final float startR = (start.getRGB() >> 16 & 0xFF) / 255.0f;
+            float startA = (start.getRGB() >> 24 & 0xFF) / 255.0f;
+            float startR = (start.getRGB() >> 16 & 0xFF) / 255.0f;
             final float startG= (start.getRGB() >> 8 & 0xFF) / 255.0f;
-            final float startB = (start.getRGB() & 0xFF) / 255.0f;
+            float startB = (start.getRGB() & 0xFF) / 255.0f;
 
-            final float endA = (end.getRGB() >> 24 & 0xFF) / 255.0f;
-            final float endR = (end.getRGB() >> 16 & 0xFF) / 255.0f;
-            final float endG = (end.getRGB() >> 8 & 0xFF) / 255.0f;
-            final float endB = (end.getRGB() & 0xFF) / 255.0f;
+            float endA = (end.getRGB() >> 24 & 0xFF) / 255.0f;
+            float endR = (end.getRGB() >> 16 & 0xFF) / 255.0f;
+            float endG = (end.getRGB() >> 8 & 0xFF) / 255.0f;
+            float endB = (end.getRGB() & 0xFF) / 255.0f;
 
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glDisable(GL11.GL_TEXTURE_2D);

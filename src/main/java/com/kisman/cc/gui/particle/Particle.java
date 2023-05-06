@@ -25,10 +25,10 @@ public class Particle
     }
 
     public static Particle generateParticle() {
-        final Vector2f velocity = new Vector2f((float)(Math.random() * 3.0 - 1.0), (float)(Math.random() * 3.0 - 1.0));
-        final float x = (float)Particle.random.nextInt(Display.getWidth());
-        final float y = (float)Particle.random.nextInt(Display.getHeight());
-        final float size = (float)(Math.random() * 4.0) + 2.0f;
+        Vector2f velocity = new Vector2f((float)(Math.random() * 3.0 - 1.0), (float)(Math.random() * 3.0 - 1.0));
+        float x = (float)Particle.random.nextInt(Display.getWidth());
+        float y = (float)Particle.random.nextInt(Display.getHeight());
+        float size = (float)(Math.random() * 4.0) + 2.0f;
         return new Particle(velocity, x, y, size);
     }
 
@@ -78,9 +78,9 @@ public class Particle
 
     public void tick(final int delta, final float speed) {
         if (Config.instance.particleTest.getValBoolean()) color.nextColor();
-        final Vector2f pos = this.pos;
+        Vector2f pos = this.pos;
         pos.x += this.velocity.getX() * delta * speed;
-        final Vector2f pos2 = this.pos;
+        Vector2f pos2 = this.pos;
         pos2.y += this.velocity.getY() * delta * speed;
         if (this.alpha < 255.0f) {
             this.alpha += 0.05f * delta;

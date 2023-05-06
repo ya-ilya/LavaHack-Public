@@ -14,10 +14,10 @@ public class ColorUtil {
 
     public static Colour twoColorEffect(final Colour color, final Colour color2, double delay) {
         if (delay > 1.0) {
-            final double n2 = delay % 1.0;
+            double n2 = delay % 1.0;
             delay = (((int)delay % 2 == 0) ? n2 : (1.0 - n2));
         }
-        final double n3 = 1.0 - delay;
+        double n3 = 1.0 - delay;
         return new Colour((color.r * n3 + color2.r * delay),  (color.g * n3 + color2.g * delay), (color.b * n3 + color2.b * delay), (color.a * n3 + color2.a * delay));
     }
 
@@ -73,9 +73,9 @@ public class ColorUtil {
     }
 
     public static void glColor(final int hex, final int alpha) {
-        final float red = (hex >> 16 & 0xFF) / 255F;
-        final float green = (hex >> 8 & 0xFF) / 255F;
-        final float blue = (hex & 0xFF) / 255F;
+        float red = (hex >> 16 & 0xFF) / 255F;
+        float green = (hex >> 8 & 0xFF) / 255F;
+        float blue = (hex & 0xFF) / 255F;
 
         GlStateManager.color(red, green, blue, alpha / 255F);
     }

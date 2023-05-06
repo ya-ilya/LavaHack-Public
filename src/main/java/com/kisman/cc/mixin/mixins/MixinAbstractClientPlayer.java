@@ -56,7 +56,7 @@ public class MixinAbstractClientPlayer extends EntityPlayer {
     private ResourceLocation getCape() {
         if (count > 34) count = 0;
 
-        final ResourceLocation cape = new ResourceLocation("kismancc:cape/rainbow/cape-" + count + ".png");
+        ResourceLocation cape = new ResourceLocation("kismancc:cape/rainbow/cape-" + count + ".png");
 
         if (timer.passedMillis(85)) {
             count++;

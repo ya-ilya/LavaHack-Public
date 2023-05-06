@@ -60,9 +60,9 @@ public class FastPlace extends Module {
         } catch (ArrayIndexOutOfBoundsException ignored) {}
 
         if (this.fastCrystal.getValBoolean() && mc.gameSettings.keyBindUseItem.isKeyDown()) {
-            final boolean offhand = (mc.player.getHeldItemOffhand().getItem() == Items.END_CRYSTAL);
+            boolean offhand = (mc.player.getHeldItemOffhand().getItem() == Items.END_CRYSTAL);
             if (offhand || mc.player.getHeldItemMainhand().getItem() == Items.END_CRYSTAL) {
-                final RayTraceResult result = mc.objectMouseOver;
+                RayTraceResult result = mc.objectMouseOver;
                 if (result == null) {
                     return;
                 }
@@ -95,8 +95,8 @@ public class FastPlace extends Module {
     @SuppressWarnings("unused")
     private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
         if (event.getEra().equals(Event.Era.PRE) && this.feetExp.getValBoolean()) {
-            final boolean mainHand = mc.player.getHeldItemMainhand().getItem() == Items.EXPERIENCE_BOTTLE;
-            final boolean offHand = (mc.player.getHeldItemOffhand().getItem() == Items.EXPERIENCE_BOTTLE);
+            boolean mainHand = mc.player.getHeldItemMainhand().getItem() == Items.EXPERIENCE_BOTTLE;
+            boolean offHand = (mc.player.getHeldItemOffhand().getItem() == Items.EXPERIENCE_BOTTLE);
             if (mc.gameSettings.keyBindUseItem.isKeyDown() && ((mc.player.getActiveHand() == EnumHand.MAIN_HAND && mainHand) || (mc.player.getActiveHand() == EnumHand.OFF_HAND && offHand))) {
                 RotationUtils.lookAtVec3d(mc.player.getPositionVector());
             }

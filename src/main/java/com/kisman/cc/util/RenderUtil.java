@@ -47,7 +47,7 @@ public class RenderUtil {
     }
 
     public static void drawBoxESP(final AxisAlignedBB pos, final Color color, final Color line, final float lineWidth, final boolean outline, final boolean box, final int boxAlpha, final int outlineAlpha) {
-        final AxisAlignedBB bb = new AxisAlignedBB(pos.minX - mc.getRenderManager().viewerPosX, pos.minY - mc.getRenderManager().viewerPosY, pos.minZ - mc.getRenderManager().viewerPosZ, pos.maxX - mc.getRenderManager().viewerPosX, pos.maxY - mc.getRenderManager().viewerPosY, pos.maxZ - mc.getRenderManager().viewerPosZ);
+        AxisAlignedBB bb = new AxisAlignedBB(pos.minX - mc.getRenderManager().viewerPosX, pos.minY - mc.getRenderManager().viewerPosY, pos.minZ - mc.getRenderManager().viewerPosZ, pos.maxX - mc.getRenderManager().viewerPosX, pos.maxY - mc.getRenderManager().viewerPosY, pos.maxZ - mc.getRenderManager().viewerPosZ);
         camera.setPosition(Objects.requireNonNull(mc.getRenderViewEntity()).posX, mc.getRenderViewEntity().posY, mc.getRenderViewEntity().posZ);
         if (camera.isBoundingBoxInFrustum(pos)) {
             GlStateManager.pushMatrix();
@@ -115,10 +115,10 @@ public class RenderUtil {
     }
 
     public static void glColor(final int hex) {
-        final float alpha = (hex >> 24 & 0xFF) / 255.0f;
-        final float red = (hex >> 16 & 0xFF) / 255.0f;
-        final float green = (hex >> 8 & 0xFF) / 255.0f;
-        final float blue = (hex & 0xFF) / 255.0f;
+        float alpha = (hex >> 24 & 0xFF) / 255.0f;
+        float red = (hex >> 16 & 0xFF) / 255.0f;
+        float green = (hex >> 8 & 0xFF) / 255.0f;
+        float blue = (hex & 0xFF) / 255.0f;
         GL11.glColor4f(red, green, blue, alpha);
     }
 

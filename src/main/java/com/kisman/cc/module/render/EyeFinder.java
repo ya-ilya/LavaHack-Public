@@ -33,19 +33,19 @@ public class EyeFinder extends Module {
     }
 
     private void drawLine(final Entity e) {
-        final RayTraceResult result = e.rayTrace(6.0, mc.getRenderPartialTicks());
+        RayTraceResult result = e.rayTrace(6.0, mc.getRenderPartialTicks());
         if (result == null) return;
-        final Vec3d eyes = e.getPositionEyes(mc.getRenderPartialTicks());
+        Vec3d eyes = e.getPositionEyes(mc.getRenderPartialTicks());
         GL11.glPushMatrix();
         GlStateManager.enableDepth();
         GlStateManager.disableTexture2D();
         GlStateManager.disableLighting();
-        final double posX = eyes.x - mc.getRenderManager().renderPosX;
-        final double posY = eyes.y - mc.getRenderManager().renderPosY;
-        final double posZ = eyes.z - mc.getRenderManager().renderPosZ;
-        final double posX2 = result.hitVec.x - mc.getRenderManager().renderPosX;
-        final double posY2 = result.hitVec.y - mc.getRenderManager().renderPosY;
-        final double posZ2 = result.hitVec.z - mc.getRenderManager().renderPosZ;
+        double posX = eyes.x - mc.getRenderManager().renderPosX;
+        double posY = eyes.y - mc.getRenderManager().renderPosY;
+        double posZ = eyes.z - mc.getRenderManager().renderPosZ;
+        double posX2 = result.hitVec.x - mc.getRenderManager().renderPosX;
+        double posY2 = result.hitVec.y - mc.getRenderManager().renderPosY;
+        double posZ2 = result.hitVec.z - mc.getRenderManager().renderPosZ;
         color.getColour().glColor();
         GlStateManager.glLineWidth(1.5f);
         GL11.glBegin(1);

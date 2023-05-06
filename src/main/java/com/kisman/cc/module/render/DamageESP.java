@@ -94,10 +94,10 @@ public class DamageESP extends Module {
                 return;
             }
             if (mc.player.getDistance(damage.entity) > range.getValInt()) continue;
-            final double x = damage.getEntity().getPosition().getX() + (damage.getEntity().getPosition().getX() - damage.getEntity().getPosition().getX()) * event.particalTicks - mc.getRenderManager().viewerPosX;
-            final double y = damage.getEntity().getPosition().getY() + (damage.getEntity().getPosition().getY() - damage.getEntity().getPosition().getY()) * event.particalTicks - mc.getRenderManager().viewerPosY + damage.getEntity().getEyeHeight() + 0.5;
-            final double z = damage.getEntity().getPosition().getZ() + (damage.getEntity().getPosition().getZ() - damage.getEntity().getPosition().getZ()) * event.particalTicks - mc.getRenderManager().viewerPosZ;
-            final float var10001 = (mc.gameSettings.thirdPersonView == 2) ? -1.0f : 1.0f;
+            double x = damage.getEntity().getPosition().getX() + (damage.getEntity().getPosition().getX() - damage.getEntity().getPosition().getX()) * event.particalTicks - mc.getRenderManager().viewerPosX;
+            double y = damage.getEntity().getPosition().getY() + (damage.getEntity().getPosition().getY() - damage.getEntity().getPosition().getY()) * event.particalTicks - mc.getRenderManager().viewerPosY + damage.getEntity().getEyeHeight() + 0.5;
+            double z = damage.getEntity().getPosition().getZ() + (damage.getEntity().getPosition().getZ() - damage.getEntity().getPosition().getZ()) * event.particalTicks - mc.getRenderManager().viewerPosZ;
+            float var10001 = (mc.gameSettings.thirdPersonView == 2) ? -1.0f : 1.0f;
             GL11.glPushMatrix();
             GL11.glEnable(3042);
             GL11.glEnable(3042);
@@ -111,7 +111,7 @@ public class DamageESP extends Module {
             GL11.glRotatef(-mc.getRenderManager().playerViewY, 0.0f, 1.0f, 0.0f);
             GL11.glRotatef(mc.getRenderManager().playerViewX, var10001, 0.0f, 0.0f);
             GL11.glScaled(-0.041666668839752674, -0.041666668839752674, 0.041666668839752674);
-            final long timeLeft = damage.startTime + 1000L - System.currentTimeMillis();
+            long timeLeft = damage.startTime + 1000L - System.currentTimeMillis();
             float yPercentage;
             float sizePercentage;
             if (timeLeft < 75L) {

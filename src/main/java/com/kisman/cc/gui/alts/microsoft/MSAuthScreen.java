@@ -49,15 +49,13 @@ public class MSAuthScreen extends GuiScreen {
     }
     
     public void setState(final String s) {
-        final Minecraft mc = Minecraft.getMinecraft();
-        mc.addScheduledTask(() -> {
+        Minecraft.getMinecraft().addScheduledTask(() -> {
             text = mc.fontRenderer.listFormattedStringToWidth(s, this.width);
         });
     }
     
     public void error(final String error) {
-        final Minecraft mc = Minecraft.getMinecraft();
-        mc.addScheduledTask(() ->    {
+        Minecraft.getMinecraft().addScheduledTask(() ->    {
             this.text = mc.fontRenderer.listFormattedStringToWidth(TextFormatting.RED + "Error: " + error , this.width);
             this.endTask = true;
         });

@@ -52,7 +52,7 @@ public class AntiBot extends Module {
             } else clicked = false;
         }
 
-        for (final EntityPlayer entity : mc.world.playerEntities) {
+        for (EntityPlayer entity : mc.world.playerEntities) {
             if (entity != mc.player && !entity.isDead) {
                 if (mode.getValString().equalsIgnoreCase("Classic")) {
                     List<EntityPlayer> tabList = getTabPlayerList();
@@ -60,8 +60,8 @@ public class AntiBot extends Module {
                     else if (bots.contains(entity) && tabList.contains(entity)) bots.remove(entity);
                 } else {
                     if (mode.getValString().equalsIgnoreCase("Matrix 6.3")) {
-                        final boolean contains = RotationUtils.isInFOV(entity, mc.player, 100.0) && AntiBot.mc.player.getDistance(entity) <= 6.5 && entity.canEntityBeSeen(mc.player);
-                        final boolean speedAnalysis = entity.getActivePotionEffect(MobEffects.SPEED) == null && entity.getActivePotionEffect(MobEffects.JUMP_BOOST) == null && entity.getActivePotionEffect(MobEffects.LEVITATION) == null && !entity.isInWater() && entity.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.ELYTRA && EntityUtil.getSpeedBPS(entity) >= 11.9;
+                        boolean contains = RotationUtils.isInFOV(entity, mc.player, 100.0) && AntiBot.mc.player.getDistance(entity) <= 6.5 && entity.canEntityBeSeen(mc.player);
+                        boolean speedAnalysis = entity.getActivePotionEffect(MobEffects.SPEED) == null && entity.getActivePotionEffect(MobEffects.JUMP_BOOST) == null && entity.getActivePotionEffect(MobEffects.LEVITATION) == null && !entity.isInWater() && entity.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.ELYTRA && EntityUtil.getSpeedBPS(entity) >= 11.9;
                         if (!contains || !speedAnalysis || entity.isDead) continue;
                     } else if (!entity.isInvisible()) continue;
                     entity.isDead = true;
@@ -85,11 +85,11 @@ public class AntiBot extends Module {
     }
 
     private List<EntityPlayer> getTabPlayerList() {
-        final List<EntityPlayer> list = new ArrayList<>();
-        final Ordering<NetworkPlayerInfo> ENTRY_ORDERING = AccessorGuiPlayerTabOverlay.getEntryOrdering();
+        List<EntityPlayer> list = new ArrayList<>();
+        Ordering<NetworkPlayerInfo> ENTRY_ORDERING = AccessorGuiPlayerTabOverlay.getEntryOrdering();
         if (ENTRY_ORDERING == null) return list;
-        final List<NetworkPlayerInfo> players = ENTRY_ORDERING.sortedCopy(mc.playerController.connection.getPlayerInfoMap());
-        for (final NetworkPlayerInfo info : players) {
+        List<NetworkPlayerInfo> players = ENTRY_ORDERING.sortedCopy(mc.playerController.connection.getPlayerInfoMap());
+        for (NetworkPlayerInfo info : players) {
             if (info == null) continue;
             list.add(mc.world.getPlayerEntityByName(info.getGameProfile().getName()));
         }

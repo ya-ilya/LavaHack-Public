@@ -43,8 +43,8 @@ public class InventoryUtil {
     }
 
     public static long time(BlockPos pos, ItemStack stack) {
-        final IBlockState state = mc.world.getBlockState(pos);
-        final Block block = state.getBlock();
+        IBlockState state = mc.world.getBlockState(pos);
+        Block block = state.getBlock();
         float toolMultiplier = stack.getDestroySpeed(state);
 
         toolMultiplier += Math.pow(EnchantmentHelper.getEnchantmentLevel(Enchantments.EFFICIENCY, stack), 2) + 1;
@@ -88,7 +88,7 @@ public class InventoryUtil {
         if (state.getMaterial().isToolNotRequired()) return true;
         String tool = block.getHarvestTool(state);
         if (stack.isEmpty() || tool == null) return mc.player.canHarvestBlock(state);
-        final int toolLevel = stack.getItem().getHarvestLevel(stack, tool, mc.player, state);
+        int toolLevel = stack.getItem().getHarvestLevel(stack, tool, mc.player, state);
         if (toolLevel < 0) return mc.player.canHarvestBlock(state);
         return toolLevel >= block.getHarvestLevel(state);
     }
@@ -140,8 +140,8 @@ public class InventoryUtil {
     }
 
     public static float getDamageInPercent(final ItemStack stack) {
-        final float green = (stack.getMaxDamage() - ( float ) stack.getItemDamage()) / stack.getMaxDamage();
-        final float red = 1.0f - green;
+        float green = (stack.getMaxDamage() - ( float ) stack.getItemDamage()) / stack.getMaxDamage();
+        float red = 1.0f - green;
         return ( float ) (100 - ( int ) (red * 100.0f));
     }
 
@@ -248,7 +248,7 @@ public class InventoryUtil {
 
     public static int getBlockInHotbar(final Block block) {
         for (int i = 0; i < 9; ++i) {
-            final Item item = InventoryUtil.mc.player.inventory.getStackInSlot(i).getItem();
+            Item item = InventoryUtil.mc.player.inventory.getStackInSlot(i).getItem();
             if (item instanceof ItemBlock && ((ItemBlock)item).getBlock().equals(block)) {
                 return i;
             }
@@ -378,7 +378,7 @@ public class InventoryUtil {
     //rerhack
     public static boolean isArmorUnderPercent(EntityPlayer player, float percent) {
         for (int i = 3; i >= 0; --i) {
-            final ItemStack stack = player.inventory.armorInventory.get(i);
+            ItemStack stack = player.inventory.armorInventory.get(i);
             if (getDamageInPercent(stack) < percent) return true;
         }
         return false;

@@ -67,8 +67,8 @@ public class Replenish extends Module {
                 continue;
 
             for (int a = 9; a < 36; a++){
-                final Item item = mc.player.inventoryContainer.getInventory().get(a).getItem();
-                final ItemStack stack1 = mc.player.inventory.getStackInSlot(a);
+                Item item = mc.player.inventoryContainer.getInventory().get(a).getItem();
+                ItemStack stack1 = mc.player.inventory.getStackInSlot(a);
 
                 if (item == barStack.getItem() && barStack.getCount() <= threshold && stack1.getCount() >= stackThreshold){
                     slots.put(i, a);

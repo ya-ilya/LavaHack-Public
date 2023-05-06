@@ -65,7 +65,7 @@ public abstract class MixinRendererLivingBase<T extends EntityLivingBase> extend
                 glDisable(GL_LIGHTING);
 
                 if (Charms.instance.customColor.getValBoolean()) {
-                    final Setting color = Charms.instance.color;
+                    Setting color = Charms.instance.color;
                     if (Charms.instance.targetRender.getValBoolean()) {
                         if (AutoRer.currentTarget == p_renderModel_1_ || KillAura.instance.target == p_renderModel_1_ || AutoCrystal.instance.target == p_renderModel_1_) glColor4f(0.6f, 0, 1, color.getColour().a1);
                         else color.getColour().glColor();

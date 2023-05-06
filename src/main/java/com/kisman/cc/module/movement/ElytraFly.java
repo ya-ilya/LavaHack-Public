@@ -167,7 +167,7 @@ public class ElytraFly extends Module {
     }
 
     private void handleControlMode(PlayerTravelEvent event) {
-        final double[] dir = MathUtil.directionSpeed(speed.getValDouble());
+        double[] dir = MathUtil.directionSpeed(speed.getValDouble());
 
         if (mc.player.movementInput.moveStrafe != 0 || mc.player.movementInput.moveForward != 0) {
             mc.player.motionX = dir[0];

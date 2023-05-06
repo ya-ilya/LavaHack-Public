@@ -80,9 +80,9 @@ public class Velocity extends Module{
         if (event.getPacket() instanceof SPacketEntityVelocity) if (((SPacketEntityVelocity) event.getPacket()).getEntityID() == mc.player.getEntityId()) event.cancel();
         if (event.getPacket() instanceof SPacketExplosion && exp.getValBoolean()) event.cancel();
         if (event.getPacket() instanceof SPacketEntityStatus && bobbers.getValBoolean()) {
-            final SPacketEntityStatus packet = (SPacketEntityStatus) event.getPacket();
+            SPacketEntityStatus packet = (SPacketEntityStatus) event.getPacket();
             if (packet.getOpCode() == 31) {
-                final Entity entity = packet.getEntity(mc.world);
+                Entity entity = packet.getEntity(mc.world);
                 if (entity instanceof EntityFishHook) if (((EntityFishHook) entity).caughtEntity == mc.player) event.cancel();
             }
         }

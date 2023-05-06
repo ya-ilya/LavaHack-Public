@@ -58,7 +58,7 @@ public class ArmorHUD extends HudModule {
             }
 
             if (HUD.instance.armExtra.getValBoolean()) {
-                final ItemStack itemStack = mc.player.getHeldItemOffhand();
+                ItemStack itemStack = mc.player.getHeldItemOffhand();
                 Item helfInOffHand = mc.player.getHeldItemOffhand().getItem();
                 int offHandHeldItemCount = getItemsOffHand(helfInOffHand);
                 GlStateManager.pushMatrix();

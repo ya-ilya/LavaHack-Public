@@ -85,15 +85,15 @@ public class AntiTrap extends Module {
 
         this.offhand = mc.player.getHeldItemOffhand().getItem() == Items.END_CRYSTAL;
         if (!this.offhand && InventoryUtil.findItem(Items.END_CRYSTAL, 0, 9) == -1) return;
-        final ArrayList<Vec3d> targets = new ArrayList<>();
+        ArrayList<Vec3d> targets = new ArrayList<>();
         Collections.addAll(targets, BlockUtil.convertVec3ds(mc.player.getPositionVector(), this.surroundTargets));
-        final EntityPlayer closestPlayer = EntityUtil.getTarget(5);
+        EntityPlayer closestPlayer = EntityUtil.getTarget(5);
         if (closestPlayer != null) {
             targets.sort((vec3d, vec3d2) -> Double.compare(mc.player.getDistanceSq(vec3d2.x, vec3d2.y, vec3d2.z), mc.player.getDistanceSq(vec3d.x, vec3d.y, vec3d.z)));
             if (sortY.getValBoolean()) targets.sort(Comparator.comparingDouble(vec3d -> vec3d.y));
         }
-        for (final Vec3d vec3d3 : targets) {
-            final BlockPos pos = new BlockPos(vec3d3);
+        for (Vec3d vec3d3 : targets) {
+            BlockPos pos = new BlockPos(vec3d3);
             if (!CrystalUtils.canPlaceCrystal(pos)) continue;
 
             placeCrystal(pos);
@@ -102,12 +102,12 @@ public class AntiTrap extends Module {
     }
 
     private void placeCrystal(final BlockPos pos) {
-        final boolean mainhand = (mc.player.getHeldItemMainhand().getItem() == Items.END_CRYSTAL);
+        boolean mainhand = (mc.player.getHeldItemMainhand().getItem() == Items.END_CRYSTAL);
         if (!mainhand && !this.offhand && !this.switchItem()) return;
 
-        final RayTraceResult result = mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ), new Vec3d(pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5));
-        final EnumFacing facing = (result == null || result.sideHit == null) ? EnumFacing.UP : result.sideHit;
-        final float[] angle = AngleUtil.calculateAngle(mc.player.getPositionEyes(mc.getRenderPartialTicks()), new Vec3d((pos.getX() + 0.5f), (pos.getY() - 0.5f), (pos.getZ() + 0.5f)));
+        RayTraceResult result = mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ), new Vec3d(pos.getX() + 0.5, pos.getY() - 0.5, pos.getZ() + 0.5));
+        EnumFacing facing = (result == null || result.sideHit == null) ? EnumFacing.UP : result.sideHit;
+        float[] angle = AngleUtil.calculateAngle(mc.player.getPositionEyes(mc.getRenderPartialTicks()), new Vec3d((pos.getX() + 0.5f), (pos.getY() - 0.5f), (pos.getZ() + 0.5f)));
         switch (this.rotate.getValString()) {
             case "NORMAL": {
                 RotationUtils.setPlayerRotations(angle[0], angle[1]);

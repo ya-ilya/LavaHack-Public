@@ -129,8 +129,8 @@ public class ColorButton extends AbstractComponent {
             Gui.drawRect(selectedX, selectedY, selectedX + selectedWidth, selectedY + selectedHeight, this.selectedColorFinal);
 
             {
-                final int cursorX = (int) (pickerX + color[1]*pickerWidth);
-                final int cursorY = (int) ((pickerY + pickerHeight) - color[2]*pickerHeight);
+                int cursorX = (int) (pickerX + color[1]*pickerWidth);
+                int cursorY = (int) ((pickerY + pickerHeight) - color[2]*pickerHeight);
                 Gui.drawRect(cursorX - 2, cursorY - 2, cursorX + 2, cursorY + 2, -1);
             }
 
@@ -273,7 +273,7 @@ public class ColorButton extends AbstractComponent {
                 drawGradientRect(x, y + step * (height/6), x + width, y + (step+1) * (height/6), previousStep, nextStep);
                 step++;
             }
-            final int sliderMinY = (int) (y + (height*hue)) - 4;
+            int sliderMinY = (int) (y + (height*hue)) - 4;
             Gui.drawRect(x, sliderMinY - 1, x+width, sliderMinY + 1, -1);
         } else {
             for (int colorIndex = 0; colorIndex < 6; colorIndex++) {
@@ -282,7 +282,7 @@ public class ColorButton extends AbstractComponent {
                 this.gradient(x + step * (width/6), y, x + (step+1) * (width/6), y + height, previousStep, nextStep, true);
                 step++;
             }
-            final int sliderMinX = (int) (x + (width*hue));
+            int sliderMinX = (int) (x + (width*hue));
             Gui.drawRect(sliderMinX - 1, y, sliderMinX + 1, y + height, -1);
         }
     }
@@ -304,7 +304,7 @@ public class ColorButton extends AbstractComponent {
             left = !left;
         }
         this.gradient(x, y, x + width, y + height, new Color(red, green, blue, alpha).getRGB(), 0, false);
-        final int sliderMinY = (int) (y + height - (height * alpha));
+        int sliderMinY = (int) (y + height - (height * alpha));
         Gui.drawRect(x, sliderMinY - 1, x+width, sliderMinY + 1, -1);
     }
 
@@ -343,15 +343,15 @@ public class ColorButton extends AbstractComponent {
 
     protected void gradient(int minX, int minY, int maxX, int maxY, int startColor, int endColor, boolean left) {
         if (left) {
-            final float startA = (startColor >> 24 & 0xFF) / 255.0f;
-            final float startR = (startColor >> 16 & 0xFF) / 255.0f;
+            float startA = (startColor >> 24 & 0xFF) / 255.0f;
+            float startR = (startColor >> 16 & 0xFF) / 255.0f;
             final float startG= (startColor >> 8 & 0xFF) / 255.0f;
-            final float startB = (startColor & 0xFF) / 255.0f;
+            float startB = (startColor & 0xFF) / 255.0f;
 
-            final float endA = (endColor >> 24 & 0xFF) / 255.0f;
-            final float endR = (endColor >> 16 & 0xFF) / 255.0f;
-            final float endG = (endColor >> 8 & 0xFF) / 255.0f;
-            final float endB = (endColor & 0xFF) / 255.0f;
+            float endA = (endColor >> 24 & 0xFF) / 255.0f;
+            float endR = (endColor >> 16 & 0xFF) / 255.0f;
+            float endG = (endColor >> 8 & 0xFF) / 255.0f;
+            float endB = (endColor & 0xFF) / 255.0f;
 
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glDisable(GL11.GL_TEXTURE_2D);

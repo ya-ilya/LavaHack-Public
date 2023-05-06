@@ -72,7 +72,7 @@ public class AutoTrap extends Module {
     }
 
     /**
-     * see <code>com.kisman.cc.module.combat.SelfTrap
+     * @see com.kisman.cc.module.combat.SelfTrap
      */
     public AutoTrap(String name, Category category) {
         super(name, category);
@@ -165,16 +165,16 @@ public class AutoTrap extends Module {
     }
 
     private void doStaticTrap() {
-        final List<Vec3d> placeTargets = BlockUtil.targets(target.getPositionVector(), antiScaffold.getValBoolean(), antiStep.getValBoolean(), surroundPlacing.getValBoolean(), false, false, this.raytrace.getValBoolean());
+        List<Vec3d> placeTargets = BlockUtil.targets(target.getPositionVector(), antiScaffold.getValBoolean(), antiStep.getValBoolean(), surroundPlacing.getValBoolean(), false, false, this.raytrace.getValBoolean());
         placeList(placeTargets);
     }
 
-    private void placeList(final List<Vec3d> list) {
+    private void placeList(List<Vec3d> list) {
         list.sort((vec3d, vec3d2) -> Double.compare(mc.player.getDistanceSq(vec3d2.x, vec3d2.y, vec3d2.z), mc.player.getDistanceSq(vec3d.x, vec3d.y, vec3d.z)));
         list.sort(Comparator.comparingDouble(vec3d -> vec3d.y));
-        for (final Vec3d vec3d3 : list) {
-            final BlockPos position = new BlockPos(vec3d3);
-            final int placeability = BlockUtil.isPositionPlaceable(position, this.raytrace.getValBoolean());
+        for (Vec3d vec3d3 : list) {
+            BlockPos position = new BlockPos(vec3d3);
+            int placeability = BlockUtil.isPositionPlaceable(position, this.raytrace.getValBoolean());
             if (placeability == 1 && (this.retries.get(position) == null || this.retries.get(position) < 4)) {
                 this.placeBlock(position);
                 this.retries.put(position, (this.retries.get(position) == null) ? 1 : (this.retries.get(position) + 1));
@@ -191,9 +191,9 @@ public class AutoTrap extends Module {
 
         didPlace = false;
         placements = 0;
-        final int obbySlot2 = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+        int obbySlot2 = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
         if (obbySlot2 == -1) setToggled(false);
-        final int obbySlot3 = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+        int obbySlot3 = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
         if (!super.isToggled()) return true;
         if (!startPos.equals(EntityUtil.getRoundedBlockPos(mc.player))) {
             setToggled(false);
@@ -333,9 +333,9 @@ public class AutoTrap extends Module {
 
     private void placeBlock(final BlockPos pos) {
         if (this.placements < this.blocksPerTick.getValInt() && mc.player.getDistanceSq(pos) <= MathUtil.square(5.0)) {
-            final int originalSlot = mc.player.inventory.currentItem;
-            final int obbySlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
-            final int eChestSot = InventoryUtil.findBlock(Blocks.ENDER_CHEST, 0, 9);
+            int originalSlot = mc.player.inventory.currentItem;
+            int obbySlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+            int eChestSot = InventoryUtil.findBlock(Blocks.ENDER_CHEST, 0, 9);
 
             if (obbySlot == -1 && eChestSot == -1) this.toggle();
 

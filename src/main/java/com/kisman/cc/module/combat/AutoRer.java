@@ -311,7 +311,7 @@ public class AutoRer extends Module {
     }
 
     private ScheduledExecutorService createExecutorService() {
-        final ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
         service.scheduleAtFixedRate(RAutoRer.getInstance(this), 0L, this.threadDelay.getValLong(), TimeUnit.MILLISECONDS);
         return service;
     }
@@ -611,8 +611,8 @@ public class AutoRer extends Module {
 
         validPos.sort((first, second) -> (int) (mc.player.getDistanceSqToCenter(first) - mc.player.getDistanceSqToCenter(second)));
 
-        final double[] maxDamage = {0.5};
-        final BlockPos[] placePos = {null};
+        double[] maxDamage = {0.5};
+        BlockPos[] placePos = {null};
 
         validPos.forEach(pos -> {
             if (CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget, terrain.getValBoolean()) > maxDamage[0]) {

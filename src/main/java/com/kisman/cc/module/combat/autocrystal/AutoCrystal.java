@@ -72,7 +72,7 @@ public class AutoCrystal extends Module implements Runnable {
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
         if (event.getPacket() instanceof SPacketSoundEffect && sound.getValBoolean()) {
-            final SPacketSoundEffect packet = (SPacketSoundEffect) event.getPacket();
+            SPacketSoundEffect packet = (SPacketSoundEffect) event.getPacket();
             if (packet.getCategory() == SoundCategory.BLOCKS && packet.getSound() == SoundEvents.ENTITY_GENERIC_EXPLODE) for (Entity e : Minecraft.getMinecraft().world.loadedEntityList) if (e instanceof EntityEnderCrystal && e.getDistance(packet.getX(), packet.getY(), packet.getZ()) <= 6.0f) e.setDead();
         }
     });
@@ -152,7 +152,7 @@ public class AutoCrystal extends Module implements Runnable {
     }
 
     public void doBreak() {
-        final EntityEnderCrystal crystal = (EntityEnderCrystal) mc.world.loadedEntityList.stream().filter(entity -> entity instanceof EntityEnderCrystal).min(Comparator.comparing(c -> mc.player.getDistance(c))).orElse(null);
+        EntityEnderCrystal crystal = (EntityEnderCrystal) mc.world.loadedEntityList.stream().filter(entity -> entity instanceof EntityEnderCrystal).min(Comparator.comparing(c -> mc.player.getDistance(c))).orElse(null);
         if (crystal == null) return;
         breakProcess(crystal);
         mc.playerController.updateController();

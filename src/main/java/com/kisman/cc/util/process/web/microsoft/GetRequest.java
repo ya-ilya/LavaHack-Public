@@ -28,8 +28,8 @@ public class GetRequest {
     }
     
     public String body() throws IOException {
-        final StringBuilder sb = new StringBuilder();
-        final Reader r = new InputStreamReader(this.conn.getInputStream(), StandardCharsets.UTF_8);
+        StringBuilder sb = new StringBuilder();
+        Reader r = new InputStreamReader(this.conn.getInputStream(), StandardCharsets.UTF_8);
         int i;
         while ((i = r.read()) >= 0) sb.append((char)i);
         r.close();

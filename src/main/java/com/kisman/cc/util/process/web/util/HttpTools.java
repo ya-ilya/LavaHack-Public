@@ -8,7 +8,7 @@ import java.net.URLConnection;
 public class HttpTools {
     public static boolean ping(String url) {
         try {
-            final URLConnection connection = new URL(url).openConnection();
+            URLConnection connection = new URL(url).openConnection();
             connection.connect();
             return true;
         } catch (final MalformedURLException e) {

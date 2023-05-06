@@ -49,7 +49,7 @@ public class SwingAnimation extends Module {
     public void onRenderArms(final RenderSpecificHandEvent event) {
         if (mode.getValString().equalsIgnoreCase("Hand")) {
             if (event.getSwingProgress() > 0) {
-                final float angle = (1f - event.getSwingProgress()) * 360f;
+                float angle = (1f - event.getSwingProgress()) * 360f;
 
                 switch (swingMode.getValString()) {
                     case "1":

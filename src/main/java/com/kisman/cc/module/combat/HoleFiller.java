@@ -73,9 +73,9 @@ public class HoleFiller extends Module {
             findTargetHole();
 
             if (targetHole != null) {
-                final int obbySlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
-                final int webSlot = InventoryUtil.findBlock(Blocks.WEB, 0, 9);
-                final int oldSlot = mc.player.inventory.currentItem;
+                int obbySlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+                int webSlot = InventoryUtil.findBlock(Blocks.WEB, 0, 9);
+                int oldSlot = mc.player.inventory.currentItem;
 
                 BlockUtil.canPlaceBlock(targetHole.pos);
 

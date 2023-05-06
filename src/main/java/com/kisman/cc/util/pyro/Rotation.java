@@ -35,8 +35,8 @@ public class Rotation
     }
     
     public void fixedSensitivity(final float sensitivity) {
-        final float f = sensitivity * 0.6f + 0.2f;
-        final float gcd = f * f * f * 1.2f;
+        float f = sensitivity * 0.6f + 0.2f;
+        float gcd = f * f * f * 1.2f;
         this.yaw -= this.yaw % gcd;
         this.pitch -= this.pitch % gcd;
     }

@@ -38,8 +38,8 @@ public class BlockUtil {
     }
 
     public static boolean canBlockBeBroken(final BlockPos pos) {
-        final IBlockState blockState = mc.world.getBlockState(pos);
-        final Block block = blockState.getBlock();
+        IBlockState blockState = mc.world.getBlockState(pos);
+        Block block = blockState.getBlock();
         return block.blockHardness != -1;
     }
 
@@ -48,14 +48,14 @@ public class BlockUtil {
     }
 
     public static int isPositionPlaceable(final BlockPos pos, final boolean rayTrace, final boolean entityCheck) {
-        final Block block = mc.world.getBlockState(pos).getBlock();
+        Block block = mc.world.getBlockState(pos).getBlock();
         if (!(block instanceof BlockAir) && !(block instanceof BlockLiquid) && !(block instanceof BlockTallGrass) && !(block instanceof BlockFire) && !(block instanceof BlockDeadBush) && !(block instanceof BlockSnow)) {
             return 0;
         }
 
         if (!rayTracePlaceCheck(pos, rayTrace, 0.0f)) return -1;
         if (entityCheck) {
-            for (final Entity entity : mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos))) {
+            for (Entity entity : mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos))) {
                 if (!(entity instanceof EntityItem)) {
                     if (entity instanceof EntityXPOrb) continue;
                     return 1;
@@ -63,7 +63,7 @@ public class BlockUtil {
             }
         }
 
-        for (final EnumFacing side : getPossibleSides(pos)) {
+        for (EnumFacing side : getPossibleSides(pos)) {
             if (!canBeClicked(pos.offset(side))) continue;
             return 3;
         }
@@ -71,7 +71,7 @@ public class BlockUtil {
     }
 
     public static Vec3d[] convertVec3ds(final Vec3d vec3d, final Vec3d[] input) {
-        final Vec3d[] output = new Vec3d[input.length];
+        Vec3d[] output = new Vec3d[input.length];
         for (int i = 0; i < input.length; ++i) output[i] = vec3d.add(input[i]);
         return output;
     }
@@ -81,17 +81,17 @@ public class BlockUtil {
     }
 
     public static List<Vec3d> targets(final Vec3d vec3d, final boolean antiScaffold, final boolean antiStep, final boolean legs, final boolean platform, final boolean antiDrop, final boolean raytrace) {
-        final ArrayList<Vec3d> placeTargets = new ArrayList<>();
+        ArrayList<Vec3d> placeTargets = new ArrayList<>();
         if (antiDrop) Collections.addAll(placeTargets, convertVec3ds(vec3d, antiDropOffsetList));
         if (platform) Collections.addAll(placeTargets, convertVec3ds(vec3d, platformOffsetList));
         if (legs) Collections.addAll(placeTargets, convertVec3ds(vec3d, legOffsetList));
         Collections.addAll(placeTargets, convertVec3ds(vec3d, OffsetList));
         if (antiStep) Collections.addAll(placeTargets, convertVec3ds(vec3d, antiStepOffsetList));
         else {
-            final List<Vec3d> vec3ds = getUnsafeBlocksFromVec3d(vec3d, 2, false);
+            List<Vec3d> vec3ds = getUnsafeBlocksFromVec3d(vec3d, 2, false);
             if (vec3ds.size() == 4) {
-                for (final Vec3d vector : vec3ds) {
-                    final BlockPos position = new BlockPos(vec3d).add(vector.x, vector.y, vector.z);
+                for (Vec3d vector : vec3ds) {
+                    BlockPos position = new BlockPos(vec3d).add(vector.x, vector.y, vector.z);
                     switch (isPositionPlaceable(position, raytrace)) {
                         case -1:
                         case 1:
@@ -110,7 +110,7 @@ public class BlockUtil {
     }
 
     public static List<Vec3d> getOffsetList(final int y, final boolean floor) {
-        final ArrayList<Vec3d> offsets = new ArrayList<>();
+        ArrayList<Vec3d> offsets = new ArrayList<>();
         offsets.add(new Vec3d(-1.0, y, 0.0));
         offsets.add(new Vec3d(1.0, y, 0.0));
         offsets.add(new Vec3d(0.0, y, -1.0));
@@ -120,16 +120,16 @@ public class BlockUtil {
     }
 
     public static Vec3d[] getOffsets(final int y, final boolean floor) {
-        final List<Vec3d> offsets = getOffsetList(y, floor);
-        final Vec3d[] array = new Vec3d[offsets.size()];
+        List<Vec3d> offsets = getOffsetList(y, floor);
+        Vec3d[] array = new Vec3d[offsets.size()];
         return offsets.toArray(array);
     }
 
     public static List<Vec3d> getUnsafeBlocksFromVec3d(final Vec3d pos, final int height, final boolean floor) {
-        final ArrayList<Vec3d> vec3ds = new ArrayList<>();
-        for (final Vec3d vector : getOffsets(height, floor)) {
-            final BlockPos targetPos = new BlockPos(pos).add(vector.x, vector.y, vector.z);
-            final Block block = mc.world.getBlockState(targetPos).getBlock();
+        ArrayList<Vec3d> vec3ds = new ArrayList<>();
+        for (Vec3d vector : getOffsets(height, floor)) {
+            BlockPos targetPos = new BlockPos(pos).add(vector.x, vector.y, vector.z);
+            Block block = mc.world.getBlockState(targetPos).getBlock();
             if (block instanceof BlockAir || block instanceof BlockLiquid || block instanceof BlockTallGrass || block instanceof BlockFire || block instanceof BlockDeadBush || block instanceof BlockSnow) vec3ds.add(vector);
         }
         return vec3ds;
@@ -210,14 +210,14 @@ public class BlockUtil {
     }
 
     public static List<BlockPos> getCircle(final BlockPos loc, final int y, final float r, final boolean hollow) {
-        final List<BlockPos> circleblocks = new ArrayList<>();
-        final int cx = loc.getX();
-        final int cz = loc.getZ();
+        List<BlockPos> circleblocks = new ArrayList<>();
+        int cx = loc.getX();
+        int cz = loc.getZ();
         for (int x = cx - (int) r; x <= cx + r; x++) {
             for (int z = cz - (int) r; z <= cz + r; z++) {
-                final double dist = (cx - x) * (cx - x) + (cz - z) * (cz - z);
+                double dist = (cx - x) * (cx - x) + (cz - z) * (cz - z);
                 if (dist < r * r && (!hollow || dist >= (r - 1.0f) * (r - 1.0f))) {
-                    final BlockPos l = new BlockPos(x, y, z);
+                    BlockPos l = new BlockPos(x, y, z);
                     circleblocks.add(l);
                 }
             }
@@ -231,10 +231,10 @@ public class BlockUtil {
     }
 
     public static boolean placeBlock(final BlockPos pos) {
-        final Block block = mc.world.getBlockState(pos).getBlock();
-        final EnumFacing direction = calcSide(pos);
+        Block block = mc.world.getBlockState(pos).getBlock();
+        EnumFacing direction = calcSide(pos);
         if (direction == null) return false;
-        final boolean activated = block.onBlockActivated(mc.world, pos, mc.world.getBlockState(pos), mc.player, EnumHand.MAIN_HAND, direction, 0.0f, 0.0f, 0.0f);
+        boolean activated = block.onBlockActivated(mc.world, pos, mc.world.getBlockState(pos), mc.player, EnumHand.MAIN_HAND, direction, 0.0f, 0.0f, 0.0f);
         if (activated) mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
         mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(pos.offset(direction), direction.getOpposite(), EnumHand.MAIN_HAND, 0.5f, 0.5f, 0.5f));
         mc.player.connection.sendPacket(new CPacketAnimation(EnumHand.MAIN_HAND));
@@ -248,12 +248,12 @@ public class BlockUtil {
 
     public static boolean placeBlockSmartRotate(final BlockPos pos, final EnumHand hand, final boolean rotate, final boolean packet, final boolean isSneaking) {
         boolean sneaking = false;
-        final EnumFacing side = getFirstFacing(pos);
+        EnumFacing side = getFirstFacing(pos);
         if (side == null) return isSneaking;
-        final BlockPos neighbour = pos.offset(side);
-        final EnumFacing opposite = side.getOpposite();
-        final Vec3d hitVec = new Vec3d(neighbour).add(new Vec3d(0.5, 0.5, 0.5)).add(new Vec3d(opposite.getDirectionVec()).scale(0.5));
-        final Block neighbourBlock = mc.world.getBlockState(neighbour).getBlock();
+        BlockPos neighbour = pos.offset(side);
+        EnumFacing opposite = side.getOpposite();
+        Vec3d hitVec = new Vec3d(neighbour).add(new Vec3d(0.5, 0.5, 0.5)).add(new Vec3d(opposite.getDirectionVec()).scale(0.5));
+        Block neighbourBlock = mc.world.getBlockState(neighbour).getBlock();
         if (!mc.player.isSneaking() && (blackList.contains(neighbourBlock) || shulkerList.contains(neighbourBlock))) {
             mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
             sneaking = true;
@@ -266,7 +266,7 @@ public class BlockUtil {
     }
 
     public static EnumFacing getFirstFacing(final BlockPos pos) {
-        final Iterator<EnumFacing> iterator = getPossibleSides(pos).iterator();
+        Iterator<EnumFacing> iterator = getPossibleSides(pos).iterator();
         if (iterator.hasNext()) {
             return iterator.next();
         }
@@ -274,11 +274,11 @@ public class BlockUtil {
     }
 
     public static EnumFacing calcSide(final BlockPos pos) {
-        for (final EnumFacing side : EnumFacing.values()) {
-            final IBlockState offsetState = mc.world.getBlockState(pos.offset(side));
-            final boolean activated = offsetState.getBlock().onBlockActivated(mc.world, pos, offsetState, mc.player, EnumHand.MAIN_HAND, side, 0.0f, 0.0f, 0.0f);
+        for (EnumFacing side : EnumFacing.values()) {
+            IBlockState offsetState = mc.world.getBlockState(pos.offset(side));
+            boolean activated = offsetState.getBlock().onBlockActivated(mc.world, pos, offsetState, mc.player, EnumHand.MAIN_HAND, side, 0.0f, 0.0f, 0.0f);
             if (activated) {
-                mc.getConnection().sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
+                mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
                 unshift = true;
             }
             if (offsetState.getBlock().canCollideCheck(offsetState, false) && !offsetState.getMaterial().isReplaceable()) return side;
@@ -288,11 +288,11 @@ public class BlockUtil {
 
 
     public static List<EnumFacing> getPossibleSides(final BlockPos pos) {
-        final ArrayList<EnumFacing> facings = new ArrayList<>();
+        ArrayList<EnumFacing> facings = new ArrayList<>();
         if (mc.world == null || pos == null) return facings;
-        for (final EnumFacing side : EnumFacing.values()) {
-            final BlockPos neighbour = pos.offset(side);
-            final IBlockState blockState = mc.world.getBlockState(neighbour);
+        for (EnumFacing side : EnumFacing.values()) {
+            BlockPos neighbour = pos.offset(side);
+            IBlockState blockState = mc.world.getBlockState(neighbour);
             if (blockState != null && blockState.getBlock().canCollideCheck(blockState, false)) if (!blockState.getMaterial().isReplaceable()) facings.add(side);
         }
         return facings;
@@ -353,8 +353,8 @@ public class BlockUtil {
     }
 
     public static boolean isInHole() {
-        final BlockPos blockPos = new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ);
-        final IBlockState blockState = mc.world.getBlockState(blockPos);
+        BlockPos blockPos = new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ);
+        IBlockState blockState = mc.world.getBlockState(blockPos);
         return isBlockValid(blockState, blockPos);
     }
 
@@ -363,32 +363,32 @@ public class BlockUtil {
     }
 
     public static boolean isObbyHole(final BlockPos blockPos) {
-        for (final BlockPos pos : getTouchingBlocks(blockPos)) {
-            final IBlockState touchingState = mc.world.getBlockState(pos);
+        for (BlockPos pos : getTouchingBlocks(blockPos)) {
+            IBlockState touchingState = mc.world.getBlockState(pos);
             if (touchingState.getBlock() == Blocks.AIR || touchingState.getBlock() != Blocks.OBSIDIAN) return false;
         }
         return true;
     }
 
     public static boolean isBedrockHole(final BlockPos blockPos) {
-        for (final BlockPos pos : getTouchingBlocks(blockPos)) {
-            final IBlockState touchingState = mc.world.getBlockState(pos);
+        for (BlockPos pos : getTouchingBlocks(blockPos)) {
+            IBlockState touchingState = mc.world.getBlockState(pos);
             if (touchingState.getBlock() == Blocks.AIR || touchingState.getBlock() != Blocks.BEDROCK) return false;
         }
         return true;
     }
 
     public static boolean isBothHole(final BlockPos blockPos) {
-        for (final BlockPos pos : getTouchingBlocks(blockPos)) {
-            final IBlockState touchingState = mc.world.getBlockState(pos);
+        for (BlockPos pos : getTouchingBlocks(blockPos)) {
+            IBlockState touchingState = mc.world.getBlockState(pos);
             if (touchingState.getBlock() == Blocks.AIR || (touchingState.getBlock() != Blocks.BEDROCK && touchingState.getBlock() != Blocks.OBSIDIAN)) return false;
         }
         return true;
     }
 
     public static boolean isElseHole(final BlockPos blockPos) {
-        for (final BlockPos pos : getTouchingBlocks(blockPos)) {
-            final IBlockState touchingState = mc.world.getBlockState(pos);
+        for (BlockPos pos : getTouchingBlocks(blockPos)) {
+            IBlockState touchingState = mc.world.getBlockState(pos);
             if (touchingState.getBlock() == Blocks.AIR || !touchingState.isFullBlock()) return false;
         }
         return true;

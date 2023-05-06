@@ -25,7 +25,9 @@ public class PacketLogger extends Module{
         register(values);
     }
 
-    public boolean isBeta() {return true;}
+    public boolean isBeta() {
+        return true;
+    }
 
     @EventHandler
     @SuppressWarnings("unused")

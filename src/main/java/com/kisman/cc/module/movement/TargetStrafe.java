@@ -31,7 +31,7 @@ public class TargetStrafe extends Module {
     public double getMovementSpeed() {
         double speed = 0.2873;
         if (mc.player.isPotionActive(Objects.requireNonNull(Potion.getPotionById(1)))) {
-            final int n = Objects.requireNonNull(mc.player.getActivePotionEffect(Objects.requireNonNull(Potion.getPotionById(1)))).getAmplifier();
+            int n = Objects.requireNonNull(mc.player.getActivePotionEffect(Objects.requireNonNull(Potion.getPotionById(1)))).getAmplifier();
             speed *= 1.0 + 0.2 * (n + 1);
         }
         return speed;
@@ -84,8 +84,8 @@ public class TargetStrafe extends Module {
                 if (d4 > 0.0) d4 = 1.0;
                 else if (d4 < 0.0) d4 = -1.0;
             }
-            final double d6 = Math.cos(Math.toRadians(f2 + 90.0f));
-            final double d7 = Math.sin(Math.toRadians(f2 + 90.0f));
+            double d6 = Math.cos(Math.toRadians(f2 + 90.0f));
+            double d7 = Math.sin(Math.toRadians(f2 + 90.0f));
             mc.player.motionX = d4 * d * d6 + d5 * d * d7;
             mc.player.motionZ = d4 * d * d7 - d5 * d * d6;
         }

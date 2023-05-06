@@ -42,12 +42,12 @@ public class CrystalUtils {
     }
 
     public static boolean canPlaceCrystal(final BlockPos pos) {
-        final Minecraft mc = Minecraft.getMinecraft();
-        final Block block = mc.world.getBlockState(pos).getBlock();
+        Minecraft mc = Minecraft.getMinecraft();
+        Block block = mc.world.getBlockState(pos).getBlock();
 
         if (block == Blocks.OBSIDIAN || block == Blocks.BEDROCK) {
-            final Block floor = mc.world.getBlockState(pos.add(0, 1, 0)).getBlock();
-            final Block ceil = mc.world.getBlockState(pos.add(0, 2, 0)).getBlock();
+            Block floor = mc.world.getBlockState(pos.add(0, 1, 0)).getBlock();
+            Block ceil = mc.world.getBlockState(pos.add(0, 2, 0)).getBlock();
 
             if (floor == Blocks.AIR && ceil == Blocks.AIR) return mc.world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(pos.add(0, 1, 0))).isEmpty();
         }
@@ -195,19 +195,19 @@ public class CrystalUtils {
     }
 
     public static float getBlockDensity(final Vec3d vec, final AxisAlignedBB bb) {
-        final double d0 = 1.0 / ((bb.maxX - bb.minX) * 2.0 + 1.0);
-        final double d2 = 1.0 / ((bb.maxY - bb.minY) * 2.0 + 1.0);
-        final double d3 = 1.0 / ((bb.maxZ - bb.minZ) * 2.0 + 1.0);
-        final double d4 = (1.0 - Math.floor(1.0 / d0) * d0) / 2.0;
-        final double d5 = (1.0 - Math.floor(1.0 / d3) * d3) / 2.0;
+        double d0 = 1.0 / ((bb.maxX - bb.minX) * 2.0 + 1.0);
+        double d2 = 1.0 / ((bb.maxY - bb.minY) * 2.0 + 1.0);
+        double d3 = 1.0 / ((bb.maxZ - bb.minZ) * 2.0 + 1.0);
+        double d4 = (1.0 - Math.floor(1.0 / d0) * d0) / 2.0;
+        double d5 = (1.0 - Math.floor(1.0 / d3) * d3) / 2.0;
         float j2 = 0.0f;
         float k2 = 0.0f;
         for (float f = 0.0f; f <= 1.0f; f += ( float ) d0) {
             for (float f2 = 0.0f; f2 <= 1.0f; f2 += ( float ) d2) {
                 for (float f3 = 0.0f; f3 <= 1.0f; f3 += ( float ) d3) {
-                    final double d6 = bb.minX + (bb.maxX - bb.minX) * f;
-                    final double d7 = bb.minY + (bb.maxY - bb.minY) * f2;
-                    final double d8 = bb.minZ + (bb.maxZ - bb.minZ) * f3;
+                    double d6 = bb.minX + (bb.maxX - bb.minX) * f;
+                    double d7 = bb.minY + (bb.maxY - bb.minY) * f2;
+                    double d8 = bb.minZ + (bb.maxZ - bb.minZ) * f3;
                     if (rayTraceBlocks(new Vec3d(d6 + d4, d7, d8 + d5), vec, false, true, false) == null) {
                         ++j2;
                     }
@@ -401,7 +401,7 @@ public class CrystalUtils {
 
     public static boolean canPlaceCrystal(final BlockPos blockPos, final boolean check, final boolean entity) {
         if (mc.world.getBlockState(blockPos).getBlock() != Blocks.BEDROCK && mc.world.getBlockState(blockPos).getBlock() != Blocks.OBSIDIAN) return false;
-        final BlockPos boost = blockPos.add(0, 1, 0);
+        BlockPos boost = blockPos.add(0, 1, 0);
         return mc.world.getBlockState(boost).getBlock() == Blocks.AIR && mc.world.getBlockState(blockPos.add(0, 2, 0)).getBlock() == Blocks.AIR && (!entity || mc.world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(boost.getX(), boost.getY(), boost.getZ(), (boost.getX() + 1), (boost.getY() + (check ? 2 : 1)), (boost.getZ() + 1)), e -> !(e instanceof EntityEnderCrystal)).size() == 0);
     }
 

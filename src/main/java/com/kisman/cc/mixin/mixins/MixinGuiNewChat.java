@@ -42,8 +42,8 @@ public class MixinGuiNewChat {
     private void drawChatHook(CallbackInfo ci) {
         ChatModifier chatModifier = (ChatModifier) Kisman.instance.moduleManager.getModule("ChatModifier");
         if (chatModifier.isToggled() && chatModifier.getAnimation().getValBoolean()) {
-            final long current = System.currentTimeMillis();
-            final long diff = current - this.prevMillis;
+            long current = System.currentTimeMillis();
+            long diff = current - this.prevMillis;
             this.prevMillis = current;
             this.updatePercentage(diff);
             float t = this.percentComplete;

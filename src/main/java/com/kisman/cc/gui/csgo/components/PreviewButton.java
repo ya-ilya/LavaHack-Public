@@ -71,7 +71,7 @@ public class PreviewButton extends AbstractComponent {
                 GL11.glScalef(Float.intBitsToFloat(Float.floatToIntBits(6.72125f) ^ 0x7F57147B), (float)Float.intBitsToFloat(Float.floatToIntBits(8.222657f) ^ 0x7E839001), (float)Float.intBitsToFloat(Float.floatToIntBits(7.82415f) ^ 0x7F7A5F70));
                 drawEntityOnScreen((x + getWidth() / 2) / 2, (getHeight() + 2) / 2, 40, 0, 0, crystal);
             } else {
-               final Entity entity = Minecraft.getMinecraft().player;
+               Entity entity = Minecraft.getMinecraft().player;
                 drawEntityOnScreen(x + getWidth() / 2, getHeight() - 2, 40, 0, 0, entity);
             }
         }

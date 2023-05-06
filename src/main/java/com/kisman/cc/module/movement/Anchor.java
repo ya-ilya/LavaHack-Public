@@ -104,7 +104,7 @@ public class Anchor extends Module {
                     if (!this.jumped && mc.player.fallDistance < 0.5 && BlockUtil.isInHole() && mc.player.posY - BlockUtil.getNearestBlockBelow() <= 1.125 && mc.player.posY - BlockUtil.getNearestBlockBelow() <= 0.95 && !EntityUtil.isOnLiquid() && !EntityUtil.isInLiquid()) {
                         if (!mc.player.onGround) ++this.packets;
                         if (!mc.player.onGround && !mc.player.isInsideOfMaterial(Material.WATER) && !mc.player.isInsideOfMaterial(Material.LAVA) && !mc.gameSettings.keyBindJump.isKeyDown() && !mc.player.isOnLadder() && this.packets > 0) {
-                            final BlockPos blockPos = new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ);
+                            BlockPos blockPos = new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ);
                             for (double position : oneblockPositions) mc.player.connection.sendPacket(new CPacketPlayer.Position((blockPos.getX() + 0.5f), mc.player.posY - position, (blockPos.getZ() + 0.5f), true));
                             mc.player.setPosition((blockPos.getX() + 0.5f), BlockUtil.getNearestBlockBelow() + 0.1, (blockPos.getZ() + 0.5f));
                             this.packets = 0;

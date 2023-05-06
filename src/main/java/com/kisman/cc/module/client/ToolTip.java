@@ -38,7 +38,7 @@ public class ToolTip extends Module {
     });
 
     private void renderShulkerTip(ItemStack shulkerStack, int x, int y) {
-        final NBTTagCompound tagCompound = shulkerStack.getTagCompound();
+        NBTTagCompound tagCompound = shulkerStack.getTagCompound();
 
         GlStateManager.enableBlend();
         GlStateManager.disableRescaleNormal();
@@ -56,8 +56,8 @@ public class ToolTip extends Module {
             mc.getRenderItem().zLevel = 300.0F;
 
             // That last bit looks awful, but basically it gets the color!
-            final Color color = new Color(((BlockShulkerBox) ((ItemShulkerBox) shulkerStack.getItem()).getBlock()).getColor().getColorValue());
-            final Color modifiedColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), 150);
+            Color color = new Color(((BlockShulkerBox) ((ItemShulkerBox) shulkerStack.getItem()).getBlock()).getColor().getColorValue());
+            Color modifiedColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), 150);
 
             GuiScreen.drawRect(offsetX - 3, offsetT - 3, (int) (offsetX + width + 3), offsetT + height + 3, modifiedColor.getRGB());
 

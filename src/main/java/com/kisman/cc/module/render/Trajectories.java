@@ -58,7 +58,7 @@ public class Trajectories extends Module {
                     flightPath.position.z - mc.getRenderManager().viewerPosZ));
         }
 
-        final boolean bobbing = mc.gameSettings.viewBobbing;
+        boolean bobbing = mc.gameSettings.viewBobbing;
         mc.gameSettings.viewBobbing = false;
         mc.entityRenderer.setupCameraTransform(event.getPartialTicks(), 0);
         GlStateManager.pushMatrix();
@@ -72,8 +72,8 @@ public class Trajectories extends Module {
         glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
         GlStateManager.disableDepth();
         glEnable(GL32.GL_DEPTH_CLAMP);
-        final Tessellator tessellator = Tessellator.getInstance();
-        final BufferBuilder bufferbuilder = tessellator.getBuffer();
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
 
         while (!flightPoint.isEmpty()) {
             bufferbuilder.begin(GL11.GL_LINE_STRIP, DefaultVertexFormats.POSITION_COLOR);
@@ -101,22 +101,22 @@ public class Trajectories extends Module {
         mc.entityRenderer.setupCameraTransform(event.getPartialTicks(), 0);
 
         if (flightPath.collided) {
-            final RayTraceResult hit = flightPath.target;
+            RayTraceResult hit = flightPath.target;
             AxisAlignedBB bb = null;
 
             if (hit == null)
                 return;
 
             if (hit.typeOfHit == RayTraceResult.Type.BLOCK) {
-                final BlockPos blockpos = hit.getBlockPos();
-                final IBlockState iblockstate = mc.world.getBlockState(blockpos);
+                BlockPos blockpos = hit.getBlockPos();
+                IBlockState iblockstate = mc.world.getBlockState(blockpos);
 
                 if (iblockstate.getMaterial() != Material.AIR && mc.world.getWorldBorder().contains(blockpos)) {
-                    final Vec3d interp = MathUtil.interpolateEntity(mc.player, mc.getRenderPartialTicks());
+                    Vec3d interp = MathUtil.interpolateEntity(mc.player, mc.getRenderPartialTicks());
                     bb = iblockstate.getSelectedBoundingBox(mc.world, blockpos).grow(0.0020000000949949026D).offset(-interp.x, -interp.y, -interp.z);
                 }
             } else if (hit.typeOfHit == RayTraceResult.Type.ENTITY && hit.entityHit != null) {
-                final AxisAlignedBB entityBB = hit.entityHit.getEntityBoundingBox();
+                AxisAlignedBB entityBB = hit.entityHit.getEntityBoundingBox();
                 if (entityBB != null) {
                     bb = new AxisAlignedBB(entityBB.minX - mc.getRenderManager().viewerPosX, entityBB.minY - mc.getRenderManager().viewerPosY, entityBB.minZ - mc.getRenderManager().viewerPosZ,
                             entityBB.maxX - mc.getRenderManager().viewerPosX, entityBB.maxY - mc.getRenderManager().viewerPosY, entityBB.maxZ - mc.getRenderManager().viewerPosZ);
@@ -134,7 +134,7 @@ public class Trajectories extends Module {
             return ThrowableType.NONE;
         }
 
-        final ItemStack itemStack = player.getHeldItem(EnumHand.MAIN_HAND);
+        ItemStack itemStack = player.getHeldItem(EnumHand.MAIN_HAND);
         switch (Item.getIdFromItem(itemStack.getItem())) {
             case 261: // ItemBow
                 if (player.isHandActive())

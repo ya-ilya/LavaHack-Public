@@ -35,9 +35,9 @@ public class ColorUtil {
     }
 
     public int alpha(Color color, float alpha) {
-        final float red = (float) color.getRed() / 255;
-        final float green = (float) color.getGreen() / 255;
-        final float blue = (float) color.getBlue() / 255;
+        float red = (float) color.getRed() / 255;
+        float green = (float) color.getGreen() / 255;
+        float blue = (float) color.getBlue() / 255;
         r = (int) red;
         g = (int) green;
         b = (int) blue;

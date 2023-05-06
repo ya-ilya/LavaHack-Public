@@ -29,7 +29,7 @@ public class ParticleSystem {
     }
 
     public void tick(final int delta) {
-        for (final Particle particle : this.particleList) particle.tick(delta, 0.1f);
+        for (Particle particle : this.particleList) particle.tick(delta, 0.1f);
     }
 
     //Draws a line
@@ -158,20 +158,20 @@ public class ParticleSystem {
         GL11.glDisable(2929);
         GL11.glDepthMask(false);
         if (Minecraft.getMinecraft().currentScreen == null) return;
-        for (final Particle particle : this.particleList) {
+        for (Particle particle : this.particleList) {
             if (Config.instance.particlesGradientMode.getValString().equals(Config.ParticlesGradientMode.Syns.name())) particle.color.glColor();
             else GL11.glColor4f(StaticParticles.color.getRed() / 255.0f, StaticParticles.color.getGreen() / 255.0f, StaticParticles.color.getBlue() / 255.0f, particle.getAlpha() / 255.0f);
             GL11.glPointSize(particle.getSize());
             GL11.glBegin(0);
             GL11.glVertex2f(particle.getX(), particle.getY());
             GL11.glEnd();
-            final int Width = Mouse.getEventX() * Minecraft.getMinecraft().currentScreen.width / Minecraft.getMinecraft().displayWidth;
-            final int Height = Minecraft.getMinecraft().currentScreen.height - Mouse.getEventY() * Minecraft.getMinecraft().currentScreen.height / Minecraft.getMinecraft().displayHeight - 1;
+            int Width = Mouse.getEventX() * Minecraft.getMinecraft().currentScreen.width / Minecraft.getMinecraft().displayWidth;
+            int Height = Minecraft.getMinecraft().currentScreen.height - Mouse.getEventY() * Minecraft.getMinecraft().currentScreen.height / Minecraft.getMinecraft().displayHeight - 1;
             float nearestDistance = 0.0f;
             Particle nearestParticle = null;
-            final int dist = 100;
-            for (final Particle particle2 : this.particleList) {
-                final float distance = particle.getDistanceTo(particle2);
+            int dist = 100;
+            for (Particle particle2 : this.particleList) {
+                float distance = particle.getDistanceTo(particle2);
                 if (distance <= dist && (distance((float)Width, (float)Height, particle.getX(), particle.getY()) <= dist || distance((float)Width, (float)Height, particle2.getX(), particle2.getY()) <= dist)) {
                     if (nearestDistance > 0.0f && distance > nearestDistance) continue;
                     nearestDistance = distance;
@@ -179,7 +179,7 @@ public class ParticleSystem {
                 }
             }
             if (nearestParticle == null) continue;
-            final float alpha = Math.min(1.0f, Math.min(1.0f, 1.0f - nearestDistance / dist));
+            float alpha = Math.min(1.0f, Math.min(1.0f, 1.0f - nearestDistance / dist));
 
             //Checks if two gradient particles mode is enabled
             if (StaticParticles.IsTwoGParticlesEnabled){

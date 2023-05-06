@@ -144,11 +144,11 @@ public class AutoFirework extends Module {
 
                 if (Math.sqrt(mc.player.getDistanceSq(playerPos.getX(), playerPos.getY(), playerPos.getZ())) <= range.getValDouble()) {
                     //switch
-                    final int oldSlot = mc.player.inventory.getBestHotbarSlot();
+                    int oldSlot = mc.player.inventory.getBestHotbarSlot();
 
                     //rotate
                     if (rotate.getValBoolean()) {
-                        final double[] pos = EntityUtil.calculateLookAt(target.posX + 0.5, target.posY - 0.5, target.posZ + 0.5, mc.player);
+                        double[] pos = EntityUtil.calculateLookAt(target.posX + 0.5, target.posY - 0.5, target.posZ + 0.5, mc.player);
 
                         aimBot.rotationSpoof = new RotationSpoof((float) pos[0], (float) pos[1]);
 
@@ -167,7 +167,7 @@ public class AutoFirework extends Module {
                         else facing = result.sideHit;
                     }
 
-                    mc.getConnection().sendPacket(new CPacketPlayerTryUseItemOnBlock(playerPos, facing, fireHand.getValString().equalsIgnoreCase("Default") ? mc.player.getHeldItemOffhand().getItem() == Items.FIREWORKS ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND : fireHand.getValString().equalsIgnoreCase("MainHand") ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND, 0, 0, 0));
+                    mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(playerPos, facing, fireHand.getValString().equalsIgnoreCase("Default") ? mc.player.getHeldItemOffhand().getItem() == Items.FIREWORKS ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND : fireHand.getValString().equalsIgnoreCase("MainHand") ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND, 0, 0, 0));
 
                     //switch return
                     if (switchFireReturn.getValBoolean())
@@ -196,16 +196,16 @@ public class AutoFirework extends Module {
     }
 
     private void doStaticTrap() {
-        final List<Vec3d> placeTargets = BlockUtil.targets(target.getPositionVector(), antiScaffold.getValBoolean(), antiStep.getValBoolean(), surroundPlacing.getValBoolean(), false, false, this.raytrace.getValBoolean());
+        List<Vec3d> placeTargets = BlockUtil.targets(target.getPositionVector(), antiScaffold.getValBoolean(), antiStep.getValBoolean(), surroundPlacing.getValBoolean(), false, false, this.raytrace.getValBoolean());
         placeList(placeTargets);
     }
 
-    private void placeList(final List<Vec3d> list) {
+    private void placeList(List<Vec3d> list) {
         list.sort((vec3d, vec3d2) -> Double.compare(mc.player.getDistanceSq(vec3d2.x, vec3d2.y, vec3d2.z), mc.player.getDistanceSq(vec3d.x, vec3d.y, vec3d.z)));
         list.sort(Comparator.comparingDouble(vec3d -> vec3d.y));
-        for (final Vec3d vec3d3 : list) {
-            final BlockPos position = new BlockPos(vec3d3);
-            final int placeability = BlockUtil.isPositionPlaceable(position, this.raytrace.getValBoolean());
+        for (Vec3d vec3d3 : list) {
+            BlockPos position = new BlockPos(vec3d3);
+            int placeability = BlockUtil.isPositionPlaceable(position, this.raytrace.getValBoolean());
             if (placeability == 1 && (this.retries.get(position) == null || this.retries.get(position) < 4)) {
                 this.placeBlock(position);
                 this.retries.put(position, (this.retries.get(position) == null) ? 1 : (this.retries.get(position) + 1));
@@ -221,12 +221,12 @@ public class AutoFirework extends Module {
         if (mc.player == null || startPos == null) return false;
         didPlace = false;
         placements = 0;
-        final int obbySlot2 = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+        int obbySlot2 = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
         if (obbySlot2 == -1) {
             setToggled(false);
             return true;
         }
-        final int obbySlot3 = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+        int obbySlot3 = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
         if (!super.isToggled()) return true;
         if (!startPos.equals(EntityUtil.getRoundedBlockPos(mc.player))) {
             setToggled(false);
@@ -249,11 +249,11 @@ public class AutoFirework extends Module {
         return target == null || !trapTimer.passedMillis(trapDelay.getValInt());
     }
 
-    private void placeBlock(final BlockPos pos) {
+    private void placeBlock(BlockPos pos) {
         if (this.placements < this.blocksPerTick.getValInt() && AutoTrap.mc.player.getDistanceSq(pos) <= MathUtil.square(5.0)) {
-            final int originalSlot = AutoTrap.mc.player.inventory.currentItem;
-            final int obbySlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
-            final int eChestSot = InventoryUtil.findBlock(Blocks.ENDER_CHEST, 0, 9);
+            int originalSlot = AutoTrap.mc.player.inventory.currentItem;
+            int obbySlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+            int eChestSot = InventoryUtil.findBlock(Blocks.ENDER_CHEST, 0, 9);
 
             if (obbySlot == -1 && eChestSot == -1) this.toggle();
 

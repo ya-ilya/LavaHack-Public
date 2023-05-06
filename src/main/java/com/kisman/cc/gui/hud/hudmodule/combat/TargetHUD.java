@@ -181,7 +181,7 @@ public class TargetHUD extends HudModule {
 
         //draw armor and items in hands
         double posX = healthX;
-        for (final ItemStack item : target.getArmorInventoryList()) {
+        for (ItemStack item : target.getArmorInventoryList()) {
             if (item.isEmpty) continue;
             GL11.glPushMatrix();
             GL11.glTranslated(posX, healthY + circleOffset, 0);
@@ -272,7 +272,7 @@ public class TargetHUD extends HudModule {
         //draw face texture
         try {
             GL11.glPushMatrix();
-            mc.getTextureManager().bindTexture(mc.getConnection().getPlayerInfo(target.getName()).getLocationSkin());
+            mc.getTextureManager().bindTexture(mc.player.connection.getPlayerInfo(target.getName()).getLocationSkin());
             GL11.glColor4f(1, 1, 1, 1);
             Gui.drawScaledCustomSizeModalRect((int) (x + borderOffset + 1), (int) (y + borderOffset * 3 + CustomFontUtil.getFontHeight() + 1), 8.0F, 8, 8, 8, 25, 25, 64.0F, 64.0F);
             GL11.glPopMatrix();
@@ -287,7 +287,7 @@ public class TargetHUD extends HudModule {
 
         //draw armor and items in hands
         double posX = x + borderOffset;
-        for (final ItemStack item : target.getArmorInventoryList()) {
+        for (ItemStack item : target.getArmorInventoryList()) {
             if (item.isEmpty) continue;
             GL11.glPushMatrix();
             GL11.glTranslated(posX, y + borderOffset * 3 + CustomFontUtil.getFontHeight() + 27 + 0.5, 0);
@@ -334,7 +334,7 @@ public class TargetHUD extends HudModule {
     }
 
     private void drawVega() {
-        final ScaledResolution scaledResolution = new ScaledResolution(mc);
+        ScaledResolution scaledResolution = new ScaledResolution(mc);
         double renderX = getX();
         double renderY = getY();
         float maxX = Math.max(40, CustomFontUtil.getStringWidth("HP: " + (int) target.getHealth() + " | Dist: " + mc.player.getDistance(target)) + 70);
@@ -356,14 +356,14 @@ public class TargetHUD extends HudModule {
         Gui.drawRect((int) renderX + 1, (int) renderY + 38 + 5, (int) (renderX - 1 + hpBarWidth), (int) renderY + 39 + 5, ColorUtil.getColor(0, 0, 0));
 
         try {
-            mc.getTextureManager().bindTexture(mc.getConnection().getPlayerInfo(target.getName()).getLocationSkin());
+            mc.getTextureManager().bindTexture(mc.player.connection.getPlayerInfo(target.getName()).getLocationSkin());
             GL11.glColor4f(1, 1, 1, 1);
             Gui.drawScaledCustomSizeModalRect((int) (renderX + 2), (int) (renderY + 3), 8.0F, 8, 8, 8, 25, 25, 64.0F, 64.0F);
         } catch (Exception ignored) {}
         CustomFontUtil.drawString("HP: " + (int) target.getHealth() + " | Dist: " + mc.player.getDistance(target), renderX + 1 + 27 + 5, renderY + 2, -1);
         CustomFontUtil.drawString(target.getName(), renderX + 1 + 27 + 5, renderY + 4 + CustomFontUtil.getFontHeight(), -1);
         int posX = scaledResolution.getScaledWidth() / 2 + 53;
-        for (final ItemStack item : target.getArmorInventoryList()) {
+        for (ItemStack item : target.getArmorInventoryList()) {
             if (item.isEmpty) continue;
             GL11.glPushMatrix();
             GL11.glTranslated(posX - 27, renderY + 29 + 0.5, 0);

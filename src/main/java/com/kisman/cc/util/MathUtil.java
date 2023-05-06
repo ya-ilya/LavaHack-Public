@@ -74,7 +74,7 @@ public class MathUtil {
     }
 
     public static double[] directionSpeedNoForward(double speed) {
-        final Minecraft mc = Minecraft.getMinecraft();
+        Minecraft mc = Minecraft.getMinecraft();
         float forward = 1f;
 
         if (mc.gameSettings.keyBindLeft.isPressed() || mc.gameSettings.keyBindRight.isPressed() || mc.gameSettings.keyBindBack.isPressed() || mc.gameSettings.keyBindForward.isPressed()) forward = mc.player.movementInput.moveForward;
@@ -90,10 +90,10 @@ public class MathUtil {
             else if (forward < 0) forward = -1;
         }
 
-        final double sin = Math.sin(Math.toRadians(yaw + 90));
-        final double cos = Math.cos(Math.toRadians(yaw + 90));
-        final double posX = (forward * speed * cos + side * speed * sin);
-        final double posZ = (forward * speed * sin - side * speed * cos);
+        double sin = Math.sin(Math.toRadians(yaw + 90));
+        double cos = Math.cos(Math.toRadians(yaw + 90));
+        double posX = (forward * speed * cos + side * speed * sin);
+        double posZ = (forward * speed * sin - side * speed * cos);
         return new double[]{posX, posZ};
     }
 
@@ -208,7 +208,7 @@ public class MathUtil {
     }
 
     public static double[] directionSpeed(double speed) {
-        final Minecraft mc = Minecraft.getMinecraft();
+        Minecraft mc = Minecraft.getMinecraft();
         float forward = mc.player.movementInput.moveForward;
         float side = mc.player.movementInput.moveStrafe;
         float yaw = mc.player.prevRotationYaw + (mc.player.rotationYaw - mc.player.prevRotationYaw) * mc.getRenderPartialTicks();

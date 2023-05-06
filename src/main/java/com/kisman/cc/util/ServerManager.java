@@ -37,14 +37,14 @@ public class ServerManager {
 
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event) {
-        final long currentTime = System.currentTimeMillis();
+        long currentTime = System.currentTimeMillis();
 
         if (lastUpdate == -1L) {
             lastUpdate = currentTime;
             return;
         }
 
-        final long timeDiff = currentTime - lastUpdate;
+        long timeDiff = currentTime - lastUpdate;
         float tickTime = timeDiff / 20;
 
         if (tickTime == 0) {
@@ -98,11 +98,11 @@ public class ServerManager {
     }
 
     public int getPing() {
-        if (mc.player == null && mc.world == null) {
+        if (mc.player == null || mc.world == null) {
             return 0;
         }
         try {
-            return Objects.requireNonNull(mc.getConnection()).getPlayerInfo(mc.getConnection().getGameProfile().getId()).getResponseTime();
+            return mc.player.connection.getPlayerInfo(mc.player.connection.getGameProfile().getId()).getResponseTime();
         }
         catch (Exception e) {
             return 0;

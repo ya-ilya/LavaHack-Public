@@ -55,7 +55,7 @@ public class CFontRenderer extends CustomFont {
             color = ((color & 0xFCFCFC) >> 2 | (color & new Color(20, 20, 20, 200).getRGB()));
         }
         CharData[] currentData = this.charData;
-        final float alpha = (color >> 24 & 0xFF) / 255.0f;
+        float alpha = (color >> 24 & 0xFF) / 255.0f;
         boolean bold = false;
         boolean italic = false;
         boolean strikethrough = false;
@@ -67,12 +67,12 @@ public class CFontRenderer extends CustomFont {
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(770, 771);
         GlStateManager.color((color >> 16 & 0xFF) / 255.0f, (color >> 8 & 0xFF) / 255.0f, (color & 0xFF) / 255.0f, alpha);
-        final int size = text.length();
+        int size = text.length();
         GlStateManager.enableTexture2D();
         GlStateManager.bindTexture(this.tex.getGlTextureId());
         GL11.glBindTexture(3553, this.tex.getGlTextureId());
         for (int i = 0; i < size; ++i) {
-            final char character = text.charAt(i);
+            char character = text.charAt(i);
             if (String.valueOf(character).equals("§")) {
                 int colorIndex = 21;
                 try {
@@ -93,7 +93,7 @@ public class CFontRenderer extends CustomFont {
                     if (shadow) {
                         colorIndex += 16;
                     }
-                    final int colorcode = this.colorCode[colorIndex];
+                    int colorcode = this.colorCode[colorIndex];
                     GlStateManager.color((colorcode >> 16 & 0xFF) / 255.0f, (colorcode >> 8 & 0xFF) / 255.0f, (colorcode & 0xFF) / 255.0f, alpha);
                 } else if (colorIndex == 17) {
                     bold = true;

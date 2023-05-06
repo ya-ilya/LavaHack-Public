@@ -85,18 +85,18 @@ public class RangeVisualiser extends Module {
                 GlStateManager.disableTexture2D();
                 GlStateManager.enableDepth();
                 GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-                final RenderManager renderManager = mc.getRenderManager();
+                RenderManager renderManager = mc.getRenderManager();
                 float hue = System.currentTimeMillis() % 7200L / 7200.0f;
                 Color color = new Color(Color.HSBtoRGB(hue, 1.0f, 1.0f));
-                final ArrayList<Vec3d> hVectors = new ArrayList<>();
-                final double x = en.lastTickPosX + (en.posX - en.lastTickPosX) * event.getPartialTicks() - renderManager.renderPosX;
-                final double y = en.lastTickPosY + (en.posY - en.lastTickPosY) * event.getPartialTicks() - renderManager.renderPosY;
-                final double z = en.lastTickPosZ + (en.posZ - en.lastTickPosZ) * event.getPartialTicks() - renderManager.renderPosZ;
+                ArrayList<Vec3d> hVectors = new ArrayList<>();
+                double x = en.lastTickPosX + (en.posX - en.lastTickPosX) * event.getPartialTicks() - renderManager.renderPosX;
+                double y = en.lastTickPosY + (en.posY - en.lastTickPosY) * event.getPartialTicks() - renderManager.renderPosY;
+                double z = en.lastTickPosZ + (en.posZ - en.lastTickPosZ) * event.getPartialTicks() - renderManager.renderPosZ;
                 GL11.glLineWidth((float) this.lineWidth.getValDouble());
                 GL11.glBegin(1);
                 for (int i = 0; i <= 360; ++i) {
-                    final Vec3d vec = new Vec3d(x + Math.sin(i * 3.141592653589793 / 180.0) * this.radius.getValDouble(), y + 0.1, z + Math.cos(i * 3.141592653589793 / 180.0) * this.radius.getValDouble());
-                    final RayTraceResult result = mc.world.rayTraceBlocks(new Vec3d(en.posX, en.posY + en.getEyeHeight(), en.posZ), vec, false, false, true);
+                    Vec3d vec = new Vec3d(x + Math.sin(i * 3.141592653589793 / 180.0) * this.radius.getValDouble(), y + 0.1, z + Math.cos(i * 3.141592653589793 / 180.0) * this.radius.getValDouble());
+                    RayTraceResult result = mc.world.rayTraceBlocks(new Vec3d(en.posX, en.posY + en.getEyeHeight(), en.posZ), vec, false, false, true);
                     if (result != null && this.raytrace.getValBoolean()) {
                         Kisman.LOGGER.info("raytrace was not null");
                         hVectors.add(result.hitVec);

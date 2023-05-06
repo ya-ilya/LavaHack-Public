@@ -80,7 +80,7 @@ public class Pane extends AbstractComponent {
 
     @Override
     public boolean mouseMove(int x, int y, boolean offscreen) {
-        final boolean[] consumed = {false};
+        boolean[] consumed = {false};
 
         components.stream().sorted(Comparator.comparingInt(AbstractComponent::getEventPriority)).forEach(component -> {
             if (!consumed[0]) if (component.mouseMove(x, y, offscreen)) consumed[0] = true;
@@ -91,7 +91,7 @@ public class Pane extends AbstractComponent {
 
     @Override
     public boolean mousePressed(int button, int x, int y, boolean offscreen) {
-        final boolean[] consumed = {false};
+        boolean[] consumed = {false};
 
         components.stream().sorted(Comparator.comparingInt(AbstractComponent::getEventPriority)).forEach(component -> {
             if (!consumed[0]) if (component.mousePressed(button, x, y, offscreen)) consumed[0] = true;
@@ -102,7 +102,7 @@ public class Pane extends AbstractComponent {
 
     @Override
     public boolean mouseReleased(int button, int x, int y, boolean offscreen) {
-        final boolean[] consumed = {false};
+        boolean[] consumed = {false};
 
         components.stream().sorted(Comparator.comparingInt(AbstractComponent::getEventPriority)).forEach(component -> {
             if (!consumed[0]) if (component.mouseReleased(button, x, y, offscreen)) consumed[0] = true;
@@ -113,7 +113,7 @@ public class Pane extends AbstractComponent {
 
     @Override
     public boolean keyPressed(int key, char c) {
-        final boolean[] consumed = {false};
+        boolean[] consumed = {false};
 
         components.stream().sorted(Comparator.comparingInt(AbstractComponent::getEventPriority)).forEach(component -> {
             if (!consumed[0]) if (component.keyPressed(key, c)) consumed[0] = true;

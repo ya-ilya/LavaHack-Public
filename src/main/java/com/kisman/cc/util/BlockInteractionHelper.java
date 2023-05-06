@@ -178,8 +178,8 @@ public class BlockInteractionHelper
 
                 if (l_State2.getBlock() == Blocks.AIR) continue;
 
-                for (final EnumFacing side : EnumFacing.values()) {
-                    final BlockPos neighbor = pos.offset(side);
+                for (EnumFacing side : EnumFacing.values()) {
+                    BlockPos neighbor = pos.offset(side);
 
                     boolean l_IsWater = mc.world.getBlockState(neighbor).getBlock() == Blocks.WATER;
 
@@ -239,21 +239,21 @@ public class BlockInteractionHelper
                 return PlaceResult.CantPlace;
         }
 
-        final Vec3d eyesPos = new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ);
+        Vec3d eyesPos = new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ);
 
-        for (final EnumFacing side : EnumFacing.values()) {
-            final BlockPos neighbor = pos.offset(side);
-            final EnumFacing side2 = side.getOpposite();
+        for (EnumFacing side : EnumFacing.values()) {
+            BlockPos neighbor = pos.offset(side);
+            EnumFacing side2 = side.getOpposite();
 
             boolean l_IsWater = mc.world.getBlockState(neighbor).getBlock() == Blocks.WATER;
 
             if (mc.world.getBlockState(neighbor).getBlock().canCollideCheck(mc.world.getBlockState(neighbor), false)
                     || (l_IsWater && LiquidInteract.instance.isToggled())) {
-                final Vec3d hitVec = new Vec3d((Vec3i) neighbor).add(new Vec3d(0.5, 0.5, 0.5)).add(new Vec3d(side2.getDirectionVec()).scale(0.5));
+                Vec3d hitVec = new Vec3d((Vec3i) neighbor).add(new Vec3d(0.5, 0.5, 0.5)).add(new Vec3d(side2.getDirectionVec()).scale(0.5));
                 if (eyesPos.distanceTo(hitVec) <= p_Distance) {
-                    final Block neighborPos = mc.world.getBlockState(neighbor).getBlock();
+                    Block neighborPos = mc.world.getBlockState(neighbor).getBlock();
 
-                    final boolean activated = neighborPos.onBlockActivated(mc.world, pos, mc.world.getBlockState(pos), mc.player, EnumHand.MAIN_HAND, side, 0, 0, 0);
+                    boolean activated = neighborPos.onBlockActivated(mc.world, pos, mc.world.getBlockState(pos), mc.player, EnumHand.MAIN_HAND, side, 0, 0, 0);
 
                     if (BlockInteractionHelper.blackList.contains(neighborPos) || BlockInteractionHelper.shulkerList.contains(neighborPos) || activated) {
                         mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));

@@ -12,8 +12,8 @@ public class FastTrig {
     public static void init() {
         for (int i = 0; i < FastTrig.ATAN2_DIM; ++i) {
             for (int j = 0; j < FastTrig.ATAN2_DIM; ++j) {
-                final float x0 = i / (float)FastTrig.ATAN2_DIM;
-                final float y0 = j / (float)FastTrig.ATAN2_DIM;
+                float x0 = i / (float)FastTrig.ATAN2_DIM;
+                float y0 = j / (float)FastTrig.ATAN2_DIM;
                 FastTrig.atan2[j * FastTrig.ATAN2_DIM + i] = (float)Math.atan2(y0, x0);
             }
         }
@@ -39,9 +39,9 @@ public class FastTrig {
             } else mul = 1.0f;
             add = 0.0f;
         }
-        final double invDiv = 1.0 / ((Math.max(x, y)) * FastTrig.INV_ATAN2_DIM_MINUS_1);
-        final int xi = (int)(x * invDiv);
-        final int yi = (int)(y * invDiv);
+        double invDiv = 1.0 / ((Math.max(x, y)) * FastTrig.INV_ATAN2_DIM_MINUS_1);
+        int xi = (int)(x * invDiv);
+        int yi = (int)(y * invDiv);
         return (FastTrig.atan2[yi * FastTrig.ATAN2_DIM + xi] + add) * mul;
     }
     

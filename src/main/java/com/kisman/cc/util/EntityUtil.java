@@ -59,18 +59,18 @@ public class EntityUtil {
     }
 
     public static double getSpeedBPS(final Entity entity) {
-        final double tX = Math.abs(entity.posX - entity.prevPosX);
-        final double tZ = Math.abs(entity.posZ - entity.prevPosZ);
+        double tX = Math.abs(entity.posX - entity.prevPosX);
+        double tZ = Math.abs(entity.posZ - entity.prevPosZ);
         double length = Math.sqrt(tX * tX + tZ * tZ);
         length *= EntityUtil.mc.getRenderPartialTicks();
         return length * 20.0;
     }
 
     public static boolean isOnLiquid() {
-        final double y = EntityUtil.mc.player.posY - 0.03;
+        double y = EntityUtil.mc.player.posY - 0.03;
         for (int x = MathHelper.floor(EntityUtil.mc.player.posX); x < MathHelper.ceil(EntityUtil.mc.player.posX); ++x) {
             for (int z = MathHelper.floor(EntityUtil.mc.player.posZ); z < MathHelper.ceil(EntityUtil.mc.player.posZ); ++z) {
-                final BlockPos pos = new BlockPos(x, MathHelper.floor(y), z);
+                BlockPos pos = new BlockPos(x, MathHelper.floor(y), z);
                 if (EntityUtil.mc.world.getBlockState(pos).getBlock() instanceof BlockLiquid) return true;
             }
         }
@@ -78,7 +78,7 @@ public class EntityUtil {
     }
 
     public static boolean intersectsWithEntity(final BlockPos pos) {
-        for (final Entity entity : mc.world.loadedEntityList) {
+        for (Entity entity : mc.world.loadedEntityList) {
             if (entity.equals(mc.player)) continue;
             if (entity instanceof EntityItem) continue;
             if (new AxisAlignedBB(pos).intersects(entity.getEntityBoundingBox())) return true;
@@ -98,7 +98,7 @@ public class EntityUtil {
     public static EntityPlayer getTarget(final float range, float wallRange) {
         EntityPlayer currentTarget = null;
         for (int size = mc.world.playerEntities.size(), i = 0; i < size; ++i) {
-            final EntityPlayer player = mc.world.playerEntities.get(i);
+            EntityPlayer player = mc.world.playerEntities.get(i);
             if (AntiBot.instance.isToggled() && AntiBot.instance.mode.checkValString("Zamorozka") && !antibotCheck(player)) continue;
             if (!isntValid(player, range, wallRange)) {
                 if (currentTarget == null) currentTarget = player;
@@ -179,7 +179,7 @@ public class EntityUtil {
     public static Block isColliding(double posX, double posY, double posZ) {
         Block block = null;
         if (mc.player != null) {
-            final AxisAlignedBB bb = mc.player.getRidingEntity() != null ? mc.player.getRidingEntity().getEntityBoundingBox().contract(0.0d, 0.0d, 0.0d).offset(posX, posY, posZ) : mc.player.getEntityBoundingBox().contract(0.0d, 0.0d, 0.0d).offset(posX, posY, posZ);
+            AxisAlignedBB bb = mc.player.getRidingEntity() != null ? mc.player.getRidingEntity().getEntityBoundingBox().contract(0.0d, 0.0d, 0.0d).offset(posX, posY, posZ) : mc.player.getEntityBoundingBox().contract(0.0d, 0.0d, 0.0d).offset(posX, posY, posZ);
             int y = (int) bb.minY;
             for (int x = MathHelper.floor(bb.minX); x < MathHelper.floor(bb.maxX) + 1; x++) for (int z = MathHelper.floor(bb.minZ); z < MathHelper.floor(bb.maxZ) + 1; z++) block = mc.world.getBlockState(new BlockPos(x, y, z)).getBlock();
         }
@@ -190,11 +190,11 @@ public class EntityUtil {
         if (mc.player != null) {
             if (mc.player.fallDistance >= 3.0f) return false;
             boolean inLiquid = false;
-            final AxisAlignedBB bb = mc.player.getRidingEntity() != null ? mc.player.getRidingEntity().getEntityBoundingBox() : mc.player.getEntityBoundingBox();
+            AxisAlignedBB bb = mc.player.getRidingEntity() != null ? mc.player.getRidingEntity().getEntityBoundingBox() : mc.player.getEntityBoundingBox();
             int y = MathHelper.floor(bb.minY - (feet ? 0.03 : 0.2));
             for (int x = MathHelper.floor(bb.minX); x < MathHelper.floor(bb.maxX) + 1; x++) {
                 for (int z = MathHelper.floor(bb.minZ); z < MathHelper.floor(bb.maxZ) + 1; z++) {
-                    final Block block = mc.world.getBlockState(new BlockPos(x, y, z)).getBlock();
+                    Block block = mc.world.getBlockState(new BlockPos(x, y, z)).getBlock();
                     if (!(block instanceof BlockAir)) {
                         if (!(block instanceof BlockLiquid)) return false;
                         inLiquid = true;

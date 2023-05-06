@@ -31,8 +31,8 @@ public class PvpResources extends HudModule {
 
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent.Text event) {
-        final int x = (int) getX();
-        final int y = (int) getY();
+        int x = (int) getX();
+        int y = (int) getY();
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         int offset = 0;
 

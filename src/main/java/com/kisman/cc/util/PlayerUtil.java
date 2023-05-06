@@ -114,17 +114,17 @@ public class PlayerUtil {
                 forward = -1.0f;
             }
         }
-        final double sin = Math.sin(Math.toRadians(yaw + 90.0f));
-        final double cos = Math.cos(Math.toRadians(yaw + 90.0f));
-        final double posX = forward * speed * cos + side * speed * sin;
-        final double posZ = forward * speed * sin - side * speed * cos;
+        double sin = Math.sin(Math.toRadians(yaw + 90.0f));
+        double cos = Math.cos(Math.toRadians(yaw + 90.0f));
+        double posX = forward * speed * cos + side * speed * sin;
+        double posZ = forward * speed * sin - side * speed * cos;
         return new double[]{posX, posZ};
     }
 
     public static double getBaseMoveSpeed() {
         double baseSpeed = 0.2873;
         if (mc.player != null && mc.player.isPotionActive(Potion.getPotionById(1))) {
-            final int amplifier = mc.player.getActivePotionEffect(Potion.getPotionById(1)).getAmplifier();
+            int amplifier = mc.player.getActivePotionEffect(Potion.getPotionById(1)).getAmplifier();
             baseSpeed *= 1.0 + 0.2 * (amplifier + 1);
         }
         return baseSpeed;

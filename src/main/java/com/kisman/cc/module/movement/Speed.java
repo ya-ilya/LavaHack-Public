@@ -322,10 +322,10 @@ public class Speed extends Module {
             else if (forward < 0.0f) forward = -1.0f;
         }
 
-        final double sin = Math.sin(Math.toRadians(yaw + 90.0f));
-        final double cos = Math.cos(Math.toRadians(yaw + 90.0f));
-        final double posX = forward * speed * cos + side * speed * sin;
-        final double posZ = forward * speed * sin - side * speed * cos;
+        double sin = Math.sin(Math.toRadians(yaw + 90.0f));
+        double cos = Math.cos(Math.toRadians(yaw + 90.0f));
+        double posX = forward * speed * cos + side * speed * sin;
+        double posZ = forward * speed * sin - side * speed * cos;
         return new double[]{posX, posZ};
     }
 

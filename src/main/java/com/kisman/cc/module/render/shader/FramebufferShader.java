@@ -69,7 +69,7 @@ public abstract class FramebufferShader extends Shader {
     }
 
     public void drawFramebuffer(final Framebuffer framebuffer) {
-        final ScaledResolution scaledResolution = new ScaledResolution(this.mc);
+        ScaledResolution scaledResolution = new ScaledResolution(this.mc);
         GL11.glBindTexture(3553, framebuffer.framebufferTexture);
         GL11.glBegin(7);
         GL11.glTexCoord2d(Double.longBitsToDouble(Double.doubleToLongBits(1.7921236082576344E308) ^ 0x7FEFE69EB44D9FE1L), Double.longBitsToDouble(Double.doubleToLongBits(4.899133169559449) ^ 0x7FE398B65D9806D1L));

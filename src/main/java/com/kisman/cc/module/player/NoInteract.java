@@ -37,7 +37,7 @@ public class NoInteract extends Module {
 
         if (event.getPacket() instanceof CPacketPlayerTryUseItemOnBlock && mc.objectMouseOver != null &&mc.objectMouseOver.getBlockPos() != null && mc.world.getBlockState(mc.objectMouseOver.getBlockPos()).getBlock() != null) {
 
-            final Block block = mc.world.getBlockState(mc.objectMouseOver.getBlockPos()).getBlock();
+            Block block = mc.world.getBlockState(mc.objectMouseOver.getBlockPos()).getBlock();
 
             if ((block == Blocks.CRAFTING_TABLE && craft.getValBoolean()) ||
                     (block == Blocks.FURNACE && furnace.getValBoolean()) ||

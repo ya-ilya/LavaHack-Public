@@ -24,18 +24,18 @@ public class MainAiImpr {
     @SubscribeEvent
     public void onEntityJoinWorld(EntityJoinWorldEvent event) {
         if (Optimizer.instance == null || !Optimizer.instance.isToggled()) return;
-        final Entity entity = event.getEntity();
+        Entity entity = event.getEntity();
         if (entity instanceof EntityLiving) {
-            final EntityLiving living = (EntityLiving)entity;
+            EntityLiving living = (EntityLiving)entity;
 
             boolean removeLookAi = Optimizer.instance.removeLookAi.getValBoolean();
             boolean removeLookIdle = Optimizer.instance.removeLookIdle.getValBoolean();
             boolean replaceLookHelper = Optimizer.instance.replaceLookHelper.getValBoolean();
 
             if (removeLookAi || removeLookIdle) {
-                final Iterator<EntityAITasks.EntityAITaskEntry> it = living.tasks.taskEntries.iterator();
+                Iterator<EntityAITasks.EntityAITaskEntry> it = living.tasks.taskEntries.iterator();
                 while (it.hasNext()) {
-                    final EntityAITasks.EntityAITaskEntry obj = it.next();
+                    EntityAITasks.EntityAITaskEntry obj = it.next();
                     if (obj != null) {
                         if (!(removeLookAi && obj.action instanceof EntityAIWatchClosest)) if (!removeLookIdle || !(obj.action instanceof EntityAILookIdle)) continue;
                         it.remove();
@@ -43,7 +43,7 @@ public class MainAiImpr {
                 }
             }
             if (replaceLookHelper && (living.getLookHelper() == null || living.getLookHelper().getClass() == EntityLookHelper.class)) {
-                final EntityLookHelper oldHelper = living.lookHelper;
+                EntityLookHelper oldHelper = living.lookHelper;
                 living.lookHelper = new FixedEntityLookHelper(living);
                 living.lookHelper.posX = oldHelper.posX;
                 living.lookHelper.posY = oldHelper.posY;

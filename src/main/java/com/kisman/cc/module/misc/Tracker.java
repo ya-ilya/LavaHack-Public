@@ -115,7 +115,7 @@ public class Tracker extends Module {
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (mc.player != null && mc.world != null && event.getPacket() instanceof CPacketPlayerTryUseItemOnBlock) {
-            final CPacketPlayerTryUseItemOnBlock packet = (CPacketPlayerTryUseItemOnBlock)event.getPacket();
+            CPacketPlayerTryUseItemOnBlock packet = (CPacketPlayerTryUseItemOnBlock)event.getPacket();
             if (Tracker.mc.player.getHeldItem(packet.hand).getItem() == Items.END_CRYSTAL && !AntiTrap.instance.placedPos.contains(packet.position) && !AutoRer.instance.placedList.contains(packet.position)) {
                 this.manuallyPlaced.add(packet.position);
             }
@@ -126,8 +126,8 @@ public class Tracker extends Module {
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
         if (mc.player != null && mc.world != null && (this.autoEnable.getValBoolean() || this.autoDisable.getValBoolean()) && event.getPacket() instanceof SPacketChat) {
-            final SPacketChat packet = (SPacketChat)event.getPacket();
-            final String message = packet.getChatComponent().getFormattedText();
+            SPacketChat packet = (SPacketChat)event.getPacket();
+            String message = packet.getChatComponent().getFormattedText();
             if (this.autoEnable.getValBoolean() && (message.contains("has accepted your duel request") || message.contains("Accepted the duel request from")) && !message.contains("<")) {
                 ChatUtil.message("Tracker will enable in 5 seconds.");
                 this.timer.reset();

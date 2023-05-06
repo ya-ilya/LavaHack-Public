@@ -22,10 +22,10 @@ public class  VisualRange extends Module {
     public void update() {
         this.newNames.clear();
         try {
-            for (final Entity entity : mc.world.loadedEntityList) if (entity instanceof EntityPlayer && !entity.getName().equalsIgnoreCase(mc.player.getName())) this.newNames.add(entity.getName());
+            for (Entity entity : mc.world.loadedEntityList) if (entity instanceof EntityPlayer && !entity.getName().equalsIgnoreCase(mc.player.getName())) this.newNames.add(entity.getName());
             if (!this.names.equals(this.newNames)) {
-                for (final String name : this.newNames) if (!this.names.contains(name)) ChatUtil.warning(name + " entered in visual range!");
-                for (final String name : this.names) if (!this.newNames.contains(name)) ChatUtil.message(name + " left from visual range!");
+                for (String name : this.newNames) if (!this.names.contains(name)) ChatUtil.warning(name + " entered in visual range!");
+                for (String name : this.names) if (!this.newNames.contains(name)) ChatUtil.message(name + " left from visual range!");
                 this.names.clear();
                 this.names.addAll(this.newNames);
             }

@@ -22,7 +22,7 @@ public class AuthSys {
     private static volatile HttpServer srv;
     
     public static void start(final MSAuthScreen gui) {
-        final String done = "<html><body><h1>You can close this window now.</h1></body></html>";
+        String done = "<html><body><h1>You can close this window now.</h1></body></html>";
         new Thread(() -> {
             try {
                 if (AuthSys.srv == null) {
@@ -31,14 +31,14 @@ public class AuthSys {
                         (AuthSys.srv = HttpServer.create(new InetSocketAddress(59125), 0)).createContext("/", exchange -> {
                             try {
                                 gui.setState("Processing token...");
-                                final byte[] b = done.getBytes(StandardCharsets.UTF_8);
+                                byte[] b = done.getBytes(StandardCharsets.UTF_8);
                                 exchange.getResponseHeaders().put("Content-Type", Collections.singletonList("text/html; charset=UTF-8"));
                                 exchange.sendResponseHeaders(200, b.length);
-                                final OutputStream os = exchange.getResponseBody();
+                                OutputStream os = exchange.getResponseBody();
                                 os.write(b);
                                 os.flush();
                                 os.close();
-                                final String s = exchange.getRequestURI().getQuery();
+                                String s = exchange.getRequestURI().getQuery();
                                 if (s == null) gui.error("query=null");
                                 else if (s.startsWith("code=")) accessTokenStep(s.replace("code=", ""), gui);
                                 else if (s.equals("error=access_denied&error_description=The user has denied access to the scope requested by the client application.")) gui.error("Authorization cancelled.");
@@ -79,8 +79,8 @@ public class AuthSys {
     }
     
     private static void accessTokenStep(final String code, final MSAuthScreen gui) throws Throwable {
-        final PostRequest pr = new PostRequest("https://login.live.com/oauth20_token.srf").header("Content-Type", "application/x-www-form-urlencoded");
-        final Map<Object, Object> data = new HashMap<>();
+        PostRequest pr = new PostRequest("https://login.live.com/oauth20_token.srf").header("Content-Type", "application/x-www-form-urlencoded");
+        Map<Object, Object> data = new HashMap<>();
         data.put("client_id", "54fd49e4-2103-4044-9603-2b028c814ec3");
         data.put("code", code);
         data.put("grant_type", "authorization_code");
@@ -95,9 +95,9 @@ public class AuthSys {
     
     private static void xblStep(final String token, final MSAuthScreen gui) throws Throwable {
         gui.setState("Logging in...");
-        final PostRequest pr = new PostRequest("https://user.auth.xboxlive.com/user/authenticate").header("Content-Type", "application/json").header("Accept", "application/json");
-        final HashMap<Object, Object> map = new HashMap<>();
-        final HashMap<Object, Object> sub = new HashMap<>();
+        PostRequest pr = new PostRequest("https://user.auth.xboxlive.com/user/authenticate").header("Content-Type", "application/json").header("Accept", "application/json");
+        HashMap<Object, Object> map = new HashMap<>();
+        HashMap<Object, Object> sub = new HashMap<>();
         sub.put("AuthMethod", "RPS");
         sub.put("SiteName", "user.auth.xboxlive.com");
         sub.put("RpsTicket", "d=" + token);
@@ -112,9 +112,9 @@ public class AuthSys {
     }
     
     private static void xstsStep(final String xbl, final MSAuthScreen gui) throws Throwable {
-        final PostRequest pr = new PostRequest("https://xsts.auth.xboxlive.com/xsts/authorize").header("Content-Type", "application/json").header("Accept", "application/json");
-        final HashMap<Object, Object> map = new HashMap<>();
-        final HashMap<Object, Object> sub = new HashMap<>();
+        PostRequest pr = new PostRequest("https://xsts.auth.xboxlive.com/xsts/authorize").header("Content-Type", "application/json").header("Accept", "application/json");
+        HashMap<Object, Object> map = new HashMap<>();
+        HashMap<Object, Object> sub = new HashMap<>();
         sub.put("SandboxId", "RETAIL");
         sub.put("UserTokens", Collections.singletonList(xbl));
         map.put("Properties", sub);
@@ -123,13 +123,13 @@ public class AuthSys {
         pr.post(AuthSys.gson.toJson(map));
         if (pr.response() == 401) throw new MicrosoftAuthException("This account doesn't have Minecraft account linked.");
         if (pr.response() != 200) throw new MicrosoftAuthException("xsts response: " + pr.response());
-        final JsonObject jo = AuthSys.gson.fromJson(pr.body(), JsonObject.class);
+        JsonObject jo = AuthSys.gson.fromJson(pr.body(), JsonObject.class);
         minecraftTokenStep(jo.getAsJsonObject("DisplayClaims").getAsJsonArray("xui").get(0).getAsJsonObject().get("uhs").getAsString(), jo.get("Token").getAsString(), gui);
     }
     
     private static void minecraftTokenStep(final String xbl, final String xsts, final MSAuthScreen gui) throws Throwable {
-        final PostRequest pr = new PostRequest("https://api.minecraftservices.com/authentication/login_with_xbox").header("Content-Type", "application/json").header("Accept", "application/json");
-        final Map<Object, Object> map = new HashMap<>();
+        PostRequest pr = new PostRequest("https://api.minecraftservices.com/authentication/login_with_xbox").header("Content-Type", "application/json").header("Accept", "application/json");
+        Map<Object, Object> map = new HashMap<>();
         map.put("identityToken", "XBL3.0 x=" + xbl + ";" + xsts);
         pr.post(AuthSys.gson.toJson(map));
         if (pr.response() != 200) throw new MicrosoftAuthException("minecraftToken response: " + pr.response());
@@ -138,7 +138,7 @@ public class AuthSys {
     
     private static void minecraftStoreVerify(final String token, final MSAuthScreen gui) throws Throwable {
         gui.setState("Verifying...");
-        final GetRequest gr = new GetRequest("https://api.minecraftservices.com/entitlements/mcstore").header("Authorization", "Bearer " + token);
+        GetRequest gr = new GetRequest("https://api.minecraftservices.com/entitlements/mcstore").header("Authorization", "Bearer " + token);
         gr.get();
         if (gr.response() != 200) throw new MicrosoftAuthException("minecraftStore response: " + gr.response());
         if (AuthSys.gson.fromJson(gr.body(), JsonObject.class).getAsJsonArray("items").size() == 0) throw new MicrosoftAuthException("This account doesn't own the game.");
@@ -146,13 +146,13 @@ public class AuthSys {
     }
     
     private static void minecraftProfileVerify(final String token, final MSAuthScreen gui) throws Throwable {
-        final GetRequest gr = new GetRequest("https://api.minecraftservices.com/minecraft/profile").header("Authorization", "Bearer " + token);
+        GetRequest gr = new GetRequest("https://api.minecraftservices.com/minecraft/profile").header("Authorization", "Bearer " + token);
         gr.get();
         if (gr.response() != 200) throw new MicrosoftAuthException("minecraftProfile response: " + gr.response());
-        final JsonObject jo = AuthSys.gson.fromJson(gr.body(), JsonObject.class);
-        final String name = jo.get("name").getAsString();
-        final String uuid = jo.get("id").getAsString();
-        final Minecraft minecraft = Minecraft.getMinecraft();
+        JsonObject jo = AuthSys.gson.fromJson(gr.body(), JsonObject.class);
+        String name = jo.get("name").getAsString();
+        String uuid = jo.get("id").getAsString();
+        Minecraft minecraft = Minecraft.getMinecraft();
         minecraft.addScheduledTask(() -> {
             if (minecraft.currentScreen == gui) {
                 try {

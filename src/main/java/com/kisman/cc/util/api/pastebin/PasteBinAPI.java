@@ -18,7 +18,7 @@ public class PasteBinAPI {
     public List<String> get() {
         List<String> list = new ArrayList<>();
         try {
-            final URL url = new URL(this.url);
+            URL url = new URL(this.url);
             BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
             String inputLine;
             while ((inputLine = in.readLine()) != null) {

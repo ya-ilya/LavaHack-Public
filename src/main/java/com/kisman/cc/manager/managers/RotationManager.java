@@ -66,10 +66,10 @@ public class RotationManager implements Manager {
 
     //credits to 3arthqu4ke cuz im bad at math :)
     public static float[] calcAngle(Vec3d from, Vec3d to) {
-        final double difX = to.x - from.x;
-        final double difY = (to.y - from.y) * -1.0F;
-        final double difZ = to.z - from.z;
-        final double dist = MathHelper.sqrt(difX * difX + difZ * difZ);
+        double difX = to.x - from.x;
+        double difY = (to.y - from.y) * -1.0F;
+        double difZ = to.z - from.z;
+        double dist = MathHelper.sqrt(difX * difX + difZ * difZ);
         return new float[] { ( float ) MathHelper.wrapDegrees(Math.toDegrees(Math.atan2(difZ, difX)) - 90.0f), ( float ) MathHelper.wrapDegrees(Math.toDegrees(Math.atan2(difY, dist))) };
     }
 

@@ -25,7 +25,7 @@ public class SilentXp extends Module {
     }
 
     public void update() {
-        if(mc.currentScreen == null && mc.player != null && mc.world != null) {
+        if (mc.currentScreen == null && mc.player != null && mc.world != null) {
             int oldPitch = (int)mc.player.rotationPitch;
             int oldSlot = mc.player.inventory.currentItem;
 

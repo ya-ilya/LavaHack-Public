@@ -42,7 +42,7 @@ public class Radar extends HudModule {
         Render2DUtil.drawRect(3 + CustomFontUtil.getStringWidth(directions[3]) + x, 150 / 2 - 0.5 + y, 150 - 3 - CustomFontUtil.getStringWidth(directions[1]) + x, 150 / 2 + 0.5 + y, new Colour(50, 50, 50, 165).getRGB());
 
         //draw entities points
-        for(Entity entity : mc.world.loadedEntityList) if(entity instanceof EntityPlayer) if(entity != mc.player) renderEntityPoint(entity);
+        for (Entity entity : mc.world.loadedEntityList) if (entity instanceof EntityPlayer) if (entity != mc.player) renderEntityPoint(entity);
 
         //draw facing's crosshair
         boolean isNorth = isFacing(EnumFacing.NORTH);//Z-
@@ -50,10 +50,10 @@ public class Radar extends HudModule {
         boolean isEast = isFacing(EnumFacing.EAST);//X+
         boolean isWest = isFacing(EnumFacing.WEST);//X-
 
-        if(isNorth) Render2DUtil.drawRect(150 / 2 - 0.5 - 6 + x, 150 / 2 - 0.5 + y, 150 / 2 - 0.5 + x, 150 / 2 + 0.5 + y, color);
-        else if(isSouth) Render2DUtil.drawRect(150 / 2 + 0.5 + x, 150 / 2 - 0.5 + y, 150 / 2 + 0.5 + 6 + x, 150 / 2 - 0.5 + y, color);
-        else if(isEast) Render2DUtil.drawRect(150 / 2 - 0.5 + x, 150 / 2 - 0.5 - 6 + y, 150 / 2 + 0.5 + x, 150 / 2 - 0.5 + y, color);
-        else if(isWest) Render2DUtil.drawRect(150 / 2 - 0.5 + x, 150 / 2 + 0.5 + y, 150 / 2 + 0.5 + x, 150 / 2 + 0.5 + 6 + y, color);
+        if (isNorth) Render2DUtil.drawRect(150 / 2 - 0.5 - 6 + x, 150 / 2 - 0.5 + y, 150 / 2 - 0.5 + x, 150 / 2 + 0.5 + y, color);
+        else if (isSouth) Render2DUtil.drawRect(150 / 2 + 0.5 + x, 150 / 2 - 0.5 + y, 150 / 2 + 0.5 + 6 + x, 150 / 2 - 0.5 + y, color);
+        else if (isEast) Render2DUtil.drawRect(150 / 2 - 0.5 + x, 150 / 2 - 0.5 - 6 + y, 150 / 2 + 0.5 + x, 150 / 2 - 0.5 + y, color);
+        else if (isWest) Render2DUtil.drawRect(150 / 2 - 0.5 + x, 150 / 2 + 0.5 + y, 150 / 2 + 0.5 + x, 150 / 2 + 0.5 + 6 + y, color);
 
 
         //draw direction's names

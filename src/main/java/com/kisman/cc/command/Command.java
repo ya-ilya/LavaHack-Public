@@ -40,23 +40,23 @@ public abstract class Command {
 	}
 
 	public static void message(String message) {
-		if(mc.currentScreen instanceof ConsoleGui) new ConsoleMessageEvent(TextFormatting.GRAY + "[" + TextFormatting.WHITE + Kisman.getName() + TextFormatting.GRAY + "] " + message).post();
+		if (mc.currentScreen instanceof ConsoleGui) new ConsoleMessageEvent(TextFormatting.GRAY + "[" + TextFormatting.WHITE + Kisman.getName() + TextFormatting.GRAY + "] " + message).post();
 		else ChatUtil.message(message);
 	}
 	public static void warning(String message) {
-		if(mc.currentScreen instanceof ConsoleGui) new ConsoleMessageEvent(TextFormatting.GRAY + "[" + TextFormatting.GOLD + Kisman.getName() + TextFormatting.GRAY + "] " + message).post();
+		if (mc.currentScreen instanceof ConsoleGui) new ConsoleMessageEvent(TextFormatting.GRAY + "[" + TextFormatting.GOLD + Kisman.getName() + TextFormatting.GRAY + "] " + message).post();
 		else ChatUtil.warning(message);
 	}
 	public static void complete(String message) {
-		if(mc.currentScreen instanceof ConsoleGui) new ConsoleMessageEvent(TextFormatting.GRAY + "[" + TextFormatting.LIGHT_PURPLE + Kisman.getName() + TextFormatting.GRAY + "] " + message).post();
+		if (mc.currentScreen instanceof ConsoleGui) new ConsoleMessageEvent(TextFormatting.GRAY + "[" + TextFormatting.LIGHT_PURPLE + Kisman.getName() + TextFormatting.GRAY + "] " + message).post();
 		else ChatUtil.complete(message);
 	}
 	public static void error(String message) {
-		if(mc.currentScreen instanceof ConsoleGui) new ConsoleMessageEvent(TextFormatting.GRAY + "[" + TextFormatting.RED + Kisman.getName() + TextFormatting.GRAY + "] " + message).post();
+		if (mc.currentScreen instanceof ConsoleGui) new ConsoleMessageEvent(TextFormatting.GRAY + "[" + TextFormatting.RED + Kisman.getName() + TextFormatting.GRAY + "] " + message).post();
 		else ChatUtil.error(message);
 	}
 	public static void print(String message) {
-		if(mc.currentScreen instanceof ConsoleGui) new ConsoleMessageEvent(message).post();
+		if (mc.currentScreen instanceof ConsoleGui) new ConsoleMessageEvent(message).post();
 		else ChatUtil.simpleMessage(message);
 	}
 }

@@ -38,23 +38,23 @@ public class TargetStrafe extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null || !KillAura.instance.isToggled()) return;
+        if (mc.player == null || mc.world == null || !KillAura.instance.isToggled()) return;
 
         target = EntityUtil.getTarget(6);
 
-        if(target == null) {
+        if (target == null) {
             super.setDisplayInfo("[Radius: " + radius.getValInt() + " | Speed: " + speed.getValInt() + "]");
             return;
         } else super.setDisplayInfo("[" + target.getName() + " | Radius: " + radius.getValInt() + " | Speed: " + speed.getValInt() + "]");
 
-        if(mc.player.collidedHorizontally) {
+        if (mc.player.collidedHorizontally) {
             timer.reset();
             invertStrafe();
         }
 
-        if(autoJump.getValBoolean() && mc.player.onGround) mc.player.jump();
-        if(mc.gameSettings.keyBindLeft.isKeyDown()) direction = 1;
-        if(mc.gameSettings.keyBindRight.isKeyDown()) direction = -1;
+        if (autoJump.getValBoolean() && mc.player.onGround) mc.player.jump();
+        if (mc.gameSettings.keyBindLeft.isKeyDown()) direction = 1;
+        if (mc.gameSettings.keyBindRight.isKeyDown()) direction = -1;
 
         mc.player.movementInput.moveForward = 0;
         doTargetStrafe(getMovementSpeed());

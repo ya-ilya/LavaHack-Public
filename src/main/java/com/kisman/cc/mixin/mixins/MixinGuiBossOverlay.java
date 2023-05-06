@@ -11,6 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinGuiBossOverlay {
     @Inject(method = "renderBossHealth", at = @At("HEAD"), cancellable = true)
     private void renderBoosHealthHook(CallbackInfo ci) {
-        if(NoRender.instance.bossBar.getValBoolean()) ci.cancel();
+        if (NoRender.instance.bossBar.getValBoolean()) ci.cancel();
     }
 }

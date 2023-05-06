@@ -39,7 +39,7 @@ public abstract class MixinRendererLivingBase<T extends EntityLivingBase> extend
     @Inject(method = "doRender(Lnet/minecraft/entity/EntityLivingBase;DDDFF)V", at = @At("HEAD"), cancellable = true)
     private void doRenderHook(T f3, double flag1, double flag, double f, float f1, float f2, CallbackInfo ci) {
         Minecraft mc = Minecraft.getMinecraft();
-        if(mc.world != null && mc.player != null && Optimizer.instance.isToggled() && Optimizer.instance.customEntityRenderRange.getValBoolean() && mc.player.getDistance(f3) > Optimizer.instance.entityRenderRange.getValInt()) ci.cancel();
+        if (mc.world != null && mc.player != null && Optimizer.instance.isToggled() && Optimizer.instance.customEntityRenderRange.getValBoolean() && mc.player.getDistance(f3) > Optimizer.instance.entityRenderRange.getValInt()) ci.cancel();
     }
 
     /**
@@ -54,20 +54,20 @@ public abstract class MixinRendererLivingBase<T extends EntityLivingBase> extend
         if (flag || flag1) {
             if (!this.bindEntityTexture(p_renderModel_1_)) return;
             if (flag1) GlStateManager.enableBlendProfile(GlStateManager.Profile.TRANSPARENT_MODEL);
-            if(Charms.instance.isToggled() && p_renderModel_1_ instanceof EntityPlayer) {
+            if (Charms.instance.isToggled() && p_renderModel_1_ instanceof EntityPlayer) {
                 glPushMatrix();
 
                 glEnable(GL_POLYGON_OFFSET_LINE);
 
-                if(Charms.instance.polygonOffset.getValBoolean()) glPolygonOffset(1.0f, 1000000);
+                if (Charms.instance.polygonOffset.getValBoolean()) glPolygonOffset(1.0f, 1000000);
 
                 glDisable(GL_TEXTURE_2D);
                 glDisable(GL_LIGHTING);
 
-                if(Charms.instance.customColor.getValBoolean()) {
+                if (Charms.instance.customColor.getValBoolean()) {
                     final Setting color = Charms.instance.color;
-                    if(Charms.instance.targetRender.getValBoolean()) {
-                        if(AutoRer.currentTarget == p_renderModel_1_ || KillAura.instance.target == p_renderModel_1_ || AutoCrystal.instance.target == p_renderModel_1_) glColor4f(0.6f, 0, 1, color.getColour().a1);
+                    if (Charms.instance.targetRender.getValBoolean()) {
+                        if (AutoRer.currentTarget == p_renderModel_1_ || KillAura.instance.target == p_renderModel_1_ || AutoCrystal.instance.target == p_renderModel_1_) glColor4f(0.6f, 0, 1, color.getColour().a1);
                         else color.getColour().glColor();
                     } else color.getColour().glColor();
                 }
@@ -77,7 +77,7 @@ public abstract class MixinRendererLivingBase<T extends EntityLivingBase> extend
                 glEnable(GL_DEPTH_TEST);
                 this.mainModel.render(p_renderModel_1_, p_renderModel_2_, p_renderModel_3_, p_renderModel_4_, p_renderModel_5_, p_renderModel_6_, p_renderModel_7_);
 
-                if(Charms.instance.customColor.getValBoolean()) RenderUtil.setupColor(new Color(0xFFFFFFF).hashCode());
+                if (Charms.instance.customColor.getValBoolean()) RenderUtil.setupColor(new Color(0xFFFFFFF).hashCode());
 
                 glEnable(GL_TEXTURE_2D);
                 glEnable(GL_LIGHTING);

@@ -129,7 +129,7 @@ public class Surround extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
         super.setDisplayInfo("[" + (rewrite.getValBoolean() ? (dynamic.getValBoolean() ? "Dynamic" : "Rewrite") : surroundVec.getValString()) + "]");
 
         surroundPlaced = 0;
@@ -189,12 +189,12 @@ public class Surround extends Module {
 
             try {placeSurround();} catch (Exception ignored) {}
 
-            if(switch_.getValString().equals("Silent")) InventoryUtil.switchToSlot(oldSlot, true);
-        } else if(rewrite.getValBoolean()) placeSurround();
+            if (switch_.getValString().equals("Silent")) InventoryUtil.switchToSlot(oldSlot, true);
+        } else if (rewrite.getValBoolean()) placeSurround();
     }
 
     public void placeSurround() {
-        if(rewrite.getValBoolean()) {
+        if (rewrite.getValBoolean()) {
             placeSourrondRewrite();
         } else {
             placeSurroundDefault();
@@ -226,16 +226,16 @@ public class Surround extends Module {
             }
 
             boolean sneak = mc.player.isSneaking();
-            if(noInteract.getValBoolean()) mc.player.setSneaking(true);
+            if (noInteract.getValBoolean()) mc.player.setSneaking(true);
             BlockUtil.placeBlock(new BlockPos(surroundVectors.add(new Vec3d(mc.player.posX, Math.round(mc.player.posY), mc.player.posZ))), packet.getValBoolean(), confirm.getValBoolean());
-            if(noInteract.getValBoolean()) mc.player.setSneaking(sneak);
+            if (noInteract.getValBoolean()) mc.player.setSneaking(sneak);
             PlayerUtil.swingArm((PlayerUtil.Hand) hand.getValEnum());
             surroundPlaced++;
         }
     }
 
     private void placeSourrondRewrite() {
-        if(!getUnsafeBlocks().isEmpty()) {
+        if (!getUnsafeBlocks().isEmpty()) {
             int blockSlot;
             if (InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9) != -1) {
                 blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
@@ -248,46 +248,46 @@ public class Surround extends Module {
 
             InventoryUtil.switchToSlot(blockSlot, switch_.getValString().equals("Silent"));
             float[] oldRots = new float[] {mc.player.rotationYaw, mc.player.rotationPitch};
-            for(BlockPos pos : getUnsafeBlocks()) {
-                if(!rewriteRotate.getValString().equalsIgnoreCase(RotateModes.None.name())) {
+            for (BlockPos pos : getUnsafeBlocks()) {
+                if (!rewriteRotate.getValString().equalsIgnoreCase(RotateModes.None.name())) {
                     float[] rots = RotationUtils.getRotationToPos(pos);
                     mc.player.rotationYaw = rots[0];
                     mc.player.rotationPitch = rots[1];
                 }
-                if(!support.getValString().equalsIgnoreCase(SupportModes.None.name())) if(BlockUtil.getPlaceableSide(pos) == null || support.getValString().equalsIgnoreCase(SupportModes.Static.name()) && BlockUtil2.isPositionPlaceable(pos, true, true)) {
-                    if(crystalBreaker.getValBoolean()) doCrystalBreaker(pos.down());
+                if (!support.getValString().equalsIgnoreCase(SupportModes.None.name())) if (BlockUtil.getPlaceableSide(pos) == null || support.getValString().equalsIgnoreCase(SupportModes.Static.name()) && BlockUtil2.isPositionPlaceable(pos, true, true)) {
+                    if (crystalBreaker.getValBoolean()) doCrystalBreaker(pos.down());
                     place(pos.down());
                 }
-                if(!BlockUtil2.isPositionPlaceable(pos, true, true, tries <= retries.getValInt())) continue;
-                if(crystalBreaker.getValBoolean()) doCrystalBreaker(pos);
+                if (!BlockUtil2.isPositionPlaceable(pos, true, true, tries <= retries.getValInt())) continue;
+                if (crystalBreaker.getValBoolean()) doCrystalBreaker(pos);
                 place(pos);
                 tries++;
             }
             block0: {
-                if(protectOffsets.isEmpty() || !rewriteProtected.getValBoolean()) break block0;
-                for(BlockPos pos : protectOffsets) {
-                    if(!BlockUtil2.isPositionPlaceable(pos, true, true, tries2 <= protectRetries.getValInt())) continue;
-                    if(crystalBreaker.getValBoolean()) doCrystalBreaker(pos);
+                if (protectOffsets.isEmpty() || !rewriteProtected.getValBoolean()) break block0;
+                for (BlockPos pos : protectOffsets) {
+                    if (!BlockUtil2.isPositionPlaceable(pos, true, true, tries2 <= protectRetries.getValInt())) continue;
+                    if (crystalBreaker.getValBoolean()) doCrystalBreaker(pos);
                     place(pos);
                 }
             }
-            if(switch_.getValString().equals("Silent")) InventoryUtil.switchToSlot(oldSlot, true);
-            if(rewriteRotate.getValString().equalsIgnoreCase(RotateModes.Silent.name())) {
+            if (switch_.getValString().equals("Silent")) InventoryUtil.switchToSlot(oldSlot, true);
+            if (rewriteRotate.getValString().equalsIgnoreCase(RotateModes.Silent.name())) {
                 mc.player.rotationYaw = oldRots[0];
                 mc.player.rotationPitch = oldRots[1];
             }
         }
         placement = 0;
-        if(!getUnsafeBlocks().isEmpty()) return;
-        if(protectOffsets.isEmpty()) tries2 = 0;
+        if (!getUnsafeBlocks().isEmpty()) return;
+        if (protectOffsets.isEmpty()) tries2 = 0;
         tries = 0;
-        if(completion.getValString().equalsIgnoreCase(Completion.ToggleAfterComplete.name())) setToggled(false);
+        if (completion.getValString().equalsIgnoreCase(Completion.ToggleAfterComplete.name())) setToggled(false);
     }
 
     private void doCrystalBreaker(BlockPos pos) {
-        for(Entity entity : mc.world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(pos))) {
-            if(entity instanceof EntityEnderCrystal) {
-                if(!rewriteRotate.getValString().equalsIgnoreCase(RotateModes.None.name())) {
+        for (Entity entity : mc.world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(pos))) {
+            if (entity instanceof EntityEnderCrystal) {
+                if (!rewriteRotate.getValString().equalsIgnoreCase(RotateModes.None.name())) {
                     float[] rots = RotationUtils.getRotationToPos(pos);
                     mc.player.rotationYaw = rots[0];
                     mc.player.rotationPitch = rots[1];
@@ -299,11 +299,11 @@ public class Surround extends Module {
     }
 
     private void place(BlockPos posToPlace) {
-        if(placement < blocksPerTick.getValInt()) {
+        if (placement < blocksPerTick.getValInt()) {
             boolean sneak = mc.player.isSneaking();
-            if(noInteract.getValBoolean()) mc.player.setSneaking(true);
+            if (noInteract.getValBoolean()) mc.player.setSneaking(true);
             BlockUtil2.placeBlock(posToPlace, EnumHand.MAIN_HAND, packet.getValBoolean());
-            if(noInteract.getValBoolean()) mc.player.setSneaking(sneak);
+            if (noInteract.getValBoolean()) mc.player.setSneaking(sneak);
             placement++;
         }
     }
@@ -375,8 +375,8 @@ public class Surround extends Module {
 
     private List<BlockPos> getUnsafeBlocks() {
         ArrayList<BlockPos> positions = new ArrayList<>();
-        for(BlockPos pos :  getOffsets()) {
-            if(isSafe(pos)) continue;
+        for (BlockPos pos :  getOffsets()) {
+            if (isSafe(pos)) continue;
             positions.add(pos);
         }
         return positions;

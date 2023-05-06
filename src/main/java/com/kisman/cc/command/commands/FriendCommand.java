@@ -12,15 +12,15 @@ public class FriendCommand extends Command {
 
     public void runCommand(String s, String[] args) {
         try {
-            if(args[0] != null && args[1] != null) {
-                if(args[0].equalsIgnoreCase(subCommands[0])) {
+            if (args[0] != null && args[1] != null) {
+                if (args[0].equalsIgnoreCase(subCommands[0])) {
                     Kisman.instance.friendManager.addFriend(args[1]);
                     complete(args[1] + " added in friends!");
-                } else if(args[0].equalsIgnoreCase(subCommands[1])) {
+                } else if (args[0].equalsIgnoreCase(subCommands[1])) {
                     Kisman.instance.friendManager.removeFriend(args[1]);
                     complete(args[1] + " removed from friends :(");
                 } else error("Usage: " + getSyntax());
-            } else if(subCommands[2].equalsIgnoreCase(args[0])) {
+            } else if (subCommands[2].equalsIgnoreCase(args[0])) {
                 print("----------------------------------");
                 print("Friends:");
                 print(Kisman.instance.friendManager.getFriendsNames());

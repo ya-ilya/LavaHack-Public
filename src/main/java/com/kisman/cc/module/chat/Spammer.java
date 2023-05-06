@@ -39,13 +39,13 @@ public class Spammer extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         boolean globalMode = this.globalMode.getValBoolean();
         long delay = (int) this.delay.getValDouble();
 
         if (timer.passedMillis(delay)) {
-            if(customMsg.getValBoolean()) {
+            if (customMsg.getValBoolean()) {
                 String message = customMessage.getValString();
                 mc.player.sendChatMessage(globalMode ? "!" + message : message);
             } else {

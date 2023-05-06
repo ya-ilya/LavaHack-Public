@@ -10,7 +10,7 @@ public class TimerUtil {
 	}
 
 	public boolean hasTimeElapsed(long time, boolean reset) {
-		if(time < 150) {
+		if (time < 150) {
 			if (((double)getTime()) >= ((double)time) / 1.63d) {
 				if (reset) {
 					reset();

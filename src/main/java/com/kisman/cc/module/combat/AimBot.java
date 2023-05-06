@@ -34,16 +34,16 @@ public class AimBot extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
-        if(event.getEra() != Event.Era.PRE) return;
+        if (event.getEra() != Event.Era.PRE) return;
 
-        if(rotationSpoof == null) return;
+        if (rotationSpoof == null) return;
 
         event.cancel();
 
         boolean sprint = mc.player.isSprinting();
 
-        if(sprint != mc.player.serverSprintState) {
-            if(sprint) {
+        if (sprint != mc.player.serverSprintState) {
+            if (sprint) {
                 mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SPRINTING));
             } else {
                 mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.STOP_SPRINTING));
@@ -52,19 +52,19 @@ public class AimBot extends Module {
 
         boolean sneak = mc.player.isSneaking();
 
-        if(sneak != mc.player.serverSneakState) {
-            if(sneak) {
+        if (sneak != mc.player.serverSneakState) {
+            if (sneak) {
                 mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
             } else {
                 mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.STOP_SNEAKING));
             }
         }
 
-        if(PlayerUtil.isCurrentViewEntity()) {
+        if (PlayerUtil.isCurrentViewEntity()) {
             float yaw = mc.player.cameraYaw;
             float pitch = mc.player.cameraPitch;
 
-            if(rotationSpoof != null) {
+            if (rotationSpoof != null) {
                 yaw = rotationSpoof.yaw;
                 pitch = rotationSpoof.pitch;
 

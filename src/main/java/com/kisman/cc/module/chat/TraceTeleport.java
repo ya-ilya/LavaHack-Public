@@ -24,14 +24,14 @@ public class TraceTeleport extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
-        if(event.getPacket() instanceof SPacketEntityTeleport) {
+        if (event.getPacket() instanceof SPacketEntityTeleport) {
             SPacketEntityTeleport packet = (SPacketEntityTeleport) event.getPacket();
 
-            if(onlyPlayers.getValBoolean() && !(mc.world.getEntityByID(packet.getEntityId()) instanceof EntityPlayer)) return;
-            if(Math.abs(mc.player.posX - packet.getX()) > 500d || Math.abs(mc.player.posZ - packet.getZ()) > 500d) {
+            if (onlyPlayers.getValBoolean() && !(mc.world.getEntityByID(packet.getEntityId()) instanceof EntityPlayer)) return;
+            if (Math.abs(mc.player.posX - packet.getX()) > 500d || Math.abs(mc.player.posZ - packet.getZ()) > 500d) {
                 String name = "Unknown";
                 Entity entity = mc.world.getEntityByID(packet.getEntityId());
-                if(entity != null) name = entity.getClass().getSimpleName();
+                if (entity != null) name = entity.getClass().getSimpleName();
 
                 double distance = Math.sqrt(Math.pow(mc.player.posX - packet.getX(), 2d) + Math.pow(mc.player.posZ - packet.getZ(), 2d));
 

@@ -22,8 +22,8 @@ public class Description extends Component {
     @Override
     public void drawScreen(int mouseX, int mouseY) {
         Render2DUtil.drawRectWH(mouseX + 5, mouseY, width, HalqGui.height, HalqGui.getGradientColour(count).getRGB());
-        if(HalqGui.shadow) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {mouseX - HalqGui.headerOffset + 5, mouseY}, new double[] {mouseX + 5, mouseY}, new double[] {mouseX + 5, mouseY + HalqGui.height}, new double[] {mouseX + 5 - HalqGui.headerOffset, mouseY + HalqGui.height}), ColorUtil.injectAlpha(HalqGui.getGradientColour(count).getColor(), 0), HalqGui.getGradientColour(count).getColor()));
-        if(HalqGui.shadow) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {mouseX + 5 + width, mouseY}, new double[] {mouseX + width + 5 + HalqGui.headerOffset, mouseY}, new double[] {mouseX + 5 + width + HalqGui.headerOffset, mouseY + HalqGui.height}, new double[] {mouseX + width + 5, mouseY + HalqGui.height}), HalqGui.getGradientColour(count).getColor(), ColorUtil.injectAlpha(HalqGui.getGradientColour(count).getColor(), 0)));
+        if (HalqGui.shadow) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {mouseX - HalqGui.headerOffset + 5, mouseY}, new double[] {mouseX + 5, mouseY}, new double[] {mouseX + 5, mouseY + HalqGui.height}, new double[] {mouseX + 5 - HalqGui.headerOffset, mouseY + HalqGui.height}), ColorUtil.injectAlpha(HalqGui.getGradientColour(count).getColor(), 0), HalqGui.getGradientColour(count).getColor()));
+        if (HalqGui.shadow) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {mouseX + 5 + width, mouseY}, new double[] {mouseX + width + 5 + HalqGui.headerOffset, mouseY}, new double[] {mouseX + 5 + width + HalqGui.headerOffset, mouseY + HalqGui.height}, new double[] {mouseX + width + 5, mouseY + HalqGui.height}), HalqGui.getGradientColour(count).getColor(), ColorUtil.injectAlpha(HalqGui.getGradientColour(count).getColor(), 0)));
 
         HalqGui.drawCenteredString(title, mouseX, mouseY, width + HalqGui.headerOffset * 2, HalqGui.height);
     }

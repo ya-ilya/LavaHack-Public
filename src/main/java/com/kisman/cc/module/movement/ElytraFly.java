@@ -63,21 +63,21 @@ public class ElytraFly extends Module {
     public void onEnable() {
         elytraSlot = -1;
 
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
-        if(equipElytra.getValBoolean()) {
-            if(mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.ELYTRA) elytraSlot = InventoryUtil.findItem(Items.ELYTRA, 0, 36);
-            if(elytraSlot != -1) {
+        if (equipElytra.getValBoolean()) {
+            if (mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.ELYTRA) elytraSlot = InventoryUtil.findItem(Items.ELYTRA, 0, 36);
+            if (elytraSlot != -1) {
                 boolean armorOnChest = mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.AIR;
                 mc.playerController.windowClick(mc.player.inventoryContainer.windowId, elytraSlot, 0, ClickType.PICKUP, mc.player);
                 mc.playerController.windowClick(mc.player.inventoryContainer.windowId, 6, 0, ClickType.PICKUP, mc.player);
-                if(armorOnChest) mc.playerController.windowClick(mc.player.inventoryContainer.windowId, elytraSlot, 0, ClickType.PICKUP, mc.player);
+                if (armorOnChest) mc.playerController.windowClick(mc.player.inventoryContainer.windowId, elytraSlot, 0, ClickType.PICKUP, mc.player);
             }
         }
     }
 
     public void onDisable() {
-        if(mc.player != null && elytraSlot != -1 && equipElytra.getValBoolean()) {
+        if (mc.player != null && elytraSlot != -1 && equipElytra.getValBoolean()) {
             boolean hasItem = !mc.player.inventory.getStackInSlot(elytraSlot).isEmpty() || mc.player.inventory.getStackInSlot(elytraSlot).getItem() != Items.AIR;
             mc.playerController.windowClick(mc.player.inventoryContainer.windowId, 6, 0, ClickType.PICKUP, mc.player);
             mc.playerController.windowClick(mc.player.inventoryContainer.windowId, elytraSlot, 0, ClickType.PICKUP, mc.player);

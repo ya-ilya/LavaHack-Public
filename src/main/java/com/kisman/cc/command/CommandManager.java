@@ -42,20 +42,20 @@ public class CommandManager {
 		String commandName = hasArgs ? readString.split(" ")[0] : readString.trim();
 		String[] args = hasArgs ? readString.substring(commandName.length()).trim().split(" ") : new String[0];
 
-		for(Command command : commands) {
-			if(command.getCommand().trim().equalsIgnoreCase(commandName.trim())) {
+		for (Command command : commands) {
+			if (command.getCommand().trim().equalsIgnoreCase(commandName.trim())) {
 				command.runCommand(readString, args);
 				commandResolved = true;
 				break;
 			}
 		}
-		if(!commandResolved) ChatUtil.error("Cannot resolve internal command: \u00a7c" + commandName);
+		if (!commandResolved) ChatUtil.error("Cannot resolve internal command: \u00a7c" + commandName);
 	}
 
 	@SubscribeEvent
 	public void onKeyPressed(InputEvent.KeyInputEvent event) {
 		if (Minecraft.getMinecraft().currentScreen != null) return;
-		for(Command cmd : commands) if(cmd.getKey() == Keyboard.getEventKey()) {
+		for (Command cmd : commands) if (cmd.getKey() == Keyboard.getEventKey()) {
 			Kisman.instance.commandManager.runCommand("." + cmd.getExecute());
 		}
 	}

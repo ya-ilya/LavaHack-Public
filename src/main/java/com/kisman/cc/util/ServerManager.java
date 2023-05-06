@@ -39,7 +39,7 @@ public class ServerManager {
     public void onTick(TickEvent.ClientTickEvent event) {
         final long currentTime = System.currentTimeMillis();
 
-        if(lastUpdate == -1L) {
+        if (lastUpdate == -1L) {
             lastUpdate = currentTime;
             return;
         }
@@ -47,12 +47,12 @@ public class ServerManager {
         final long timeDiff = currentTime - lastUpdate;
         float tickTime = timeDiff / 20;
 
-        if(tickTime == 0) {
+        if (tickTime == 0) {
             tickTime = 50;
         }
 
         float tps = 1000 / tickTime;
-        if(tps > 20) {
+        if (tps > 20) {
             tps = 20;
         }
 
@@ -61,11 +61,11 @@ public class ServerManager {
 
         double total = 0;
 
-        for(float f : tpsCount) {
+        for (float f : tpsCount) {
             total += f;
         }
 
-        if((total /= tpsCount.length) > 20) {
+        if ((total /= tpsCount.length) > 20) {
             total = 20f;
         }
 

@@ -48,7 +48,7 @@ public  void drawCheckMark(float x, float y, int width, int color) {
 
     @Override
     public void drawOutline(double x, double y, double w, double h, float lineWidth, Color c) {
-        if(!Config.instance.guiOutline.getValBoolean()) return;
+        if (!Config.instance.guiOutline.getValBoolean()) return;
         glLineWidth(lineWidth);
         Render2DUtil.drawRect(GL_LINE_LOOP, (int) x / 2, (int) y / 2, (int) x / 2 + (int) w / 2, (int) y / 2 + (int) h / 2, ColorUtil.getColor(c));
     }

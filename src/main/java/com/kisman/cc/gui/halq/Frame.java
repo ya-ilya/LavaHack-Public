@@ -61,12 +61,12 @@ public class Frame {
     }
 
     public void render(int mouseX, int mouseY) {
-        if(dragging) {
+        if (dragging) {
             x = mouseX - dragX;
             y = mouseY - dragY;
         }
 
-        if(HalqGui.shadowRects) {
+        if (HalqGui.shadowRects) {
             ShadowRectObject obj = new ShadowRectObject(x, y, x + HalqGui.width, y + HalqGui.height, HalqGui.getGradientColour(count), HalqGui.getGradientColour(count).withAlpha(0), 5, Collections.singletonList(RectSides.Bottom));
             obj.draw();
         } else {
@@ -79,12 +79,12 @@ public class Frame {
     }
 
     public void renderPost(int mouseX, int mouseY) {
-        if(open) {
-            if(!HalqGui.line || mods.isEmpty()) return;
+        if (open) {
+            if (!HalqGui.line || mods.isEmpty()) return;
             int startY = y + HalqGui.height;
-            for(Component comp : mods) if(comp instanceof Button) {
+            for (Component comp : mods) if (comp instanceof Button) {
                 Button button = (Button) comp;
-                if(HalqGui.shadowRects) {
+                if (HalqGui.shadowRects) {
                     new ShadowRectObject(x, startY, x + 1, startY + HalqGui.height, HalqGui.getGradientColour(button.getCount()), HalqGui.getGradientColour(button.getCount()).withAlpha(0), 5, Arrays.asList(RectSides.Top, RectSides.Bottom));
                     new ShadowRectObject(x + HalqGui.width - 1, startY, x + HalqGui.width, startY + HalqGui.height, HalqGui.getGradientColour(button.getCount()), HalqGui.getGradientColour(button.getCount()).withAlpha(0), 5, Arrays.asList(RectSides.Top, RectSides.Bottom));
                 } else {
@@ -92,9 +92,9 @@ public class Frame {
                     Render2DUtil.drawRectWH(x + HalqGui.width - 1, startY, 1, HalqGui.height, HalqGui.getGradientColour(button.getCount()).getRGB());
                 }
                 startY += HalqGui.height;
-                if(button.open) for(Component comp1 : button.comps) if(comp1.visible()) {
+                if (button.open) for (Component comp1 : button.comps) if (comp1.visible()) {
                     boolean open = (comp1 instanceof ModeButton && ((ModeButton) comp1).open) || (comp1 instanceof ColorButton && ((ColorButton) comp1).open);
-                    if(HalqGui.shadowRects) {
+                    if (HalqGui.shadowRects) {
                         new ShadowRectObject(comp1.getX(), startY, comp1.getX() + 1.5 + (open ? 0.5 : 0), startY + comp1.getHeight(), HalqGui.getGradientColour(comp1.getCount()), HalqGui.getGradientColour(comp1.getCount()).withAlpha(0), 5, Arrays.asList(RectSides.Top, RectSides.Bottom));
                         double x__ = comp1.getX() + (HalqGui.width - (LayerMap.getLayer(comp1.getLayer()).modifier * 2)) - 1.5 - (open ? 0.5 : 0);
                         new ShadowRectObject(x__, startY, x + 1.5 + (open ? 0.5 : 0), startY + comp1.getHeight(), HalqGui.getGradientColour(comp1.getCount()), HalqGui.getGradientColour(comp1.getCount()).withAlpha(0), 5, Arrays.asList(RectSides.Top, RectSides.Bottom));
@@ -109,23 +109,23 @@ public class Frame {
     }
 
     public void veryRenderPost(int mouseX, int mouseY) {
-        if(open && Config.instance.guiDesc.getValBoolean()) for(Component comp : mods) if(comp instanceof Button && ((Button) comp).isMouseOnButton(mouseX, mouseY) && !((Button) comp).description.title.isEmpty()) ((Button) comp).description.drawScreen(mouseX, mouseY);
+        if (open && Config.instance.guiDesc.getValBoolean()) for (Component comp : mods) if (comp instanceof Button && ((Button) comp).isMouseOnButton(mouseX, mouseY) && !((Button) comp).description.title.isEmpty()) ((Button) comp).description.drawScreen(mouseX, mouseY);
     }
 
     public void refresh() {
         int offsetY = HalqGui.height;
         int count1 = count + 1;
 
-        for(Component comp : mods) {
+        for (Component comp : mods) {
             comp.setOff(offsetY);
             comp.setCount(count1);
             offsetY += HalqGui.height;
             count1++;
-            if(comp instanceof Button) {
+            if (comp instanceof Button) {
                 Button button = (Button) comp;
-                if(button.open) {
+                if (button.open) {
                     for (Component comp1 : button.comps) {
-                        if(!comp1.visible()) continue;
+                        if (!comp1.visible()) continue;
                         comp1.setCount(count1);
                         comp1.setOff(offsetY);
                         offsetY += comp1.getHeight();

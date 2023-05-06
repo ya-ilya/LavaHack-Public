@@ -41,7 +41,7 @@ public class MixinGuiNewChat {
     @Inject(method = "drawChat", at = @At("HEAD"))
     private void drawChatHook(CallbackInfo ci) {
         ChatModifier chatModifier = (ChatModifier) Kisman.instance.moduleManager.getModule("ChatModifier");
-        if(chatModifier.isToggled() && chatModifier.getAnimation().getValBoolean()) {
+        if (chatModifier.isToggled() && chatModifier.getAnimation().getValBoolean()) {
             final long current = System.currentTimeMillis();
             final long diff = current - this.prevMillis;
             this.prevMillis = current;
@@ -58,7 +58,7 @@ public class MixinGuiNewChat {
             float y = 1.0f;
             if (!this.isScrolled) y += (9.0f - 9.0f * this.animationPercent) * this.getChatScale();
             int customY = 0;
-            if(chatModifier.getCustomY().getValBoolean()) customY = chatModifier.getCustomYVal().getValInt();
+            if (chatModifier.getCustomY().getValBoolean()) customY = chatModifier.getCustomYVal().getValInt();
             GlStateManager.translate(0.0f, y -customY, 0.0f);
         }
     }
@@ -70,7 +70,7 @@ public class MixinGuiNewChat {
 
     @Redirect(method = {"drawChat"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiNewChat;drawRect(IIIII)V"))
     private void drawBackground(int left, int top, int right, int bottom, int color) {
-        if(NoRender.instance.chatBackground.getValBoolean()) return;
+        if (NoRender.instance.chatBackground.getValBoolean()) return;
 
         Gui.drawRect(left, top, right, bottom, color);
     }
@@ -84,7 +84,7 @@ public class MixinGuiNewChat {
             newY = ((int) y & 0xFFFFFF) | opacity << 24;
         }
         ChatModifier chatModifier = (ChatModifier) Kisman.instance.moduleManager.getModule("ChatModifier");
-        if(chatModifier.isToggled() && chatModifier.getTtf().getValBoolean()) return CustomFontUtil.drawStringWithShadow(text, x, newY, color);
+        if (chatModifier.isToggled() && chatModifier.getTtf().getValBoolean()) return CustomFontUtil.drawStringWithShadow(text, x, newY, color);
         return fontRenderer.drawStringWithShadow(text, x, ((chatModifier.isToggled() && chatModifier.getAnimation().getValBoolean()) ? newY : y), color);
     }
 

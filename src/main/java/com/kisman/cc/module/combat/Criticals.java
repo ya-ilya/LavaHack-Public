@@ -25,17 +25,17 @@ public class Criticals extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
-        if(event.getPacket() instanceof CPacketUseEntity) {
+        if (event.getPacket() instanceof CPacketUseEntity) {
             CPacketUseEntity packet = (CPacketUseEntity) event.getPacket();
-            if(packet.action.equals(CPacketUseEntity.Action.ATTACK) && mc.player.onGround && !mc.player.isInLava() && !mc.player.isInWater() && !mc.player.isInWeb) {
-                if(onlyKillaura.getValBoolean() && !KillAura.instance.isToggled()) return;
+            if (packet.action.equals(CPacketUseEntity.Action.ATTACK) && mc.player.onGround && !mc.player.isInLava() && !mc.player.isInWater() && !mc.player.isInWeb) {
+                if (onlyKillaura.getValBoolean() && !KillAura.instance.isToggled()) return;
 
                 Entity entity = packet.getEntityFromWorld(mc.world);
 
-                if(entity instanceof EntityLivingBase) {
+                if (entity instanceof EntityLivingBase) {
                     double x = mc.player.posX, y = mc.player.posY, z = mc.player.posZ;
 
-                    if(strict.getValBoolean()) {
+                    if (strict.getValBoolean()) {
                         mc.player.connection.sendPacket(new CPacketPlayer.Position(x, y + 0.07, z, false));
                         mc.player.connection.sendPacket(new CPacketPlayer.Position(x, y + 0.08, z, false));
                         mc.player.connection.sendPacket(new CPacketPlayer.Position(x, y, z, false));

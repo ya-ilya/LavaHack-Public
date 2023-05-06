@@ -36,8 +36,8 @@ public class CustomFont extends Module {
     public void update() {
         turnOn = true;
 
-        if(CustomFontUtilKt.Companion.getAntiAlias() != antiAlias.getValBoolean()) CustomFontUtilKt.Companion.setAntiAlias(antiAlias.getValBoolean());
-        if(CustomFontUtilKt.Companion.getFractionMetrics() != fractionMetrics.getValBoolean()) {
+        if (CustomFontUtilKt.Companion.getAntiAlias() != antiAlias.getValBoolean()) CustomFontUtilKt.Companion.setAntiAlias(antiAlias.getValBoolean());
+        if (CustomFontUtilKt.Companion.getFractionMetrics() != fractionMetrics.getValBoolean()) {
             CustomFontUtilKt.Companion.setFractionalMetrics(fractionMetrics.getValBoolean());
             CustomFontUtilKt.Companion.setAntiAlias(antiAlias.getValBoolean());
         }

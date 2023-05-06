@@ -24,7 +24,7 @@ public class PasteBinAPI {
             while ((inputLine = in.readLine()) != null) {
                 list.add(inputLine);
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new PasteBinBufferedReaderException("Reading URL(" + url + ") failed!");
         }
         return list;

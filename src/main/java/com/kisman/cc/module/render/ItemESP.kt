@@ -24,9 +24,9 @@ class ItemESP : Module("ItemESP", "Renders a items name and quantity ft Dallas",
     }
 
     @SubscribeEvent fun onRender(event: RenderGameOverlayEvent.Text) {
-        for(entity in mc.world.loadedEntityList) {
-            if(entity is EntityItem) {
-                if(entity.item.displayName.length > 50) continue
+        for (entity in mc.world.loadedEntityList) {
+            if (entity is EntityItem) {
+                if (entity.item.displayName.length > 50) continue
 
                 val text = (if (count.valBoolean) if (entity.item.count == 1) "" else "x" + entity.item.count.toString() + " " else "") + entity.item.displayName
 
@@ -57,7 +57,7 @@ class ItemESP : Module("ItemESP", "Renders a items name and quantity ft Dallas",
                             .count.toString() + " " else "") + entity.item.displayName
                     ) / 2.0f),
                     (-mc.fontRenderer.FONT_HEIGHT).toFloat(),
-                    (if(astolfo.valBoolean) ColorUtils.astolfoColors(100, 100) else -1)
+                    (if (astolfo.valBoolean) ColorUtils.astolfoColors(100, 100) else -1)
                 )
                 GlStateManager.popMatrix()*/
             }

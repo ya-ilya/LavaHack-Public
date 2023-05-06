@@ -24,9 +24,9 @@ public class VisibleBox extends Component {
 
     @Override
     public void drawScreen(int mouseX, int mouseY) {
-        if(HalqGui.shadowCheckBox) {
+        if (HalqGui.shadowCheckBox) {
             Render2DUtil.drawRectWH(x, y + offset, width, HalqGui.height, HalqGui.backgroundColor.getRGB());
-            if(module.visible) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x + width / 2, y + offset}, new double[] {x + width, y + offset}, new double[] {x + width, y + offset + HalqGui.height}, new double[] {x + width / 2, y + offset + HalqGui.height}), ColorUtil.injectAlpha(HalqGui.backgroundColor, 1), HalqGui.getGradientColour(count).getColor()));
+            if (module.visible) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x + width / 2, y + offset}, new double[] {x + width, y + offset}, new double[] {x + width, y + offset + HalqGui.height}, new double[] {x + width / 2, y + offset + HalqGui.height}), ColorUtil.injectAlpha(HalqGui.backgroundColor, 1), HalqGui.getGradientColour(count).getColor()));
         } else Render2DUtil.drawRectWH(x, y + offset, width, HalqGui.height, module.visible ? HalqGui.getGradientColour(count).getRGB() : HalqGui.backgroundColor.getRGB());
 
         HalqGui.drawString("Visible", x, y + offset, width, HalqGui.height);
@@ -34,7 +34,7 @@ public class VisibleBox extends Component {
 
     @Override
     public void mouseClicked(int mouseX, int mouseY, int button) {
-        if(isMouseOnButton(mouseX, mouseY) && button == 0) module.visible = !module.visible;
+        if (isMouseOnButton(mouseX, mouseY) && button == 0) module.visible = !module.visible;
     }
 
     @Override

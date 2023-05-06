@@ -56,7 +56,7 @@ public class NoSlow extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         if (mc.player.isHandActive() && items.getValBoolean()) {
             if (mc.player.getHeldItem(mc.player.getActiveHand()).getItem() instanceof ItemShield) {
@@ -66,7 +66,7 @@ public class NoSlow extends Module {
             }
         }
 
-        if(slimeBlocks.getValBoolean()) {
+        if (slimeBlocks.getValBoolean()) {
             if (mc.player.getRidingEntity() != null) {
                 Blocks.SLIME_BLOCK.setDefaultSlipperiness(0.8f);
             } else {
@@ -106,9 +106,9 @@ public class NoSlow extends Module {
     @SuppressWarnings("unused")
     private final Listener<PlayerUpdateMoveStateEvent> updateMoveStateListener = listener(event -> {
         if (invMove.getValBoolean() && mc.currentScreen != null) {
-            if(mc.currentScreen instanceof GuiChat && ignoreChat.getValBoolean()) return;
-            if((mc.currentScreen instanceof GuiConsole || mc.currentScreen instanceof ConsoleGui) && ignoreConsole.getValBoolean()) return;
-            if(mc.currentScreen instanceof ClickGui && ignoreClickGui.getValBoolean()) return;
+            if (mc.currentScreen instanceof GuiChat && ignoreChat.getValBoolean()) return;
+            if ((mc.currentScreen instanceof GuiConsole || mc.currentScreen instanceof ConsoleGui) && ignoreConsole.getValBoolean()) return;
+            if (mc.currentScreen instanceof ClickGui && ignoreClickGui.getValBoolean()) return;
 
             mc.player.movementInput.moveStrafe = 0.0F;
             mc.player.movementInput.moveForward = 0.0F;
@@ -146,7 +146,7 @@ public class NoSlow extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerUpdateMoveStateEvent> updateMoveStateListener1 = listener(event -> {
-        if(items.getValBoolean() && mc.player.isHandActive() && !mc.player.isRiding()) {
+        if (items.getValBoolean() && mc.player.isHandActive() && !mc.player.isRiding()) {
             mc.player.movementInput.moveForward /= 0.2;
             mc.player.movementInput.moveStrafe /= 0.2;
         }
@@ -155,9 +155,9 @@ public class NoSlow extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.PostSend> packetPostSendListener = listener(event -> {
-        if(event.getPacket() instanceof CPacketPlayer) {
-            if(ncpStrict.getValBoolean()) {
-                if(items.getValBoolean() && mc.player.isHandActive() && !mc.player.isRiding()) {
+        if (event.getPacket() instanceof CPacketPlayer) {
+            if (ncpStrict.getValBoolean()) {
+                if (items.getValBoolean() && mc.player.isHandActive() && !mc.player.isRiding()) {
                     mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.ABORT_DESTROY_BLOCK, PlayerUtil.GetLocalPlayerPosFloored(), EnumFacing.DOWN));
                 }
             }

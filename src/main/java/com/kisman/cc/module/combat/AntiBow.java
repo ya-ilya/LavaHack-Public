@@ -33,41 +33,41 @@ public class AntiBow extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         EntityPlayer target = EntityUtil.getTarget(range.getValFloat());
         int oldSlot = -1;
         int shieldSlot = InventoryUtil.findItem(Items.SHIELD, 0, 9);
 
-        if(target == null) {
-            if(bool) {
+        if (target == null) {
+            if (bool) {
                 mc.gameSettings.keyBindUseItem.pressed = false;
 
-                if(oldSlot != -1) InventoryUtil.switchToSlot(oldSlot, true);
+                if (oldSlot != -1) InventoryUtil.switchToSlot(oldSlot, true);
 
                 bool = false;
             }
         } else {
-            if(shieldSlot == -1) {
+            if (shieldSlot == -1) {
                 target = null;
                 return;
             }
 
             oldSlot = mc.player.inventory.currentItem;
 
-            if(bowInHandCheck.getValBoolean()) {
-                if(!target.getHeldItemMainhand().getItem().equals(Items.BOW)) {
+            if (bowInHandCheck.getValBoolean()) {
+                if (!target.getHeldItemMainhand().getItem().equals(Items.BOW)) {
                     return;
                 }
             }
 
-            if(checkUse.getValBoolean()) {
-                if(target.getItemInUseMaxCount() <= maxUse.getValDouble()) {
+            if (checkUse.getValBoolean()) {
+                if (target.getItemInUseMaxCount() <= maxUse.getValDouble()) {
                     return;
                 }
             }
 
-            if(!mc.player.getHeldItemMainhand().getItem().equals(Items.SHIELD)) InventoryUtil.switchToSlot(shieldSlot, true);
+            if (!mc.player.getHeldItemMainhand().getItem().equals(Items.SHIELD)) InventoryUtil.switchToSlot(shieldSlot, true);
 
             mc.gameSettings.keyBindUseItem.pressed = true;
             RotationManager.look(target, packet.getValBoolean());

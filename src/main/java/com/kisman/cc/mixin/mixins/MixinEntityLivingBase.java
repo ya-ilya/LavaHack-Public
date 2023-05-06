@@ -37,8 +37,8 @@ public class MixinEntityLivingBase extends Entity {
 
     @Inject(method = "getArmSwingAnimationEnd", at = @At("HEAD"), cancellable = true)
     private void getArmSwingAnimationEndHook(CallbackInfoReturnable<Integer> cir) {
-        if(Animation.instance.isToggled()) {
-            if(isPotionActive(MobEffects.HASTE)) cir.setReturnValue(Animation.instance.speed.getValInt() - (getActivePotionEffect(MobEffects.HASTE).getAmplifier()));
+        if (Animation.instance.isToggled()) {
+            if (isPotionActive(MobEffects.HASTE)) cir.setReturnValue(Animation.instance.speed.getValInt() - (getActivePotionEffect(MobEffects.HASTE).getAmplifier()));
             else cir.setReturnValue(isPotionActive(MobEffects.MINING_FATIGUE) ? Animation.instance.speed.getValInt() + (getActivePotionEffect(MobEffects.MINING_FATIGUE).getAmplifier() + 1) * 2 : Animation.instance.speed.getValInt());
         }
     }

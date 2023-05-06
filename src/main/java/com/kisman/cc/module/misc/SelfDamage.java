@@ -26,14 +26,14 @@ public class SelfDamage extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
-        if(jumpCount < jump.getValDouble()) {
+        if (mc.player == null || mc.world == null) return;
+        if (jumpCount < jump.getValDouble()) {
             mc.timer.tickLength = (float) timer.getValDouble();
             mc.player.onGround = false;
         }
 
-        if(mc.player.onGround) {
-            if(jumpCount < jump.getValDouble()) {
+        if (mc.player.onGround) {
+            if (jumpCount < jump.getValDouble()) {
                 mc.player.jump();
                 jumpCount++;
             } else mc.timer.tickLength = 1;

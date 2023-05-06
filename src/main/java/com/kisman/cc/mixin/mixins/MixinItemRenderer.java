@@ -29,14 +29,14 @@ public abstract class MixinItemRenderer {
 
     @Inject(method = "renderItemInFirstPerson(Lnet/minecraft/client/entity/AbstractClientPlayer;FFLnet/minecraft/util/EnumHand;FLnet/minecraft/item/ItemStack;F)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GlStateManager;pushMatrix()V", shift = At.Shift.AFTER))
     private void renderItemInFirstPersonHook(AbstractClientPlayer player, float partialTicks, float pitch, EnumHand hand, float swingProgress, ItemStack stack, float equippedProgress, CallbackInfo ci) {
-        if(ViewModel.instance.hands.getValBoolean()) {
+        if (ViewModel.instance.hands.getValBoolean()) {
             ViewModel.instance.hand(hand.equals(EnumHand.MAIN_HAND) ? player.getPrimaryHand() : player.getPrimaryHand().opposite());
         }
     }
 
     @Redirect(method = "renderItemInFirstPerson(Lnet/minecraft/client/entity/AbstractClientPlayer;FFLnet/minecraft/util/EnumHand;FLnet/minecraft/item/ItemStack;F)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/ItemRenderer;transformSideFirstPerson(Lnet/minecraft/util/EnumHandSide;F)V"))
     public void transformRedirect(ItemRenderer renderer, EnumHandSide hand, float y) {
-        if(ViewModel.instance.isToggled() || SwingAnimation.instance.isToggled()) {
+        if (ViewModel.instance.isToggled() || SwingAnimation.instance.isToggled()) {
             float rotateMainX = 0;
             float rotateMainY = 0;
             float rotateMainZ = 0;
@@ -72,9 +72,9 @@ public abstract class MixinItemRenderer {
             }
 
             if (Kisman.instance.moduleManager.getModule("ViewModel").isToggled() && hand == EnumHandSide.RIGHT) {
-                if(isEating && !ViewModel.instance.customEating.getValBoolean()) drawDefaultPos(hand, y);
+                if (isEating && !ViewModel.instance.customEating.getValBoolean()) drawDefaultPos(hand, y);
                 else {
-                    if(ViewModel.instance.translate.getValBoolean()) GlStateManager.translate(getSet("RightX").getValDouble(), getSet("RightY").getValDouble(), getSet("RightZ").getValDouble());
+                    if (ViewModel.instance.translate.getValBoolean()) GlStateManager.translate(getSet("RightX").getValDouble(), getSet("RightY").getValDouble(), getSet("RightZ").getValDouble());
                     else this.transformSideFirstPerson(hand, y);
                     GlStateManager.rotate(isSwingMain ? rotateMainX : (!ViewModel.instance.autoRotateRigthX.getValBoolean() ? ((float) (getSet("RotateRightX").getValDouble())) : (float) (System.currentTimeMillis() % 22600L) / 5.0f), 1, 0, 0);
                     GlStateManager.rotate(isSwingMain ? rotateMainY : (!ViewModel.instance.autoRotateRigthY.getValBoolean() ? ((float) (getSet("RotateRightY").getValDouble())) : (float) (System.currentTimeMillis() % 22600L) / 5.0f), 0, 1, 0);
@@ -84,9 +84,9 @@ public abstract class MixinItemRenderer {
             }
 
             if (Kisman.instance.moduleManager.getModule("ViewModel").isToggled() && hand == EnumHandSide.LEFT) {
-                if(PlayerUtil.isEatingOffhand() && !ViewModel.instance.customEating.getValBoolean()) drawDefaultPos(hand, y);
+                if (PlayerUtil.isEatingOffhand() && !ViewModel.instance.customEating.getValBoolean()) drawDefaultPos(hand, y);
                 else {
-                    if(ViewModel.instance.translate.getValBoolean()) GlStateManager.translate(getSet("LeftX").getValDouble(), getSet("LeftY").getValDouble(), getSet("LeftZ").getValDouble());
+                    if (ViewModel.instance.translate.getValBoolean()) GlStateManager.translate(getSet("LeftX").getValDouble(), getSet("LeftY").getValDouble(), getSet("LeftZ").getValDouble());
                     else this.transformSideFirstPerson(hand, y);
                     GlStateManager.rotate((!ViewModel.instance.autoRotateLeftX.getValBoolean() ? ((float) (getSet("RotateLeftX").getValDouble())) : (float) (System.currentTimeMillis() % 22600L) / 5.0f), 1, 0, 0);
                     GlStateManager.rotate((!ViewModel.instance.autoRotateLeftY.getValBoolean() ? ((float) (getSet("RotateLeftY").getValDouble())) : (float) (System.currentTimeMillis() % 22600L) / 5.0f), 0, 1, 0);

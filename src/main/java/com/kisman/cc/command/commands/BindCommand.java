@@ -16,31 +16,31 @@ public class BindCommand extends Command{
             String key = args[0];
             String isList = args[0];
 
-            if(args.length == 1 && !isList.equalsIgnoreCase("list")) {
+            if (args.length == 1 && !isList.equalsIgnoreCase("list")) {
                 error("Usage: " + getSyntax());
                 return;
             }
 
-            if(args.length > 2 && isList.equalsIgnoreCase("list")) {
+            if (args.length > 2 && isList.equalsIgnoreCase("list")) {
                 error("Usage: " + getSyntax());
                 return;
             }
 
-            if(args.length == 1 && isList.equalsIgnoreCase("list")) {
+            if (args.length == 1 && isList.equalsIgnoreCase("list")) {
                 message("----------------------------------");
                 message("Bind List:");
-                for(Module mod : Kisman.instance.moduleManager.modules) if(Keyboard.KEY_NONE != mod.getKey()) message(mod.getName() + " | " + Keyboard.getKeyName(mod.getKey()));
+                for (Module mod : Kisman.instance.moduleManager.modules) if (Keyboard.KEY_NONE != mod.getKey()) message(mod.getName() + " | " + Keyboard.getKeyName(mod.getKey()));
                 message("----------------------------------");
                 return;
             }
 
-            for(Module mod : Kisman.instance.moduleManager.modules) {
-                if(mod.getName().equalsIgnoreCase(args[1])) {
+            for (Module mod : Kisman.instance.moduleManager.modules) {
+                if (mod.getName().equalsIgnoreCase(args[1])) {
                     mod.setKey(Keyboard.getKeyIndex((key.toUpperCase())));
                     message(mod.getName() + " binned to " + Keyboard.getKeyName(mod.getKey()));
                 }
             }
-        } catch(Exception e) {error("Usage: " + getSyntax());}
+        } catch (Exception e) {error("Usage: " + getSyntax());}
     }
 
     @Override

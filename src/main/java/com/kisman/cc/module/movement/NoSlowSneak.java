@@ -20,22 +20,22 @@ public class NoSlowSneak extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null || mode.checkValString(Mode.Cancel.name())) return;
-        if(mc.player.isSneaking()) {
-            if(mc.gameSettings.keyBindForward.isKeyDown()) {
+        if (mc.player == null || mc.world == null || mode.checkValString(Mode.Cancel.name())) return;
+        if (mc.player.isSneaking()) {
+            if (mc.gameSettings.keyBindForward.isKeyDown()) {
                 mc.player.jumpMovementFactor = 0.1f;
 
-                if(mc.player.onGround) {
+                if (mc.player.onGround) {
                     mc.player.motionX *= 5;
                     mc.player.motionZ *= 5;
                     mc.player.motionX /= 3.1495;
                     mc.player.motionZ /= 3.1495;
                     MovementUtil.strafe(0.1245f);
 
-                    if(mc.gameSettings.keyBindBack.isKeyDown()) {
+                    if (mc.gameSettings.keyBindBack.isKeyDown()) {
                         mc.player.jumpMovementFactor = 0.08f;
 
-                        if(mc.player.onGround) {
+                        if (mc.player.onGround) {
                             mc.player.motionX *= -5;
                             mc.player.motionZ *= -5;
                             mc.player.motionX /= -3.1495;

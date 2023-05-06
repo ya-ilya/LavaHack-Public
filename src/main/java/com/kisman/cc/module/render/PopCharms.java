@@ -49,8 +49,8 @@ public class PopCharms extends Module {
 
     @SubscribeEvent
     public void onPop(TotemPopEvent event) {
-        if(!selfPop.getValBoolean() && event.getEntity() == mc.player) return;
-        if(!(event.getEntity() instanceof EntityPlayer)) return;
+        if (!selfPop.getValBoolean() && event.getEntity() == mc.player) return;
+        if (!(event.getEntity() instanceof EntityPlayer)) return;
 
         entity = (EntityPlayer) event.getEntity();
 
@@ -68,7 +68,7 @@ public class PopCharms extends Module {
 
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
-        if(player == null || entity == null) return;
+        if (player == null || entity == null) return;
         Color color = new Color(255, 255, 255, 255);
             opacity = Float.intBitsToFloat(Float.floatToIntBits(1.6358529E38f) ^ 0x7EF622C3);
             time = System.currentTimeMillis();

@@ -9,7 +9,7 @@ public class NoJumpDelay extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         mc.player.jumpTicks = mc.player.nextStepDistance = 0;
     }

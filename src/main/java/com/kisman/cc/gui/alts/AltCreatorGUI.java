@@ -31,20 +31,20 @@ public class AltCreatorGUI extends GuiScreen
 		this.drawCenteredString(mc.fontRenderer, "Add Alt Account", this.width / 2, 10, -1);
 		this.emailField.drawTextBox();
 		this.passField.drawTextBox();
-		if(this.emailField.getText().equals("") && !this.emailField.isFocused()) this.fontRenderer.drawStringWithShadow("Email", this.width / 2 - 97, this.height / 2 - 96, 0xFF999999);
-		if(this.passField.getText().equals("") && !this.passField.isFocused()) this.fontRenderer.drawStringWithShadow("Password", this.width/2 - 97, this.height/2 - 76, 0xFF999999);
+		if (this.emailField.getText().equals("") && !this.emailField.isFocused()) this.fontRenderer.drawStringWithShadow("Email", this.width / 2 - 97, this.height / 2 - 96, 0xFF999999);
+		if (this.passField.getText().equals("") && !this.passField.isFocused()) this.fontRenderer.drawStringWithShadow("Password", this.width/2 - 97, this.height/2 - 76, 0xFF999999);
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
 	
 	@Override
 	public void keyTyped(char typedChar, int keyCode) throws IOException {
-		if(keyCode == Keyboard.KEY_ESCAPE) {
+		if (keyCode == Keyboard.KEY_ESCAPE) {
 			mc.displayGuiScreen(this.lastGui);
 			return;
 		}
 		this.emailField.textboxKeyTyped(typedChar, keyCode);
 		this.passField.textboxKeyTyped(typedChar, keyCode);
-		if(keyCode == Keyboard.KEY_RETURN) {
+		if (keyCode == Keyboard.KEY_RETURN) {
 			this.emailField.setFocused(false);
 			this.passField.setFocused(false);
 		}

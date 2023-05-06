@@ -14,19 +14,19 @@ public class ToggleCommand extends Command{
 
         try {
             module = args[0];
-        } catch(Exception e) {
+        } catch (Exception e) {
             error("Usage: " + getSyntax());
             return;
         }
 
         try {
             Kisman.instance.moduleManager.getModule(module);
-        } catch(Exception e) {
+        } catch (Exception e) {
             error("Module " + module + " does not exist!");
             return;
         }
 
-        if(args.length > 1) {
+        if (args.length > 1) {
             error("Usage: " + getSyntax());
             return;
         }
@@ -36,7 +36,7 @@ public class ToggleCommand extends Command{
                 !Kisman.instance.moduleManager.getModule(module).isToggled()
             );
             complete("Module " + module + " has been toggled!");
-        } catch(Exception e) {
+        } catch (Exception e) {
             error("Usage: " + getSyntax());
         }
     }

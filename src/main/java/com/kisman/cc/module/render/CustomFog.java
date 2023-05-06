@@ -30,7 +30,7 @@ public class CustomFog extends Module {
 
     @SubscribeEvent
     public void onRenderSky(EntityViewRenderEvent.FogColors event) {
-        if(rainbow.getValBoolean()) {
+        if (rainbow.getValBoolean()) {
             event.setRed(ColorUtil.rainbowRGB(delay.getValInt(), saturation.getValFloat(), brightness.getValFloat()).getRed() / 255f);
             event.setGreen(ColorUtil.rainbowRGB(delay.getValInt(), saturation.getValFloat(), brightness.getValFloat()).getGreen() / 255f);
             event.setBlue(ColorUtil.rainbowRGB(delay.getValInt(), saturation.getValFloat(), brightness.getValFloat()).getBlue() / 255f);

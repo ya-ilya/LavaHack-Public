@@ -22,7 +22,7 @@ public class MixinGuiScreen extends Gui implements GuiYesNoCallback {
     public void confirmClicked(boolean b, int i) {}
 
     @Inject(method = "drawDefaultBackground", at = @At("HEAD"), cancellable = true)
-    public void drawDefaultBackgroundHook(CallbackInfo ci) {if(NoRender.instance.guiOverlay.getValBoolean() && mc.world != null && mc.player != null) ci.cancel();}
+    public void drawDefaultBackgroundHook(CallbackInfo ci) {if (NoRender.instance.guiOverlay.getValBoolean() && mc.world != null && mc.player != null) ci.cancel();}
 
     @Inject(method = "renderToolTip", at = @At("HEAD"), cancellable = true)
     private void toolTipHook(ItemStack itemStack, int x, int y, CallbackInfo ci) {

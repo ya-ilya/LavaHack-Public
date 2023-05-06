@@ -38,11 +38,11 @@ public class RangeVisualiser extends Module {
 
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
-        if(!mode.getValString().equalsIgnoreCase("None")) {
+        if (!mode.getValString().equalsIgnoreCase("None")) {
             render(event);
         }
 
-        if(mode.getValString().equalsIgnoreCase("None") && !own.getValString().equalsIgnoreCase("None")) {
+        if (mode.getValString().equalsIgnoreCase("None") && !own.getValString().equalsIgnoreCase("None")) {
             render();
         }
     }
@@ -53,7 +53,7 @@ public class RangeVisualiser extends Module {
                 continue;
             }
 
-            if(mode.getValString().equalsIgnoreCase("Sphere") || own.getValString().equalsIgnoreCase("Sphere")) {
+            if (mode.getValString().equalsIgnoreCase("Sphere") || own.getValString().equalsIgnoreCase("Sphere")) {
                 int lines = 600 / Math.round(Math.max((mc.player.getDistance(en)), 1));
                 lines = Math.min(lines, 25);
                 double xPos = (en.lastTickPosX + (en.posX - en.lastTickPosX) * mc.timer.renderPartialTicks)
@@ -79,7 +79,7 @@ public class RangeVisualiser extends Module {
                         RenderUtil.drawSphere(1, 0.6, 0.4, 0.7, xPos, yPos, zPos, range, lines, lines, (float) lineWidth.getValDouble());
                     }
                 }
-            } else if(mode.getValString().equalsIgnoreCase("Circle") || own.getValString().equalsIgnoreCase("Circle")) {
+            } else if (mode.getValString().equalsIgnoreCase("Circle") || own.getValString().equalsIgnoreCase("Circle")) {
                 GlStateManager.pushMatrix();
                 GlStateManager.enableBlend();
                 GlStateManager.disableTexture2D();

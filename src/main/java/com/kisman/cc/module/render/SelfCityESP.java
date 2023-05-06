@@ -47,18 +47,18 @@ public class SelfCityESP extends Module {
     @Override
     public void update(){
         // super.nullCheck() when?
-        if(mc.world == null || mc.player == null)
+        if (mc.world == null || mc.player == null)
             return;
 
         positions.clear();
 
-        if(enemyCheck.getValBoolean() && !searchTarget())
+        if (enemyCheck.getValBoolean() && !searchTarget())
             return;
 
-        if(surroundCheck.getValBoolean() && !isSurrounded())
+        if (surroundCheck.getValBoolean() && !isSurrounded())
            return;
 
-        if(smart.getValBoolean()){
+        if (smart.getValBoolean()){
             checkSmart();
             return;
         }
@@ -68,13 +68,13 @@ public class SelfCityESP extends Module {
 
     @SubscribeEvent
     public void onRender(RenderWorldLastEvent event){
-        if(mc.world == null || mc.player == null)
+        if (mc.world == null || mc.player == null)
             return;
 
-        if(!isToggled())
+        if (!isToggled())
             return;
 
-        for(BlockPos pos : positions){
+        for (BlockPos pos : positions){
             AxisAlignedBB axisAlignedBB = Rendering.correct(new AxisAlignedBB(pos));
             switch (renderMode.getValString()){
                 case "Box":
@@ -98,10 +98,10 @@ public class SelfCityESP extends Module {
 
     public boolean searchTarget(){
         double rangeSq = enemyRange.getValDouble() * enemyRange.getValDouble();
-        for(EntityPlayer player : mc.world.playerEntities){
-            if(!ignoreFriends.getValBoolean() && FriendManager.instance.isFriend(player.getName()))
+        for (EntityPlayer player : mc.world.playerEntities){
+            if (!ignoreFriends.getValBoolean() && FriendManager.instance.isFriend(player.getName()))
                 continue;
-            if(player.getDistanceSq(mc.player) <= rangeSq)
+            if (player.getDistanceSq(mc.player) <= rangeSq)
                 return true;
         }
         return false;
@@ -115,62 +115,62 @@ public class SelfCityESP extends Module {
         north : {
             pos = playerPos.north();
             // breaking bedrock ain't a thing lel
-            if(blockState(pos).getBlock() == Blocks.BEDROCK)
+            if (blockState(pos).getBlock() == Blocks.BEDROCK)
                 break north;
             // is the block is replaceable, we break
-            if(blockState(pos).getBlock().isReplaceable(mc.world, pos))
+            if (blockState(pos).getBlock().isReplaceable(mc.world, pos))
                 break north;
             boolean b1 = check(pos.west());
             boolean b2 = check(pos.north());
             boolean b3 = check(pos.east());
             boolean b4 = check(pos.west().north());
             boolean b5 = check(pos.east().north());
-            if(b1 || b2 || b3 || b4 || b5)
+            if (b1 || b2 || b3 || b4 || b5)
                 positions.add(pos);
         }
 
         east : {
             pos = playerPos.east();
-            if(blockState(pos).getBlock() == Blocks.BEDROCK)
+            if (blockState(pos).getBlock() == Blocks.BEDROCK)
                 break east;
-            if(blockState(pos).getBlock().isReplaceable(mc.world, pos))
+            if (blockState(pos).getBlock().isReplaceable(mc.world, pos))
                 break east;
             boolean b1 = check(pos.north());
             boolean b2 = check(pos.east());
             boolean b3 = check(pos.south());
             boolean b4 = check(pos.north().east());
             boolean b5 = check(pos.south().east());
-            if(b1 || b2 || b3 || b4 || b5)
+            if (b1 || b2 || b3 || b4 || b5)
                 positions.add(pos);
         }
 
         south : {
             pos = playerPos.south();
-            if(blockState(pos).getBlock() == Blocks.BEDROCK)
+            if (blockState(pos).getBlock() == Blocks.BEDROCK)
                 break south;
-            if(blockState(pos).getBlock().isReplaceable(mc.world, pos))
+            if (blockState(pos).getBlock().isReplaceable(mc.world, pos))
                 break south;
             boolean b1 = check(pos.east());
             boolean b2 = check(pos.south());
             boolean b3 = check(pos.west());
             boolean b4 = check(pos.east().south());
             boolean b5 = check(pos.west().south());
-            if(b1 || b2 || b3 || b4 || b5)
+            if (b1 || b2 || b3 || b4 || b5)
                 positions.add(pos);
         }
 
         west : {
             pos = playerPos.west();
-            if(blockState(pos).getBlock() == Blocks.BEDROCK)
+            if (blockState(pos).getBlock() == Blocks.BEDROCK)
                 break west;
-            if(blockState(pos).getBlock().isReplaceable(mc.world, pos))
+            if (blockState(pos).getBlock().isReplaceable(mc.world, pos))
                 break west;
             boolean b1 = check(pos.south());
             boolean b2 = check(pos.west());
             boolean b3 = check(pos.north());
             boolean b4 = check(pos.south().west());
             boolean b5 = check(pos.north().west());
-            if(b1 || b2 || b3 || b4 || b5)
+            if (b1 || b2 || b3 || b4 || b5)
                 positions.add(pos);
         }
     }
@@ -185,7 +185,7 @@ public class SelfCityESP extends Module {
      */
     public boolean check(BlockPos pos){
         IBlockState state1 = mc.world.getBlockState(pos);
-        if(!state1.getBlock().isReplaceable(mc.world, pos))
+        if (!state1.getBlock().isReplaceable(mc.world, pos))
             return false;
         IBlockState state2 = mc.world.getBlockState(pos.down());
         Block block = state2.getBlock();
@@ -201,17 +201,17 @@ public class SelfCityESP extends Module {
 
         // north
         pos = playerPos.north();
-        if(surroundBlockCheck(pos))
+        if (surroundBlockCheck(pos))
             return false;
 
         // east
         pos = playerPos.east();
-        if(surroundBlockCheck(pos))
+        if (surroundBlockCheck(pos))
             return false;
 
         // south
         pos = playerPos.south();
-        if(surroundBlockCheck(pos))
+        if (surroundBlockCheck(pos))
             return false;
 
         // west
@@ -220,7 +220,7 @@ public class SelfCityESP extends Module {
     }
 
     public boolean surroundBlockCheck(BlockPos pos){
-        if(terrain.getValBoolean()){
+        if (terrain.getValBoolean()){
             return blockState(pos).getBlock().isReplaceable(mc.world, pos);
         }
         return blockState(pos).getBlock() != Blocks.OBSIDIAN || blockState(pos).getBlock() != Blocks.ENDER_CHEST || blockState(pos).getBlock() != Blocks.BEDROCK;
@@ -242,22 +242,22 @@ public class SelfCityESP extends Module {
 
         // north
         pos = playerPos.north();
-        if(isPlayerNotInArea(pos))
+        if (isPlayerNotInArea(pos))
             positions.add(pos);
 
         // east
         pos = playerPos.east();
-        if(isPlayerNotInArea(pos))
+        if (isPlayerNotInArea(pos))
             positions.add(pos);
 
         // south
         pos = playerPos.south();
-        if(isPlayerNotInArea(pos))
+        if (isPlayerNotInArea(pos))
             positions.add(pos);
 
         // west
         pos = playerPos.west();
-        if(isPlayerNotInArea(pos))
+        if (isPlayerNotInArea(pos))
             positions.add(pos);
          */
         double x = mc.player.posX;
@@ -271,46 +271,46 @@ public class SelfCityESP extends Module {
 
         north : {
             pos = playerPos.north();
-            if(isReplaceable(pos))
+            if (isReplaceable(pos))
                 break north;
             diff = diff(pos.getZ(), z);
-            if(diff > 1.3)
+            if (diff > 1.3)
                 positions.add(pos);
         }
         /*
-        if(diff > 1.0){
-            if(diff > 1.3)
+        if (diff > 1.0){
+            if (diff > 1.3)
                 positions.add(pos);
         } else {
-            if(diff > 0.3)
+            if (diff > 0.3)
                 positions.add(pos);
         }
          */
 
         east : {
             pos = playerPos.east();
-            if(isReplaceable(pos))
+            if (isReplaceable(pos))
                 break east;
             diff = diff(pos.getX(), x);
-            if(diff > 1.3)
+            if (diff > 1.3)
                 positions.add(pos);
         }
 
         south : {
             pos = playerPos.south();
-            if(isReplaceable(pos))
+            if (isReplaceable(pos))
                 break south;
             diff = diff(pos.getZ(), z);
-            if(diff > 1.3)
+            if (diff > 1.3)
                 positions.add(pos);
         }
 
         west : {
             pos = playerPos.west();
-            if(isReplaceable(pos))
+            if (isReplaceable(pos))
                 break west;
             diff = diff(pos.getX(), x);
-            if(diff > 1.3)
+            if (diff > 1.3)
                 positions.add(pos);
         }
     }

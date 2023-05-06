@@ -21,11 +21,11 @@ abstract class Abstract3dObject {
         GlStateManager.shadeModel(GL11.GL_SMOOTH)
         GlStateManager.depthMask(false)
         GlStateManager.enableBlend()
-        if(!depth) GlStateManager.disableDepth()
+        if (!depth) GlStateManager.disableDepth()
         GlStateManager.disableTexture2D()
         GlStateManager.disableLighting()
         GlStateManager.disableCull()
-        if(alpha) GlStateManager.enableAlpha()
+        if (alpha) GlStateManager.enableAlpha()
         GL11.glEnable(GL11.GL_LINE_SMOOTH)
         GL11.glEnable(GL32.GL_DEPTH_CLAMP)
     }
@@ -33,7 +33,7 @@ abstract class Abstract3dObject {
     fun release(alpha: Boolean) {
         GL11.glDisable(GL32.GL_DEPTH_CLAMP)
         GL11.glDisable(GL11.GL_LINE_SMOOTH)
-        if(alpha) GlStateManager.enableAlpha()
+        if (alpha) GlStateManager.enableAlpha()
         GlStateManager.enableCull()
         GlStateManager.enableLighting()
         GlStateManager.enableTexture2D()
@@ -64,7 +64,7 @@ abstract class Abstract3dObject {
         GL11.glRotatef(-mc.player.rotationYaw, 0.0f, 1.0f, 0.0f)
         GL11.glRotatef(
                 mc.player.rotationPitch,
-                if(mc.gameSettings.thirdPersonView == 2) -1f else 1f,
+                if (mc.gameSettings.thirdPersonView == 2) -1f else 1f,
                 0f,
                 0f
         )

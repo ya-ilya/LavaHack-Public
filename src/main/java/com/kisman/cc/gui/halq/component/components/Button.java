@@ -71,7 +71,7 @@ public class Button extends Component {
                 }
             }
         }
-        for(Component comp : comps) {
+        for (Component comp : comps) {
             comp.setLayer(1);
             comp.setWidth(90);
         }
@@ -79,30 +79,30 @@ public class Button extends Component {
 
     @Override
     public void drawScreen(int mouseX, int mouseY) {
-        if(HalqGui.shadowCheckBox) {
+        if (HalqGui.shadowCheckBox) {
             Render2DUtil.drawRectWH(x, y + offset, HalqGui.width, HalqGui.height, HalqGui.backgroundColor.getRGB());
-            if(mod.isToggled()) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x + HalqGui.width / 2, y + offset}, new double[] {x + HalqGui.width, y + offset}, new double[] {x + HalqGui.width, y + offset + HalqGui.height}, new double[] {x + HalqGui.width / 2, y + offset + HalqGui.height}), ColorUtil.injectAlpha(HalqGui.backgroundColor, 1), HalqGui.getGradientColour(count).getColor()));
+            if (mod.isToggled()) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x + HalqGui.width / 2, y + offset}, new double[] {x + HalqGui.width, y + offset}, new double[] {x + HalqGui.width, y + offset + HalqGui.height}, new double[] {x + HalqGui.width / 2, y + offset + HalqGui.height}), ColorUtil.injectAlpha(HalqGui.backgroundColor, 1), HalqGui.getGradientColour(count).getColor()));
         } else Render2DUtil.drawRectWH(x, y + offset, HalqGui.width, HalqGui.height, mod.isToggled() ? HalqGui.getGradientColour(count).getRGB() : HalqGui.backgroundColor.getRGB());
 
         String text = mod.getName() + (Config.instance.guiShowBinds.getValBoolean() && mod.getKey() != Keyboard.KEY_NONE ? " [" + Keyboard.getKeyName(mod.getKey()) + "]" : "");
 
         HalqGui.drawString(text, x, y + offset, HalqGui.width, HalqGui.height);
 
-        if(mod.isBeta()) {
+        if (mod.isBeta()) {
             GL11.glPushMatrix();
             GL11.glScaled(0.5, 0.5, 1);
             Minecraft.getMinecraft().fontRenderer.drawStringWithShadow("beta", (x + CustomFontUtil.getStringWidth(text)) * 2, (y + offset) * 2, HalqGui.primaryColor.getRGB());
             GL11.glPopMatrix();
         }
 
-         if(open && !comps.isEmpty()) {
+         if (open && !comps.isEmpty()) {
              int height = 0;
-             for(Component comp : comps) {
-                 if(!comp.visible()) continue;
+             for (Component comp : comps) {
+                 if (!comp.visible()) continue;
                  comp.drawScreen(mouseX, mouseY);
                  height += comp.getHeight();
              }
-             if(HalqGui.test) {
+             if (HalqGui.test) {
                  Render2DUtil.drawRectWH(x, y + offset + HalqGui.height, HalqGui.width, 1, HalqGui.getGradientColour(count).getRGB());
                  Render2DUtil.drawRectWH(x, y + offset + HalqGui.height + height - 1, HalqGui.width, 1, HalqGui.getGradientColour(getLastColorCount()).getRGB());
              }
@@ -115,26 +115,26 @@ public class Button extends Component {
 
     @Override
     public void mouseClicked(int mouseX, int mouseY, int button) {
-        if(isMouseOnButton(mouseX, mouseY) && button == 0) mod.toggle();
-        if(isMouseOnButton(mouseX, mouseY) && button == 1) open = !open;
-        if(open && !comps.isEmpty()) for(Component comp : comps) if(comp.visible()) comp.mouseClicked(mouseX, mouseY, button);
+        if (isMouseOnButton(mouseX, mouseY) && button == 0) mod.toggle();
+        if (isMouseOnButton(mouseX, mouseY) && button == 1) open = !open;
+        if (open && !comps.isEmpty()) for (Component comp : comps) if (comp.visible()) comp.mouseClicked(mouseX, mouseY, button);
     }
 
     @Override
     public void mouseReleased(int mouseX, int mouseY, int mouseButton) {
-        if(open && !comps.isEmpty()) for(Component comp : comps) if(comp.visible()) comp.mouseReleased(mouseX, mouseY, mouseButton);
+        if (open && !comps.isEmpty()) for (Component comp : comps) if (comp.visible()) comp.mouseReleased(mouseX, mouseY, mouseButton);
     }
 
     @Override
     public void updateComponent(int x, int y) {
         this.x = x;
         this.y = y;
-        if(open && !comps.isEmpty()) for(Component comp : comps) if(comp.visible()) comp.updateComponent(x + LayerMap.getLayer(comp.getLayer()).modifier, y);
+        if (open && !comps.isEmpty()) for (Component comp : comps) if (comp.visible()) comp.updateComponent(x + LayerMap.getLayer(comp.getLayer()).modifier, y);
     }
 
     @Override
     public void keyTyped(char typedChar, int key) {
-        if(open && !comps.isEmpty()) for(Component comp : comps) if(comp.visible()) comp.keyTyped(typedChar, key);
+        if (open && !comps.isEmpty()) for (Component comp : comps) if (comp.visible()) comp.keyTyped(typedChar, key);
     }
 
     @Override
@@ -156,7 +156,7 @@ public class Button extends Component {
 
     public int getSize() {
         int i = 0;
-        for(Component comp : comps) if(comp.visible()) i++;
+        for (Component comp : comps) if (comp.visible()) i++;
         return i;
     }
 

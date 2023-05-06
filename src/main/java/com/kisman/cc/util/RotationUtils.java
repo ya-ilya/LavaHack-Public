@@ -111,7 +111,7 @@ public class RotationUtils {
     });
 
     public static double yawDist(BlockPos pos) {
-        if(pos != null) {
+        if (pos != null) {
             Vec3d difference = new Vec3d(pos).subtract ( mc.player.getPositionEyes ( mc.getRenderPartialTicks ( ) ) );
             double d = Math.abs ( (double) mc.player.rotationYaw - ( Math.toDegrees ( Math.atan2 ( difference.z , difference.x ) ) - 90.0 ) ) % 360.0;
             return d > 180.0 ? 360.0 - d : d;
@@ -120,7 +120,7 @@ public class RotationUtils {
     }
 
     public static double yawDist(Entity e) {
-        if(e != null) {
+        if (e != null) {
             Vec3d difference = e.getPositionVector ( ).add (new Vec3d( 0.0f , e.getEyeHeight ( ) / 2.0f , 0.0f )).subtract ( mc.player.getPositionEyes ( mc.getRenderPartialTicks ( ) ) );
             double d = Math.abs ( (double) mc.player.rotationYaw - ( Math.toDegrees ( Math.atan2 ( difference.z , difference.x ) ) - 90.0 ) ) % 360.0;
             return d > 180.0 ? 360.0 - d : d;

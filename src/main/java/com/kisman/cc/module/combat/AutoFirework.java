@@ -113,7 +113,7 @@ public class AutoFirework extends Module {
     }
 
     public void onEnable() {
-        if(!aimBot.isToggled()) aimBot.setToggled(true);
+        if (!aimBot.isToggled()) aimBot.setToggled(true);
         aimBot.rotationSpoof = null;
         startPos = EntityUtil.getRoundedBlockPos(mc.player);
         lastHotbarSlot = mc.player.inventory.currentItem;
@@ -126,13 +126,13 @@ public class AutoFirework extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
-        if(target != null) super.setDisplayInfo("[" +  target.getDisplayName().getFormattedText() + TextFormatting.GRAY + "]");
+        if (target != null) super.setDisplayInfo("[" +  target.getDisplayName().getFormattedText() + TextFormatting.GRAY + "]");
         else super.setDisplayInfo("");
 
-        if(needPause()) return;
-        if(target != null) {
+        if (needPause()) return;
+        if (target != null) {
             BlockPos playerPos = target.getPosition();
 
             //place trap
@@ -182,17 +182,17 @@ public class AutoFirework extends Module {
     }
 
     private boolean needPause() {
-        if(pauseWhileEating.getValBoolean() && PlayerUtil.IsEating()) return true;
-        if(minHealthPause.getValBoolean() && mc.player.getHealth() + mc.player.getAbsorptionAmount() < requiredHealth.getValDouble()) return true;
+        if (pauseWhileEating.getValBoolean() && PlayerUtil.IsEating()) return true;
+        if (minHealthPause.getValBoolean() && mc.player.getHealth() + mc.player.getAbsorptionAmount() < requiredHealth.getValDouble()) return true;
         return pauseIfHittingBlock.getValBoolean() && mc.playerController.isHittingBlock && mc.player.getHeldItemMainhand().getItem() instanceof ItemTool;
     }
 
     private void doTrap() {
-        if(check()) return;
+        if (check()) return;
 
         doStaticTrap();
 
-        if(didPlace) trapTimer.reset();
+        if (didPlace) trapTimer.reset();
     }
 
     private void doStaticTrap() {
@@ -218,7 +218,7 @@ public class AutoFirework extends Module {
     }
 
     private boolean check() {
-        if(mc.player == null || startPos == null) return false;
+        if (mc.player == null || startPos == null) return false;
         didPlace = false;
         placements = 0;
         final int obbySlot2 = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);

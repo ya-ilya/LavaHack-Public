@@ -60,19 +60,19 @@ public class HoleFiller extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         target = EntityUtil.getTarget(range.getValFloat());
         
-        if(target == null) super.setDisplayInfo("");
+        if (target == null) super.setDisplayInfo("");
         else super.setDisplayInfo(TextFormatting.GRAY + "[" + TextFormatting.WHITE + target.getName() + TextFormatting.GRAY + "]");
 
-        if(target == null && placeMode.getValString().equals(PlaceMode.Smart.name())) target = EntityUtil.getTarget(range.getValFloat());
-        else if(timer.passedMillis(delay.getValLong()) && target != null){
+        if (target == null && placeMode.getValString().equals(PlaceMode.Smart.name())) target = EntityUtil.getTarget(range.getValFloat());
+        else if (timer.passedMillis(delay.getValLong()) && target != null){
             findHoles(mc.player, (float) range.getValDouble());
             findTargetHole();
 
-            if(targetHole != null) {
+            if (targetHole != null) {
                 final int obbySlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
                 final int webSlot = InventoryUtil.findBlock(Blocks.WEB, 0, 9);
                 final int oldSlot = mc.player.inventory.currentItem;
@@ -87,12 +87,12 @@ public class HoleFiller extends Module {
                         break;
                     }
                     case "Normal": {
-                        if(requirestSlot != -1) InventoryUtil.switchToSlot(obbySlot, false);
+                        if (requirestSlot != -1) InventoryUtil.switchToSlot(obbySlot, false);
                         else return;
                         break;
                     }
                     case "Silent": {
-                        if(requirestSlot != -1) InventoryUtil.switchToSlot(obbySlot, true);
+                        if (requirestSlot != -1) InventoryUtil.switchToSlot(obbySlot, true);
                         else return;
                         break;
                     }
@@ -100,7 +100,9 @@ public class HoleFiller extends Module {
 
                 BlockUtil.placeBlock(targetHole.pos);
 
-                try{if(switchMode.getValString().equals(SwitchMode.Silent.name()) && oldSlot != -1) InventoryUtil.switchToSlot(oldSlot, true);} catch(Exception ignored) {}
+                try {
+                    if (switchMode.getValString().equals(SwitchMode.Silent.name()) && oldSlot != -1) InventoryUtil.switchToSlot(oldSlot, true);
+                } catch (Exception ignored) {}
 
                 timer.reset();
             }
@@ -109,7 +111,7 @@ public class HoleFiller extends Module {
 
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
-        if(render.getValBoolean() && targetHole != null) RenderUtil.drawBlockESP(targetHole.pos, 1, 0, 0);
+        if (render.getValBoolean() && targetHole != null) RenderUtil.drawBlockESP(targetHole.pos, 1, 0, 0);
     }
 
     private void findTargetHole() {
@@ -125,12 +127,12 @@ public class HoleFiller extends Module {
 
     private void findHoles(EntityPlayer player, float range) {
         holes.clear();
-        for(BlockPos pos : CrystalUtils.getSphere(player, range, true, false)) if(mc.world.getBlockState(pos).getBlock().equals(Blocks.AIR)) if(isBlockHole(pos)) holes.add(new Hole(pos, (float) mc.player.getDistanceSq(pos), (float) player.getDistanceSq(pos)));
+        for (BlockPos pos : CrystalUtils.getSphere(player, range, true, false)) if (mc.world.getBlockState(pos).getBlock().equals(Blocks.AIR)) if (isBlockHole(pos)) holes.add(new Hole(pos, (float) mc.player.getDistanceSq(pos), (float) player.getDistanceSq(pos)));
     }
 
     private boolean isValidHole(Hole hole) {
-        if(mc.player.getDistanceSq(hole.pos) > range.getValDouble()) return false;
-        if(placeMode.getValString().equals(PlaceMode.Smart.name())) if(WorldUtil.getDistance(target, hole.pos) > targetHoleRange.getValDouble()) return false;
+        if (mc.player.getDistanceSq(hole.pos) > range.getValDouble()) return false;
+        if (placeMode.getValString().equals(PlaceMode.Smart.name())) if (WorldUtil.getDistance(target, hole.pos) > targetHoleRange.getValDouble()) return false;
 
         return mc.world.getBlockState(hole.pos.up(1)).getBlock().equals(Blocks.AIR) && mc.world.getBlockState(hole.pos.up(2)).getBlock().equals(Blocks.AIR) && mc.world.getBlockState(hole.pos.up(3)).getBlock().equals(Blocks.AIR);
     }

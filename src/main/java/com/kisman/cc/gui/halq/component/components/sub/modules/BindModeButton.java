@@ -29,7 +29,7 @@ public class BindModeButton extends Component {
     @Override
     public void drawScreen(int mouseX, int mouseY) {
         this.index = module.hold ? 1 : 0;
-        if(HalqGui.shadowCheckBox) {
+        if (HalqGui.shadowCheckBox) {
             Render2DUtil.drawRectWH(x, y + offset, width, getHeight(), HalqGui.backgroundColor.getRGB());
             Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x, y + offset}, new double[] {x + width / 2, y + offset}, new double[] {x + width / 2, y + offset + HalqGui.height}, new double[] {x, y + offset + HalqGui.height}), ColorUtil.injectAlpha(HalqGui.backgroundColor, 1), HalqGui.getGradientColour(count).getColor()));
             Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x + width / 2, y + offset}, new double[] {x + width, y + offset}, new double[] {x + width, y + offset + HalqGui.height}, new double[] {x + width / 2, y + offset + HalqGui.height}), HalqGui.getGradientColour(count).getColor(), ColorUtil.injectAlpha(HalqGui.backgroundColor, 1)));
@@ -37,10 +37,10 @@ public class BindModeButton extends Component {
 
         HalqGui.drawString("Bind Mode: " + values[index], x, y + offset, width, HalqGui.height);
 
-        if(open) {
+        if (open) {
             int offsetY = offset + HalqGui.height;
-            for(int i = 0; i < values.length; i++) {
-                if(i == index) continue;
+            for (int i = 0; i < values.length; i++) {
+                if (i == index) continue;
                 HalqGui.drawCenteredString(values[i], x, y + offsetY, width, HalqGui.height);
                 offsetY += HalqGui.height;
             }
@@ -49,13 +49,13 @@ public class BindModeButton extends Component {
 
     @Override
     public void mouseClicked(int mouseX, int mouseY, int button) {
-        if(isMouseOnButton(mouseX, mouseY) && button == 0) open = !open;
-        else if(isMouseOnButton2(mouseX, mouseY) && button == 0 && open) {
+        if (isMouseOnButton(mouseX, mouseY) && button == 0) open = !open;
+        else if (isMouseOnButton2(mouseX, mouseY) && button == 0 && open) {
             int offsetY = y +  offset + HalqGui.height;
-            for(int i = 0; i < values.length; i++) {
-                if(i == index) continue;
+            for (int i = 0; i < values.length; i++) {
+                if (i == index) continue;
 
-                if(mouseY >= offsetY && mouseY <= offsetY + HalqGui.height) {
+                if (mouseY >= offsetY && mouseY <= offsetY + HalqGui.height) {
                     index = i;
                     open = false;
                     module.hold = values[i].equals(values[1]);

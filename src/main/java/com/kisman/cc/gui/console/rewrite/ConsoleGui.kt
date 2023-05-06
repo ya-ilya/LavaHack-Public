@@ -38,24 +38,24 @@ class ConsoleGui : GuiScreen() {
     }
 
     override fun drawScreen(mouseX: Int, mouseY: Int, partialTicks: Float) {
-        if(Kisman.instance.selectionBar.selection != MainGui.Guis.Console) {
+        if (Kisman.instance.selectionBar.selection != MainGui.Guis.Console) {
             MainGui.openGui(Kisman.instance.selectionBar)
             return
         }
 
         super.drawDefaultBackground()
 
-        if(history.size >= 25) {
+        if (history.size >= 25) {
             history.removeAt(0)
         }
 
-        width1 = if(getLongestWord(history) > 300)  getLongestWord(history) + 3 else 300
+        width1 = if (getLongestWord(history) > 300)  getLongestWord(history) + 3 else 300
 
         //Full box
         drawRect(x, y, x + width1, y + height1, Color(0, 0, 0, 175).rgb)
 
         //Lines
-        if(Config.instance.guiOutline.valBoolean) {
+        if (Config.instance.guiOutline.valBoolean) {
             //Top line
             drawRect(x - 1, y, x + width1, y + 1, Color.BLACK.rgb)
             //Left line
@@ -68,7 +68,7 @@ class ConsoleGui : GuiScreen() {
 
         var yOffset = 0
 
-        for(string in history) {
+        for (string in history) {
             Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(string,
                 (x + 2).toFloat(), (y + 2 + yOffset).toFloat(), -1)
             yOffset += Minecraft.getMinecraft().fontRenderer.FONT_HEIGHT
@@ -87,44 +87,44 @@ class ConsoleGui : GuiScreen() {
     }
 
     public override fun keyTyped(typedChar: Char, keyCode: Int) {
-        if(keyCode == 1) {
+        if (keyCode == 1) {
             Minecraft.getMinecraft().displayGuiScreen(null)
             return
         }
-        when(keyCode) {
+        when (keyCode) {
             Keyboard.KEY_BACK -> entryString = removeLastLetter(entryString)
             Keyboard.KEY_RETURN ->
-                when(entryString.lowercase()) {
+                when (entryString.lowercase()) {
                     "clear" -> {
                         history.clear()
                         history += "Cleared console!"
                     }
                     else -> {
-                        if(entryString.isNotEmpty()) {
+                        if (entryString.isNotEmpty()) {
                             history += entryString
                         }
                         Kisman.instance.commandManager.runCommand("-${entryString}")
                     }
                 }
             Keyboard.KEY_V ->
-                if(Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL)) {
+                if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL)) {
                     try {
                         entryString += Toolkit.getDefaultToolkit().systemClipboard.getData(DataFlavor.stringFlavor)
                     } catch (ignored: UnsupportedEncodingException) {}
                 }
             Keyboard.KEY_C ->
-                if(Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL)) {
-                    if(entryString.isEmpty()) {
+                if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL) || Keyboard.isKeyDown(Keyboard.KEY_RCONTROL)) {
+                    if (entryString.isEmpty()) {
                         history.add("${ChatFormatting.BOLD}[Console]${ChatFormatting.RESET} Nothing to copy.")
                         return
                     }
                     try {
                         Toolkit.getDefaultToolkit().systemClipboard.setContents(StringSelection(entryString), null)
                         history += "${ChatFormatting.BOLD}[Console]${ChatFormatting.RESET} Copied text in string box to clipboard."
-                    } catch(ignored: IllegalStateException) {}
+                    } catch (ignored: IllegalStateException) {}
                 }
         }
-        if(ChatAllowedCharacters.isAllowedCharacter(typedChar)) {
+        if (ChatAllowedCharacters.isAllowedCharacter(typedChar)) {
             entryString += typedChar
             super.keyTyped(typedChar, keyCode)
         }
@@ -145,8 +145,8 @@ class ConsoleGui : GuiScreen() {
     private fun getLongestWord(strings: List<String>): Int {
         var max = 0
 
-        for(string in strings) {
-            if(Minecraft.getMinecraft().fontRenderer.getStringWidth(string) > max) {
+        for (string in strings) {
+            if (Minecraft.getMinecraft().fontRenderer.getStringWidth(string) > max) {
                 max = Minecraft.getMinecraft().fontRenderer.getStringWidth(string)
             }
         }

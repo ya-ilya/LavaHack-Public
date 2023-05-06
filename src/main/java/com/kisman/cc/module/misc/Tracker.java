@@ -73,11 +73,11 @@ public class Tracker extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         trackedPlayer = AutoRer.currentTarget;
 
-        if(trackedPlayer == null) return;
+        if (trackedPlayer == null) return;
 
         if (this.usedStacks != this.usedExp / 64) {
             this.usedStacks = this.usedExp / 64;
@@ -92,20 +92,20 @@ public class Tracker extends Module {
 
     @SubscribeEvent
     public void onDisconnect(FMLNetworkEvent.ClientConnectedToServerEvent event) {
-        if(autoDisable.getValBoolean()) {
+        if (autoDisable.getValBoolean()) {
             super.setToggled(false);
         }
     }
 
     @SubscribeEvent
     public void onDeath(LivingDeathEvent event) {
-        if(event.getEntity().equals(mc.player) || event.getEntity().equals(trackedPlayer)) {
+        if (event.getEntity().equals(mc.player) || event.getEntity().equals(trackedPlayer)) {
             this.usedExp = 0;
             this.usedStacks = 0;
             this.usedCrystals = 0;
             this.usedCStacks = 0;
 
-            if(autoDisable.getValBoolean()) {
+            if (autoDisable.getValBoolean()) {
                 super.setToggled(false);
             }
         }
@@ -142,7 +142,7 @@ public class Tracker extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
-        if(shouldEnable && timer.passedSec(5L) && !super.isToggled()) {
+        if (shouldEnable && timer.passedSec(5L) && !super.isToggled()) {
             super.setToggled(true);
         }
     });

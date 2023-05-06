@@ -23,7 +23,7 @@ public class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
 
     @Inject(method = "isSneaking", at = @At("HEAD"), cancellable = true)
     private void isSneakingHook(CallbackInfoReturnable<Boolean> cir) {
-        if(NoSlowSneak.instance.isToggled() && NoSlowSneak.instance.mode.checkValString(NoSlowSneak.Mode.Cancel.name())) {
+        if (NoSlowSneak.instance.isToggled() && NoSlowSneak.instance.mode.checkValString(NoSlowSneak.Mode.Cancel.name())) {
             cir.setReturnValue(false);
             cir.cancel();
         }
@@ -45,14 +45,14 @@ public class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
         Kisman.EVENT_BUS.post(event);
         this.rotationYaw = event.getYaw();
         this.rotationPitch = event.getPitch();
-        if(event.isCancelled()) ci.cancel();
+        if (event.isCancelled()) ci.cancel();
     }
 
     @Inject(method = "onUpdateWalkingPlayer", at = @At("RETURN"), cancellable = true)
     public void onPostUpdateWalkingPlayerHook(CallbackInfo ci) {
         PlayerMotionUpdateEvent event = new PlayerMotionUpdateEvent(Event.Era.POST, rotationYaw, rotationPitch, this.posX, this.getEntityBoundingBox().minY, this.posZ, this.onGround);
         Kisman.EVENT_BUS.post(event);
-        if(event.isCancelled()) ci.cancel();
+        if (event.isCancelled()) ci.cancel();
     }
 
     @Inject(method = "onUpdate", at = @At("HEAD"), cancellable = true)

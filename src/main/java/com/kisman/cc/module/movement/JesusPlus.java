@@ -17,7 +17,7 @@ public class JesusPlus extends Module {
      }
      
      public void update() {
-          if(mc.player == null || mc.world == null) return;
+          if (mc.player == null || mc.world == null) return;
           
           if (mc.world.getBlockState(new BlockPos(mc.player.posX, mc.player.posY - (double)0.2f, mc.player.posZ)).getBlock() instanceof BlockLiquid && !mc.player.onGround) {
                float Speedz = speedX.getValFloat();

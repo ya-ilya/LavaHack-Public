@@ -52,15 +52,15 @@ public class StringButton extends Button {
     @Override
     public boolean keyPressed(int key, char c) {
         if (listening) {
-            if(Keyboard.getEventKey() == 1) return super.keyPressed(key, c);
+            if (Keyboard.getEventKey() == 1) return super.keyPressed(key, c);
 
-            if(Keyboard.KEY_RETURN == Keyboard.getEventKey()) {
+            if (Keyboard.KEY_RETURN == Keyboard.getEventKey()) {
                 enterString();
-            } else if(Keyboard.getEventKey() == 14) {
-                if(!value.isEmpty()) {
+            } else if (Keyboard.getEventKey() == 14) {
+                if (!value.isEmpty()) {
                     value = value.substring(0, value.length() - 1);
                 }
-            } else if(ChatAllowedCharacters.isAllowedCharacter(Keyboard.getEventCharacter())) {
+            } else if (ChatAllowedCharacters.isAllowedCharacter(Keyboard.getEventCharacter())) {
                 value += Keyboard.getEventCharacter();
             }
 

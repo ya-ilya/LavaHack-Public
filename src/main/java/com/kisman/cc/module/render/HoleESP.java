@@ -131,7 +131,7 @@ public class HoleESP extends Module {
     }
 
     private void renderHoles(AxisAlignedBB hole, Colour color) {
-        if(mode.checkValString("Konas")) KonasRenderer.drawHole(hole, konasMode.getValString(), konasLine.getValString(), height.getValDouble(), color, color, notSelf.getValBoolean(), ufoAlpha.getValInt(), sides.getValBoolean(), noLineDepth.getValBoolean(), depth.getValBoolean(), width.getValFloat());
+        if (mode.checkValString("Konas")) KonasRenderer.drawHole(hole, konasMode.getValString(), konasLine.getValString(), height.getValDouble(), color, color, notSelf.getValBoolean(), ufoAlpha.getValInt(), sides.getValBoolean(), noLineDepth.getValBoolean(), depth.getValBoolean(), width.getValFloat());
         else {
             switch (type.getValString()) {
                 case "Outline":

@@ -27,7 +27,7 @@ public class PeekCommand extends Command {
 
     public void runCommand(String s, String[] args) {
         try {
-            if(!args[0].equalsIgnoreCase("book") && !args[0].equalsIgnoreCase("shulker")) {
+            if (!args[0].equalsIgnoreCase("book") && !args[0].equalsIgnoreCase("shulker")) {
                 ChatUtil.error("Usage: " + getSyntax());
 
                 return;
@@ -37,22 +37,22 @@ public class PeekCommand extends Command {
 
             double distance = 0;
             ItemStack stack = null;
-            for(Entity entity : mc.world.getEntitiesWithinAABB(Entity.class, mc.player.getEntityBoundingBox().grow(12.0D, 4.0D, 12.0D))) {
-                if(entity == mc.player) continue;
+            for (Entity entity : mc.world.getEntitiesWithinAABB(Entity.class, mc.player.getEntityBoundingBox().grow(12.0D, 4.0D, 12.0D))) {
+                if (entity == mc.player) continue;
 
                 ItemStack current = null;
 
                 // Search through entities metadata
-                for(EntityDataManager.DataEntry<?> entry : entity.getDataManager().getAll()) {
-                    if(entry.getValue() instanceof ItemStack && ((book && (((ItemStack) entry.getValue()).getItem() instanceof ItemWritableBook || ((ItemStack) entry.getValue()).getItem() instanceof ItemWrittenBook)) || (!book && ((ItemStack) entry.getValue()).getItem() instanceof ItemShulkerBox))) {
+                for (EntityDataManager.DataEntry<?> entry : entity.getDataManager().getAll()) {
+                    if (entry.getValue() instanceof ItemStack && ((book && (((ItemStack) entry.getValue()).getItem() instanceof ItemWritableBook || ((ItemStack) entry.getValue()).getItem() instanceof ItemWrittenBook)) || (!book && ((ItemStack) entry.getValue()).getItem() instanceof ItemShulkerBox))) {
                         current = (ItemStack) entry.getValue();
                         break;
                     }
                 }
 
-                if(current == null) { // Search through entity equipment
-                    for(ItemStack item : entity.getEquipmentAndArmor()) {
-                        if((!book && item.getItem() instanceof ItemShulkerBox) || (book && (item.getItem() instanceof ItemWritableBook || item.getItem() instanceof ItemWrittenBook))) {
+                if (current == null) { // Search through entity equipment
+                    for (ItemStack item : entity.getEquipmentAndArmor()) {
+                        if ((!book && item.getItem() instanceof ItemShulkerBox) || (book && (item.getItem() instanceof ItemWritableBook || item.getItem() instanceof ItemWrittenBook))) {
                             current = item;
                             break;
                         }
@@ -60,27 +60,27 @@ public class PeekCommand extends Command {
                 }
 
                 double sqDist = mc.player.getDistanceSq(entity);
-                if(current != null && (stack == null || sqDist < distance)) {
+                if (current != null && (stack == null || sqDist < distance)) {
                     stack = current;
                     distance = sqDist;
                 }
             }
 
-            if(stack == null) {
+            if (stack == null) {
                 ChatUtil.error("No " + (book ? "book" : "shulker") + " item close to you");
 
                 return;
             }
 
-            if(book) {
+            if (book) {
 
-                if(stack.getItem() instanceof ItemWritableBook) {
+                if (stack.getItem() instanceof ItemWritableBook) {
                     stack = stack.copy();
                     stack.getTagCompound().setString("title", "Writable book");
                     stack.getTagCompound().setString("author", "No author");
                 }
 
-                if(!stack.getTagCompound().hasKey("pages", 9)) {
+                if (!stack.getTagCompound().hasKey("pages", 9)) {
                     ChatUtil.error("Book has no data");
 
                     return;
@@ -92,9 +92,9 @@ public class PeekCommand extends Command {
                 MinecraftForge.EVENT_BUS.register(this);
             } else {
                 NBTTagCompound tag = stack.getTagCompound();
-                if(tag != null && tag.hasKey("BlockEntityTag") && tag.getTagId("BlockEntityTag") == 10) {
+                if (tag != null && tag.hasKey("BlockEntityTag") && tag.getTagId("BlockEntityTag") == 10) {
                     NBTTagCompound blockTag = tag.getCompoundTag("BlockEntityTag");
-                    if(blockTag.hasKey("Items") && blockTag.getTagId("Items") == 9) {
+                    if (blockTag.hasKey("Items") && blockTag.getTagId("Items") == 9) {
                         this.screen = new PreviewGui(blockTag.getTagList("Items", 10), false);
                         MinecraftForge.EVENT_BUS.register(this);
                         return;
@@ -118,7 +118,7 @@ public class PeekCommand extends Command {
 
     @SubscribeEvent
     public void onGuiOpened(GuiOpenEvent event) {
-        if(event.getGui() == null) {
+        if (event.getGui() == null) {
             event.setGui(this.screen);
             this.screen = null;
         }

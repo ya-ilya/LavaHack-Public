@@ -32,21 +32,21 @@ public class ElytraEquip extends Module {
     }
 
     public void update() {
-        if(synsWithElytraFly.getValBoolean()) {
-            if(ElytraFly.instance.isToggled()) state = State.NeedElytra;
+        if (synsWithElytraFly.getValBoolean()) {
+            if (ElytraFly.instance.isToggled()) state = State.NeedElytra;
             else state = State.NeedChest;
         }
-        if(state != State.None || mc.player == null || mc.world == null) return;
+        if (state != State.None || mc.player == null || mc.world == null) return;
         int slot;
-        if(mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.ELYTRA) slot = InventoryUtil.findItem(Items.ELYTRA, 0, 36);
+        if (mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.ELYTRA) slot = InventoryUtil.findItem(Items.ELYTRA, 0, 36);
         else slot = InventoryUtil.findChestplate(0, 36);
-        if(slot == -1) super.setToggled(false);
+        if (slot == -1) super.setToggled(false);
         boolean armorOnChest = mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.AIR;
         mc.playerController.windowClick(mc.player.inventoryContainer.windowId, slot, 0, ClickType.PICKUP, mc.player);
         mc.playerController.windowClick(mc.player.inventoryContainer.windowId, 6, 0, ClickType.PICKUP, mc.player);
-        if(armorOnChest) mc.playerController.windowClick(mc.player.inventoryContainer.windowId, slot, 0, ClickType.PICKUP, mc.player);
+        if (armorOnChest) mc.playerController.windowClick(mc.player.inventoryContainer.windowId, slot, 0, ClickType.PICKUP, mc.player);
         state = State.None;
-        if(autoDisable.getValBoolean()) super.setToggled(false);
+        if (autoDisable.getValBoolean()) super.setToggled(false);
     }
 
     public enum State {NeedElytra, NeedChest, None}

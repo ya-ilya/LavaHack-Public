@@ -18,7 +18,7 @@ public class Speed extends HudModule {
     }
 
     public void update() {
-        if(Kisman.instance.hudModuleManager.getModule("Coords").isToggled()) {
+        if (Kisman.instance.hudModuleManager.getModule("Coords").isToggled()) {
             i = 1;
         }
     }

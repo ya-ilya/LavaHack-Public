@@ -48,7 +48,7 @@ public class Module {
 	}
 
 	public void setToggled(boolean toggled) {
-		if(block) return;
+		if (block) return;
 		this.toggled = toggled;
 		if (Kisman.instance.init && Kisman.instance.moduleManager.getModule("Notification").isToggled()) ChatUtil.message(TextFormatting.GRAY + "Module " + (isToggled() ? TextFormatting.GREEN : TextFormatting.RED) + getName() + TextFormatting.GRAY + " has been " + (isToggled() ? "enabled" : "disabled") + "!");
 		if (this.toggled) {
@@ -59,7 +59,7 @@ public class Module {
 	}
 
 	public void toggle() {
-		if(block) return;
+		if (block) return;
 		toggled = !toggled;
 		if (Kisman.instance.init && Kisman.instance.moduleManager.getModule("Notification").isToggled()) ChatUtil.message(TextFormatting.GRAY + "Module " + (isToggled() ? TextFormatting.GREEN : TextFormatting.RED) + getName() + TextFormatting.GRAY + " has been " + (isToggled() ? "enabled" : "disabled") + "!");
 		if (toggled) {

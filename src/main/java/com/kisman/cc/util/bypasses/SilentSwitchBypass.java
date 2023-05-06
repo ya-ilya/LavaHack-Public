@@ -15,7 +15,7 @@ public class SilentSwitchBypass {
     }
 
     public void doSwitch() {
-        if(mc.currentScreen != null || newSlot == -1 || oldSlot == -1) return;
+        if (mc.currentScreen != null || newSlot == -1 || oldSlot == -1) return;
 
         mc.playerController.windowClick(mc.player.inventoryContainer.windowId, newSlot, 0, ClickType.PICKUP, mc.player);
         mc.playerController.windowClick(mc.player.inventoryContainer.windowId, oldSlot, 0, ClickType.PICKUP, mc.player);

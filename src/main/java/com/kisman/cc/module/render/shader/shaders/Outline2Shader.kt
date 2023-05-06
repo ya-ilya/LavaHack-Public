@@ -74,13 +74,13 @@ object Outline2Shader {
 
         camera.setPosition(x, y, z)
 
-        for(entity in mc.world.loadedEntityList) {
-            if(mc.player.getDistance(entity) > range) continue
-            if(!ShaderCharms.instance.entityTypeCheck(entity)) continue
+        for (entity in mc.world.loadedEntityList) {
+            if (mc.player.getDistance(entity) > range) continue
+            if (!ShaderCharms.instance.entityTypeCheck(entity)) continue
 
             val renderer = mc.renderManager.getEntityRenderObject<Entity>(entity) ?: continue
 
-            if(!renderer.shouldRender(entity, camera, x, y, z)) continue
+            if (!renderer.shouldRender(entity, camera, x, y, z)) continue
 
             val yaw = entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks
             val pos = EntityUtil.getInterpolatedPos(entity, partialTicks).subtract(mc.renderManager.renderPosX, mc.renderManager.renderPosY, mc.renderManager.renderPosZ)
@@ -95,7 +95,7 @@ object Outline2Shader {
 
     fun updateUniforms(shaderHelper: ShaderHelper) {
         shaderHelper.shader?.let {
-            for(shader in (it as AccessorShaderGroup).listShaders) {
+            for (shader in (it as AccessorShaderGroup).listShaders) {
                 ShaderUtil.setupUniforms(shader, arrayOf(outlineAlpha!!, filledAlpha!!, width!!, widthSq!!, ratio!!))
             }
         }

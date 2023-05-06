@@ -35,8 +35,8 @@ public abstract class MixinGuiIngame extends Gui {
     @Shadow public abstract FontRenderer getFontRenderer();
 
     @Inject(method = "renderPortal", at = @At("HEAD"), cancellable = true)
-    protected void renderPortalHook(float timeInPortal, ScaledResolution scaledRes, CallbackInfo ci) {
-        if(NoRender.instance.isToggled() && NoRender.instance.portal.getValBoolean()) ci.cancel();
+    protected void renderPortalHook(float timeInPortal, ScaledResolution scaledRes, CallbackInfo callbackInfo) {
+        if (NoRender.instance.isToggled() && NoRender.instance.portal.getValBoolean()) callbackInfo.cancel();
     }
 
     @Inject(method = "renderPumpkinOverlay", at = @At("HEAD"), cancellable = true)
@@ -56,7 +56,7 @@ public abstract class MixinGuiIngame extends Gui {
      */
     @Overwrite
     protected void renderHotbar(ScaledResolution sr, float partialTicks) {
-        if(HotbarModifier.instance.isToggled()) {
+        if (HotbarModifier.instance.isToggled()) {
             Color backgroundColor = new Color(31, 31, 31, 152);
             if (this.mc.getRenderViewEntity() instanceof EntityPlayer) {
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -72,18 +72,18 @@ public abstract class MixinGuiIngame extends Gui {
                 Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {selectedCoords[0], selectedCoords[1]}, new double[] {selectedCoords[0] + selectedCoords[2], selectedCoords[1]}, new double[] {selectedCoords[0] + selectedCoords[2], selectedCoords[1] + selectedCoords[3]}, new double[] {selectedCoords[0], selectedCoords[1] + selectedCoords[3]}), ColorUtil.injectAlpha(backgroundColor, 1), HotbarModifier.getPrimaryColor(), true));
                 if (!itemstack.isEmpty()) {
                     if (enumhandside == EnumHandSide.LEFT) {
-                        if(!HotbarModifier.instance.offhand.getValBoolean()) this.drawTexturedModalRect(i - 91 - 29, sr.getScaledHeight() - 23, 24, 22, 29, 24);
+                        if (!HotbarModifier.instance.offhand.getValBoolean()) this.drawTexturedModalRect(i - 91 - 29, sr.getScaledHeight() - 23, 24, 22, 29, 24);
                         else {
                             Render2DUtil.drawRectWH(i - 91 - 29, sr.getScaledHeight() - 22, 22, 22, backgroundColor.getRGB());
                             double[] selectedCoordsOffhand = new double[] {i - 91 - 29, sr.getScaledHeight() - 22, 22, 22};
-                            if(HotbarModifier.instance.offhandGradient.getValBoolean()) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {selectedCoordsOffhand[0], selectedCoordsOffhand[1]}, new double[] {selectedCoordsOffhand[0] + selectedCoordsOffhand[2], selectedCoordsOffhand[1]}, new double[] {selectedCoordsOffhand[0] + selectedCoordsOffhand[2], selectedCoordsOffhand[1] + selectedCoordsOffhand[3]}, new double[] {selectedCoordsOffhand[0], selectedCoordsOffhand[1] + selectedCoordsOffhand[3]}), ColorUtil.injectAlpha(backgroundColor, 1), HotbarModifier.getPrimaryColor(), true));
+                            if (HotbarModifier.instance.offhandGradient.getValBoolean()) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {selectedCoordsOffhand[0], selectedCoordsOffhand[1]}, new double[] {selectedCoordsOffhand[0] + selectedCoordsOffhand[2], selectedCoordsOffhand[1]}, new double[] {selectedCoordsOffhand[0] + selectedCoordsOffhand[2], selectedCoordsOffhand[1] + selectedCoordsOffhand[3]}, new double[] {selectedCoordsOffhand[0], selectedCoordsOffhand[1] + selectedCoordsOffhand[3]}), ColorUtil.injectAlpha(backgroundColor, 1), HotbarModifier.getPrimaryColor(), true));
                         }
                     } else {
-                        if(!HotbarModifier.instance.offhand.getValBoolean()) this.drawTexturedModalRect(i + 91, sr.getScaledHeight() - 23, 53, 22, 29, 24);
+                        if (!HotbarModifier.instance.offhand.getValBoolean()) this.drawTexturedModalRect(i + 91, sr.getScaledHeight() - 23, 53, 22, 29, 24);
                         else {
                             Render2DUtil.drawRectWH(i + 91 + 7, sr.getScaledHeight() - 22, 22, 22, backgroundColor.getRGB());
                             double[] selectedCoordsOffhand = new double[] {i + 91 + 7, sr.getScaledHeight() - 22, 22, 22};
-                            if(HotbarModifier.instance.offhandGradient.getValBoolean()) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {selectedCoordsOffhand[0], selectedCoordsOffhand[1]}, new double[] {selectedCoordsOffhand[0] + selectedCoordsOffhand[2], selectedCoordsOffhand[1]}, new double[] {selectedCoordsOffhand[0] + selectedCoordsOffhand[2], selectedCoordsOffhand[1] + selectedCoordsOffhand[3]}, new double[] {selectedCoordsOffhand[0], selectedCoordsOffhand[1] + selectedCoordsOffhand[3]}), ColorUtil.injectAlpha(backgroundColor, 1), new Color(255, 255, 255, 152), true));
+                            if (HotbarModifier.instance.offhandGradient.getValBoolean()) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {selectedCoordsOffhand[0], selectedCoordsOffhand[1]}, new double[] {selectedCoordsOffhand[0] + selectedCoordsOffhand[2], selectedCoordsOffhand[1]}, new double[] {selectedCoordsOffhand[0] + selectedCoordsOffhand[2], selectedCoordsOffhand[1] + selectedCoordsOffhand[3]}, new double[] {selectedCoordsOffhand[0], selectedCoordsOffhand[1] + selectedCoordsOffhand[3]}), ColorUtil.injectAlpha(backgroundColor, 1), new Color(255, 255, 255, 152), true));
                         }
                     }
                 }
@@ -97,7 +97,7 @@ public abstract class MixinGuiIngame extends Gui {
                 int l1;
                 int i2;
                 int j2;
-                for(l1 = 0; l1 < 9; ++l1) {
+                for (l1 = 0; l1 < 9; ++l1) {
                     i2 = i - 90 + l1 * 20 + 2;
                     j2 = sr.getScaledHeight() - 16 - 3;
                     this.renderHotbarItem(i2, j2, partialTicks, entityplayer, entityplayer.inventory.mainInventory.get(l1));
@@ -153,7 +153,7 @@ public abstract class MixinGuiIngame extends Gui {
                 int l1;
                 int i2;
                 int j2;
-                for(l1 = 0; l1 < 9; ++l1) {
+                for (l1 = 0; l1 < 9; ++l1) {
                     i2 = i - 90 + l1 * 20 + 2;
                     j2 = sr.getScaledHeight() - 16 - 3;
                     this.renderHotbarItem(i2, j2, partialTicks, entityplayer, entityplayer.inventory.mainInventory.get(l1));

@@ -30,7 +30,7 @@ public class PacketCancel extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
-       if(
+       if (
                (event.getPacket() instanceof CPacketInput && input.getValBoolean()) ||
                        (event.getPacket() instanceof CPacketPlayer && player.getValBoolean()) ||
                        (event.getPacket() instanceof CPacketEntityAction && entityAction.getValBoolean()) ||

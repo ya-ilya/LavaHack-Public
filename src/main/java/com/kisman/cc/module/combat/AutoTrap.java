@@ -79,7 +79,7 @@ public class AutoTrap extends Module {
     }
 
     public void onEnable() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         startPos = EntityUtil.getRoundedBlockPos(mc.player);
         oldSlot = mc.player.inventory.currentItem;
@@ -87,9 +87,9 @@ public class AutoTrap extends Module {
     }
 
     public void update() {
-        if(mc.player == null ||  mc.world == null) return;
+        if (mc.player == null ||  mc.world == null) return;
 
-        if(!rewrite.getValBoolean()) {
+        if (!rewrite.getValBoolean()) {
             smartRotate = false;
             doTrap();
         } else doRewriteTrap();
@@ -98,60 +98,60 @@ public class AutoTrap extends Module {
     protected void doRewriteTrap() {
         target = EntityUtil.getTarget(targetRange.getValFloat());
 
-        if(target == null) return;
+        if (target == null) return;
 
         int blockSlot;
         int oldSlot = mc.player.inventory.currentItem;
-        if(InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9) != -1) blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
-        else if(InventoryUtil.findBlock(Blocks.ENDER_CHEST, 0, 9) != -1) blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+        if (InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9) != -1) blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+        else if (InventoryUtil.findBlock(Blocks.ENDER_CHEST, 0, 9) != -1) blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
         else return;
 
         InventoryUtil.switchToSlot(blockSlot, switch_.getValString().equalsIgnoreCase("Silent"));
-        for(BlockPos pos : getPosList()) {
-            if(!BlockUtil2.isPositionPlaceable(pos, true, true, tries <= rewriteRetries.getValInt())) continue;
+        for (BlockPos pos : getPosList()) {
+            if (!BlockUtil2.isPositionPlaceable(pos, true, true, tries <= rewriteRetries.getValInt())) continue;
             place(pos);
             tries++;
         }
         rewrPlacements = 0;
-        if(switch_.getValString().equalsIgnoreCase(RewriteSwitchModes.Silent.name())) InventoryUtil.switchToSlot(oldSlot, true);
-        if(!getPosList().isEmpty()) return;
+        if (switch_.getValString().equalsIgnoreCase(RewriteSwitchModes.Silent.name())) InventoryUtil.switchToSlot(oldSlot, true);
+        if (!getPosList().isEmpty()) return;
         tries = 0;
-        if(disableOnComplete.getValBoolean()) setToggled(false);
+        if (disableOnComplete.getValBoolean()) setToggled(false);
     }
 
     protected ArrayList<BlockPos> getPosList() {
         List<BlockPos> startPosList = getUnsafeBlocks();
         ArrayList<BlockPos> finalPosList = new ArrayList<>();
 
-        for(BlockPos pos : startPosList) {
-            if(!supportBlocks.getValString().equalsIgnoreCase(Surround.SupportModes.None.name())) if(BlockUtil.getPlaceableSide(pos) == null || supportBlocks.getValString().equalsIgnoreCase(Surround.SupportModes.Static.name()) && BlockUtil2.isPositionPlaceable(pos, true, true)) finalPosList.add(pos.down());
-            if(surroundPlacing.getValBoolean()) finalPosList.add(pos);
+        for (BlockPos pos : startPosList) {
+            if (!supportBlocks.getValString().equalsIgnoreCase(Surround.SupportModes.None.name())) if (BlockUtil.getPlaceableSide(pos) == null || supportBlocks.getValString().equalsIgnoreCase(Surround.SupportModes.Static.name()) && BlockUtil2.isPositionPlaceable(pos, true, true)) finalPosList.add(pos.down());
+            if (surroundPlacing.getValBoolean()) finalPosList.add(pos);
         }
 
-        for(BlockPos pos : getAroundOffset()) {
+        for (BlockPos pos : getAroundOffset()) {
             finalPosList.add(pos.up());
-            if(antiStep.getValBoolean()) finalPosList.add(pos.up().up());
+            if (antiStep.getValBoolean()) finalPosList.add(pos.up().up());
         }
 
-        for(BlockPos pos : getOverlapPositions()) {
-            if(antiStep.getValBoolean()) finalPosList.add(pos.up().up().up());
-            if(antiScaffold.getValBoolean()) finalPosList.add(pos.up().up().up().up());
+        for (BlockPos pos : getOverlapPositions()) {
+            if (antiStep.getValBoolean()) finalPosList.add(pos.up().up().up());
+            if (antiScaffold.getValBoolean()) finalPosList.add(pos.up().up().up().up());
         }
 
         return  finalPosList;
     }
 
     protected void place(BlockPos posToPlace) {
-        if(rewrPlacements < blocksPerTick.getValInt()) {
+        if (rewrPlacements < blocksPerTick.getValInt()) {
             float[] oldRots = new float[] {mc.player.rotationYaw, mc.player.rotationPitch};
-            if(!rotateMode.getValString().equalsIgnoreCase(RewriteRotateModes.None.name())) {
+            if (!rotateMode.getValString().equalsIgnoreCase(RewriteRotateModes.None.name())) {
                 float[] rots = RotationUtils.getRotationToPos(posToPlace);
                 mc.player.rotationYaw = rots[0];
                 mc.player.rotationPitch = rots[1];
             }
             BlockUtil2.placeBlock(posToPlace, EnumHand.MAIN_HAND, packet.getValBoolean());
             rewrPlacements++;
-            if(rotateMode.getValString().equalsIgnoreCase(RewriteRotateModes.Silent.name())) {
+            if (rotateMode.getValString().equalsIgnoreCase(RewriteRotateModes.Silent.name())) {
                 mc.player.rotationYaw = oldRots[0];
                 mc.player.rotationPitch = oldRots[1];
             }
@@ -159,9 +159,9 @@ public class AutoTrap extends Module {
     }
 
     private void doTrap() {
-        if(check()) return;
+        if (check()) return;
         doStaticTrap();
-        if(didPlace) timer.reset();
+        if (didPlace) timer.reset();
     }
 
     private void doStaticTrap() {
@@ -187,7 +187,7 @@ public class AutoTrap extends Module {
     }
 
     protected boolean check() {
-        if(mc.player == null || startPos == null) return false;
+        if (mc.player == null || startPos == null) return false;
 
         didPlace = false;
         placements = 0;
@@ -216,8 +216,8 @@ public class AutoTrap extends Module {
 
     private List<BlockPos> getUnsafeBlocks() {
         ArrayList<BlockPos> positions = new ArrayList<>();
-        for(BlockPos pos :  getOffsets()) {
-            if(isSafe(pos)) continue;
+        for (BlockPos pos :  getOffsets()) {
+            if (isSafe(pos)) continue;
             positions.add(pos);
         }
         return positions;

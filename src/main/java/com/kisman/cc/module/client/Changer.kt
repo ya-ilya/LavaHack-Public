@@ -51,12 +51,12 @@ class Changer : Module("Changer", "FullBright + CustomFov + Ambience + CustomTim
     }
 
     override fun update() {
-        if(mc.player == null || mc.world == null) return
+        if (mc.player == null || mc.world == null) return
 
         mc.gameSettings.gammaSetting = gamma.valFloat
         mc.gameSettings.fovSetting = fov.valFloat
 
-        if(time.valBoolean) {
+        if (time.valBoolean) {
             circle += timeSpeed.valInt
             mc.world.worldTime = if (timeInfCircle.valBoolean) circle.toLong() else timeVal.valLong * 1000L
             if (circle >= 24000) circle = 0
@@ -64,7 +64,7 @@ class Changer : Module("Changer", "FullBright + CustomFov + Ambience + CustomTim
     }
 
     private val packetReceiveListener = Listener<PacketEvent.Receive>({
-        if(time.valBoolean && it.packet is SPacketTimeUpdate) {
+        if (time.valBoolean && it.packet is SPacketTimeUpdate) {
             it.cancel()
         }
     })

@@ -74,7 +74,7 @@ public class ColorButton extends AbstractComponent {
     }
 
     private void updateWidth() {
-        if(opened) setWidth((pickerWidth + 6 + alphaSliderWidth) * 2);
+        if (opened) setWidth((pickerWidth + 6 + alphaSliderWidth) * 2);
         else setWidth(preferredWidth);
     }
 
@@ -102,14 +102,14 @@ public class ColorButton extends AbstractComponent {
         updateWidth();
         updateHeight();
 
-        try {if(!opened) renderer.drawRect(x, y, getWidth(), getHeight(), value.getColor());} catch(Exception ignored) {}
-        if(opened) {
+        try {if (!opened) renderer.drawRect(x, y, getWidth(), getHeight(), value.getColor());} catch (Exception ignored) {}
+        if (opened) {
             String text = "Red: " + value.r + " Green: " + value.g + " Blue: " + value.b;
             renderer.drawString(x + getWidth() / 2 - renderer.getStringWidth(text) / 2, y + preferredHeight / 2 - renderer.getStringHeight(text) / 2, text, Window.FOREGROUND);
         }
         renderer.drawOutline(x, y, getWidth(), getHeight(), 1.0f, (hovered) ? Window.SECONDARY_OUTLINE : Window.SECONDARY_FOREGROUND);
 
-        if(Config.instance.guiGlow.getValBoolean()) Render2DUtil.drawRoundedRect(x / 2, y / 2, (x + getWidth()) / 2, (y + preferredHeight) / 2, value.getColor(), Config.instance.glowBoxSize.getValDouble());
+        if (Config.instance.guiGlow.getValBoolean()) Render2DUtil.drawRoundedRect(x / 2, y / 2, (x + getWidth()) / 2, (y + preferredHeight) / 2, value.getColor(), Config.instance.glowBoxSize.getValDouble());
 
         if (opened) {
             int selectedX = pickerX + pickerWidth + 6;
@@ -137,8 +137,8 @@ public class ColorButton extends AbstractComponent {
             value = new Colour(selectedColorFinal);
         }
 
-        if(listener != null) listener.onValueChange(value);
-        if(listener2 != null) listener2.onValueChange(value2);
+        if (listener != null) listener.onValueChange(value);
+        if (listener2 != null) listener2.onValueChange(value2);
     }
 
     @Override
@@ -154,7 +154,7 @@ public class ColorButton extends AbstractComponent {
         }
 
         renderer.drawOutline(x, y, width, height, 1.0f, hovered ? Config.instance.guiAstolfo.getValBoolean() ? renderer.astolfoColorToObj() : Window.SECONDARY_OUTLINE : Window.SECONDARY_FOREGROUND);
-        if(Config.instance.guiGlow.getValBoolean() && state) Render2DUtil.drawRoundedRect(x / 2, y / 2, (x + width) / 2, (y + height) / 2, hovered ? Config.instance.guiAstolfo.getValBoolean() ? renderer.astolfoColorToObj() : Window.SECONDARY_OUTLINE : Window.SECONDARY_FOREGROUND, Config.instance.glowBoxSize.getValDouble());
+        if (Config.instance.guiGlow.getValBoolean() && state) Render2DUtil.drawRoundedRect(x / 2, y / 2, (x + width) / 2, (y + height) / 2, hovered ? Config.instance.guiAstolfo.getValBoolean() ? renderer.astolfoColorToObj() : Window.SECONDARY_OUTLINE : Window.SECONDARY_FOREGROUND, Config.instance.glowBoxSize.getValDouble());
         renderer.drawString(x + width + height / 4, y + getHeight() / 2 - renderer.getStringHeight(title) / 2, title, Window.FOREGROUND);
     }
 
@@ -186,17 +186,17 @@ public class ColorButton extends AbstractComponent {
         if (button == 0) {
             updateHovered(x, y, offscreen);
 
-            if(kismanontop(x, y, offscreen)) {
+            if (kismanontop(x, y, offscreen)) {
                 opened = !opened;
                 updateWidth();
                 updateHeight();
                 return true;
             }
-            if(opened) {
+            if (opened) {
                 pickingColor = !offscreen && check(pickerX, pickerY, pickerX + pickerWidth, pickerY + pickerHeight, x / 2, y / 2);
                 pickingHue = !offscreen && check(hueSliderX, hueSliderY, hueSliderX + hueSliderWidth, hueSliderY + hueSliderHeight, x / 2, y / 2);
                 pickingAlpha = !offscreen && check(alphaSliderX, alphaSliderY, alphaSliderX + alphaSliderWidth, alphaSliderY + alphaSliderHeight, x / 2, y / 2);
-                if(pickingAlpha || pickingColor || pickingHue) updateValue(x / 2, y / 2);
+                if (pickingAlpha || pickingColor || pickingHue) updateValue(x / 2, y / 2);
                 return pickingColor || pickingHue || pickingAlpha;
             }
         }
@@ -233,7 +233,7 @@ public class ColorButton extends AbstractComponent {
     @Override
     public boolean mouseReleased(int button, int x, int y, boolean offscreen) {
         updateHovered(x, y, offscreen);
-        if((pickingColor || pickingHue || pickingAlpha) && button == 0) {
+        if ((pickingColor || pickingHue || pickingAlpha) && button == 0) {
             updateValue(x / 2, y / 2);
             pickingColor = pickingHue = pickingAlpha = false;
             return true;

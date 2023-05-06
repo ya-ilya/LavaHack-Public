@@ -105,9 +105,9 @@ public class KillAura extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
-        if(mc.player.isDead) return;
-        if(mc.player.getCooledAttackStrength(0) <= (onlyCrits.getValBoolean() ? 0.95f : attackCooldown.getValFloat()) && cooldownCheck.getValBoolean()) return;
+        if (mc.player == null || mc.world == null) return;
+        if (mc.player.isDead) return;
+        if (mc.player.getCooledAttackStrength(0) <= (onlyCrits.getValBoolean() ? 0.95f : attackCooldown.getValFloat()) && cooldownCheck.getValBoolean()) return;
 
         boolean player = settingManager.getSettingByName(this, "Player").getValBoolean();
         boolean monster = settingManager.getSettingByName(this, "Monster").getValBoolean();
@@ -117,22 +117,22 @@ public class KillAura extends Module {
 
         float distance = settingManager.getSettingByName(this, "Distance").getValFloat();
 
-        if(mode.getValString().equalsIgnoreCase("Default")) {
+        if (mode.getValString().equalsIgnoreCase("Default")) {
             Entity target1 = EntityUtil.getTarget(distance, distance, player, passive, monster);
             target = null;
-            if(target1 == null) return;
+            if (target1 == null) return;
             super.setDisplayInfo("[" + target1.getName() + "]");
-            if(preRots.getValBoolean()) doRots(target1);
-            if(!weaponCheck()) return;
-            if(!fallCheck() && useFallDist.getValBoolean()) return;
+            if (preRots.getValBoolean()) doRots(target1);
+            if (!weaponCheck()) return;
+            if (!fallCheck() && useFallDist.getValBoolean()) return;
             doKillAura(target1, distance, hitsound, true);
-        } else if(mode.getValString().equalsIgnoreCase("HvH")) {
+        } else if (mode.getValString().equalsIgnoreCase("HvH")) {
            target = EntityUtil.getTarget(distance);
-           if(target == null) return;
+           if (target == null) return;
            super.setDisplayInfo("[" + target.getName() + "]");
-           if(preRots.getValBoolean()) doRots(target);
-           if(!weaponCheck()) return;
-           if(!fallCheck() && useFallDist.getValBoolean()) return;
+           if (preRots.getValBoolean()) doRots(target);
+           if (!weaponCheck()) return;
+           if (!fallCheck() && useFallDist.getValBoolean()) return;
            doKillAura(target, distance, hitsound, true);
         }
     }
@@ -149,12 +149,12 @@ public class KillAura extends Module {
 
         boolean isShieldActive = false;
 
-        if(shieldBreaker.getValBoolean() && single && entity instanceof EntityPlayer) if (((EntityPlayer) entity).getHeldItemMainhand().getItem() instanceof ItemShield || ((EntityPlayer) entity).getHeldItemOffhand().getItem() instanceof ItemShield) if (((EntityPlayer) entity).isHandActive()) isShieldActive = true;
+        if (shieldBreaker.getValBoolean() && single && entity instanceof EntityPlayer) if (((EntityPlayer) entity).getHeldItemMainhand().getItem() instanceof ItemShield || ((EntityPlayer) entity).getHeldItemOffhand().getItem() instanceof ItemShield) if (((EntityPlayer) entity).isHandActive()) isShieldActive = true;
 
         int oldSlot = mc.player.inventory.currentItem;
         int weaponSlot = InventoryUtil.findWeaponSlot(0, 9, isShieldActive);
 
-        if(!switchMode.getValString().equalsIgnoreCase("None")) {
+        if (!switchMode.getValString().equalsIgnoreCase("None")) {
             if (weaponSlot == -1) return;
 
             switch (switchMode.getValString()) {
@@ -175,26 +175,26 @@ public class KillAura extends Module {
             mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.BLOCK_STONE_BREAK, 1));
         }
 
-        if(switchMode.getValString().equalsIgnoreCase("Silent") && oldSlot != -1) {
+        if (switchMode.getValString().equalsIgnoreCase("Silent") && oldSlot != -1) {
             InventoryUtil.switchToSlot(oldSlot, true);
         }
     }
 
     private void attack(Entity entity) {
         float oldYaw = mc.player.rotationYaw, oldPitch = mc.player.rotationPitch, oldYawOffset = mc.player.renderYawOffset, oldYawHead = mc.player.rotationYawHead;
-        if(!preRots.getValBoolean()) doRots(entity);
+        if (!preRots.getValBoolean()) doRots(entity);
 
-        if(packetAttack.getValBoolean()) mc.player.connection.sendPacket(new CPacketUseEntity(entity));
+        if (packetAttack.getValBoolean()) mc.player.connection.sendPacket(new CPacketUseEntity(entity));
         else mc.playerController.attackEntity(mc.player, entity);
 
-        if(packetSwing.getValBoolean()) mc.player.connection.sendPacket(new CPacketAnimation(EnumHand.MAIN_HAND));
+        if (packetSwing.getValBoolean()) mc.player.connection.sendPacket(new CPacketAnimation(EnumHand.MAIN_HAND));
         else mc.player.swingArm(EnumHand.MAIN_HAND);
-        if(resetCd.getValBoolean()) mc.player.resetCooldown();
+        if (resetCd.getValBoolean()) mc.player.resetCooldown();
 
-        if(rotations.getValString().equals("Silent")) {
+        if (rotations.getValString().equals("Silent")) {
             mc.player.rotationYaw = oldYaw;
             mc.player.rotationPitch = oldPitch;
-        } else if(rotations.getValString().equals("SilentWellMore")) {
+        } else if (rotations.getValString().equals("SilentWellMore")) {
             mc.player.rotationYaw = oldYaw;
             mc.player.renderYawOffset = oldYawOffset;
             mc.player.rotationYawHead = oldYawHead;
@@ -204,7 +204,7 @@ public class KillAura extends Module {
 
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
-        if(target == null) return;
+        if (target == null) return;
         RenderUtil.drawFadeESP(target, new Colour(Color.GREEN), new Colour(ColorUtil.injectAlpha(Color.GREEN, 0)));
     }
 
@@ -214,14 +214,14 @@ public class KillAura extends Module {
             case "Normal":
             case "Silent": {
                 float[] rots = RotationUtils.getRotation(entityToRotate);
-                if(packetRots.getValBoolean()) packetRotation(rots);
+                if (packetRots.getValBoolean()) packetRotation(rots);
                 else rotation(rots);
                 break;
             }
             case "SilentWellMore":
             case "WellMore": {
                 float[] rots = RotationUtils.lookAtRandomed(entityToRotate);
-                if(packetRots.getValBoolean()) packetRotation(rots);
+                if (packetRots.getValBoolean()) packetRotation(rots);
                 else rotation(rots);
                 break;
             }
@@ -242,12 +242,12 @@ public class KillAura extends Module {
     }
 
     private boolean weaponCheck() {
-        if(switchMode.getValString().equals("None")) {
+        if (switchMode.getValString().equals("None")) {
             switch (weapon.getValString()) {
                 case "None": break;
-                case "Sword": if(!(mc.player.getHeldItemMainhand().getItem() instanceof ItemSword)) return false;
-                case "Axe": if(!(mc.player.getHeldItemMainhand().getItem() instanceof ItemAxe)) return false;
-                case "Both": if(!(mc.player.getHeldItemMainhand().getItem() instanceof ItemSword) && !(mc.player.getHeldItemMainhand().getItem() instanceof ItemAxe)) return false;
+                case "Sword": if (!(mc.player.getHeldItemMainhand().getItem() instanceof ItemSword)) return false;
+                case "Axe": if (!(mc.player.getHeldItemMainhand().getItem() instanceof ItemAxe)) return false;
+                case "Both": if (!(mc.player.getHeldItemMainhand().getItem() instanceof ItemSword) && !(mc.player.getHeldItemMainhand().getItem() instanceof ItemAxe)) return false;
             }
         }
 

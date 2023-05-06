@@ -29,7 +29,7 @@ public class AntiSpam extends Module {
         if (event.getEra().equals(Event.Era.PRE) && event.getPacket() instanceof SPacketChat) {
             if (!((SPacketChat) event.getPacket()).isSystem()) return;
             String message = ((SPacketChat) event.getPacket()).chatComponent.getFormattedText();
-            for(String str : illegalWords) message = message.replaceAll(str, "");
+            for (String str : illegalWords) message = message.replaceAll(str, "");
             ((SPacketChat) event.getPacket()).chatComponent = new TextComponentString(message);
         }
     });

@@ -43,8 +43,8 @@ public class PacketChat extends HudModule {
 
     private void drawRewrite() {
 
-        if(logs.activeMessages.size()>=30) logs.activeMessages.clear();
-        if(logs.passiveMessages.size()>=30) logs.passiveMessages.clear();
+        if (logs.activeMessages.size()>=30) logs.activeMessages.clear();
+        if (logs.passiveMessages.size()>=30) logs.passiveMessages.clear();
 
         scrollWheelCheck();
 
@@ -82,7 +82,7 @@ public class PacketChat extends HudModule {
 
         //draws messages
         logs.messageIterator = logs.activeMessages.iterator();
-        while(logs.messageIterator.hasNext())
+        while (logs.messageIterator.hasNext())
         {
             Message message = logs.messageIterator.next();
             pcount++;
@@ -90,11 +90,11 @@ public class PacketChat extends HudModule {
             CustomFontUtil.drawStringWithShadow(message.getMessage(), x + borderOffset, y + CustomFontUtil.getFontHeight() + (offset * count), ColorUtil.astolfoColors(100, 100));
             count++;
 
-            if(pcount>=height/borderOffset)
+            if (pcount>=height/borderOffset)
                 up();
 
-            if(logs.activeMessages.size()>=30) logs.activeMessages.clear();
-            if(logs.passiveMessages.size()>=30) logs.passiveMessages.clear();
+            if (logs.activeMessages.size()>=30) logs.activeMessages.clear();
+            if (logs.passiveMessages.size()>=30) logs.passiveMessages.clear();
 
             logs.messageIterator = logs.activeMessages.iterator();
         }
@@ -102,7 +102,7 @@ public class PacketChat extends HudModule {
 
     public void up()
     {
-        if(!logs.activeMessages.isEmpty()) {
+        if (!logs.activeMessages.isEmpty()) {
             logs.passiveMessages.add(logs.activeMessages.get(0));
             logs.activeMessages.remove(0);
         }
@@ -110,7 +110,7 @@ public class PacketChat extends HudModule {
 
     public void down()
     {
-        if(!logs.passiveMessages.isEmpty())
+        if (!logs.passiveMessages.isEmpty())
         {
             logs.activeMessages.add(0, logs.passiveMessages.get(logs.passiveMessages.size()-1));
             logs.passiveMessages.remove(logs.passiveMessages.size()-1);
@@ -119,9 +119,9 @@ public class PacketChat extends HudModule {
 
     public void scrollWheelCheck() {
         int dWheel = Mouse.getDWheel();
-        if(dWheel < 0) {
+        if (dWheel < 0) {
             up();
-        } else if(dWheel > 0) {
+        } else if (dWheel > 0) {
             down();
         }
     }

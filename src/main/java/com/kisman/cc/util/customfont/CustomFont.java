@@ -49,7 +49,7 @@ public class CustomFont {
         int charHeight = 0;
         int positionX = 0;
         int positionY = 1;
-        for(int i = 0; i < chars.length; i ++){
+        for (int i = 0; i < chars.length; i ++){
             char ch = (char) i;
             CharData charData = new CharData();
             Rectangle2D dimensions = fontMetrics.getStringBounds(String.valueOf(ch), g);

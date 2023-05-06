@@ -148,7 +148,7 @@ public class Kisman {
                     for (HudModule m : hudModuleManager.modules) {
                         if (m.getKey() == keyCode) m.toggle();
                     }
-                } else if(Keyboard.getEventKey() > 1) {
+                } else if (Keyboard.getEventKey() > 1) {
                     onRelease(Keyboard.getEventKey());
                 }
             }
@@ -156,8 +156,8 @@ public class Kisman {
     }
 
     private void onRelease(int key) {
-        for(Module m : moduleManager.modules) {
-            if(m.getKey() == key) if(m.hold) m.toggle();
+        for (Module m : moduleManager.modules) {
+            if (m.getKey() == key) if (m.hold) m.toggle();
         }
     }
 
@@ -166,7 +166,7 @@ public class Kisman {
     }
 
     public String name() {
-        if(init) {
+        if (init) {
             switch (Config.instance.nameMode.getValString()) {
                 case "kismancc": return NAME;
                 case "LavaHack": return "LavaHack";

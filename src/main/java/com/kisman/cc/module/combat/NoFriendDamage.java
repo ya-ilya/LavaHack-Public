@@ -18,10 +18,10 @@ public class NoFriendDamage extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
-        if(event.getPacket() instanceof CPacketUseEntity) {
+        if (event.getPacket() instanceof CPacketUseEntity) {
             CPacketUseEntity packet = (CPacketUseEntity) event.getPacket();
             Entity target = packet.getEntityFromWorld(mc.world);
-            if(target instanceof EntityPlayer && FriendManager.instance.isFriend(target.getName())) event.cancel();
+            if (target instanceof EntityPlayer && FriendManager.instance.isFriend(target.getName())) event.cancel();
         }
     });
 }

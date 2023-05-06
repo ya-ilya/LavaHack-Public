@@ -98,15 +98,15 @@ public class Render2DUtil extends GuiScreen {
     }
 
     public static void drawAbstract(AbstractObject drawing) {
-        if(drawing != null) drawing.render();
+        if (drawing != null) drawing.render();
     }
 
     public static void drawAbstract(ObjectWithGlow drawing) {
-        if(drawing != null) drawing.render();
+        if (drawing != null) drawing.render();
     }
 
     public static void drawAbstract(AbstractGradient drawing) {
-        if(drawing != null) drawing.render();
+        if (drawing != null) drawing.render();
     }
 
     public static void drawRectWH(double x, double y, double width, double height, int color) {drawRect(x, y, x + width, y + height, color);}
@@ -115,8 +115,8 @@ public class Render2DUtil extends GuiScreen {
         ColorUtil.glColor(color);
         glLineWidth(width);
         glBegin(GL_LINE);
-        for(int i = 0; i < segments; i++) {
-            if(i > degrees) break;
+        for (int i = 0; i < segments; i++) {
+            if (i > degrees) break;
             float theta = (float) (2f * Math.PI * i / segments);
 
             float x = (float) (radius * Math.cos(theta));
@@ -238,7 +238,7 @@ public class Render2DUtil extends GuiScreen {
     }
 
     public static void gradient(int minX, int minY, int maxX, int maxY, int startColor, int endColor, boolean left) {
-        if(left) {
+        if (left) {
             final float startA = (startColor >> 24 & 0xFF) / 255.0f;
             final float startR = (startColor >> 16 & 0xFF) / 255.0f;
             final float startG= (startColor >> 8 & 0xFF) / 255.0f;

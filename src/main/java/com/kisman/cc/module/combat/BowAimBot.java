@@ -19,13 +19,13 @@ public class BowAimBot extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
         if (mc.player.getHeldItemMainhand().getItem() instanceof ItemBow && mc.player.isHandActive() && mc.player.getItemInUseMaxCount() >= 3) {
             EntityPlayer player = null;
             float tickDis = 100f;
             for (EntityPlayer p : mc.world.playerEntities) {
                 if (p == mc.player) continue;
-                if(p.getDistance(mc.player) > maxDist.getValInt()) continue;
+                if (p.getDistance(mc.player) > maxDist.getValInt()) continue;
                 float dis = p.getDistance(mc.player);
                 if (dis < tickDis) {
                     tickDis = dis;

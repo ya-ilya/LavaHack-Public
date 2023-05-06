@@ -47,7 +47,7 @@ public class SwingAnimation extends Module {
 
     @SubscribeEvent
     public void onRenderArms(final RenderSpecificHandEvent event) {
-        if(mode.getValString().equalsIgnoreCase("Hand")) {
+        if (mode.getValString().equalsIgnoreCase("Hand")) {
             if (event.getSwingProgress() > 0) {
                 final float angle = (1f - event.getSwingProgress()) * 360f;
 

@@ -33,7 +33,7 @@ public class KeybindButton extends Button {
         });
 
         setOnClickListener2(() -> {
-            if(listener != null) listener.onValueChange(Keyboard.KEY_NONE);
+            if (listener != null) listener.onValueChange(Keyboard.KEY_NONE);
             updateState();
         });
 

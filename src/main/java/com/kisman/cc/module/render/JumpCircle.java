@@ -38,7 +38,9 @@ public class JumpCircle extends Module {
     }
 
     public void update() {
-        try{circles.removeIf(Circle::update);} catch(Exception ignored) {}
+        try {
+            circles.removeIf(Circle::update);
+        } catch (Exception ignored) {}
     }
 
     @SubscribeEvent

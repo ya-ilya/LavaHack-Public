@@ -18,6 +18,6 @@ public class MixinGuiMultiplayer extends GuiScreen {
 
     @Inject(method = "actionPerformed", at = @At("RETURN"))
     public void actionPerformedHook(GuiButton button, CallbackInfo ci) {
-        if(button.id == 417) mc.displayGuiScreen(new AltManagerGUI(this));
+        if (button.id == 417) mc.displayGuiScreen(new AltManagerGUI(this));
     }
 }

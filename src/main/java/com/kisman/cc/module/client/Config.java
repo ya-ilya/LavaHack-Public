@@ -110,17 +110,17 @@ public class Config extends Module {
 
     @SubscribeEvent
     public void onUpdate(TickEvent.ClientTickEvent event) {
-        if(saveConfig.getValBoolean()) {
+        if (saveConfig.getValBoolean()) {
             try {
                 Kisman.instance.configManager.getSaver().init();
             } catch (IOException e) {
                 e.printStackTrace();
             }
             saveConfig.setValBoolean(false);
-            if(mc.player != null && mc.world != null) ChatUtil.complete("Config saved");
+            if (mc.player != null && mc.world != null) ChatUtil.complete("Config saved");
         }
 
-        if(loadConfig.getValBoolean()) {
+        if (loadConfig.getValBoolean()) {
             ConfigLoader.init();
             try {
                 Kisman.instance.configManager.getLoader().init();
@@ -128,7 +128,7 @@ public class Config extends Module {
                 e.printStackTrace();
             }
             loadConfig.setValBoolean(false);
-            if(mc.player != null && mc.world != null) ChatUtil.complete("Config loaded");
+            if (mc.player != null && mc.world != null) ChatUtil.complete("Config loaded");
         }
     }
 

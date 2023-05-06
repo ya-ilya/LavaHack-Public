@@ -12,6 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinModelBook {
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     private void renderHook(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale, CallbackInfo ci) {
-        if(NoRender.instance.isToggled() && NoRender.instance.book.getValBoolean()) ci.cancel();
+        if (NoRender.instance.isToggled() && NoRender.instance.book.getValBoolean()) ci.cancel();
     }
 }

@@ -39,7 +39,7 @@ public class Slider extends Component {
         double min = setting.getMin();
         double max = setting.getMax();
 
-        if(bool) dragging = false;
+        if (bool) dragging = false;
         else customValue = "";
 
         if (dragging) {
@@ -53,7 +53,7 @@ public class Slider extends Component {
         Render2DUtil.drawRectWH(x, y + offset, width, HalqGui.height, HalqGui.backgroundColor.getRGB());
 
         int width = (int) (this.width * (setting.getValDouble() - min) / (max - min));
-        if(HalqGui.shadowCheckBox) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x, y + offset}, new double[] {x + width, y + offset}, new double[] {x + width, y + offset + HalqGui.height}, new double[] {x, y + offset + HalqGui.height}), HalqGui.getGradientColour(count).getColor(), ColorUtil.injectAlpha(HalqGui.backgroundColor, 4)));
+        if (HalqGui.shadowCheckBox) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x, y + offset}, new double[] {x + width, y + offset}, new double[] {x + width, y + offset + HalqGui.height}, new double[] {x, y + offset + HalqGui.height}), HalqGui.getGradientColour(count).getColor(), ColorUtil.injectAlpha(HalqGui.backgroundColor, 4)));
         else Render2DUtil.drawRectWH(x, y + offset, width, HalqGui.height, HalqGui.getGradientColour(count).getRGB());
 
         HalqGui.drawString(toRender, x, y + offset, width, HalqGui.height);
@@ -61,8 +61,8 @@ public class Slider extends Component {
 
     @Override
     public void mouseClicked(int mouseX, int mouseY, int button) {
-        if(isMouseOnButton(mouseX, mouseY) && button == 0) dragging = true;
-        if(isMouseOnButton(mouseX, mouseY) && button == 1) bool = true;
+        if (isMouseOnButton(mouseX, mouseY) && button == 0) dragging = true;
+        if (isMouseOnButton(mouseX, mouseY) && button == 1) bool = true;
     }
 
     @Override
@@ -78,23 +78,23 @@ public class Slider extends Component {
     }
 
     @Override public void keyTyped(char typedChar, int key) {
-        if(bool) {
-            if(key == Keyboard.KEY_RETURN) {
+        if (bool) {
+            if (key == Keyboard.KEY_RETURN) {
                 bool = false;
-                if(!customValue.isEmpty() && customValue.matches(TextUtil.doubleRegex)) setting.setValDouble(TextUtil.Companion.parseNumber(customValue));
+                if (!customValue.isEmpty() && customValue.matches(TextUtil.doubleRegex)) setting.setValDouble(TextUtil.Companion.parseNumber(customValue));
                 return;
             }
 
-            if(key == 14 && !customValue.isEmpty()) {
+            if (key == 14 && !customValue.isEmpty()) {
                 customValue = customValue.substring(0, customValue.length() - 1);
                 return;
             }
 
-            if(customValue.isEmpty()) {
+            if (customValue.isEmpty()) {
                 if (TextUtil.Companion.isNumberChar(typedChar) && typedChar != '0') customValue += typedChar;
             } else {
-                if(TextUtil.Companion.isNumberChar(typedChar)) customValue += typedChar;
-                else if(typedChar == '.' && !hasDot) {
+                if (TextUtil.Companion.isNumberChar(typedChar)) customValue += typedChar;
+                else if (typedChar == '.' && !hasDot) {
                     customValue += typedChar;
                     hasDot = true;
                 }

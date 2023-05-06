@@ -19,15 +19,15 @@ public class Fly extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         super.setDisplayInfo("[" + mode.getValString() + "]");
 
-        if(mode.getValString().equalsIgnoreCase("Vanilla")) {
+        if (mode.getValString().equalsIgnoreCase("Vanilla")) {
             mc.player.capabilities.isFlying = true;
             mc.player.capabilities.setFlySpeed(flySpeed.getValFloat());
-        } else if(mode.getValString().equalsIgnoreCase("WellMore")) {
-            if(mc.player.onGround) mc.player.motionY = 1.0;
+        } else if (mode.getValString().equalsIgnoreCase("WellMore")) {
+            if (mc.player.onGround) mc.player.motionY = 1.0;
             else {
                 mc.player.capabilities.isFlying = true;
                 mc.player.capabilities.setFlySpeed(1.3f);
@@ -35,7 +35,7 @@ public class Fly extends Module {
                 mc.player.motionY = -0.02;
                 mc.player.motionZ = 0.0;
             }
-        } else if(mode.getValString().equalsIgnoreCase("ReallyWorld")) {
+        } else if (mode.getValString().equalsIgnoreCase("ReallyWorld")) {
             if (mc.gameSettings.keyBindJump.pressed) {
                 if (mc.player.ticksExisted % 3 ==0 ) mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_FALL_FLYING));
                 mc.player.jump();
@@ -44,7 +44,7 @@ public class Fly extends Module {
     }
 
     public void onDisable() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         mc.player.capabilities.isFlying = false;
         mc.player.capabilities.setFlySpeed(0.1f);

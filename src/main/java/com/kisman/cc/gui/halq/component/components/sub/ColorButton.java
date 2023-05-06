@@ -39,7 +39,7 @@ public class ColorButton extends Component {
 
     @Override
     public void drawScreen(int mouseX, int mouseY) {
-        if(HalqGui.shadowCheckBox) {
+        if (HalqGui.shadowCheckBox) {
             Render2DUtil.drawRectWH(x, y + offset, width, getHeight(), HalqGui.backgroundColor.getRGB());
             Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x, y + offset}, new double[] {x + width / 2, y + offset}, new double[] {x + width / 2, y + offset + HalqGui.height}, new double[] {x, y + offset + HalqGui.height}), color.getColor(), ColorUtil.injectAlpha(HalqGui.backgroundColor, 1)));
             Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x + width / 2, y + offset}, new double[] {x + width, y + offset}, new double[] {x + width, y + offset + HalqGui.height}, new double[] {x + width / 2, y + offset + HalqGui.height}), ColorUtil.injectAlpha(HalqGui.backgroundColor, 1), color.getColor()));
@@ -47,7 +47,7 @@ public class ColorButton extends Component {
 
         HalqGui.drawString(setting.getName(), x, y + offset, width, HalqGui.height);
 
-        if(open) {
+        if (open) {
             int offsetY = HalqGui.height + 5;
             drawPickerBase(x + 2, y + offset + offsetY, pickerWidth, pickerWidth, color.r1, color.g1, color.b1, color.a1, mouseX, mouseY);
             offsetY += pickerWidth + 5;
@@ -86,8 +86,8 @@ public class ColorButton extends Component {
 
     @Override
     public void mouseClicked(int mouseX, int mouseY, int button) {
-        if(button == 0) {
-            if(isMouseOnButton(mouseX, mouseY)) open = !open;
+        if (button == 0) {
+            if (isMouseOnButton(mouseX, mouseY)) open = !open;
             pickingBase = baseHover;
             pickingHue = hueHover;
             pickingAlpha = alphaHover;

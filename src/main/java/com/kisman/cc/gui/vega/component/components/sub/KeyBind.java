@@ -51,14 +51,14 @@ public class KeyBind extends Component {
 
     @Override
     public void keyTyped(char typedChar, int key) {
-        if(this.binding) {
+        if (this.binding) {
             this.b.mod.setKey(key);
             this.binding = false;
         }
     }
 
     public void mouseClicked(int mouseX, int mouseY, int button) {
-        if(isMouseOnButton(mouseX, mouseY) && button == 0) binding = !binding;
+        if (isMouseOnButton(mouseX, mouseY) && button == 0) binding = !binding;
     }
 
     public void mouseReleased(int mouseX, int mouseY, int button) {

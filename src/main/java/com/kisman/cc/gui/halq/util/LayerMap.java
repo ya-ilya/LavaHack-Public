@@ -14,7 +14,7 @@ public enum LayerMap {
     }
 
     public static LayerMap getLayer(int index) {
-        for(LayerMap layer : LayerMap.values()) if(layer.index == index) return layer;
+        for (LayerMap layer : LayerMap.values()) if (layer.index == index) return layer;
         return ZERO;
     }
 }

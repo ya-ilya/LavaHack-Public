@@ -24,12 +24,12 @@ public class FreeLook extends Module {
     public void onEnable() {
         dYaw = dPitch = 0;
 
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
         if (autoThirdPerson.getValBoolean()) mc.gameSettings.thirdPersonView = 1;
     }
 
     public void onDisable() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
         if (autoThirdPerson.getValBoolean()) mc.gameSettings.thirdPersonView = 0;
     }
 

@@ -19,11 +19,11 @@ public class Sprint extends Module {
 	}
 
 	public void update() {
-		if(mc.player != null && mc.world != null) mc.player.setSprinting(mode.checkValString("Rage") || (mode.checkValString("Legit") && mc.gameSettings.keyBindForward.isKeyDown()));
+		if (mc.player != null && mc.world != null) mc.player.setSprinting(mode.checkValString("Rage") || (mode.checkValString("Legit") && mc.gameSettings.keyBindForward.isKeyDown()));
 	}
 
 	public void onDisable() {
-		if(mc.player != null && mc.world != null) mc.player.setSprinting(false);
+		if (mc.player != null && mc.world != null) mc.player.setSprinting(false);
 	}
 
 	public enum Mode {Rage, Legit}

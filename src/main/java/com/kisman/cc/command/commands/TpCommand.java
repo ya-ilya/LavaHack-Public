@@ -15,11 +15,11 @@ public class TpCommand extends Command {
     }
 
     public void runCommand(String s, String[] args) {
-        if(args.length > 3) {
+        if (args.length > 3) {
             ChatUtil.error("Usage: " + getSyntax());
-        } else if(args.length == 3) {
-            for(String str : args) {
-                if(str.matches(regex3)) {
+        } else if (args.length == 3) {
+            for (String str : args) {
+                if (str.matches(regex3)) {
                     ChatUtil.error("Usage: " + getSyntax());
                     return;
                 }
@@ -34,12 +34,12 @@ public class TpCommand extends Command {
             mc.player.connection.sendPacket(new CPacketPlayer.Position(x, y, z, false));
             mc.player.connection.sendPacket(new CPacketPlayer.Position(x, y, z, true));
             mc.player.connection.sendPacket(new CPacketPlayer.Position(x, y, z, true));
-        } else if(args.length == 1) {
+        } else if (args.length == 1) {
             //tp to player
 
             EntityPlayer player = getPlayer(args[0]);
 
-            if(player == null) {
+            if (player == null) {
                 ChatUtil.error("The player" + args[0] + " does not exist!");
                 return;
             }
@@ -63,9 +63,9 @@ public class TpCommand extends Command {
     }
 
     private int parseCoordinate(String str) {
-        if(str.matches(regex1)) {
+        if (str.matches(regex1)) {
             return -(Integer.parseInt(str));
-        } else if(str.matches(regex2)) {
+        } else if (str.matches(regex2)) {
             return Integer.parseInt(str);
         } else {
             return 0;
@@ -73,8 +73,8 @@ public class TpCommand extends Command {
     }
 
     private EntityPlayer getPlayer(String name) {
-        for(EntityPlayer player : mc.world.playerEntities) {
-            if(player != mc.player && player.getName().equals(name)) {
+        for (EntityPlayer player : mc.world.playerEntities) {
+            if (player != mc.player && player.getName().equals(name)) {
                 return player;
             }
         }

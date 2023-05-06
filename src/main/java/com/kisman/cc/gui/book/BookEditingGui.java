@@ -41,13 +41,13 @@ public class BookEditingGui extends GuiScreenBook {
         this.labelList.add(title);
 
         // Color formats
-        for(int i = 0; i < 16; i ++) {
+        for (int i = 0; i < 16; i ++) {
             this.buttonList.add(new FormatButton(i, this.x + 16 + (i / 8) * 24, this.y + 21 + (i % 8) * 8, this.fontRenderer, TextFormatting.fromColorIndex(i)));
         }
 
         // Special formats
         int i = this.y + 28 + 8 * 8;
-        for(String format : TextFormatting.getValidValues(false, true)) {
+        for (String format : TextFormatting.getValidValues(false, true)) {
             this.buttonList.add(new FormatButton(0, this.x + 4, i, this.fontRenderer, TextFormatting.getValueByName(format)));
             i += 12;
         }
@@ -67,7 +67,7 @@ public class BookEditingGui extends GuiScreenBook {
         GlStateManager.scale(scale, scale, scale);
 
         int i = this.y + 29 + 8 * 8;
-        for(String format : TextFormatting.getValidValues(false, true)) {
+        for (String format : TextFormatting.getValidValues(false, true)) {
             TextFormatting f = TextFormatting.getValueByName(format);
             this.drawString(this.fontRenderer, f.toString() + format, (int)((float)(this.x + 14) / scale), (int)((float)i / scale), 0xffffffff);
             i += 12;
@@ -83,10 +83,10 @@ public class BookEditingGui extends GuiScreenBook {
         try {
             boolean signing = (boolean) this.gettingSigned.get(this);
 
-            if(signing) { // Modify signing behavior to enable 32 chars title
+            if (signing) { // Modify signing behavior to enable 32 chars title
                 String title = (String) this.bookTitle.get(this);
                 super.keyTyped(typedChat, keyCode);
-                if(keyCode != 14 && keyCode != 28 && keyCode != 156 && title.length() < 32) {
+                if (keyCode != 14 && keyCode != 28 && keyCode != 156 && title.length() < 32) {
                     this.bookTitle.set(this, title + typedChat);
                 }
             } else super.keyTyped(typedChat, keyCode);
@@ -98,9 +98,9 @@ public class BookEditingGui extends GuiScreenBook {
     public void appendFormat(String format) {
         try {
             boolean signing = (boolean) this.gettingSigned.get(this);
-            if(signing) { // title
+            if (signing) { // title
                 String title = (String) this.bookTitle.get(this);
-                if(format.length() + title.length() <= 32) {
+                if (format.length() + title.length() <= 32) {
                     this.bookTitle.set(this, title + format);
                 }
             } else { // book
@@ -112,7 +112,7 @@ public class BookEditingGui extends GuiScreenBook {
     }
 
     protected void actionPerformed(GuiButton button) {
-        if(button instanceof ActionButton) {
+        if (button instanceof ActionButton) {
             ((ActionButton) button).onClick(this);
         }
     }

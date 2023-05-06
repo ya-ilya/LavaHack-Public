@@ -55,12 +55,12 @@ public class OffHand extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
         if (mc.currentScreen != null && (!(mc.currentScreen instanceof GuiInventory))) return;
 
         super.setDisplayInfo("[" + mode.getValString() + "]");
 
-        if(antiTotemFail.getValBoolean() && canTotemFail()) {
+        if (antiTotemFail.getValBoolean() && canTotemFail()) {
             switchOffHandIfNeed("Totem");
             return;
         }
@@ -77,7 +77,7 @@ public class OffHand extends Module {
             return;
         }
 
-        if(rightClickGap.getValBoolean() && Mouse.isButtonDown(1) && !mc.player.getHeldItemMainhand().getItem().equals(Items.GOLDEN_APPLE) && !mc.player.getHeldItemOffhand().getItem().equals(Items.GOLDEN_APPLE)) {
+        if (rightClickGap.getValBoolean() && Mouse.isButtonDown(1) && !mc.player.getHeldItemMainhand().getItem().equals(Items.GOLDEN_APPLE) && !mc.player.getHeldItemOffhand().getItem().equals(Items.GOLDEN_APPLE)) {
             switchOffHandIfNeed("Gap");
             return;
         }
@@ -127,7 +127,7 @@ public class OffHand extends Module {
                 mc.playerController.windowClick(mc.player.inventoryContainer.windowId, slot, 0, ClickType.PICKUP, mc.player);
                 mc.playerController.windowClick(mc.player.inventoryContainer.windowId, 45, 0, ClickType.PICKUP, mc.player);
                 mc.playerController.windowClick(mc.player.inventoryContainer.windowId, slot, 0, ClickType.PICKUP, mc.player);
-                if(useUpdateController.getValBoolean()) mc.playerController.updateController();
+                if (useUpdateController.getValBoolean()) mc.playerController.updateController();
 
                 ChatUtil.complete(ChatFormatting.BLUE + "Offhand now has a " + display);
             }

@@ -12,6 +12,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinRenderEntityItem {
     @Inject(method = "doRender(Lnet/minecraft/entity/item/EntityItem;DDDFF)V", at = @At("HEAD"), cancellable = true)
     public void doRenderHook(EntityItem f4, double f5, double f7, double f9, float f6, float transformedModel, CallbackInfo ci) {
-        if(NoRender.instance.isToggled() && NoRender.instance.items.getValBoolean()) ci.cancel();
+        if (NoRender.instance.isToggled() && NoRender.instance.items.getValBoolean()) ci.cancel();
     }
 }

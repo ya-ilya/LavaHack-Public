@@ -14,8 +14,8 @@ enum class ShadowRectSectorSides(
     companion object {
         fun findSides(side: RectSides) : List<ShadowRectSectorSides> {
             var list : List<ShadowRectSectorSides> = ArrayList()
-            for(sectorSide in values()) {
-                if(sectorSide.parentSides.contains(side)) list = list + sectorSide
+            for (sectorSide in values()) {
+                if (sectorSide.parentSides.contains(side)) list = list + sectorSide
             }
             return list
         }

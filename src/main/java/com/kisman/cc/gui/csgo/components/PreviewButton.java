@@ -59,7 +59,7 @@ public class PreviewButton extends AbstractComponent {
         renderer.drawString(x + 4, y + preferredHeight / 2 - renderer.getStringHeight(text) / 2, text, Window.FOREGROUND);
 
         if (opened) {
-            if(entity instanceof EntityEnderCrystal) {
+            if (entity instanceof EntityEnderCrystal) {
                 EntityEnderCrystal crystal = new EntityEnderCrystal(Minecraft.getMinecraft().world, Double.longBitsToDouble(Double.doubleToLongBits(9.310613315809524E306) ^ 0x7FAA847B55B02A7FL), Double.longBitsToDouble(Double.doubleToLongBits(1.7125394916952668E308) ^ 0x7FEE7BF580E967CDL), Double.longBitsToDouble(Double.doubleToLongBits(1.351057559302745E308) ^ 0x7FE80CB4154FF45AL));
                 crystal.setShowBottom(false);
                 crystal.rotationYaw = Float.intBitsToFloat(Float.floatToIntBits(1.1630837E38f) ^ 0x7EAF005B);

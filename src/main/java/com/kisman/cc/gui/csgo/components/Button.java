@@ -34,7 +34,7 @@ public class Button extends AbstractComponent {
         renderer.drawRect(x, y, getWidth(), getHeight(), hovered ? Window.SECONDARY_FOREGROUND : Window.TERTIARY_FOREGROUND);
         renderer.drawOutline(x, y, getWidth(), getHeight(), 1.0f, hovered ? Config.instance.guiAstolfo.getValBoolean() ? renderer.astolfoColorToObj() : Window.SECONDARY_OUTLINE : Window.SECONDARY_FOREGROUND);
 
-        if(Config.instance.guiGlow.getValBoolean()) Render2DUtil.drawRoundedRect(x / 2, y / 2, (x + getWidth()) / 2, (y + getHeight()) / 2, hovered ? Config.instance.guiAstolfo.getValBoolean() ? renderer.astolfoColorToObj() : Window.SECONDARY_OUTLINE : Window.SECONDARY_FOREGROUND, Config.instance.glowBoxSize.getValDouble());
+        if (Config.instance.guiGlow.getValBoolean()) Render2DUtil.drawRoundedRect(x / 2, y / 2, (x + getWidth()) / 2, (y + getHeight()) / 2, hovered ? Config.instance.guiAstolfo.getValBoolean() ? renderer.astolfoColorToObj() : Window.SECONDARY_OUTLINE : Window.SECONDARY_FOREGROUND, Config.instance.glowBoxSize.getValDouble());
 
         renderer.drawString(x + getWidth() / 2 - renderer.getStringWidth(title) / 2, y + getHeight() / 2 - renderer.getStringHeight(title) / 2, title, Window.FOREGROUND);
     }
@@ -62,7 +62,7 @@ public class Button extends AbstractComponent {
 
                 return true;
             }
-        } else if(button == 1) {
+        } else if (button == 1) {
             updateHovered(x, y, offscreen);
 
             if (hovered && listener2 != null) {

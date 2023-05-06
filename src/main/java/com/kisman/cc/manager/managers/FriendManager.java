@@ -20,8 +20,8 @@ public class FriendManager implements Manager {
     public String getFriendsNames() {
         StringBuilder str = new StringBuilder();
 
-        for(String friend : friendsName) {
-            if(friend.isEmpty()) continue;
+        for (String friend : friendsName) {
+            if (friend.isEmpty()) continue;
 
             str.append(friend).append("\n");
         }
@@ -30,8 +30,8 @@ public class FriendManager implements Manager {
     }
 
     public ArrayList<String> getFriends() {return friendsName;}
-    public void addFriend(String name) {if(!friendsName.contains(name.toLowerCase())) friendsName.add(name.toLowerCase());}
-    public void removeFriend(String name) {if(!friendsName.isEmpty()) friendsName.remove(name.toLowerCase());}
+    public void addFriend(String name) {if (!friendsName.contains(name.toLowerCase())) friendsName.add(name.toLowerCase());}
+    public void removeFriend(String name) {if (!friendsName.isEmpty()) friendsName.remove(name.toLowerCase());}
     public boolean isFriend(EntityPlayer player) {return friendsName.contains(player.getName().toLowerCase()) && Config.instance.friends.getValBoolean();}
     public boolean isFriend(String name) {return friendsName.contains(name.toLowerCase()) && Config.instance.friends.getValBoolean();}
     public void setFriendsList(ArrayList<String> list) {friendsName = list;}

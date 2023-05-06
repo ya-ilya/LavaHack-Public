@@ -32,7 +32,7 @@ public class MixinEntityRenderer {
 
     @Inject(method = "setupFog", at = @At("HEAD"), cancellable = true)
     public void setupHook(int startCoords, float partialTicks, CallbackInfo ci) {
-        if(NoRender.instance.isToggled() && NoRender.instance.fog.getValBoolean()) ci.cancel();
+        if (NoRender.instance.isToggled() && NoRender.instance.fog.getValBoolean()) ci.cancel();
     }
 
     @SuppressWarnings("Guava")
@@ -41,18 +41,18 @@ public class MixinEntityRenderer {
         EntitiesInAABBEvent event = new EntitiesInAABBEvent();
         Kisman.EVENT_BUS.post(event);
 
-        if(event.isCancelled()) return new ArrayList<>();
+        if (event.isCancelled()) return new ArrayList<>();
         else return worldClient.getEntitiesInAABBexcluding(entityIn, boundingBox, predicate);
     }
 
     @Inject(method = "hurtCameraEffect", at = @At("HEAD"), cancellable = true)
     private void hurtCameraEffectHook(float particalTicks, CallbackInfo ci) {
-        if(NoRender.instance.isToggled() && NoRender.instance.hurtCam.getValBoolean()) ci.cancel();
+        if (NoRender.instance.isToggled() && NoRender.instance.hurtCam.getValBoolean()) ci.cancel();
     }
 
     @Inject(method = "updateLightmap", at = @At("HEAD"), cancellable = true)
     private void updateLightmapHook(float partialTicks, CallbackInfo ci) {
-        if(SkylightFix.instance.isToggled()) ci.cancel();
+        if (SkylightFix.instance.isToggled()) ci.cancel();
     }
 
     @Inject(method = "updateLightmap", at = @At( value = "INVOKE", target = "Lnet/minecraft/client/renderer/texture/DynamicTexture;updateDynamicTexture()V", shift = At.Shift.BEFORE ))

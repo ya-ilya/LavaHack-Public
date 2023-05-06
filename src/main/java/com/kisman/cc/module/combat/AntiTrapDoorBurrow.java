@@ -49,13 +49,13 @@ public class AntiTrapDoorBurrow extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         ArrayList<BlockPos> blocks = new ArrayList<>();
 
-        for(BlockPos pos : CrystalUtils.getSphere(range.getValFloat(), true, false)) if(mc.world.getBlockState(pos).getBlock() == Blocks.TRAPDOOR) blocks.add(pos);
-        for(BlockPos pos : blocks) {
-            if(timer.passedMillis(delay.getValLong())) {
+        for (BlockPos pos : CrystalUtils.getSphere(range.getValFloat(), true, false)) if (mc.world.getBlockState(pos).getBlock() == Blocks.TRAPDOOR) blocks.add(pos);
+        for (BlockPos pos : blocks) {
+            if (timer.passedMillis(delay.getValLong())) {
                 interactTrapdoor(pos, new Vec3d(pos).add(interactVector));
                 timer.reset();
             }
@@ -64,13 +64,13 @@ public class AntiTrapDoorBurrow extends Module {
 
     @SubscribeEvent
     public void onRenderWorld() {
-        if(currentPos != null && render.getValBoolean()) {
+        if (currentPos != null && render.getValBoolean()) {
             RenderUtil.drawBlockESP(currentPos, color.getColour().r1, color.getColour().g1, color.getColour().b1);
         }
     }
 
     private void interactTrapdoor(BlockPos pos, Vec3d vec) {
-        if(rotate.getValBoolean()) mc.player.	rotationPitch = 90.0f;
+        if (rotate.getValBoolean()) mc.player.	rotationPitch = 90.0f;
         mc.playerController.processRightClickBlock(mc.player, mc.world, pos, EnumFacing.UP, vec, EnumHand.MAIN_HAND);
     }
 }

@@ -34,8 +34,8 @@ public class TeamRusherLag extends Module {
     }
 
     public void update() {
-        if(lastPacket != 0L && System.currentTimeMillis() > lastPacket + time.getValDouble()) {
-            if(canSend) {
+        if (lastPacket != 0L && System.currentTimeMillis() > lastPacket + time.getValDouble()) {
+            if (canSend) {
                 canSend = false;
                 mc.player.sendChatMessage(text.getValString());
             }

@@ -51,7 +51,7 @@ public class ModeButton extends Component {
     }
 
     public void mouseClicked(int mouseX, int mouseY, int button) {
-        if(isMouseOnButton(mouseX, mouseY) && button == 0) set.setValBoolean(!set.getValBoolean());
+        if (isMouseOnButton(mouseX, mouseY) && button == 0) set.setValBoolean(!set.getValBoolean());
     }
 
     public void mouseReleased(int mouseX, int mouseY, int button) {

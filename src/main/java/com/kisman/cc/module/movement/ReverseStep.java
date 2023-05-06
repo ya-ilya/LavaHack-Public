@@ -36,9 +36,9 @@ public class ReverseStep extends Module {
         if (mc.world == null || mc.player == null || mc.player.isInWater() || mc.player.isInLava() || mc.player.isOnLadder() || mc.gameSettings.keyBindJump.isKeyDown()) return;
         super.setDisplayInfo("[" + String.format(Locale.ENGLISH, "%.4f", height.getValDouble()) + "]");
         if (mc.player.onGround && !mc.player.isInWater() && !mc.player.isOnLadder()) {
-            if(lagTimer.passedMillis(lagTime.getValBoolean() ? lagTimeValue.getValLong() : 500L)) {
+            if (lagTimer.passedMillis(lagTime.getValBoolean() ? lagTimeValue.getValLong() : 500L)) {
                 lagTimer.reset();
-                if(lagTime.getValBoolean()) return;
+                if (lagTime.getValBoolean()) return;
             }
             for (double y = 0.0; y < height.getValDouble() + 0.5; y += 0.01) {
                 if (!mc.world.getCollisionBoxes(mc.player, mc.player.getEntityBoundingBox().offset(0.0, -y, 0.0)).isEmpty()) {

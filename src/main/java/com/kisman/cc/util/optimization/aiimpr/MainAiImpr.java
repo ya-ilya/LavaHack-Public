@@ -23,7 +23,7 @@ public class MainAiImpr {
 
     @SubscribeEvent
     public void onEntityJoinWorld(EntityJoinWorldEvent event) {
-        if(Optimizer.instance == null || !Optimizer.instance.isToggled()) return;
+        if (Optimizer.instance == null || !Optimizer.instance.isToggled()) return;
         final Entity entity = event.getEntity();
         if (entity instanceof EntityLiving) {
             final EntityLiving living = (EntityLiving)entity;
@@ -37,7 +37,7 @@ public class MainAiImpr {
                 while (it.hasNext()) {
                     final EntityAITasks.EntityAITaskEntry obj = it.next();
                     if (obj != null) {
-                        if(!(removeLookAi && obj.action instanceof EntityAIWatchClosest)) if (!removeLookIdle || !(obj.action instanceof EntityAILookIdle)) continue;
+                        if (!(removeLookAi && obj.action instanceof EntityAIWatchClosest)) if (!removeLookIdle || !(obj.action instanceof EntityAILookIdle)) continue;
                         it.remove();
                     }
                 }

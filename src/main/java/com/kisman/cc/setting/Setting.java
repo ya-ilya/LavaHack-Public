@@ -241,7 +241,7 @@ public class Setting {
 	}
 
 	public Enum<?> getEnumByName() {
-		if(optionEnum == null) return null;
+		if (optionEnum == null) return null;
 		Enum<?> enumVal = optionEnum;
 		String[] values = Arrays.stream(enumVal.getClass().getEnumConstants()).map(Enum::name).toArray(String[]::new);
 		return Enum.valueOf(enumVal.getClass(), values[index]);
@@ -249,7 +249,7 @@ public class Setting {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(isCombo()) return sval.equals(obj);
+		if (isCombo()) return sval.equals(obj);
 		return super.equals(obj);
 	}
 
@@ -263,11 +263,11 @@ public class Setting {
 
 	@Override
 	public String toString() {
-		if(isCombo()) return getValString();
-		if(isCheck()) return String.valueOf(getValBoolean());
-		if(isSlider()) return String.valueOf(onlyint ? getValInt() : getValDouble());
-		if(isString()) return getValString();
-		if(isColorPicker()) return get32BitString((colour != null) ? colour.getRGB() : new Color(1f, 1f, 1f).getRGB()) + "-" + syns + "-" + rainbow;
+		if (isCombo()) return getValString();
+		if (isCheck()) return String.valueOf(getValBoolean());
+		if (isSlider()) return String.valueOf(onlyint ? getValInt() : getValDouble());
+		if (isString()) return getValString();
+		if (isColorPicker()) return get32BitString((colour != null) ? colour.getRGB() : new Color(1f, 1f, 1f).getRGB()) + "-" + syns + "-" + rainbow;
 		return super.toString();
 	}
 
@@ -310,12 +310,12 @@ public class Setting {
 	}
 
 	public String[] getStringValues() {
-		if(!enumCombo) return options.toArray(new String[0]);
+		if (!enumCombo) return options.toArray(new String[0]);
 		else return Arrays.stream(optionEnum.getClass().getEnumConstants()).map(Enum::name).toArray(String[]::new);
 	}
 
 	public String getStringFromIndex(int index) {
-		if(index != -1) return getStringValues()[index];
+		if (index != -1) return getStringValues()[index];
 		else return "";
 	}
 
@@ -323,10 +323,10 @@ public class Setting {
 		String[] modes = getStringValues();
 		int object = 0;
 
-		for(int i = 0; i < modes.length; i++) {
+		for (int i = 0; i < modes.length; i++) {
 			String mode = modes[i];
 
-			if(mode.equalsIgnoreCase(sval)) object = i;
+			if (mode.equalsIgnoreCase(sval)) object = i;
 		}
 
 		return object;
@@ -537,14 +537,14 @@ public class Setting {
 	}
 	
 	public double getValDouble(){
-		if(this.onlyint){
+		if (this.onlyint){
 			this.dval = (int) dval;
 		}
 		return this.dval;
 	}
 
 	public float getValFloat() {
-		if(onlyint) {
+		if (onlyint) {
 			dval = (int) dval;
 		}
 
@@ -552,7 +552,7 @@ public class Setting {
 	}
 
 	public long getValLong() {
-		if(onlyint) {
+		if (onlyint) {
 			dval = (int) dval;
 		}
 

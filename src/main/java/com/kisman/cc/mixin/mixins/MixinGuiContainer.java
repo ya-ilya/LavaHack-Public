@@ -42,8 +42,8 @@ public class MixinGuiContainer extends GuiScreen {
 
     @Inject(method = "drawScreen", at = @At("TAIL"))
     public void drawScreenTailHook(int mouseX, int mouseY, float particalTicks, CallbackInfo ci) {
-        if(ContainerModifier.instance.isToggled() && ContainerModifier.instance.containerShadow.getValBoolean()) {
-            if(ContainerModifier.instance.containerShadow.getValBoolean()) {
+        if (ContainerModifier.instance.isToggled() && ContainerModifier.instance.containerShadow.getValBoolean()) {
+            if (ContainerModifier.instance.containerShadow.getValBoolean()) {
                 {
                     double x = 0, y = (guiTop + xSize / 2) - guiLeft / 2, y2 = (guiTop + xSize / 2) + guiLeft / 2;
                     double x2 = guiLeft, y3 = guiTop, y4 = guiTop + ySize;
@@ -57,14 +57,14 @@ public class MixinGuiContainer extends GuiScreen {
                     Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[]{guiLeft + xSize, guiTop}, new double[]{x, y}, new double[]{x, y2}, new double[]{guiLeft + xSize, guiTop + ySize}), new Color(0, 0, 0, 0), Color.BLACK, false));
                 }
             }
-            if(ContainerModifier.instance.itemESP.getValBoolean()) itemESP.getGuiTextField().drawTextBox();
+            if (ContainerModifier.instance.itemESP.getValBoolean()) itemESP.getGuiTextField().drawTextBox();
         }
     }
 
     @Inject(method = "drawScreen", at = @At("HEAD"))
     private void drawScreenHeadHook(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
         itemESP.getItemStacks().clear();
-        if(!itemESP.getGuiTextField().getText().isEmpty()) for(Slot slot : inventorySlots.inventorySlots) if(slot.getHasStack() && slot.getStack().getDisplayName().toLowerCase().contains(itemESP.getGuiTextField().getText().toLowerCase()))  itemESP.getItemStacks().add(slot.getStack());
+        if (!itemESP.getGuiTextField().getText().isEmpty()) for (Slot slot : inventorySlots.inventorySlots) if (slot.getHasStack() && slot.getStack().getDisplayName().toLowerCase().contains(itemESP.getGuiTextField().getText().toLowerCase()))  itemESP.getItemStacks().add(slot.getStack());
     }
 
     /**
@@ -73,7 +73,7 @@ public class MixinGuiContainer extends GuiScreen {
      */
     @Overwrite
     protected void keyTyped(char typedChar, int keyCode) {
-        if(ContainerModifier.instance.itemESP.getValBoolean()) itemESP.getGuiTextField().textboxKeyTyped(typedChar, keyCode);
+        if (ContainerModifier.instance.itemESP.getValBoolean()) itemESP.getGuiTextField().textboxKeyTyped(typedChar, keyCode);
 
         if (keyCode == 1 || (this.mc.gameSettings.keyBindInventory.isActiveAndMatches(keyCode) && !itemESP.getGuiTextField().isFocused())) {
             this.mc.player.closeScreen();
@@ -91,14 +91,14 @@ public class MixinGuiContainer extends GuiScreen {
 
     @Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
     private void mouseClickedHook(int mouseX, int mouseY, int mouseButton, CallbackInfo ci) {
-        if(ContainerModifier.instance.isToggled() && ContainerModifier.instance.itemESP.getValBoolean()) {
+        if (ContainerModifier.instance.isToggled() && ContainerModifier.instance.itemESP.getValBoolean()) {
             itemESP.getGuiTextField().mouseClicked(mouseX, mouseY, mouseButton);
-            if(itemESP.getGuiTextField().isFocused()) ci.cancel();
+            if (itemESP.getGuiTextField().isFocused()) ci.cancel();
         }
     }
     
     @Inject(method = "drawSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GlStateManager;enableDepth()V"))
     private void drawSlotHook(Slot slot, CallbackInfo ci) {
-        if(ContainerModifier.instance.isToggled() && ContainerModifier.instance.itemESP.getValBoolean() && !itemESP.getItemStacks().isEmpty() && itemESP.getItemStacks().contains(slot.getStack())) drawRect(slot.xPos, slot.yPos, slot.xPos + 16, slot.yPos + 16, ColorUtil.astolfoColors(100, 100));
+        if (ContainerModifier.instance.isToggled() && ContainerModifier.instance.itemESP.getValBoolean() && !itemESP.getItemStacks().isEmpty() && itemESP.getItemStacks().contains(slot.getStack())) drawRect(slot.xPos, slot.yPos, slot.xPos + 16, slot.yPos + 16, ColorUtil.astolfoColors(100, 100));
     }
 }

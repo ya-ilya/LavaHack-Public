@@ -98,7 +98,7 @@ public class PacketMineUtil implements Globals {
                 }
             }
 
-            if (getBlockProgress(currentPos, mc.player.inventory.getStackInSlot(InventoryUtil.findBestToolSlot(currentPos)), start) <= 1 - speed && mc.world.getBlockState(currentPos).getBlock() != Blocks.AIR) if (autoSwitch) if(!swapTo()) return;
+            if (getBlockProgress(currentPos, mc.player.inventory.getStackInSlot(InventoryUtil.findBestToolSlot(currentPos)), start) <= 1 - speed && mc.world.getBlockState(currentPos).getBlock() != Blocks.AIR) if (autoSwitch) if (!swapTo()) return;
             if (!swap) oldSlot = mc.player.inventory.currentItem;
             if (currentPos != null && mc.player.getDistanceSq(currentPos) >= MathUtil.square(range)) currentPos = null;
         }

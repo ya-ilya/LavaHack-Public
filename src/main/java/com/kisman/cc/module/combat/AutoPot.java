@@ -24,9 +24,9 @@ public class AutoPot extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
-        if(stack == null && timer.hasReached(100)) stack = mc.player.getHeldItemMainhand();
+        if (stack == null && timer.hasReached(100)) stack = mc.player.getHeldItemMainhand();
         if (isPotionOnHotBar() && mc.player.onGround) {
             float oldPitch = mc.player.rotationPitch;
             mc.player.rotationPitch = 90;
@@ -52,21 +52,21 @@ public class AutoPot extends Module {
     }
 
     private int getPotionSlot(Potions potion) {
-        for(int i = 0; i < 9; ++i) if (this.isStackPotion(mc.player.inventory.getStackInSlot(i), potion)) return i;
+        for (int i = 0; i < 9; ++i) if (this.isStackPotion(mc.player.inventory.getStackInSlot(i), potion)) return i;
         return -1;
     }
 
     private boolean isPotionOnHotBar() {
-        for(int i = 0; i < 9; ++i) if(isStackPotion(mc.player.inventory.getStackInSlot(i), Potions.STRENGTH) || isStackPotion(mc.player.inventory.getStackInSlot(i), Potions.SPEED)|| isStackPotion(mc.player.inventory.getStackInSlot(i), Potions.FIRERES)) return true;
+        for (int i = 0; i < 9; ++i) if (isStackPotion(mc.player.inventory.getStackInSlot(i), Potions.STRENGTH) || isStackPotion(mc.player.inventory.getStackInSlot(i), Potions.SPEED)|| isStackPotion(mc.player.inventory.getStackInSlot(i), Potions.FIRERES)) return true;
         return false;
     }
 
     private boolean isStackPotion(ItemStack stack, Potions potion){
-        if(stack == null) return false;
+        if (stack == null) return false;
 
         Item item = stack.getItem();
 
-        if(item == Items.SPLASH_POTION){
+        if (item == Items.SPLASH_POTION){
             int id = 5;
 
             switch (potion){
@@ -81,7 +81,7 @@ public class AutoPot extends Module {
                     break;
             }
 
-            for(PotionEffect effect : PotionUtils.getEffectsFromStack(stack)) if(effect.getPotion() == Potion.getPotionById(id)) return true;
+            for (PotionEffect effect : PotionUtils.getEffectsFromStack(stack)) if (effect.getPotion() == Potion.getPotionById(id)) return true;
         }
 
         return false;

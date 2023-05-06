@@ -21,7 +21,7 @@ public class AutoTotem extends Module {
     public boolean isBeta() {return true;}
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         int totemSlot = 0;
 
@@ -32,20 +32,20 @@ public class AutoTotem extends Module {
 
         int health = (int) this.health.getValDouble();
 
-        for(inventoryIndex = 0; inventoryIndex < inv.size(); inventoryIndex++) {
-            if(inv.get(inventoryIndex) != ItemStack.EMPTY) {
-                if(inv.get(inventoryIndex).getItem() == Items.TOTEM_OF_UNDYING) {
+        for (inventoryIndex = 0; inventoryIndex < inv.size(); inventoryIndex++) {
+            if (inv.get(inventoryIndex) != ItemStack.EMPTY) {
+                if (inv.get(inventoryIndex).getItem() == Items.TOTEM_OF_UNDYING) {
                     totemSlot = inventoryIndex;
                 }
             }
         }
 
-        if(mc.player.getHealth() + mc.player.getAbsorptionAmount() < health) {
-            if(offhand.getItem() == Items.TOTEM_OF_UNDYING) {
+        if (mc.player.getHealth() + mc.player.getAbsorptionAmount() < health) {
+            if (offhand.getItem() == Items.TOTEM_OF_UNDYING) {
                 return;
             }
 
-            if(totemSlot != 0) {
+            if (totemSlot != 0) {
                 mc.playerController.windowClick(0, totemSlot, 0, ClickType.PICKUP, mc.player);
                 mc.playerController.windowClick(0,45,0, ClickType.PICKUP, mc.player);
                 mc.playerController.windowClick(0, totemSlot, 0, ClickType.PICKUP, mc.player);

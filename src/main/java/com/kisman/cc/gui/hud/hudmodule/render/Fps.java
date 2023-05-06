@@ -25,7 +25,7 @@ public class Fps extends HudModule {
 
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent.Text event) {
-        if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
+        if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
             int color = HUD.instance.astolfoColor.getValBoolean() ? ColorUtil.astolfoColors(100, 100) : -1;
             CustomFontUtil.drawStringWithShadow("Fps: " + TextFormatting.GRAY + Minecraft.getDebugFPS(), getX(), getY(), color);
         }

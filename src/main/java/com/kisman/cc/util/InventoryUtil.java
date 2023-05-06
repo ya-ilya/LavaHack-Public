@@ -22,7 +22,7 @@ public class InventoryUtil {
     private static final Minecraft mc = Minecraft.getMinecraft();
 
     public static int findItemInInventory(Item item) {
-        if(mc.player != null) {
+        if (mc.player != null) {
             for (int i = mc.player.inventoryContainer.getInventory().size() - 1; i > 0; --i) {
                 if (i == 5 || i == 6 || i == 7 || i == 8) continue;
 
@@ -114,7 +114,7 @@ public class InventoryUtil {
     }
 
     public static void switchToSlot(int slot, boolean silent) {
-        if(slot == -1) return;
+        if (slot == -1) return;
         if (!silent) mc.player.connection.sendPacket(new CPacketHeldItemChange(slot));
         else {
             mc.player.connection.sendPacket(new CPacketHeldItemChange(slot));
@@ -123,11 +123,11 @@ public class InventoryUtil {
     }
 
     public static int findWeaponSlot(int min, int max, boolean shieldBreak) {
-        for(int i = min; i <= max; i++) {
+        for (int i = min; i <= max; i++) {
             ItemStack stack = mc.player.inventory.getStackInSlot(i);
 
-            if(shieldBreak) if(stack.getItem() instanceof ItemAxe) return i;
-            else if(stack.getItem() instanceof ItemSword || stack.getItem() instanceof ItemAxe) return i;
+            if (shieldBreak) if (stack.getItem() instanceof ItemAxe) return i;
+            else if (stack.getItem() instanceof ItemSword || stack.getItem() instanceof ItemAxe) return i;
         }
 
         return -1;
@@ -150,7 +150,7 @@ public class InventoryUtil {
     }
 
     public static int findItem(Item item, int min, int max) {
-        for(int i = min; i <= max; i++) {
+        for (int i = min; i <= max; i++) {
             ItemStack stack = mc.player.inventory.getStackInSlot(i);
             if (stack.getItem() != item) continue;
             return i;
@@ -160,7 +160,7 @@ public class InventoryUtil {
     }
 
     public static int findChestplate(int min, int max) {
-        for(int i = min; i <= max; i++) {
+        for (int i = min; i <= max; i++) {
             ItemStack stack = mc.player.inventory.getStackInSlot(i);
             if (stack.getItem() == Items.CHAINMAIL_CHESTPLATE && stack.getItem() == Items.DIAMOND_CHESTPLATE && stack.getItem() == Items.IRON_CHESTPLATE && stack.getItem() == Items.GOLDEN_CHESTPLATE && stack.getItem() == Items.LEATHER_CHESTPLATE) return i;
         }
@@ -173,10 +173,10 @@ public class InventoryUtil {
     }
 
     public static int findAntiWeaknessTool(int min, int max) {
-        for(int i = min; i <= max; ++i) {
+        for (int i = min; i <= max; ++i) {
             ItemStack stack = mc.player.inventory.getStackInSlot(i);
 
-            if(stack.getItem() instanceof ItemSword || stack.getItem() instanceof ItemPickaxe) return i;
+            if (stack.getItem() instanceof ItemSword || stack.getItem() instanceof ItemPickaxe) return i;
         }
 
         return -1;
@@ -194,7 +194,7 @@ public class InventoryUtil {
     }
 
     public static void switchToSlot(int slot, Switch switchMode) {
-        if(mc.player == null) return;
+        if (mc.player == null) return;
 
         if (slot != -1 && mc.player.inventory.currentItem != slot) {
             switch (switchMode) {
@@ -257,7 +257,7 @@ public class InventoryUtil {
     }
 
     public static int getBlockInHotbar(boolean onlyObby) {
-        for(int i = 0; i <9; i++) if(mc.player.inventory.getStackInSlot(i).getItem() instanceof ItemBlock) return i;
+        for (int i = 0; i <9; i++) if (mc.player.inventory.getStackInSlot(i).getItem() instanceof ItemBlock) return i;
         return -1;
     }
 
@@ -278,11 +278,11 @@ public class InventoryUtil {
         int slot = -1;
         List<ItemStack> mainInventory = mc.player.inventory.mainInventory;
 
-        for(int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++) {
             ItemStack stack = mainInventory.get(i);
 
-            if(stack == ItemStack.EMPTY || !(itemToFind.isInstance(stack.getItem()))) continue;
-            if(itemToFind.isInstance(stack.getItem())) slot = i;
+            if (stack == ItemStack.EMPTY || !(itemToFind.isInstance(stack.getItem()))) continue;
+            if (itemToFind.isInstance(stack.getItem())) slot = i;
         }
 
         return slot;

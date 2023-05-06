@@ -47,7 +47,7 @@ public class GuiConsole extends GuiScreen implements ITabCompleter {
     
     void init() {
 		this.commands.clear();
-        for(Command c : CommandManager.commands) this.commands.add(c.getCommand() + " - " + c.getDescription());
+        for (Command c : CommandManager.commands) this.commands.add(c.getCommand() + " - " + c.getDescription());
     }
 
     /**
@@ -112,9 +112,9 @@ public class GuiConsole extends GuiScreen implements ITabCompleter {
             if (!s.isEmpty()) {
             	//CommandManager.getInstance().runCommands("." + s);
                 Kisman.instance.commandManager.runCommand("." + s);
-            	if(s.startsWith("login")) {
+            	if (s.startsWith("login")) {
             		String[] pSplit = s.split(" ");
-            		if(pSplit.length >= 3) s = s.replace(pSplit[2], "*");
+            		if (pSplit.length >= 3) s = s.replace(pSplit[2], "*");
             	}
                 //ChatUtils.message(s);
                 //FileManager.saveHacks();

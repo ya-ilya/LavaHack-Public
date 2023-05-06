@@ -99,7 +99,7 @@ public class EntityUtil {
         EntityPlayer currentTarget = null;
         for (int size = mc.world.playerEntities.size(), i = 0; i < size; ++i) {
             final EntityPlayer player = mc.world.playerEntities.get(i);
-            if(AntiBot.instance.isToggled() && AntiBot.instance.mode.checkValString("Zamorozka") && !antibotCheck(player)) continue;
+            if (AntiBot.instance.isToggled() && AntiBot.instance.mode.checkValString("Zamorozka") && !antibotCheck(player)) continue;
             if (!isntValid(player, range, wallRange)) {
                 if (currentTarget == null) currentTarget = player;
                 else if (mc.player.getDistanceSq(player) < mc.player.getDistanceSq(currentTarget)) currentTarget = player;
@@ -115,9 +115,9 @@ public class EntityUtil {
     public static Entity getTarget(float range, float wallRange, boolean players, boolean animals, boolean monsters) {
         Entity currentTarget = null;
         for (Entity entity1 : mc.world.loadedEntityList) {
-            if(!(entity1 instanceof EntityLivingBase)) continue;
+            if (!(entity1 instanceof EntityLivingBase)) continue;
             EntityLivingBase entity = (EntityLivingBase) entity1;
-            if(!antibotCheck(entity) && AntiBot.instance.isToggled() && AntiBot.instance.mode.checkValString("Zamorozka")) continue;
+            if (!antibotCheck(entity) && AntiBot.instance.isToggled() && AntiBot.instance.mode.checkValString("Zamorozka")) continue;
             if (!isntValid(entity, range, wallRange) && !isntValid2(entity, players, animals, monsters)) {
                 if (currentTarget == null) currentTarget = entity;
                 else if (mc.player.getDistanceSq(entity) < mc.player.getDistanceSq(currentTarget)) currentTarget = entity;

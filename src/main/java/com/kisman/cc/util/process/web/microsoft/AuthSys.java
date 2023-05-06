@@ -27,7 +27,7 @@ public class AuthSys {
             try {
                 if (AuthSys.srv == null) {
                     gui.setState("Waiting for auth... (Check your browser)");
-                    if(HttpTools.ping("http://minecraft.net")) {
+                    if (HttpTools.ping("http://minecraft.net")) {
                         (AuthSys.srv = HttpServer.create(new InetSocketAddress(59125), 0)).createContext("/", exchange -> {
                             try {
                                 gui.setState("Processing token...");

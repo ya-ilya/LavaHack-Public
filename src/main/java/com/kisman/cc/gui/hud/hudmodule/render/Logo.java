@@ -27,18 +27,18 @@ public class Logo extends HudModule {
         String name = Kisman.getName();
         String version = Kisman.getVersion();
 
-        if(HUD.instance.logoMode.getValString().equals("Simple")) {
-            if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
+        if (HUD.instance.logoMode.getValString().equals("Simple")) {
+            if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
                 int color = HUD.instance.astolfoColor.getValBoolean() ? ColorUtil.astolfoColors(100, 100) : -1;
 
-                if(HUD.instance.logoGlow.getValBoolean()) {
+                if (HUD.instance.logoGlow.getValBoolean()) {
                     int glowOffset = HUD.instance.glowOffset.getValInt();
                     Render2DUtil.drawGlow(1 - glowOffset, 1 - glowOffset, 1 + CustomFontUtil.getStringWidth(name + version) + glowOffset, 1 + CustomFontUtil.getFontHeight() + glowOffset, color);
                 }
 
                 CustomFontUtil.drawStringWithShadow((HUD.instance.logoBold.getValBoolean() ? TextFormatting.BOLD : "") + name + " " + TextFormatting.GRAY + version, 1, 1, color);
             }
-        } else if(HUD.instance.logoMode.getValString().equals("CSGO")) {
+        } else if (HUD.instance.logoMode.getValString().equals("CSGO")) {
             String text = ((CustomFont.instance.mode.getValString().equals("Verdana") ? TextFormatting.BOLD : "") + name) + TextFormatting.GRAY + " | " + TextFormatting.RESET + mc.player.getName() + TextFormatting.GRAY + " | " + TextFormatting.RESET + (mc.isSingleplayer() ? 0 : Kisman.instance.serverManager.getPing()) + " ms" + TextFormatting.GRAY + " | " + TextFormatting.RESET + "FPS " + Minecraft.getDebugFPS();
             int x = 3;
             int y = 8;
@@ -64,7 +64,7 @@ public class Logo extends HudModule {
             Gui.drawRect(x, y - 4, x + width, y + height, (ColorUtil.getColor(34, 34, 40)));
 
             CustomFontUtil.drawStringWithShadow((HUD.instance.logoBold.getValBoolean() ? TextFormatting.BOLD : "") + text, x + 2, y + 2, ColorUtil.astolfoColors(100, 100));
-        } else if(HUD.instance.logoMode.checkValString("GishCode")) {
+        } else if (HUD.instance.logoMode.checkValString("GishCode")) {
             int color = HUD.instance.astolfoColor.getValBoolean() ? ColorUtil.astolfoColors(100, 100) : -1;
 
             GL11.glPushMatrix();
@@ -77,8 +77,8 @@ public class Logo extends HudModule {
 
             GL11.glPopMatrix();
         } else {
-            if(HUD.instance.logoImage.checkValString("Old")) Icons.LOGO.render(0, 0, 50, 50);
-            else if(HUD.instance.logoImage.checkValString("New")) Icons.LOGO_NEW.render(0, 0, 80, 80 , new Colour(ColorUtil.astolfoColors(100, 100)));
+            if (HUD.instance.logoImage.checkValString("Old")) Icons.LOGO.render(0, 0, 50, 50);
+            else if (HUD.instance.logoImage.checkValString("New")) Icons.LOGO_NEW.render(0, 0, 80, 80 , new Colour(ColorUtil.astolfoColors(100, 100)));
         }
     }
 }

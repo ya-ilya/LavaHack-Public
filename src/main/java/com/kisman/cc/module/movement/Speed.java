@@ -106,7 +106,7 @@ public class Speed extends Module {
     }
 
     public void onEnable() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
         stage = 4;
         dist = MovementUtil.getDistance2D();
         speed = MovementUtil.getSpeed();
@@ -117,7 +117,7 @@ public class Speed extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         super.setDisplayInfo("[" + speedMode.getValString() + TextFormatting.GRAY + "]");
 
@@ -158,7 +158,7 @@ public class Speed extends Module {
     private void doStrafeSpeed() {
         if (!(mc.player.moveForward > 0) || mc.player.hurtTime >= 5) return;
 
-        if(mc.player.onGround) {
+        if (mc.player.onGround) {
             mc.player.motionY = 0.405;
             float direction = getDirection();
 
@@ -175,8 +175,8 @@ public class Speed extends Module {
     }
 
     private void doYPortSpeed() {
-        if(!PlayerUtil.isMoving(mc.player) || (mc.player.isInWater() && !yWater.getValBoolean()) && (mc.player.isInLava() && !yLava.getValBoolean()) || mc.player.collidedHorizontally) return;
-        if(mc.player.onGround) {
+        if (!PlayerUtil.isMoving(mc.player) || (mc.player.isInWater() && !yWater.getValBoolean()) && (mc.player.isInLava() && !yLava.getValBoolean()) || mc.player.collidedHorizontally) return;
+        if (mc.player.onGround) {
             EntityUtil.setTimer(1.15f);
             mc.player.jump();
             PlayerUtil.setSpeed(mc.player, PlayerUtil.getBaseMoveSpeed() + this.yPortSpeed);
@@ -218,7 +218,7 @@ public class Speed extends Module {
         speed = Math.max(speed, MovementUtil.getSpeed(slow.getValBoolean(), strafeSpeed.getValDouble()));
         MovementUtil.strafe((float) speed);
 
-        if(PlayerUtil.isMoving(mc.player)) stage++;
+        if (PlayerUtil.isMoving(mc.player)) stage++;
     }
 
     private void doMatrixBhopSpeed() {
@@ -288,7 +288,7 @@ public class Speed extends Module {
     private void doMatrixSpeed() {
         if (!MovementUtil.isMoving() || mc.player.ticksExisted % 2 != 0) return;
 
-        if(mc.player.onGround) mc.player.jump();
+        if (mc.player.onGround) mc.player.jump();
         else MovementUtil.setMotion(MovementUtil.WALK_SPEED * 1.025);
     }
 
@@ -352,7 +352,7 @@ public class Speed extends Module {
             y = 1;
             EntityUtil.resetTimer();
 
-            if(useTimer.getValBoolean()) {
+            if (useTimer.getValBoolean()) {
                 Managers.instance.timerManager.updateTimer(this, 2, 1.3f);
             }
 
@@ -361,7 +361,7 @@ public class Speed extends Module {
             mc.player.motionX = dirSpeed[0];
             mc.player.motionZ = dirSpeed[1];
         } else {
-            if(jumpMovementFactor.getValBoolean()) {
+            if (jumpMovementFactor.getValBoolean()) {
                 mc.player.jumpMovementFactor = jumpMovementFactorSpeed.getValFloat();
             }
 
@@ -370,11 +370,11 @@ public class Speed extends Module {
                 return;
             }
 
-            if(mc.player.getPositionVector().y < y) {
+            if (mc.player.getPositionVector().y < y) {
                 y = mc.player.getPositionVector().y;
                 mc.player.motionX = 0;
                 mc.player.motionZ = 0;
-                if(useTimer.getValBoolean()) EntityUtil.resetTimer();
+                if (useTimer.getValBoolean()) EntityUtil.resetTimer();
                 Managers.instance.timerManager.updateTimer(this, 2, 16);
             } else {
                 y = mc.player.getPositionVector().y;
@@ -409,19 +409,19 @@ public class Speed extends Module {
 
     private Motion getMotion() {
         BlockPos posToCheck = new BlockPos(EntityUtil.getRoundedBlockPos(mc.player).getX(), EntityUtil.getRoundedBlockPos(mc.player).getY(), EntityUtil.getRoundedBlockPos(mc.player).getZ());
-        if(getBlock(posToCheck) == Blocks.AIR && lastPos != null) {
-            if(posToCheck != lastPos) {
-                if(lastPos.add(0, 0, -1).equals(posToCheck)) return Motion.mY;
-                if(lastPos.add(0, 0, 1).equals(posToCheck)) return Motion.Y;
-                if(lastPos.add(1, 0, 0).equals(posToCheck)) return Motion.X;
-                if(lastPos.add(-1, 0, 0).equals(posToCheck)) return Motion.mX;
+        if (getBlock(posToCheck) == Blocks.AIR && lastPos != null) {
+            if (posToCheck != lastPos) {
+                if (lastPos.add(0, 0, -1).equals(posToCheck)) return Motion.mY;
+                if (lastPos.add(0, 0, 1).equals(posToCheck)) return Motion.Y;
+                if (lastPos.add(1, 0, 0).equals(posToCheck)) return Motion.X;
+                if (lastPos.add(-1, 0, 0).equals(posToCheck)) return Motion.mX;
             }
         } else lastPos = new BlockPos(EntityUtil.getRoundedBlockPos(mc.player).getX(), EntityUtil.getRoundedBlockPos(mc.player).getY(), EntityUtil.getRoundedBlockPos(mc.player).getZ());
         return null;
     }
 
     private Block getBlock(BlockPos pos) {
-        if(pos != null) return mc.world.getBlockState(pos).getBlock();
+        if (pos != null) return mc.world.getBlockState(pos).getBlock();
         return null;
     }
 
@@ -430,8 +430,8 @@ public class Speed extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
-        if(event.getPacket() instanceof SPacketPlayerPosLook) {
-            if(mc.player != null) dist = 0;
+        if (event.getPacket() instanceof SPacketPlayerPosLook) {
+            if (mc.player != null) dist = 0;
             speed = 0;
             stage = 4;
             EntityUtil.setTimer(1);
@@ -441,7 +441,7 @@ public class Speed extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerUpdateEvent> playerUpdateListener = listener(event -> {
-        if(speedMode.getValString().equalsIgnoreCase("Sti")) {
+        if (speedMode.getValString().equalsIgnoreCase("Sti")) {
             mc.timer.tickLength = 50 / getSpeed();
         }}
     );

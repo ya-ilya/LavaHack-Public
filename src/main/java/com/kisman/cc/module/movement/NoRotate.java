@@ -31,7 +31,7 @@ public class NoRotate extends Module {
     }
 
     public void update() {
-        if(timerReset && !cancelPackets && timer.passedMillis(waitDelay.getValInt())) {
+        if (timerReset && !cancelPackets && timer.passedMillis(waitDelay.getValInt())) {
             ChatUtil.message(TextFormatting.GOLD + "[NoRotate] " + TextFormatting.GRAY + "This module might desync you!");
             cancelPackets = true;
             timerReset = false;
@@ -52,7 +52,7 @@ public class NoRotate extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
-        if(cancelPackets && event.getPacket() instanceof SPacketPlayerPosLook) {
+        if (cancelPackets && event.getPacket() instanceof SPacketPlayerPosLook) {
             SPacketPlayerPosLook packet = (SPacketPlayerPosLook) event.getPacket();
             packet.yaw = mc.player.rotationYaw;
             packet.pitch = mc.player.rotationPitch;

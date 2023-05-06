@@ -16,11 +16,11 @@ public class AutoLog extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         int health = (int) this.health.getValDouble();
 
-        if(mc.player.getHealth() < health) {
+        if (mc.player.getHealth() < health) {
             mc.player.connection.handleDisconnect(new SPacketDisconnect(new TextComponentString("your health < " + health)));
             setToggled(false);
         }

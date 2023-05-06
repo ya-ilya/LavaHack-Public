@@ -52,29 +52,29 @@ public class DamageESP extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
-        for(Entity e : mc.world.loadedEntityList) {
-            if(e == mc.player && !self.getValBoolean()) continue;
-            if(e instanceof EntityLiving) {
+        if (mc.player == null || mc.world == null) return;
+        for (Entity e : mc.world.loadedEntityList) {
+            if (e == mc.player && !self.getValBoolean()) continue;
+            if (e instanceof EntityLiving) {
                 EntityLiving entity = (EntityLiving) e;
-                if(!entityHealthMap.containsKey(entity)) entityHealthMap.put(entity, entity.getHealth());
+                if (!entityHealthMap.containsKey(entity)) entityHealthMap.put(entity, entity.getHealth());
                 else {
-                    if(entityHealthMap.get(entity) > entity.getHealth()) {
+                    if (entityHealthMap.get(entity) > entity.getHealth()) {
                         damages.add(new Damage(e, System.currentTimeMillis(), (entityHealthMap.get(entity) - entity.getHealth()), 1));
                         entityHealthMap.replace(entity, entity.getHealth());
-                    } else if(entityHealthMap.get(entity) < entity.getHealth()) {
+                    } else if (entityHealthMap.get(entity) < entity.getHealth()) {
                         damages.add(new Damage(e, System.currentTimeMillis(), (entity.getHealth() - entityHealthMap.get(entity)), 2));
                         entityHealthMap.replace(entity, entity.getHealth());
                     }
                 }
-            }else if(e instanceof EntityPlayer) {
+            }else if (e instanceof EntityPlayer) {
                 EntityPlayer entity = (EntityPlayer) e;
-                if(!entityHealthMap.containsKey(entity)) entityHealthMap.put(entity, entity.getHealth());
+                if (!entityHealthMap.containsKey(entity)) entityHealthMap.put(entity, entity.getHealth());
                 else {
-                    if(entityHealthMap.get(entity) > entity.getHealth()) {
+                    if (entityHealthMap.get(entity) > entity.getHealth()) {
                         damages.add(new Damage(e, System.currentTimeMillis(), (entityHealthMap.get(entity) - entity.getHealth()), 1));
                         entityHealthMap.replace(entity, entity.getHealth());
-                    } else if(entityHealthMap.get(entity) < entity.getHealth()) {
+                    } else if (entityHealthMap.get(entity) < entity.getHealth()) {
                         damages.add(new Damage(e, System.currentTimeMillis(), (entity.getHealth() - entityHealthMap.get(entity)), 2));
                         entityHealthMap.replace(entity, entity.getHealth());
                     }
@@ -86,14 +86,14 @@ public class DamageESP extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<Render2DEvent> render2DListener = listener(event -> {
-        if(damages.isEmpty()) return;
-        for(Damage damage : damages) {
-            if(mc.player.getDistance(damage.entity) > range.getValInt()) continue;
-            if(System.currentTimeMillis() - damage.startTime >= timeToRemove.getValInt() * 1000L) {
+        if (damages.isEmpty()) return;
+        for (Damage damage : damages) {
+            if (mc.player.getDistance(damage.entity) > range.getValInt()) continue;
+            if (System.currentTimeMillis() - damage.startTime >= timeToRemove.getValInt() * 1000L) {
                 damages.remove(damage);
                 return;
             }
-            if(mc.player.getDistance(damage.entity) > range.getValInt()) continue;
+            if (mc.player.getDistance(damage.entity) > range.getValInt()) continue;
             final double x = damage.getEntity().getPosition().getX() + (damage.getEntity().getPosition().getX() - damage.getEntity().getPosition().getX()) * event.particalTicks - mc.getRenderManager().viewerPosX;
             final double y = damage.getEntity().getPosition().getY() + (damage.getEntity().getPosition().getY() - damage.getEntity().getPosition().getY()) * event.particalTicks - mc.getRenderManager().viewerPosY + damage.getEntity().getEyeHeight() + 0.5;
             final double z = damage.getEntity().getPosition().getZ() + (damage.getEntity().getPosition().getZ() - damage.getEntity().getPosition().getZ()) * event.particalTicks - mc.getRenderManager().viewerPosZ;
@@ -124,11 +124,11 @@ public class DamageESP extends Module {
             Gui.drawRect(-100, -100, 100, 100, new Color(255, 0, 0, 0).getRGB());
             switch (damage.getStage()) {
                 case 2:
-                    if(!heal.getValBoolean()) return;
+                    if (!heal.getValBoolean()) return;
                     mc.fontRenderer.drawStringWithShadow(new DecimalFormat("#.#").format(damage.damage), 0, (int)(-yPercentage), healColor.getColour().getRGB());
                     break;
                 case 1:
-                    if(!this.damage.getValBoolean()) return;
+                    if (!this.damage.getValBoolean()) return;
                     mc.fontRenderer.drawStringWithShadow(new DecimalFormat("#.#").format(damage.damage), 0, (int)(-yPercentage), damageColor.getColour().getRGB());
                     break;
             }

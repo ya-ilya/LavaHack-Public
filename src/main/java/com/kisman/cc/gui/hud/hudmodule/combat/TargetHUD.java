@@ -40,12 +40,12 @@ public class TargetHUD extends HudModule {
 
     public void update() {
         target = AutoRer.currentTarget;
-        if(target == null) target = KillAura.instance.target;
+        if (target == null) target = KillAura.instance.target;
     }
 
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent.Text event) {
-        if(target == null) return;
+        if (target == null) return;
 
         switch (HUD.instance.thudTheme.getValString()) {
             case "Vega":
@@ -182,7 +182,7 @@ public class TargetHUD extends HudModule {
         //draw armor and items in hands
         double posX = healthX;
         for (final ItemStack item : target.getArmorInventoryList()) {
-            if(item.isEmpty) continue;
+            if (item.isEmpty) continue;
             GL11.glPushMatrix();
             GL11.glTranslated(posX, healthY + circleOffset, 0);
             GL11.glScaled(0.8, 0.8, 0.8);
@@ -192,7 +192,7 @@ public class TargetHUD extends HudModule {
             Render2DUtil.drawProgressCircle2(centre[0], centre[1], radius, ColorUtil.astolfoColors(100, 100), InventoryUtil.getDamageInFloat(item), 1);
             posX += 16;
         }
-        if(!target.getHeldItemMainhand().isEmpty) {
+        if (!target.getHeldItemMainhand().isEmpty) {
             GL11.glPushMatrix();
             GL11.glTranslated(posX, healthY + circleOffset, 0);
             GL11.glScaled(0.8, 0.8, 0.8);
@@ -202,7 +202,7 @@ public class TargetHUD extends HudModule {
             Render2DUtil.drawProgressCircle2(centre[0], centre[1], radius, ColorUtil.astolfoColors(100, 100), InventoryUtil.getDamageInFloat(target.getHeldItemMainhand()), 1);
             posX += 16;
         }
-        if(!target.getHeldItemOffhand().isEmpty){
+        if (!target.getHeldItemOffhand().isEmpty){
             GL11.glPushMatrix();
             GL11.glTranslated(posX, healthY + circleOffset, 0);
             GL11.glScaled(0.8, 0.8, 0.8);
@@ -288,7 +288,7 @@ public class TargetHUD extends HudModule {
         //draw armor and items in hands
         double posX = x + borderOffset;
         for (final ItemStack item : target.getArmorInventoryList()) {
-            if(item.isEmpty) continue;
+            if (item.isEmpty) continue;
             GL11.glPushMatrix();
             GL11.glTranslated(posX, y + borderOffset * 3 + CustomFontUtil.getFontHeight() + 27 + 0.5, 0);
             GL11.glScaled(0.8, 0.8, 0.8);
@@ -296,7 +296,7 @@ public class TargetHUD extends HudModule {
             GL11.glPopMatrix();
             posX += 12;
         }
-        if(!target.getHeldItemMainhand().isEmpty) {
+        if (!target.getHeldItemMainhand().isEmpty) {
             GL11.glPushMatrix();
             GL11.glTranslated(posX, y + borderOffset * 3 + CustomFontUtil.getFontHeight() + 27 + 0.5, 0);
             GL11.glScaled(0.8, 0.8, 0.8);
@@ -304,7 +304,7 @@ public class TargetHUD extends HudModule {
             GL11.glPopMatrix();
             posX += 12;
         }
-        if(!target.getHeldItemOffhand().isEmpty){
+        if (!target.getHeldItemOffhand().isEmpty){
             GL11.glPushMatrix();
             GL11.glTranslated(posX, y + borderOffset * 3 + CustomFontUtil.getFontHeight() + 27 + 0.5, 0);
             GL11.glScaled(0.8, 0.8, 0.8);
@@ -320,7 +320,7 @@ public class TargetHUD extends HudModule {
         count++;
 
         //draw health slider
-        if(timer.passedMillis(15)) {
+        if (timer.passedMillis(15)) {
             hpBarWidth = AnimationUtils.animate((target.getHealth() / target.getMaxHealth()) * maxSlidersWidth, hpBarWidth, 0.05);
             timer.reset();
         }
@@ -329,7 +329,7 @@ public class TargetHUD extends HudModule {
     }
 
     private void drawSlider(double x, double y, double sliderWidth, double sliderHeight) {
-        if(HUD.instance.thudShadowSliders.getValBoolean()) Render2DUtil.drawShadowSliders(x, y, sliderWidth, sliderHeight, ColorUtil.astolfoColors(100, 100), 1);
+        if (HUD.instance.thudShadowSliders.getValBoolean()) Render2DUtil.drawShadowSliders(x, y, sliderWidth, sliderHeight, ColorUtil.astolfoColors(100, 100), 1);
         else Render2DUtil.drawRect(x, y, x + sliderWidth, y + sliderHeight, ColorUtil.astolfoColors(100, 100));
     }
 
@@ -340,7 +340,7 @@ public class TargetHUD extends HudModule {
         float maxX = Math.max(40, CustomFontUtil.getStringWidth("HP: " + (int) target.getHealth() + " | Dist: " + mc.player.getDistance(target)) + 70);
         setW(maxX);
         setH(49);
-        if(timer.passedMillis(15)) {
+        if (timer.passedMillis(15)) {
             hpBarWidth = AnimationUtils.animate((target.getHealth() / target.getMaxHealth()) * maxX, hpBarWidth, 0.05);
             timer.reset();
         }
@@ -364,7 +364,7 @@ public class TargetHUD extends HudModule {
         CustomFontUtil.drawString(target.getName(), renderX + 1 + 27 + 5, renderY + 4 + CustomFontUtil.getFontHeight(), -1);
         int posX = scaledResolution.getScaledWidth() / 2 + 53;
         for (final ItemStack item : target.getArmorInventoryList()) {
-            if(item.isEmpty) continue;
+            if (item.isEmpty) continue;
             GL11.glPushMatrix();
             GL11.glTranslated(posX - 27, renderY + 29 + 0.5, 0);
             GL11.glScaled(0.8, 0.8, 0.8);
@@ -372,7 +372,7 @@ public class TargetHUD extends HudModule {
             GL11.glPopMatrix();
             posX += 12;
         }
-        if(!target.getHeldItemMainhand().isEmpty) {
+        if (!target.getHeldItemMainhand().isEmpty) {
             GL11.glPushMatrix();
             GL11.glTranslated(posX - 27, renderY + 29 + 0.5, 0);
             GL11.glScaled(0.8, 0.8, 0.8);
@@ -380,7 +380,7 @@ public class TargetHUD extends HudModule {
             GL11.glPopMatrix();
             posX += 12;
         }
-        if(!target.getHeldItemOffhand().isEmpty){
+        if (!target.getHeldItemOffhand().isEmpty){
             GL11.glPushMatrix();
             GL11.glTranslated(posX - 27, renderY + 29 + 0.5, 0);
             GL11.glScaled(0.8, 0.8, 0.8);

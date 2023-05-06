@@ -29,29 +29,29 @@ class AntiRegear : Module(
     private val breakQueue = ArrayList<BlockPos>()
 
     override fun update() {
-        if(mc.player == null || mc.world == null) return
-        if(breakQueue.isEmpty()) {
-            if(oldSlot != -1 && mc.player.heldItemMainhand.item is ItemPickaxe && switchToPick.valBoolean) {
+        if (mc.player == null || mc.world == null) return
+        if (breakQueue.isEmpty()) {
+            if (oldSlot != -1 && mc.player.heldItemMainhand.item is ItemPickaxe && switchToPick.valBoolean) {
                 ChatUtil.message("[AntiRegear] Switching back to original slot.")
                 InventoryUtil.switchToSlot(oldSlot, false)
                 oldSlot = -1
             }
         }
-        for(pos in BlockInteractionHelper.getSphere(PlayerUtil.GetLocalPlayerPosFloored(), range.valDouble.toFloat(), range.valInt, false, true, 0)) {
-            if(mc.world.getBlockState(pos).block is BlockShulkerBox) {
+        for (pos in BlockInteractionHelper.getSphere(PlayerUtil.GetLocalPlayerPosFloored(), range.valDouble.toFloat(), range.valInt, false, true, 0)) {
+            if (mc.world.getBlockState(pos).block is BlockShulkerBox) {
                 if (!breakQueue.contains(pos)) breakQueue.add(pos)
             }
         }
-        if(breakQueue.isNotEmpty()) {
-            if(mc.player.heldItemMainhand.item !is ItemPickaxe) {
+        if (breakQueue.isNotEmpty()) {
+            if (mc.player.heldItemMainhand.item !is ItemPickaxe) {
                 val pickSlot = InventoryUtil.findPickInHotbar()
-                if(pickSlot != -1) {
+                if (pickSlot != -1) {
                     oldSlot = mc.player.inventory.currentItem
                     InventoryUtil.switchToSlot(pickSlot, false)
                 }
             }
-            for(pos in breakQueue) {
-                if(mc.world.getBlockState(pos).block !is BlockShulkerBox || mc.player.getDistance(pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble()) > range.valInt) {
+            for (pos in breakQueue) {
+                if (mc.world.getBlockState(pos).block !is BlockShulkerBox || mc.player.getDistance(pos.x.toDouble(), pos.y.toDouble(), pos.z.toDouble()) > range.valInt) {
                     breakQueue.remove(pos)
                     return
                 }

@@ -25,6 +25,6 @@ public class VegaGui extends Module {
         mc.displayGuiScreen(Kisman.instance.gui);
         this.setToggled(false);
 
-        if(Config.instance.guiBlur.getValBoolean()) mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
+        if (Config.instance.guiBlur.getValBoolean()) mc.entityRenderer.loadShader(new ResourceLocation("shaders/post/blur.json"));
     }
 }

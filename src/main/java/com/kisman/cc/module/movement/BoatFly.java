@@ -34,15 +34,15 @@ public class BoatFly extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null || mc.player.ridingEntity == null) return;
+        if (mc.player == null || mc.world == null || mc.player.ridingEntity == null) return;
         super.setDisplayInfo("[" + speed.getValInt() + "]");
         Entity e = mc.player.ridingEntity;
         if (mc.gameSettings.keyBindJump.isKeyDown()) e.motionY = verticalSpeed.getValDouble();
         else if (!downKey.isNoneKey() && Keyboard.isKeyDown(downKey.getKey())) e.motionY = -verticalSpeed.getValDouble();
-        else if(staticY.getValBoolean()) e.motionY = 0;
+        else if (staticY.getValBoolean()) e.motionY = 0;
         else e.motionY = hover.getValBoolean() && mc.player.ticksExisted % 2 == 0 ? glideSpeed.getValDouble() : -glideSpeed.getValDouble();
         if (MovementUtil.isMoving()) {
-            if(!extraCalc.getValBoolean()) {
+            if (!extraCalc.getValBoolean()) {
                 double[] dir = MovementUtil.forward(speed.getValDouble());
                 e.motionX = dir[0];
                 e.motionZ = dir[1];

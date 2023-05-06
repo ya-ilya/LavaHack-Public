@@ -29,7 +29,7 @@ public class HoleSnap extends Module {
     public void onEnable() {
         hole = null;
         hole = findHoles();
-        if(hole == null && disableIfNoHole.getValBoolean()) super.setToggled(false);
+        if (hole == null && disableIfNoHole.getValBoolean()) super.setToggled(false);
     }
 
     public void onDisable() {
@@ -37,14 +37,14 @@ public class HoleSnap extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
         super.setDisplayInfo("[" + speedValue.getValInt() + "]");
         hole = findHoles();
-        if(hole == null) return;
+        if (hole == null) return;
 
         if (mc.gameSettings.keyBindSneak.isKeyDown() || HoleUtil.isInHole(mc.player, true, false)) {
             PlayerUtil.centerPlayer(mc.player.getPositionVector());
-            if(disableIfNoHole.getValBoolean()) {
+            if (disableIfNoHole.getValBoolean()) {
                 super.setToggled(false);
                 return;
             }

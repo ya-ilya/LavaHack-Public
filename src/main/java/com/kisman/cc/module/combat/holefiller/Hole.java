@@ -14,7 +14,7 @@ public class Hole {
     }
 
     public BlockPos getDownHoleBlock() {
-        if(pos == null) return BlockPos.ORIGIN;
+        if (pos == null) return BlockPos.ORIGIN;
 
         return pos.down();
     }

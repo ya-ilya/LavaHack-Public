@@ -24,7 +24,7 @@ public class ArmorHUD extends HudModule {
 
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent.Text event) {
-        if(mc.player == null && mc.world == null) return;
+        if (mc.player == null && mc.world == null) return;
 
         ScaledResolution rs = event.getResolution();
         RenderItem itemRender = mc.getRenderItem();

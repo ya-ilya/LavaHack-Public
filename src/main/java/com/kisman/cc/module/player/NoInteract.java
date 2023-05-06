@@ -33,9 +33,9 @@ public class NoInteract extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
-        if(event.getPacket() instanceof CPacketPlayerTryUseItemOnBlock && mc.objectMouseOver != null &&mc.objectMouseOver.getBlockPos() != null && mc.world.getBlockState(mc.objectMouseOver.getBlockPos()).getBlock() != null) {
+        if (event.getPacket() instanceof CPacketPlayerTryUseItemOnBlock && mc.objectMouseOver != null &&mc.objectMouseOver.getBlockPos() != null && mc.world.getBlockState(mc.objectMouseOver.getBlockPos()).getBlock() != null) {
 
             final Block block = mc.world.getBlockState(mc.objectMouseOver.getBlockPos()).getBlock();
 

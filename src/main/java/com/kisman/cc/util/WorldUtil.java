@@ -15,7 +15,7 @@ public class WorldUtil {
         builder.append('(');
         builder.append((int) Math.floor(vector.x));
         builder.append(", ");
-        if(reallyIncludeY) {
+        if (reallyIncludeY) {
             builder.append((int) Math.floor(vector.y));
             builder.append(", ");
         }
@@ -41,11 +41,11 @@ public class WorldUtil {
         double d = xDiff > zDiff ? zDiff / xDiff : xDiff / zDiff;
         double a = 0.5;
         int last = (int) (d * a);
-        if(xDiff > zDiff){
-            for(int i = 0; i <= ((int) xDiff); i++){
+        if (xDiff > zDiff){
+            for (int i = 0; i <= ((int) xDiff); i++){
                 double delta = d * a;
-                if(connect && (int) delta > last){
-                    if(outside){
+                if (connect && (int) delta > last){
+                    if (outside){
                         positions.add(new BlockPos(fromPos.add(i, 0, last)));
                     } else {
                         positions.add(new BlockPos(fromPos.add(i - 1, 0, delta)));
@@ -57,10 +57,10 @@ public class WorldUtil {
                 a += 1.0;
             }
         } else {
-            for(int i = 0; i <= ((int) zDiff); i++){
+            for (int i = 0; i <= ((int) zDiff); i++){
                 double delta = d * a;
-                if(connect && (int) delta > last){
-                    if(outside){
+                if (connect && (int) delta > last){
+                    if (outside){
                         positions.add(new BlockPos(fromPos.add(last, 0, i)));
                     } else {
                         positions.add(new BlockPos(fromPos.add(delta, 0, i - 1)));

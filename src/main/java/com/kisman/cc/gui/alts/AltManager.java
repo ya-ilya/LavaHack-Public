@@ -23,7 +23,7 @@ public class AltManager {
 		new Thread(() -> {
 			try {
 				auth.logIn();
-				if(setSession) setSession(new Session(auth.getSelectedProfile().getName(), auth.getSelectedProfile().getId().toString(), auth.getAuthenticatedToken(), "mojang"));
+				if (setSession) setSession(new Session(auth.getSelectedProfile().getName(), auth.getSelectedProfile().getId().toString(), auth.getAuthenticatedToken(), "mojang"));
 			} catch (Exception exception) {
 				exception.printStackTrace();
 			}

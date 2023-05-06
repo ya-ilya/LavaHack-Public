@@ -22,7 +22,7 @@ public class PredictUtil {
         double motionX = entity.posX - entity.prevPosX;
         double motionZ = entity.posZ - entity.prevPosZ;
 
-        for(int i = 0; i < settings.tick; i++) {
+        for (int i = 0; i < settings.tick; i++) {
             RayTraceResult result;
 
             newPosVec = posVec.clone();
@@ -41,7 +41,7 @@ public class PredictUtil {
         clonedPlayer.prevPosX = entity.prevPosX;
         clonedPlayer.prevPosY = entity.prevPosY;
         clonedPlayer.prevPosZ = entity.prevPosZ;
-        for(PotionEffect effect : entity.getActivePotionEffects()) clonedPlayer.addPotionEffect(effect);
+        for (PotionEffect effect : entity.getActivePotionEffects()) clonedPlayer.addPotionEffect(effect);
         return clonedPlayer;
     }
 

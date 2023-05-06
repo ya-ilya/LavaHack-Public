@@ -81,11 +81,11 @@ public class CrystalFiller extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         target = EntityUtil.getTarget(range.getValFloat());
 
-        if(target == null) super.setDisplayInfo("");
+        if (target == null) super.setDisplayInfo("");
         else super.setDisplayInfo(TextFormatting.GRAY + "[" + TextFormatting.WHITE + target.getName() + TextFormatting.GRAY + "]");
 
         renderPos = null;
@@ -94,12 +94,12 @@ public class CrystalFiller extends Module {
 
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
-        if(render.getValBoolean() && renderPos != null) RenderUtil.drawBlockESP(renderPos, 0.9f, 0, 0);
+        if (render.getValBoolean() && renderPos != null) RenderUtil.drawBlockESP(renderPos, 0.9f, 0, 0);
     }
 
     private void doCrystalFiller() {
         if (target == null && placeMode.getValString().equals(PlaceMode.Smart.name())) target = EntityUtil.getTarget(range.getValFloat());
-        else if(delayTicks++ > delay.getValInt()){
+        else if (delayTicks++ > delay.getValInt()){
             findHoles(mc.player, (float) range.getValDouble());
             findTargetHole();
 
@@ -122,11 +122,11 @@ public class CrystalFiller extends Module {
                     }
                 }
 
-                if(mc.player.getHeldItemMainhand().getItem() != Items.END_CRYSTAL && mc.player.getHeldItemOffhand().getItem() != Items.END_CRYSTAL) return;
+                if (mc.player.getHeldItemMainhand().getItem() != Items.END_CRYSTAL && mc.player.getHeldItemOffhand().getItem() != Items.END_CRYSTAL) return;
 
                 RayTraceResult result = null;
 
-                if(range.getValBoolean()) result = mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + (double) mc.player.getEyeHeight(), mc.player.posZ), new Vec3d((double) targetHole.pos.getX() + Double.longBitsToDouble(Double.doubleToLongBits(2.0585482766064893) ^ 9214496676598388901L), (double) targetHole.getDownHoleBlock().getY() - Double.longBitsToDouble(Double.doubleToLongBits(18.64274749914699) ^ 9210605105263438863L), (double) this.targetHole.pos.getZ() + Double.longBitsToDouble(Double.doubleToLongBits(3.2686479786919134) ^ 9217221578882085433L)));
+                if (range.getValBoolean()) result = mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + (double) mc.player.getEyeHeight(), mc.player.posZ), new Vec3d((double) targetHole.pos.getX() + Double.longBitsToDouble(Double.doubleToLongBits(2.0585482766064893) ^ 9214496676598388901L), (double) targetHole.getDownHoleBlock().getY() - Double.longBitsToDouble(Double.doubleToLongBits(18.64274749914699) ^ 9210605105263438863L), (double) this.targetHole.pos.getZ() + Double.longBitsToDouble(Double.doubleToLongBits(3.2686479786919134) ^ 9217221578882085433L)));
 
                 final EnumFacing facing = (result == null || result.sideHit == null) ? EnumFacing.UP : result.sideHit;
                 final boolean offhand = mc.player.getHeldItemOffhand().getItem() == Items.END_CRYSTAL;
@@ -155,9 +155,9 @@ public class CrystalFiller extends Module {
 
     private void findHoles(EntityPlayer player, float range) {
         holes.clear();
-        for(BlockPos pos : CrystalUtils.getSphere(player, range, true, false)) {
-            if(mc.world.getBlockState(pos).getBlock().equals(Blocks.AIR)) {
-                if(isBlockHole(pos)) {
+        for (BlockPos pos : CrystalUtils.getSphere(player, range, true, false)) {
+            if (mc.world.getBlockState(pos).getBlock().equals(Blocks.AIR)) {
+                if (isBlockHole(pos)) {
                     holes.add(new Hole(pos, (float) mc.player.getDistanceSq(pos), (float) player.getDistanceSq(pos)));
                 }
             }
@@ -165,10 +165,10 @@ public class CrystalFiller extends Module {
     }
 
     private boolean isValidHole(Hole hole) {
-        if(WorldUtil.getDistance(mc.player, hole.pos) > range.getValDouble()) return false;
-        if(placeMode.getValString().equals(PlaceMode.Smart.name()) && target != null) {
-            if(WorldUtil.getDistance(target, hole.pos) > targetHoleRange.getValDouble()) return false;
-            if(crystalDMGCheck.getValBoolean()) {
+        if (WorldUtil.getDistance(mc.player, hole.pos) > range.getValDouble()) return false;
+        if (placeMode.getValString().equals(PlaceMode.Smart.name()) && target != null) {
+            if (WorldUtil.getDistance(target, hole.pos) > targetHoleRange.getValDouble()) return false;
+            if (crystalDMGCheck.getValBoolean()) {
                 final float tempDMG = CrystalUtils.calculateDamage(mc.world, hole.pos, target);
                 final float tempSelfDMG = CrystalUtils.calculateDamage(mc.world, hole.pos, mc.player);
 

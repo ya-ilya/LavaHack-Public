@@ -277,14 +277,14 @@ public class AutoRer extends Module {
         rotating = false;
         renderPos = null;
 
-        if(!threadMode.getValString().equalsIgnoreCase("None")) {
+        if (!threadMode.getValString().equalsIgnoreCase("None")) {
             processMultiThreading();
         }
     }
 
     public void onDisable() {
-        if(thread != null) shouldInterrupt.set(false);
-        if(executor != null) executor.shutdown();
+        if (thread != null) shouldInterrupt.set(false);
+        if (executor != null) executor.shutdown();
         placedList.clear();
         breakTimer.reset();
         placeTimer.reset();
@@ -358,7 +358,7 @@ public class AutoRer extends Module {
             return;
         }
 
-        if(executor != null) {
+        if (executor != null) {
             executor.shutdown();
         }
 
@@ -367,7 +367,7 @@ public class AutoRer extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null || mc.isGamePaused) return;
+        if (mc.player == null || mc.world == null || mc.isGamePaused) return;
 
         updateRenderTimer();
 
@@ -380,7 +380,7 @@ public class AutoRer extends Module {
     }
 
     private void updateRenderTimer() {
-        if(renderTimer.passedMillis(clearDelay.getValLong())) {
+        if (renderTimer.passedMillis(clearDelay.getValLong())) {
             placedList.clear();
             renderTimer.reset();
             renderPos = null;
@@ -388,7 +388,7 @@ public class AutoRer extends Module {
     }
 
     private void updateThreads() {
-        if(!lastThreadMode.equalsIgnoreCase(threadMode.getValString())) {
+        if (!lastThreadMode.equalsIgnoreCase(threadMode.getValString())) {
             if (this.executor != null) {
                 this.executor.shutdown();
             }
@@ -447,27 +447,27 @@ public class AutoRer extends Module {
     }
 
     public synchronized void doAutoRerForThread() {
-        if(mc.player == null || mc.world == null) return;
-        if(manualBreaker.getValBoolean()) manualBreaker();
-        if(fastCalc.getValBoolean() && calcTimer.passedMillis(calcDelay.getValLong())) {
+        if (mc.player == null || mc.world == null) return;
+        if (manualBreaker.getValBoolean()) manualBreaker();
+        if (fastCalc.getValBoolean() && calcTimer.passedMillis(calcDelay.getValLong())) {
             doCalculatePlace();
             calcTimer.reset();
         }
 
-        for(int i = 0; i < multiplication.getValInt(); i++) {
+        for (int i = 0; i < multiplication.getValInt(); i++) {
             doAutoRerLogic(null, true);
         }
     }
 
     private void manualBreaker() {
         RayTraceResult result = mc.objectMouseOver;
-        if(manualTimer.passedMillis(200) && mc.gameSettings.keyBindUseItem.isKeyDown() && mc.player.getHeldItemOffhand().getItem() != Items.GOLDEN_APPLE && mc.player.inventory.getCurrentItem().getItem() != Items.GOLDEN_APPLE && mc.player.inventory.getCurrentItem().getItem() != Items.BOW && mc.player.inventory.getCurrentItem().getItem() != Items.EXPERIENCE_BOTTLE && result != null) {
-            if(result.typeOfHit.equals(RayTraceResult.Type.ENTITY) && result.entityHit instanceof EntityEnderCrystal) {
+        if (manualTimer.passedMillis(200) && mc.gameSettings.keyBindUseItem.isKeyDown() && mc.player.getHeldItemOffhand().getItem() != Items.GOLDEN_APPLE && mc.player.inventory.getCurrentItem().getItem() != Items.GOLDEN_APPLE && mc.player.inventory.getCurrentItem().getItem() != Items.BOW && mc.player.inventory.getCurrentItem().getItem() != Items.EXPERIENCE_BOTTLE && result != null) {
+            if (result.typeOfHit.equals(RayTraceResult.Type.ENTITY) && result.entityHit instanceof EntityEnderCrystal) {
                 mc.player.connection.sendPacket(new CPacketUseEntity(result.entityHit));
                 manualTimer.reset();
-            } else if(result.typeOfHit.equals(RayTraceResult.Type.BLOCK)) {
+            } else if (result.typeOfHit.equals(RayTraceResult.Type.BLOCK)) {
                 for (Entity target : mc.world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(new BlockPos(mc.objectMouseOver.getBlockPos().getX(), mc.objectMouseOver.getBlockPos().getY() + 1.0, mc.objectMouseOver.getBlockPos().getZ())))) {
-                    if(!(target instanceof EntityEnderCrystal)) continue;
+                    if (!(target instanceof EntityEnderCrystal)) continue;
                     mc.player.connection.sendPacket(new CPacketUseEntity(target));
                     manualTimer.reset();
                 }
@@ -478,13 +478,13 @@ public class AutoRer extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
-        if(!motionCrystal.getValBoolean() || currentTarget == null) return;
-        if(motionCalc.getValBoolean() && fastCalc.getValBoolean() && calcTimer.passedMillis(calcDelay.getValLong())) {
+        if (!motionCrystal.getValBoolean() || currentTarget == null) return;
+        if (motionCalc.getValBoolean() && fastCalc.getValBoolean() && calcTimer.passedMillis(calcDelay.getValLong())) {
             doCalculatePlace();
             calcTimer.reset();
         }
 
-        for(int i = 0; i < multiplication.getValInt(); i++) {
+        for (int i = 0; i < multiplication.getValInt(); i++) {
             doAutoRerLogic(event, false);
         }
     });
@@ -492,9 +492,9 @@ public class AutoRer extends Module {
     private void doAutoRerLogic(PlayerMotionUpdateEvent event, boolean thread) {
         if (mc.isGamePaused) return;
 
-        if(logic.getValString().equalsIgnoreCase("PlaceBreak")) {
+        if (logic.getValString().equalsIgnoreCase("PlaceBreak")) {
             doPlace(event, thread);
-            if(placePos != null) doBreak();
+            if (placePos != null) doBreak();
         } else {
             doBreak();
             doPlace(event, thread);
@@ -502,7 +502,7 @@ public class AutoRer extends Module {
     }
 
     private void attackCrystalPredict(int entityID, BlockPos pos) {
-        if(instantRotate.getValBoolean() && !motionCrystal.getValBoolean() && (rotate.getValString().equalsIgnoreCase("Break") || rotate.getValString().equalsIgnoreCase("All"))) {
+        if (instantRotate.getValBoolean() && !motionCrystal.getValBoolean() && (rotate.getValString().equalsIgnoreCase("Break") || rotate.getValString().equalsIgnoreCase("All"))) {
             float[] rots = RotationUtils.calcAngle(mc.player.getPositionEyes(mc.getRenderPartialTicks()), new Vec3d((pos.getX() + 0.5f), (pos.getY() - 0.5f), (pos.getZ() + 0.5f)));
             mc.player.rotationYaw = rots[0];
             mc.player.rotationPitch = rots[1];
@@ -518,17 +518,17 @@ public class AutoRer extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
-        if(event.getPacket() instanceof SPacketSpawnObject && instant.getValBoolean()) {
+        if (event.getPacket() instanceof SPacketSpawnObject && instant.getValBoolean()) {
             SPacketSpawnObject packet =  (SPacketSpawnObject) event.getPacket();
             if (packet.getType() == 51) {
-                if(!(mc.world.getEntityByID(packet.getEntityID()) instanceof EntityEnderCrystal)) return;
+                if (!(mc.world.getEntityByID(packet.getEntityID()) instanceof EntityEnderCrystal)) return;
                 PlaceInfo toRemove = null;
                 for (PlaceInfo placeInfo : placedList) {
                     BlockPos pos = placeInfo.getBlockPos();
                     boolean canSee = EntityUtil.canSee(pos);
                     if (mc.player.getDistance(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5) >= (canSee ? breakRange.getValDouble() : breakWallRange.getValDouble())) break;
 
-                    if(instantCalc.getValBoolean() && currentTarget != null) {
+                    if (instantCalc.getValBoolean() && currentTarget != null) {
                         float targetDamage = calculateCrystalDamage(pos, currentTarget);
 
                         if (checkTargetDamage(targetDamage)) {
@@ -561,7 +561,7 @@ public class AutoRer extends Module {
         if (event.getPacket() instanceof SPacketSoundEffect && ((inhibit.getValBoolean() && lastHitEntity != null) || (sound.getValBoolean()))) {
             SPacketSoundEffect packet = (SPacketSoundEffect) event.getPacket();
             if (packet.getCategory() == SoundCategory.BLOCKS && packet.getSound() == SoundEvents.ENTITY_GENERIC_EXPLODE) if (lastHitEntity.getDistance(packet.getX(), packet.getY(), packet.getZ()) <= 6.0f) lastHitEntity.setDead();
-            if(threadMode.checkValString(ThreadMode.Sound.name()) && isRightThread() && mc.player != null && mc.player.getDistanceSq(new BlockPos(packet.getX(), packet.getY(), packet.getZ())) < MathUtil.square(threadSoundPlayer.getValInt())) handlePool(true);
+            if (threadMode.checkValString(ThreadMode.Sound.name()) && isRightThread() && mc.player != null && mc.player.getDistanceSq(new BlockPos(packet.getX(), packet.getY(), packet.getZ())) < MathUtil.square(threadSoundPlayer.getValInt())) handlePool(true);
         }
     });
 
@@ -572,13 +572,13 @@ public class AutoRer extends Module {
             PlaceInfo info = AutoRerUtil.Companion.getPlaceInfo(((CPacketPlayerTryUseItemOnBlock) event.getPacket()).getPos(), currentTarget, terrain.getValBoolean());
             placedList.add(info);
         } catch (Exception ignored) {}
-        if(removeAfterAttack.getValBoolean() && event.getPacket() instanceof CPacketUseEntity) {
+        if (removeAfterAttack.getValBoolean() && event.getPacket() instanceof CPacketUseEntity) {
             CPacketUseEntity packet = (CPacketUseEntity) event.getPacket();
-            if(packet.getAction().equals(CPacketUseEntity.Action.ATTACK) && packet.getEntityFromWorld(mc.world) instanceof EntityEnderCrystal) {
+            if (packet.getAction().equals(CPacketUseEntity.Action.ATTACK) && packet.getEntityFromWorld(mc.world) instanceof EntityEnderCrystal) {
                 Objects.requireNonNull(packet.getEntityFromWorld(mc.world)).setDead();
                 try {
                     mc.world.removeEntityFromWorld(packet.entityId);
-                } catch(Exception ignored) {
+                } catch (Exception ignored) {
 
                 }
             }
@@ -592,7 +592,7 @@ public class AutoRer extends Module {
     private void doCalculatePlace() {
         try {
             calculatePlace();
-            if(recalc.getValBoolean() && placePos == null) recalculatePlace();
+            if (recalc.getValBoolean() && placePos == null) recalculatePlace();
         } catch (Exception exception) {
             lagProtect(exception);
         }
@@ -615,7 +615,7 @@ public class AutoRer extends Module {
         final BlockPos[] placePos = {null};
 
         validPos.forEach(pos -> {
-            if(CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget, terrain.getValBoolean()) > maxDamage[0]) {
+            if (CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget, terrain.getValBoolean()) > maxDamage[0]) {
                 maxDamage[0] = calculateCrystalDamage(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget);
                 placePos[0] = pos;
             }
@@ -655,7 +655,7 @@ public class AutoRer extends Module {
                 continue;
             }
 
-            if(maxDamage <= targetDamage) {
+            if (maxDamage <= targetDamage) {
                 maxDamage = targetDamage;
                 placePos = pos;
             }
@@ -681,11 +681,11 @@ public class AutoRer extends Module {
 
         placeSwitch(bypass, silentBypass, offhand);
 
-        if(mc.player.getHeldItemMainhand().getItem() != Items.END_CRYSTAL && mc.player.getHeldItemOffhand().getItem() != Items.END_CRYSTAL) {
+        if (mc.player.getHeldItemMainhand().getItem() != Items.END_CRYSTAL && mc.player.getHeldItemOffhand().getItem() != Items.END_CRYSTAL) {
             return;
         }
 
-        if(mc.player.isHandActive()) {
+        if (mc.player.isHandActive()) {
             hand = mc.player.getActiveHand();
         }
 
@@ -705,11 +705,11 @@ public class AutoRer extends Module {
             return false;
         }
 
-        if(!fastCalc.getValBoolean() || (thread && threadCalc.getValBoolean())) {
+        if (!fastCalc.getValBoolean() || (thread && threadCalc.getValBoolean())) {
             doCalculatePlace();
         }
 
-        if(placePos != null) {
+        if (placePos != null) {
             Block placeBlock = mc.world.getBlockState(placePos.getBlockPos()).getBlock();
 
             if (placeBlock != Blocks.OBSIDIAN && placeBlock != Blocks.BEDROCK) {
@@ -727,9 +727,9 @@ public class AutoRer extends Module {
 
         int crystalSlot = InventoryUtil.findItem(Items.END_CRYSTAL, 0, 9);
 
-        if(crystalSlot == -1 && !silentBypass && !offhand) return;
+        if (crystalSlot == -1 && !silentBypass && !offhand) return;
 
-        if(mc.player.getHeldItemMainhand().getItem() != Items.END_CRYSTAL && !offhand) {
+        if (mc.player.getHeldItemMainhand().getItem() != Items.END_CRYSTAL && !offhand) {
             switch (switch_.getValString()) {
                 case "Normal":
                     InventoryUtil.switchToSlot(crystalSlot, false);
@@ -745,11 +745,11 @@ public class AutoRer extends Module {
     }
 
     private void placeSwingPost(SilentSwitchBypass bypass, boolean silentBypass, EnumHand hand, int oldSlot) {
-        if(hand != null) {
+        if (hand != null) {
             mc.player.setActiveHand(hand);
         }
 
-        if(oldSlot != -1 && !silentBypass) {
+        if (oldSlot != -1 && !silentBypass) {
             if (switch_.getValString().equals(SwitchMode.Silent.name())) InventoryUtil.switchToSlot(oldSlot, true);
         } else if (silentBypass) {
             bypass.doSwitch();
@@ -784,7 +784,7 @@ public class AutoRer extends Module {
     }
 
     private void placeRotatePost(float[] rotations) {
-        if((rotate.getValString().equalsIgnoreCase("Place") || rotate.getValString().equalsIgnoreCase("All")) && rotateMode.getValString().equalsIgnoreCase("Silent")) {
+        if ((rotate.getValString().equalsIgnoreCase("Place") || rotate.getValString().equalsIgnoreCase("All")) && rotateMode.getValString().equalsIgnoreCase("Silent")) {
             mc.player.rotationYaw = rotations[0];
             mc.player.rotationPitch = rotations[1];
         }
@@ -794,7 +794,7 @@ public class AutoRer extends Module {
         RayTraceResult result = mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + ( double ) mc.player.getEyeHeight(), mc.player.posZ), new Vec3d(( double ) placePos.getBlockPos().getX() + 0.5, ( double ) placePos.getBlockPos().getY() - 0.5, ( double ) placePos.getBlockPos().getZ() + 0.5));
         EnumFacing facing = result == null || result.sideHit == null ? EnumFacing.UP : result.sideHit;
         mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(placePos.getBlockPos(), facing, offhand ? EnumHand.OFF_HAND : EnumHand.MAIN_HAND, 0, 0, 0));
-        if(!swing.checkValString(SwingMode.None.name())) mc.player.connection.sendPacket(new CPacketAnimation(swing.getValString().equals(SwingMode.MainHand.name()) ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND));
+        if (!swing.checkValString(SwingMode.None.name())) mc.player.connection.sendPacket(new CPacketAnimation(swing.getValString().equals(SwingMode.MainHand.name()) ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND));
         placeTimer.reset();
         renderPos = placePos;
     }
@@ -825,10 +825,10 @@ public class AutoRer extends Module {
     private Entity findCevCrystal() {
         Entity crystal = null;
 
-        for(Vec3i vec : AntiCevBreakerVectors.Cev.vectors) {
+        for (Vec3i vec : AntiCevBreakerVectors.Cev.vectors) {
             BlockPos pos = mc.player.getPosition().add(vec);
-            for(Entity entity : mc.world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(pos))) {
-                if(entity instanceof EntityEnderCrystal) {
+            for (Entity entity : mc.world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(pos))) {
+                if (entity instanceof EntityEnderCrystal) {
                     crystal = entity;
                 }
             }
@@ -840,10 +840,10 @@ public class AutoRer extends Module {
     private Entity findCivCrystal() {
         Entity crystal = null;
 
-        for(Vec3i vec : AntiCevBreakerVectors.Civ.vectors) {
+        for (Vec3i vec : AntiCevBreakerVectors.Civ.vectors) {
             BlockPos pos = mc.player.getPosition().add(vec);
-            for(Entity entity : mc.world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(pos))) {
-                if(entity instanceof EntityEnderCrystal) {
+            for (Entity entity : mc.world.getEntitiesWithinAABBExcludingEntity(null, new AxisAlignedBB(pos))) {
+                if (entity instanceof EntityEnderCrystal) {
                     crystal = entity;
                 }
             }
@@ -887,7 +887,7 @@ public class AutoRer extends Module {
                     crystal = entity;
                 }
             }
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             lagProtect(exception);
         }
 
@@ -927,7 +927,7 @@ public class AutoRer extends Module {
     }
 
     private void doBreak() {
-        if(!break_.getValBoolean() || !breakTimer.passedMillis(breakDelay.getValLong())) return;
+        if (!break_.getValBoolean() || !breakTimer.passedMillis(breakDelay.getValLong())) return;
 
         Entity crystal = findBreakCrystal();
         if (crystal != null) {
@@ -957,7 +957,7 @@ public class AutoRer extends Module {
     }
 
     private void breakRotatePost(float[] rotations) {
-        if((rotate.getValString().equalsIgnoreCase("Break") || rotate.getValString().equalsIgnoreCase("All")) && rotateMode.getValString().equalsIgnoreCase("Silent")) {
+        if ((rotate.getValString().equalsIgnoreCase("Break") || rotate.getValString().equalsIgnoreCase("All")) && rotateMode.getValString().equalsIgnoreCase("Silent")) {
             mc.player.rotationYaw = rotations[0];
             mc.player.rotationPitch = rotations[1];
         }
@@ -968,7 +968,7 @@ public class AutoRer extends Module {
         mc.player.connection.sendPacket(new CPacketUseEntity(crystal));
         swing();
         try {
-            if(clientSide.getValBoolean()) {
+            if (clientSide.getValBoolean()) {
                 mc.world.removeEntityFromWorld(crystal.entityId);
             }
         } catch (Exception ignored) {}
@@ -978,41 +978,41 @@ public class AutoRer extends Module {
     private void breakRemove(Entity crystal) {
         PlaceInfo toRemove = null;
 
-        if(syns.getValBoolean()) {
-            for(PlaceInfo info : placedList) {
+        if (syns.getValBoolean()) {
+            for (PlaceInfo info : placedList) {
                 BlockPos pos = info.getBlockPos();
-                if(crystal.getDistance(pos.getX(), pos.getY(), pos.getZ()) <= 3) {
+                if (crystal.getDistance(pos.getX(), pos.getY(), pos.getZ()) <= 3) {
                     toRemove = info;
                 }
             }
         }
 
-        if(toRemove != null) placedList.remove(toRemove);
+        if (toRemove != null) placedList.remove(toRemove);
     }
 
     private void swing() {
-        if(swing.checkValString(SwingMode.None.name())) return;
-        if(swing.getValString().equals(SwingMode.PacketSwing.name())) mc.player.connection.sendPacket(new CPacketAnimation(swing.getValString().equals(SwingMode.MainHand.name()) ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND));
+        if (swing.checkValString(SwingMode.None.name())) return;
+        if (swing.getValString().equals(SwingMode.PacketSwing.name())) mc.player.connection.sendPacket(new CPacketAnimation(swing.getValString().equals(SwingMode.MainHand.name()) ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND));
         else mc.player.swingArm(swing.getValString().equals(SwingMode.MainHand.name()) ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND);
     }
 
     private Friend getNearFriendWithMaxDamage(Entity entity) {
         ArrayList<Friend> friendsWithMaxDamage = new ArrayList<>();
 
-        for(EntityPlayer player : mc.world.playerEntities) {
-            if(mc.player == player) continue;
-            if(FriendManager.instance.isFriend(player)) {
+        for (EntityPlayer player : mc.world.playerEntities) {
+            if (mc.player == player) continue;
+            if (FriendManager.instance.isFriend(player)) {
                 double friendDamage = calculateCrystalDamage(entity.posX, entity.posY, entity.posZ, currentTarget);
-                if(friendDamage <= maxFriendDMG.getValInt() || friendDamage * lethalMult.getValDouble() >= player.getHealth() + player.getAbsorptionAmount()) friendsWithMaxDamage.add(new Friend(player, friendDamage, friendDamage * lethalMult.getValDouble() >= player.getHealth() + player.getAbsorptionAmount()));
+                if (friendDamage <= maxFriendDMG.getValInt() || friendDamage * lethalMult.getValDouble() >= player.getHealth() + player.getAbsorptionAmount()) friendsWithMaxDamage.add(new Friend(player, friendDamage, friendDamage * lethalMult.getValDouble() >= player.getHealth() + player.getAbsorptionAmount()));
             }
         }
 
         Friend nearFriendWithMaxDamage = null;
         double maxDamage = 0.5;
 
-        for(Friend friend : friendsWithMaxDamage) {
+        for (Friend friend : friendsWithMaxDamage) {
             double friendDamage = calculateCrystalDamage(entity.posX, entity.posY, entity.posZ, currentTarget);
-            if(friendDamage > maxDamage) {
+            if (friendDamage > maxDamage) {
                 maxDamage = friendDamage;
                 nearFriendWithMaxDamage = new Friend(friend.friend, friendDamage);
             }
@@ -1038,7 +1038,7 @@ public class AutoRer extends Module {
 
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
-        if(targetCharms.getValBoolean() && currentTarget != null) {
+        if (targetCharms.getValBoolean() && currentTarget != null) {
             try {
                 FramebufferShader framebufferShader = FramebufferShader.SHADERS.get(targetCharmsShader.getValString().toLowerCase());
 
@@ -1106,14 +1106,14 @@ public class AutoRer extends Module {
                 GlStateManager.matrixMode(5888);
                 GlStateManager.popMatrix();
             } catch (Exception ignored) {
-                if(Config.instance.antiOpenGLCrash.getValBoolean() || lagProtect.getValBoolean()) {
+                if (Config.instance.antiOpenGLCrash.getValBoolean() || lagProtect.getValBoolean()) {
                     super.setToggled(false);
                     ChatUtil.error("[AutoRer] Error, Config -> AntiOpenGLCrash disabled AutoRer");
                 }
             }
         }
 
-        if(render.getValBoolean() && placePos != null) {
+        if (render.getValBoolean() && placePos != null) {
             renderer.onRenderWorld(movingLength.getValFloat(), fadeLength.getValFloat(), renderer_, placePos, text.getValBoolean());
         }
     }
@@ -1156,7 +1156,7 @@ public class AutoRer extends Module {
         public Friend(EntityPlayer friend, double damage, boolean isTotemPopped) {
             this.friend = friend;
             this.damage = damage;
-            if(isTotemPopped) isTotemFailed = !(mc.player.getHeldItemMainhand().getItem().equals(Items.TOTEM_OF_UNDYING) || mc.player.getHeldItemMainhand().getItem().equals(Items.TOTEM_OF_UNDYING));
+            if (isTotemPopped) isTotemFailed = !(mc.player.getHeldItemMainhand().getItem().equals(Items.TOTEM_OF_UNDYING) || mc.player.getHeldItemMainhand().getItem().equals(Items.TOTEM_OF_UNDYING));
             this.isTotemPopped = isTotemPopped;
         }
     }
@@ -1166,7 +1166,7 @@ public class AutoRer extends Module {
         private AutoRer autoRer;
 
         public static RAutoRer getInstance(AutoRer autoRer) {
-            if(instance == null) {
+            if (instance == null) {
                 instance = new RAutoRer();
                 instance.autoRer = autoRer;
             }
@@ -1176,12 +1176,12 @@ public class AutoRer extends Module {
         @Override
         @SuppressWarnings("BusyWait")
         public void run() {
-            if(autoRer.threadMode.getValString().equalsIgnoreCase("While")) {
+            if (autoRer.threadMode.getValString().equalsIgnoreCase("While")) {
                 while (autoRer.isToggled() && autoRer.threadMode.getValString().equalsIgnoreCase("While")) {
                     if (mc.player == null || mc.world == null) break;
                     if (mc.isGamePaused()) continue;
 
-                    if(autoRer.shouldInterrupt.get()) {
+                    if (autoRer.shouldInterrupt.get()) {
                         autoRer.shouldInterrupt.set(false);
                         autoRer.synsTimer.reset();
                         autoRer.thread.interrupt();
@@ -1195,7 +1195,7 @@ public class AutoRer extends Module {
                         autoRer.thread.interrupt();
                     }
                 }
-            } else if(!autoRer.threadMode.getValString().equalsIgnoreCase("None")) {
+            } else if (!autoRer.threadMode.getValString().equalsIgnoreCase("None")) {
                 autoRer.threadOngoing.set(true);
                 autoRer.doAutoRerForThread();
                 autoRer.threadOngoing.set(false);

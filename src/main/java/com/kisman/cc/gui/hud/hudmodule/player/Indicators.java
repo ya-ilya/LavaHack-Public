@@ -79,14 +79,14 @@ public class Indicators extends HudModule {
 
         double hurttimePercentage = MathHelper.clamp(mc.player.hurtTime, 0, 1);
         hurttimeBarWidth = AnimationUtils.animate(hurttimePercentage * CustomFontUtil.getStringWidth(stringWithMaxLength), hurttimeBarWidth, 0.05);
-        if(hurttimeBarWidth < 0) hurttimeBarWidth = 0;
+        if (hurttimeBarWidth < 0) hurttimeBarWidth = 0;
 
         double speedPercentage = MathHelper.clamp(currSpeed / 2.4, 0.1, 1);
         speedBarWidth = AnimationUtils.animate(speedPercentage * CustomFontUtil.getStringWidth(stringWithMaxLength), speedBarWidth, 0.05);
 
         double healthPercentage = mc.player.getHealth() / mc.player.getMaxHealth();
 
-        if(timer.passedMillis(15L)) {
+        if (timer.passedMillis(15L)) {
             healthBarWidth = AnimationUtils.animate(healthPercentage * CustomFontUtil.getStringWidth(stringWithMaxLength), healthBarWidth, 0.05);
             timer.reset();
         }
@@ -134,7 +134,7 @@ public class Indicators extends HudModule {
     }
 
     private void drawSlider(double x, double y, double sliderWidth, double sliderHeight) {
-        if(HUD.instance.indicShadowSliders.getValBoolean()) Render2DUtil.drawShadowSliders(x, y, sliderWidth, sliderHeight, ColorUtil.astolfoColors(100, 100), 1);
+        if (HUD.instance.indicShadowSliders.getValBoolean()) Render2DUtil.drawShadowSliders(x, y, sliderWidth, sliderHeight, ColorUtil.astolfoColors(100, 100), 1);
         else Render2DUtil.drawRect(x, y, x + sliderWidth, y + sliderHeight, ColorUtil.astolfoColors(100, 100));
     }
 
@@ -157,14 +157,14 @@ public class Indicators extends HudModule {
 
         double hurttimePercentage = MathHelper.clamp(mc.player.hurtTime, 0, 1);
         hurttimeBarWidth = AnimationUtils.animate(hurttimePercentage * 51, hurttimeBarWidth, 0.05);
-        if(hurttimeBarWidth < 0) hurttimeBarWidth = 0;
+        if (hurttimeBarWidth < 0) hurttimeBarWidth = 0;
 
         double speedPercentage = MathHelper.clamp(currSpeed / 2.4, 0.1, 1);
         speedBarWidth = AnimationUtils.animate(speedPercentage * 51, speedBarWidth, 0.05);
 
         double healthPercentage = mc.player.getHealth() / mc.player.getMaxHealth();
 
-        if(timer.passedMillis(15L)) {
+        if (timer.passedMillis(15L)) {
             healthBarWidth = AnimationUtils.animate(healthPercentage * 51, healthBarWidth, 0.05);
             timer.reset();
         }
@@ -199,7 +199,7 @@ public class Indicators extends HudModule {
 
         //draw hurttime
         drawStringWithShadow("HurtTime", x + 2, y + offset, ColorUtil.astolfoColors(100, 100));
-        if(hurttimeBarWidth > 0) Render2DUtil.drawRect(x + 2, y + offset + getHeight() + 1, x + hurttimeBarWidth, y + offset + getHeight() + 3, ColorUtil.astolfoColors(100, 100));
+        if (hurttimeBarWidth > 0) Render2DUtil.drawRect(x + 2, y + offset + getHeight() + 1, x + hurttimeBarWidth, y + offset + getHeight() + 3, ColorUtil.astolfoColors(100, 100));
         offset += offsetHeight;
 
         //draw speed
@@ -213,17 +213,17 @@ public class Indicators extends HudModule {
     }
 
     private void drawStringWithShadow(String text, double x, double y, int color) {
-        if(CustomFont.turnOn) CustomFontUtil.consolas15.drawStringWithShadow(text, x, y, color);
+        if (CustomFont.turnOn) CustomFontUtil.consolas15.drawStringWithShadow(text, x, y, color);
         else mc.fontRenderer.drawStringWithShadow(text, (int) x, (int) y, color);
     }
 
     private int getHeight() {
-        if(CustomFont.turnOn) return  CustomFontUtil.consolas15.getStringHeight();
+        if (CustomFont.turnOn) return  CustomFontUtil.consolas15.getStringHeight();
         else return mc.fontRenderer.FONT_HEIGHT;
     }
 
     private int getStringWidth(String text) {
-        if(CustomFont.turnOn) return  CustomFontUtil.consolas15.getStringWidth(text);
+        if (CustomFont.turnOn) return  CustomFontUtil.consolas15.getStringWidth(text);
         else return mc.fontRenderer.getStringWidth(text);
     }
 }

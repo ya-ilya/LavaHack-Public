@@ -277,12 +277,12 @@ public class AutoCrystal extends Module implements Runnable {
             doPlace();
             doBreak();
         }
-        if(MultiThread.getValBoolean()) newThread();
+        if (MultiThread.getValBoolean()) newThread();
     }
 
     @Override
     public void run() {
-        if(MultiThread.getValBoolean()) newThread();
+        if (MultiThread.getValBoolean()) newThread();
     }
 
     public void newThread() {

@@ -62,6 +62,6 @@ public class HudModuleManager {
 	}
 
 	@SubscribeEvent public void onKey(InputEvent.KeyInputEvent event) {}
-	@SubscribeEvent public void onTick(TickEvent.ClientTickEvent event) {for(HudModule m : modules) if(m.isToggled()) m.update();}
-	@SubscribeEvent public void onRender(RenderGameOverlayEvent event) {for(HudModule m : modules) if(m.isToggled()) m.render();}
+	@SubscribeEvent public void onTick(TickEvent.ClientTickEvent event) {for (HudModule m : modules) if (m.isToggled()) m.update();}
+	@SubscribeEvent public void onRender(RenderGameOverlayEvent event) {for (HudModule m : modules) if (m.isToggled()) m.render();}
 }

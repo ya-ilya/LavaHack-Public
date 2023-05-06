@@ -248,16 +248,16 @@ public class ModuleManager {
 
 	@SubscribeEvent
 	public void onTick(TickEvent.ClientTickEvent event) {
-		for(Module m : modules) if(m.isToggled()) m.update();
+		for (Module m : modules) if (m.isToggled()) m.update();
 	}
 
 	@SubscribeEvent
 	public void onRender(RenderGameOverlayEvent event) {
-		for(Module m : modules) if(m.isToggled()) m.render();
+		for (Module m : modules) if (m.isToggled()) m.render();
 	}
 
 	public void key(char typedChar, int key, Module mod) {
-		if(mod.isToggled()) {
+		if (mod.isToggled()) {
 			mod.key();
 			mod.key(key);
 			mod.key(typedChar, key);
@@ -267,7 +267,7 @@ public class ModuleManager {
 	public String[] getCategories() {
 		String[] cats = new String[Category.values().length];
 		int i = 0;
-		for(Category cat : Category.values()) {
+		for (Category cat : Category.values()) {
 			cats[i] = cat.name();
 			i++;
 		}

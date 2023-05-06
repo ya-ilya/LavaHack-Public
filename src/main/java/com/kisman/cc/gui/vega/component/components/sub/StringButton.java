@@ -43,15 +43,15 @@ public class StringButton extends Component {
         /*
         GuiScreen.drawRect(this.button.parent.x, this.button.parent.y + offset, this.button.parent.x + 88, this.button.parent.y + 12 + offset, this.active ? new Color(ClickGui.getRBackground(), ClickGui.getGBackground(), ClickGui.getBBackground(), ClickGui.getABackground()).getRGB() : new Color(ClickGui.getRNoHoveredModule(), ClickGui.getGNoHoveredModule(), ClickGui.getBNoHoveredModule(), ClickGui.getANoHoveredModule()).getRGB());
 
-        if(this.active) {
+        if (this.active) {
             fr.drawStringWithShadow(this.currentString + "_", button.parent.x + 4, button.parent.y + offset + 1 + ((12 - fr.FONT_HEIGHT) / 2), new Color(ClickGui.getRText(), ClickGui.getGText(), ClickGui.getBText(), ClickGui.getAText()).getRGB());
-        } else if(!this.active){
+        } else if (!this.active){
             fr.drawStringWithShadow(this.currentString.isEmpty() ? this.set.getdString() : this.currentString, button.parent.x + 4, button.parent.y + offset + 1 + ((12 - fr.FONT_HEIGHT) / 2), new Color(ClickGui.getRText(), ClickGui.getGText(), ClickGui.getBText(), ClickGui.getAText()).getRGB());
         }
 
         Gui.drawRect(button.parent.x + 2, button.parent.y + offset, button.parent.x + 3, button.parent.y + offset + 12, new Color(ClickGui.getRLine(), ClickGui.getGLine(), ClickGui.getBLine(), ClickGui.getALine()).getRGB());
 
-        if(ClickGui.getSetLineMode() == LineMode.SETTINGONLYSET || ClickGui.getSetLineMode() == LineMode.SETTINGALL) {
+        if (ClickGui.getSetLineMode() == LineMode.SETTINGONLYSET || ClickGui.getSetLineMode() == LineMode.SETTINGALL) {
             Gui.drawRect(
                     button.parent.x + 88 - 3,
                     button.parent.y + offset,
@@ -87,11 +87,11 @@ public class StringButton extends Component {
     }
 
     public void mouseClicked(int mouseX, int mouseY, int button) {
-        if(isMouseOnButton(mouseX, mouseY) && button == 0) {
-            if(set.getOptions() != null) {
+        if (isMouseOnButton(mouseX, mouseY) && button == 0) {
+            if (set.getOptions() != null) {
                 int maxIndex = set.getOptions().size();
 
-                if(modeIndex + 1 >= maxIndex)
+                if (modeIndex + 1 >= maxIndex)
                     modeIndex = 0;
                 else {
                     modeIndex++;
@@ -100,8 +100,8 @@ public class StringButton extends Component {
             }
         }
 
-        if(button == 0) {
-            if(isMouseOnButton(mouseX, mouseY)) {
+        if (button == 0) {
+            if (isMouseOnButton(mouseX, mouseY)) {
                 drag = true;
             }
         }
@@ -113,22 +113,22 @@ public class StringButton extends Component {
     }
 
     public void keyTyped(char typedChar, int key) {
-        if(key == 1) return;
+        if (key == 1) return;
 
-        if(Keyboard.KEY_RETURN == key && this.active) {
+        if (Keyboard.KEY_RETURN == key && this.active) {
             this.enterString();
-        } else if(key == 14 && this.active) {
-            if(currentString != null){
+        } else if (key == 14 && this.active) {
+            if (currentString != null){
                 if (!this.currentString.isEmpty()) {
                     this.currentString = this.currentString.substring(0, this.currentString.length() - 1);
                 }
             } else {
                 active = false;
             }
-        } else if(ChatAllowedCharacters.isAllowedCharacter(typedChar) && this.active && !set.isOnlyNumbers()) {
+        } else if (ChatAllowedCharacters.isAllowedCharacter(typedChar) && this.active && !set.isOnlyNumbers()) {
             this.setString(this.currentString + typedChar);
 
-            if(set.isOnlyOneWord() && this.active) {
+            if (set.isOnlyOneWord() && this.active) {
                 this.active = false;
             }
         }

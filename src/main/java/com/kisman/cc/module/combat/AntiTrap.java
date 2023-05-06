@@ -54,19 +54,19 @@ public class AntiTrap extends Module {
     }
 
     public void onEnable() {
-        if(mc.player == null || mc.world == null) super.setToggled(false);
+        if (mc.player == null || mc.world == null) super.setToggled(false);
     }
 
     public void onDisable() {
-        if((mc.player == null || mc.world == null)) return;
+        if ((mc.player == null || mc.world == null)) return;
 
         switchItem();
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
         super.setDisplayInfo("[" + mode.getValString() + "]");
-        if(mode.getValString().equalsIgnoreCase("ClientTick")) doAntiTrap();
+        if (mode.getValString().equalsIgnoreCase("ClientTick")) doAntiTrap();
     }
 
     @EventHandler
@@ -78,10 +78,10 @@ public class AntiTrap extends Module {
     });
 
     private void doAntiTrap() {
-        if(timer.passedMillis(delay.getValInt())) timer.reset();
+        if (timer.passedMillis(delay.getValInt())) timer.reset();
         else return;
 
-        if(onlyInHole.getValBoolean() && !isBlockHole(mc.player.getPosition())) return;
+        if (onlyInHole.getValBoolean() && !isBlockHole(mc.player.getPosition())) return;
 
         this.offhand = mc.player.getHeldItemOffhand().getItem() == Items.END_CRYSTAL;
         if (!this.offhand && InventoryUtil.findItem(Items.END_CRYSTAL, 0, 9) == -1) return;

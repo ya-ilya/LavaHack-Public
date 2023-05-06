@@ -33,30 +33,30 @@ public class DynamicTrapUtil implements Globals {
     }
 
     public void trapProcess() {
-        if(target == null) return;
+        if (target == null) return;
 
         int blockSlot;
         int oldSlot = mc.player.inventory.currentItem;
-        if(InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9) != -1) blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
-        else if(InventoryUtil.findBlock(Blocks.ENDER_CHEST, 0, 9) != -1) blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+        if (InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9) != -1) blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+        else if (InventoryUtil.findBlock(Blocks.ENDER_CHEST, 0, 9) != -1) blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
         else return;
 
         InventoryUtil.switchToSlot(blockSlot, switch_.equalsIgnoreCase("Silent"));
-        for(BlockPos pos : getPosList()) {
-            if(!BlockUtil2.isPositionPlaceable(pos, true, true, tries <= rewriteRetries)) continue;
+        for (BlockPos pos : getPosList()) {
+            if (!BlockUtil2.isPositionPlaceable(pos, true, true, tries <= rewriteRetries)) continue;
             place(pos);
             tries++;
         }
         placement = 0;
-        if(switch_.equalsIgnoreCase(RewriteSwitchModes.Silent.name())) InventoryUtil.switchToSlot(oldSlot, true);
-        if(!getPosList().isEmpty()) return;
+        if (switch_.equalsIgnoreCase(RewriteSwitchModes.Silent.name())) InventoryUtil.switchToSlot(oldSlot, true);
+        if (!getPosList().isEmpty()) return;
         tries = 0;
     }
 
     private List<BlockPos> getUnsafeBlocks() {
         ArrayList<BlockPos> positions = new ArrayList<>();
-        for(BlockPos pos :  getOffsets()) {
-            if(isSafe(pos)) continue;
+        for (BlockPos pos :  getOffsets()) {
+            if (isSafe(pos)) continue;
             positions.add(pos);
         }
         return positions;
@@ -104,34 +104,34 @@ public class DynamicTrapUtil implements Globals {
         List<BlockPos> startPosList = getUnsafeBlocks();
         ArrayList<BlockPos> finalPosList = new ArrayList<>();
 
-        for(BlockPos pos : startPosList) {
-            if(!supportBlocks.equalsIgnoreCase(Surround.SupportModes.None.name())) if(BlockUtil.getPlaceableSide(pos) == null || supportBlocks.equalsIgnoreCase(Surround.SupportModes.Static.name()) && BlockUtil2.isPositionPlaceable(pos, true, true)) finalPosList.add(pos.down());
-            if(surroundPlacing) finalPosList.add(pos);
+        for (BlockPos pos : startPosList) {
+            if (!supportBlocks.equalsIgnoreCase(Surround.SupportModes.None.name())) if (BlockUtil.getPlaceableSide(pos) == null || supportBlocks.equalsIgnoreCase(Surround.SupportModes.Static.name()) && BlockUtil2.isPositionPlaceable(pos, true, true)) finalPosList.add(pos.down());
+            if (surroundPlacing) finalPosList.add(pos);
         }
 
-        for(BlockPos pos : getAroundOffset()) {
+        for (BlockPos pos : getAroundOffset()) {
             finalPosList.add(pos.up());
-            if(antiStep) finalPosList.add(pos.up().up());
+            if (antiStep) finalPosList.add(pos.up().up());
         }
 
-        for(BlockPos pos : getOverlapPositions()) {
-            if(antiStep && canTopTrap) finalPosList.add(pos.up().up().up());
+        for (BlockPos pos : getOverlapPositions()) {
+            if (antiStep && canTopTrap) finalPosList.add(pos.up().up().up());
         }
 
         return  finalPosList;
     }
 
     private void place(BlockPos posToPlace) {
-        if(placement < blocksPerTick) {
+        if (placement < blocksPerTick) {
             float[] oldRots = new float[] {mc.player.rotationYaw, mc.player.rotationPitch};
-            if(!rotateMode.equalsIgnoreCase(RewriteRotateModes.None.name())) {
+            if (!rotateMode.equalsIgnoreCase(RewriteRotateModes.None.name())) {
                 float[] rots = RotationUtils.getRotationToPos(posToPlace);
                 mc.player.rotationYaw = rots[0];
                 mc.player.rotationPitch = rots[1];
             }
             BlockUtil2.placeBlock(posToPlace, EnumHand.MAIN_HAND, packet);
             placement++;
-            if(rotateMode.equalsIgnoreCase(RewriteRotateModes.Silent.name())) {
+            if (rotateMode.equalsIgnoreCase(RewriteRotateModes.Silent.name())) {
                 mc.player.rotationYaw = oldRots[0];
                 mc.player.rotationPitch = oldRots[1];
             }

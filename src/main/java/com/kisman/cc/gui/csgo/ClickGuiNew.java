@@ -51,7 +51,7 @@ public class ClickGuiNew extends GuiScreen {
         List<Spoiler> spoilers = new ArrayList<>();
         List<Pane> paneList = new ArrayList<>();
 
-        for(Category cat : Category.values()) {
+        for (Category cat : Category.values()) {
             ArrayList<Module> modules = Kisman.instance.moduleManager.getModulesInCategory(cat);
             Pane spoilerPane = new Pane(renderer, new GridLayout(1));
             Button button = new Button(renderer, cat.getName() + (Config.instance.guiRenderSize.getValBoolean() ? " [" + modules.size() + "]" : ""));
@@ -59,7 +59,7 @@ public class ClickGuiNew extends GuiScreen {
             button.setOnClickListener(() -> setCurrentCategory(cat));
 
 
-            for(Module module : modules) {
+            for (Module module : modules) {
                 Pane settingPane = new Pane(renderer, new GridLayout(4));
 
                 int count = 0;
@@ -125,13 +125,13 @@ public class ClickGuiNew extends GuiScreen {
 
                 {
                     if (Kisman.instance.settingManager.getSettingsByMod(module) != null) {
-                        if(!Kisman.instance.settingManager.getSettingsByMod(module).isEmpty()) {
+                        if (!Kisman.instance.settingManager.getSettingsByMod(module).isEmpty()) {
                             for (Setting set : Kisman.instance.settingManager.getSettingsByMod(module)) {
-                                if(set.isLine()) {
+                                if (set.isLine()) {
                                     String label = set.getTitle();
-                                    if(count % 4 != 0) {
+                                    if (count % 4 != 0) {
                                         int roundedCount = count % 4;
-                                        for(int i = 0; i < 4 - roundedCount; i++) {
+                                        for (int i = 0; i < 4 - roundedCount; i++) {
                                             settingPane.addComponent(new EmptyButton(renderer));
                                             count++;
                                         }
@@ -142,7 +142,7 @@ public class ClickGuiNew extends GuiScreen {
                                     settingPane.addComponent(new EmptyButton(renderer));
                                     count += 4;
                                 }
-                                if(set.isBind()) {
+                                if (set.isBind()) {
                                     settingPane.addComponent(new Label(renderer, set.getName()));
                                     KeybindButton kb = new KeybindButton(renderer, Keyboard::getKeyName);
                                     settingPane.addComponent(kb);
@@ -155,11 +155,11 @@ public class ClickGuiNew extends GuiScreen {
 
                                     count += 2;
                                 }
-                                /*if(set.isPreview()) {
+                                /*if (set.isPreview()) {
                                     settingPane.addComponent(new Label(renderer, set.getTitle()));
                                     settingPane.addComponent(new PreviewButton(renderer, set.getEntity()));
                                 }*/
-                                if(set.isColorPicker()) {
+                                if (set.isColorPicker()) {
                                     settingPane.addComponent(new Label(renderer, set.getTitle()));
                                     ColorButton sb = new ColorButton(renderer, set.getColour());
                                     settingPane.addComponent(sb);
@@ -178,7 +178,7 @@ public class ClickGuiNew extends GuiScreen {
 
                                     count += 2;
                                 }
-                                if(set.isString()) {
+                                if (set.isString()) {
                                     settingPane.addComponent(new Label(renderer, set.getName()));
                                     StringButton sb = new StringButton(renderer, set.getdString());
                                     settingPane.addComponent(sb);
@@ -279,11 +279,11 @@ public class ClickGuiNew extends GuiScreen {
 
         int maxWidth = Integer.MIN_VALUE;
 
-        for(Pane pane : paneList) maxWidth = Math.max(maxWidth, pane.getWidth());
+        for (Pane pane : paneList) maxWidth = Math.max(maxWidth, pane.getWidth());
 
         window.setWidth(28 + maxWidth);
 
-        for(Spoiler spoiler : spoilers) {
+        for (Spoiler spoiler : spoilers) {
             spoiler.preferredWidth = maxWidth;
             spoiler.setWidth(maxWidth);
         }
@@ -297,12 +297,12 @@ public class ClickGuiNew extends GuiScreen {
 
         window.setContentPane(conentPane);
 
-        if(categoryPaneMap.keySet().size() > 0) setCurrentCategory(categoryPaneMap.keySet().iterator().next());
+        if (categoryPaneMap.keySet().size() > 0) setCurrentCategory(categoryPaneMap.keySet().iterator().next());
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        if(Kisman.instance.selectionBar.getSelection() != MainGui.Guis.CSGOGui) {
+        if (Kisman.instance.selectionBar.getSelection() != MainGui.Guis.CSGOGui) {
            MainGui.Companion.openGui(Kisman.instance.selectionBar);
            return;
         }
@@ -316,21 +316,21 @@ public class ClickGuiNew extends GuiScreen {
         GL11.glPushMatrix();
         Point point = MathUtil.calculateMouseLocation();
         window.mouseMoved(point.x * 2, point.y * 2);
-        if(Config.instance.guiVisualPreview.getValBoolean()) window2.mouseMoved(point.x * 2, point.y * 2);
+        if (Config.instance.guiVisualPreview.getValBoolean()) window2.mouseMoved(point.x * 2, point.y * 2);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glLineWidth(1.0f);
 
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         window.render(renderer, mouseX, mouseY);
-        if(Config.instance.guiVisualPreview.getValBoolean()) window2.drawScreen(renderer, mouseX, mouseY);
+        if (Config.instance.guiVisualPreview.getValBoolean()) window2.drawScreen(renderer, mouseX, mouseY);
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glPopMatrix();
 
         window.postRender(renderer);
 
-        if(Config.instance.guiParticles.getValBoolean()) {
+        if (Config.instance.guiParticles.getValBoolean()) {
             particleSystem.tick(10);
             particleSystem.render();
             particleSystem.onUpdate();
@@ -351,10 +351,10 @@ public class ClickGuiNew extends GuiScreen {
 
     @Override
     public void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
-        if(!Kisman.instance.selectionBar.mouseClicked(mouseX, mouseY)) return;
+        if (!Kisman.instance.selectionBar.mouseClicked(mouseX, mouseY)) return;
         window.mouseMoved(mouseX * 2, mouseY * 2);
         window.mousePressed(mouseButton, mouseX * 2, mouseY * 2);
-        if(Config.instance.guiVisualPreview.getValBoolean()) {
+        if (Config.instance.guiVisualPreview.getValBoolean()) {
             window2.mouseMoved(mouseX * 2, mouseY * 2);
             window2.mousePressed(mouseButton, mouseX * 2, mouseY * 2);
         }
@@ -366,7 +366,7 @@ public class ClickGuiNew extends GuiScreen {
     public void mouseReleased(int mouseX, int mouseY, int state) {
         window.mouseMoved(mouseX * 2, mouseY * 2);
         window.mouseReleased(state, mouseX * 2, mouseY * 2);
-        if(Config.instance.guiVisualPreview.getValBoolean()) {
+        if (Config.instance.guiVisualPreview.getValBoolean()) {
             window2.mouseMoved(mouseX * 2, mouseY * 2);
             window2.mouseReleased(state, mouseX * 2, mouseY * 2);
         }
@@ -377,7 +377,7 @@ public class ClickGuiNew extends GuiScreen {
     @Override
     public void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick) {
         window.mouseMoved(mouseX * 2, mouseY * 2);
-        if(Config.instance.guiVisualPreview.getValBoolean()) window2.mouseMoved(mouseX * 2, mouseY * 2);
+        if (Config.instance.guiVisualPreview.getValBoolean()) window2.mouseMoved(mouseX * 2, mouseY * 2);
         super.mouseClickMove(mouseX, mouseY, clickedMouseButton, timeSinceLastClick);
     }
 
@@ -392,7 +392,7 @@ public class ClickGuiNew extends GuiScreen {
 
     @Override
     public void keyTyped(char typedChar, int keyCode) throws IOException {
-        if(keyCode != -1) window.keyPressed(keyCode, typedChar);
+        if (keyCode != -1) window.keyPressed(keyCode, typedChar);
         else mc.displayGuiScreen(null);
         super.keyTyped(typedChar, keyCode);
     }

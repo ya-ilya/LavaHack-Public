@@ -16,9 +16,9 @@ public class Spider extends Module{
 	}
 	
 	public void update() {
-		if(mc.world != null && mc.player != null) {
-			if(mode.getValString().equalsIgnoreCase(Mode.Default.name())) {
-				if(!mc.player.isOnLadder() && mc.player.collidedHorizontally && mc.player.motionY < 0.2) mc.player.motionY = 0.2;
+		if (mc.world != null && mc.player != null) {
+			if (mode.getValString().equalsIgnoreCase(Mode.Default.name())) {
+				if (!mc.player.isOnLadder() && mc.player.collidedHorizontally && mc.player.motionY < 0.2) mc.player.motionY = 0.2;
 			} else {
 				if (mc.player.collidedHorizontally && mc.player.ticksExisted % 8 == 0) {
 					mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_FALL_FLYING));

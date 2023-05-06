@@ -66,7 +66,7 @@ public class Slider extends Component {
     }
 
     public void mouseClicked(int mouseX, int mouseY, int button) {
-        if(isMouseOnButton(mouseX, mouseY) && button == 0) drag = true;
+        if (isMouseOnButton(mouseX, mouseY) && button == 0) drag = true;
     }
 
     public void mouseReleased(int mouseX, int mouseY, int button) {

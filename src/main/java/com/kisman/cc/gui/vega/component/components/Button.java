@@ -42,24 +42,24 @@ public class Button {
 
         int opY = offset + 12;
 
-        if(mod != null) {
+        if (mod != null) {
 
             comp.add(new KeyBind(this, opY));
             opY += 12;
 
-            if(Kisman.instance.settingManager.getSettingsByMod(mod) != null) {
-                for(Setting set : Kisman.instance.settingManager.getSettingsByMod(mod)) {
-                    if(set.isCheck()) {
+            if (Kisman.instance.settingManager.getSettingsByMod(mod) != null) {
+                for (Setting set : Kisman.instance.settingManager.getSettingsByMod(mod)) {
+                    if (set.isCheck()) {
                         comp.add(new ModeButton(this, set, opY));
                         opY += height;
                     }
 
-                    if(set.isSlider()) {
+                    if (set.isSlider()) {
                         comp.add(new Slider(this, set, opY));
                         opY += height;
                     }
 
-                    if(set.isCombo()) {
+                    if (set.isCombo()) {
                         comp.add(new StringButton(this, set, opY));
                         opY += height;
                     }
@@ -83,42 +83,42 @@ public class Button {
         Gui.drawRect(this.x, this.y + 1 + offset, this.x + this.animation, this.y + this.height + offset, (ColorUtil.astolfoColors(100, 100)));
         GL11.glPopMatrix();
 
-        if(mod.isToggled() && animation <= width - 113) ++animation;
-        if(!mod.isToggled()) {
+        if (mod.isToggled() && animation <= width - 113) ++animation;
+        if (!mod.isToggled()) {
             --animation;
-            if(animation < 0) animation = 0;
+            if (animation < 0) animation = 0;
         }
 
         CustomFontUtil.drawStringWithShadow(mod.getName(), x + 6, y + (float) (((VegaGui.instance.test.getValBoolean() ? height : height / 2) - CustomFontUtil.getFontHeight()) / 2) + offset, mod.isToggled() ? ColorUtil.astolfoColors(100, 100) : -1);
 
-        if(Kisman.instance.settingManager.getSettingsByMod(mod) != null && Kisman.instance.settingManager.getSettingsByMod(mod).size() > 2) CustomFontUtil.drawStringWithShadow(open ? "<" : "=", x + width - 8, y + (float) (((VegaGui.instance.test.getValBoolean() ? height : height / 2) - CustomFontUtil.getFontHeight()) / 2) + offset, open ? ColorUtil.astolfoColors(100, 100) : -1);
-        if(open && !comp.isEmpty()) for(Component comp : comp) comp.renderComponent();
+        if (Kisman.instance.settingManager.getSettingsByMod(mod) != null && Kisman.instance.settingManager.getSettingsByMod(mod).size() > 2) CustomFontUtil.drawStringWithShadow(open ? "<" : "=", x + width - 8, y + (float) (((VegaGui.instance.test.getValBoolean() ? height : height / 2) - CustomFontUtil.getFontHeight()) / 2) + offset, open ? ColorUtil.astolfoColors(100, 100) : -1);
+        if (open && !comp.isEmpty()) for (Component comp : comp) comp.renderComponent();
     }
 
     public void updateComponent(int mouseX, int mouseY) {
         this.x = parent.x;
         this.y = parent.y;
-        for(Component comp : comp) {
+        for (Component comp : comp) {
             comp.updateComponent(mouseX, mouseY);
             parent.refresh();
         }
     }
 
     public void mouseClicked(int mouseX, int mouseY, int button) {
-        if(isMouseOnButton(mouseX, mouseY) && button == 0) mod.toggle();
-        if(isMouseOnButton(mouseX, mouseY) && button == 1) {
+        if (isMouseOnButton(mouseX, mouseY) && button == 0) mod.toggle();
+        if (isMouseOnButton(mouseX, mouseY) && button == 1) {
             open = !open;
             parent.refresh();
         }
-        if(!comp.isEmpty()) for(Component comp : comp) comp.mouseClicked(mouseX, mouseY, button);
+        if (!comp.isEmpty()) for (Component comp : comp) comp.mouseClicked(mouseX, mouseY, button);
     }
 
     public void mouseReleased(int mouseX, int mouseY, int button) {
-        if(!comp.isEmpty()) for(Component comp : comp) comp.mouseReleased(mouseX, mouseY, button);
+        if (!comp.isEmpty()) for (Component comp : comp) comp.mouseReleased(mouseX, mouseY, button);
     }
 
     public void keyTyped(char typedChar, int key) {
-        if(!comp.isEmpty()) for(Component comp : comp) comp.keyTyped(typedChar, key);
+        if (!comp.isEmpty()) for (Component comp : comp) comp.keyTyped(typedChar, key);
     }
 
     public void newOff(int newOff) {

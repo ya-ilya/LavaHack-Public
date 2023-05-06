@@ -56,7 +56,7 @@ public class CrystalUtils {
     }
 
     public static boolean canPlaceCrystal(BlockPos pos, boolean check, boolean entity, boolean multiPlace, boolean firePlace) {
-        if(mc.world.getBlockState(pos).getBlock().equals(Blocks.BEDROCK) || mc.world.getBlockState(pos).getBlock().equals(Blocks.OBSIDIAN)) {
+        if (mc.world.getBlockState(pos).getBlock().equals(Blocks.BEDROCK) || mc.world.getBlockState(pos).getBlock().equals(Blocks.OBSIDIAN)) {
             if (!mc.world.getBlockState(pos.add(0, 1, 0)).getBlock().equals(Blocks.AIR) && !(firePlace && mc.world.getBlockState(pos.add(0, 1, 0)).getBlock().equals(Blocks.FIRE))) return false;
             if (!mc.world.getBlockState(pos.add(0, 2, 0)).getBlock().equals(Blocks.AIR)) return false;
             BlockPos boost = pos.add(0, 1, 0);
@@ -183,7 +183,7 @@ public class CrystalUtils {
         double blockDensity =  0;
 
         try {
-            if(terrain) blockDensity = getBlockDensity(vec3d, entity.getEntityBoundingBox());
+            if (terrain) blockDensity = getBlockDensity(vec3d, entity.getEntityBoundingBox());
             else blockDensity =  entity.world.getBlockDensity(vec3d, entity.getEntityBoundingBox());
         } catch (Exception ignored) {}
 

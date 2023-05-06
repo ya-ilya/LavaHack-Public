@@ -57,7 +57,7 @@ public class AltEntry implements IGuiListEntry {
 			GL11.glEnable(GL11.GL_BLEND);
 			Gui.drawModalRectWithCustomSizedTexture(x, y, 0.0F, 0.0F, 32, 32, 32.0F, 32.0F);
 			GL11.glDisable(GL11.GL_BLEND);
-			if(isSelected) {
+			if (isSelected) {
 				mc.getTextureManager().bindTexture(this.selected);
 				Render2DUtil.drawRect(x, y, 32, 32, -1601138544);
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -70,7 +70,7 @@ public class AltEntry implements IGuiListEntry {
 			GL11.glEnable(GL11.GL_BLEND);
 			Gui.drawModalRectWithCustomSizedTexture(x, y, 0.0F, 0.0F, 32, 32, 32.0F, 32.0F);
 			GL11.glDisable(GL11.GL_BLEND);
-			if(isSelected) {
+			if (isSelected) {
 				mc.getTextureManager().bindTexture(this.selected);
 				Render2DUtil.drawRect(x, y, 32, 32, -1601138544);
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -81,7 +81,7 @@ public class AltEntry implements IGuiListEntry {
 	
 	@Override
 	public boolean mousePressed(int slotIndex, int mouseX, int mouseY, int mouseEvent, int relativeX, int relativeY) {
-		if(relativeX < 32) {
+		if (relativeX < 32) {
 			AltManager.logIn(this.email, this.password, true);
 			return true;
 		}

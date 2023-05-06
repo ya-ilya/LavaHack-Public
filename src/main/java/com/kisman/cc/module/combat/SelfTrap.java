@@ -36,26 +36,26 @@ public class SelfTrap extends AutoTrap {
 
         int blockSlot;
         int oldSlot = mc.player.inventory.currentItem;
-        if(InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9) != -1) blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
-        else if(InventoryUtil.findBlock(Blocks.ENDER_CHEST, 0, 9) != -1) blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+        if (InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9) != -1) blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
+        else if (InventoryUtil.findBlock(Blocks.ENDER_CHEST, 0, 9) != -1) blockSlot = InventoryUtil.findBlock(Blocks.OBSIDIAN, 0, 9);
         else return;
 
         InventoryUtil.switchToSlot(blockSlot, switch_.getValString().equalsIgnoreCase("Silent"));
-        for(BlockPos pos : getPosList()) {
-            if(!BlockUtil2.isPositionPlaceable(pos, true, true, tries <= rewriteRetries.getValInt())) continue;
+        for (BlockPos pos : getPosList()) {
+            if (!BlockUtil2.isPositionPlaceable(pos, true, true, tries <= rewriteRetries.getValInt())) continue;
             place(pos);
             tries++;
         }
         rewrPlacements = 0;
-        if(switch_.getValString().equalsIgnoreCase(RewriteSwitchModes.Silent.name())) InventoryUtil.switchToSlot(oldSlot, true);
-        if(!getPosList().isEmpty()) return;
+        if (switch_.getValString().equalsIgnoreCase(RewriteSwitchModes.Silent.name())) InventoryUtil.switchToSlot(oldSlot, true);
+        if (!getPosList().isEmpty()) return;
         tries = 0;
-        if(disableOnComplete.getValBoolean()) setToggled(false);
+        if (disableOnComplete.getValBoolean()) setToggled(false);
     }
 
     @Override
     protected boolean check() {
-        if(mc.player == null || startPos == null) return false;
+        if (mc.player == null || startPos == null) return false;
 
         didPlace = false;
         placements = 0;

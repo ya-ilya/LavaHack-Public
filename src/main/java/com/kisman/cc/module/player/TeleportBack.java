@@ -16,34 +16,34 @@ public class TeleportBack extends Module {
     }
 
     public void onEnable() {
-        if(mc.player != null && mc.world != null) {
+        if (mc.player != null && mc.world != null) {
             savePosition();
             ChatUtil.complete("Position saved!");
         }
     }
 
     public void onDisable() {
-        if(mc.player != null && mc.world != null) {
+        if (mc.player != null && mc.world != null) {
             loadPosition();
             ChatUtil.complete("Teleported!");
         }
     }
 
     public void update() {
-        if(mc.player != null && mc.world != null) {
+        if (mc.player != null && mc.world != null) {
             x = mc.player.posX;
             y = mc.player.posY;
             z = mc.player.posZ;
 
-            if(Sprint.instance.isToggled()) {
+            if (Sprint.instance.isToggled()) {
                 Sprint.instance.setToggled(false);
             }
 
-            if(mc.player.isSprinting()) {
+            if (mc.player.isSprinting()) {
                 mc.player.setSprinting(false);
             }
 
-            if(mc.gameSettings.keyBindSneak.isKeyDown()) {
+            if (mc.gameSettings.keyBindSneak.isKeyDown()) {
                 loadPosition();
             }
 

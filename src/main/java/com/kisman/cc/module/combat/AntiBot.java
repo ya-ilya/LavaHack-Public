@@ -38,15 +38,15 @@ public class AntiBot extends Module {
 	}
 
 	public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
-        if(mode.checkValString("Zamorozka") && mc.currentScreen == null && Mouse.isButtonDown(0)) {
-            if(!clicked) {
+        if (mode.checkValString("Zamorozka") && mc.currentScreen == null && Mouse.isButtonDown(0)) {
+            if (!clicked) {
                 clicked = true;
                 RayTraceResult result = mc.objectMouseOver;
-                if(result == null || result.typeOfHit != RayTraceResult.Type.ENTITY) return;
+                if (result == null || result.typeOfHit != RayTraceResult.Type.ENTITY) return;
                 Entity entity = mc.objectMouseOver.entityHit;
-                if(!(entity instanceof EntityPlayer)) return;
+                if (!(entity instanceof EntityPlayer)) return;
                 target = (EntityPlayer) entity;
                 ChatUtil.complete("[AntiBot] Current target is " + entity.getName());
             } else clicked = false;
@@ -54,23 +54,23 @@ public class AntiBot extends Module {
 
         for (final EntityPlayer entity : mc.world.playerEntities) {
             if (entity != mc.player && !entity.isDead) {
-                if(mode.getValString().equalsIgnoreCase("Classic")) {
+                if (mode.getValString().equalsIgnoreCase("Classic")) {
                     List<EntityPlayer> tabList = getTabPlayerList();
-                    if(!bots.contains(entity) && !tabList.contains(entity)) bots.add(entity);
-                    else if(bots.contains(entity) && tabList.contains(entity)) bots.remove(entity);
+                    if (!bots.contains(entity) && !tabList.contains(entity)) bots.add(entity);
+                    else if (bots.contains(entity) && tabList.contains(entity)) bots.remove(entity);
                 } else {
-                    if(mode.getValString().equalsIgnoreCase("Matrix 6.3")) {
+                    if (mode.getValString().equalsIgnoreCase("Matrix 6.3")) {
                         final boolean contains = RotationUtils.isInFOV(entity, mc.player, 100.0) && AntiBot.mc.player.getDistance(entity) <= 6.5 && entity.canEntityBeSeen(mc.player);
                         final boolean speedAnalysis = entity.getActivePotionEffect(MobEffects.SPEED) == null && entity.getActivePotionEffect(MobEffects.JUMP_BOOST) == null && entity.getActivePotionEffect(MobEffects.LEVITATION) == null && !entity.isInWater() && entity.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() != Items.ELYTRA && EntityUtil.getSpeedBPS(entity) >= 11.9;
                         if (!contains || !speedAnalysis || entity.isDead) continue;
-                    } else if(!entity.isInvisible()) continue;
+                    } else if (!entity.isInvisible()) continue;
                     entity.isDead = true;
                     ChatUtil.complete(entity.getName() + " was been deleted!");
                 }
             }
         }
 
-        if(mode.getValString().equalsIgnoreCase("Classic")) for(EntityPlayer bot : bots) {
+        if (mode.getValString().equalsIgnoreCase("Classic")) for (EntityPlayer bot : bots) {
             bot.isDead = true;
             ChatUtil.complete(bot.getName() + " was been deleted!");
         }

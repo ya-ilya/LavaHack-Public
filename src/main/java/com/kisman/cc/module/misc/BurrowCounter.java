@@ -21,7 +21,7 @@ public class BurrowCounter extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         for (EntityPlayer player : mc.world.playerEntities) {
             if (anti_spam.contains(player)) continue;

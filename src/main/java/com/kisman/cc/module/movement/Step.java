@@ -20,12 +20,12 @@ public class Step extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
         super.setDisplayInfo("[" + String.format(Locale.ENGLISH, "%.4f", height.getValDouble()) + "]");
         mc.player.stepHeight = height.getValFloat();
     }
 
     public void onDisable() {
-        if(mc.player != null && mc.world != null) mc.player.stepHeight = 0.5f;
+        if (mc.player != null && mc.world != null) mc.player.stepHeight = 0.5f;
     }
 }

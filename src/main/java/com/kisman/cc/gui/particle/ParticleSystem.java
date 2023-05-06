@@ -86,7 +86,7 @@ public class ParticleSystem {
 
         float y;
 
-        if(f2>=f4)
+        if (f2>=f4)
         {
             y = f4 + ((f2-f4)/2);
         }else{
@@ -95,7 +95,7 @@ public class ParticleSystem {
 
         float x;
 
-        if(f>=f3)
+        if (f>=f3)
         {
             x = f3 + ((f-f3)/2);
         }else{
@@ -159,7 +159,7 @@ public class ParticleSystem {
         GL11.glDepthMask(false);
         if (Minecraft.getMinecraft().currentScreen == null) return;
         for (final Particle particle : this.particleList) {
-            if(Config.instance.particlesGradientMode.getValString().equals(Config.ParticlesGradientMode.Syns.name())) particle.color.glColor();
+            if (Config.instance.particlesGradientMode.getValString().equals(Config.ParticlesGradientMode.Syns.name())) particle.color.glColor();
             else GL11.glColor4f(StaticParticles.color.getRed() / 255.0f, StaticParticles.color.getGreen() / 255.0f, StaticParticles.color.getBlue() / 255.0f, particle.getAlpha() / 255.0f);
             GL11.glPointSize(particle.getSize());
             GL11.glBegin(0);
@@ -182,13 +182,13 @@ public class ParticleSystem {
             final float alpha = Math.min(1.0f, Math.min(1.0f, 1.0f - nearestDistance / dist));
 
             //Checks if two gradient particles mode is enabled
-            if(StaticParticles.IsTwoGParticlesEnabled){
+            if (StaticParticles.IsTwoGParticlesEnabled){
                 //Checks if rendering gradient mode is default
-                if(StaticParticles.mode.equals(StaticParticles.modeDEfType))
+                if (StaticParticles.mode.equals(StaticParticles.modeDEfType))
                 {
                     this.drawGradientLine(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), StaticParticles.startColor, StaticParticles.endColor, StaticParticles.particleWidth);
                     //this.drawGradientLineGlowing(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), StaticParticles.startColor, StaticParticles.endColor, StaticParticles.particleWidth);
-                }else if(StaticParticles.mode.equals(StaticParticles.modeTGfType))
+                }else if (StaticParticles.mode.equals(StaticParticles.modeTGfType))
                 {
                     this.drawThreeGradientLine(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), StaticParticles.startColor, Color.CYAN, StaticParticles.endColor, StaticParticles.particleWidth);
                 }else

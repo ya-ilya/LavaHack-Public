@@ -45,7 +45,7 @@ public class Frame {
 		this.hud = true;
 		int tY = this.barHeight;
 		
-		for(HudModule mod : Kisman.instance.hudModuleManager.getModulesInCategory(hudCategory)) {
+		for (HudModule mod : Kisman.instance.hudModuleManager.getModulesInCategory(hudCategory)) {
 			Button modButton = new Button(mod, this, tY);
 			this.components.add(modButton);
 			tY += 12;
@@ -77,7 +77,7 @@ public class Frame {
 	}
 	
 	public void renderFrame(FontRenderer fontRenderer) {
-		if(Config.instance.guiGlow.getValBoolean() && ClickGui.isLine()) {
+		if (Config.instance.guiGlow.getValBoolean() && ClickGui.isLine()) {
 			int offset = Config.instance.glowOffset.getValInt();
 
 			Render2DUtil.drawGlow(x - offset, y - offset, x + width + offset, y + barHeight + offset, new Color(ClickGui.getRLine(), ClickGui.getGLine(), ClickGui.getBLine(), ClickGui.getALine()).getRGB());
@@ -85,9 +85,9 @@ public class Frame {
 
 		Gui.drawRect(this.x, this.y, this.x + this.width, this.y + this.barHeight, ClickGui.isRainbowBackground() ? colorUtil.getColor() : new Color(ClickGui.getRBackground(), ClickGui.getGBackground(), ClickGui.getBBackground(), ClickGui.getABackground()).getRGB());
 
-		if(ClickGui.isLine()) {
-			if(ClickGui.getLineMode() == LineMode.LEFT) Gui.drawRect(this.x, this.y, this.x + 1, this.y + this.barHeight, new Color(ClickGui.getRLine(), ClickGui.getGLine(), ClickGui.getBLine(), ClickGui.getALine()).getRGB());
-			else if(ClickGui.getLineMode() == LineMode.LEFTONTOP) {
+		if (ClickGui.isLine()) {
+			if (ClickGui.getLineMode() == LineMode.LEFT) Gui.drawRect(this.x, this.y, this.x + 1, this.y + this.barHeight, new Color(ClickGui.getRLine(), ClickGui.getGLine(), ClickGui.getBLine(), ClickGui.getALine()).getRGB());
+			else if (ClickGui.getLineMode() == LineMode.LEFTONTOP) {
 				Gui.drawRect(this.x, this.y, this.x + 1, this.y + this.barHeight, new Color(ClickGui.getRLine(), ClickGui.getGLine(), ClickGui.getBLine(), ClickGui.getALine()).getRGB());
 				Gui.drawRect(this.x, this.y, this.x + this.width, this.y + 1, new Color(ClickGui.getRLine(), ClickGui.getGLine(), ClickGui.getBLine(), ClickGui.getALine()).getRGB());
 			} else {
@@ -100,13 +100,13 @@ public class Frame {
 		GL11.glPushMatrix();
 		GL11.glScalef(0.5f,0.5f, 0.5f);
 		String str = this.hudCategory.name();
-		if(Config.instance.guiRenderSize.getValBoolean()) str += " [" + components.size() + "]";
+		if (Config.instance.guiRenderSize.getValBoolean()) str += " [" + components.size() + "]";
 
 		fontRenderer.drawStringWithShadow(TextFormatting.BOLD +  str, (this.x + 2) * 2 + 5, (this.y + 2.5f) * 2 + 5, new Color(ClickGui.getRText(), ClickGui.getGText(), ClickGui.getBText(), ClickGui.getAText()).getRGB());
 		fontRenderer.drawStringWithShadow(this.open ? "-" : "+", (this.x + this.width - 10) * 2 + 5, (this.y + 2.5f) * 2 + 5, new Color(ClickGui.getRText(), ClickGui.getGText(), ClickGui.getBText(), ClickGui.getAText()).getRGB());
 
 		GL11.glPopMatrix();
-		if(this.open) if(!this.components.isEmpty()) for(Component component : components) component.renderComponent();
+		if (this.open) if (!this.components.isEmpty()) for (Component component : components) component.renderComponent();
 	}
 	
 	public int getX() {
@@ -122,7 +122,7 @@ public class Frame {
 	}
 	
 	public void updatePosition(int mouseX, int mouseY) {
-		if(this.isDragging) {
+		if (this.isDragging) {
 			this.setX(mouseX - dragX);
 			this.setY(mouseY - dragY);
 		}

@@ -33,19 +33,19 @@ public class Jesus extends Module {
 
     public void onDisable() {
         EntityUtil.resetTimer();
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
         mc.player.jumpMovementFactor = 0.02f;
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         super.setDisplayInfo("[" + mode.getValString() + TextFormatting.GRAY + "]");
 
-        if(mode.getValString().equalsIgnoreCase("Matrix")) {
+        if (mode.getValString().equalsIgnoreCase("Matrix")) {
             float speed = (float) settingManager.getSettingByName(this, "Speed Matrix").getValDouble();
 
-            if(mc.world.getBlockState(new BlockPos(mc.player.posX, mc.player.posY - -0.37f, mc.player.posZ)).getBlock() == Blocks.WATER) {
+            if (mc.world.getBlockState(new BlockPos(mc.player.posX, mc.player.posY - -0.37f, mc.player.posZ)).getBlock() == Blocks.WATER) {
                 mc.player.jump();
                 mc.player.jumpMovementFactor = 0;
 
@@ -53,19 +53,19 @@ public class Jesus extends Module {
                 mc.player.motionZ *= speed;
                 mc.player.onGround = false;
 
-                if(mc.player.isInWater() || mc.player.isInLava()) mc.player.onGround = false;
+                if (mc.player.isInWater() || mc.player.isInLava()) mc.player.onGround = false;
             }
-        } else if(mode.getValString().equalsIgnoreCase("Solid")) {
+        } else if (mode.getValString().equalsIgnoreCase("Solid")) {
             float speed = (float) settingManager.getSettingByName(this, "Speed Solid").getValDouble();
 
-            if(mc.world.getBlockState(new BlockPos(mc.player.posX, mc.player.posY + 1, mc.player.posZ)).getBlock() == Block.getBlockById(9)) mc.player.motionY = 0.18f;
-            else if(mc.world.getBlockState(new BlockPos(mc.player.posX, mc.player.posY + 0.0000001, mc.player.posZ)).getBlock() == Block.getBlockById(9)) {
+            if (mc.world.getBlockState(new BlockPos(mc.player.posX, mc.player.posY + 1, mc.player.posZ)).getBlock() == Block.getBlockById(9)) mc.player.motionY = 0.18f;
+            else if (mc.world.getBlockState(new BlockPos(mc.player.posX, mc.player.posY + 0.0000001, mc.player.posZ)).getBlock() == Block.getBlockById(9)) {
                 mc.player.fallDistance = 0.0f;
                 mc.player.motionX = 0.0;
                 mc.player.jumpMovementFactor = speed;
                 mc.player.motionY = 0;
             }
-        } else if(mode.getValString().equalsIgnoreCase("Matrix 6.3")) {
+        } else if (mode.getValString().equalsIgnoreCase("Matrix 6.3")) {
             if (mc.player.isInWater())
                 if (mc.player.collidedHorizontally || mc.gameSettings.keyBindJump.isPressed()) {
                     mc.player.motionY = 0.09;
@@ -95,5 +95,5 @@ public class Jesus extends Module {
 
     @EventHandler
     @SuppressWarnings("unused")
-    private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {if((mode.getValString().equalsIgnoreCase("Matrix 6.3") || mode.getValString().equalsIgnoreCase("MatrixPixel")) && event.getPacket() instanceof CPacketPlayer && EntityUtil.isFluid(0.3)) ((CPacketPlayer) event.getPacket()).onGround = false;});
+    private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {if ((mode.getValString().equalsIgnoreCase("Matrix 6.3") || mode.getValString().equalsIgnoreCase("MatrixPixel")) && event.getPacket() instanceof CPacketPlayer && EntityUtil.isFluid(0.3)) ((CPacketPlayer) event.getPacket()).onGround = false;});
 }

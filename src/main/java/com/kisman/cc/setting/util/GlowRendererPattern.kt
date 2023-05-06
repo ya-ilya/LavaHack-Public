@@ -23,7 +23,7 @@ class GlowRendererPattern(val module: Module, val visible: Supplier<Boolean>) {
     }
 
     fun draw(color: Colour, x: Int, y: Int, width: Int, height: Int) {
-        when(mode.valEnum as GlowModes) {
+        when (mode.valEnum as GlowModes) {
             GlowModes.Default -> {
                 val offset = this.offset.valInt
                 Render2DUtil.drawGlow(

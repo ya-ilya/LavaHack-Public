@@ -143,7 +143,7 @@ public class ShaderCharms extends Module {
 
     @SubscribeEvent
     public void onRenderHand(RenderHandEvent event) {
-        if(items.getValBoolean() && itemsFix.getValBoolean() && (!criticalSection || (mode.checkValString("Outline2") && hideOriginal.getValBoolean()))) event.setCanceled(true);
+        if (items.getValBoolean() && itemsFix.getValBoolean() && (!criticalSection || (mode.checkValString("Outline2") && hideOriginal.getValBoolean()))) event.setCanceled(true);
     }
 
     @SubscribeEvent
@@ -154,7 +154,7 @@ public class ShaderCharms extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<RenderEntityEvent.All.Pre> renderEntityListener = listener(event -> {
-        if(mode.checkValString("Outline2") && !mc.renderManager.renderOutlines && hideOriginal.getValBoolean() && mc.player.getDistance(event.getEntity()) <= range.getValFloat() && entityTypeCheck(event.getEntity())) event.cancel();
+        if (mode.checkValString("Outline2") && !mc.renderManager.renderOutlines && hideOriginal.getValBoolean() && mc.player.getDistance(event.getEntity()) <= range.getValFloat() && entityTypeCheck(event.getEntity())) event.cancel();
     });
 
     public boolean entityTypeCheck(Entity entity) {
@@ -168,7 +168,7 @@ public class ShaderCharms extends Module {
     }
 
     private void outline2Shader(float particalTicks) {
-        if(frameBufferFinal == null) return;
+        if (frameBufferFinal == null) return;
         Outline2Shader.INSTANCE.setupUniforms(outlineAlpha.getValFloat(), filledAlpha.getValFloat(), width.getValFloat(), (float) ((width.getAlpha() - 1.0f) * (Math.pow(ratio.getValFloat(), 3)) + 1.0f));
         Outline2Shader.INSTANCE.updateUniforms(shaderHelper);
         ShaderUtil.Companion.clearFrameBuffer(frameBufferFinal);
@@ -179,7 +179,7 @@ public class ShaderCharms extends Module {
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
         try {
-            if(mode.checkValString("Outline2")) outline2Shader(event.getPartialTicks());
+            if (mode.checkValString("Outline2")) outline2Shader(event.getPartialTicks());
             else {
                 FramebufferShader framebufferShader = FramebufferShader.SHADERS.get(mode.getValString().toLowerCase());
 
@@ -258,7 +258,7 @@ public class ShaderCharms extends Module {
                 GlStateManager.popMatrix();
             }
         } catch (Exception ignored) {
-            if(Config.instance.antiOpenGLCrash.getValBoolean()) {
+            if (Config.instance.antiOpenGLCrash.getValBoolean()) {
                 super.setToggled(false);
                 ChatUtil.error("[ShaderCharms] Error, Config -> AntiOpenGLCrash disabled ShaderCharms");
             }

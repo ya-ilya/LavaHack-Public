@@ -12,16 +12,16 @@ public class FastSwim extends Module {
     }
 
     public void onDisable() {
-        if(mc.player != null && isSprint && mc.player.isSprinting()) mc.player.setSprinting(false);
+        if (mc.player != null && isSprint && mc.player.isSprinting()) mc.player.setSprinting(false);
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
-        if((mc.player.isInLava() || mc.player.isInWater()) && PlayerUtil.isMoving(mc.player)) {
+        if ((mc.player.isInLava() || mc.player.isInWater()) && PlayerUtil.isMoving(mc.player)) {
             mc.player.setSprinting(true);
             isSprint = true;
-            if(mc.gameSettings.keyBindJump.isKeyDown()) mc.player.motionY = 0.098;
+            if (mc.gameSettings.keyBindJump.isKeyDown()) mc.player.motionY = 0.098;
         }
     }
 }

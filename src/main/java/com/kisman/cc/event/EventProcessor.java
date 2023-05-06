@@ -35,7 +35,7 @@ public class EventProcessor {
             if (AutoRer.instance.lagProtect.getValBoolean()) disableCa();
             AutoRer.instance.placePos = null;
             Kisman.instance.configManager.getSaver().init();
-        } catch(Exception ignored) {}
+        } catch (Exception ignored) {}
     }
 
     private void disableCa() {
@@ -49,7 +49,7 @@ public class EventProcessor {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onChatMessage(ClientChatEvent event) {
-        if(event.getMessage().startsWith(Kisman.instance.commandManager.cmdPrefixStr)) {
+        if (event.getMessage().startsWith(Kisman.instance.commandManager.cmdPrefixStr)) {
             try {
                 Kisman.instance.commandManager.runCommand(event.getMessage());
                 event.setCanceled(true);
@@ -59,11 +59,11 @@ public class EventProcessor {
 
     @EventHandler
     private final Listener<PacketEvent.Receive> packetReceiveListener = new Listener<>(event -> {
-        if(event.getPacket() instanceof SPacketRespawn && AutoRer.instance.lagProtect.getValBoolean()) disableCa();
-        if(event.getPacket() instanceof SPacketChat && !Kisman.allowToConfiguredAnotherClients && Config.instance.configurate.getValBoolean()) {
+        if (event.getPacket() instanceof SPacketRespawn && AutoRer.instance.lagProtect.getValBoolean()) disableCa();
+        if (event.getPacket() instanceof SPacketChat && !Kisman.allowToConfiguredAnotherClients && Config.instance.configurate.getValBoolean()) {
             SPacketChat packet = (SPacketChat) event.getPacket();
             String message = packet.chatComponent.getUnformattedText();
-            if(message.contains("+")) {
+            if (message.contains("+")) {
                 String formattedMessage = message.substring(message.indexOf("+"));
                 try {
                     String[] args = formattedMessage.split(" ");
@@ -75,17 +75,17 @@ public class EventProcessor {
                         else if (args[0].equalsIgnoreCase("block") || args[0].equalsIgnoreCase("+block")) module.block = true;
                         else if (args[0].equalsIgnoreCase("unblock") || args[0].equalsIgnoreCase("+unlock")) module.block = true;
                     }
-                } catch(Exception ignored) {}
+                } catch (Exception ignored) {}
             }
         }
     });
 
     @EventHandler
     private final Listener<PacketEvent.Receive> totemPopListener = new Listener<>(event -> {
-        if(event.getPacket() instanceof SPacketEntityStatus && ((SPacketEntityStatus) event.getPacket()).getOpCode() == 35) {
+        if (event.getPacket() instanceof SPacketEntityStatus && ((SPacketEntityStatus) event.getPacket()).getOpCode() == 35) {
             TotemPopEvent totemPopEvent = new TotemPopEvent(((SPacketEntityStatus) event.getPacket()).getEntity(mc.world));
             MinecraftForge.EVENT_BUS.post(totemPopEvent);
-            if(totemPopEvent.isCanceled()) event.cancel();
+            if (totemPopEvent.isCanceled()) event.cancel();
         }
     });
 }

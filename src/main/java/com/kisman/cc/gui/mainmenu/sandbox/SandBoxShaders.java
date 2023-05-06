@@ -17,7 +17,7 @@ public class SandBoxShaders {
     public void init( ) {
         try {
             Object[ ] shader = getRandomShader( );
-            if( shader == null ) {
+            if ( shader == null ) {
                 currentshader = null;
                 Kisman.LOGGER.info("No shaders found in .minecraft/glslmenu/. Not drawing anything");
             } else {
@@ -25,12 +25,12 @@ public class SandBoxShaders {
                 InputStream is = (InputStream)shader[1];
 
                 currentshader = new GLSLSandboxShader(name, is);
-                if( !currentshader.initialized )
+                if ( !currentshader.initialized )
                     currentshader = null;
                 else
                     time = System.currentTimeMillis();
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             currentshader = null;
         }
@@ -38,17 +38,17 @@ public class SandBoxShaders {
 
     public Object[] getRandomShader() throws FileNotFoundException {
         File folder = new File("glslmenu");
-        if(!folder.exists()) return null;
+        if (!folder.exists()) return null;
 
         List<String> shaders = new ArrayList<>();
 
-        for(File file : folder.listFiles()) {
+        for (File file : folder.listFiles()) {
             String name = file.getName();
-            if(name.endsWith(".fsh"))
+            if (name.endsWith(".fsh"))
                 shaders.add(name);
         }
 
-        if(shaders.size() == 0) return null;
+        if (shaders.size() == 0) return null;
 
         String randomname = shaders.get(new Random().nextInt(shaders.size()));
 

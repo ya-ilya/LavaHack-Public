@@ -129,7 +129,7 @@ public class Colour {
     }
 
     public static ColourEnum getEnumByInt(int mode) {
-        for(ColourEnum colorEnum : ColourEnum.values()) if(colorEnum.mode == mode) return colorEnum;
+        for (ColourEnum colorEnum : ColourEnum.values()) if (colorEnum.mode == mode) return colorEnum;
         return ColourEnum.Static;
     }
 
@@ -205,22 +205,22 @@ public class Colour {
     }
 
     private void fixColorRange() {
-        if(r > 255) r = 255;
-        else if(r < 0) r = 0;
-        if(g > 255) g = 255;
-        else if(g < 0) g = 0;
-        if(b > 255) b= 255;
-        else if(b < 0) b = 0;
-        if(a > 255) a = 255;
-        else if(a< 0) a = 0;
-        if(r1 > 1) r1 = 1;
-        else if(r1 < 0) r1 = 0;
-        if(g1 > 1) g1 = 1;
-        else if(g1 < 0) g1 = 0;
-        if(b1 > 1) b1 = 1;
-        else if(b1 < 0) b1 = 0;
-        if(a1 > 1) a1 = 1;
-        else if(a1 < 0) a1 = 0;
+        if (r > 255) r = 255;
+        else if (r < 0) r = 0;
+        if (g > 255) g = 255;
+        else if (g < 0) g = 0;
+        if (b > 255) b= 255;
+        else if (b < 0) b = 0;
+        if (a > 255) a = 255;
+        else if (a< 0) a = 0;
+        if (r1 > 1) r1 = 1;
+        else if (r1 < 0) r1 = 0;
+        if (g1 > 1) g1 = 1;
+        else if (g1 < 0) g1 = 0;
+        if (b1 > 1) b1 = 1;
+        else if (b1 < 0) b1 = 0;
+        if (a1 > 1) a1 = 1;
+        else if (a1 < 0) a1 = 0;
     }
 
     public Colour(Color color) {
@@ -236,27 +236,27 @@ public class Colour {
     }
 
     public float getR() {
-        if(isInt) return (float) r / 255;
+        if (isInt) return (float) r / 255;
         else return r1;
     }
 
     public float getG() {
-        if(isInt) return (float) g / 255;
+        if (isInt) return (float) g / 255;
         else return g1;
     }
 
     public float getB() {
-        if(isInt) return (float) b / 255;
+        if (isInt) return (float) b / 255;
         else return b1;
     }
 
     public float getA() {
-        if(isInt) return (float) a / 255;
+        if (isInt) return (float) a / 255;
         else return a1;
     }
 
     public int getAlpha() {
-        if(isInt) return a;
+        if (isInt) return a;
         else return (int) a1 * 255;
     }
 

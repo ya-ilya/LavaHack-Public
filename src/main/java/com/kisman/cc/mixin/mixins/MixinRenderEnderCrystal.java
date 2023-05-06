@@ -29,14 +29,14 @@ public class MixinRenderEnderCrystal {
         Minecraft mc = Minecraft.getMinecraft();
         mc.gameSettings.fancyGraphics = false;
 
-        if(CrystalModifier.instance.isToggled()) {
+        if (CrystalModifier.instance.isToggled()) {
             float var14 = (float)entity.innerRotation + partialTicks;
 
             GL11.glPushMatrix();
 
             //scale
-            if(entity.equals(CrystalModifier.instance.preview.getEntity())) GL11.glScalef(1, 1, 1);
-            else if(CrystalModifier.instance.scale.getValBoolean()) GL11.glScaled(CrystalModifier.instance.scaleVal.getValDouble(), -CrystalModifier.instance.scaleVal.getValDouble(), CrystalModifier.instance.scaleVal.getValDouble());
+            if (entity.equals(CrystalModifier.instance.preview.getEntity())) GL11.glScalef(1, 1, 1);
+            else if (CrystalModifier.instance.scale.getValBoolean()) GL11.glScaled(CrystalModifier.instance.scaleVal.getValDouble(), -CrystalModifier.instance.scaleVal.getValDouble(), CrystalModifier.instance.scaleVal.getValDouble());
 
             //translate
             GL11.glTranslated(x + CrystalModifier.instance.translateX.getValDouble(), y + CrystalModifier.instance.translateY.getValDouble(), z + CrystalModifier.instance.translateZ.getValDouble());
@@ -47,17 +47,17 @@ public class MixinRenderEnderCrystal {
             float spinSpeed = CrystalModifier.instance.speed.getValFloat();
             float bounceSpeed = CrystalModifier.instance.bounce.getValFloat();
 
-            if(CrystalModifier.instance.texture.getValBoolean()) {
-                if(entity.shouldShowBottom()) modelEnderCrystal.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
+            if (CrystalModifier.instance.texture.getValBoolean()) {
+                if (entity.shouldShowBottom()) modelEnderCrystal.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
                 else modelEnderCrystalNoBase.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
             }
 
             //polygon
             GL11.glPushAttrib(1048575);
-            if(CrystalModifier.instance.mode.getValString().equals(CrystalModifier.Modes.Wireframe.name())) GL11.glPolygonMode(1032, 6913);
+            if (CrystalModifier.instance.mode.getValString().equals(CrystalModifier.Modes.Wireframe.name())) GL11.glPolygonMode(1032, 6913);
 
             //other
-            if(CrystalModifier.instance.texture.getValBoolean()) mc.renderManager.renderEngine.bindTexture(ENDER_CRYSTAL_TEXTURES);
+            if (CrystalModifier.instance.texture.getValBoolean()) mc.renderManager.renderEngine.bindTexture(ENDER_CRYSTAL_TEXTURES);
 
             GL11.glDisable(3008);
             GL11.glDisable(3553);
@@ -71,9 +71,9 @@ public class MixinRenderEnderCrystal {
             GL11.glEnable(10754);
 
             //custom color
-            if(CrystalModifier.instance.customColor.getValBoolean()) GL11.glColor4f(CrystalModifier.instance.crystalColor.getColour().r1, CrystalModifier.instance.crystalColor.getColour().g1, CrystalModifier.instance.crystalColor.getColour().b1, CrystalModifier.instance.crystalColor.getColour().a1);
+            if (CrystalModifier.instance.customColor.getValBoolean()) GL11.glColor4f(CrystalModifier.instance.crystalColor.getColour().r1, CrystalModifier.instance.crystalColor.getColour().g1, CrystalModifier.instance.crystalColor.getColour().b1, CrystalModifier.instance.crystalColor.getColour().a1);
             else GL11.glColor3f(1, 1, 1);
-            if(entity.shouldShowBottom()) modelEnderCrystal.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
+            if (entity.shouldShowBottom()) modelEnderCrystal.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
             else modelEnderCrystalNoBase.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
 
             //ench texture
@@ -87,8 +87,8 @@ public class MixinRenderEnderCrystal {
             GL11.glPopAttrib();
 
             //outline
-            if(CrystalModifier.instance.outline.getValBoolean()) {
-                if(CrystalModifier.instance.outlineMode.getValString().equals(CrystalModifier.OutlineModes.Wire.name())) {
+            if (CrystalModifier.instance.outline.getValBoolean()) {
+                if (CrystalModifier.instance.outlineMode.getValString().equals(CrystalModifier.OutlineModes.Wire.name())) {
                     GL11.glPushAttrib(1048575);
                     GL11.glPolygonMode(1032, 6913);
                     GL11.glDisable(3008);
@@ -103,13 +103,13 @@ public class MixinRenderEnderCrystal {
                     GL11.glEnable(10754);
                     GL11.glColor4f(CrystalModifier.instance.color.getColour().r1, CrystalModifier.instance.color.getColour().g1, CrystalModifier.instance.color.getColour().b1, 1.0f);
 
-                    if(entity.shouldShowBottom()) modelEnderCrystal.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
+                    if (entity.shouldShowBottom()) modelEnderCrystal.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
                     else modelEnderCrystalNoBase.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
 
                     GL11.glEnable(2929);
                     GL11.glDepthMask(true);
 
-                    if(entity.shouldShowBottom()) modelEnderCrystal.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
+                    if (entity.shouldShowBottom()) modelEnderCrystal.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
                     else modelEnderCrystalNoBase.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
 
                     GL11.glEnable(3042);
@@ -121,19 +121,19 @@ public class MixinRenderEnderCrystal {
                     OutlineUtils.setColor(CrystalModifier.instance.color);
                     OutlineUtils.renderOne((float) CrystalModifier.instance.lineWidth.getValDouble());
 
-                    if(entity.shouldShowBottom()) modelEnderCrystal.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
+                    if (entity.shouldShowBottom()) modelEnderCrystal.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
                     else modelEnderCrystalNoBase.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
 
                     OutlineUtils.renderTwo();
 
-                    if(entity.shouldShowBottom()) modelEnderCrystal.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
+                    if (entity.shouldShowBottom()) modelEnderCrystal.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
                     else modelEnderCrystalNoBase.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
 
                     OutlineUtils.renderThree();
                     OutlineUtils.renderFour();
                     OutlineUtils.setColor(CrystalModifier.instance.color);
 
-                    if(entity.shouldShowBottom()) modelEnderCrystal.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
+                    if (entity.shouldShowBottom()) modelEnderCrystal.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
                     else modelEnderCrystalNoBase.render(entity, 0, var14 * spinSpeed, var15 * bounceSpeed, 0, 0, 0.0625f);
 
                     OutlineUtils.renderFive();

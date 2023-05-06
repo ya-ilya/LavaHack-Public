@@ -39,9 +39,9 @@
      }
 
      public void update() {
-         if(mc.player == null || mc.world == null) return;
+         if (mc.player == null || mc.world == null) return;
          super.setDisplayInfo("[" + delay.getValInt() + "]");
-         if(!timer.passedMillis(delay.getValLong())) {
+         if (!timer.passedMillis(delay.getValLong())) {
              return;
          } else {
              timer.reset();

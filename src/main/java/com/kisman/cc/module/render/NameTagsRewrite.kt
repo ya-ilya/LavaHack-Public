@@ -42,12 +42,12 @@ class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.",
     }
 
     @SubscribeEvent fun onRender(event: RenderGameOverlayEvent.Text) {
-        for(player in mc.world.playerEntities) {
-            if(player == mc.player) continue
+        for (player in mc.world.playerEntities) {
+            if (player == mc.player) continue
 
             val health = player.health + player.getAbsorptionAmount()
             val builder = StringBuilder()
-            val yOffset = if(player.isSneaking) 1.75 else 2.25
+            val yOffset = if (player.isSneaking) 1.75 else 2.25
             val deltas = Render2DUtil.getDeltas(event.partialTicks, player)
             val projection = ProjectionUtils.toScaledScreenPos(
                 Vec3d(deltas[0], deltas[1], deltas[2]).add(0.0, yOffset, 0.0)
@@ -59,17 +59,17 @@ class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.",
             GL11.glTranslated(scale.valDouble, scale.valDouble, 0.0)
 
 
-            if(FriendManager.instance.isFriend(player)) builder.append(TextFormatting.AQUA)
+            if (FriendManager.instance.isFriend(player)) builder.append(TextFormatting.AQUA)
             builder.append("${player.name}${TextFormatting.RESET}")
             var ping = -1
             try {
                 ping = mc.player.connection.getPlayerInfo(player.uniqueID).responseTime
             } catch (_: Exception) {}
-            if(this.ping.valBoolean) builder.append(" $ping ms")
+            if (this.ping.valBoolean) builder.append(" $ping ms")
             // if (this.pops.valBoolean) ...
-            if(this.health.valBoolean) builder.append(" ${ColourUtil.healthColor(player)}${MathHelper.ceil(health)}${TextFormatting.RESET}")
+            if (this.health.valBoolean) builder.append(" ${ColourUtil.healthColor(player)}${MathHelper.ceil(health)}${TextFormatting.RESET}")
 
-            if(glow.valBoolean) {
+            if (glow.valBoolean) {
                 glowSetting.draw(
                     Colour(12, 12, 12, backgroundAlpha.valInt),
                     -((CustomFontUtil.getStringWidth(builder.toString()) - 2) / 2),
@@ -83,7 +83,7 @@ class NameTagsRewrite : Module("NameTagsRewrite", "Renders info about players.",
                 -(CustomFontUtil.getFontHeight() + 2).toDouble(),
                 ((CustomFontUtil.getStringWidth(builder.toString()) + 2) / 2).toDouble(),
                 1.0,
-                Colour(12, 12, 12, if(glow.valBoolean) 0 else backgroundAlpha.valInt).rgb
+                Colour(12, 12, 12, if (glow.valBoolean) 0 else backgroundAlpha.valInt).rgb
             )
 
             CustomFontUtil.drawStringWithShadow(

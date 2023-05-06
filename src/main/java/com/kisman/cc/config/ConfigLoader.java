@@ -52,7 +52,7 @@ public class ConfigLoader {
             boolean settings;
 
             try {
-                if(Kisman.instance.settingManager.getSettingsByMod(module) == null) settings = false;
+                if (Kisman.instance.settingManager.getSettingsByMod(module) == null) settings = false;
                 else settings = !Kisman.instance.settingManager.getSettingsByMod(module).isEmpty();
                 loadModuleDirect(module, settings);
             } catch (IOException e) {
@@ -81,7 +81,7 @@ public class ConfigLoader {
         JsonObject settingObject = moduleObject.get("Settings").getAsJsonObject();
         JsonElement keyObject = settingObject.get("key");
 
-        if(settings) {
+        if (settings) {
             for (Setting setting : Kisman.instance.settingManager.getSettingsByMod(module)) {
                 JsonElement dataObject = settingObject.get(setting.getName());
 
@@ -90,8 +90,8 @@ public class ConfigLoader {
                         if (setting.isCheck()) setting.setValBoolean(dataObject.getAsBoolean());
                         if (setting.isCombo()) setting.setValString(dataObject.getAsString());
                         if (setting.isSlider()) setting.setValDouble(dataObject.getAsDouble());
-                        if(setting.isColorPicker()) setting.setColour(ColourUtil.Companion.fromConfig(dataObject.getAsString(), setting.getColour()));
-                        if(setting.isBind()) setting.setKey(dataObject.getAsInt());
+                        if (setting.isColorPicker()) setting.setColour(ColourUtil.Companion.fromConfig(dataObject.getAsString(), setting.getColour()));
+                        if (setting.isBind()) setting.setKey(dataObject.getAsInt());
                     }
                 } catch (NumberFormatException e) {
                     System.out.println(setting.getName() + " " + module.getName());
@@ -100,7 +100,7 @@ public class ConfigLoader {
             }
         }
 
-        if(keyObject != null && keyObject.isJsonPrimitive()) {
+        if (keyObject != null && keyObject.isJsonPrimitive()) {
             module.setKey(Keyboard.getKeyIndex(keyObject.getAsString()));
         }
 
@@ -119,12 +119,12 @@ public class ConfigLoader {
 
         JsonObject settingObject = moduleObject.get("Modules").getAsJsonObject();
 
-        for(Module module : Kisman.instance.moduleManager.modules) {
+        for (Module module : Kisman.instance.moduleManager.modules) {
             JsonElement dataObject = settingObject.get(module.getName());
 
-            if(dataObject != null && dataObject.isJsonPrimitive()) {
+            if (dataObject != null && dataObject.isJsonPrimitive()) {
                 try {
-                    if(!(module instanceof TeleportBack)) {
+                    if (!(module instanceof TeleportBack)) {
                         module.setToggled(dataObject.getAsBoolean());
                     }
                 } catch (Exception e) {
@@ -148,10 +148,10 @@ public class ConfigLoader {
 
         JsonObject settingObject = moduleObject.get("Modules").getAsJsonObject();
 
-        for(Module module : Kisman.instance.moduleManager.modules) {
+        for (Module module : Kisman.instance.moduleManager.modules) {
             JsonElement dataObject = settingObject.get(module.getName());
 
-            if(dataObject != null && dataObject.isJsonPrimitive()) {
+            if (dataObject != null && dataObject.isJsonPrimitive()) {
                 try {
                     module.visible = dataObject.getAsBoolean();
                 } catch (Exception e) {
@@ -175,11 +175,11 @@ public class ConfigLoader {
 
         JsonObject settingObject = moduleObject.get("Modules").getAsJsonObject();
 
-        for(HudModule module : Kisman.instance.hudModuleManager.modules) {
+        for (HudModule module : Kisman.instance.hudModuleManager.modules) {
             JsonElement dataObject = settingObject.get(module.getName());
 
-            if(dataObject != null && dataObject.isJsonPrimitive()) try {
-                if(module.isToggled() != dataObject.getAsBoolean()) {
+            if (dataObject != null && dataObject.isJsonPrimitive()) try {
+                if (module.isToggled() != dataObject.getAsBoolean()) {
                     module.setToggled(dataObject.getAsBoolean());
                 }
             } catch (Exception e) {e.printStackTrace();}
@@ -200,10 +200,10 @@ public class ConfigLoader {
 
         JsonObject settingObject = moduleObject.get("Modules").getAsJsonObject();
 
-        for(Module module : Kisman.instance.moduleManager.modules) {
+        for (Module module : Kisman.instance.moduleManager.modules) {
             JsonElement dataObject = settingObject.get(module.getName());
 
-            if(dataObject != null && dataObject.isJsonPrimitive()) {
+            if (dataObject != null && dataObject.isJsonPrimitive()) {
                 try {
                     module.hold = (dataObject.getAsBoolean());
                 } catch (Exception e) {e.printStackTrace();}
@@ -214,7 +214,7 @@ public class ConfigLoader {
     }
 
     private static void loadHud() throws IOException {
-        for(HudModule module : Kisman.instance.hudModuleManager.modules) loadHudDirect(module);
+        for (HudModule module : Kisman.instance.hudModuleManager.modules) loadHudDirect(module);
     }
 
     private static void loadHudDirect(HudModule module) throws IOException {

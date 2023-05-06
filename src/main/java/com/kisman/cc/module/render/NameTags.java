@@ -61,7 +61,7 @@ public class  NameTags extends Module {
 
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
-        for(EntityPlayer p : mc.world.playerEntities) {
+        for (EntityPlayer p : mc.world.playerEntities) {
             if (p != mc.getRenderViewEntity() && p.isEntityAlive()) {
                 if (damageDisplay.getValBoolean()) {
                     if (!this.tagList.containsKey(p.getName())) {

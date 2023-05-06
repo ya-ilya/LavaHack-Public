@@ -18,30 +18,30 @@ public class SliderCommand extends Command{
         try {
             module = args[0];
             name = args[1];
-        } catch(Exception e) {
+        } catch (Exception e) {
             error("Usage: " + getSyntax());
             return;
         }
 
         try {
             Kisman.instance.moduleManager.getModule(module);
-        } catch(Exception e) {
+        } catch (Exception e) {
             error("Module " + module + " does not exist!");
             return;
         }
 
         try {
             Kisman.instance.settingManager.getSettingByName(Kisman.instance.moduleManager.getModule(module), name).getValDouble();
-        } catch(Exception e) {
+        } catch (Exception e) {
             String oldName = name;
-            for(Setting set : Kisman.instance.settingManager.getSettingsByMod(Kisman.instance.moduleManager.getModule(module))) {
+            for (Setting set : Kisman.instance.settingManager.getSettingsByMod(Kisman.instance.moduleManager.getModule(module))) {
                 String updString = set.getName().replace(" ", "");
-                if(updString.equalsIgnoreCase(name)) {
+                if (updString.equalsIgnoreCase(name)) {
                     name = updString;
                     break;
                 }
             }
-            if(!oldName.equalsIgnoreCase(name)) {
+            if (!oldName.equalsIgnoreCase(name)) {
                 error("Setting " + name + " in module " + module + " does not exist!");
                 return;
             }
@@ -49,23 +49,23 @@ public class SliderCommand extends Command{
 
         try {
             value = Double.parseDouble(args[2]);
-        } catch(Exception e) {
+        } catch (Exception e) {
             error("Value error! <value> isnt double!");
             return;
         }
 
         try {
-            if(Kisman.instance.settingManager.getSettingByName(Kisman.instance.moduleManager.getModule(module), name) != null){
+            if (Kisman.instance.settingManager.getSettingByName(Kisman.instance.moduleManager.getModule(module), name) != null){
                 Kisman.instance.settingManager.getSettingByName(Kisman.instance.moduleManager.getModule(module), name).setValDouble(value);
                 message("Value " + name + " changed to " + value);
             } else {
                 String parsedName = name.replace('_', ' ');
-                if(Kisman.instance.settingManager.getSettingByName(Kisman.instance.moduleManager.getModule(module), parsedName) != null){
+                if (Kisman.instance.settingManager.getSettingByName(Kisman.instance.moduleManager.getModule(module), parsedName) != null){
                     Kisman.instance.settingManager.getSettingByName(Kisman.instance.moduleManager.getModule(module), parsedName).setValDouble(value);
                     message("Value " + parsedName + " changed to " + value);
                 }
             }
-        } catch(Exception e) {error("Usage: " + getSyntax());}
+        } catch (Exception e) {error("Usage: " + getSyntax());}
     }
 
     @Override

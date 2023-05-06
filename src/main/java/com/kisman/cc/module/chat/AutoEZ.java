@@ -39,7 +39,7 @@ public class AutoEZ extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
         if (this.targetedPlayers == null) this.targetedPlayers = new ConcurrentHashMap<>();
 
         for (Entity entity : mc.world.loadedEntityList) {
@@ -56,7 +56,7 @@ public class AutoEZ extends Module {
         }
 
         targetedPlayers.forEach((name, timeout) -> {
-            if(timeout < 0) targetedPlayers.remove(name);
+            if (timeout < 0) targetedPlayers.remove(name);
             else targetedPlayers.put(name, timeout - 1);
         });
     }
@@ -64,14 +64,14 @@ public class AutoEZ extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
-        if(mc.player != null) {
-            if(targetedPlayers == null) targetedPlayers = new ConcurrentHashMap<>();
+        if (mc.player != null) {
+            if (targetedPlayers == null) targetedPlayers = new ConcurrentHashMap<>();
 
-            if(event.getPacket() instanceof CPacketUseEntity) {
+            if (event.getPacket() instanceof CPacketUseEntity) {
                 CPacketUseEntity packet = (CPacketUseEntity) event.getPacket();
-                if(packet.action.equals(CPacketUseEntity.Action.ATTACK)) {
+                if (packet.action.equals(CPacketUseEntity.Action.ATTACK)) {
                     Entity entity = packet.getEntityFromWorld(mc.world);
-                    if(entity instanceof EntityPlayer) addTargetedPlayer(entity.getName());
+                    if (entity instanceof EntityPlayer) addTargetedPlayer(entity.getName());
                 }
             }
         }
@@ -79,15 +79,15 @@ public class AutoEZ extends Module {
 
     @SubscribeEvent
     public void onLivingDeath(LivingDeathEvent event) {
-        if(mc.player != null) {
-            if(targetedPlayers == null) targetedPlayers = new ConcurrentHashMap<>();
+        if (mc.player != null) {
+            if (targetedPlayers == null) targetedPlayers = new ConcurrentHashMap<>();
 
             EntityLivingBase entity = event.getEntityLiving();
-            if(entity instanceof EntityPlayer) {
+            if (entity instanceof EntityPlayer) {
                 EntityPlayer player = (EntityPlayer) entity;
-                if(player.getHealth() < 0) {
+                if (player.getHealth() < 0) {
                     String name = player.getName();
-                    if(shouldAnnounce(name)) doAnnounce(name);
+                    if (shouldAnnounce(name)) doAnnounce(name);
                 }
             }
         }

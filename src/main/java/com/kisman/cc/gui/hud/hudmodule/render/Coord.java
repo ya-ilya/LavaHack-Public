@@ -20,15 +20,15 @@ public class Coord extends HudModule {
     }
 
     public void update() {
-        if(mc.player != null && mc.world != null) {
-            if(mc.player.dimension == 0) {
+        if (mc.player != null && mc.world != null) {
+            if (mc.player.dimension == 0) {
                 posX = (int) mc.player.posX;
                 posY = (int) mc.player.posY;
                 posZ = (int) mc.player.posZ;
                 nPosX = (int) (mc.player.posX / 8);
                 nPosY = (int) (mc.player.posY / 8);
                 nPosZ = (int) (mc.player.posZ / 8);
-            } else if(mc.player.dimension == -1) {
+            } else if (mc.player.dimension == -1) {
                 posX = (int) mc.player.posX;
                 posY = (int) mc.player.posY;
                 posZ = (int) mc.player.posZ;
@@ -43,18 +43,18 @@ public class Coord extends HudModule {
     public void onRender(RenderGameOverlayEvent.Text event) {
         ScaledResolution sr = new ScaledResolution(mc);
 
-        if(event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
+        if (event.getType() == RenderGameOverlayEvent.ElementType.TEXT) {
             int color = HUD.instance.astolfoColor.getValBoolean() ? ColorUtil.astolfoColors(100, 100) : -1;
             String coordString = "X: " + "(" + posX + ")[" + nPosX + "]" + " Y: " + "(" + posY + ")[" + nPosY + "]" + " Z: " + "(" + posZ + ")[" + nPosZ + "]";
             String rotationString = "Yaw: " + ((int) mc.player.rotationYaw >= 360 ? 0 : (int) mc.player.rotationYaw) + " Pitch: " + (int) mc.player.rotationPitch;
 
-            if(HUD.instance.background.getValBoolean()) {
+            if (HUD.instance.background.getValBoolean()) {
                 double offset = HUD.instance.offsets.getValDouble() / 2 + 1;
                 Render2DUtil.drawRect(0, sr.getScaledHeight() - CustomFontUtil.getFontHeight() - 2 - offset, CustomFontUtil.getStringWidth(coordString) + 3 + offset, sr.getScaledHeight() + offset, ColorUtil.injectAlpha(Color.BLACK, HUD.instance.bgAlpha.getValInt()).getRGB());
                 Render2DUtil.drawRect(0, sr.getScaledHeight() - CustomFontUtil.getFontHeight() * 2 - 4 - offset, CustomFontUtil.getStringWidth(rotationString) + 3 + offset, sr.getScaledHeight() - CustomFontUtil.getFontHeight() - 3 + offset, ColorUtil.injectAlpha(Color.BLACK, HUD.instance.bgAlpha.getValInt()).getRGB());
             }
 
-            if(HUD.instance.glow.getValBoolean()) {
+            if (HUD.instance.glow.getValBoolean()) {
                 double offset = HUD.instance.glowOffset.getValDouble() + HUD.instance.offsets.getValDouble() / 2;
                 Render2DUtil.drawGlow(0, sr.getScaledHeight() - CustomFontUtil.getFontHeight() - 2 - offset, CustomFontUtil.getStringWidth(coordString) + 2, sr.getScaledHeight() + offset, ColorUtil.injectAlpha(color, HUD.instance.glowAlpha.getValInt()).getRGB());
                 Render2DUtil.drawGlow(0, sr.getScaledHeight() - CustomFontUtil.getFontHeight() * 2 - 4 - offset, CustomFontUtil.getStringWidth(rotationString) + 2, sr.getScaledHeight() - CustomFontUtil.getFontHeight() - 3 + offset, ColorUtil.injectAlpha(color, HUD.instance.glowAlpha.getValInt()).getRGB());

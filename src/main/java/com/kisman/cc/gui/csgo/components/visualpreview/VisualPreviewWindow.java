@@ -37,7 +37,7 @@ public class VisualPreviewWindow implements Globals {
         renderer.drawRect(x, y, width, height, Window.BACKGROUND);
         renderer.drawRect(x, y, width, headerHeight, Window.SECONDARY_FOREGROUND);
 
-        if(Config.instance.guiGlow.getValBoolean()) Render2DUtil.drawRoundedRect(x / 2, y / 2, (x + width) / 2, (y + headerHeight) / 2, Window.SECONDARY_FOREGROUND, Config.instance.glowBoxSize.getValDouble());
+        if (Config.instance.guiGlow.getValBoolean()) Render2DUtil.drawRoundedRect(x / 2, y / 2, (x + width) / 2, (y + headerHeight) / 2, Window.SECONDARY_FOREGROUND, Config.instance.glowBoxSize.getValDouble());
 
         renderer.drawString(x + width / 2 - renderer.getStringWidth(title) / 2, y + headerFontOffset, title, Config.instance.guiAstolfo.getValBoolean() ? renderer.astolfoColorToObj() : Window.FOREGROUND);
 

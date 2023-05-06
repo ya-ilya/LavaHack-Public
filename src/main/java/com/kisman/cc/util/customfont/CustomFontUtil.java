@@ -70,8 +70,8 @@ public class CustomFontUtil {
         if (customFont()) {
             y += 2;
             Object font = CustomFontUtilKt.Companion.getCustomFont(getCustomFontName(), gui);
-            if(font instanceof CFontRenderer) ((CFontRenderer) font).drawString(getStringModofiers() + text, x, y - 1.0D, color, false);
-            else if(font instanceof CustomFontRenderer) ((CustomFontRenderer) font).drawString(getStringModofiers() + text, x, y - 1.0D, color, false);
+            if (font instanceof CFontRenderer) ((CFontRenderer) font).drawString(getStringModofiers() + text, x, y - 1.0D, color, false);
+            else if (font instanceof CustomFontRenderer) ((CustomFontRenderer) font).drawString(getStringModofiers() + text, x, y - 1.0D, color, false);
         } else fontRenderer.drawString(getStringModofiers() + text, (int)x, (int)y, color);
     }
 
@@ -79,8 +79,8 @@ public class CustomFontUtil {
         if (customFont()) {
             y += 2;
             Object font = CustomFontUtilKt.Companion.getCustomFont(getCustomFontName());
-            if(font instanceof CFontRenderer) return (int) ((CFontRenderer) font).drawString(getStringModofiers() + text, x, y - 1.0D, color, false);
-            else if(font instanceof CustomFontRenderer) return (int) ((CustomFontRenderer) font).drawString(getStringModofiers() + text, x, y - 1.0D, color, false);
+            if (font instanceof CFontRenderer) return (int) ((CFontRenderer) font).drawString(getStringModofiers() + text, x, y - 1.0D, color, false);
+            else if (font instanceof CustomFontRenderer) return (int) ((CustomFontRenderer) font).drawString(getStringModofiers() + text, x, y - 1.0D, color, false);
         }
         return fontRenderer.drawString(getStringModofiers() + text, (int)x, (int)y, color);
     }
@@ -89,8 +89,8 @@ public class CustomFontUtil {
         if (customFont()) {
             y += 2;
             Object font = CustomFontUtilKt.Companion.getCustomFont(getCustomFontName());
-            if(font instanceof CFontRenderer) return (int) ((CFontRenderer) font).drawStringWithShadow(getStringModofiers() + text, x, y - 1.0D, color);
-            else if(font instanceof CustomFontRenderer) return (int) ((CustomFontRenderer) font).drawStringWithShadow(getStringModofiers() + text, x, y - 1.0D, color);
+            if (font instanceof CFontRenderer) return (int) ((CFontRenderer) font).drawStringWithShadow(getStringModofiers() + text, x, y - 1.0D, color);
+            else if (font instanceof CustomFontRenderer) return (int) ((CustomFontRenderer) font).drawStringWithShadow(getStringModofiers() + text, x, y - 1.0D, color);
         }
         return fontRenderer.drawStringWithShadow(getStringModofiers() + text, (float)x, (float)y, color);
     }
@@ -99,8 +99,8 @@ public class CustomFontUtil {
         if (customFont()) {
             y += 2;
             Object font = CustomFontUtilKt.Companion.getCustomFont(getCustomFontName());
-            if(font instanceof CFontRenderer) ((CFontRenderer) font).drawCenteredStringWithShadow(getStringModofiers() + text, x, y - 1, color);
-            else if(font instanceof CustomFontRenderer) ((CustomFontRenderer) font).drawCenteredStringWithShadow(getStringModofiers() + text, (float) x, (float) y - 1, color);
+            if (font instanceof CFontRenderer) ((CFontRenderer) font).drawCenteredStringWithShadow(getStringModofiers() + text, x, y - 1, color);
+            else if (font instanceof CustomFontRenderer) ((CustomFontRenderer) font).drawCenteredStringWithShadow(getStringModofiers() + text, (float) x, (float) y - 1, color);
         } else fontRenderer.drawStringWithShadow(getStringModofiers() + text, (float) x - fontRenderer.getStringWidth(getStringModofiers() + text) / 2.0F, (float) y, color);
     }
 
@@ -126,9 +126,9 @@ public class CustomFontUtil {
 
     private static String getStringModofiers() {
         String str = "";
-        if(CustomFont.instance != null) {
-            if(CustomFont.instance.italic.getValBoolean()) str += TextFormatting.ITALIC;
-            if(CustomFont.instance.bold.getValBoolean() && getCustomFontName().equalsIgnoreCase("Verdana")) str += TextFormatting.BOLD;
+        if (CustomFont.instance != null) {
+            if (CustomFont.instance.italic.getValBoolean()) str += TextFormatting.ITALIC;
+            if (CustomFont.instance.bold.getValBoolean() && getCustomFontName().equalsIgnoreCase("Verdana")) str += TextFormatting.BOLD;
         }
         return str;
     }

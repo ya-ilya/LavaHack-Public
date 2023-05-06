@@ -32,7 +32,7 @@ public class NoFall extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
-        if(event.getPacket() instanceof CPacketPlayer) {
+        if (event.getPacket() instanceof CPacketPlayer) {
             CPacketPlayer packet = (CPacketPlayer) event.getPacket();
             switch(mode.getValString()) {
                 case "Packet":
@@ -65,11 +65,11 @@ public class NoFall extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
-        if(mode.getValString().equalsIgnoreCase(Mode.Bucket.name())) {
+        if (mode.getValString().equalsIgnoreCase(Mode.Bucket.name())) {
             int bucketSlot = InventoryUtil.findItem(Items.WATER_BUCKET, 0, 9);
             int oldSlot = mc.player.inventory.currentItem;
 
-            if(bucketSlot != -1) {
+            if (bucketSlot != -1) {
                 Vec3d positionVector = mc.player.getPositionVector();
                 RayTraceResult rayTraceBlocks = mc.world.rayTraceBlocks(positionVector, new Vec3d(positionVector.x, positionVector.y - 3.0, positionVector.z), true);
 

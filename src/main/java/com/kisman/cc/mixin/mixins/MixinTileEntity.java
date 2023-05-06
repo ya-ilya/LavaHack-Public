@@ -11,6 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinTileEntity {
     @Inject(method = "getMaxRenderDistanceSquared", at = @At("HEAD"), cancellable = true)
     public void getMxRenderDistanceSquaredHook(CallbackInfoReturnable<Double> cir) {
-        if(Optimizer.instance != null && Optimizer.instance.isToggled()) cir.setReturnValue(Optimizer.instance.tileEntityRenderRange.getValDouble());
+        if (Optimizer.instance != null && Optimizer.instance.isToggled()) cir.setReturnValue(Optimizer.instance.tileEntityRenderRange.getValDouble());
     }
 }

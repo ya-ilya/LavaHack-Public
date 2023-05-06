@@ -31,7 +31,7 @@ public class AbstractGradient extends Gui {
 
     public void render() {
         GL11.glPushMatrix();
-        if(vertical) {
+        if (vertical) {
             float f = (float)(start.getRGB()  >> 24 & 255) / 255.0F;
             float f1 = (float)(start.getRGB()  >> 16 & 255) / 255.0F;
             float f2 = (float)(start.getRGB()  >> 8 & 255) / 255.0F;

@@ -82,7 +82,7 @@ public class Anchor extends Module {
 
         if (mc.player.rotationPitch >= pitch) {
             if (isBlockHole(PlayerUtil.getPlayerPos().down(1)) || isBlockHole(PlayerUtil.getPlayerPos().down(2)) || isBlockHole(PlayerUtil.getPlayerPos().down(3)) || isBlockHole(PlayerUtil.getPlayerPos().down(4))) {
-                if(mode.getValString().equals(Mode.Motion.name())) {
+                if (mode.getValString().equals(Mode.Motion.name())) {
                     center = getCenter(mc.player.posX, mc.player.posY, mc.player.posZ);
 
                     double xDiff = Math.abs(center.x - mc.player.posX);
@@ -96,9 +96,9 @@ public class Anchor extends Module {
                         mc.player.motionX = motionX / 2;
                         mc.player.motionZ = motionZ / 2;
                     }
-                    if(fastFall.getValBoolean() && !lagTimeCheck()) mc.player.motionY = -fastFallMotion.getValDouble();
+                    if (fastFall.getValBoolean() && !lagTimeCheck()) mc.player.motionY = -fastFallMotion.getValDouble();
                     using = true;
-                } else if(mode.getValString().equals(Mode.Teleport.name())) {
+                } else if (mode.getValString().equals(Mode.Teleport.name())) {
                     if (!mc.player.onGround) this.jumped = mc.gameSettings.keyBindJump.isKeyDown();
         
                     if (!this.jumped && mc.player.fallDistance < 0.5 && BlockUtil.isInHole() && mc.player.posY - BlockUtil.getNearestBlockBelow() <= 1.125 && mc.player.posY - BlockUtil.getNearestBlockBelow() <= 0.95 && !EntityUtil.isOnLiquid() && !EntityUtil.isInLiquid()) {
@@ -111,19 +111,19 @@ public class Anchor extends Module {
                         }
                     }
 
-                    if(fastFall.getValBoolean() && !lagTimeCheck()) mc.player.motionY = -fastFallMotion.getValDouble();
+                    if (fastFall.getValBoolean() && !lagTimeCheck()) mc.player.motionY = -fastFallMotion.getValDouble();
                 }
             } else using = false;
         }
 
-        if(isBlockHole(PlayerUtil.getPlayerPos())) using = false;
+        if (isBlockHole(PlayerUtil.getPlayerPos())) using = false;
 
-        if(using && timer.getValBoolean()) EntityUtil.setTimer(timerValue.getValFloat());
+        if (using && timer.getValBoolean()) EntityUtil.setTimer(timerValue.getValFloat());
         else EntityUtil.resetTimer();
 
-        if(isBlockHole(PlayerUtil.getPlayerPos())) {
-            if(disableAfterComplete.getValBoolean()) super.setToggled(false);
-            if(using) using = false;
+        if (isBlockHole(PlayerUtil.getPlayerPos())) {
+            if (disableAfterComplete.getValBoolean()) super.setToggled(false);
+            if (using) using = false;
         }
     }
 

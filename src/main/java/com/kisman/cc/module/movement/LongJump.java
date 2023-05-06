@@ -14,7 +14,7 @@ public class LongJump extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         if (mc.player.onGround) {
             if (mc.player.hurtTime <= 6) {

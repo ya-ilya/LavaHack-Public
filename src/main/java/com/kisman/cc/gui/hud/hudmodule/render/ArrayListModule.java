@@ -28,7 +28,7 @@ public class ArrayListModule extends HudModule {
         java.util.ArrayList<Module> mods = new java.util.ArrayList<>();
         ScaledResolution sr = new ScaledResolution(mc);
 
-        for(Module mod : Kisman.instance.moduleManager.modules) if(mod != null && mod.isToggled() && mod.visible) mods.add(mod);
+        for (Module mod : Kisman.instance.moduleManager.modules) if (mod != null && mod.isToggled() && mod.visible) mods.add(mod);
 
         Comparator<Module> comparator = (first, second) -> {
             String firstName = first.getName() + (first.getDisplayInfo().equalsIgnoreCase("") ? "" : " " + TextFormatting.GRAY + first.getDisplayInfo());

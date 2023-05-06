@@ -89,12 +89,12 @@ class BlockHighlight : Module("BlockHighlight", "Highlights object you are looki
             alpha.valBoolean
         ).draw(event.partialTicks)
 
-        if(crystalInfo.valBoolean && hitObject.typeOfHit == RayTraceResult.Type.BLOCK) {
+        if (crystalInfo.valBoolean && hitObject.typeOfHit == RayTraceResult.Type.BLOCK) {
             val target = EntityUtil.getTarget(crystalInfoTargetRange.valFloat)
             val text = "${
                 String.format("%.1f", AutoRerUtil.getSelfDamageByCrystal(crystalInfoTerrain.valBoolean, hitObject.blockPos))
             }/${
-                if(target != null) String.format("%.1f", AutoRerUtil.getDamageByCrystal(target, crystalInfoTerrain.valBoolean, hitObject.blockPos))
+                if (target != null) String.format("%.1f", AutoRerUtil.getDamageByCrystal(target, crystalInfoTerrain.valBoolean, hitObject.blockPos))
                 else "0.0"
             }"
 

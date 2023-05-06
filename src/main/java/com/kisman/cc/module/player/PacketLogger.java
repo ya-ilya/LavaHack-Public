@@ -30,16 +30,16 @@ public class PacketLogger extends Module{
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
-        if(!client.getValBoolean()) return;
+        if (!client.getValBoolean()) return;
 
         StringBuilder message = new StringBuilder("Client -> " + event.getPacket().getClass().getName());
 
-        if(values.getValBoolean()) for(Field field : event.getPacket().getClass().getDeclaredFields()) message.append(" ").append(field.getName()).append("[").append(field).append("]");
+        if (values.getValBoolean()) for (Field field : event.getPacket().getClass().getDeclaredFields()) message.append(" ").append(field.getName()).append("[").append(field).append("]");
         
         ChatUtil.simpleMessage(message.toString());
-        if(PacketChat.Instance.logs.activeMessages.size()+1>10)
+        if (PacketChat.Instance.logs.activeMessages.size()+1>10)
         {
-            if(PacketChat.Instance.logs.passiveMessages.size()+1>10)
+            if (PacketChat.Instance.logs.passiveMessages.size()+1>10)
                 PacketChat.Instance.logs.passiveMessages.remove(0);
 
             PacketChat.Instance.up();
@@ -51,11 +51,11 @@ public class PacketLogger extends Module{
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
-        if(!server.getValBoolean()) return;
+        if (!server.getValBoolean()) return;
 
         StringBuilder message = new StringBuilder("Server -> " + event.getPacket().getClass().getName());
 
-        if(values.getValBoolean()) for(Field field : event.getPacket().getClass().getDeclaredFields()) message.append(" ").append(field.getName()).append("[").append(field).append("]");
+        if (values.getValBoolean()) for (Field field : event.getPacket().getClass().getDeclaredFields()) message.append(" ").append(field.getName()).append("[").append(field).append("]");
         
         ChatUtil.simpleMessage(message.toString());
     });

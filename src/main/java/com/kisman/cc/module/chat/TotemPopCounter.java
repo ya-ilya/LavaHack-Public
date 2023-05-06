@@ -21,10 +21,10 @@ public class TotemPopCounter extends Module {
 
     @SubscribeEvent
     public void onTotemPop(TotemPopEvent event) {
-        if(event.getEntity() instanceof EntityPlayer) {
+        if (event.getEntity() instanceof EntityPlayer) {
             boolean isFriend = Kisman.instance.friendManager.isFriend((EntityPlayer) event.getEntity());
-            if(isFriend && target.getValString().equals("Only Other Players")) return;
-            if(!isFriend && target.getValString().equals("Only Friends")) return;
+            if (isFriend && target.getValString().equals("Only Other Players")) return;
+            if (!isFriend && target.getValString().equals("Only Friends")) return;
 
             ChatUtil.warning((isFriend ? TextFormatting.AQUA : TextFormatting.GRAY) + event.getEntity().getName() + TextFormatting.GRAY + " was popped totem!");
         }

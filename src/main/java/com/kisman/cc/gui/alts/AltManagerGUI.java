@@ -52,7 +52,7 @@ public class AltManagerGUI extends GuiScreen {
 		this.drawString(mc.fontRenderer, s, 4, 6, 0xFFAAAAAA);
 		this.drawString(mc.fontRenderer, mc.getSession().getUsername(), mc.fontRenderer.getStringWidth(s) + 3, 6, -1);
 		this.crackedNameField.drawTextBox();
-		if(!this.crackedNameField.isFocused()) this.crackedNameField.setText(mc.getSession().getUsername());
+		if (!this.crackedNameField.isFocused()) this.crackedNameField.setText(mc.getSession().getUsername());
 		delete.enabled = this.altList.getVisibility().get();
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}
@@ -72,12 +72,12 @@ public class AltManagerGUI extends GuiScreen {
 	
 	@Override
 	public void keyTyped(char typedChar, int keyCode) throws IOException {
-		if(keyCode == Keyboard.KEY_ESCAPE) {
+		if (keyCode == Keyboard.KEY_ESCAPE) {
 			mc.displayGuiScreen(this.lastGui);
 			return;
 		}
 		this.crackedNameField.textboxKeyTyped(typedChar, keyCode);
-		if(keyCode == Keyboard.KEY_RETURN) {
+		if (keyCode == Keyboard.KEY_RETURN) {
 			((ISession) mc.getSession()).setUsername(this.crackedNameField.getText());
 			this.crackedNameField.setFocused(false);
 		}
@@ -93,7 +93,7 @@ public class AltManagerGUI extends GuiScreen {
 				break;
 			}
 			case 2 : {
-				if(this.altList.getVisibility().get()) {
+				if (this.altList.getVisibility().get()) {
 					AltEntry e = this.altList.getAlts().get(this.altList.getSelectedId());
 					this.altList.getAlts().remove(e);
 					AltManager.getAlts().remove(e);

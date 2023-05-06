@@ -41,13 +41,13 @@ class ChatModifier : Module(
                 !event.message.startsWith(":") &&
                 !event.message.startsWith("-") &&
                 !event.message.startsWith("+")) {
-            if(autoGlobal.valBoolean) {
+            if (autoGlobal.valBoolean) {
                 event.message = "!${event.message}"
             }
-            if(suffix.valBoolean) {
+            if (suffix.valBoolean) {
                 event.message = "${event.message} | ${Kisman.getName()} own you and all"
             }
-            if(antiSpamBypass.valBoolean) {
+            if (antiSpamBypass.valBoolean) {
                 event.message = "${event.message} | ${Random.nextInt()}"
             }
         }

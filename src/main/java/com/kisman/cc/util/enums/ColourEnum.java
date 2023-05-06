@@ -21,8 +21,8 @@ public enum ColourEnum {
         }
 
         public Colour getColour() {
-                if(mode == Colour.COLOR_RAINBOW) return new Colour(ColorUtil.rainbow(delay, offset));
-                if(mode == Colour.COLOR_ASTOLFO) return Kisman.canUseImplAstolfo() ? new Colour(ColorUtil.getAstolfoRainbow(offset)) : new Colour(ColorUtil.astolfoColors(offset, offset));
+                if (mode == Colour.COLOR_RAINBOW) return new Colour(ColorUtil.rainbow(delay, offset));
+                if (mode == Colour.COLOR_ASTOLFO) return Kisman.canUseImplAstolfo() ? new Colour(ColorUtil.getAstolfoRainbow(offset)) : new Colour(ColorUtil.astolfoColors(offset, offset));
                 return primary;
         }
 }

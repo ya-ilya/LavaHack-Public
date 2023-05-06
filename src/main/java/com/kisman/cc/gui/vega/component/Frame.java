@@ -32,8 +32,8 @@ public class Frame {
         this.renderTimer.reset();
         int offset = height;
 
-        for(Module mod : Kisman.instance.moduleManager.modules) {
-            if(mod.getCategory().equals(cat)) {
+        for (Module mod : Kisman.instance.moduleManager.modules) {
+            if (mod.getCategory().equals(cat)) {
                 buttons.add(new Button(this.x, this.y, offset, width, height, this, mod));
                 offset += height;
             }
@@ -63,11 +63,11 @@ public class Frame {
 
         CustomFontUtil.drawCenteredStringWithShadow(str, x + (width / 2), y + ((height - CustomFontUtil.getFontHeight()) / 2), open ? ColorUtil.astolfoColors(100, 100) : -1);
 
-        if(open && !buttons.isEmpty()) for (Button button : buttons) button.renderComponent();
+        if (open && !buttons.isEmpty()) for (Button button : buttons) button.renderComponent();
     }
 
     public void updateComponent(int mouseX, int mouseY) {
-        if(dragging) {
+        if (dragging) {
             x = mouseX - dragX;
             y = mouseY - dragY;
         }
@@ -80,12 +80,12 @@ public class Frame {
     public void refresh() {
         int off = height;
 
-        for(Button b : buttons) {
+        for (Button b : buttons) {
             b.offset = off;
             off += height;
 
-            if(b.open) {
-                for(Component comp : b.comp) {
+            if (b.open) {
+                for (Component comp : b.comp) {
                     comp.newOff(off);
                     comp.renderComponent();
                     off += height;

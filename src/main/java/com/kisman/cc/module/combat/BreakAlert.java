@@ -40,16 +40,16 @@ public class BreakAlert extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null || blocksBeginBroken.isEmpty()) return;
+        if (mc.player == null || mc.world == null || blocksBeginBroken.isEmpty()) return;
 
-        for(int i = 0; i < blocksBeginBroken.size(); i++) if(messageType.getValString().equalsIgnoreCase(MessageType.Chat.name())) ChatUtil.warning(TextFormatting.DARK_PURPLE + "Break Alert! " + TextFormatting.LIGHT_PURPLE + "Your surround blocks is mining!");
+        for (int i = 0; i < blocksBeginBroken.size(); i++) if (messageType.getValString().equalsIgnoreCase(MessageType.Chat.name())) ChatUtil.warning(TextFormatting.DARK_PURPLE + "Break Alert! " + TextFormatting.LIGHT_PURPLE + "Your surround blocks is mining!");
     }
 
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent.Text event) {
-        if(renderTimer.passedMillis(displayShowDelay.getValLong())){
-            for(int i = 0; i < blocksBeginBroken.size(); i++) {
-               if(messageType.getValString().equalsIgnoreCase(MessageType.Display.name())) {
+        if (renderTimer.passedMillis(displayShowDelay.getValLong())){
+            for (int i = 0; i < blocksBeginBroken.size(); i++) {
+               if (messageType.getValString().equalsIgnoreCase(MessageType.Display.name())) {
                     ScaledResolution sr = new ScaledResolution(mc);
                     CustomFontUtil.comfortaab72.drawCenteredStringWithShadow(TextFormatting.DARK_PURPLE + "Break Alert!", sr.getScaledWidth() / 2, sr.getScaledHeight() / 2 - CustomFontUtil.getFontHeight(CustomFontUtil.comfortaab72), -1);
                     CustomFontUtil.comfortaab55.drawCenteredStringWithShadow(TextFormatting.LIGHT_PURPLE + "Your surround blocks is mining!", sr.getScaledWidth() / 2, sr.getScaledHeight() / 2 + 5, -1);
@@ -61,12 +61,12 @@ public class BreakAlert extends Module {
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Receive> packetReceiveEvent = listener(event -> {
-        if(event.getPacket() instanceof SPacketBlockBreakAnim) {
+        if (event.getPacket() instanceof SPacketBlockBreakAnim) {
             SPacketBlockBreakAnim packet = (SPacketBlockBreakAnim) event.getPacket();
 
-            if(getSurroundBlocks().isEmpty() || !getSurroundBlocks().contains(packet.getPosition())) return;
-            if(!blocksBeginBroken.contains(packet.getPosition()) && packet.getProgress() > 0 && packet.getProgress() <= 10) blocksBeginBroken.add(packet.getPosition());
-            else if(packet.getProgress() <= 0 || packet.getProgress() > 10) blocksBeginBroken.remove(packet.getPosition());
+            if (getSurroundBlocks().isEmpty() || !getSurroundBlocks().contains(packet.getPosition())) return;
+            if (!blocksBeginBroken.contains(packet.getPosition()) && packet.getProgress() > 0 && packet.getProgress() <= 10) blocksBeginBroken.add(packet.getPosition());
+            else if (packet.getProgress() <= 0 || packet.getProgress() > 10) blocksBeginBroken.remove(packet.getPosition());
         }
     });
 

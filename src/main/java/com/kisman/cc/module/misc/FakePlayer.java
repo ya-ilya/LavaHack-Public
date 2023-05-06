@@ -21,7 +21,7 @@ public class FakePlayer extends Module {
     }
 
     public void onEnable() {
-        if(mc.player == null || mc.world == null) {
+        if (mc.player == null || mc.world == null) {
             super.setToggled(false);
             return;
         }
@@ -38,11 +38,11 @@ public class FakePlayer extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) super.setToggled(false);
+        if (mc.player == null || mc.world == null) super.setToggled(false);
     }
 
     public void onDisable() {
-        if(mc.world == null || mc.player == null) return;
+        if (mc.world == null || mc.player == null) return;
         mc.world.removeEntityFromWorld(-1337);
     }
 }

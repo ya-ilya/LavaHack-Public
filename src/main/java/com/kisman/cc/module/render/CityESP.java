@@ -63,7 +63,7 @@ public class CityESP extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         cityable.clear();
 
@@ -72,9 +72,9 @@ public class CityESP extends Module {
                 .filter(entityPlayer -> entityPlayer.getDistanceSq(mc.player) <= range.getValDouble() * range.getValDouble())
                 .filter(entityPlayer -> !EntityUtil.basicChecksEntity(entityPlayer)).collect(Collectors.toList());
 
-        for(EntityPlayer player : players) {
+        for (EntityPlayer player : players) {
             List<BlockPos> blocks = EntityUtil.getBlocksIn(player);
-            if(blocks.size() == 0) continue;
+            if (blocks.size() == 0) continue;
             int minY = Integer.MAX_VALUE;
             for (BlockPos block : blocks) {
                 int y = block.getY();
@@ -92,11 +92,11 @@ public class CityESP extends Module {
             if (sides.size() > 0) cityable.put(player, sides);
         }
 
-        if(mine.getValBoolean()) {
-            if(mineKey.getKey() != Keyboard.KEY_NONE && Keyboard.isKeyDown(mineKey.getKey())) {
-                for(List<BlockPos> poss : cityable.values()) {
+        if (mine.getValBoolean()) {
+            if (mineKey.getKey() != Keyboard.KEY_NONE && Keyboard.isKeyDown(mineKey.getKey())) {
+                for (List<BlockPos> poss : cityable.values()) {
                     boolean found = false;
-                    for(BlockPos block : poss) {
+                    for (BlockPos block : poss) {
                         if (mc.player.getDistance(block.getX(), block.getY(), block.getZ()) <= mineDist.getValInt()) {
                             found = true;
                             if (packetMined && coordsPacketMined == block) break;
@@ -107,7 +107,7 @@ public class CityESP extends Module {
                                 if (slot != 1) mc.player.inventory.currentItem = slot;
                             }
 
-                            if(mineMode.getValString().equals(MineMode.Packet.name())) {
+                            if (mineMode.getValString().equals(MineMode.Packet.name())) {
                                 mc.player.swingArm(EnumHand.MAIN_HAND);
                                 mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.START_DESTROY_BLOCK, block, EnumFacing.UP));
                                 mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, block, EnumFacing.UP));

@@ -22,7 +22,7 @@ public class AbstractObject {
 
     public void render() {
         ColorUtil.glColor(color);
-        if(line) {
+        if (line) {
             glLineWidth(width);
             glBegin(GL_POINTS);
         } else glBegin(GL_POLYGON);
@@ -33,6 +33,6 @@ public class AbstractObject {
     }
 
     private void setupVectors() {
-        for(double[] vector : vectors) glVertex2d(vector[0], vector[1]);
+        for (double[] vector : vectors) glVertex2d(vector[0], vector[1]);
     }
 }

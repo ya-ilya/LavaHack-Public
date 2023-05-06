@@ -9,8 +9,8 @@ class TextUtil {
         }
 
         fun parseNumber(value: String): Double {
-            if(value.contains('.') || value.contains(',')) {
-                if(value.endsWith(",") || value.endsWith(".")) return Integer.parseInt(value.substring(0, value.length - 1).replace(".", ",")).toDouble()
+            if (value.contains('.') || value.contains(',')) {
+                if (value.endsWith(",") || value.endsWith(".")) return Integer.parseInt(value.substring(0, value.length - 1).replace(".", ",")).toDouble()
                 return java.lang.Double.parseDouble(value.replace(".", ","))
             } else {
                 return try {

@@ -12,7 +12,7 @@ class AutoRerUtil {
         val mc: Minecraft = Minecraft.getMinecraft()
 
         fun getDamageByCrystal(target: Entity, terrain: Boolean, crystal: BlockPos): Float {
-            if(mc.world == null) {
+            if (mc.world == null) {
                 return 0f
             }
             return CrystalUtils.calculateDamage(mc.world, crystal.x + 0.5f, crystal.y + 1, crystal.z + 0.5, target, terrain, true)

@@ -21,7 +21,7 @@ public class FastBreak extends Module{
     @SubscribeEvent
 	public void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event){
         float progress = ((AccessorPlayerControllerMP) mc.playerController).getCurBlockDamageMP() + getHardness(event.getPos());
-    	if(progress >= 1) return;
+    	if (progress >= 1) return;
     	mc.player.connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.STOP_DESTROY_BLOCK, event.getPos(), mc.objectMouseOver.sideHit));
 	}
 

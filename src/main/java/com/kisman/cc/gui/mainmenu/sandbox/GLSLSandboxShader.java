@@ -28,7 +28,7 @@ public class GLSLSandboxShader {
         int linked = glGetProgrami(program, GL_LINK_STATUS);
 
         // If linking failed
-        if(linked == 0) {
+        if (linked == 0) {
             Kisman.LOGGER.error(glGetShaderInfoLog(program, glGetProgrami(program, GL_INFO_LOG_LENGTH)));
             return;
         }
@@ -65,7 +65,7 @@ public class GLSLSandboxShader {
         int compiled = glGetShaderi( shader, GL_COMPILE_STATUS );
 
         // If compilation failed
-        if(compiled == 0) {
+        if (compiled == 0) {
             Kisman.LOGGER.error(glGetShaderInfoLog( shader, glGetShaderi(shader, GL_INFO_LOG_LENGTH)));
             Kisman.LOGGER.error("Caused by {}", check);
             return 0;
@@ -81,7 +81,7 @@ public class GLSLSandboxShader {
 
         int read;
 
-        while((read = inputStream.read(buffer, 0, buffer.length)) != -1)
+        while ((read = inputStream.read(buffer, 0, buffer.length)) != -1)
             out.write(buffer, 0, read);
 
         return new String(out.toByteArray(), StandardCharsets.UTF_8);

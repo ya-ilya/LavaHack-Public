@@ -32,7 +32,7 @@ public class BlockOutline extends Module {
 
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event) {
-        if(mc.objectMouseOver == null) return;
+        if (mc.objectMouseOver == null) return;
         if (mc.objectMouseOver.typeOfHit == RayTraceResult.Type.BLOCK) {
             Block block = BlockUtil.getBlock(mc.objectMouseOver.getBlockPos());
             BlockPos blockPos = mc.objectMouseOver.getBlockPos();
@@ -40,21 +40,21 @@ public class BlockOutline extends Module {
             if (Block.getIdFromBlock(block) == 0) return;
             float[] color = new float[] {colorVal.getColour().getColor().getRed() / 255f, colorVal.getColour().getColor().getGreen() / 255f, colorVal.getColour().getColor().getBlue() / 255f};
             String renderMode = this.renderMode.getValString();
-            if(renderMode.equalsIgnoreCase("OutlineBox")) {
+            if (renderMode.equalsIgnoreCase("OutlineBox")) {
                 RenderUtil.drawBlockESP(
                         blockPos,
                         color[0],
                         color[1],
                         color[2]
                 );
-            } else if(renderMode.equalsIgnoreCase("Flat")) {
+            } else if (renderMode.equalsIgnoreCase("Flat")) {
                 RenderUtil.drawBlockFlatESP(
                         blockPos,
                         color[0],
                         color[1],
                         color[2]
                 );
-            } else if(renderMode.equalsIgnoreCase("Outline")) {
+            } else if (renderMode.equalsIgnoreCase("Outline")) {
                 RenderUtil.drawBlockOutlineESP(
                         blockPos,
                         color[0],

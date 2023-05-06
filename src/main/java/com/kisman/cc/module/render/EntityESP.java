@@ -63,7 +63,7 @@ public class EntityESP extends Module{
     }
 
     public void onDisable() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
         glowings.forEach(entity -> entity.glowing = false);
     }
@@ -75,10 +75,10 @@ public class EntityESP extends Module{
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
         mc.world.loadedEntityList.stream().filter(this::isValid).forEach(entity -> {
-            if(entity instanceof EntityPlayer) render(entity, players.getValString(), playerColor.getColour().r1, playerColor.getColour().g1, playerColor.getColour().b1, event.getPartialTicks());
-            if(entity instanceof EntityMob) render(entity, monsters.getValString(), monstersColor.getColour().r1, monstersColor.getColour().g1, monstersColor.getColour().b1, event.getPartialTicks());
-            if(entity instanceof EntityAnimal) render(entity, passive.getValString(), passiveColor.getColour().r1, passiveColor.getColour().g1, passiveColor.getColour().b1, event.getPartialTicks());
-            if(entity instanceof EntityItem) render(entity, items.getValString(), itemsColor.getColour().r1, itemsColor.getColour().g1, itemsColor.getColour().b1, event.getPartialTicks());
+            if (entity instanceof EntityPlayer) render(entity, players.getValString(), playerColor.getColour().r1, playerColor.getColour().g1, playerColor.getColour().b1, event.getPartialTicks());
+            if (entity instanceof EntityMob) render(entity, monsters.getValString(), monstersColor.getColour().r1, monstersColor.getColour().g1, monstersColor.getColour().b1, event.getPartialTicks());
+            if (entity instanceof EntityAnimal) render(entity, passive.getValString(), passiveColor.getColour().r1, passiveColor.getColour().g1, passiveColor.getColour().b1, event.getPartialTicks());
+            if (entity instanceof EntityItem) render(entity, items.getValString(), itemsColor.getColour().r1, itemsColor.getColour().g1, itemsColor.getColour().b1, event.getPartialTicks());
         });
     }
 
@@ -97,7 +97,7 @@ public class EntityESP extends Module{
                 break;
             case "Glow":
                 entity.glowing = true;
-                if(!glowings.contains(entity)) glowings.add(entity);
+                if (!glowings.contains(entity)) glowings.add(entity);
                 break;
         }
     }

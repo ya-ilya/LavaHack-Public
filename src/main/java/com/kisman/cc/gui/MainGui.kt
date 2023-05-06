@@ -34,12 +34,12 @@ class MainGui {
             var startX = ScaledResolution(Minecraft.getMinecraft()).scaledWidth / 2 - getSelectionBarWidth() / 2
             Render2DUtil.drawRectWH(startX.toDouble(), 0.0, getSelectionBarWidth().toDouble(), (CustomFontUtil.getFontHeight() + offset * 2).toDouble(), backgroundColor.rgb)
 
-            for(gui in Guis.values()) {
+            for (gui in Guis.values()) {
                 CustomFontUtil.drawStringWithShadow(
                         gui.displayName,
                         (startX + offset).toDouble(),
                         offset.toDouble(),
-                        if(gui == selection) ColorUtil.astolfoColors(100, 100) else -1
+                        if (gui == selection) ColorUtil.astolfoColors(100, 100) else -1
                 )
                 startX += offset * 2 + CustomFontUtil.getStringWidth(gui.displayName)
             }
@@ -47,10 +47,10 @@ class MainGui {
 
         fun mouseClicked(mouseX : Int, mouseY : Int) : Boolean {
             val startX = ScaledResolution(Minecraft.getMinecraft()).scaledWidth / 2 - getSelectionBarWidth() / 2
-            if(mouseX >= startX && mouseX <= startX + getSelectionBarWidth() && mouseY >= 0 && mouseY <= CustomFontUtil.getFontHeight() + offset * 2) {
-                for((count, gui) in Guis.values().withIndex()) {
+            if (mouseX >= startX && mouseX <= startX + getSelectionBarWidth() && mouseY >= 0 && mouseY <= CustomFontUtil.getFontHeight() + offset * 2) {
+                for ((count, gui) in Guis.values().withIndex()) {
                     println("Click k $startX")
-                    if(mouseX >= startX + count * (offset * 2 + CustomFontUtil.getStringWidth(gui.displayName)) && mouseX <= startX + count * (offset * 2 + CustomFontUtil.getStringWidth(gui.displayName)) + (offset * 2 + CustomFontUtil.getStringWidth(gui.displayName))) {
+                    if (mouseX >= startX + count * (offset * 2 + CustomFontUtil.getStringWidth(gui.displayName)) && mouseX <= startX + count * (offset * 2 + CustomFontUtil.getStringWidth(gui.displayName)) + (offset * 2 + CustomFontUtil.getStringWidth(gui.displayName))) {
                         selection = gui
                         return false
                     }
@@ -62,7 +62,7 @@ class MainGui {
         private fun getSelectionBarWidth() : Int {
             var width = 0
 
-            for(gui in Guis.values()) {
+            for (gui in Guis.values()) {
                 width += offset * 2 + CustomFontUtil.getStringWidth(gui.displayName)
             }
 

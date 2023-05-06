@@ -26,10 +26,10 @@ public abstract class MixinEntityPlayer extends MixinEntityLivingBase {
 
     @Inject(method = "jump", at = @At("HEAD"), cancellable = true)
     private void jumpHook(CallbackInfo ci) {
-        if(Minecraft.getMinecraft().player.getName().equals(getName())) {
+        if (Minecraft.getMinecraft().player.getName().equals(getName())) {
             PlayerJumpEvent event = new PlayerJumpEvent();
             Kisman.EVENT_BUS.post(event);
-            if(event.isCancelled()) ci.cancel();
+            if (event.isCancelled()) ci.cancel();
         }
     }
 
@@ -38,7 +38,7 @@ public abstract class MixinEntityPlayer extends MixinEntityLivingBase {
         PlayerTravelEvent event = new PlayerTravelEvent(strafe, vertical, forward);
         Kisman.EVENT_BUS.post(event);
 
-        if(event.isCancelled()) {
+        if (event.isCancelled()) {
             move(MoverType.SELF, motionX, motionY, motionZ);
             ci.cancel();
         }

@@ -12,13 +12,13 @@ public class PigPOV extends Module {
     }
 
     public void onEnable() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
         mc.player.eyeHeight = 0.6f;
         mc.getRenderManager().entityRenderMap.put(EntityPig.class, new NoRenderPig(mc.getRenderManager(), mc));
     }
 
     public void onDisable() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
         mc.player.eyeHeight = mc.player.getDefaultEyeHeight();
         mc.getRenderManager().entityRenderMap.put(EntityPig.class, new RenderPig(mc.getRenderManager()));
     }

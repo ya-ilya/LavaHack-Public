@@ -36,7 +36,7 @@ public class FormatButton extends ActionButton {
     int x_end = (int)((float)(this.x + this.width) / scale);
     int y_end = (int)((float)(this.y + this.height) / scale);
 
-    if(this.format.isColor()) {
+    if (this.format.isColor()) {
       drawRect(x, y, x_end, y_end, 0xff000000 | this.fontRenderer.getColorCode(this.format.toString().charAt(1)));
     } else {
       this.fontRenderer.drawString(this.format.toString().substring(1), x + 2, y + 1, 0xffffffff);

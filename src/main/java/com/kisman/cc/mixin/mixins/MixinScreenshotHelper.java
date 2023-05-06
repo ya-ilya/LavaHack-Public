@@ -24,7 +24,7 @@ public class MixinScreenshotHelper {
     @Overwrite
     public static ITextComponent saveScreenshot(File gameDirectory, int width, int height, Framebuffer buffer) {
         ITextComponent screenshot = saveScreenshot(gameDirectory, null, width, height, buffer);
-        if(BetterScreenshot.instance != null && BetterScreenshot.instance.isToggled()) try {BetterScreenshot.copyToClipboard(BetterScreenshot.getLatestScreenshot());} catch (IOException ignored) {}
+        if (BetterScreenshot.instance != null && BetterScreenshot.instance.isToggled()) try {BetterScreenshot.copyToClipboard(BetterScreenshot.getLatestScreenshot());} catch (IOException ignored) {}
         return screenshot;
     }
 }

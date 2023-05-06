@@ -12,9 +12,9 @@ public class WeaknessLog extends Module {
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
 
-        if(mc.player.isPotionActive(MobEffects.WEAKNESS)) {
+        if (mc.player.isPotionActive(MobEffects.WEAKNESS)) {
             mc.player.connection.handleDisconnect(new SPacketDisconnect(new TextComponentString("you got weakness effect")));
             toggle();
         }

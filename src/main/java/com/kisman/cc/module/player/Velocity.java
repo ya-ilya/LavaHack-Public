@@ -42,14 +42,14 @@ public class Velocity extends Module{
     }
 
     public void update() {
-        if(mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null) return;
         String mode = settingManager.getSettingByName(this, "Mode").getValString();
         super.setDisplayInfo("[" + mode + "]");
 
-        if(mode.equalsIgnoreCase("Matrix")) {
+        if (mode.equalsIgnoreCase("Matrix")) {
             if (mc.world.getBlockState(new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ)).getBlock() == Block.getBlockById(0)) if (mc.player.hurtTime > 0) mc.player.motionY = -0.2;
-        } else if(mode.equalsIgnoreCase("Matrix 6.4")) if(mc.player.hurtTime > 8) mc.player.onGround = true;
-        else if(mode.equalsIgnoreCase("Vanilla") && mc.player.hurtTime == mc.player.maxHurtTime && mc.player.maxHurtTime > 0) {
+        } else if (mode.equalsIgnoreCase("Matrix 6.4")) if (mc.player.hurtTime > 8) mc.player.onGround = true;
+        else if (mode.equalsIgnoreCase("Vanilla") && mc.player.hurtTime == mc.player.maxHurtTime && mc.player.maxHurtTime > 0) {
             mc.player.motionX *= (double) horizontal.getValInt() / 100;
             mc.player.motionY *= (double) vertical.getValInt() / 100;
             mc.player.motionZ *= (double) horizontal.getValInt() / 100;
@@ -59,31 +59,31 @@ public class Velocity extends Module{
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerApplyCollisionEvent> applyCollisionListener = listener(event -> {
-        if(noPush.getValBoolean()) event.cancel();
+        if (noPush.getValBoolean()) event.cancel();
     });
 
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerPushedByWaterEvent> pushedByWaterListener = listener(event -> {
-        if(noPush.getValBoolean()) event.cancel();
+        if (noPush.getValBoolean()) event.cancel();
     });
 
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerPushOutOfBlocksEvent> pushOutOfBlocksListener = listener(event -> {
-        if(noPush.getValBoolean()) event.cancel();
+        if (noPush.getValBoolean()) event.cancel();
     });
 
     @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
-        if(event.getPacket() instanceof SPacketEntityVelocity) if(((SPacketEntityVelocity) event.getPacket()).getEntityID() == mc.player.getEntityId()) event.cancel();
-        if(event.getPacket() instanceof SPacketExplosion && exp.getValBoolean()) event.cancel();
-        if(event.getPacket() instanceof SPacketEntityStatus && bobbers.getValBoolean()) {
+        if (event.getPacket() instanceof SPacketEntityVelocity) if (((SPacketEntityVelocity) event.getPacket()).getEntityID() == mc.player.getEntityId()) event.cancel();
+        if (event.getPacket() instanceof SPacketExplosion && exp.getValBoolean()) event.cancel();
+        if (event.getPacket() instanceof SPacketEntityStatus && bobbers.getValBoolean()) {
             final SPacketEntityStatus packet = (SPacketEntityStatus) event.getPacket();
-            if(packet.getOpCode() == 31) {
+            if (packet.getOpCode() == 31) {
                 final Entity entity = packet.getEntity(mc.world);
-                if(entity instanceof EntityFishHook) if(((EntityFishHook) entity).caughtEntity == mc.player) event.cancel();
+                if (entity instanceof EntityFishHook) if (((EntityFishHook) entity).caughtEntity == mc.player) event.cancel();
             }
         }
     });

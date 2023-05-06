@@ -25,7 +25,7 @@ class TextOnEntityObject(
                 1f
         )
         GlStateManager.disableDepth()
-        if(CustomFont.turnOn) GlStateManager.disableTexture2D()
+        if (CustomFont.turnOn) GlStateManager.disableTexture2D()
         GlStateManager.disableLighting()
         color.glColor()
         GL11.glTranslated(
@@ -37,7 +37,7 @@ class TextOnEntityObject(
         CustomFontUtil.drawStringWithShadow(text, 0.0, 0.0, -1)
 
         GlStateManager.enableLighting()
-        if(CustomFont.turnOn) GlStateManager.enableTexture2D()
+        if (CustomFont.turnOn) GlStateManager.enableTexture2D()
         GlStateManager.enableDepth()
 
         GL11.glPopMatrix()

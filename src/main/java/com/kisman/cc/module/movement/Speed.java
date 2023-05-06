@@ -29,8 +29,6 @@ import java.util.Objects;
 public class Speed extends Module {
     public static Speed instance;
 
-    private float yPortSpeed;
-
     public final Setting speedMode = new Setting("SpeedMode", this, "Strafe", new ArrayList<>(Arrays.asList("Strafe", "Strafe New", "YPort", "Sti", "Matrix 6.4", "Matrix Bhop", "Sunrise Strafe", "Bhop", "Strafe2", "Matrix")));
 
     private final Setting useTimer = new Setting("Use Timer", this, false).setVisible(() -> speedMode.checkValString("Bhop") || speedMode.checkValString("Strafe New"));
@@ -46,6 +44,7 @@ public class Speed extends Module {
     private final Setting lagTime = new Setting("Lag Time", this, 500, 0, 1000, Slider.NumberType.TIME).setVisible(() -> speedMode.checkValString("Strafe New"));
 
     private final Setting yPortLine = new Setting("YPortLine", this, "YPort").setVisible(() -> speedMode.checkValString("YPort"));
+    private final Setting yPortSpeed = new Setting("YPortSpeed", this, 0.06f, 0.01f, 0.15f, false).setVisible(() -> speedMode.checkValString("YPort"));
     private final Setting yWater = new Setting("Water", this, false).setVisible(() -> speedMode.checkValString("YPort"));
     private final Setting yLava = new Setting("Lava", this, false).setVisible(() -> speedMode.checkValString("YPort"));
 
@@ -89,7 +88,7 @@ public class Speed extends Module {
         register(lagTime);
 
         register(yPortLine);
-        register(new Setting("YPortSpeed", this, 0.06f, 0.01f, 0.15f, false).setVisible(() -> speedMode.checkValString("YPort")));
+        register(yPortSpeed);
         register(yWater);
         register(yLava);
 
@@ -121,7 +120,6 @@ public class Speed extends Module {
 
         super.setDisplayInfo("[" + speedMode.getValString() + TextFormatting.GRAY + "]");
 
-        yPortSpeed = (float) settingManager.getSettingByName(this, "YPortSpeed").getValDouble();
         dist = MovementUtil.getDistance2D();
 
         switch (speedMode.getValString()) {
@@ -179,7 +177,7 @@ public class Speed extends Module {
         if (mc.player.onGround) {
             EntityUtil.setTimer(1.15f);
             mc.player.jump();
-            PlayerUtil.setSpeed(mc.player, PlayerUtil.getBaseMoveSpeed() + this.yPortSpeed);
+            PlayerUtil.setSpeed(mc.player, PlayerUtil.getBaseMoveSpeed() + yPortSpeed.getValDouble());
         } else {
             mc.player.motionY = -1;
             EntityUtil.resetTimer();

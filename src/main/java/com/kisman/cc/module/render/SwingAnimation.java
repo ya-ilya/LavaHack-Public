@@ -42,7 +42,7 @@ public class SwingAnimation extends Module {
         register(ignoreEating);
         register(ifKillAura);
 
-        super.setDisplayInfo(() -> "[" + (mode.getValString().equalsIgnoreCase("Hand") ? settingManager.getSettingByName(this, "SwingMode").getValString() : strongMode.getValString()) + "]");
+        super.setDisplayInfo(() -> "[" + (mode.getValString().equalsIgnoreCase("Hand") ? swingMode.getValString() : strongMode.getValString()) + "]");
     }
 
     @SubscribeEvent

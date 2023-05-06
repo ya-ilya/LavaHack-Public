@@ -26,6 +26,12 @@ public class NoRender extends Module {
     public final Setting defaultBlockHighlight = new Setting("Default Block Highlight", this, false);
     public final Setting handItemsTex  = new Setting("Hand Items Texture", this, false);
     public final Setting enchantGlint = new Setting("Enchant Glint", this, false);
+    private final Setting potion = new Setting("Potion", this, false);
+    private final Setting weather = new Setting("Weather", this, false);
+    private final Setting block = new Setting("Block", this, false);
+    private final Setting lava = new Setting("Lava", this, false);
+
+    private final int[] potionIds = new int[] { 25, 2, 4, 9, 15, 17, 18, 27, 20 };
 
     public NoRender() {
         super("NoRender", Category.RENDER);
@@ -47,40 +53,33 @@ public class NoRender extends Module {
         register(defaultBlockHighlight);
         register(handItemsTex);
         register(enchantGlint);
-        register(new Setting("Potion", this, false));
-        register(new Setting("Weather", this, false));
-        register(new Setting("Block", this, false));
-        register(new Setting("Lava", this, false));
+        register(potion);
+        register(weather);
+        register(block);
+        register(lava);
     }
 
     public void update() {
         if (mc.player == null || mc.world == null) return;
 
-        boolean potion = settingManager.getSettingByName(this, "Potion").getValBoolean();
-        boolean weather = settingManager.getSettingByName(this, "Weather").getValBoolean();
+        if (potion.getValBoolean()) {
+            for (int potionId : potionIds) {
+                Potion potion = Potion.getPotionById(potionId);
 
-        if (potion) {
-            if (mc.player.isPotionActive(Potion.getPotionById(25))) mc.player.removeActivePotionEffect(Potion.getPotionById(25));
-            if (mc.player.isPotionActive(Potion.getPotionById(2))) mc.player.removeActivePotionEffect(Potion.getPotionById(2));
-            if (mc.player.isPotionActive(Potion.getPotionById(4))) mc.player.removeActivePotionEffect(Potion.getPotionById(4));
-            if (mc.player.isPotionActive(Potion.getPotionById(9))) mc.player.removeActivePotionEffect(Potion.getPotionById(9));
-            if (mc.player.isPotionActive(Potion.getPotionById(15))) mc.player.removeActivePotionEffect(Potion.getPotionById(15));
-            if (mc.player.isPotionActive(Potion.getPotionById(17))) mc.player.removeActivePotionEffect(Potion.getPotionById(17));
-            if (mc.player.isPotionActive(Potion.getPotionById(18))) mc.player.removeActivePotionEffect(Potion.getPotionById(18));
-            if (mc.player.isPotionActive(Potion.getPotionById(27))) mc.player.removeActivePotionEffect(Potion.getPotionById(27));
-            if (mc.player.isPotionActive(Potion.getPotionById(20))) mc.player.removeActivePotionEffect(Potion.getPotionById(20));
+                if (potion != null && mc.player.isPotionActive(potion)) {
+                    mc.player.removeActivePotionEffect(potion);
+                }
+            }
         }
 
-        if (weather) mc.world.setRainStrength(0.0f);
+        if (weather.getValBoolean()) mc.world.setRainStrength(0.0f);
     }
 
     @SubscribeEvent
     public void renderBlockEvent(RenderBlockOverlayEvent event) {
         if (mc.player != null && mc.world != null) {
-            boolean block = settingManager.getSettingByName(this, "Block").getValBoolean();
-            boolean lava = settingManager.getSettingByName(this, "Lava").getValBoolean();
-            if (block) event.setCanceled(true);
-            if (lava && event.getBlockForOverlay().getBlock().equals(Blocks.LAVA)) event.setCanceled(true);
+            if (block.getValBoolean()) event.setCanceled(true);
+            if (lava.getValBoolean() && event.getBlockForOverlay().getBlock().equals(Blocks.LAVA)) event.setCanceled(true);
         }
     }
 

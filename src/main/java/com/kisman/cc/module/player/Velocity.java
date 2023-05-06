@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Velocity extends Module{
+    private final Setting mode = new Setting("Mode", this, "None", new ArrayList<>(Arrays.asList("None", "Matrix", "Matrix 6.4", "Vanilla")));
+
     private final Setting exp = new Setting("Explosion", this, true);
     private final Setting bobbers = new Setting("Bobbers", this, true);
     private final Setting noPush = new Setting("NoPush", this, true);
@@ -31,7 +33,7 @@ public class Velocity extends Module{
     public Velocity() {
         super("Velocity", Category.PLAYER);
 
-        register(new Setting("Mode", this, "None", new ArrayList<>(Arrays.asList("None", "Matrix", "Matrix 6.4", "Vanilla"))));
+        register(mode);
 
         register(exp);
         register(bobbers);
@@ -43,16 +45,22 @@ public class Velocity extends Module{
 
     public void update() {
         if (mc.player == null || mc.world == null) return;
-        String mode = settingManager.getSettingByName(this, "Mode").getValString();
-        super.setDisplayInfo("[" + mode + "]");
+        super.setDisplayInfo("[" + mode.getValString() + "]");
 
-        if (mode.equalsIgnoreCase("Matrix")) {
-            if (mc.world.getBlockState(new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ)).getBlock() == Block.getBlockById(0)) if (mc.player.hurtTime > 0) mc.player.motionY = -0.2;
-        } else if (mode.equalsIgnoreCase("Matrix 6.4")) if (mc.player.hurtTime > 8) mc.player.onGround = true;
-        else if (mode.equalsIgnoreCase("Vanilla") && mc.player.hurtTime == mc.player.maxHurtTime && mc.player.maxHurtTime > 0) {
-            mc.player.motionX *= (double) horizontal.getValInt() / 100;
-            mc.player.motionY *= (double) vertical.getValInt() / 100;
-            mc.player.motionZ *= (double) horizontal.getValInt() / 100;
+        switch (mode.getValString()) {
+            case "Matrix":
+                if (mc.world.getBlockState(new BlockPos(mc.player.posX, mc.player.posY, mc.player.posZ)).getBlock() == Block.getBlockById(0)) {
+                    if (mc.player.hurtTime > 0) mc.player.motionY = -0.2;
+                }
+                break;
+            case "Matrix 6.4":
+                mc.player.onGround = true;
+                break;
+            case "Vanilla":
+                mc.player.motionX *= (double) horizontal.getValInt() / 100;
+                mc.player.motionY *= (double) vertical.getValInt() / 100;
+                mc.player.motionZ *= (double) horizontal.getValInt() / 100;
+                break;
         }
     }
 

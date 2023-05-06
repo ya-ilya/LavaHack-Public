@@ -24,6 +24,7 @@ public class Anchor extends Module {
     private final Setting fastFallMotion = new Setting("Fast Fall Motion", this, 10, 1, 10, false).setVisible(fastFall::getValBoolean);
     private final Setting useLagTime = new Setting("Use Fast Fall Lag Time", this, false);
     private final Setting lagTime = new Setting("Fast Fall Lag Time", this, 500, 0, 1000, Slider.NumberType.TIME);
+    private final Setting pitch = new Setting("Pitch", this, 60, 0, 90, false);
 
     private boolean using = false;
     private final double[] oneblockPositions = new double[] { 0.42, 0.75 };
@@ -41,7 +42,7 @@ public class Anchor extends Module {
         register(disableAfterComplete);
         register(fastFall);
         register(fastFallMotion);
-        register(new Setting("Pitch", this, 60, 0, 90, false));
+        register(pitch);
     }
 
     private Vec3d center = Vec3d.ZERO;
@@ -63,9 +64,7 @@ public class Anchor extends Module {
         super.setDisplayInfo("[" + mode.getValString() + "]");
         if (mc.player.posY < 0) return;
 
-        double pitch = settingManager.getSettingByName(this, "Pitch").getValDouble();
-
-        if (mc.player.rotationPitch >= pitch) {
+        if (mc.player.rotationPitch >= pitch.getValDouble()) {
             if (BlockUtil.isBlockHole(PlayerUtil.getPlayerPos().down(1)) || BlockUtil.isBlockHole(PlayerUtil.getPlayerPos().down(2)) || BlockUtil.isBlockHole(PlayerUtil.getPlayerPos().down(3)) || BlockUtil.isBlockHole(PlayerUtil.getPlayerPos().down(4))) {
                 if (mode.getValString().equals(Mode.Motion.name())) {
                     center = getCenter(mc.player.posX, mc.player.posY, mc.player.posZ);

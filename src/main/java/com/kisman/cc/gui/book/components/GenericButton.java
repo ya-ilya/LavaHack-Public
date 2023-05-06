@@ -10,7 +10,6 @@ import java.awt.*;
 
 @SideOnly(Side.CLIENT)
 public class GenericButton extends ActionButton {
-
     public FontRenderer fontRenderer;
 
     public GenericButton(int id, int x, int y, String text) {
@@ -34,6 +33,5 @@ public class GenericButton extends ActionButton {
         }
     }
 
-    public void onClick(GuiScreen parent) {
-    }
+    public void onClick(GuiScreen parent) { }
 }

@@ -1,6 +1,5 @@
 package com.kisman.cc.util;
 
-import com.kisman.cc.util.pyro.Rotation;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.Vec3d;
 

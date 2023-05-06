@@ -2,7 +2,6 @@ package com.kisman.cc.util;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
-import com.kisman.cc.util.pyro.Rotation;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.Minecraft;

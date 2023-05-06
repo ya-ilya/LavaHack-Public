@@ -7,11 +7,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public abstract class ActionButton extends GuiButton {
+    public ActionButton(int id, int x, int y, int width, int height, String text) {
+        super(id, x, y, width, height, text);
+    }
 
-  public ActionButton(int id, int x, int y, int width, int height, String text) {
-    super(id, x, y, width, height, text);
-  }
-
-  public abstract void onClick(GuiScreen parent);
-
+    public abstract void onClick(GuiScreen parent);
 }

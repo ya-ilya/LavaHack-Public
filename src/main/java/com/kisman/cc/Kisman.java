@@ -21,7 +21,7 @@ import com.kisman.cc.module.render.shader.FramebufferShader;
 import com.kisman.cc.setting.SettingManager;
 import com.kisman.cc.util.RotationUtils;
 import com.kisman.cc.util.ServerManager;
-import com.kisman.cc.util.api.cape.CapeAPI;
+import com.kisman.cc.util.webapi.cape.CapeAPI;
 import com.kisman.cc.util.customfont.CustomFontRenderer;
 import com.kisman.cc.util.glow.ShaderShell;
 import com.kisman.cc.util.improvements.AiImprovements;

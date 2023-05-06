@@ -1,8 +1,7 @@
-package com.kisman.cc.util.optimization.aiimpr;
+package com.kisman.cc.util.improvements;
 
 import com.kisman.cc.module.misc.Optimizer;
-import com.kisman.cc.util.optimization.aiimpr.math.FastTrig;
-import com.kisman.cc.util.optimization.aiimpr.math.FixedEntityLookHelper;
+import com.kisman.cc.util.improvements.helpers.FixedEntityLookHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -15,9 +14,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.Iterator;
 
-public class MainAiImpr {
+public class AiImprovements {
     public void init() {
-        FastTrig.init();
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -37,7 +35,9 @@ public class MainAiImpr {
                 while (it.hasNext()) {
                     EntityAITasks.EntityAITaskEntry obj = it.next();
                     if (obj != null) {
-                        if (!(removeLookAi && obj.action instanceof EntityAIWatchClosest)) if (!removeLookIdle || !(obj.action instanceof EntityAILookIdle)) continue;
+                        if (!(removeLookAi && obj.action instanceof EntityAIWatchClosest)) {
+                            if (!removeLookIdle || !(obj.action instanceof EntityAILookIdle)) continue;
+                        }
                         it.remove();
                     }
                 }

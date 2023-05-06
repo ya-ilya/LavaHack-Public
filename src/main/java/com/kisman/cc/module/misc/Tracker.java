@@ -44,13 +44,13 @@ public class Tracker extends Module {
     public Tracker() {
         super("Tracker", "Tracks players in 1v1s. Only good in duels tho!", Category.MISC);
 
-        
-
         register(autoEnable);
         register(autoDisable);
     }
 
-    public boolean isBeta() {return true;}
+    public boolean isBeta() {
+        return true;
+    }
 
     public void onEnable() {
         this.manuallyPlaced.clear();

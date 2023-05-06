@@ -2,7 +2,6 @@ package com.kisman.cc.module.combat.autorer.util
 
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.ScaledResolution
-import net.minecraft.client.renderer.GLAllocation
 import net.minecraft.client.renderer.Matrix4f
 import net.minecraft.util.math.Vec3d
 import javax.vecmath.Vector4f
@@ -13,22 +12,11 @@ import javax.vecmath.Vector4f
 object ProjectionUtils {
     private val mc = Minecraft.getMinecraft()
 
-    private val floatBuffer = GLAllocation.createDirectFloatBuffer(16)
     private val modelMatrix = Matrix4f()
     private val projectionMatrix = Matrix4f()
 
     var resolution = ScaledResolution(mc); private set
-    private var projectPos = Vec3d.ZERO; private set
-    private var camPos = Vec3d.ZERO; private set
-
-
-    fun distToCamera(pos: Vec3d): Double {
-        return pos.distanceTo(camPos)
-    }
-
-    fun toAbsoluteScreenPos(pos: Vec3d): Vec3d {
-        return toScreenPos(pos, mc.displayWidth.toFloat(), mc.displayHeight.toFloat())
-    }
+    private var projectPos = Vec3d.ZERO
 
     fun toScaledScreenPos(pos: Vec3d): Vec3d {
         return toScreenPos(pos, resolution.scaledWidth_double.toFloat(), resolution.scaledHeight_double.toFloat())

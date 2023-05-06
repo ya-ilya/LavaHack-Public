@@ -40,7 +40,9 @@ public class AutoPot extends Module {
         }
     }
 
-    public boolean isBeta() {return true;}
+    public boolean isBeta() {
+        return true;
+    }
 
     private void throwPot(Potions potion) {
         int slot = getPotionSlot(potion);

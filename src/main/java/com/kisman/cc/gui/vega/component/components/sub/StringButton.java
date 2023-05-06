@@ -6,7 +6,6 @@ import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.util.ChatAllowedCharacters;
 import org.lwjgl.input.Keyboard;
@@ -14,7 +13,6 @@ import org.lwjgl.input.Keyboard;
 
 public class StringButton extends Component {
     private final Minecraft mc = Minecraft.getMinecraft();
-    private FontRenderer fontRenderer = mc.fontRenderer;
     private int modeIndex = 0;
     public Setting set;
     public Button b;

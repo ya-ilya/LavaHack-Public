@@ -9,7 +9,10 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * @author BloomWareClient
@@ -24,7 +27,13 @@ public class BetterScreenshot extends Module {
     }
 
     public static Image getLatestScreenshot() throws IOException {
-        return new ImageIcon(Files.list((new File(mc.gameDir.getAbsolutePath() + "/screenshots/")).toPath()).filter(f -> !Files.isDirectory(f)).max(Comparator.comparingLong(f -> f.toFile().lastModified())).get().toString()).getImage();
+        try (Stream<Path> files = Files.list((new File(mc.gameDir.getAbsolutePath() + "/screenshots/")).toPath())) {
+            Optional<Path> latestScreenshot = files
+                    .filter(file -> !Files.isDirectory(file))
+                    .max(Comparator.comparingLong(file -> file.toFile().lastModified()));
+
+            return latestScreenshot.map(path -> new ImageIcon(path.toString()).getImage()).orElse(null);
+        }
     }
 
     public static void copyToClipboard(Image image) {

@@ -21,7 +21,9 @@ public class AntiSpam extends Module {
         instance = this;
     }
 
-    public boolean isBeta() {return true;}
+    public boolean isBeta() {
+        return true;
+    }
 
     @EventHandler
     @SuppressWarnings("unused")

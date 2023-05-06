@@ -33,7 +33,9 @@ public class BreakAlert extends Module {
         register(displayShowDelay);
     }
 
-    public boolean isBeta() {return true;}
+    public boolean isBeta() {
+        return true;
+    }
 
     public void onEnable() {
         blocksBeginBroken.clear();
@@ -42,7 +44,11 @@ public class BreakAlert extends Module {
     public void update() {
         if (mc.player == null || mc.world == null || blocksBeginBroken.isEmpty()) return;
 
-        for (int i = 0; i < blocksBeginBroken.size(); i++) if (messageType.getValString().equalsIgnoreCase(MessageType.Chat.name())) ChatUtil.warning(TextFormatting.DARK_PURPLE + "Break Alert! " + TextFormatting.LIGHT_PURPLE + "Your surround blocks is mining!");
+        for (int i = 0; i < blocksBeginBroken.size(); i++) {
+            if (messageType.getValString().equalsIgnoreCase(MessageType.Chat.name())) {
+                ChatUtil.warning(TextFormatting.DARK_PURPLE + "Break Alert! " + TextFormatting.LIGHT_PURPLE + "Your surround blocks is mining!");
+            }
+        }
     }
 
     @SubscribeEvent

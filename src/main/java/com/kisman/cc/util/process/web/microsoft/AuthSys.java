@@ -43,12 +43,12 @@ public class AuthSys {
                                 else if (s.startsWith("code=")) accessTokenStep(s.replace("code=", ""), gui);
                                 else if (s.equals("error=access_denied&error_description=The user has denied access to the scope requested by the client application.")) gui.error("Authorization cancelled.");
                                 else gui.error(s);
-                            }
-                            catch (Throwable t) {
-                                if (t instanceof MicrosoftAuthException) gui.error(t.getLocalizedMessage());
-                                else {
-                                    t.printStackTrace();
-                                    gui.error("Unexpected error: " + t);
+                            } catch (Throwable throwable) {
+                                if (throwable instanceof MicrosoftAuthException) {
+                                    gui.error(throwable.getLocalizedMessage());
+                                } else {
+                                    throwable.printStackTrace();
+                                    gui.error("Unexpected error: " + throwable);
                                 }
                             }
                             AuthSys.stop();

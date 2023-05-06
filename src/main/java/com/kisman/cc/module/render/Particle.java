@@ -22,7 +22,9 @@ public class Particle extends Module {
         register(new Setting("voidsetting", this, "void", "setting"));
     }
 
-    public boolean isBeta() {return true;}
+    public boolean isBeta() {
+        return true;
+    }
 
     public void update() {
         if (mc.player == null || mc.world == null) return;

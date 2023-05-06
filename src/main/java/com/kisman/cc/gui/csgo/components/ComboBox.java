@@ -16,7 +16,7 @@ public class ComboBox extends AbstractComponent {
     private boolean hovered;
     private boolean hoveredExtended;
     private ValueChangeListener<Integer> listener;
-    private String[] values;
+    private final String[] values;
     private int selectedIndex;
 
     private boolean opened;

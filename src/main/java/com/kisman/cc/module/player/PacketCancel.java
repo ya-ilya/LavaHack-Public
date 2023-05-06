@@ -7,7 +7,6 @@ import com.kisman.cc.setting.Setting;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.network.play.client.*;
-import net.minecraftforge.common.MinecraftForge;
 
 public class PacketCancel extends Module {
     private final Setting input = new Setting("CPacketInput", this, false);

@@ -7,8 +7,6 @@ import com.kisman.cc.util.PlayerUtil;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.util.math.BlockPos;
 
-import java.util.Arrays;
-
 public class JesusPlus extends Module {
      public final Setting speedX = register(new Setting("Speed", this, 1.0f, 0.01f, 5.0f,  false));
 

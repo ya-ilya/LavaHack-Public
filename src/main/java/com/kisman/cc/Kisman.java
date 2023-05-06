@@ -24,7 +24,7 @@ import com.kisman.cc.util.ServerManager;
 import com.kisman.cc.util.api.cape.CapeAPI;
 import com.kisman.cc.util.customfont.CustomFontRenderer;
 import com.kisman.cc.util.glow.ShaderShell;
-import com.kisman.cc.util.optimization.aiimpr.MainAiImpr;
+import com.kisman.cc.util.improvements.AiImprovements;
 import me.zero.alpine.bus.EventManager;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
@@ -53,7 +53,6 @@ public class Kisman {
     public static final String hudName = "Hud/";
     public static final String mainName = "Main/";
     public static final String miscName = "Misc/";
-    public static final String mappingName = "Mapping/";
 
     public static Kisman instance = new Kisman();
     public static final EventManager EVENT_BUS = new EventManager();
@@ -85,15 +84,14 @@ public class Kisman {
     public ServerManager serverManager;
     public Managers managers;
     public CapeAPI capeAPI;
-    public MainAiImpr aiImpr;
+    public AiImprovements aiImprovements;
     public ConfigManager configManager;
 
     public void init() throws IOException, NoSuchFieldException, IllegalAccessException {
         Display.setTitle(NAME + " | " + VERSION);
     	MinecraftForge.EVENT_BUS.register(this);
 
-        aiImpr = new MainAiImpr();
-
+        aiImprovements = new AiImprovements();
         eventProcessor = new EventProcessor();
 
         mc = Minecraft.getMinecraft();
@@ -119,10 +117,8 @@ public class Kisman {
         configManager = new ConfigManager("config");
         configManager.getLoader().init();
 
-        //load glow shader
         ShaderShell.init();
 
-        //gui's
         clickGuiNew = new ClickGuiNew();
         hudGui = new HudGui();
         hudEditorGui = new HudEditorGui();
@@ -188,10 +184,6 @@ public class Kisman {
         if (!Files.exists(Paths.get(fileName))) {
             Files.createDirectories(Paths.get(fileName));
             LOGGER.info("Root dir created");
-        }
-        if (!Files.exists(Paths.get(fileName + mappingName))) {
-            Files.createDirectories(Paths.get(fileName + mappingName));
-            LOGGER.info("Mapping dir created");
         }
     }
 

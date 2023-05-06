@@ -14,5 +14,7 @@ public class HudEditorTest extends Module {
         super.setToggled(false);
     }
 
-    public boolean isBeta() {return true;}
+    public boolean isBeta() {
+        return true;
+    }
 }

@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class AltCreatorGUI extends GuiScreen
 {
-	private GuiScreen lastGui;
+	private final GuiScreen lastGui;
 	private GuiTextField passField;
 	private GuiTextField emailField;
 	

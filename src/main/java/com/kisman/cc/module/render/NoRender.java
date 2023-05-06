@@ -31,7 +31,7 @@ public class NoRender extends Module {
     private final Setting block = new Setting("Block", this, false);
     private final Setting lava = new Setting("Lava", this, false);
 
-    private final int[] potionIds = new int[] { 25, 2, 4, 9, 15, 17, 18, 27, 20 };
+    private static final int[] potionIds = new int[] { 25, 2, 4, 9, 15, 17, 18, 27, 20 };
 
     public NoRender() {
         super("NoRender", Category.RENDER);

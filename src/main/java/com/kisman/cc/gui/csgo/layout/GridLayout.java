@@ -9,7 +9,7 @@ import java.util.Map;
 public class GridLayout implements ILayoutManager {
     private static final int DEFAULT_VERTICAL_PADDING = 7;
     private static final int DEFAULT_HORIZONTAL_PADDING = 7;
-    private int columns;
+    private final int columns;
     private int verticalPadding;
     private int horizontalPadding;
 

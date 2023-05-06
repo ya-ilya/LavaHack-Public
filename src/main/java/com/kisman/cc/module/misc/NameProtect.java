@@ -13,17 +13,15 @@ import net.minecraft.util.text.ChatType;
 public class NameProtect extends Module {
     private final Setting name = new Setting("Name", this, "Kisman", "Kisman", true);
 
-    public static NameProtect instance;
-
     public NameProtect() {
         super("NameProtect", Category.MISC);
-
-        instance = this;
 
         register(name);
     }
 
-    public boolean isBeta() {return true;}
+    public boolean isBeta() {
+        return true;
+    }
 
     @EventHandler
     @SuppressWarnings("unused")

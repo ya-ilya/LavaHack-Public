@@ -25,7 +25,9 @@ public class ElytraEquip extends Module {
         register(autoDisable);
     }
 
-    public boolean isBeta() {return true;}
+    public boolean isBeta() {
+        return true;
+    }
 
     public void onEnable() {
         state = mc.player != null ? mc.player.getItemStackFromSlot(EntityEquipmentSlot.CHEST).getItem() == Items.ELYTRA ? State.NeedChest : State.NeedElytra : State.None;

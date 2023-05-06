@@ -44,7 +44,9 @@ public class DamageESP extends Module {
         register(damageColor);
     }
 
-    public boolean isBeta() {return true;}
+    public boolean isBeta() {
+        return true;
+    }
 
     public void onEnable() {
         entityHealthMap.clear();

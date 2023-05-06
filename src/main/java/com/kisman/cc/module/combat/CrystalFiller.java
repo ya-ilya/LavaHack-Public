@@ -60,7 +60,9 @@ public class CrystalFiller extends Module {
         register(render);
     }
 
-    public boolean isBeta() {return true;}
+    public boolean isBeta() {
+        return true;
+    }
 
     public void onEnable() {
         target = null;

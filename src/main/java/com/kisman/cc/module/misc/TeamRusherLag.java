@@ -23,7 +23,9 @@ public class TeamRusherLag extends Module {
         register(text);
     }
 
-    public boolean isBeta() {return true;}
+    public boolean isBeta() {
+        return true;
+    }
 
     public void onEnable() {
         lastPacket = 0L;

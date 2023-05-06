@@ -141,7 +141,6 @@ public class KillAura extends Module {
         return mc.player.fallDistance > fallDistance.getValFloat();
     }
 
-
     private void doKillAura(Entity entity, double distance, boolean hitsound, boolean single) {
         if (!(mc.player.getDistance(entity) <= distance) || entity.ticksExisted % 20 != 0 || mc.player == entity) {
             return;

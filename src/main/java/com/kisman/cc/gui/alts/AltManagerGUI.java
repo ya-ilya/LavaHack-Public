@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class AltManagerGUI extends GuiScreen {
+	private final GuiScreen lastGui;
 	private GuiButton delete;
-	private GuiScreen lastGui;
 	private AltSlotList altList;
 	private GuiTextField crackedNameField;
 	

@@ -45,7 +45,9 @@ public class HoleFiller extends Module {
         register(smartWeb);
     }
 
-    public boolean isBeta() {return true;}
+    public boolean isBeta() {
+        return true;
+    }
 
     public void onEnable() {
         target = null;

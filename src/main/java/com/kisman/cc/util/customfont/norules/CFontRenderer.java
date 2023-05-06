@@ -225,7 +225,7 @@ public class CFontRenderer extends CustomFont {
             int noClue = (index >> 3 & 0x1) * 85;
             int red = (index >> 2 & 0x1) * 170 + noClue;
             int green = (index >> 1 & 0x1) * 170 + noClue;
-            int blue = (index >> 0 & 0x1) * 170 + noClue;
+            int blue = (index & 0x1) * 170 + noClue;
 
             if (index == 6) {
                 red += 85;

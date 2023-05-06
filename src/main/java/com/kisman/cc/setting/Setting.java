@@ -244,7 +244,7 @@ public class Setting {
 		if (optionEnum == null) return null;
 		Enum<?> enumVal = optionEnum;
 		String[] values = Arrays.stream(enumVal.getClass().getEnumConstants()).map(Enum::name).toArray(String[]::new);
-		return Enum.valueOf(enumVal.getClass(), values[index]);
+		return Enum.valueOf(enumVal.getDeclaringClass(), values[index]);
 	}
 
 	@Override
@@ -424,7 +424,7 @@ public class Setting {
 	}
 
 	public Enum<?> getValEnum() {
-		return optionEnum.valueOf(optionEnum.getClass(), sval);
+		return Enum.valueOf(optionEnum.getDeclaringClass(), sval);
 	}
 
 	public Setting getSetparent() {

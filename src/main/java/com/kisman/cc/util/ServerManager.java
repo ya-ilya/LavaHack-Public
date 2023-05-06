@@ -11,7 +11,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
-import java.util.Objects;
 
 public class ServerManager {
     private final Minecraft mc = Minecraft.getMinecraft();

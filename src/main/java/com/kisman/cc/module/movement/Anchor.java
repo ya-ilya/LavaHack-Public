@@ -9,7 +9,6 @@ import com.kisman.cc.util.BlockUtil;
 import com.kisman.cc.util.EntityUtil;
 import com.kisman.cc.util.PlayerUtil;
 import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
 import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -95,7 +94,9 @@ public class Anchor extends Module {
                         }
                     }
 
-                    if (fastFall.getValBoolean() && !lagTimeCheck()) mc.player.motionY = -fastFallMotion.getValDouble();
+                    if (fastFall.getValBoolean() && !lagTimeCheck()) {
+                        mc.player.motionY = -fastFallMotion.getValDouble();
+                    }
                 }
             } else using = false;
         }

@@ -61,6 +61,8 @@ public class Slider extends Component {
         }
     }
 
+    public void keyTyped(char typedChar, int key) { }
+
     public void newOff(int newOff) {
         offset = newOff;
     }

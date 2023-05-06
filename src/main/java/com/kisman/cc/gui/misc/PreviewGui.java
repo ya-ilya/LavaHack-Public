@@ -23,7 +23,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 /* Shulker peek GUI */
-
 @SideOnly(Side.CLIENT)
 public class PreviewGui extends RightPanel {
 

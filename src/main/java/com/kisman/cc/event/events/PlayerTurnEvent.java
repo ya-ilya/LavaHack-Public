@@ -2,10 +2,10 @@ package com.kisman.cc.event.events;
 
 import com.kisman.cc.event.Event;
 
-public class TurnEvent extends Event {
+public class PlayerTurnEvent extends Event {
     private final float yaw, pitch;
 
-    public TurnEvent(float yaw, float pitch) {
+    public PlayerTurnEvent(float yaw, float pitch) {
         this.yaw = yaw;
         this.pitch = pitch;
     }

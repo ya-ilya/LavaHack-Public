@@ -129,4 +129,6 @@ shadowJar {
     classifier = 'release'
 }
 
-build.dependsOn(shadowJar)
+build {
+    dependsOn(shadowJar)
+}

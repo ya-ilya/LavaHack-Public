@@ -18,13 +18,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = EntityPlayer.class, priority = Integer.MAX_VALUE)
-public abstract class MixinEntityPlayer extends MixinEntityLivingBase {
+public abstract class MixinEntityPlayer extends Entity {
     public MixinEntityPlayer(World worldIn) {
         super(worldIn);
     }
-
-    @Shadow protected abstract void doWaterSplashEffect();
-    @Shadow public abstract String getName();
 
     @Inject(method = "jump", at = @At("HEAD"), cancellable = true)
     private void jumpHook(CallbackInfo ci) {

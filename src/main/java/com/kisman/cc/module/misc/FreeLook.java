@@ -1,6 +1,6 @@
 package com.kisman.cc.module.misc;
 
-import com.kisman.cc.event.events.TurnEvent;
+import com.kisman.cc.event.events.PlayerTurnEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -43,7 +43,7 @@ public class FreeLook extends Module {
 
     @EventHandler
     @SuppressWarnings("unused")
-    private final Listener<TurnEvent> turnListener = listener(event -> {
+    private final Listener<PlayerTurnEvent> turnListener = listener(event -> {
         if (mc.gameSettings.thirdPersonView > 0) {
             dYaw = (float) ((double) dYaw + (double) event.getYaw() * 0.15D);
             dPitch = (float) ((double) dPitch - (double) event.getPitch() * 0.15D);

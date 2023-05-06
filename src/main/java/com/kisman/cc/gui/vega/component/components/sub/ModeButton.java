@@ -46,6 +46,8 @@ public class ModeButton extends Component {
         this.height = b.parent.height;
     }
 
+    public void keyTyped(char typedChar, int key) { }
+
     public void newOff(int newOff) {
         this.offset = newOff;
     }

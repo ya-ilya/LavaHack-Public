@@ -19,7 +19,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = EntityPlayerSP.class, priority = 10000)
 public class MixinEntityPlayerSP extends MixinAbstractClientPlayer {
-    public MixinEntityPlayerSP(World worldIn, GameProfile gameProfileIn) {super(worldIn, gameProfileIn);}
+    public MixinEntityPlayerSP(World worldIn, GameProfile gameProfileIn) {
+        super(worldIn, gameProfileIn);
+    }
 
     @Inject(method = "isSneaking", at = @At("HEAD"), cancellable = true)
     private void isSneakingHook(CallbackInfoReturnable<Boolean> cir) {

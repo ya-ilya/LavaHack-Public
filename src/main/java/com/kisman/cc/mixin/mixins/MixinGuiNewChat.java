@@ -22,13 +22,9 @@ public class MixinGuiNewChat {
     @Shadow public boolean isScrolled;
     private float percentComplete;
     private int newLines;
-    private long prevMillis;
     private float animationPercent;
     private int lineBeingDrawn;
-
-    public MixinGuiNewChat() {
-        this.prevMillis = System.currentTimeMillis();
-    }
+    private long prevMillis = System.currentTimeMillis();
 
     @Shadow
     public float getChatScale() {return 0;}

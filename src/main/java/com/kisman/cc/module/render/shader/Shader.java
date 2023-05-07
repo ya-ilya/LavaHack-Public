@@ -82,10 +82,6 @@ public abstract class Shader {
         }
     }
 
-    public String getLogInfo(final int i) {
-        return ARBShaderObjects.glGetInfoLogARB(i, ARBShaderObjects.glGetObjectParameteriARB(i, 35716));
-    }
-
     public void setUniform(final String uniformName, final int location) {
         this.uniformsMap.put(uniformName, location);
     }

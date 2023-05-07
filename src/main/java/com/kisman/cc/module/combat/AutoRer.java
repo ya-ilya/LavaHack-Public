@@ -72,12 +72,11 @@ public class AutoRer extends Module {
     private final Setting instantRotate = new Setting("Instant Rotate", this, true).setVisible(instant::getValBoolean);
     private final Setting inhibit = new Setting("Inhibit", this, true);
     private final Setting sound = new Setting("Sound", this, true);
-    public final Setting syns = new Setting("Syns", this, true);
+    public final Setting sync = new Setting("Sync", this, true);
     private final Setting rotate = new Setting("Rotate", this, Rotate.Place);
     private final Setting rotateMode = new Setting("Rotate Mode", this, RotateMode.Silent).setVisible(() -> !rotate.checkValString("None"));
     private final Setting calcDistSort = new Setting("Calc Dist Sort", this, false);
 
-    private final Setting placeLine = new Setting("PlaceLine", this, "Place");
     private final Setting place = new Setting("Place", this, true);
     public final Setting secondCheck = new Setting("Second Check", this, false);
     private final Setting thirdCheck = new Setting("Third Check", this, false);
@@ -85,7 +84,6 @@ public class AutoRer extends Module {
     private final Setting multiPlace = new Setting("Multi Place", this, false);
     private final Setting firePlace = new Setting("Fire Place", this, false);
 
-    private final Setting breakLine = new Setting("BreakLine", this, "Break");
     private final Setting break_ = new Setting("Break", this, true);
     private final Setting breakPriority = new Setting("Break Priority", this, BreakPriority.Damage);
     private final Setting friend_ = new Setting("Friend", this, FriendMode.AntiTotemPop);
@@ -94,36 +92,31 @@ public class AutoRer extends Module {
     private final Setting removeAfterAttack = new Setting("Remove After Attack", this, false);
     private final Setting antiCevBreakerMode = new Setting("Anti Cev Breaker", this, AntiCevBreakerMode.None);
 
-    private final Setting delayLine = new Setting("DelayLine", this, "Delay");
     private final Setting placeDelay = new Setting("Place Delay", this, 0, 0, 2000, Slider.NumberType.TIME);
     private final Setting breakDelay = new Setting("Break Delay", this, 0, 0, 2000, Slider.NumberType.TIME);
     private final Setting calcDelay = new Setting("Calc Delay", this, 0, 0, 20000, Slider.NumberType.TIME);
     private final Setting clearDelay = new Setting("Clear Delay", this, 500, 0, 2000, Slider.NumberType.TIME);
     private final Setting multiplication = new Setting("Multiplication", this, 1, 1, 10, true);
 
-    private final Setting dmgLine = new Setting("DMGLine", this, "Damage");
     public final Setting minDMG = new Setting("Min DMG", this, 6, 0, 37, true);
     public final Setting maxSelfDMG = new Setting("Max Self DMG", this, 18, 0, 37, true);
     private final Setting maxFriendDMG = new Setting("Max Friend DMG", this, 10, 0, 37, true);
     public final Setting lethalMult = new Setting("Lethal Mult", this, 0, 0, 6, false);
 
-    private final Setting threadLine = new Setting("ThreadLine", this, "Thread");
     private final Setting threadMode = new Setting("Thread Mode", this, ThreadMode.None);
     private final Setting threadDelay = new Setting("Thread Delay", this, 50, 1, 1000, Slider.NumberType.TIME).setVisible(() -> !threadMode.getValString().equalsIgnoreCase(ThreadMode.None.name()));
-    private final Setting threadSyns = new Setting("Thread Syns", this, true).setVisible(() -> !threadMode.getValString().equalsIgnoreCase(ThreadMode.None.name()));
-    private final Setting threadSynsValue = new Setting("Thread Syns Value", this, 1000, 1, 10000, Slider.NumberType.TIME).setVisible(() -> !threadMode.getValString().equalsIgnoreCase(ThreadMode.None.name()));
+    private final Setting threadSync = new Setting("Thread Sync", this, true).setVisible(() -> !threadMode.getValString().equalsIgnoreCase(ThreadMode.None.name()));
+    private final Setting threadSyncValue = new Setting("Thread Sync Value", this, 1000, 1, 10000, Slider.NumberType.TIME).setVisible(() -> !threadMode.getValString().equalsIgnoreCase(ThreadMode.None.name()));
     private final Setting threadPacketRots = new Setting("Thread Packet Rots", this, false).setVisible(() -> !threadMode.getValString().equalsIgnoreCase(ThreadMode.None.name()) && !rotate.checkValString(Rotate.Off.name()));
     private final Setting threadSoundPlayer = new Setting("Thread Sound Player", this, 6, 0, 12, true).setVisible(() -> threadMode.checkValString("Sound"));
     private final Setting threadCalc = new Setting("Thread Calc", this, true).setVisible(() -> !threadMode.checkValString("None"));
 
-    private final Setting renderLine = new Setting("RenderLine", this, "Render");
     private final Setting render = new Setting("Render", this, true);
     private final Setting movingLength = new Setting("Moving Length", this, 400, 0, 1000, true).setVisible(render::getValBoolean);
     private final Setting fadeLength = new Setting("Fade Length", this, 200, 0, 1000, true).setVisible(render::getValBoolean);
 
     private final Setting text = new Setting("Text", this, true);
 
-    private final Setting targetCharmsLine = new Setting("Target Charms", this, "Target Shader Charms");
     private final Setting targetCharms = new Setting("Target Charms", this, false);
     private final Setting targetCharmsShader = new Setting("TC Shader", this, ShaderModes.SMOKE);
 
@@ -153,7 +146,7 @@ public class AutoRer extends Module {
     private final TimerUtil renderTimer = new TimerUtil();
     private final TimerUtil predictTimer = new TimerUtil();
     private final TimerUtil manualTimer = new TimerUtil();
-    private final TimerUtil synsTimer = new TimerUtil();
+    private final TimerUtil syncTimer = new TimerUtil();
     private ScheduledExecutorService executor;
     private final AtomicBoolean shouldInterrupt = new AtomicBoolean(false);
     private final AtomicBoolean threadOngoing = new AtomicBoolean(false);
@@ -192,12 +185,12 @@ public class AutoRer extends Module {
         register(instantRotate);
         register(inhibit);
         register(sound);
-        register(syns);
+        register(sync);
         register(rotate);
         register(rotateMode);
         register(calcDistSort);
 
-        register(placeLine);
+        register(new Setting("PlaceLine", this, "Place"));
         register(place);
         register(secondCheck.setVisible(place::getValBoolean));
         register(thirdCheck.setVisible(place::getValBoolean));
@@ -205,7 +198,7 @@ public class AutoRer extends Module {
         register(multiPlace.setVisible(place::getValBoolean));
         register(firePlace.setVisible(place::getValBoolean));
 
-        register(breakLine);
+        register(new Setting("BreakLine", this, "Break"));
         register(break_);
         register(breakPriority.setVisible(break_::getValBoolean));
         register(friend_.setVisible(break_::getValBoolean));
@@ -214,29 +207,29 @@ public class AutoRer extends Module {
         register(removeAfterAttack.setVisible(break_::getValBoolean));
         register(antiCevBreakerMode.setVisible(break_::getValBoolean));
 
-        register(delayLine);
+        register(new Setting("DelayLine", this, "Delay"));
         register(placeDelay.setVisible(place::getValBoolean));
         register(breakDelay.setVisible(break_::getValBoolean));
         register(calcDelay);
         register(clearDelay);
         register(multiplication);
 
-        register(dmgLine);
+        register(new Setting("DMGLine", this, "Damage"));
         register(minDMG);
         register(maxSelfDMG);
         register(maxFriendDMG);
         register(lethalMult);
 
-        register(threadLine);
+        register(new Setting("ThreadLine", this, "Thread"));
         register(threadMode);
         register(threadDelay);
-        register(threadSyns);
-        register(threadSynsValue);
+        register(threadSync);
+        register(threadSyncValue);
         register(threadPacketRots);
         register(threadSoundPlayer);
         register(threadCalc);
 
-        register(renderLine);
+        register(new Setting("RenderLine", this, "Render"));
         register(render);
         //New renderer
         renderer_ = new RenderingRewritePattern(this, render::getValBoolean);
@@ -245,7 +238,7 @@ public class AutoRer extends Module {
         register(fadeLength);
         register(text);
 
-        register(targetCharmsLine);
+        register(new Setting("Target Charms", this, "Target Shader Charms"));
         register(targetCharms);
         register(targetCharmsShader);
         register(targetCharmsAnimationSpeed);
@@ -311,7 +304,7 @@ public class AutoRer extends Module {
 
     private ScheduledExecutorService createExecutorService() {
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-        service.scheduleAtFixedRate(RAutoRer.getInstance(this), 0L, this.threadDelay.getValLong(), TimeUnit.MILLISECONDS);
+        service.scheduleAtFixedRate(AutoRerRunnable.getInstance(this), 0L, this.threadDelay.getValLong(), TimeUnit.MILLISECONDS);
         return service;
     }
 
@@ -321,15 +314,15 @@ public class AutoRer extends Module {
         }
 
         if (thread == null) {
-            thread = new Thread(RAutoRer.getInstance(this));
+            thread = new Thread(AutoRerRunnable.getInstance(this));
         } else if (checkThreadSync() && !shouldInterrupt.get()) {
             shouldInterrupt.set(true);
-            synsTimer.reset();
+            syncTimer.reset();
             return;
         }
 
         if (thread != null && (thread.isInterrupted() || !thread.isAlive())) {
-            thread = new Thread(RAutoRer.getInstance(this));
+            thread = new Thread(AutoRerRunnable.getInstance(this));
 
             try {
                 thread.start();
@@ -337,7 +330,7 @@ public class AutoRer extends Module {
 
             }
 
-            synsTimer.reset();
+            syncTimer.reset();
         }
     }
 
@@ -349,11 +342,11 @@ public class AutoRer extends Module {
     }
 
     private boolean checkThreadSync() {
-        return threadSyns.getValBoolean() && synsTimer.passedMillis(threadSynsValue.getValLong());
+        return threadSync.getValBoolean() && syncTimer.passedMillis(threadSyncValue.getValLong());
     }
 
     private void handlePool(boolean justDoIt) {
-        if (!justDoIt && executor != null && !executor.isTerminated() && !executor.isShutdown() && (!synsTimer.passedMillis(threadSynsValue.getValLong()) || !threadSyns.getValBoolean())) {
+        if (!justDoIt && executor != null && !executor.isTerminated() && !executor.isShutdown() && (!syncTimer.passedMillis(threadSyncValue.getValLong()) || !threadSync.getValBoolean())) {
             return;
         }
 
@@ -362,7 +355,7 @@ public class AutoRer extends Module {
         }
 
         executor = createExecutorService();
-        synsTimer.reset();
+        syncTimer.reset();
     }
 
     public void update() {
@@ -474,19 +467,6 @@ public class AutoRer extends Module {
         }
     }
 
-    @SuppressWarnings("unused")
-    private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
-        if (!motionCrystal.getValBoolean() || currentTarget == null) return;
-        if (motionCalc.getValBoolean() && fastCalc.getValBoolean() && calcTimer.passedMillis(calcDelay.getValLong())) {
-            doCalculatePlace();
-            calcTimer.reset();
-        }
-
-        for (int i = 0; i < multiplication.getValInt(); i++) {
-            doAutoRerLogic(event, false);
-        }
-    });
-
     private void doAutoRerLogic(PlayerMotionUpdateEvent event, boolean thread) {
         if (mc.isGamePaused) return;
 
@@ -512,6 +492,19 @@ public class AutoRer extends Module {
         breakTimer.reset();
         predictTimer.reset();
     }
+
+    @SuppressWarnings("unused")
+    private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
+        if (!motionCrystal.getValBoolean() || currentTarget == null) return;
+        if (motionCalc.getValBoolean() && fastCalc.getValBoolean() && calcTimer.passedMillis(calcDelay.getValLong())) {
+            doCalculatePlace();
+            calcTimer.reset();
+        }
+
+        for (int i = 0; i < multiplication.getValInt(); i++) {
+            doAutoRerLogic(event, false);
+        }
+    });
 
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
@@ -587,40 +580,14 @@ public class AutoRer extends Module {
 
     private void doCalculatePlace() {
         try {
-            calculatePlace();
-            if (recalc.getValBoolean() && placePos == null) recalculatePlace();
+            calculatePlacePosition();
+            if (recalc.getValBoolean() && placePos == null) recalculatePlacePosition();
         } catch (Exception exception) {
             lagProtect(exception);
         }
     }
 
-    private void recalculatePlace() {
-        List<BlockPos> sphere = CrystalUtils.getSphere(recalcPlaceRange.getValFloat(), true, false);
-        List<BlockPos> validPos = new ArrayList<>();
-
-        sphere.stream()
-                .filter(pos -> CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget, terrain.getValBoolean()) > minDMG.getValInt() || CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget, terrain.getValBoolean()) * lethalMult.getValDouble() > currentTarget.getHealth() + currentTarget.getAbsorptionAmount() || InventoryUtil.isArmorUnderPercent(currentTarget, armorBreaker.getValInt()))
-                .filter(pos -> CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, mc.player, terrain.getValBoolean()) <= maxSelfDMG.getValInt())
-                .filter(pos -> CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, mc.player, terrain.getValBoolean()) + 2 < mc.player.getHealth() + mc.player.getAbsorptionAmount())
-                .filter(pos -> CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, mc.player, terrain.getValBoolean()) < CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget, terrain.getValBoolean()))
-                .forEach(validPos::add);
-
-        validPos.sort((first, second) -> (int) (mc.player.getDistanceSqToCenter(first) - mc.player.getDistanceSqToCenter(second)));
-
-        double[] maxDamage = {0.5};
-        BlockPos[] placePos = {null};
-
-        validPos.forEach(pos -> {
-            if (CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget, terrain.getValBoolean()) > maxDamage[0]) {
-                maxDamage[0] = calculateCrystalDamage(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget);
-                placePos[0] = pos;
-            }
-        });
-
-        this.placePos = placePos[0] == null ? null : AutoRerUtil.getPlaceInfo(placePos[0], currentTarget, terrain.getValBoolean());
-    }
-
-    private void calculatePlace() {
+    private void calculatePlacePosition() {
         double maxDamage = 0.5;
         BlockPos placePos = null;
         List<BlockPos> sphere = CrystalUtils.getSphere(placeRange.getValFloat(), true, false);
@@ -658,6 +625,32 @@ public class AutoRer extends Module {
         }
 
         this.placePos = placePos == null ? null : AutoRerUtil.getPlaceInfo(placePos, currentTarget, terrain.getValBoolean());
+    }
+
+    private void recalculatePlacePosition() {
+        List<BlockPos> sphere = CrystalUtils.getSphere(recalcPlaceRange.getValFloat(), true, false);
+        List<BlockPos> validPos = new ArrayList<>();
+
+        sphere.stream()
+                .filter(pos -> CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget, terrain.getValBoolean()) > minDMG.getValInt() || CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget, terrain.getValBoolean()) * lethalMult.getValDouble() > currentTarget.getHealth() + currentTarget.getAbsorptionAmount() || InventoryUtil.isArmorUnderPercent(currentTarget, armorBreaker.getValInt()))
+                .filter(pos -> CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, mc.player, terrain.getValBoolean()) <= maxSelfDMG.getValInt())
+                .filter(pos -> CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, mc.player, terrain.getValBoolean()) + 2 < mc.player.getHealth() + mc.player.getAbsorptionAmount())
+                .filter(pos -> CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, mc.player, terrain.getValBoolean()) < CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget, terrain.getValBoolean()))
+                .forEach(validPos::add);
+
+        validPos.sort((first, second) -> (int) (mc.player.getDistanceSqToCenter(first) - mc.player.getDistanceSqToCenter(second)));
+
+        double[] maxDamage = {0.5};
+        BlockPos[] placePos = {null};
+
+        validPos.forEach(pos -> {
+            if (CrystalUtils.calculateDamage(mc.world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget, terrain.getValBoolean()) > maxDamage[0]) {
+                maxDamage[0] = calculateCrystalDamage(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, currentTarget);
+                placePos[0] = pos;
+            }
+        });
+
+        this.placePos = placePos[0] == null ? null : AutoRerUtil.getPlaceInfo(placePos[0], currentTarget, terrain.getValBoolean());
     }
 
     private boolean isPosValid(BlockPos pos) {
@@ -713,7 +706,7 @@ public class AutoRer extends Module {
             }
         }
 
-        return !syns.getValBoolean() || !placedList.contains(placePos);
+        return !sync.getValBoolean() || !placedList.contains(placePos);
     }
 
     private void placeSwitch(SilentSwitchBypass bypass, boolean silentBypass, boolean offhand) {
@@ -974,7 +967,7 @@ public class AutoRer extends Module {
     private void breakRemove(Entity crystal) {
         PlaceInfo toRemove = null;
 
-        if (syns.getValBoolean()) {
+        if (sync.getValBoolean()) {
             for (PlaceInfo info : placedList) {
                 BlockPos pos = info.getBlockPos();
                 if (crystal.getDistance(pos.getX(), pos.getY(), pos.getZ()) <= 3) {
@@ -1119,7 +1112,6 @@ public class AutoRer extends Module {
     public enum ThreadMode {None, Pool, Sound, While}
     public enum Render {None, Default, Advanced}
     public enum Rotate {Off, Place, Break, All}
-    public enum Raytrace {None, Place, Break, Both}
     public enum SwitchMode {None, Normal, Silent, SilentBypass}
     public enum SwingMode {MainHand, OffHand, PacketSwing, None}
     public enum FriendMode {None, AntiTotemFail, AntiTotemPop}
@@ -1159,13 +1151,13 @@ public class AutoRer extends Module {
         }
     }
 
-    public static class RAutoRer implements Runnable {
-        private static RAutoRer instance;
+    public static class AutoRerRunnable implements Runnable {
+        private static AutoRerRunnable instance;
         private AutoRer autoRer;
 
-        public static RAutoRer getInstance(AutoRer autoRer) {
+        public static AutoRerRunnable getInstance(AutoRer autoRer) {
             if (instance == null) {
-                instance = new RAutoRer();
+                instance = new AutoRerRunnable();
                 instance.autoRer = autoRer;
             }
             return instance;
@@ -1180,7 +1172,7 @@ public class AutoRer extends Module {
 
                     if (autoRer.shouldInterrupt.get()) {
                         autoRer.shouldInterrupt.set(false);
-                        autoRer.synsTimer.reset();
+                        autoRer.syncTimer.reset();
                         autoRer.thread.interrupt();
                     }
                     autoRer.threadOngoing.set(true);

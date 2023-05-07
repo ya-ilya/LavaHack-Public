@@ -4,7 +4,7 @@ import com.kisman.cc.Kisman;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class SandBoxShaders {
         }
     }
 
-    public Object[] getRandomShader() throws FileNotFoundException {
+    public Object[] getRandomShader() throws IOException {
         File folder = new File("glslmenu");
         if (!folder.exists()) return null;
 
@@ -52,11 +52,11 @@ public class SandBoxShaders {
 
         String randomname = shaders.get(new Random().nextInt(shaders.size()));
 
-        FileInputStream fis = new FileInputStream("glslmenu/" + randomname);
+        try (FileInputStream stream = new FileInputStream("glslmenu/" + randomname)) {
+            return new Object[] {randomname, stream};
+        }
 
 //        String randomname = "testshader/fsh";
 //        FileInputStream fis = new FileInputStream(new File("assets/kismancc/mainmenu/sandboxshaders/" + randomname));
-
-        return new Object[] {randomname, fis};
     }
 }

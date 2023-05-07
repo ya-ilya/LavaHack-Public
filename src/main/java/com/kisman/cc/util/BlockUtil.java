@@ -15,7 +15,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.IBlockAccess;
 
 import java.util.*;
 
@@ -136,7 +135,7 @@ public class BlockUtil {
     }
 
     public static boolean rayTracePlaceCheck(final BlockPos pos, final boolean shouldCheck, final float height) {
-        return !shouldCheck || mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ), new Vec3d((double)pos.getX(), (double)(pos.getY() + height), (double)pos.getZ()), false, true, false) == null;
+        return !shouldCheck || mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ), new Vec3d(pos.getX(), pos.getY() + height, pos.getZ()), false, true, false) == null;
     }
 
     public static boolean rayTracePlaceCheck(final BlockPos pos, final boolean shouldCheck) {
@@ -159,7 +158,7 @@ public class BlockUtil {
     }
 
     public static double getNearestBlockBelow() {
-        for (double y = mc.player.posY; y > 0.0; y -= 0.001) if (!(mc.world.getBlockState(new BlockPos(mc.player.posX, y, mc.player.posZ)).getBlock() instanceof BlockSlab) && mc.world.getBlockState(new BlockPos(mc.player.posX, y, mc.player.posZ)).getBlock().getDefaultState().getCollisionBoundingBox((IBlockAccess) mc.world, new BlockPos(0, 0, 0)) != null) return y;
+        for (double y = mc.player.posY; y > 0.0; y -= 0.001) if (!(mc.world.getBlockState(new BlockPos(mc.player.posX, y, mc.player.posZ)).getBlock() instanceof BlockSlab) && mc.world.getBlockState(new BlockPos(mc.player.posX, y, mc.player.posZ)).getBlock().getDefaultState().getCollisionBoundingBox(mc.world, new BlockPos(0, 0, 0)) != null) return y;
         return -1.0;
     }
 
@@ -230,10 +229,10 @@ public class BlockUtil {
         shulkerList = Arrays.asList(Blocks.WHITE_SHULKER_BOX, Blocks.ORANGE_SHULKER_BOX, Blocks.MAGENTA_SHULKER_BOX, Blocks.LIGHT_BLUE_SHULKER_BOX, Blocks.YELLOW_SHULKER_BOX, Blocks.LIME_SHULKER_BOX, Blocks.PINK_SHULKER_BOX, Blocks.GRAY_SHULKER_BOX, Blocks.SILVER_SHULKER_BOX, Blocks.CYAN_SHULKER_BOX, Blocks.PURPLE_SHULKER_BOX, Blocks.BLUE_SHULKER_BOX, Blocks.BROWN_SHULKER_BOX, Blocks.GREEN_SHULKER_BOX, Blocks.RED_SHULKER_BOX, Blocks.BLACK_SHULKER_BOX);
     }
 
-    public static boolean placeBlock(final BlockPos pos) {
+    public static void placeBlock(final BlockPos pos) {
         Block block = mc.world.getBlockState(pos).getBlock();
         EnumFacing direction = calcSide(pos);
-        if (direction == null) return false;
+        if (direction == null) return;
         boolean activated = block.onBlockActivated(mc.world, pos, mc.world.getBlockState(pos), mc.player, EnumHand.MAIN_HAND, direction, 0.0f, 0.0f, 0.0f);
         if (activated) mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
         mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(pos.offset(direction), direction.getOpposite(), EnumHand.MAIN_HAND, 0.5f, 0.5f, 0.5f));
@@ -243,7 +242,6 @@ public class BlockUtil {
             unshift = false;
         }
         mc.playerController.updateController();
-        return true;
     }
 
     public static boolean placeBlockSmartRotate(final BlockPos pos, final EnumHand hand, final boolean rotate, final boolean packet, final boolean isSneaking) {

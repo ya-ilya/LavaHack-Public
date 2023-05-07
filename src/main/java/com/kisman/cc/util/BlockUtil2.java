@@ -37,12 +37,11 @@ public class BlockUtil2 {
         return true;
     }
 
-    public static boolean placeBlock(BlockPos position, EnumHand hand, boolean packet) {
-        if (!mc.world.getBlockState(position).getBlock().isReplaceable(mc.world, position)) return false;
-        if (getPlaceableSide(position) == null) return false;
+    public static void placeBlock(BlockPos position, EnumHand hand, boolean packet) {
+        if (!mc.world.getBlockState(position).getBlock().isReplaceable(mc.world, position)) return;
+        if (getPlaceableSide(position) == null) return;
         clickBlock(position, getPlaceableSide(position), hand, packet);
         mc.player.connection.sendPacket(new CPacketAnimation(hand));
-        return true;
     }
 
     public static void clickBlock(BlockPos position, EnumFacing side, EnumHand hand, boolean packet) {

@@ -11,7 +11,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Mouse;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 @SideOnly(Side.CLIENT)
@@ -54,13 +53,13 @@ public class Gui extends GuiScreen {
     }
 
     @Override
-    protected void keyTyped(char typedChar, int keyCode) throws IOException {
+    protected void keyTyped(char typedChar, int keyCode) {
         for (Frame frame : frames) if (frame.open && keyCode != 1 && !frame.buttons.isEmpty()) for (Button b : frame.buttons) b.keyTyped(typedChar, keyCode);
         if (keyCode == 1) mc.displayGuiScreen(null);
     }
 
     @Override
-    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
         for (Frame frame : frames) {
             if (frame.isMouseOnButton(mouseX, mouseY) && mouseButton == 0) {
                 frame.dragging = true;

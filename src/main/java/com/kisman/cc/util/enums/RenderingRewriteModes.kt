@@ -2,9 +2,8 @@ package com.kisman.cc.util.enums
 
 import com.kisman.cc.util.Rendering
 
-enum class RenderingRewriteModes(
-    val mode : Rendering.Mode
-) {
+@Suppress("unused")
+enum class RenderingRewriteModes(val mode: Rendering.Mode) {
     Filled(Rendering.Mode.BOX),
     Outline(Rendering.Mode.OUTLINE),
     Both(Rendering.Mode.BOTH),

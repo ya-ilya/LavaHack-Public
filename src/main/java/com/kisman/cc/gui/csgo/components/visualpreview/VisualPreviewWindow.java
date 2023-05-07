@@ -37,7 +37,7 @@ public class VisualPreviewWindow implements Globals {
         renderer.drawRect(x, y, width, height, Window.BACKGROUND);
         renderer.drawRect(x, y, width, headerHeight, Window.SECONDARY_FOREGROUND);
 
-        if (Config.instance.guiGlow.getValBoolean()) Render2DUtil.drawRoundedRect(x / 2, y / 2, (x + width) / 2, (y + headerHeight) / 2, Window.SECONDARY_FOREGROUND, Config.instance.glowBoxSize.getValDouble());
+        if (Config.instance.guiGlow.getValBoolean()) Render2DUtil.drawRoundedRect(x / 2.0, y / 2.0, (x + width) / 2.0, (y + headerHeight) / 2.0, Window.SECONDARY_FOREGROUND, Config.instance.glowBoxSize.getValDouble());
 
         renderer.drawString(x + width / 2 - renderer.getStringWidth(title) / 2, y + headerFontOffset, title, Config.instance.guiAstolfo.getValBoolean() ? renderer.astolfoColorToObj() : Window.FOREGROUND);
 
@@ -62,10 +62,10 @@ public class VisualPreviewWindow implements Globals {
         GlStateManager.rotate(135.0F, 0.0F, 1.0F, 0.0F);
         RenderHelper.enableStandardItemLighting();
         GlStateManager.rotate(-135.0F, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(-((float)Math.atan((double)(mouseY / 40.0F))) * 20.0F, 1.0F, 0.0F, 0.0F);
-        ent.renderYawOffset = (float)Math.atan((double)(mouseX / 40.0F)) * 20.0F;
-        ent.rotationYaw = (float)Math.atan((double)(mouseX / 40.0F)) * 40.0F;
-        ent.rotationPitch = -((float)Math.atan((double)(mouseY / 40.0F))) * 20.0F;
+        GlStateManager.rotate(-((float)Math.atan(mouseY / 40.0F)) * 20.0F, 1.0F, 0.0F, 0.0F);
+        ent.renderYawOffset = (float)Math.atan(mouseX / 40.0F) * 20.0F;
+        ent.rotationYaw = (float)Math.atan(mouseX / 40.0F) * 40.0F;
+        ent.rotationPitch = -((float)Math.atan(mouseY / 40.0F)) * 20.0F;
         ent.rotationYawHead = ent.rotationYaw;
         ent.prevRotationYawHead = ent.rotationYaw;
         GlStateManager.translate(0.0F, 0.0F, 0.0F);

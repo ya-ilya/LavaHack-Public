@@ -28,7 +28,7 @@ public class CheckBox extends Component {
     public void drawScreen(int mouseX, int mouseY) {
         if (HalqGui.shadowCheckBox) {
             Render2DUtil.drawRectWH(x, y + offset, width, HalqGui.height, HalqGui.backgroundColor.getRGB());
-            if (setting.getValBoolean()) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x + width / 2, y + offset}, new double[] {x + width, y + offset}, new double[] {x + width, y + offset + HalqGui.height}, new double[] {x + width / 2, y + offset + HalqGui.height}), ColorUtil.injectAlpha(HalqGui.backgroundColor, 1), HalqGui.getGradientColour(count).getColor()));
+            if (setting.getValBoolean()) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x + width / 2.0, y + offset}, new double[] {x + width, y + offset}, new double[] {x + width, y + offset + HalqGui.height}, new double[] {x + width / 2.0, y + offset + HalqGui.height}), ColorUtil.injectAlpha(HalqGui.backgroundColor, 1), HalqGui.getGradientColour(count).getColor()));
         } else Render2DUtil.drawRectWH(x, y + offset, width, HalqGui.height, setting.getValBoolean() ? HalqGui.getGradientColour(count).getRGB() : HalqGui.backgroundColor.getRGB());
 
         HalqGui.drawString(setting.getName(), x, y + offset, width, HalqGui.height);

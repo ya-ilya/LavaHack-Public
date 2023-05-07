@@ -85,7 +85,7 @@ public class TargetHUD extends HudModule {
         GlStateManager.translate(x, y, 1);
         GlStateManager.scale(2.5f, 2.5f, 2.5f);
         GlStateManager.translate(-x - 3, -y - 2, 1);
-        mc.fontRenderer.drawStringWithShadow(Math.round((target.getHealth() / 2.0f)) + " \u2764", x + 16, y + 10, color.getRGB());
+        mc.fontRenderer.drawStringWithShadow(Math.round((target.getHealth() / 2.0f)) + " ❤", x + 16, y + 10, color.getRGB());
         GlStateManager.popMatrix();
         GlStateManager.color(1, 1, 1, 1);
 
@@ -177,7 +177,7 @@ public class TargetHUD extends HudModule {
         Render2DUtil.drawProgressCircle2(healthX, healthY, radius, ColorUtil.astolfoColors(100, 100), healthDegrees, 1);
         double[] circleCentre = MathUtil.getCircleCentre(new double[] {healthX, healthY}, radius);
         String text = String.valueOf((int) target.getHealth());
-        CustomFontUtil.drawCenteredStringWithShadow(text, circleCentre[0], circleCentre[1] - CustomFontUtil.getFontHeight() / 2, ColorUtil.astolfoColors(100, 100));
+        CustomFontUtil.drawCenteredStringWithShadow(text, circleCentre[0], circleCentre[1] - CustomFontUtil.getFontHeight() / 2.0, ColorUtil.astolfoColors(100, 100));
 
         //draw armor and items in hands
         double posX = healthX;
@@ -219,7 +219,7 @@ public class TargetHUD extends HudModule {
         double healthOffset = ((target.getHealth() + target.getAbsorptionAmount()) - 0) / (target.getMaxHealth() - 0);
         hpBarWidth += (healthOffset - hpBarWidth) / 4;
         Render2DUtil.drawRoundedRect2(x, y, w, h, 6, new Colour(20, 20, 20, 210).getRGB());
-        Render2DUtil.drawRoundedRect2(x + 2, y + (h / 2 - 34 / 2) - 3, 40, 40, 6, 0x40575656);
+        Render2DUtil.drawRoundedRect2(x + 2, y + (h / 2 - 34 / 2.0) - 3, 40, 40, 6, 0x40575656);
         Render2DUtil.drawRoundedRect2(x + 45, y + 4, w - 49, 30, 6, 0x40575656);
         if (target != null) {
             CustomFontUtil.drawStringWithShadow("Name: " + ChatFormatting.GRAY + target.getName(), x + 47, y + 4, -1);

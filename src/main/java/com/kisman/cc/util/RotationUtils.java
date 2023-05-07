@@ -385,7 +385,7 @@ public class RotationUtils {
             for (double ySearch = 0.1; ySearch < 0.9; ySearch += 0.1) {
                 for (double zSearch = 0.1; zSearch < 0.9; zSearch += 0.1) {
                     Vec3d eyesPos = new Vec3d(RotationUtils.mc.player.posX, RotationUtils.mc.player.getEntityBoundingBox().minY + RotationUtils.mc.player.getEyeHeight(), RotationUtils.mc.player.posZ);
-                    Vec3d posVec = new Vec3d((Vec3i)blockPos).add(new Vec3d(xSearch, ySearch, zSearch));
+                    Vec3d posVec = new Vec3d(blockPos).add(new Vec3d(xSearch, ySearch, zSearch));
                     double dist = eyesPos.distanceTo(posVec);
                     double diffX = posVec.x - eyesPos.x;
                     double diffY = posVec.y - eyesPos.y;
@@ -438,7 +438,7 @@ public class RotationUtils {
         float yawSin = MathHelper.sin(-rotation.getYaw() * 0.017453292f - 3.1415927f);
         float pitchCos = -MathHelper.cos(-rotation.getPitch() * 0.017453292f);
         float pitchSin = MathHelper.sin(-rotation.getPitch() * 0.017453292f);
-        return new Vec3d((double)(yawSin * pitchCos), (double)pitchSin, (double)(yawCos * pitchCos));
+        return new Vec3d(yawSin * pitchCos, pitchSin, yawCos * pitchCos);
     }
 
     private float getAngleDifference(final float a, final float b) {

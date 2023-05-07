@@ -15,8 +15,8 @@ class RenderingRewritePattern(
     val module : Module,
     val visible : Supplier<Boolean>
 ) {
-    val mode = Setting("Render Mode", module, RenderingRewriteModes.Filled).setVisible { visible.get() }
-    val lineWidth = Setting("Render Line Width", module, 1.0, 0.1, 5.0, false).setVisible {
+    val mode: Setting = Setting("Render Mode", module, RenderingRewriteModes.Filled).setVisible { visible.get() }
+    val lineWidth: Setting = Setting("Render Line Width", module, 1.0, 0.1, 5.0, false).setVisible {
         visible.get() && mode.valEnum != RenderingRewriteModes.Filled && mode.valEnum != RenderingRewriteModes.FilledGradient
     }
 

@@ -15,7 +15,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import java.awt.*;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -101,13 +100,13 @@ public class HalqGui extends GuiScreen {
     }
 
     @Override
-    public void keyTyped(char typedChar, int keyCode) throws IOException {
+    public void keyTyped(char typedChar, int keyCode) {
         if (keyCode == 1) mc.displayGuiScreen(lastGui == null ? null : lastGui);
         for (Frame frame : frames) if (frame.open && keyCode != 1 && !frame.mods.isEmpty() && !frame.reloading) for (Component b : frame.mods) if (!frame.reloading)b.keyTyped(typedChar, keyCode);
     }
 
     @Override
-    public void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+    public void mouseClicked(int mouseX, int mouseY, int mouseButton){
         if (!Kisman.instance.selectionBar.mouseClicked(mouseX, mouseY)) return;
         for (Frame frame : frames) {
             if (frame.reloading) continue;

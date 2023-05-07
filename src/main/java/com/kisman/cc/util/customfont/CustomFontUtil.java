@@ -75,14 +75,19 @@ public class CustomFontUtil {
         } else fontRenderer.drawString(getStringModofiers() + text, (int)x, (int)y, color);
     }
 
-    public static int drawString(String text, double x, double y, int color) {
+    public static void drawString(String text, double x, double y, int color) {
         if (customFont()) {
             y += 2;
             Object font = CustomFontUtilKt.Companion.getCustomFont(getCustomFontName());
-            if (font instanceof CFontRenderer) return (int) ((CFontRenderer) font).drawString(getStringModofiers() + text, x, y - 1.0D, color, false);
-            else if (font instanceof CustomFontRenderer) return (int) ((CustomFontRenderer) font).drawString(getStringModofiers() + text, x, y - 1.0D, color, false);
+            if (font instanceof CFontRenderer) {
+                ((CFontRenderer) font).drawString(getStringModofiers() + text, x, y - 1.0D, color, false);
+                return;
+            } else if (font instanceof CustomFontRenderer) {
+                ((CustomFontRenderer) font).drawString(getStringModofiers() + text, x, y - 1.0D, color, false);
+                return;
+            }
         }
-        return fontRenderer.drawString(getStringModofiers() + text, (int)x, (int)y, color);
+        fontRenderer.drawString(getStringModofiers() + text, (int) x, (int) y, color);
     }
 
     public static int drawStringWithShadow(String text, double x, double y, int color) {

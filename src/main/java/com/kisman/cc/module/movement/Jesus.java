@@ -47,7 +47,7 @@ public class Jesus extends Module {
         if (mode.getValString().equalsIgnoreCase("Matrix")) {
             float speed = speedMatrix.getValFloat();
 
-            if (mc.world.getBlockState(new BlockPos(mc.player.posX, mc.player.posY - -0.37f, mc.player.posZ)).getBlock() == Blocks.WATER) {
+            if (mc.world.getBlockState(new BlockPos(mc.player.posX, mc.player.posY - 0.37f, mc.player.posZ)).getBlock() == Blocks.WATER) {
                 mc.player.jump();
                 mc.player.jumpMovementFactor = 0;
 

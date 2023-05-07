@@ -41,17 +41,6 @@ class CustomFontUtilKt {
             return getHeight(name, false)
         }
 
-        fun setAntiAliasAndFractionalMetrics(antiAlias: Boolean, fractionalMetrics: Boolean) {
-            val font = getCustomFont(CustomFontUtil.getCustomFontName())
-            if (font is CFontRenderer) {
-                font.setAntiAlias(antiAlias)
-                font.fractionalMetrics = fractionalMetrics
-            } else if (font is CustomFontRenderer) {
-                font.setAntiAlias(antiAlias)
-                font.fractionalMetrics = fractionalMetrics
-            }
-        }
-
         fun setAntiAlias(antiAlias: Boolean) {
             val font = getCustomFont(CustomFontUtil.getCustomFontName())
             if (font is CFontRenderer) {

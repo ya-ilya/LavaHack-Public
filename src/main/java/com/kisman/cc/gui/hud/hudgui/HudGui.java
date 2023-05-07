@@ -5,7 +5,6 @@ import com.kisman.cc.gui.component.Frame;
 import com.kisman.cc.gui.hud.hudmodule.HudCategory;
 import net.minecraft.client.gui.GuiScreen;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class HudGui extends GuiScreen {
@@ -33,7 +32,7 @@ public class HudGui extends GuiScreen {
 	}
 
 	@Override
-    protected void mouseClicked(final int mouseX, final int mouseY, final int mouseButton) throws IOException {
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) {
 		for (Frame frame : frames) {
 			if (frame.isWithinHeader(mouseX, mouseY) && mouseButton == 0) {
 				frame.setDrag(true);

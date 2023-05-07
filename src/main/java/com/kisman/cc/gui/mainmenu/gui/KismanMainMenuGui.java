@@ -22,7 +22,7 @@ public class KismanMainMenuGui extends GuiScreen {
         super.drawScreen(mouseX, mouseY, partialTicks);
         GL11.glPushMatrix();
         GL11.glScalef(2.0F, 2.0F, 2.0F);
-        CustomFontUtil.drawCenteredStringWithShadow(Kisman.getName() + " " + Kisman.getVersion(), width / 4, 6, ColorUtil.astolfoColors(100, 100));
+        CustomFontUtil.drawCenteredStringWithShadow(Kisman.getName() + " " + Kisman.getVersion(), width / 4.0, 6, ColorUtil.astolfoColors(100, 100));
         GL11.glPopMatrix();
     }
 

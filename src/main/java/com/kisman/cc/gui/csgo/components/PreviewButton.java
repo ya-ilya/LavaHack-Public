@@ -68,7 +68,7 @@ public class PreviewButton extends AbstractComponent {
                 crystal.prevRotationYaw = Float.intBitsToFloat(Float.floatToIntBits(3.176926E38f) ^ 0x7F6F015F);
                 crystal.prevRotationPitch = Float.intBitsToFloat(Float.floatToIntBits(2.4984888E38f) ^ 0x7F3BF725);
 
-                GL11.glScalef(Float.intBitsToFloat(Float.floatToIntBits(6.72125f) ^ 0x7F57147B), (float)Float.intBitsToFloat(Float.floatToIntBits(8.222657f) ^ 0x7E839001), (float)Float.intBitsToFloat(Float.floatToIntBits(7.82415f) ^ 0x7F7A5F70));
+                GL11.glScalef(Float.intBitsToFloat(Float.floatToIntBits(6.72125f) ^ 0x7F57147B), Float.intBitsToFloat(Float.floatToIntBits(8.222657f) ^ 0x7E839001), Float.intBitsToFloat(Float.floatToIntBits(7.82415f) ^ 0x7F7A5F70));
                 drawEntityOnScreen((x + getWidth() / 2) / 2, (getHeight() + 2) / 2, 40, 0, 0, crystal);
             } else {
                Entity entity = Minecraft.getMinecraft().player;
@@ -124,10 +124,10 @@ public class PreviewButton extends AbstractComponent {
         GlStateManager.rotate(135.0F, 0.0F, 1.0F, 0.0F);
         RenderHelper.enableStandardItemLighting();
         GlStateManager.rotate(-135.0F, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(-((float)Math.atan((double)(mouseY / 40.0F))) * 20.0F, 1.0F, 0.0F, 0.0F);
-        ent.setRenderYawOffset((float)Math.atan((double)(mouseX / 40.0F)) * 20.0F);
-        ent.rotationYaw = (float)Math.atan((double)(mouseX / 40.0F)) * 40.0F;
-        ent.rotationPitch = -((float)Math.atan((double)(mouseY / 40.0F))) * 20.0F;
+        GlStateManager.rotate(-((float)Math.atan(mouseY / 40.0F)) * 20.0F, 1.0F, 0.0F, 0.0F);
+        ent.setRenderYawOffset((float)Math.atan(mouseX / 40.0F) * 20.0F);
+        ent.rotationYaw = (float)Math.atan(mouseX / 40.0F) * 40.0F;
+        ent.rotationPitch = -((float)Math.atan(mouseY / 40.0F)) * 20.0F;
         ent.setRotationYawHead(ent.rotationYaw);
         ent.prevRotationYaw = ent.rotationYaw;
         GlStateManager.translate(0.0F, 0.0F, 0.0F);

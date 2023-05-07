@@ -63,7 +63,7 @@ public class SpawnsESP extends Module {
             GL11.glHint(3154, 4354);
             GL11.glBegin(1);
             for (int i = 0; i <= 360; ++i) {
-                Vec3d vec3d = new Vec3d(deltaX + Math.sin((double)i * Math.PI / 180.0) * (double)VecCircle.getPitch(circle), deltaY + (double)(VecCircle.getYaw(circle) * ((float)(System.currentTimeMillis() - VecCircle.getTime(circle)) / (1000.0f * duration.getValDouble()))), deltaZ + Math.cos((double)i * Math.PI / 180.0) * (double)VecCircle.getPitch(circle));
+                Vec3d vec3d = new Vec3d(deltaX + Math.sin((double)i * Math.PI / 180.0) * (double)VecCircle.getPitch(circle), deltaY + (VecCircle.getYaw(circle) * ((float)(System.currentTimeMillis() - VecCircle.getTime(circle)) / (1000.0f * duration.getValDouble()))), deltaZ + Math.cos((double)i * Math.PI / 180.0) * (double)VecCircle.getPitch(circle));
                 vertexes.add(vec3d);
             }
             for (int n = 0; n < vertexes.size() - 1; ++n) {

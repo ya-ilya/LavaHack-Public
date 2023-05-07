@@ -3,6 +3,7 @@ package com.kisman.cc.command;
 import com.kisman.cc.Kisman;
 import com.kisman.cc.command.commands.*;
 import com.kisman.cc.util.ChatUtil;
+import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -50,7 +51,7 @@ public class CommandManager {
 			}
 		}
 
-		if (!commandResolved) ChatUtil.error("Cannot resolve internal command: \u00a7c" + commandName);
+		if (!commandResolved) ChatUtil.error("Cannot resolve internal command: " + ChatFormatting.RED + commandName);
 	}
 
 	@SubscribeEvent

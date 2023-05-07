@@ -15,7 +15,7 @@ public class MixinRenderManager {
     public void renderEntityHook(Entity entity, double x, double y, double z, float yaw, float partialTicks, boolean debug, CallbackInfo ci) {
         if (entity == null || !RenderEntityEvent.getRenderingEntities()) return;
 
-        RenderEntityEvent eventAll = new RenderEntityEvent.All.Pre(entity, x, y, z, yaw, partialTicks);
+        RenderEntityEvent eventAll = new RenderEntityEvent.Pre(entity);
         eventAll.post();
 
         if (eventAll.isCancelled()) {
@@ -27,7 +27,7 @@ public class MixinRenderManager {
     public void renderEntityPostHook(Entity entity, double x, double y, double z, float yaw, float partialTicks, boolean debug, CallbackInfo ci) {
         if (entity == null || !RenderEntityEvent.getRenderingEntities()) return;
 
-        RenderEntityEvent event = new RenderEntityEvent.All.Post(entity, x, y, z, yaw, partialTicks);
+        RenderEntityEvent event = new RenderEntityEvent.Post(entity);
         event.post();
     }
 }

@@ -191,17 +191,17 @@ public class RenderUtil {
             GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
             GL11.glEnable(GL11.GL_LINE_SMOOTH);
             GL11.glColor4f(colorRed, colorGreen, colorBlue, colorAlpha);
-            GL11.glBegin((int) 1);
+            GL11.glBegin(1);
             
-            GL11.glVertex3d((double) 0, (double) 0+1, (double) 0.0);
-            GL11.glVertex3d((double) 0-0.5, (double) 0+0.5, (double) 0.0);
-            GL11.glVertex3d((double) 0, (double) 0+1, (double) 0.0);
-            GL11.glVertex3d((double) 0+0.5, (double) 0+0.5, (double) 0.0);
+            GL11.glVertex3d(0, (double) 0+1, 0.0);
+            GL11.glVertex3d((double) 0-0.5, (double) 0+0.5, 0.0);
+            GL11.glVertex3d(0, (double) 0+1, 0.0);
+            GL11.glVertex3d((double) 0+0.5, (double) 0+0.5, 0.0);
             
-            GL11.glVertex3d((double) 0, (double) 0, (double) 0.0);
-            GL11.glVertex3d((double) 0-0.5, (double) 0+0.5, (double) 0.0);
-            GL11.glVertex3d((double) 0, (double) 0, (double) 0.0);
-            GL11.glVertex3d((double) 0+0.5, (double) 0+0.5, (double) 0.0);
+            GL11.glVertex3d(0, 0, 0.0);
+            GL11.glVertex3d((double) 0-0.5, (double) 0+0.5, 0.0);
+            GL11.glVertex3d(0, 0, 0.0);
+            GL11.glVertex3d((double) 0+0.5, (double) 0+0.5, 0.0);
             
             GL11.glEnd();
             GL11.glDepthMask(true);

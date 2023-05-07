@@ -1,7 +1,7 @@
 package com.kisman.cc.module.combat.autorer.util
 
-import com.kisman.cc.module.combat.autorer.math.MathUtilKt
 import com.kisman.cc.util.MathUtil
+import kotlin.math.pow
 
 enum class Easing {
     OUT_QUART {
@@ -9,7 +9,7 @@ enum class Easing {
             get() = OUT_QUART
 
         override fun inc0(x: Float): Float {
-            return (1.0f - MathUtilKt.quart(1.0f - x)).toFloat()
+            return (1.0f - (1.0f - x).pow(2f))
         }
     },
     OUT_CUBIC {
@@ -17,7 +17,7 @@ enum class Easing {
             get() = IN_CUBIC
 
         override fun inc0(x: Float): Float {
-            return (1.0f - MathUtilKt.cubic(1.0f - x)).toFloat()
+            return (1.0f - (1.0f - x).pow(2f))
         }
     },
     IN_CUBIC {
@@ -25,22 +25,9 @@ enum class Easing {
             get() = OUT_CUBIC
 
         override fun inc0(x: Float): Float {
-            return MathUtilKt.cubic(x).toFloat()
+            return x.pow(2f)
         }
     };
-
-    fun incOrDecOpposite(x: Float, min: Float, max: Float): Float {
-        val delta = when {
-            max == min -> return min
-            max > min -> inc(x)
-            else -> opposite.inc(x)
-        }
-        return MathUtil.lerp(min.toDouble(), max.toDouble(), delta.toDouble()).toFloat()
-    }
-
-    fun incOrDec(x: Float, min: Float, max: Float): Float {
-        return MathUtil.lerp(min.toDouble(), max.toDouble(), inc(x).toDouble()).toFloat()
-    }
 
     @Suppress("NAME_SHADOWING")
     fun inc(x: Float, min: Float, max: Float): Float {
@@ -143,16 +130,6 @@ enum class Easing {
     }
 
     companion object {
-        @JvmStatic
-        fun toDelta(start: Long, length: Int): Float {
-            return toDelta(start, length.toFloat())
-        }
-
-        @JvmStatic
-        fun toDelta(start: Long, length: Long): Float {
-            return toDelta(start, length.toFloat())
-        }
-
         @JvmStatic
         fun toDelta(start: Long, length: Float): Float {
             return (toDelta(start).toFloat() / length).coerceIn(0.0f, 1.0f)

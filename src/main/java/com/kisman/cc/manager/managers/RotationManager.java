@@ -48,20 +48,19 @@ public class RotationManager implements Manager {
         return look(bp, packet, true);
     }
 
-    public static  float[] look(Entity bp, boolean packet) {
-        return look(bp, packet, true);
+    public static void look(Entity bp, boolean packet) {
+        look(bp, packet, true);
     }
 
-    public  static float[] look(BlockPos bp, boolean packet, boolean set) {
+    public static float[] look(BlockPos bp, boolean packet, boolean set) {
         float[] angles = calcAngle(mc.player.getPositionEyes(mc.getRenderPartialTicks()), new Vec3d(bp.getX() + .5f, bp.getY() + .5f, bp.getZ() + .5f));
         if (set) set(angles[ 0 ], angles[ 1 ], packet);
         return angles;
     }
 
-    public static  float[] look(Entity entity, boolean packet, boolean set) {
+    public static void look(Entity entity, boolean packet, boolean set) {
         float[] angles = calcAngle(mc.player.getPositionEyes(mc.getRenderPartialTicks()), entity.getPositionEyes(mc.getRenderPartialTicks()));
         if (set) set(angles[ 0 ], angles[ 1 ], packet);
-        return angles;
     }
 
     //credits to 3arthqu4ke cuz im bad at math :)

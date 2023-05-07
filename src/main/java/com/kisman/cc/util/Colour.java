@@ -156,11 +156,10 @@ public class Colour {
 
     }
 
-    public Colour setAlpha(float alpha) {
+    public void setAlpha(float alpha) {
         a = (int) (alpha * 255f);
         a1 = alpha;
         fixColorRange();
-        return this;
     }
 
     public Colour setAlpha(int alpha) {
@@ -170,16 +169,14 @@ public class Colour {
         return this;
     }
 
-    public Colour setHue(float hue) {
+    public void setHue(float hue) {
         float[] hsb = RGBtoHSB();
         setColour(new Colour(new float[] {hue, hsb[1], hsb[2]}));
-        return this;
     }
 
-    public Colour setSaturation(float saturation) {
+    public void setSaturation(float saturation) {
         float[] hsb = RGBtoHSB();
         setColour(new Colour(new float[] {hsb[0], saturation, hsb[2]}));
-        return this;
     }
 
     private void setColour(Colour color) {

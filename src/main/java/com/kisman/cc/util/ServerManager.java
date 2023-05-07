@@ -2,7 +2,6 @@ package com.kisman.cc.util;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
@@ -31,7 +30,7 @@ public class ServerManager {
         serverBrand = "";
 
         MinecraftForge.EVENT_BUS.register(this);
-        Kisman.EVENT_BUS.subscribe(packetReceiveEvent);
+        Kisman.EVENT_BUS.subscribe(new Listener<PacketEvent.Receive>(event -> timer.reset()));
     }
 
     @SubscribeEvent
@@ -44,7 +43,7 @@ public class ServerManager {
         }
 
         long timeDiff = currentTime - lastUpdate;
-        float tickTime = timeDiff / 20;
+        float tickTime = timeDiff / 20f;
 
         if (tickTime == 0) {
             tickTime = 50;
@@ -71,9 +70,6 @@ public class ServerManager {
         tps = Float.parseFloat(format.format(total));
         lastUpdate = currentTime;
     }
-
-    @EventHandler
-    private final Listener<PacketEvent.Receive> packetReceiveEvent = new Listener<>(event -> timer.reset());
 
     public void reset() {
         Arrays.fill(tpsCount, 20);

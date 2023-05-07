@@ -22,7 +22,7 @@ public class TrajectoriesRewrite extends Module {
         EntityPlayerSP player = mc.player;
         if (player.inventory.getCurrentItem() != null) {
             if (this.isThrowable(player.inventory.getCurrentItem().getItem())) {
-                double x = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) mc.timer.renderPartialTicks - (double) (MathHelper.cos((float) Math.toRadians((double) mc.player.rotationYaw)) * 0.16F);
+                double x = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) mc.timer.renderPartialTicks - (double) (MathHelper.cos((float) Math.toRadians(mc.player.rotationYaw)) * 0.16F);
                 double y = mc.player.lastTickPosY + (mc.player.posY - mc.player.lastTickPosY) * (double) mc.timer.renderPartialTicks + (double) mc.player.getEyeHeight() - 0.100149011612D;
                 double z = mc.player.lastTickPosZ + (mc.player.posZ - mc.player.lastTickPosZ) * (double) mc.timer.renderPartialTicks - (double) (MathHelper.sin((float) Math.toRadians(mc.player.rotationYaw)) * 0.16F);
                 float con = 1.0F;

@@ -46,7 +46,7 @@ public class AltManagerGUI extends GuiScreen {
 		this.altList.drawScreen(mouseX, mouseY, partialTicks);
 		GL11.glPushMatrix();
 		GL11.glScalef(2.0F, 2.0F, 2.0F);
-		CustomFontUtil.drawCenteredStringWithShadow("Alts", width / 4, 6, ColorUtil.astolfoColors(100, 100));
+		CustomFontUtil.drawCenteredStringWithShadow("Alts", width / 4.0, 6, ColorUtil.astolfoColors(100, 100));
 		GL11.glPopMatrix();
 		String s = "Signed in as ";
 		this.drawString(mc.fontRenderer, s, 4, 6, 0xFFAAAAAA);

@@ -23,7 +23,7 @@ public class LineButton extends AbstractComponent {
         renderer.drawString(x, y, label, Window.FOREGROUND);
         renderer.drawRect(x, y + getHeight() - 4, getWidth(), 4, Window.SECONDARY_FOREGROUND);
 
-        if (Config.instance.guiGlow.getValBoolean()) Render2DUtil.drawRoundedRect(x / 2, (y + getHeight() - 4) / 2, (x + getWidth()) / 2, (y + getHeight()) / 2, Window.SECONDARY_FOREGROUND, Config.instance.glowBoxSize.getValDouble());
+        if (Config.instance.guiGlow.getValBoolean()) Render2DUtil.drawRoundedRect(x / 2.0, (y + getHeight() - 4) / 2.0, (x + getWidth()) / 2.0, (y + getHeight()) / 2.0, Window.SECONDARY_FOREGROUND, Config.instance.glowBoxSize.getValDouble());
     }
 
     @Override public void postRender() {}

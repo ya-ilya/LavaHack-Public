@@ -33,8 +33,10 @@ public class MovementUtil {
                     forward = -1;
                 }
             }
-            mc.player.motionX = forward * speed * Math.cos(Math.toRadians(yaw + 90.0F)) + strafe * speed * Math.sin(Math.toRadians(yaw + 90.0F));
-            mc.player.motionZ = forward * speed * Math.sin(Math.toRadians(yaw + 90.0F)) - strafe * speed * Math.cos(Math.toRadians(yaw + 90.0F));
+            double cos = Math.cos(Math.toRadians(yaw + 90.0f));
+            double sin = Math.sin(Math.toRadians(yaw + 90.0f));
+            mc.player.motionX = forward * speed * cos + strafe * speed * sin;
+            mc.player.motionZ = forward * speed * sin - strafe * speed * cos;
         }
     }
 

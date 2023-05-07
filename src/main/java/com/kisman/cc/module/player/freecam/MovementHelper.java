@@ -13,25 +13,25 @@ public class MovementHelper extends Breadcrumbs.Helper {
     }
 
     public static boolean isMoving() {
-        return MovementHelper.mc.player.movementInput.moveForward != 0.0f || MovementHelper.mc.player.movementInput.moveStrafe != 0.0f;
+        return mc.player.movementInput.moveForward != 0.0f || mc.player.movementInput.moveStrafe != 0.0f;
     }
 
     public static boolean isUnderBedrock() {
-        if (MovementHelper.mc.player.posY <= 3.0) {
-            RayTraceResult trace = MovementHelper.mc.world.rayTraceBlocks(MovementHelper.mc.player.getPositionVector(), new Vec3d(MovementHelper.mc.player.posX, 0.0, MovementHelper.mc.player.posZ), false, false, false);
+        if (mc.player.posY <= 3.0) {
+            RayTraceResult trace = mc.world.rayTraceBlocks(mc.player.getPositionVector(), new Vec3d(mc.player.posX, 0.0, mc.player.posZ), false, false, false);
             return trace == null || trace.typeOfHit != RayTraceResult.Type.BLOCK;
         }
         return false;
     }
 
     public static float getSpeed() {
-        return (float)Math.sqrt(MovementHelper.mc.player.motionX * MovementHelper.mc.player.motionX + MovementHelper.mc.player.motionZ * MovementHelper.mc.player.motionZ);
+        return (float)Math.sqrt(mc.player.motionX * mc.player.motionX + mc.player.motionZ * mc.player.motionZ);
     }
 
     public static void setSpeed(float speed) {
-        float yaw = MovementHelper.mc.player.rotationYaw;
-        float forward = MovementHelper.mc.player.movementInput.moveForward;
-        float strafe = MovementHelper.mc.player.movementInput.moveStrafe;
+        float yaw = mc.player.rotationYaw;
+        float forward = mc.player.movementInput.moveForward;
+        float strafe = mc.player.movementInput.moveStrafe;
         if (forward != 0.0f) {
             if (strafe > 0.0f) {
                 yaw += (float)(forward > 0.0f ? -45 : 45);
@@ -45,14 +45,17 @@ public class MovementHelper extends Breadcrumbs.Helper {
                 forward = -1.0f;
             }
         }
-        MovementHelper.mc.player.motionX = (double)(forward * speed) * Math.cos(Math.toRadians(yaw + 90.0f)) + (double)(strafe * speed) * Math.sin(Math.toRadians(yaw + 90.0f));
-        MovementHelper.mc.player.motionZ = (double)(forward * speed) * Math.sin(Math.toRadians(yaw + 90.0f)) - (double)(strafe * speed) * Math.cos(Math.toRadians(yaw + 90.0f));
+        
+        double cos = Math.cos(Math.toRadians(yaw + 90.0f));
+        double sin = Math.sin(Math.toRadians(yaw + 90.0f));
+        mc.player.motionX = (double)(forward * speed) * cos + (double)(strafe * speed) * sin;
+        mc.player.motionZ = (double)(forward * speed) * sin - (double)(strafe * speed) * cos;
     }
 
     public static double[] forward(double speed) {
-        float forward = MovementHelper.mc.player.movementInput.moveForward;
-        float side = MovementHelper.mc.player.movementInput.moveStrafe;
-        float yaw = MovementHelper.mc.player.prevRotationYaw + (MovementHelper.mc.player.rotationYaw - MovementHelper.mc.player.prevRotationYaw) * mc.getRenderPartialTicks();
+        float forward = mc.player.movementInput.moveForward;
+        float side = mc.player.movementInput.moveStrafe;
+        float yaw = mc.player.prevRotationYaw + (mc.player.rotationYaw - mc.player.prevRotationYaw) * mc.getRenderPartialTicks();
         if (forward != 0.0f) {
             if (side > 0.0f) {
                 yaw += (float)(forward > 0.0f ? -45 : 45);

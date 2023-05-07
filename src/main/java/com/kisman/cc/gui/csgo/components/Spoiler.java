@@ -28,7 +28,6 @@ public class Spoiler extends AbstractComponent {
         setTitle(title);
     }
 
-    public Spoiler(IRenderer renderer, String title, int preferredWidth, Pane contentPane) {this(renderer, title, preferredWidth, PREFERRED_HEIGHT, contentPane);}
     public Spoiler(IRenderer renderer, String title, int preferredWidth, Pane contentPane, Module mod) {
         this(renderer, title, preferredWidth, PREFERRED_HEIGHT, contentPane);
         this.mod = mod;

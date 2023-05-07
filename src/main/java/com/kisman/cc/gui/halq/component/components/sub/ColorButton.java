@@ -41,8 +41,8 @@ public class ColorButton extends Component {
     public void drawScreen(int mouseX, int mouseY) {
         if (HalqGui.shadowCheckBox) {
             Render2DUtil.drawRectWH(x, y + offset, width, getHeight(), HalqGui.backgroundColor.getRGB());
-            Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x, y + offset}, new double[] {x + width / 2, y + offset}, new double[] {x + width / 2, y + offset + HalqGui.height}, new double[] {x, y + offset + HalqGui.height}), color.getColor(), ColorUtil.injectAlpha(HalqGui.backgroundColor, 1)));
-            Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x + width / 2, y + offset}, new double[] {x + width, y + offset}, new double[] {x + width, y + offset + HalqGui.height}, new double[] {x + width / 2, y + offset + HalqGui.height}), ColorUtil.injectAlpha(HalqGui.backgroundColor, 1), color.getColor()));
+            Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x, y + offset}, new double[] {x + width / 2.0, y + offset}, new double[] {x + width / 2.0, y + offset + HalqGui.height}, new double[] {x, y + offset + HalqGui.height}), color.getColor(), ColorUtil.injectAlpha(HalqGui.backgroundColor, 1)));
+            Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x + width / 2.0, y + offset}, new double[] {x + width, y + offset}, new double[] {x + width, y + offset + HalqGui.height}, new double[] {x + width / 2.0, y + offset + HalqGui.height}), ColorUtil.injectAlpha(HalqGui.backgroundColor, 1), color.getColor()));
         } else Render2DUtil.drawRectWH(x, y + offset, width, getHeight(), color.getRGB());
 
         HalqGui.drawString(setting.getName(), x, y + offset, width, HalqGui.height);
@@ -143,7 +143,7 @@ public class ColorButton extends Component {
             for (int colorIndex = 0; colorIndex < 6; colorIndex++) {
                 int previousStep = Color.HSBtoRGB((float) step/6, 1.0f, 1.0f);
                 int nextStep = Color.HSBtoRGB((float) (step+1)/6, 1.0f, 1.0f);
-                drawGradientRect(x, y + step * (height/6), x + width, y + (step+1) * (height/6), previousStep, nextStep);
+                drawGradientRect(x, y + step * (height / 6.0), x + width, y + (step+1) * (height / 6.0), previousStep, nextStep);
                 step++;
             }
             int sliderMinY = (int) (y + (height*hue)) - 4;

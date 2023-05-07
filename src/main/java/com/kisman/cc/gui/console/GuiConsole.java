@@ -86,14 +86,14 @@ public class GuiConsole extends GuiScreen implements ITabCompleter {
      * Fired when a key is typed (except F11 which toggles full screen). This is the equivalent of
      * KeyListener.keyTyped(KeyEvent e). Args : character (character on the key), keyCode (lwjgl Keyboard key code)
      */
-    protected void keyTyped(char typedChar, int keyCode) throws IOException {
+    protected void keyTyped(char typedChar, int keyCode) {
         this.tabCompleter.resetRequested();
 
         if (keyCode == 15) this.tabCompleter.complete();
         else this.tabCompleter.resetDidComplete();
 
         if (keyCode == 1) {
-            this.mc.displayGuiScreen((GuiScreen)null);
+            this.mc.displayGuiScreen(null);
         } else if (keyCode != 28 && keyCode != 156) {
             if (keyCode == 200) {
                 this.getSentHistory(-1);
@@ -121,7 +121,7 @@ public class GuiConsole extends GuiScreen implements ITabCompleter {
                 this.mc.ingameGUI.getChatGUI().addToSentMessages(s);
             }
 
-            this.mc.displayGuiScreen((GuiScreen)null);
+            this.mc.displayGuiScreen(null);
         }
     }
 
@@ -194,7 +194,7 @@ public class GuiConsole extends GuiScreen implements ITabCompleter {
                     this.historyBuffer = this.inputField.getText();
                 }
 
-                this.inputField.setText((String)this.mc.ingameGUI.getChatGUI().getSentMessages().get(i));
+                this.inputField.setText(this.mc.ingameGUI.getChatGUI().getSentMessages().get(i));
                 this.sentHistoryCursor = i;
             }
         }

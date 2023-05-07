@@ -6,10 +6,6 @@ import java.awt.Color
 
 class ColourUtil {
     companion object {
-        fun getDefaultColor(): Colour {
-            return Colour(255, 255, 255, 255)
-        }
-
         fun toConfig(color: Colour): String {
             return "${color.r}:${color.g}:${color.b}:${color.a}"
         }

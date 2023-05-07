@@ -44,8 +44,6 @@ public class Anchor extends Module {
         register(pitch);
     }
 
-    private Vec3d center = Vec3d.ZERO;
-
     private Vec3d getCenter(double posX, double posY, double posZ) {
         double x = Math.floor(posX) + 0.5D;
         double y = Math.floor(posY);
@@ -66,7 +64,7 @@ public class Anchor extends Module {
         if (mc.player.rotationPitch >= pitch.getValDouble()) {
             if (BlockUtil.isBlockHole(PlayerUtil.getPlayerPos().down(1)) || BlockUtil.isBlockHole(PlayerUtil.getPlayerPos().down(2)) || BlockUtil.isBlockHole(PlayerUtil.getPlayerPos().down(3)) || BlockUtil.isBlockHole(PlayerUtil.getPlayerPos().down(4))) {
                 if (mode.getValString().equals(Mode.Motion.name())) {
-                    center = getCenter(mc.player.posX, mc.player.posY, mc.player.posZ);
+                    Vec3d center = getCenter(mc.player.posX, mc.player.posY, mc.player.posZ);
 
                     double xDiff = Math.abs(center.x - mc.player.posX);
                     double zDiff = Math.abs(center.z - mc.player.posZ);

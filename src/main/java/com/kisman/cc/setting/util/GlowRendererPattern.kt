@@ -10,9 +10,9 @@ import java.awt.Color
 import java.util.function.Supplier
 
 class GlowRendererPattern(val module: Module, val visible: Supplier<Boolean>) {
-    val mode = Setting("Glow Mode", module, GlowModes.Default).setVisible {visible.get()}
-    val offset = Setting("Glow Offset", module, 6.0, 1.0, 20.0, true).setVisible {mode.valEnum.equals(GlowModes.Default) && visible.get()}
-    val radius = Setting("Glow Radius", module, 15.0, 0.0, 20.0, true).setVisible {mode.valEnum.equals(GlowModes.Shader) && visible.get()}
+    val mode: Setting = Setting("Glow Mode", module, GlowModes.Default).setVisible {visible.get()}
+    val offset: Setting = Setting("Glow Offset", module, 6.0, 1.0, 20.0, true).setVisible {mode.valEnum.equals(GlowModes.Default) && visible.get()}
+    val radius: Setting = Setting("Glow Radius", module, 15.0, 0.0, 20.0, true).setVisible {mode.valEnum.equals(GlowModes.Shader) && visible.get()}
     private val boxSize = Setting("Glow Box Size", module, 0.0, 0.0, 20.0, true).setVisible {mode.valEnum.equals(GlowModes.Shader) && visible.get()}
 
     fun init() {

@@ -18,7 +18,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 
 import java.awt.*;
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,17 +25,13 @@ import java.util.List;
 @SideOnly(Side.CLIENT)
 public class PreviewGui extends RightPanel {
     private static final ResourceLocation GUI_TEXTURE = new ResourceLocation("kismancc:gui/preview.png");
-    private static int guiWidth = 176;
+    private static final int guiWidth = 176;
+    private static final int guiHeight = 80;
     private static final int INNER_BORDER = PreviewGui.INNER_BORDER;
-    private static int guiHeight = 80;
-    private int x, y, x_end, y_end;
-    private InventoryBasic inventory;
-    private List<Slot> slots;
-    private boolean hasParent;
-
-    public PreviewGui(NBTTagList list) {
-        this(list, true);
-    }
+    private final int x, y, x_end, y_end;
+    private final InventoryBasic inventory;
+    private final List<Slot> slots;
+    private final boolean hasParent;
 
     public PreviewGui(NBTTagList list, boolean hasParent) {
         this.hasParent = hasParent;
@@ -121,7 +116,7 @@ public class PreviewGui extends RightPanel {
         }
     }
 
-    public void keyTyped(char typedChar, int keyCode) throws IOException {
+    public void keyTyped(char typedChar, int keyCode) {
         if (keyCode == Keyboard.KEY_ESCAPE) {
             this.mc.displayGuiScreen(null);
             if (this.mc.currentScreen == null) {
@@ -129,10 +124,4 @@ public class PreviewGui extends RightPanel {
             }
         }
     }
-
-
-
-//  public void close() {
-//    this.transition((RightPanel) this.parent);
-//  }
 }

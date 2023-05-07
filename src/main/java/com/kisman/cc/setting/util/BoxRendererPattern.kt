@@ -14,7 +14,7 @@ class BoxRendererPattern(val module: Module) {
     val mode = Setting("Mode", module, BoxRenderModes.Filled)
     val depth = Setting("Depth", module, false)
     val alpha = Setting("Alpha", module, true)
-    val width = Setting("Width", module, 2.0, 0.25, 5.0, false).setVisible { !mode.valEnum.equals(BoxRenderModes.Filled) }
+    val width: Setting = Setting("Width", module, 2.0, 0.25, 5.0, false).setVisible { !mode.valEnum.equals(BoxRenderModes.Filled) }
     val offset = Setting("Offset", module, 0.002, 0.002, 0.2, false)
 
     fun init() {

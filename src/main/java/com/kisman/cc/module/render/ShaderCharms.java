@@ -153,7 +153,7 @@ public class ShaderCharms extends Module {
 
     @EventHandler
     @SuppressWarnings("unused")
-    private final Listener<RenderEntityEvent.All.Pre> renderEntityListener = listener(event -> {
+    private final Listener<RenderEntityEvent.Pre> renderEntityListener = listener(event -> {
         if (mode.checkValString("Outline2") && !mc.renderManager.renderOutlines && hideOriginal.getValBoolean() && mc.player.getDistance(event.getEntity()) <= range.getValFloat() && entityTypeCheck(event.getEntity())) event.cancel();
     });
 

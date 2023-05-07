@@ -102,7 +102,7 @@ public class  NameTags extends Module {
         String cross = "";
         if (FriendManager.instance.isFriend(player.getName())) {
             clrf = TextFormatting.AQUA;
-            if (!atheist.getValBoolean()) cross = "\u271d ";
+            if (!atheist.getValBoolean()) cross = "✝ ";
         }
         int pingy = -1;
         try {pingy = mc.player.connection.getPlayerInfo(player.getUniqueID()).getResponseTime();} catch (NullPointerException ignored) {}
@@ -142,7 +142,7 @@ public class  NameTags extends Module {
         RenderUtil.drawSmoothRect((float)(-width - 3), 9.0f, (float)(width + 4), 23.0f, new Color(0, 0, 0, (int)widthBackGround).getRGB());
         int n = 0;
         ++counter[n];//9 + 14 / 2 - font.fontHeight / 2
-        font.drawString(name, -width, 9 + 7 - (font.fontHeight - 8) / 4, Color.red.getRGB());
+        font.drawString(name, -width, 9 + 7 - (font.fontHeight - 8) / 4.0, Color.red.getRGB());
         boolean item = this.items.getValBoolean();
         if (item) {
             int xOffset = -8;

@@ -18,18 +18,18 @@ import kotlin.math.pow
 object Outline2Shader {
     private val mc = Minecraft.getMinecraft()
 
-    private var outlineAlpha: ShaderUtil.UniformFloat? = null
-    private var filledAlpha: ShaderUtil.UniformFloat? = null
-    private var width: ShaderUtil.UniformFloat? = null
-    private var widthSq: ShaderUtil.UniformFloat? = null
-    private var ratio: ShaderUtil.UniformFloat? = null
+    private var outlineAlpha: ShaderUtil.Uniform.Float? = null
+    private var filledAlpha: ShaderUtil.Uniform.Float? = null
+    private var width: ShaderUtil.Uniform.Float? = null
+    private var widthSq: ShaderUtil.Uniform.Float? = null
+    private var ratio: ShaderUtil.Uniform.Float? = null
 
     fun setupUniforms(outlineAlpha: Float, filledAlpha: Float, width: Float, ratio: Float) {
-        this.outlineAlpha = ShaderUtil.UniformFloat("outlineAlpha", outlineAlpha)
-        this.filledAlpha = ShaderUtil.UniformFloat("filledAlpha", filledAlpha)
-        this.width = ShaderUtil.UniformFloat("width", width)
-        this.widthSq = ShaderUtil.UniformFloat("widthSq", width.pow(2))
-        this.ratio = ShaderUtil.UniformFloat("ratio", ratio)
+        this.outlineAlpha = ShaderUtil.Uniform.Float("outlineAlpha", outlineAlpha)
+        this.filledAlpha = ShaderUtil.Uniform.Float("filledAlpha", filledAlpha)
+        this.width = ShaderUtil.Uniform.Float("width", width)
+        this.widthSq = ShaderUtil.Uniform.Float("widthSq", width.pow(2))
+        this.ratio = ShaderUtil.Uniform.Float("ratio", ratio)
     }
 
     fun drawShader(shaderHelper: ShaderHelper, frameBufferFinal: Framebuffer, partialTicks: Float) {

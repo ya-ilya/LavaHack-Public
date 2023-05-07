@@ -42,7 +42,7 @@ public class BindButton extends Component {
 
         if (HalqGui.shadowCheckBox) {
             Render2DUtil.drawRectWH(x, y + offset, width, HalqGui.height, HalqGui.backgroundColor.getRGB());
-            if (changing) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x + width / 2, y + offset}, new double[] {x + width, y + offset}, new double[] {x + width, y + offset + HalqGui.height}, new double[] {x + width / 2, y + offset + HalqGui.height}), ColorUtil.injectAlpha(HalqGui.backgroundColor, 1), HalqGui.getGradientColour(count).getColor()));
+            if (changing) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {x + width / 2.0, y + offset}, new double[] {x + width, y + offset}, new double[] {x + width, y + offset + HalqGui.height}, new double[] {x + width / 2.0, y + offset + HalqGui.height}), ColorUtil.injectAlpha(HalqGui.backgroundColor, 1), HalqGui.getGradientColour(count).getColor()));
         } else Render2DUtil.drawRectWH(x, y + offset, width, HalqGui.height, changing ? HalqGui.getGradientColour(count).getRGB() : HalqGui.backgroundColor.getRGB());
 
         HalqGui.drawString(changing ? "Press a key..." : module != null ? "Bind: " + Keyboard.getKeyName(module.getKey()) : setting.getName() + ": " + Keyboard.getKeyName(setting.getKey()) , x, y + offset, width, HalqGui.height);

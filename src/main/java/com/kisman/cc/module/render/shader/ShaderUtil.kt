@@ -2,27 +2,15 @@ package com.kisman.cc.module.render.shader
 
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.shader.Framebuffer
-import org.lwjgl.opengl.GL20
 
 class ShaderUtil {
     companion object {
-        fun setupUniforms(shader: Shader, uniforms: Array<Uniform>) {
-            for (uniform in uniforms) {
-                if (uniform is UniformFloat) {
-                    GL20.glUniform1f(shader.getUniform(uniform.name), uniform.value)
-                }
-                if (uniform is UniformInt) {
-                    GL20.glUniform1i(shader.getUniform(uniform.name), uniform.value)
-                }
-            }
-        }
-
         fun setupUniforms(shader: net.minecraft.client.shader.Shader, uniforms: Array<Uniform>) {
             for (uniform in uniforms) {
-                if (uniform is UniformFloat) {
+                if (uniform is Uniform.Float) {
                     shader.shaderManager.getShaderUniform(uniform.name)?.set(uniform.value)
                 }
-                if (uniform is UniformInt) {
+                if (uniform is Uniform.Int) {
                     shader.shaderManager.getShaderUniform(uniform.name)?.set(uniform.value.toFloat())
                 }
             }
@@ -44,7 +32,8 @@ class ShaderUtil {
         }
     }
 
-    open class Uniform
-    class UniformFloat(val name: String, val value: Float) : Uniform()
-    class UniformInt(val name: String, val value: Int) : Uniform()
+    sealed interface Uniform {
+        class Float(val name: String, val value: kotlin.Float) : Uniform
+        class Int(val name: String, val value: kotlin.Int) : Uniform
+    }
 }

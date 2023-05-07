@@ -32,12 +32,12 @@ public class CFontRenderer extends CustomFont {
         return Math.max(shadowWidth, drawString(text, x, y, color, false));
     }
 
-    public float drawString(String text, double x, double y, int color) {
-        return drawString(text, x, y, color, false);
+    public void drawString(String text, double x, double y, int color) {
+        drawString(text, x, y, color, false);
     }
 
-    public float drawCenteredStringWithShadow(String text, double x, double y, int color) {
-        return drawStringWithShadow(text, x - getStringWidth(text) / 2F, y, color);
+    public void drawCenteredStringWithShadow(String text, double x, double y, int color) {
+        drawStringWithShadow(text, x - getStringWidth(text) / 2F, y, color);
     }
 
     public float drawString(final String text, double x, double y, int color, final boolean shadow) {

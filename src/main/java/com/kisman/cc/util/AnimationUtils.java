@@ -8,10 +8,6 @@ public class AnimationUtils {
     public float end;
     public boolean increasing;
 
-    public AnimationUtils(float duration, float start, float end) {
-        this((long)(duration * Float.intBitsToFloat(Float.floatToIntBits(7.1846804E-4f) ^ 0x7E465793)), start, end);
-    }
-
     public AnimationUtils(long duration, float start, float end) {
         this.value = start;
         this.end = end;
@@ -20,10 +16,6 @@ public class AnimationUtils {
         float difference = Math.abs(start - end);
         this.changePerMillisecond = difference / (float)duration;
         this.lastTime = System.currentTimeMillis();
-    }
-
-    public static AnimationUtils fromChangePerSecond(float start, float end, float changePerSecond) {
-        return new AnimationUtils(Math.abs((float)(start - end)) / changePerSecond, (float)start, (float)end);
     }
 
     public void reset() {
@@ -51,10 +43,6 @@ public class AnimationUtils {
         if (this.value < this.end) this.value = this.end;
         this.lastTime = System.currentTimeMillis();
         return this.value;
-    }
-
-    public boolean isDone() {
-        return this.value == this.end;
     }
 
     public static double animate(double target, double current, double speed) {

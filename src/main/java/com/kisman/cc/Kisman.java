@@ -41,6 +41,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Mod(modid = Kisman.MOD_ID, name = Kisman.NAME, version = Kisman.VERSION)
@@ -87,7 +88,7 @@ public class Kisman {
     public AiImprovements aiImprovements;
     public ConfigManager configManager;
 
-    public void init() throws IOException, NoSuchFieldException, IllegalAccessException {
+    public void init() throws IOException {
         Display.setTitle(NAME + " | " + VERSION);
     	MinecraftForge.EVENT_BUS.register(this);
 
@@ -181,8 +182,9 @@ public class Kisman {
     }
 
     public static void initDirs() throws IOException {
-        if (!Files.exists(Paths.get(fileName))) {
-            Files.createDirectories(Paths.get(fileName));
+        Path filePath = Paths.get(fileName);
+        if (!Files.exists(filePath)) {
+            Files.createDirectories(filePath);
             LOGGER.info("Root dir created");
         }
     }

@@ -25,10 +25,6 @@ class ShadowRectObject(
         }
     }
 
-    constructor(x1: Double, y1: Double, x2: Double, y2: Double, color: Colour, radius: Double) : this(x1, y1, x2, y2, color, color, radius, ArrayList<RectSides>())
-    constructor(x1: Double, y1: Double, x2: Double, y2: Double, color: Colour) : this(x1, y1, x2, y2, color, 5.0)
-    constructor(x1: Double, y1: Double, x2: Double, y2: Double, color : Colour, excludedSides: List<RectSides>) : this(x1, y1, x2, y2, color, color, 5.0, excludedSides)
-
     fun draw() {
         Render2DUtil.drawRect(x1, y1, x2, y2, color1.rgb)
 

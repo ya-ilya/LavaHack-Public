@@ -28,8 +28,8 @@ public class CustomFontRenderer extends CustomFont {
         return drawString(text, x, y, color, false);
     }
 
-    public float drawString(String text, float x, float y, int color) {
-        return drawString(text, x, y, color, false);
+    public void drawString(String text, float x, float y, int color) {
+        drawString(text, x, y, color, false);
     }
 
     public void drawCenteredStringWithShadow(String text, float x, float y, int color) {
@@ -67,7 +67,7 @@ public class CustomFontRenderer extends CustomFont {
         GL11.glBindTexture(3553, this.tex.getGlTextureId());
         for (int i = 0; i < size; i++) {
             char character = text.charAt(i);
-            if (character == '\u00A7') {
+            if (character == '§') {
             int colorIndex = 21;
             try {
                 colorIndex = "0123456789abcdefklmnor".indexOf(text.charAt(i + 1));
@@ -134,7 +134,7 @@ public class CustomFontRenderer extends CustomFont {
         int size = text.length();
         for (int i = 0; i < size; i++) {
             char character = text.charAt(i);
-            if (character == '\u00A7') i++;
+            if (character == '§') i++;
             else if (character < currentData.length) width += (currentData[character]).width - 8 + this.charOffset;
         }
         return width / 2;

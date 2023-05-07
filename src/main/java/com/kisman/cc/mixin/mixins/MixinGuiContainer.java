@@ -23,10 +23,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.awt.*;
 
 @Mixin(value = GuiContainer.class, priority = 10000)
-public class MixinGuiContainer extends GuiScreen {
+public abstract class MixinGuiContainer extends GuiScreen {
     @Shadow protected int guiLeft, guiTop, xSize, ySize;
     @Shadow public Container inventorySlots;
-    @Shadow protected boolean checkHotbarKeys(int keyCode) {return false;}
+    @Shadow protected abstract boolean checkHotbarKeys(int keyCode);
     @Shadow private Slot hoveredSlot;
     @Shadow protected void handleMouseClick(Slot slotIn, int slotId, int mouseButton, ClickType type) {}
 

@@ -33,14 +33,6 @@ public class CrystalUtils {
 
     public static List<Block> valid = Arrays.asList(Blocks.OBSIDIAN, Blocks.BEDROCK, Blocks.ENDER_CHEST, Blocks.ANVIL);
 
-    public static boolean canSeePos(BlockPos pos) {
-        return mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + (double)mc.player.getEyeHeight(), mc.player.posZ), new Vec3d((double)pos.getX(), (double)pos.getY(), (double)pos.getZ()), false, true, false) == null;
-    }
-
-    public static boolean isEntityMoving(EntityLivingBase entityLivingBase) {
-        return entityLivingBase.motionX > Double.longBitsToDouble(Double.doubleToLongBits(0.5327718501168097) ^ 0x7FE10C778D0F6544L) || entityLivingBase.motionY > Double.longBitsToDouble(Double.doubleToLongBits(0.07461435496686485) ^ 0x7FB319ED266512E7L) || entityLivingBase.motionZ > Double.longBitsToDouble(Double.doubleToLongBits(0.9006325807477794) ^ 0x7FECD1FB6B00C2E7L);
-    }
-
     public static boolean canPlaceCrystal(final BlockPos pos) {
         Minecraft mc = Minecraft.getMinecraft();
         Block block = mc.world.getBlockState(pos).getBlock();

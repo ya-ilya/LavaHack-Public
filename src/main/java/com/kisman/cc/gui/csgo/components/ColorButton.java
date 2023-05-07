@@ -34,7 +34,6 @@ public class ColorButton extends AbstractComponent {
     private int hueSliderX, hueSliderY, hueSliderWidth, hueSliderHeight;
     private int alphaSliderX, alphaSliderY, alphaSliderWidth, alphaSliderHeight;
     private int rainbowX, rainbowY, rainbowWidth, rainbowHeight;
-    private int selectedColorFinal;
 
     private ValueChangeListener<Colour> listener;
     private ValueChangeListener<Boolean> listener2;
@@ -109,7 +108,7 @@ public class ColorButton extends AbstractComponent {
         }
         renderer.drawOutline(x, y, getWidth(), getHeight(), 1.0f, (hovered) ? Window.SECONDARY_OUTLINE : Window.SECONDARY_FOREGROUND);
 
-        if (Config.instance.guiGlow.getValBoolean()) Render2DUtil.drawRoundedRect(x / 2, y / 2, (x + getWidth()) / 2, (y + preferredHeight) / 2, value.getColor(), Config.instance.glowBoxSize.getValDouble());
+        if (Config.instance.guiGlow.getValBoolean()) Render2DUtil.drawRoundedRect(x / 2.0, y / 2.0, (x + getWidth()) / 2.0, (y + preferredHeight) / 2.0, value.getColor(), Config.instance.glowBoxSize.getValDouble());
 
         if (opened) {
             int selectedX = pickerX + pickerWidth + 6;
@@ -125,8 +124,8 @@ public class ColorButton extends AbstractComponent {
             this.drawAlphaSlider(alphaSliderX, alphaSliderY, alphaSliderWidth, alphaSliderHeight, selectedRed, selectedGreen, selectedBlue, this.color[3]);
 //            this.drawButton(rainbowX, rainbowY, rainbowWidth, rainbowHeight, value2, "Rainbow");
             //final int
-            this.selectedColorFinal = alpha(new Color(Color.HSBtoRGB(this.color[0], this.color[1], this.color[2])), this.color[3]);
-            Gui.drawRect(selectedX, selectedY, selectedX + selectedWidth, selectedY + selectedHeight, this.selectedColorFinal);
+            int selectedColorFinal = alpha(new Color(Color.HSBtoRGB(this.color[0], this.color[1], this.color[2])), this.color[3]);
+            Gui.drawRect(selectedX, selectedY, selectedX + selectedWidth, selectedY + selectedHeight, selectedColorFinal);
 
             {
                 int cursorX = (int) (pickerX + color[1]*pickerWidth);
@@ -143,20 +142,6 @@ public class ColorButton extends AbstractComponent {
 
     @Override
     public void postRender() {}
-
-    private void drawButton(int x, int y, int width, int height, boolean state, String title) {
-        renderer.drawRect(x, y, width, height, hovered ? Window.SECONDARY_FOREGROUND : Window.TERTIARY_FOREGROUND);
-
-        if (state) {
-            Color color = hovered ? Config.instance.guiAstolfo.getValBoolean() ? renderer.astolfoColorToObj() : Window.TERTIARY_FOREGROUND : Window.SECONDARY_FOREGROUND;
-
-            renderer.drawRect(x, y, width, height,color);
-        }
-
-        renderer.drawOutline(x, y, width, height, 1.0f, hovered ? Config.instance.guiAstolfo.getValBoolean() ? renderer.astolfoColorToObj() : Window.SECONDARY_OUTLINE : Window.SECONDARY_FOREGROUND);
-        if (Config.instance.guiGlow.getValBoolean() && state) Render2DUtil.drawRoundedRect(x / 2, y / 2, (x + width) / 2, (y + height) / 2, hovered ? Config.instance.guiAstolfo.getValBoolean() ? renderer.astolfoColorToObj() : Window.SECONDARY_OUTLINE : Window.SECONDARY_FOREGROUND, Config.instance.glowBoxSize.getValDouble());
-        renderer.drawString(x + width + height / 4, y + getHeight() / 2 - renderer.getStringHeight(title) / 2, title, Window.FOREGROUND);
-    }
 
     final int alpha(Color color, float alpha) {
         return new Colour(color, alpha).getRGB();
@@ -245,10 +230,6 @@ public class ColorButton extends AbstractComponent {
         return value;
     }
 
-    public boolean getValue2() {
-        return value2;
-    }
-
     public void setValue(boolean value) {
         value2 = value;
     }
@@ -270,7 +251,7 @@ public class ColorButton extends AbstractComponent {
             for (int colorIndex = 0; colorIndex < 6; colorIndex++) {
                 int previousStep = Color.HSBtoRGB((float) step/6, 1.0f, 1.0f);
                 int nextStep = Color.HSBtoRGB((float) (step+1)/6, 1.0f, 1.0f);
-                drawGradientRect(x, y + step * (height/6), x + width, y + (step+1) * (height/6), previousStep, nextStep);
+                drawGradientRect(x, y + step * (height / 6.0), x + width, y + (step+1) * (height / 6.0), previousStep, nextStep);
                 step++;
             }
             int sliderMinY = (int) (y + (height*hue)) - 4;

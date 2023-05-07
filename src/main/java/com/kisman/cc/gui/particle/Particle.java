@@ -8,8 +8,7 @@ import org.lwjgl.util.vector.Vector2f;
 
 import java.util.Random;
 
-public class Particle
-{
+public class Particle {
     private float alpha;
     public Colour color;
     private final Vector2f pos;

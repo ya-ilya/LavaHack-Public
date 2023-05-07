@@ -11,7 +11,6 @@ import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.EntityUtil;
 import com.kisman.cc.util.MovementUtil;
 import com.kisman.cc.util.PlayerUtil;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -425,7 +424,6 @@ public class Speed extends Module {
 
     public enum Motion {X,Y,mX,mY}
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
         if (event.getPacket() instanceof SPacketPlayerPosLook) {
@@ -436,7 +434,6 @@ public class Speed extends Module {
         }
     });
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerUpdateEvent> playerUpdateListener = listener(event -> {
         if (speedMode.getValString().equalsIgnoreCase("Sti")) {

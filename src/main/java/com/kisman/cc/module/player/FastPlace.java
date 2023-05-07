@@ -6,7 +6,6 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.RotationUtils;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
@@ -91,7 +90,6 @@ public class FastPlace extends Module {
         }
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
         if (event.getEra().equals(Event.Era.PRE) && this.feetExp.getValBoolean()) {

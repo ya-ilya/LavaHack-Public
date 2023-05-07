@@ -5,7 +5,6 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.Colour;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.renderer.GlStateManager;
@@ -85,7 +84,6 @@ public class DamageESP extends Module {
         }
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<Render2DEvent> render2DListener = listener(event -> {
         if (damages.isEmpty()) return;

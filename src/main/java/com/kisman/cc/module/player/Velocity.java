@@ -7,7 +7,6 @@ import com.kisman.cc.event.events.PlayerPushedByWaterEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -64,25 +63,21 @@ public class Velocity extends Module{
         }
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerApplyCollisionEvent> applyCollisionListener = listener(event -> {
         if (noPush.getValBoolean()) event.cancel();
     });
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerPushedByWaterEvent> pushedByWaterListener = listener(event -> {
         if (noPush.getValBoolean()) event.cancel();
     });
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerPushOutOfBlocksEvent> pushOutOfBlocksListener = listener(event -> {
         if (noPush.getValBoolean()) event.cancel();
     });
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
         if (event.getPacket() instanceof SPacketEntityVelocity) if (((SPacketEntityVelocity) event.getPacket()).getEntityID() == mc.player.getEntityId()) event.cancel();

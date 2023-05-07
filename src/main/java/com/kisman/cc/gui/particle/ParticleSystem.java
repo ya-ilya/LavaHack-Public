@@ -160,18 +160,15 @@ public class ParticleSystem {
             if (nearestParticle == null) continue;
             float alpha = Math.min(1.0f, Math.min(1.0f, 1.0f - nearestDistance / dist));
 
-            //Checks if two gradient particles mode is enabled
             if (StaticParticles.isIsTwoGParticlesEnabled()){
-                //Checks if rendering gradient mode is default
                 String mode = StaticParticles.getMode();
                 Color startColor = StaticParticles.getStartColor();
                 Color endColor = StaticParticles.getEndColor();
                 float particleWidth = StaticParticles.getParticleWidth();
 
-                if (mode.equals(StaticParticles.getModeDEfType())) {
+                if (mode.equals(StaticParticles.DEfType)) {
                     this.drawGradientLine(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), startColor, endColor, particleWidth);
-                    //this.drawGradientLineGlowing(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), StaticParticles.startColor, StaticParticles.endColor, StaticParticles.particleWidth);
-                } else if (mode.equals(StaticParticles.getModeTGfType())) {
+                } else if (mode.equals(StaticParticles.TGfType)) {
                     this.drawThreeGradientLine(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), startColor, Color.CYAN, endColor, particleWidth);
                 } else {
                     this.drawGradientLine(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), particle.color.getColor(), nearestParticle.color.getColor(), particleWidth);

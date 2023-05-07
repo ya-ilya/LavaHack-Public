@@ -4,7 +4,6 @@ import com.kisman.cc.event.events.PlayerTurnEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
@@ -41,7 +40,6 @@ public class FreeLook extends Module {
         }
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerTurnEvent> turnListener = listener(event -> {
         if (mc.gameSettings.thirdPersonView > 0) {

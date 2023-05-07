@@ -20,7 +20,6 @@ import com.kisman.cc.setting.util.RenderingRewritePattern;
 import com.kisman.cc.util.*;
 import com.kisman.cc.util.bypasses.SilentSwitchBypass;
 import com.kisman.cc.util.enums.ShaderModes;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.GlStateManager;
@@ -367,7 +366,7 @@ public class AutoRer extends Module {
     }
 
     public void update() {
-        if (mc.player == null || mc.world == null || mc.isGamePaused) return;
+        if (mc.player == null || mc.world == null || mc.isGamePaused()) return;
 
         updateRenderTimer();
 
@@ -447,7 +446,7 @@ public class AutoRer extends Module {
     }
 
     public synchronized void doAutoRerForThread() {
-        if (mc.player == null || mc.world == null) return;
+        if (mc.player == null || mc.world == null || mc.isGamePaused()) return;
         if (manualBreaker.getValBoolean()) manualBreaker();
         if (fastCalc.getValBoolean() && calcTimer.passedMillis(calcDelay.getValLong())) {
             doCalculatePlace();
@@ -475,7 +474,6 @@ public class AutoRer extends Module {
         }
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
         if (!motionCrystal.getValBoolean() || currentTarget == null) return;
@@ -515,7 +513,6 @@ public class AutoRer extends Module {
         predictTimer.reset();
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
         if (event.getPacket() instanceof SPacketSpawnObject && instant.getValBoolean()) {
@@ -565,11 +562,10 @@ public class AutoRer extends Module {
         }
     });
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (event.getPacket() instanceof CPacketPlayerTryUseItemOnBlock && mc.player.getHeldItem(((CPacketPlayerTryUseItemOnBlock) event.getPacket()).getHand()).getItem() == Items.END_CRYSTAL) try {
-            PlaceInfo info = AutoRerUtil.Companion.getPlaceInfo(((CPacketPlayerTryUseItemOnBlock) event.getPacket()).getPos(), currentTarget, terrain.getValBoolean());
+            PlaceInfo info = AutoRerUtil.getPlaceInfo(((CPacketPlayerTryUseItemOnBlock) event.getPacket()).getPos(), currentTarget, terrain.getValBoolean());
             placedList.add(info);
         } catch (Exception ignored) {}
         if (removeAfterAttack.getValBoolean() && event.getPacket() instanceof CPacketUseEntity) {
@@ -621,7 +617,7 @@ public class AutoRer extends Module {
             }
         });
 
-        this.placePos = placePos[0] == null ? null : AutoRerUtil.Companion.getPlaceInfo(placePos[0], currentTarget, terrain.getValBoolean());
+        this.placePos = placePos[0] == null ? null : AutoRerUtil.getPlaceInfo(placePos[0], currentTarget, terrain.getValBoolean());
     }
 
     private void calculatePlace() {
@@ -661,7 +657,7 @@ public class AutoRer extends Module {
             }
         }
 
-        this.placePos = placePos == null ? null : AutoRerUtil.Companion.getPlaceInfo(placePos, currentTarget, terrain.getValBoolean());
+        this.placePos = placePos == null ? null : AutoRerUtil.getPlaceInfo(placePos, currentTarget, terrain.getValBoolean());
     }
 
     private boolean isPosValid(BlockPos pos) {
@@ -1038,6 +1034,8 @@ public class AutoRer extends Module {
 
     @SubscribeEvent
     public void onRenderWorld(RenderWorldLastEvent event) {
+        if (mc.player == null || mc.world == null || mc.isGamePaused()) return;
+
         if (targetCharms.getValBoolean() && currentTarget != null) {
             try {
                 FramebufferShader framebufferShader = FramebufferShader.SHADERS.get(targetCharmsShader.getValString().toLowerCase());
@@ -1178,8 +1176,7 @@ public class AutoRer extends Module {
         public void run() {
             if (autoRer.threadMode.getValString().equalsIgnoreCase("While")) {
                 while (autoRer.isToggled() && autoRer.threadMode.getValString().equalsIgnoreCase("While")) {
-                    if (mc.player == null || mc.world == null) break;
-                    if (mc.isGamePaused()) continue;
+                    if (mc.player == null || mc.world == null || mc.isGamePaused()) break;
 
                     if (autoRer.shouldInterrupt.get()) {
                         autoRer.shouldInterrupt.set(false);

@@ -1,6 +1,7 @@
 package com.kisman.cc.event;
 
 import com.kisman.cc.Kisman;
+import com.kisman.cc.command.CommandManager;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.event.events.TotemPopEvent;
 import com.kisman.cc.module.Module;
@@ -49,7 +50,7 @@ public class EventProcessor {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onChatMessage(ClientChatEvent event) {
-        if (event.getMessage().startsWith(Kisman.instance.commandManager.cmdPrefixStr)) {
+        if (event.getMessage().startsWith(String.valueOf(CommandManager.PREFIX))) {
             try {
                 Kisman.instance.commandManager.runCommand(event.getMessage());
                 event.setCanceled(true);

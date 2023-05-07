@@ -36,10 +36,6 @@ public class CustomFontRenderer extends CustomFont {
         drawStringWithShadow(text, (x - getStringWidth(text) / 2.0F), y, color);
     }
 
-    public void drawCenteredString(String text, float x, float y, int color) {
-        drawString(text, x - getStringWidth(text) / 2.0F, y, color);
-    }
-
     public float drawString(String text, double x, double y, int c, boolean shadow) {
         int color = c;
         x--;

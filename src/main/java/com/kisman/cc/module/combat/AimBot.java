@@ -7,7 +7,6 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.PlayerUtil;
 import com.kisman.cc.util.RotationSpoof;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.network.play.client.CPacketEntityAction;
 import net.minecraft.network.play.client.CPacketPlayer;
@@ -31,7 +30,6 @@ public class AimBot extends Module {
         register(mode);
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
         if (event.getEra() != Event.Era.PRE) return;

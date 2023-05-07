@@ -10,7 +10,6 @@ import com.kisman.cc.module.combat.AutoRer;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.ChatUtil;
 import com.kisman.cc.util.TimerUtil;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
@@ -111,7 +110,6 @@ public class Tracker extends Module {
         }
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (mc.player != null && mc.world != null && event.getPacket() instanceof CPacketPlayerTryUseItemOnBlock) {
@@ -122,7 +120,6 @@ public class Tracker extends Module {
         }
     });
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
         if (mc.player != null && mc.world != null && (this.autoEnable.getValBoolean() || this.autoDisable.getValBoolean()) && event.getPacket() instanceof SPacketChat) {
@@ -139,7 +136,6 @@ public class Tracker extends Module {
         }
     });
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
         if (shouldEnable && timer.passedSec(5L) && !super.isToggled()) {
@@ -147,7 +143,6 @@ public class Tracker extends Module {
         }
     });
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<SpawnEntityEvent> spawnEntityListener = listener(event -> {
         Entity entity = event.getEntity();

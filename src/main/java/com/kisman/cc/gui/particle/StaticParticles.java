@@ -29,11 +29,6 @@ public class StaticParticles {
         return Config.instance.particlesGradientMode.getValString();
     }
 
-    public static String getModeDEfType() {
-        return Config.ParticlesGradientMode.TwoGradient.name();
-    }
-
-    public static String getModeTGfType() {
-        return Config.ParticlesGradientMode.ThreeGradient.name();
-    }
+    public static String DEfType = Config.ParticlesGradientMode.TwoGradient.name();
+    public static String TGfType = Config.ParticlesGradientMode.ThreeGradient.name();
 }

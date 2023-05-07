@@ -7,7 +7,6 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.ChatUtil;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 
 import java.lang.reflect.Field;
@@ -29,7 +28,6 @@ public class PacketLogger extends Module{
         return true;
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (!client.getValBoolean()) return;
@@ -50,7 +48,6 @@ public class PacketLogger extends Module{
         }else PacketChat.Instance.logs.activeMessages.add(new Message(message.toString()));
     });
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Receive> packetReceiveListener = listener(event -> {
         if (!server.getValBoolean()) return;

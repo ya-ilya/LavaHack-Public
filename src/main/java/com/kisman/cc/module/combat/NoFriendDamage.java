@@ -4,7 +4,6 @@ import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.manager.managers.FriendManager;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +14,6 @@ public class NoFriendDamage extends Module {
         super("NoFriendDamage", Category.COMBAT);
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (event.getPacket() instanceof CPacketUseEntity) {

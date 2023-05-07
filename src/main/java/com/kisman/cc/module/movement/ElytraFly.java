@@ -7,7 +7,6 @@ import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.InventoryUtil;
 import com.kisman.cc.util.MathUtil;
 import com.kisman.cc.util.TimerUtil;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ClickType;
@@ -85,7 +84,6 @@ public class ElytraFly extends Module {
         }
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerTravelEvent> playerTravelListener = listener(event -> {
         if (mc.player == null) return;

@@ -10,7 +10,7 @@ public class AutoLog extends Module {
     private final Setting health = new Setting("Health", this, 10, 1, 36, true);
 
     public AutoLog() {
-        super("AutoLog", "5", Category.MISC);
+        super("AutoLog", Category.MISC);
 
         register(health);
     }

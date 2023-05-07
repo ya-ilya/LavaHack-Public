@@ -10,7 +10,6 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.MovementUtil;
 import com.kisman.cc.util.PlayerUtil;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.settings.KeyBinding;
@@ -102,7 +101,6 @@ public class NoSlow extends Module {
         }
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerUpdateMoveStateEvent> updateMoveStateListener = listener(event -> {
         if (invMove.getValBoolean() && mc.currentScreen != null) {
@@ -143,7 +141,6 @@ public class NoSlow extends Module {
         }
     });
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerUpdateMoveStateEvent> updateMoveStateListener1 = listener(event -> {
         if (items.getValBoolean() && mc.player.isHandActive() && !mc.player.isRiding()) {
@@ -152,7 +149,6 @@ public class NoSlow extends Module {
         }
     });
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.PostSend> packetPostSendListener = listener(event -> {
         if (event.getPacket() instanceof CPacketPlayer) {

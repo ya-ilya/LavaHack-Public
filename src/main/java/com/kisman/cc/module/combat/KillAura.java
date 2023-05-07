@@ -34,6 +34,7 @@ public class KillAura extends Module {
     private final Setting useFallDist = new Setting("Use Fall Dist", this, false);
     private final Setting fallDistance = new Setting("Fall Distance", this, 0.25, 0, 1, false).setVisible(useFallDist::getValBoolean);
     private final Setting shieldBreaker = new Setting("Shield Breaker", this, true);
+    private final Setting hitSound = new Setting("HitSound", this, false);
     private final Setting packetAttack = new Setting("Packet Attack", this, false);
     private final Setting rotations = new Setting("Rotations", this, RotateMode.Silent);
     private final Setting betterRots = new Setting("Better Rotations", this, false).setVisible(() -> !rotations.checkValString(RotateMode.None.name()));
@@ -47,12 +48,16 @@ public class KillAura extends Module {
 
     private final Setting weapon = new Setting("Weapon", this, "Sword", new ArrayList<>(Arrays.asList("Sword", "Axe", "Both", "None")));
 
+    private final Setting player = new Setting("Player", this, true);
+    private final Setting monster = new Setting("Monster", this, true);
+    private final Setting passive = new Setting("Passive", this, true);
     private final Setting invisible = new Setting("Invisible", this, false);
 
     private final Setting renderLine = new Setting("RenderLine", this, "Render");
     private final Setting targetEsp = new Setting("Target ESP", this, true);
 
     private final Setting targetRange = new Setting("Target Range", this, 6, 1, 20, true);
+    private final Setting distance = new Setting("Distance", this, 4.25f, 0, 6, false);
     private final Setting wallDistance = new Setting("Wall Distance", this, 3, 0, 5, false);
 
     private final Setting switchMode = new Setting("Switch Mode", this, "None", new ArrayList<>(Arrays.asList("None", "Normal", "Silent")));
@@ -69,7 +74,7 @@ public class KillAura extends Module {
         register(useFallDist);
         register(fallDistance);
         register(shieldBreaker);
-        register(new Setting("HitSound", this, false));
+        register(hitSound);
         register(packetAttack);
         register(rotations);
         register(betterRots);
@@ -85,15 +90,14 @@ public class KillAura extends Module {
         register(weapon);
 
         register(new Setting("TargetsLine", this, "Targets"));
-        register(new Setting("Player", this, true));
-        register(new Setting("Monster", this, true));
-        register(new Setting("Passive", this, true));
+        register(player);
+        register(monster);
+        register(passive);
         register(invisible);
 
         register(new Setting("DistanceLine", this, "Distance"));
-
         register(targetRange);
-        register(new Setting("Distance", this, 4.25f, 0, 6, false));
+        register(distance);
         register(wallDistance);
 
         register(renderLine);
@@ -109,31 +113,31 @@ public class KillAura extends Module {
         if (mc.player.isDead) return;
         if (mc.player.getCooledAttackStrength(0) <= (onlyCrits.getValBoolean() ? 0.95f : attackCooldown.getValFloat()) && cooldownCheck.getValBoolean()) return;
 
-        boolean player = settingManager.getSettingByName(this, "Player").getValBoolean();
-        boolean monster = settingManager.getSettingByName(this, "Monster").getValBoolean();
-        boolean passive = settingManager.getSettingByName(this, "Passive").getValBoolean();
-
-        boolean hitsound = settingManager.getSettingByName(this, "HitSound").getValBoolean();
-
-        float distance = settingManager.getSettingByName(this, "Distance").getValFloat();
-
         if (mode.getValString().equalsIgnoreCase("Default")) {
-            Entity target1 = EntityUtil.getTarget(distance, distance, player, passive, monster);
             target = null;
-            if (target1 == null) return;
-            super.setDisplayInfo("[" + target1.getName() + "]");
-            if (preRots.getValBoolean()) doRots(target1);
+            Entity entityTarget = EntityUtil.getTarget(
+                    distance.getValFloat(),
+                    wallDistance.getValFloat(),
+                    player.getValBoolean(),
+                    passive.getValBoolean(),
+                    monster.getValBoolean()
+            );
+
+            if (entityTarget == null) return;
+            super.setDisplayInfo("[" + entityTarget.getName() + "]");
+            if (preRots.getValBoolean()) doRots(entityTarget);
             if (!weaponCheck()) return;
             if (!fallCheck() && useFallDist.getValBoolean()) return;
-            doKillAura(target1, distance, hitsound, true);
+            doKillAura(entityTarget);
         } else if (mode.getValString().equalsIgnoreCase("HvH")) {
-           target = EntityUtil.getTarget(distance);
+           target = EntityUtil.getTarget(distance.getValFloat());
+
            if (target == null) return;
            super.setDisplayInfo("[" + target.getName() + "]");
            if (preRots.getValBoolean()) doRots(target);
            if (!weaponCheck()) return;
            if (!fallCheck() && useFallDist.getValBoolean()) return;
-           doKillAura(target, distance, hitsound, true);
+           doKillAura(target);
         }
     }
 
@@ -141,14 +145,20 @@ public class KillAura extends Module {
         return mc.player.fallDistance > fallDistance.getValFloat();
     }
 
-    private void doKillAura(Entity entity, double distance, boolean hitsound, boolean single) {
+    private void doKillAura(Entity entity) {
+        double distance = this.distance.getValDouble();
+
         if (!(mc.player.getDistance(entity) <= distance) || entity.ticksExisted % 20 != 0 || mc.player == entity) {
             return;
         }
 
         boolean isShieldActive = false;
 
-        if (shieldBreaker.getValBoolean() && single && entity instanceof EntityPlayer) if (((EntityPlayer) entity).getHeldItemMainhand().getItem() instanceof ItemShield || ((EntityPlayer) entity).getHeldItemOffhand().getItem() instanceof ItemShield) if (((EntityPlayer) entity).isHandActive()) isShieldActive = true;
+        if (shieldBreaker.getValBoolean() && entity instanceof EntityPlayer) {
+            if (((EntityPlayer) entity).getHeldItemMainhand().getItem() instanceof ItemShield || ((EntityPlayer) entity).getHeldItemOffhand().getItem() instanceof ItemShield) {
+                if (((EntityPlayer) entity).isHandActive()) isShieldActive = true;
+            }
+        }
 
         int oldSlot = mc.player.inventory.currentItem;
         int weaponSlot = InventoryUtil.findWeaponSlot(0, 9, isShieldActive);
@@ -170,7 +180,7 @@ public class KillAura extends Module {
 
         attack(entity);
 
-        if (hitsound) {
+        if (hitSound.getValBoolean()) {
             mc.getSoundHandler().playSound(PositionedSoundRecord.getMasterRecord(SoundEvents.BLOCK_STONE_BREAK, 1));
         }
 

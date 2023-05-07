@@ -5,7 +5,6 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.customfont.CustomFontUtil;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.block.BlockShulkerBox;
 import net.minecraft.client.gui.GuiScreen;
@@ -28,7 +27,6 @@ public class ToolTip extends Module {
         register(shulkers);
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<RenderToolTipEvent> renderToolTipListener = listener(event -> {
         if (shulkers.getValBoolean() && event.getStack().getItem() instanceof ItemShulkerBox) {

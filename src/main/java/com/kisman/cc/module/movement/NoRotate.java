@@ -6,7 +6,6 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.ChatUtil;
 import com.kisman.cc.util.TimerUtil;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.network.play.server.SPacketPlayerPosLook;
 import net.minecraft.util.text.TextFormatting;
@@ -49,7 +48,6 @@ public class NoRotate extends Module {
         cancelPackets = false;
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (cancelPackets && event.getPacket() instanceof SPacketPlayerPosLook) {

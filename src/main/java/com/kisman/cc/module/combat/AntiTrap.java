@@ -6,7 +6,6 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.*;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -67,7 +66,6 @@ public class AntiTrap extends Module {
         if (mode.getValString().equalsIgnoreCase("ClientTick")) doAntiTrap();
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
         if (event.getEra() == Event.Era.PRE && mode.getValString().equalsIgnoreCase("MotionTick")) {

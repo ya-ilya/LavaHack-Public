@@ -14,18 +14,17 @@ import java.util.ArrayList;
 public class CommandManager {
     public static ArrayList<Command> commands = new ArrayList<>();
 	
-	public char cmdPrefix = ';';
-	public String cmdPrefixStr = String.valueOf(cmdPrefix);
+	public static char PREFIX = ';';
 
-	public CommandManager()
-	{
-		addCommands();
+	public CommandManager() {
+		init();
 	}
 
-	public void addCommands() {
+	public void init() {
+		commands.clear();
+
 		commands.add(new AntiSpamCommand());
 		commands.add(new BindCommand());
-		commands.add(new CreditsCommand());
 		commands.add(new FriendCommand());
 		commands.add(new HelpCommand());
 		commands.add(new ConfigCommand());
@@ -37,7 +36,7 @@ public class CommandManager {
 	}
 
 	public void runCommand(String s) {
-		String readString = s.trim().substring(Character.toString(cmdPrefix).length()).trim();
+		String readString = s.trim().substring(Character.toString(PREFIX).length()).trim();
 		boolean commandResolved = false;
 		boolean hasArgs = readString.trim().contains(" ");
 		String commandName = hasArgs ? readString.split(" ")[0] : readString.trim();

@@ -4,7 +4,6 @@ import com.kisman.cc.event.Event;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.network.play.server.SPacketChat;
 import net.minecraft.util.text.TextComponentString;
@@ -25,7 +24,6 @@ public class AntiSpam extends Module {
         return true;
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent> packetListener = listener(event -> {
         if (event.getEra().equals(Event.Era.PRE) && event.getPacket() instanceof SPacketChat) {

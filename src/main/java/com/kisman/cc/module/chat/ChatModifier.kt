@@ -1,6 +1,7 @@
 package com.kisman.cc.module.chat
 
 import com.kisman.cc.Kisman
+import com.kisman.cc.command.CommandManager
 import com.kisman.cc.module.Category
 import com.kisman.cc.module.Module
 import com.kisman.cc.setting.Setting
@@ -40,7 +41,7 @@ class ChatModifier : Module(
     @SubscribeEvent
     fun onChat(event: ClientChatEvent) {
         if (!event.message.startsWith("/") &&
-                !event.message.startsWith(Kisman.instance.commandManager.cmdPrefixStr) &&
+                !event.message.startsWith(CommandManager.PREFIX) &&
                 !event.message.startsWith(".") &&
                 !event.message.startsWith(",") &&
                 !event.message.startsWith(";") &&

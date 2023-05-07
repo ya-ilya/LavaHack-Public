@@ -8,7 +8,6 @@ import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.ChatUtil;
 import com.kisman.cc.util.TimerUtil;
 import com.kisman.cc.util.customfont.CustomFontUtil;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.network.play.server.SPacketBlockBreakAnim;
@@ -64,7 +63,6 @@ public class BreakAlert extends Module {
         } else renderTimer.reset();
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Receive> packetReceiveEvent = listener(event -> {
         if (event.getPacket() instanceof SPacketBlockBreakAnim) {

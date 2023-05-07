@@ -109,19 +109,11 @@ public class CustomFont {
         }
     }
 
-    public boolean isFractionalMetrics() {
-        return this.fractionalMetrics;
-    }
-
     public void setFractionalMetrics(boolean fractionalMetrics) {
         if (this.fractionalMetrics != fractionalMetrics) {
             this.fractionalMetrics = fractionalMetrics;
             this.tex = setupTexture(this.font, this.antiAlias, fractionalMetrics, this.charData);
         }
-    }
-
-    public Font getFont() {
-        return this.font;
     }
 
     public void setFont(Font font) {

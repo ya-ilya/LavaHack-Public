@@ -16,7 +16,6 @@ import com.kisman.cc.util.ChatUtil;
 import com.kisman.cc.util.MathUtil;
 import com.kisman.cc.util.enums.ShaderModes;
 import com.kisman.cc.util.gish.ColorUtil;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.shader.Framebuffer;
@@ -151,7 +150,6 @@ public class ShaderCharms extends Module {
         ((AccessorShaderGroup) Objects.requireNonNull(shaderHelper.getShader())).getListFramebuffers().forEach(framebuffer -> framebuffer.setFramebufferColor(event.getRed(), event.getGreen(), event.getBlue(), 0));
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<RenderEntityEvent.Pre> renderEntityListener = listener(event -> {
         if (mode.checkValString("Outline2") && !mc.renderManager.renderOutlines && hideOriginal.getValBoolean() && mc.player.getDistance(event.getEntity()) <= range.getValFloat() && entityTypeCheck(event.getEntity())) event.cancel();

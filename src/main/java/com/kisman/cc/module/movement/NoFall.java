@@ -9,7 +9,6 @@ import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.EntityUtil;
 import com.kisman.cc.util.InventoryUtil;
 import com.kisman.cc.util.TimerUtil;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.init.Items;
@@ -29,7 +28,6 @@ public class NoFall extends Module {
         register(mode);
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (event.getPacket() instanceof CPacketPlayer) {
@@ -62,7 +60,6 @@ public class NoFall extends Module {
         }
     });
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
         if (mode.getValString().equalsIgnoreCase(Mode.Bucket.name())) {

@@ -51,8 +51,7 @@ public class CustomFontUtil {
             font = Font.createFont(0, is);
             font = font.deriveFont(Font.PLAIN, size);
         } catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("Error loading font");
+            System.out.println("Error loading font (" + name + ")");
             font = new Font("default", Font.PLAIN, size);
         }
         return font;

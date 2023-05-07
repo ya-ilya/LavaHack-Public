@@ -8,7 +8,6 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.*;
 import com.kisman.cc.util.Rotation.Rotate;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityEnderCrystal;
@@ -172,7 +171,6 @@ public class Surround extends Module {
         return SurroundVectors.BASE;
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (event.getPacket() instanceof CPacketPlayer && !Float.isNaN(surroundRotation.getYaw()) && !Float.isNaN(surroundRotation.getPitch())) {
@@ -202,7 +200,7 @@ public class Surround extends Module {
     }
 
     private void placeSurroundDefault() {
-        for (Vec3d surroundVectors : getEnumByName(surroundVec.getValString()).vectors) {
+        for (Vec3d surroundVectors : getEnumByName(surroundVec.getValString()).getVectors()) {
             if (!Objects.equals(BlockUtil.getBlockResistance(new BlockPos(surroundVectors.add(new Vec3d(mc.player.posX, Math.round(mc.player.posY), mc.player.posZ)))), BlockUtil.BlockResistance.BLANK) || !(surroundPlaced <= blocksPerTick.getValDouble())) {
                 return;
             }

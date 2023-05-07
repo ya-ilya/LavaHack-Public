@@ -9,7 +9,6 @@ import com.kisman.cc.module.Module;
 import com.kisman.cc.module.player.freecam.MovementHelper;
 import com.kisman.cc.setting.Setting;
 import me.zero.alpine.event.type.Cancellable;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.network.play.client.CPacketEntityAction;
@@ -77,7 +76,6 @@ public class FreeCam extends Module {
         }
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent> packetListener = listener(event -> {
         if (event.getPacket() instanceof SPacketPlayerPosLook && reallyWorld.getValBoolean()) {
@@ -89,11 +87,9 @@ public class FreeCam extends Module {
         }
     });
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerPushOutOfBlocksEvent> pushOutOfBlocksListener = new Listener<>(Cancellable::cancel);
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {
         if (event.getEra() == Event.Era.PRE) {

@@ -8,7 +8,6 @@ import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.*;
-import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
@@ -64,13 +63,11 @@ public class Scaffold extends Module {
         }
     }
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerJumpEvent> playerJumpListener = listener(event -> {
         if (towerMode.checkValString(TowerMode.FakeJump.name())) event.cancel();
     });
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (event.getPacket() instanceof CPacketPlayer.PositionRotation && rotate.getValBoolean() && rotVec != null) {
@@ -80,7 +77,6 @@ public class Scaffold extends Module {
         }
     });
 
-    @EventHandler
     @SuppressWarnings("unused")
     private final Listener<PlayerMoveEvent> playerMoveListener = listener(event -> {
         oldSlot = mc.player.inventory.currentItem;

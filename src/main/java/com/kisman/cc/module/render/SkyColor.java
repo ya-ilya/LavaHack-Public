@@ -12,6 +12,7 @@ public class SkyColor extends Module {
 
     public SkyColor() {
         super("SkyColor", "You can change fog color", Category.RENDER);
+
         register(color);
     }
 

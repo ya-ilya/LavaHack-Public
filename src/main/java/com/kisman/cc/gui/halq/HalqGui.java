@@ -82,9 +82,13 @@ public class HalqGui extends GuiScreen {
         for (Frame frame : frames) {
             if (frame.reloading) continue;
             frame.render(mouseX, mouseY);
-            if (frame.open) for (Component comp : frame.mods) if (!frame.reloading) {
-                comp.updateComponent(frame.x, frame.y);
-                comp.drawScreen(mouseX, mouseY);
+            if (frame.open) {
+                for (Component comp : frame.mods) {
+                    if (!frame.reloading) {
+                        comp.updateComponent(frame.x, frame.y);
+                        comp.drawScreen(mouseX, mouseY);
+                    }
+                }
             }
             frame.renderPost(mouseX, mouseY);
             frame.veryRenderPost(mouseX, mouseY);
@@ -116,9 +120,17 @@ public class HalqGui extends GuiScreen {
                     frame.dragX = mouseX - frame.x;
                     frame.dragY = mouseY - frame.y;
                 }
-                else if (mouseButton == 1) frame.open = !frame.open;
+                else if (mouseButton == 1) {
+                    frame.open = !frame.open;
+                }
             }
-            if (frame.open && !frame.mods.isEmpty()) if (!frame.reloading) for (Component mod : frame.mods) if (!frame.reloading) mod.mouseClicked(mouseX, mouseY, mouseButton);
+            if (frame.open && !frame.mods.isEmpty()) {
+                if (!frame.reloading) {
+                    for (Component mod : frame.mods) {
+                        if (!frame.reloading) mod.mouseClicked(mouseX, mouseY, mouseButton);
+                    }
+                }
+            }
         }
     }
 
@@ -133,7 +145,11 @@ public class HalqGui extends GuiScreen {
 
     @Override
     public void onGuiClosed() {
-        try {if (mc.player != null && mc.world != null) mc.entityRenderer.getShaderGroup().deleteShaderGroup();} catch (Exception ignored) {}
+        try {
+            if (mc.player != null && mc.world != null) {
+                mc.entityRenderer.getShaderGroup().deleteShaderGroup();
+            }
+        } catch (Exception ignored) { }
         super.onGuiClosed();
     }
 

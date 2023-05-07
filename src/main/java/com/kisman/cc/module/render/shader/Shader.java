@@ -14,7 +14,11 @@ public abstract class Shader {
     public int program;
     public Map<String, Integer> uniformsMap;
 
+    private final String fragmentShader;
+
     public Shader(final String fragmentShader) {
+        this.fragmentShader = fragmentShader;
+
         int vertexShaderID;
         int fragmentShaderID;
         try {
@@ -67,7 +71,10 @@ public abstract class Shader {
             if (shader == 0) return 0;
             ARBShaderObjects.glShaderSourceARB(shader, shaderSource);
             ARBShaderObjects.glCompileShaderARB(shader);
-            if (ARBShaderObjects.glGetObjectParameteriARB(shader, 35713) == 0) throw new RuntimeException("Error creating shader: " + this.getLogInfo(shader));
+            if (ARBShaderObjects.glGetObjectParameteriARB(shader, 35713) == 0) {
+                System.out.println("Error loading shader (" + fragmentShader + ")");
+                return 0;
+            }
             return shader;
         } catch (Exception e) {
             ARBShaderObjects.glDeleteObjectARB(shader);

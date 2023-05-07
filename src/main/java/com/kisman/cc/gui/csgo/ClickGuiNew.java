@@ -333,7 +333,6 @@ public class ClickGuiNew extends GuiScreen {
         if (Config.instance.guiParticles.getValBoolean()) {
             particleSystem.tick(10);
             particleSystem.render();
-            particleSystem.onUpdate();
         }
 
         super.drawScreen(mouseX, mouseY, partialTicks);

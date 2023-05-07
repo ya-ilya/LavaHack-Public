@@ -95,7 +95,6 @@ public class HalqGui extends GuiScreen {
         if (Config.instance.guiParticles.getValBoolean()) {
             particleSystem.tick(10);
             particleSystem.render();
-            particleSystem.onUpdate();
         }
 
         Kisman.instance.selectionBar.drawScreen();

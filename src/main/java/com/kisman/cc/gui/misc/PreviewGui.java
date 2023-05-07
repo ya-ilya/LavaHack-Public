@@ -25,7 +25,6 @@ import java.util.List;
 /* Shulker peek GUI */
 @SideOnly(Side.CLIENT)
 public class PreviewGui extends RightPanel {
-
     private static final ResourceLocation GUI_TEXTURE = new ResourceLocation("kismancc:gui/preview.png");
     private static int guiWidth = 176;
     private static final int INNER_BORDER = PreviewGui.INNER_BORDER;

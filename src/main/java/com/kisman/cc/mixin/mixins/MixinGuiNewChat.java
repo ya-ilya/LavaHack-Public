@@ -36,7 +36,7 @@ public class MixinGuiNewChat {
 
     @Inject(method = "drawChat", at = @At("HEAD"))
     private void drawChatHook(CallbackInfo ci) {
-        ChatModifier chatModifier = (ChatModifier) Kisman.instance.moduleManager.getModule("ChatModifier");
+        ChatModifier chatModifier = ChatModifier.INSTANCE;
         if (chatModifier.isToggled() && chatModifier.getAnimation().getValBoolean()) {
             long current = System.currentTimeMillis();
             long diff = current - this.prevMillis;
@@ -49,7 +49,7 @@ public class MixinGuiNewChat {
 
     @Inject(method = "drawChat", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GlStateManager;pushMatrix()V", ordinal = 0, shift = At.Shift.AFTER))
     private void drawChatTranslateHook(CallbackInfo ci) {
-        ChatModifier chatModifier = (ChatModifier) Kisman.instance.moduleManager.getModule("ChatModifier");
+        ChatModifier chatModifier = ChatModifier.INSTANCE;
         if (chatModifier.isToggled() && chatModifier.getAnimation().getValBoolean()) {
             float y = 1.0f;
             if (!this.isScrolled) y += (9.0f - 9.0f * this.animationPercent) * this.getChatScale();

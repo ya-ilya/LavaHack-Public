@@ -15,7 +15,6 @@ import java.io.IOException;
 
 @SideOnly(Side.CLIENT)
 public abstract class RightPanel extends GuiScreen {
-
     protected Module dependence; // Module dependence
 
     protected GuiScreen parent; // GUI parent that generated this one

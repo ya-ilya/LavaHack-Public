@@ -10,7 +10,6 @@ class ItemESP {
     val offset = 5
     val height = 22
 
-
     init {
         guiTextField = GuiTextField(9999, Minecraft.getMinecraft().fontRenderer, 0, 0, 0, 0)
     }

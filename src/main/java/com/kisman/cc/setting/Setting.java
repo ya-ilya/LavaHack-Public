@@ -23,31 +23,29 @@ import java.util.function.Supplier;
  *  @author HeroCode
  */
 public class Setting {
-	private Supplier<Boolean> visibleSuppliner = () -> true;
+	private Supplier<Boolean> visibleSupplier = () -> true;
 	private Colour colour;
 
 	private Entity entity;
 
 	private int index = 0;
-	private int color;
 	private int key = Keyboard.KEY_NONE;
 	
 	private String name;
 	private Module parent;
-	private Setting setparent;
+	private Setting settingParent;
 	private HudModule hudParent;
 	private final String mode;
 
 	private String title;
 
-	private String sval;
-	private String dString;
+	private String stringValue;
+	private String defaultStringValue;
 	private ArrayList<String> options;
 	private Enum<?> optionEnum;
 	
-	public boolean bval;
+	public boolean booleanValue;
 	private boolean rainbow;
-	private boolean syns;
 	private boolean hud = false;
 	private boolean opening;
 	private boolean onlyOneWord;
@@ -55,24 +53,23 @@ public class Setting {
 	private boolean minus;
 	private boolean enumCombo = false;
 
-	public double dval;
-	private double min;
-	private double max;
+	public double doubleValue;
+	private double minValue;
+	private double maxValue;
 
-	private float[] colorHSB;
 	private ItemStack[] items;
 
 	private int r, g, b, a;
 
-	private int x1, y1, x2, y2;
-
 	private float red, green, blue, alpha;
 
-	private boolean onlyint = false;
+	private boolean onlyInt = false;
 
 	private Slider.NumberType numberType = Slider.NumberType.DECIMAL;
 
-	public Setting(String type) {mode = type;}
+	public Setting(String type) {
+		mode = type;
+	}
 
 	public Setting(String name, Module parent, int key) {
 		this.name = name;
@@ -81,10 +78,10 @@ public class Setting {
 		this.mode = "Bind";
 	}
 
-	public Setting(String name, Module parent, Setting setparent, String title) {
+	public Setting(String name, Module parent, Setting settingParent, String title) {
 		this.name = name;
 		this.parent = parent;
-		this.setparent = setparent;
+		this.settingParent = settingParent;
 		this.title = title;
 		this.mode = "CategoryLine";
 	}
@@ -97,11 +94,11 @@ public class Setting {
 		this.mode = "Category";
 	}
 
-	public Setting(String name, Module parent, String sval, String dString, boolean opening) {
+	public Setting(String name, Module parent, String stringValue, String defaultStringValue, boolean opening) {
 		this.name = name;
 		this.parent = parent;
-		this.sval = sval;
-		this.dString = dString;
+		this.stringValue = stringValue;
+		this.defaultStringValue = defaultStringValue;
 		this.opening = opening;
 		this.onlyOneWord = false;
 		this.minus = true;
@@ -109,24 +106,16 @@ public class Setting {
 		this.mode = "String";
 	}
 
-	public Setting(String name, Module parent, String sval, String dString, boolean opening, boolean onlyOneWord) {
+	public Setting(String name, Module parent, String stringValue, String defaultStringValue, boolean opening, boolean onlyOneWord) {
 		this.name = name;
 		this.parent = parent;
-		this.sval = sval;
-		this.dString = dString;
+		this.stringValue = stringValue;
+		this.defaultStringValue = defaultStringValue;
 		this.opening = opening;
 		this.onlyOneWord = onlyOneWord;
 		this.minus = true;
 		this.onlyNumbers = false;
 		this.mode = "String";
-	}
-
-	public Setting(String name, Module parent, String gays, String lgbtq) {
-		this.name = name;
-		this.parent = parent;
-		this.title = gays;
-		this.sval = lgbtq;
-		this.mode = "yep";
 	}
 
 	public Setting(String name, Module parent, String title) {
@@ -136,19 +125,19 @@ public class Setting {
 		this.mode = "Line";
 	}
 
-	public Setting(String name, Module parent, String sval, ArrayList<String> options){
+	public Setting(String name, Module parent, String stringValue, ArrayList<String> options){
 		this.name = name;
 		this.parent = parent;
-		this.sval = sval;
+		this.stringValue = stringValue;
 		this.options = options;
 		this.optionEnum = null;
 		this.mode = "Combo";
 	}
 
-	public Setting(String name, Module parent, String sval, List<String> options){
+	public Setting(String name, Module parent, String stringValue, List<String> options){
 		this.name = name;
 		this.parent = parent;
-		this.sval = sval;
+		this.stringValue = stringValue;
 		this.options = new ArrayList<>(options);
 		this.optionEnum = null;
 		this.mode = "Combo";
@@ -157,24 +146,24 @@ public class Setting {
 	public Setting(String name, Module parent, Enum<?> options){
 		this.name = name;
 		this.parent = parent;
-		this.sval = options.name();
+		this.stringValue = options.name();
 		this.options = null;
 		this.optionEnum = options;
 		this.enumCombo = true;
 		this.mode = "Combo";
 	}
 	
-	public Setting(String name, Module parent, boolean bval){
+	public Setting(String name, Module parent, boolean booleanValue){
 		this.name = name;
 		this.parent = parent;
-		this.bval = bval;
+		this.booleanValue = booleanValue;
 		this.mode = "Check";
 	}
 
-	public Setting(String name, HudModule parent, boolean bval) {
+	public Setting(String name, HudModule parent, boolean booleanValue) {
 		this.name = name;
 		this.hudParent = parent;
-		this.bval = bval;
+		this.booleanValue = booleanValue;
 		this.mode = "CheckHud";
 		this.hud = true;
 	}
@@ -189,26 +178,26 @@ public class Setting {
 		this.mode = "ExampleColor";
 	}
 
-	public Setting(String name, Module parent, double dval, double min, double max, Slider.NumberType numberType){
+	public Setting(String name, Module parent, double doubleValue, double minValue, double maxValue, Slider.NumberType numberType){
 		this.name = name;
 		this.parent = parent;
-		this.dval = dval;
-		this.min = min;
-		this.max = max;
-		this.onlyint = numberType.equals(Slider.NumberType.INTEGER);
+		this.doubleValue = doubleValue;
+		this.minValue = minValue;
+		this.maxValue = maxValue;
+		this.onlyInt = numberType.equals(Slider.NumberType.INTEGER);
 		this.mode = "Slider";
 		this.numberType = numberType;
 	}
 
-	public Setting(String name, Module parent, double dval, double min, double max, boolean onlyint){
+	public Setting(String name, Module parent, double doubleValue, double minValue, double maxValue, boolean onlyInt){
 		this.name = name;
 		this.parent = parent;
-		this.dval = dval;
-		this.min = min;
-		this.max = max;
-		this.onlyint = onlyint;
+		this.doubleValue = doubleValue;
+		this.minValue = minValue;
+		this.maxValue = maxValue;
+		this.onlyInt = onlyInt;
 		this.mode = "Slider";
-		this.numberType = onlyint ? Slider.NumberType.INTEGER : Slider.NumberType.DECIMAL;
+		this.numberType = onlyInt ? Slider.NumberType.INTEGER : Slider.NumberType.DECIMAL;
 	}
 
 	public Setting(String name, Module parent, String title, Colour colour) {
@@ -216,7 +205,6 @@ public class Setting {
 		this.parent = parent;
 		this.title = title;
 		this.colour = colour;
-		float[] color = Color.RGBtoHSB(colour.r, colour.g, colour.b, null);
 		this.r = colour.r;
 		this.g = colour.g;
 		this.b = colour.b;
@@ -249,14 +237,13 @@ public class Setting {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (isCombo()) return sval.equals(obj);
+		if (isCombo()) return stringValue.equals(obj);
 		return super.equals(obj);
 	}
 
 	@Override
 	public int hashCode() {
-		int result = Objects.hash(colour, entity, index, color, key, name, parent, setparent, hudParent, mode, title, sval, dString, options, optionEnum, bval, rainbow, syns, hud, opening, onlyOneWord, onlyNumbers, minus, enumCombo, dval, r, g, b, a, x1, y1, x2, y2, red, green, blue, alpha, onlyint);
-		result = 31 * result + Arrays.hashCode(colorHSB);
+		int result = Objects.hash(colour, entity, index, key, name, parent, settingParent, hudParent, mode, title, stringValue, defaultStringValue, options, optionEnum, booleanValue, rainbow, hud, opening, onlyOneWord, onlyNumbers, minus, enumCombo, doubleValue, r, g, b, a, red, green, blue, alpha, onlyInt);
 		result = 31 * result + Arrays.hashCode(items);
 		return result;
 	}
@@ -265,9 +252,9 @@ public class Setting {
 	public String toString() {
 		if (isCombo()) return getValString();
 		if (isCheck()) return String.valueOf(getValBoolean());
-		if (isSlider()) return String.valueOf(onlyint ? getValInt() : getValDouble());
+		if (isSlider()) return String.valueOf(onlyInt ? getValInt() : getValDouble());
 		if (isString()) return getValString();
-		if (isColorPicker()) return get32BitString((colour != null) ? colour.getRGB() : new Color(1f, 1f, 1f).getRGB()) + "-" + syns + "-" + rainbow;
+		if (isColorPicker()) return get32BitString((colour != null) ? colour.getRGB() : new Color(1f, 1f, 1f).getRGB()) + "-" + rainbow;
 		return super.toString();
 	}
 
@@ -291,21 +278,21 @@ public class Setting {
 	public boolean isNoneKey() {return key == Keyboard.KEY_NONE;}
 
 	public boolean checkValString(String str) {
-		return sval.equalsIgnoreCase(str);
+		return stringValue.equalsIgnoreCase(str);
 	}
 
 	public boolean isVisible() {
-		return visibleSuppliner.get();
+		return visibleSupplier.get();
 	}
 
-	public Setting setVisible(Supplier<Boolean> suppliner) {
-		visibleSuppliner = suppliner;
+	public Setting setVisible(Supplier<Boolean> supplier) {
+		visibleSupplier = supplier;
 
 		return this;
 	}
 
 	public Setting setVisible(boolean visible) {
-		visibleSuppliner = () -> visible;
+		visibleSupplier = () -> visible;
 		return this;
 	}
 
@@ -326,23 +313,19 @@ public class Setting {
 		for (int i = 0; i < modes.length; i++) {
 			String mode = modes[i];
 
-			if (mode.equalsIgnoreCase(sval)) object = i;
+			if (mode.equalsIgnoreCase(stringValue)) object = i;
 		}
 
 		return object;
 	}
 
-	public boolean isOnlyint() {
-		return onlyint;
+	public boolean isOnlyInt() {
+		return onlyInt;
 	}
 
 
 	public Slider.NumberType getNumberType() {
 		return numberType;
-	}
-
-	public void setNumberType(Slider.NumberType numberType) {
-		this.numberType = numberType;
 	}
 
 	public float getRed() {
@@ -381,11 +364,6 @@ public class Setting {
 		return onlyNumbers;
 	}
 
-	public Setting setOnlyNumbers(boolean onlyNumbers) {
-		this.onlyNumbers = onlyNumbers;
-		return this;
-	}
-
 	public ItemStack[] getItems() {
 		return items;
 	}
@@ -399,7 +377,7 @@ public class Setting {
 	}
 
 	public int getValInt() {
-		return (int) this.dval;
+		return (int) this.doubleValue;
 	}
 
 	public boolean isOnlyOneWord() {
@@ -420,55 +398,14 @@ public class Setting {
 
 	public void setColour(Colour colour) {
 		this.colour = colour;
-		float[] color = Color.RGBtoHSB(colour.r, colour.g, colour.b, null);
 	}
 
 	public Enum<?> getValEnum() {
-		return Enum.valueOf(optionEnum.getDeclaringClass(), sval);
+		return Enum.valueOf(optionEnum.getDeclaringClass(), stringValue);
 	}
 
-	public Setting getSetparent() {
-		return setparent;
-	}
-
-	public String getdString() {
-		return dString;
-	}
-
-	public int getX1() {
-		return this.x1;
-	}
-	
-	public int getY1() {
-		return this.y1;
-	}
-	
-	public int getX2() {
-		return this.x2;
-	}
-	
-	public int getY2() {
-		return this.y2;
-	}
-
-	public void setX1(int num) {
-		this.x1 = num;
-	}
-
-	public void setY1(int num) {
-		this.y1 = num;
-	}
-
-	public void setX2(int num) {
-		this.x2 = num;
-	}
-
-	public void setY2(int num) {
-		this.y2 = num;
-	}
-
-	public HudModule getParentHudModule() {
-		return this.hudParent;
+	public String getDefaultStringValue() {
+		return defaultStringValue;
 	}
 
 	public boolean isHud() {
@@ -505,81 +442,58 @@ public class Setting {
 	}
 	
 	public String getValString(){
-		return this.sval;
+		return this.stringValue;
 	}
 	
-	public Setting setValString(String in){
-		this.sval = in;
-		return this;
+	public void setValString(String in){
+		this.stringValue = in;
 	}
 	
 	public ArrayList<String> getOptions(){
 		return this.options;
 	}
-
-	public Setting setOptions(String... options) {
-		this.options = new ArrayList<>(Arrays.asList(options));
-		return this;
-	}
-
-	public Setting setOptions(List<String> options) {
-		this.options = new ArrayList<>(options);
-		return this;
-	}
 	
 	public boolean getValBoolean(){
-		return this.bval;
+		return this.booleanValue;
 	}
 	
-	public Setting setValBoolean(boolean in){
-		this.bval = in;
-		return this;
+	public void setValBoolean(boolean in){
+		this.booleanValue = in;
 	}
 	
 	public double getValDouble(){
-		if (this.onlyint){
-			this.dval = (int) dval;
+		if (this.onlyInt){
+			this.doubleValue = (int) doubleValue;
 		}
-		return this.dval;
+		return this.doubleValue;
 	}
 
 	public float getValFloat() {
-		if (onlyint) {
-			dval = (int) dval;
+		if (onlyInt) {
+			doubleValue = (int) doubleValue;
 		}
 
-		return (float) dval;
+		return (float) doubleValue;
 	}
 
 	public long getValLong() {
-		if (onlyint) {
-			dval = (int) dval;
+		if (onlyInt) {
+			doubleValue = (int) doubleValue;
 		}
 
-		return (long) dval;
+		return (long) doubleValue;
 	}
 
-	public Setting setValDouble(double in){
-		this.dval = in;
-		return this;
+	public void setValDouble(double in){
+		this.doubleValue = in;
 	}
 	
-	public double getMin(){
-		return this.min;
+	public double getMinValue(){
+		return this.minValue;
 	}
 	
-	public double getMax(){
-		return this.max;
-	}
-
-	public Setting setMin(double min) {
-		this.min = min;
-		return this;
-	}
-
-	public Setting setMax(double max) {
-		this.max = max;
-		return this;
+	public double getMaxValue(){
+		return this.maxValue;
 	}
 
 	public boolean isRainbow() {
@@ -620,9 +534,5 @@ public class Setting {
 
 	public boolean isColorPicker() {
 		return this.mode.equalsIgnoreCase("ColorPicker");
-	}
-
-	public boolean onlyInt(){
-		return this.onlyint;
 	}
 }

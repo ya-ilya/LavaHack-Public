@@ -180,7 +180,7 @@ public class ClickGuiNew extends GuiScreen {
                                 }
                                 if (set.isString()) {
                                     settingPane.addComponent(new Label(renderer, set.getName()));
-                                    StringButton sb = new StringButton(renderer, set.getdString());
+                                    StringButton sb = new StringButton(renderer, set.getDefaultStringValue());
                                     settingPane.addComponent(sb);
                                     sb.setListener(val -> {
                                         set.setValString(val);
@@ -212,11 +212,11 @@ public class ClickGuiNew extends GuiScreen {
 
                                     switch (set.getNumberType()) {
                                         case INTEGER: {
-                                            if (set.isOnlyint()) type = Slider.NumberType.INTEGER;
+                                            if (set.isOnlyInt()) type = Slider.NumberType.INTEGER;
                                             break;
                                         }
                                         case PERCENT: {
-                                            if (set.getMin() == 0 && set.getMax() == 100)
+                                            if (set.getMinValue() == 0 && set.getMaxValue() == 100)
                                                 type = Slider.NumberType.PERCENT;
                                             break;
                                         }
@@ -226,7 +226,7 @@ public class ClickGuiNew extends GuiScreen {
                                         }
                                     }
 
-                                    sl = new Slider(renderer, set.getValDouble(), set.getMin(), set.getMax(), type);
+                                    sl = new Slider(renderer, set.getValDouble(), set.getMinValue(), set.getMaxValue(), type);
 
                                     settingPane.addComponent(sl);
 
@@ -302,7 +302,7 @@ public class ClickGuiNew extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        if (Kisman.instance.selectionBar.getSelection() != MainGui.Guis.CSGOGui) {
+        if (Kisman.instance.selectionBar.getSelection() != MainGui.Gui.CSGOGui) {
            MainGui.Companion.openGui(Kisman.instance.selectionBar);
            return;
         }

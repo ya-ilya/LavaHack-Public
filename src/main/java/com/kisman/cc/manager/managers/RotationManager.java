@@ -24,7 +24,7 @@ public class RotationManager implements Manager {
         mc.player.rotationYawHead = yaw;
     }
 
-    public static  void set(float yaw, float pitch, boolean packet) {
+    public static void set(float yaw, float pitch, boolean packet) {
         if (packet) {
             mc.player.connection.sendPacket(new CPacketPlayer.Rotation(yaw, pitch, mc.player.onGround));
         } else {
@@ -72,5 +72,4 @@ public class RotationManager implements Manager {
         double dist = MathHelper.sqrt(difX * difX + difZ * difZ);
         return new float[] { ( float ) MathHelper.wrapDegrees(Math.toDegrees(Math.atan2(difZ, difX)) - 90.0f), ( float ) MathHelper.wrapDegrees(Math.toDegrees(Math.atan2(difY, dist))) };
     }
-
 }

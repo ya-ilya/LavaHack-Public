@@ -73,7 +73,6 @@ public class PeekCommand extends Command {
             }
 
             if (book) {
-
                 if (stack.getItem() instanceof ItemWritableBook) {
                     stack = stack.copy();
                     stack.getTagCompound().setString("title", "Writable book");

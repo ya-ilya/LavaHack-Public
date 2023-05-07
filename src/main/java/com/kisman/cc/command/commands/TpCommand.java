@@ -6,9 +6,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.play.client.CPacketPlayer;
 
 public class TpCommand extends Command {
-    private final String regex1 = "-[1-9][0-9]*";
-    private final String regex2 = "[1-9][0-9]*";
-    private final String regex3 = "-*[^0-9]*";
+    private final static String regex1 = "-[1-9][0-9]*";
+    private final static String regex2 = "[1-9][0-9]*";
+    private final static String regex3 = "-*[^0-9]*";
 
     public TpCommand() {
         super("tp");
@@ -62,7 +62,7 @@ public class TpCommand extends Command {
         return "tp <x> <y> <z> or tp <player nickname>";
     }
 
-    private int parseCoordinate(String str) {
+    private static int parseCoordinate(String str) {
         if (str.matches(regex1)) {
             return -(Integer.parseInt(str));
         } else if (str.matches(regex2)) {
@@ -72,7 +72,7 @@ public class TpCommand extends Command {
         }
     }
 
-    private EntityPlayer getPlayer(String name) {
+    private static EntityPlayer getPlayer(String name) {
         for (EntityPlayer player : mc.world.playerEntities) {
             if (player != mc.player && player.getName().equals(name)) {
                 return player;

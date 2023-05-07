@@ -42,7 +42,7 @@ public class Slider extends Component {
         Gui.drawRect(this.x, this.y + 7 + offset, (int)((double)this.x + 3 + this.renderWidth - 3), this.y + this.height - 2 + offset, (ColorUtil.getColor(80, 80, 95)));
         Gui.drawRect(this.x, this.y + 8 + offset, (int)((double)this.x + 3 + this.renderWidth - 3), this.y + this.height - 3 + offset, (ColorUtil.getColor(95, 95, 115)));
 
-        CustomFontUtil.drawCenteredStringWithShadow(s.getName() + ": " + s.getValDouble(), x + (width / 2), y + 3 + offset + ((height - CustomFontUtil.getFontHeight()) / 2), drag ? ColorUtil.astolfoColors(100, 100) : -1);
+        CustomFontUtil.drawCenteredStringWithShadow(s.getName() + ": " + s.getValDouble(), x + (width / 2.0), y + 3 + offset + ((height - CustomFontUtil.getFontHeight()) / 2.0), drag ? ColorUtil.astolfoColors(100, 100) : -1);
     }
 
     public void updateComponent(int mouseX, int mouseY) {
@@ -50,13 +50,13 @@ public class Slider extends Component {
         this.y = b.parent.y;
 
         double diff = Math.min(88, Math.max(0, mouseX - this.x));
-        double min = s.getMin();
-        double max = s.getMax();
+        double min = s.getMinValue();
+        double max = s.getMaxValue();
 
         renderWidth = width * (s.getValDouble() - min) / (max - min);
         if (drag) {
             System.out.println(diff);
-            if (diff == 0) s.setValDouble(s.getMin());
+            if (diff == 0) s.setValDouble(s.getMinValue());
             else s.setValDouble(roundToPlace(((diff / width) * (max - min) + min), 2));
         }
     }

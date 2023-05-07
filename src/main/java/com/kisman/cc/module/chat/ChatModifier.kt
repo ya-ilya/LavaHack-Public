@@ -13,6 +13,10 @@ class ChatModifier : Module(
         "ChatAnimation + CustomY + Suffix + AntiSpamBypass + TTF + AutoGlobal",
         Category.CHAT
 ) {
+    companion object {
+        lateinit var INSTANCE: ChatModifier
+    }
+
     val animation = Setting("Animation", this, false)
     private val suffix = Setting("Suffix", this, false)
     private val antiSpamBypass = Setting("Anti Spam Bypass", this, false)
@@ -22,6 +26,8 @@ class ChatModifier : Module(
     val ttf = Setting("TTF", this, false)
 
     init {
+        INSTANCE = this
+
         register(animation)
         register(suffix)
         register(antiSpamBypass)

@@ -38,7 +38,9 @@ public class CreditsCommand extends Command {
             add("Some contributors", "some modules");
 
             print(msg);
-        } else error("Usage: " + getDescription());
+        } else {
+            error("Usage: " + getDescription());
+        }
     }
 
     public String getDescription() {return "Show credits list";}

@@ -41,7 +41,6 @@ public class Gui extends GuiScreen {
         if (Config.instance.guiParticles.getValBoolean()) {
             particleSystem.tick(10);
             particleSystem.render();
-            particleSystem.onUpdate();
         }
         scrollWheelCheck();
         for (Frame frame : frames) {

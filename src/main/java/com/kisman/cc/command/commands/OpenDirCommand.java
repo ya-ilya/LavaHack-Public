@@ -1,5 +1,6 @@
 package com.kisman.cc.command.commands;
 
+import com.kisman.cc.Kisman;
 import com.kisman.cc.command.Command;
 import net.minecraft.client.Minecraft;
 
@@ -14,7 +15,7 @@ public class OpenDirCommand extends Command {
     @Override
     public void runCommand(String s, String[] args) {
         try {
-            File file = new File(Minecraft.getMinecraft().gameDir + "kisman.cc/");
+            File file = new File(Minecraft.getMinecraft().gameDir + Kisman.fileName);
             Desktop.getDesktop().open(file);
         } catch (Exception e) {
             error("Usage: " + getSyntax());

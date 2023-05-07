@@ -38,18 +38,18 @@ public class MixinGuiContainer extends GuiScreen {
     }
 
     @Inject(method = "drawScreen", at = @At("TAIL"))
-    public void drawScreenTailHook(int mouseX, int mouseY, float particalTicks, CallbackInfo ci) {
+    public void drawScreenTailHook(int mouseX, int mouseY, float partialTicks, CallbackInfo ci) {
         if (ContainerModifier.instance.isToggled() && ContainerModifier.instance.containerShadow.getValBoolean()) {
             if (ContainerModifier.instance.containerShadow.getValBoolean()) {
                 {
-                    double x = 0, y = (guiTop + xSize / 2) - guiLeft / 2, y2 = (guiTop + xSize / 2) + guiLeft / 2;
+                    double x = 0, y = (guiTop + xSize / 2.0) - guiLeft / 2.0, y2 = (guiTop + xSize / 2.0) + guiLeft / 2.0;
                     double x2 = guiLeft, y3 = guiTop, y4 = guiTop + ySize;
 
                     Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[]{x, y}, new double[]{x2, y3}, new double[]{x2, y4}, new double[]{x, y2}), Color.BLACK, new Color(0, 0, 0, 0), false));
                 }
 
                 {
-                    double x = new ScaledResolution(Minecraft.getMinecraft()).getScaledWidth_double(), y = (guiTop + xSize / 2) - guiLeft / 2, y2 = (guiTop + xSize / 2) + guiLeft / 2;
+                    double x = new ScaledResolution(Minecraft.getMinecraft()).getScaledWidth_double(), y = (guiTop + xSize / 2.0) - guiLeft / 2.0, y2 = (guiTop + xSize / 2.0) + guiLeft / 2.0;
 
                     Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[]{guiLeft + xSize, guiTop}, new double[]{x, y}, new double[]{x, y2}, new double[]{guiLeft + xSize, guiTop + ySize}), new Color(0, 0, 0, 0), Color.BLACK, false));
                 }

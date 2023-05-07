@@ -12,17 +12,17 @@ class MainGui {
     companion object {
         fun openGui(bar : SelectionBar) {
             when (bar.selection) {
-                Guis.ClickGui -> Minecraft.getMinecraft().displayGuiScreen(Kisman.instance.halqGui)
-                Guis.CSGOGui -> Minecraft.getMinecraft().displayGuiScreen(Kisman.instance.clickGuiNew)
-                Guis.Console -> Minecraft.getMinecraft().displayGuiScreen(Kisman.instance.consoleGui)
+                Gui.ClickGui -> Minecraft.getMinecraft().displayGuiScreen(Kisman.instance.halqGui)
+                Gui.CSGOGui -> Minecraft.getMinecraft().displayGuiScreen(Kisman.instance.clickGuiNew)
+                Gui.Console -> Minecraft.getMinecraft().displayGuiScreen(Kisman.instance.consoleGui)
             }
         }
     }
 
     class SelectionBar(
-            defaultSelection : Guis
+            defaultSelection : Gui
     ) {
-        var selection : Guis
+        var selection : Gui
         val backgroundColor : Colour = Colour(20, 20, 20, 200)
         val offset : Int = 5
 
@@ -34,7 +34,7 @@ class MainGui {
             var startX = ScaledResolution(Minecraft.getMinecraft()).scaledWidth / 2 - getSelectionBarWidth() / 2
             Render2DUtil.drawRectWH(startX.toDouble(), 0.0, getSelectionBarWidth().toDouble(), (CustomFontUtil.getFontHeight() + offset * 2).toDouble(), backgroundColor.rgb)
 
-            for (gui in Guis.values()) {
+            for (gui in Gui.values()) {
                 CustomFontUtil.drawStringWithShadow(
                         gui.displayName,
                         (startX + offset).toDouble(),
@@ -48,7 +48,7 @@ class MainGui {
         fun mouseClicked(mouseX : Int, mouseY : Int) : Boolean {
             val startX = ScaledResolution(Minecraft.getMinecraft()).scaledWidth / 2 - getSelectionBarWidth() / 2
             if (mouseX >= startX && mouseX <= startX + getSelectionBarWidth() && mouseY >= 0 && mouseY <= CustomFontUtil.getFontHeight() + offset * 2) {
-                for ((count, gui) in Guis.values().withIndex()) {
+                for ((count, gui) in Gui.values().withIndex()) {
                     println("Click k $startX")
                     if (mouseX >= startX + count * (offset * 2 + CustomFontUtil.getStringWidth(gui.displayName)) && mouseX <= startX + count * (offset * 2 + CustomFontUtil.getStringWidth(gui.displayName)) + (offset * 2 + CustomFontUtil.getStringWidth(gui.displayName))) {
                         selection = gui
@@ -62,7 +62,7 @@ class MainGui {
         private fun getSelectionBarWidth() : Int {
             var width = 0
 
-            for (gui in Guis.values()) {
+            for (gui in Gui.values()) {
                 width += offset * 2 + CustomFontUtil.getStringWidth(gui.displayName)
             }
 
@@ -70,9 +70,7 @@ class MainGui {
         }
     }
 
-    enum class Guis(
-            val displayName: String
-    ) {
+    enum class Gui(val displayName: String) {
         ClickGui("Click Gui"),
         CSGOGui("CSGO Gui"),
         Console("Console")

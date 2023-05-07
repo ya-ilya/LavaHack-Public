@@ -46,7 +46,6 @@ public class MixinGuiMainMenu extends GuiScreen {
             if (CustomMainMenu.instance.particles.getValBoolean()) {
                 particleSystem.tick(10);
                 particleSystem.render();
-                particleSystem.onUpdate();
             }
         }
     }

@@ -38,7 +38,7 @@ class ConsoleGui : GuiScreen() {
     }
 
     override fun drawScreen(mouseX: Int, mouseY: Int, partialTicks: Float) {
-        if (Kisman.instance.selectionBar.selection != MainGui.Guis.Console) {
+        if (Kisman.instance.selectionBar.selection != MainGui.Gui.Console) {
             MainGui.openGui(Kisman.instance.selectionBar)
             return
         }

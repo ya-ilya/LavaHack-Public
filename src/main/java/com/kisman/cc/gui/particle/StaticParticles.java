@@ -5,55 +5,35 @@ import com.kisman.cc.module.client.Config;
 import java.awt.*;
 
 public class StaticParticles {
-    //Particles Color
-    public static Color color = Color.ORANGE;
+    public static Color getColor() {
+        return Config.instance.particlesColor.getColour().getColor();
+    }
 
-    //Start Gradient Particles Color
-    public static Color startColor = Color.CYAN;
+    public static Color getStartColor() {
+        return Config.instance.particlesGStartColor.getColour().getColor();
+    }
 
-    //End Gradient Particles Color
-    public static Color endColor = Color.PINK;
+    public static Color getEndColor() {
+        return Config.instance.particlesGEndColor.getColour().getColor();
+    }
 
-    //Will make particles color gradient if enabled
-    public static boolean IsTwoGParticlesEnabled = true;
+    public static boolean isIsTwoGParticlesEnabled() {
+        return !Config.instance.particlesGradientMode.getValString().equals(Config.ParticlesGradientMode.None.name());
+    }
 
-    //The var on what will depend particles width
-    public static float particleWidth = 2.5f;
+    public static float getParticleWidth() {
+        return Config.instance.particlesWidth.getValFloat();
+    }
 
-    //Particles Current Mode
-    public static String mode = "Default";
+    public static String getMode() {
+        return Config.instance.particlesGradientMode.getValString();
+    }
 
-    //Particles Mode Type
-    public static String modeDEfType = "Default";
+    public static String getModeDEfType() {
+        return Config.ParticlesGradientMode.TwoGradient.name();
+    }
 
-    //Particles Three Gradient Mode Type
-    public static String modeTGfType = "Three";
-
-    //Update void
-    public static void onUpdate() {
-        //sets particles color to the one from settings
-        color = Config.instance.particlesColor.getColour().getColor();
-
-        //sets particles start gradient color to the one from settings
-        startColor = Config.instance.particlesGStartColor.getColour().getColor();
-
-        //sets particles end gradient color to the one from settings
-        endColor = Config.instance.particlesGEndColor.getColour().getColor();
-
-        //sets particles gradient var to the one from settings
-        IsTwoGParticlesEnabled = !Config.instance.particlesGradientMode.getValString().equals(Config.ParticlesGradientMode.None.name());
-
-        //sets particles width var to the one from settings
-        particleWidth = Config.instance.particlesWidth.getValFloat();
-
-        //sets particles current rendering mode to the one from settings
-        mode = Config.instance.particlesGradientMode.getValString();
-
-        //sets particles default rendering mode to the one from settings
-        modeDEfType = Config.ParticlesGradientMode.TwoGradient.name();
-
-        //sets particles default rendering mode to the one from settings
-        modeTGfType = Config.ParticlesGradientMode.ThreeGradient.name();
-
+    public static String getModeTGfType() {
+        return Config.ParticlesGradientMode.ThreeGradient.name();
     }
 }

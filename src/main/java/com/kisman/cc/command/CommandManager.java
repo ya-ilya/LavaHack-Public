@@ -49,6 +49,7 @@ public class CommandManager {
 				break;
 			}
 		}
+
 		if (!commandResolved) ChatUtil.error("Cannot resolve internal command: \u00a7c" + commandName);
 	}
 

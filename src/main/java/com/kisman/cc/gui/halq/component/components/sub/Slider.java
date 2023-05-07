@@ -36,15 +36,15 @@ public class Slider extends Component {
 
     @Override
     public void drawScreen(int mouseX, int mouseY) {
-        double min = setting.getMin();
-        double max = setting.getMax();
+        double min = setting.getMinValue();
+        double max = setting.getMaxValue();
 
         if (bool) dragging = false;
         else customValue = "";
 
         if (dragging) {
             double diff = Math.min(width, Math.max(0, mouseX - this.x));
-            if (diff == 0) setting.setValDouble(setting.getMin());
+            if (diff == 0) setting.setValDouble(setting.getMinValue());
             else setting.setValDouble(roundToPlace(((diff / width) * (max - min) + min), 2));
         }
 

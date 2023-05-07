@@ -22,6 +22,7 @@ public abstract class MixinMinecraft {
     public EntityPlayerSP player;
     @Shadow
     public PlayerControllerMP playerController;
+
     private boolean mt_handActive = false;
     private boolean mt_isHittingBlock = false;
 

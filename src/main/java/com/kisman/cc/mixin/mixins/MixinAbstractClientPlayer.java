@@ -17,15 +17,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = AbstractClientPlayer.class, priority = 10000)
-public class MixinAbstractClientPlayer extends EntityPlayer {
+public abstract class MixinAbstractClientPlayer extends EntityPlayer {
     @Shadow public NetworkPlayerInfo playerInfo;
     private int count = 0;
     private final TimerUtil timer = new TimerUtil();
 
-    public MixinAbstractClientPlayer(World worldIn, GameProfile gameProfileIn) {super(worldIn, gameProfileIn);}
-
-    @Shadow public boolean isSpectator() {return true;}
-    @Override public boolean isCreative() {return false;}
+    public MixinAbstractClientPlayer(World worldIn, GameProfile gameProfileIn) {
+        super(worldIn, gameProfileIn);
+    }
 
     @Inject(method = "getLocationCape", at = @At("HEAD"), cancellable = true)
     private void getLocationCapeHook(CallbackInfoReturnable<ResourceLocation> cir) {

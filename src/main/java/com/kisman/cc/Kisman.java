@@ -21,10 +21,10 @@ import com.kisman.cc.module.render.shader.FramebufferShader;
 import com.kisman.cc.setting.SettingManager;
 import com.kisman.cc.util.RotationUtils;
 import com.kisman.cc.util.ServerManager;
-import com.kisman.cc.util.webapi.cape.CapeAPI;
 import com.kisman.cc.util.customfont.CustomFontRenderer;
 import com.kisman.cc.util.glow.ShaderShell;
 import com.kisman.cc.util.improvements.AiImprovements;
+import com.kisman.cc.util.webapi.cape.CapeAPI;
 import me.zero.alpine.bus.EventManager;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
@@ -125,7 +125,7 @@ public class Kisman {
         gui = new Gui();
         halqGui = new HalqGui();
 
-        selectionBar = new MainGui.SelectionBar(MainGui.Guis.ClickGui);
+        selectionBar = new MainGui.SelectionBar(MainGui.Gui.ClickGui);
 
         init = true;
     }

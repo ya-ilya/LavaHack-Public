@@ -61,7 +61,7 @@ public class Frame {
 
         String str = cat.getName() + (Config.instance.guiRenderSize.getValBoolean() && !buttons.isEmpty() ? " [" + buttons.size() + "]" : "");
 
-        CustomFontUtil.drawCenteredStringWithShadow(str, x + (width / 2), y + ((height - CustomFontUtil.getFontHeight()) / 2), open ? ColorUtil.astolfoColors(100, 100) : -1);
+        CustomFontUtil.drawCenteredStringWithShadow(str, x + (width / 2.0), y + ((height - CustomFontUtil.getFontHeight()) / 2.0), open ? ColorUtil.astolfoColors(100, 100) : -1);
 
         if (open && !buttons.isEmpty()) for (Button button : buttons) button.renderComponent();
     }
@@ -90,7 +90,7 @@ public class Frame {
                     comp.renderComponent();
                     off += height;
                 }
-                off+=3;
+                off += 3;
             }
         }
     }

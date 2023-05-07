@@ -20,7 +20,7 @@ public abstract class MixinItemBlock {
     @Shadow(remap = false)
     public abstract boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState);
 
-        /**
+    /**
      * {@link ItemBlock#placeBlockAt(ItemStack, EntityPlayer, World,
      * BlockPos, EnumFacing, float, float, float, IBlockState)}
      */

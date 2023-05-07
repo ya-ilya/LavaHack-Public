@@ -22,9 +22,7 @@ class ConfigManager(
     val friendsPrefix = "friend"
 
 
-    class Load (
-            val config : ConfigManager
-    ) {
+    class Load (val config: ConfigManager) {
         @Throws(IOException::class)
         fun init() {
             if (!Files.exists(Paths.get(config.path + config.name + config.suffix))) {
@@ -116,18 +114,12 @@ class ConfigManager(
         }
     }
 
-    class Save(
-            val config : ConfigManager
-    ) {
+    class Save(val config: ConfigManager) {
         @Throws(IOException::class)
         fun init() {
             fileCheck()
 
-            BufferedWriter(
-                    FileWriter(
-                            Paths.get(config.path + config.name + config.suffix).toFile()
-                    )
-            ).use { writer ->
+            BufferedWriter(FileWriter(Paths.get(config.path + config.name + config.suffix).toFile())).use { writer ->
                 save(writer)
             }
         }

@@ -10,23 +10,8 @@ public class HelpCommand extends Command {
 
     public void runCommand(String s, String[] args) {
         message("Commands:");
-        message("bind <key> <module>");
-        message("bind list");
-        message("credits");
-        message("flip - this command only for Hypixel Skyblock");
-        message("friend <add/remove> <player's name>");
-        message("friend list");
-        message("help");
-        message("loadconfig");
-        message("opendir");
-        message("saveconfig");
-        message("setkey - this command only for Hypixel Skyblock");
-        message("slider <module> <slider's name> <value>");
-        message("toggle <module>");
-        message("tp <x> <y> <z>");
-        message("tp <player's nickname>");
         for (Command command : CommandManager.commands) {
-
+            message(command.getSyntax());
         }
     }
 

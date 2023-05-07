@@ -40,7 +40,9 @@ public class BindCommand extends Command{
                     message(mod.getName() + " binned to " + Keyboard.getKeyName(mod.getKey()));
                 }
             }
-        } catch (Exception e) {error("Usage: " + getSyntax());}
+        } catch (Exception e) {
+            error("Usage: " + getSyntax());
+        }
     }
 
     @Override

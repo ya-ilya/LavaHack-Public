@@ -72,7 +72,7 @@ public class HalqGui extends GuiScreen {
         if (!background) backgroundColor = new Color(0, 0, 0, 0);
         else backgroundColor = new Color(30, 30, 30, 121);
 
-        if (Kisman.instance.selectionBar.getSelection() != MainGui.Guis.ClickGui) {
+        if (Kisman.instance.selectionBar.getSelection() != MainGui.Gui.ClickGui) {
             MainGui.Companion.openGui(Kisman.instance.selectionBar);
             return;
         }

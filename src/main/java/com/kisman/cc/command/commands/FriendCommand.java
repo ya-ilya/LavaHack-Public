@@ -26,7 +26,9 @@ public class FriendCommand extends Command {
                 print(Kisman.instance.friendManager.getFriendsNames());
                 print("----------------------------------");
             }
-        } catch (Exception e) {error("Usage: " + getSyntax());}
+        } catch (Exception e) {
+            error("Usage: " + getSyntax());
+        }
     }
 
     public String getDescription() {return "friend's command";}

@@ -5,14 +5,12 @@ import com.kisman.cc.gui.vega.component.components.Button;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import com.kisman.cc.util.gish.ColorUtil;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.util.ChatAllowedCharacters;
 import org.lwjgl.input.Keyboard;
 
 
 public class StringButton extends Component {
-    private final Minecraft mc = Minecraft.getMinecraft();
     private int modeIndex = 0;
     public Setting set;
     public Button b;
@@ -69,7 +67,7 @@ public class StringButton extends Component {
         Gui.drawRect(this.x - 1, this.y + offset, this.x + this.width + 1, this.y + this.height + offset, (ColorUtil.getColor(60, 60, 70)));
         Gui.drawRect(this.x, this.y + offset, this.x + this.width, this.y + this.height + offset, (ColorUtil.getColor(34, 34, 40)));
 
-        CustomFontUtil.drawCenteredStringWithShadow(set.getName() + ": " + set.getValString(), x + (width / 2), y + 3 + offset + ((height - CustomFontUtil.getFontHeight()) / 2), drag  ? ColorUtil.astolfoColors(100, 100) : -1);
+        CustomFontUtil.drawCenteredStringWithShadow(set.getName() + ": " + set.getValString(), x + (width / 2.0), y + 3 + offset + ((height - CustomFontUtil.getFontHeight()) / 2.0), drag  ? ColorUtil.astolfoColors(100, 100) : -1);
     }
 
     public void updateComponent(int mouseX, int mouseY) {
@@ -152,7 +150,7 @@ public class StringButton extends Component {
         this.active = false;
 
         if (this.currentString.isEmpty()) {
-            this.set.setValString(this.set.getdString());
+            this.set.setValString(this.set.getDefaultStringValue());
         } else {
             this.set.setValString(this.currentString);
         }

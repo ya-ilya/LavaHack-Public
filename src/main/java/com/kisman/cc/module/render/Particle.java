@@ -18,8 +18,6 @@ public class Particle extends Module {
 
         register(new Setting("Heart", this, false));
         register(new Setting("Crit", this, false));
-
-        register(new Setting("voidsetting", this, "void", "setting"));
     }
 
     public boolean isBeta() {

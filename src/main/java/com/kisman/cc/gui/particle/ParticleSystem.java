@@ -32,7 +32,7 @@ public class ParticleSystem {
         for (Particle particle : this.particleList) particle.tick(delta, 0.1f);
     }
 
-    //Draws a line
+
     private void drawLine(final float f, final float f2, final float f3, final float f4, Color color) {
         GL11.glColor4f(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
         GL11.glLineWidth(0.5f);
@@ -42,7 +42,6 @@ public class ParticleSystem {
         GL11.glEnd();
     }
 
-    //Draws a Gradient line
     private void drawGradientLine(final float f, final float f2, final float f3, final float f4, Color startcolor,  Color endcolor, float width) {
         GL11.glPushMatrix();
         GL11.glDisable(GL_TEXTURE_2D);
@@ -66,7 +65,7 @@ public class ParticleSystem {
         glPopMatrix();
     }
 
-    //Draws a Three Gradient line
+
     private void drawThreeGradientLine(final float f, final float f2, final float f3, final float f4, Color startcolor,  Color midcolor, Color endcolor, float width) {
         GL11.glPushMatrix();
         GL11.glDisable(GL_TEXTURE_2D);
@@ -86,20 +85,18 @@ public class ParticleSystem {
 
         float y;
 
-        if (f2>=f4)
-        {
-            y = f4 + ((f2-f4)/2);
-        }else{
-            y = f2 + ((f4-f2)/2);
+        if (f2 >= f4) {
+            y = f4 + ((f2-f4) / 2);
+        } else {
+            y = f2 + ((f4-f2) / 2);
         }
 
         float x;
 
-        if (f>=f3)
-        {
-            x = f3 + ((f-f3)/2);
-        }else{
-            x = f + ((f3-f)/2);
+        if (f >= f3) {
+            x = f3 + ((f-f3) / 2);
+        } else {
+            x = f + ((f3-f) / 2);
         }
 
         GL11.glVertex2f(x, y);
@@ -124,31 +121,9 @@ public class ParticleSystem {
         glPopMatrix();
     }
 
-    //Draws a Gradient line glowing effect
-    private void drawGradientLineGlowing(final float f, final float f2, final float f3, final float f4, Color startcolor,  Color endcolor, float width) {
-        GL11.glPushMatrix();
-        GL11.glDisable(GL_TEXTURE_2D);
-        GL11.glEnable(GL_BLEND);
-        GL11.glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glShadeModel(GL_SMOOTH);
-
-        GL11.glColor4f(startcolor.getRed() / 255.0f, startcolor.getGreen() / 255.0f, startcolor.getBlue() / 255.0f, 151 * 55 / 255);
-        GL11.glLineWidth(width+4);
-        GL11.glBegin(1);
-
-        GL11.glVertex2f(f, f2);
-
-        GL11.glColor4f(endcolor.getRed() / 255.0f, endcolor.getGreen() / 255.0f, endcolor.getBlue() / 255.0f, 151 * 55 / 255);
-
-        GL11.glVertex2f(f3, f4);
-
-        glEnable(GL_TEXTURE_2D);
-        glDisable(GL_BLEND);
-        GL11.glEnd();
-        glPopMatrix();
-    }
-
     public void render() {
+        if (Minecraft.getMinecraft().currentScreen == null) return;
+
         GL11.glPushMatrix();
         GL11.glEnable(3042);
         GL11.glDisable(3553);
@@ -157,10 +132,14 @@ public class ParticleSystem {
         GL11.glDisable(3553);
         GL11.glDisable(2929);
         GL11.glDepthMask(false);
-        if (Minecraft.getMinecraft().currentScreen == null) return;
+
         for (Particle particle : this.particleList) {
-            if (Config.instance.particlesGradientMode.getValString().equals(Config.ParticlesGradientMode.Syns.name())) particle.color.glColor();
-            else GL11.glColor4f(StaticParticles.color.getRed() / 255.0f, StaticParticles.color.getGreen() / 255.0f, StaticParticles.color.getBlue() / 255.0f, particle.getAlpha() / 255.0f);
+            Color color = StaticParticles.getColor();
+            if (Config.instance.particlesGradientMode.getValString().equals(Config.ParticlesGradientMode.Syns.name())) {
+                particle.color.glColor();
+            } else {
+                GL11.glColor4f(color.getRed() / 255.0f, color.getGreen() / 255.0f, color.getBlue() / 255.0f, particle.getAlpha() / 255.0f);
+            }
             GL11.glPointSize(particle.getSize());
             GL11.glBegin(0);
             GL11.glVertex2f(particle.getX(), particle.getY());
@@ -182,21 +161,26 @@ public class ParticleSystem {
             float alpha = Math.min(1.0f, Math.min(1.0f, 1.0f - nearestDistance / dist));
 
             //Checks if two gradient particles mode is enabled
-            if (StaticParticles.IsTwoGParticlesEnabled){
+            if (StaticParticles.isIsTwoGParticlesEnabled()){
                 //Checks if rendering gradient mode is default
-                if (StaticParticles.mode.equals(StaticParticles.modeDEfType))
-                {
-                    this.drawGradientLine(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), StaticParticles.startColor, StaticParticles.endColor, StaticParticles.particleWidth);
+                String mode = StaticParticles.getMode();
+                Color startColor = StaticParticles.getStartColor();
+                Color endColor = StaticParticles.getEndColor();
+                float particleWidth = StaticParticles.getParticleWidth();
+
+                if (mode.equals(StaticParticles.getModeDEfType())) {
+                    this.drawGradientLine(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), startColor, endColor, particleWidth);
                     //this.drawGradientLineGlowing(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), StaticParticles.startColor, StaticParticles.endColor, StaticParticles.particleWidth);
-                }else if (StaticParticles.mode.equals(StaticParticles.modeTGfType))
-                {
-                    this.drawThreeGradientLine(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), StaticParticles.startColor, Color.CYAN, StaticParticles.endColor, StaticParticles.particleWidth);
-                }else
-                {
-                    this.drawGradientLine(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), particle.color.getColor(), nearestParticle.color.getColor(), StaticParticles.particleWidth);
+                } else if (mode.equals(StaticParticles.getModeTGfType())) {
+                    this.drawThreeGradientLine(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), startColor, Color.CYAN, endColor, particleWidth);
+                } else {
+                    this.drawGradientLine(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), particle.color.getColor(), nearestParticle.color.getColor(), particleWidth);
                 }
-            } else this.drawLine(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), StaticParticles.color);
+            } else {
+                this.drawLine(particle.getX(), particle.getY(), nearestParticle.getX(), nearestParticle.getY(), color);
+            }
         }
+
         GL11.glPushMatrix();
         GL11.glTranslatef(0.5f, 0.5f, 0.5f);
         GL11.glNormal3f(0.0f, 1.0f, 0.0f);
@@ -210,11 +194,5 @@ public class ParticleSystem {
         GL11.glDisable(3042);
         GL11.glPopMatrix();
     }
-
-    public void onUpdate()
-    {
-        StaticParticles.onUpdate();
-    }
-
 }
 

@@ -15,9 +15,12 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 import java.awt.*;
 
 @Mixin(value = RenderItem.class, priority = 10000)
-public class MixinRenderItem {
-    @Shadow private void renderModel(IBakedModel model, int color, ItemStack stack) {}
-    @Shadow private void renderEffect(IBakedModel model) {}
+public abstract class MixinRenderItem {
+    @Shadow
+    protected abstract void renderModel(IBakedModel model, int color, ItemStack stack);
+
+    @Shadow
+    protected abstract void renderEffect(IBakedModel model);
 
     @ModifyArg(method = "renderEffect", at = @At(value="INVOKE", target="net/minecraft/client/renderer/RenderItem.renderModel(Lnet/minecraft/client/renderer/block/model/IBakedModel;I)V"), index=1)
     private int renderEffect(int oldValue) {

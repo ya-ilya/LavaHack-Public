@@ -189,7 +189,7 @@ public class Indicators extends HudModule {
         Render2DUtil.drawRect(x, y - 4, x + width, y + height, (ColorUtil.getColor(34, 34, 40)));
 
         //draw header
-        drawStringWithShadow(header, x + (width / 2 - getStringWidth(header) / 2), y + 2, ColorUtil.astolfoColors(100, 100));
+        drawStringWithShadow(header, x + (width / 2 - getStringWidth(header) / 2.0), y + 2, ColorUtil.astolfoColors(100, 100));
         offset += getHeight() + 6;
 
         //draw cooldown

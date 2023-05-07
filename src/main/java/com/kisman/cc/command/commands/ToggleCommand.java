@@ -2,6 +2,7 @@ package com.kisman.cc.command.commands;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.command.Command;
+import com.kisman.cc.module.Module;
 
 public class ToggleCommand extends Command{
     public ToggleCommand() {
@@ -10,31 +11,20 @@ public class ToggleCommand extends Command{
 
     @Override
     public void runCommand(String s, String[] args) {
-        String module = "";
-
-        try {
-            module = args[0];
-        } catch (Exception e) {
+        if (args.length == 0) {
             error("Usage: " + getSyntax());
             return;
         }
 
-        try {
-            Kisman.instance.moduleManager.getModule(module);
-        } catch (Exception e) {
-            error("Module " + module + " does not exist!");
-            return;
-        }
+        Module module = Kisman.instance.moduleManager.getModule(args[0]);
 
-        if (args.length > 1) {
-            error("Usage: " + getSyntax());
+        if (module == null) {
+            error("Module " + args[0] + " does not exist!");
             return;
         }
 
         try {
-            Kisman.instance.moduleManager.getModule(module).setToggled(
-                !Kisman.instance.moduleManager.getModule(module).isToggled()
-            );
+            module.toggle();
             complete("Module " + module + " has been toggled!");
         } catch (Exception e) {
             error("Usage: " + getSyntax());

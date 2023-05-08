@@ -17,8 +17,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Minecraft.class)
 public abstract class MixinMinecraft {
     @Shadow
-    public GameSettings gameSettings;
-    @Shadow
     public EntityPlayerSP player;
     @Shadow
     public PlayerControllerMP playerController;

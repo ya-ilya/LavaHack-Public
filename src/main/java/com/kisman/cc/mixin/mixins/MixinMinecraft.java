@@ -26,24 +26,12 @@ public abstract class MixinMinecraft {
     private boolean mt_handActive = false;
     private boolean mt_isHittingBlock = false;
 
-    @Shadow
-    protected abstract void clickMouse();
-
     @Inject(method = "init", at = @At("RETURN"))
     private void initHook(CallbackInfo ci) {
         try {
             Kisman.instance.init();
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    @Inject(method = "processKeyBinds", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/settings/KeyBinding;isKeyDown()Z", shift = At.Shift.BEFORE, ordinal = 2))
-    public void processKeyBindsHook(CallbackInfo info) {
-        if (MultiTask.instance.isToggled()) {
-            while (gameSettings.keyBindAttack.isPressed()) {
-                clickMouse();
-            }
         }
     }
 

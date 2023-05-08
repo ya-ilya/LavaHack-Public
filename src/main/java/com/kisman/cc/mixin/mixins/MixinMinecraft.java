@@ -16,11 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Minecraft.class)
 public abstract class MixinMinecraft {
-    @Shadow
-    public EntityPlayerSP player;
-    @Shadow
-    public PlayerControllerMP playerController;
-
     private boolean mt_handActive = false;
     private boolean mt_isHittingBlock = false;
 
@@ -35,29 +30,37 @@ public abstract class MixinMinecraft {
 
     @Inject(method = "rightClickMouse", at = @At("HEAD"))
     public void rightClickMouseHook(CallbackInfo info) {
+        Minecraft mc = Minecraft.getMinecraft();
+
         if (MultiTask.instance.isToggled()) {
-            mt_isHittingBlock = playerController.getIsHittingBlock();
-            ((AccessorPlayerControllerMP) playerController).setIsHittingBlock(false);
+            mt_isHittingBlock = mc.playerController.getIsHittingBlock();
+            ((AccessorPlayerControllerMP) mc.playerController).setIsHittingBlock(false);
         }
     }
 
     @Inject(method = "rightClickMouse", at = @At("RETURN"))
     public void rightClickMousePostHook(CallbackInfo ci) {
-        if (MultiTask.instance.isToggled() && !playerController.getIsHittingBlock())
-            ((AccessorPlayerControllerMP) playerController).setIsHittingBlock(mt_isHittingBlock);
+        Minecraft mc = Minecraft.getMinecraft();
+
+        if (MultiTask.instance.isToggled() && !mc.playerController.getIsHittingBlock())
+            ((AccessorPlayerControllerMP) mc.playerController).setIsHittingBlock(mt_isHittingBlock);
     }
 
     @Inject(method = "sendClickBlockToController", at = @At("HEAD"))
     public void sendClickBlockToControllerHook(boolean leftClick, CallbackInfo ci) {
+        Minecraft mc = Minecraft.getMinecraft();
+
         if (MultiTask.instance.isToggled()) {
-            mt_handActive = player.isHandActive();
-            ((AccessorEntityPlayerSP) player).setHandActive(false);
+            mt_handActive = mc.player.isHandActive();
+            ((AccessorEntityPlayerSP) mc.player).setHandActive(false);
         }
     }
 
     @Inject(method = "sendClickBlockToController", at = @At("RETURN"))
     public void sendClickBlockToControllerPostHook(boolean leftClick, CallbackInfo ci) {
-        if (MultiTask.instance.isToggled() && !player.isHandActive())
-            ((AccessorEntityPlayerSP) player).setHandActive(mt_handActive);
+        Minecraft mc = Minecraft.getMinecraft();
+
+        if (MultiTask.instance.isToggled() && !mc.player.isHandActive())
+            ((AccessorEntityPlayerSP) mc.player).setHandActive(mt_handActive);
     }
 }

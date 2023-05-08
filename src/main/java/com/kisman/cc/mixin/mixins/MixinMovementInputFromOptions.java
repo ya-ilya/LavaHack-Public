@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = MovementInputFromOptions.class, priority = 10000)
+@Mixin(MovementInputFromOptions.class)
 public class MixinMovementInputFromOptions extends MovementInput {
     @Inject(method = "updatePlayerMoveState", at = @At("RETURN"))
     public void updatePlayerMoveStateHook(CallbackInfo ci) {

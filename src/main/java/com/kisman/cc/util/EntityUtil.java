@@ -317,11 +317,11 @@ public class EntityUtil {
     }
 
     public static void setTimer(float speed) {
-        mc.timer.tickLength = 50.0f / speed;
+        TimerUtil.setTickLength(50.0f / speed);
     }
 
     public static void resetTimer() {
-        mc.timer.tickLength = 50;
+        TimerUtil.setTickLength(50f);
     }
 
     public static double getDistance(double p_X, double p_Y, double p_Z, double x, double y, double z) {

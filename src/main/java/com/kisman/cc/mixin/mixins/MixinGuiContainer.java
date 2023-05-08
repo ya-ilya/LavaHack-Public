@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.awt.*;
 
-@Mixin(value = GuiContainer.class, priority = 10000)
+@Mixin(GuiContainer.class)
 public abstract class MixinGuiContainer extends GuiScreen {
     @Shadow protected int guiLeft, guiTop, xSize, ySize;
     @Shadow public Container inventorySlots;

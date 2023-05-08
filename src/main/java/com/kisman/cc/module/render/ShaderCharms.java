@@ -3,6 +3,8 @@ package com.kisman.cc.module.render;
 import com.kisman.cc.event.events.RenderEntityEvent;
 import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.manager.managers.FriendManager;
+import com.kisman.cc.mixin.mixins.accessor.AccessorEntityRenderer;
+import com.kisman.cc.mixin.mixins.accessor.AccessorRenderManager;
 import com.kisman.cc.mixin.mixins.accessor.AccessorShaderGroup;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
@@ -152,7 +154,7 @@ public class ShaderCharms extends Module {
 
     @SuppressWarnings("unused")
     private final Listener<RenderEntityEvent.Pre> renderEntityListener = listener(event -> {
-        if (mode.checkValString("Outline2") && !mc.renderManager.renderOutlines && hideOriginal.getValBoolean() && mc.player.getDistance(event.getEntity()) <= range.getValFloat() && entityTypeCheck(event.getEntity())) event.cancel();
+        if (mode.checkValString("Outline2") && !((AccessorRenderManager) mc.getRenderManager()).getRenderOutlines() && hideOriginal.getValBoolean() && mc.player.getDistance(event.getEntity()) <= range.getValFloat() && entityTypeCheck(event.getEntity())) event.cancel();
     });
 
     public boolean entityTypeCheck(Entity entity) {
@@ -243,7 +245,7 @@ public class ShaderCharms extends Module {
                     Vec3d vector = MathUtil.getInterpolatedRenderPos(entity, event.getPartialTicks());
                     Objects.requireNonNull(mc.getRenderManager().getEntityRenderObject(entity)).doRender(entity, vector.x, vector.y, vector.z, entity.rotationYaw, event.getPartialTicks());
                 }
-                mc.entityRenderer.renderHand(event.getPartialTicks(), 2);
+                ((AccessorEntityRenderer) mc.entityRenderer).invokeRenderHand(event.getPartialTicks(), 2);
                 framebufferShader.stopDraw();
                 criticalSection = false;
                 if (framebufferShader instanceof GradientOutlineShader) {

@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = PlayerControllerMP.class, priority = 10000)
+@Mixin(PlayerControllerMP.class)
 public class MixinPlayerControllerMP {
     @Inject(method = "getBlockReachDistance", at = @At("HEAD"), cancellable = true)
     public void getBlockReachDistanceHook(CallbackInfoReturnable<Float> callback) {

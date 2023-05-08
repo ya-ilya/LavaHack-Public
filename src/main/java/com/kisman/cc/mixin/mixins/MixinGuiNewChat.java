@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-@Mixin(value = GuiNewChat.class, priority = 10000)
+@Mixin(GuiNewChat.class)
 public class MixinGuiNewChat {
     @Shadow public boolean isScrolled;
     private float percentComplete;

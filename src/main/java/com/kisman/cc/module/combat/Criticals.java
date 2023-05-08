@@ -1,6 +1,7 @@
 package com.kisman.cc.module.combat;
 
 import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.mixin.mixins.accessor.AccessorEntity;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -25,7 +26,7 @@ public class Criticals extends Module {
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (event.getPacket() instanceof CPacketUseEntity) {
             CPacketUseEntity packet = (CPacketUseEntity) event.getPacket();
-            if (packet.action.equals(CPacketUseEntity.Action.ATTACK) && mc.player.onGround && !mc.player.isInLava() && !mc.player.isInWater() && !mc.player.isInWeb) {
+            if (packet.getAction().equals(CPacketUseEntity.Action.ATTACK) && mc.player.onGround && !mc.player.isInLava() && !mc.player.isInWater() && !((AccessorEntity) mc.player).isInWeb()) {
                 if (onlyKillaura.getValBoolean() && !KillAura.instance.isToggled()) return;
 
                 Entity entity = packet.getEntityFromWorld(mc.world);

@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Random;
 
-@Mixin(value = GuiMainMenu.class, priority = 10000)
+@Mixin(GuiMainMenu.class)
 public class MixinGuiMainMenu extends GuiScreen {
     private ParticleSystem particleSystem;
     private String customSplashSrt = "";

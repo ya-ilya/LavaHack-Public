@@ -1,6 +1,7 @@
 package com.kisman.cc.module.misc;
 
 import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.mixin.mixins.accessor.AccessorCPacketCloseWindow;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import me.zero.alpine.listener.Listener;
@@ -15,7 +16,9 @@ public class XCarry extends Module {
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (event.getPacket() instanceof CPacketCloseWindow) {
             CPacketCloseWindow packet = (CPacketCloseWindow) event.getPacket();
-            if (packet.windowId == mc.player.inventoryContainer.windowId) event.cancel();
+            if (((AccessorCPacketCloseWindow) packet).getWindowId() == mc.player.inventoryContainer.windowId) {
+                event.cancel();
+            }
         }
     });
 }

@@ -1,7 +1,7 @@
 package com.kisman.cc.gui.alts;
 
 import com.kisman.cc.gui.alts.microsoft.MSAuthScreen;
-import com.kisman.cc.mixin.mixins.accessor.ISession;
+import com.kisman.cc.mixin.mixins.accessor.AccessorSession;
 import com.kisman.cc.util.customfont.CustomFontUtil;
 import com.kisman.cc.util.gish.ColorUtil;
 import net.minecraft.client.Minecraft;
@@ -78,7 +78,7 @@ public class AltManagerGUI extends GuiScreen {
 		}
 		this.crackedNameField.textboxKeyTyped(typedChar, keyCode);
 		if (keyCode == Keyboard.KEY_RETURN) {
-			((ISession) mc.getSession()).setUsername(this.crackedNameField.getText());
+			((AccessorSession) mc.getSession()).setUsername(this.crackedNameField.getText());
 			this.crackedNameField.setFocused(false);
 		}
 		super.keyTyped(typedChar, keyCode);

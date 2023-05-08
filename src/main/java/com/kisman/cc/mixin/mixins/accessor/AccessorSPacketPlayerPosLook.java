@@ -1,12 +1,11 @@
 package com.kisman.cc.mixin.mixins.accessor;
 
-import net.minecraft.network.play.client.CPacketPlayer;
+import net.minecraft.network.play.server.SPacketPlayerPosLook;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(CPacketPlayer.class)
-public interface ICPacketPlayer {
-
+@Mixin(SPacketPlayerPosLook.class)
+public interface AccessorSPacketPlayerPosLook {
     @Accessor("yaw")
     void setYaw(float yaw);
 

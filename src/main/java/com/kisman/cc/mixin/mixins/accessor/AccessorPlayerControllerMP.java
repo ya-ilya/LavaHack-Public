@@ -6,6 +6,9 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(PlayerControllerMP.class)
 public interface AccessorPlayerControllerMP {
+    @Accessor("stepSoundTickCounter")
+    void setStepSoundTickCounter(float counter);
+
     @Accessor("isHittingBlock")
     void setIsHittingBlock(boolean value);
 

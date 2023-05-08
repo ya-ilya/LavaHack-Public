@@ -1,5 +1,6 @@
 package com.kisman.cc.util.render;
 
+import com.kisman.cc.mixin.mixins.accessor.AccessorRenderManager;
 import com.kisman.cc.util.Colour;
 import com.kisman.cc.util.Globals;
 import com.kisman.cc.util.render.konas.BlockRenderUtil;
@@ -52,7 +53,14 @@ public class KonasRenderer implements Globals {
     
     private static void drawWireframeHole(AxisAlignedBB axisAlignedBB, Colour lineColor, float width) {
         BlockRenderUtil.prepareGL();
-        BlockRenderUtil.drawWireframe(axisAlignedBB.offset(-(mc.getRenderManager()).renderPosX, -(mc.getRenderManager()).renderPosY, -(mc.getRenderManager()).renderPosZ), lineColor.getRGB(), width);
+        BlockRenderUtil.drawWireframe(
+                axisAlignedBB.offset(
+                    -((AccessorRenderManager) mc.getRenderManager()).getRenderPosX(),
+                    -((AccessorRenderManager) mc.getRenderManager()).getRenderPosY(),
+                    -((AccessorRenderManager) mc.getRenderManager()).getRenderPosZ()
+                ),
+                lineColor.getRGB(), width
+        );
         BlockRenderUtil.releaseGL();
     }
 

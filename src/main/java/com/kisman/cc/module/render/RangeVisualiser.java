@@ -1,12 +1,12 @@
 package com.kisman.cc.module.render;
 
 import com.kisman.cc.Kisman;
+import com.kisman.cc.mixin.mixins.accessor.AccessorRenderManager;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.RenderUtil;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
@@ -53,16 +53,18 @@ public class RangeVisualiser extends Module {
                 continue;
             }
 
+            AccessorRenderManager accessorRenderManager = (AccessorRenderManager) mc.getRenderManager();
+
             if (mode.getValString().equalsIgnoreCase("Sphere") || own.getValString().equalsIgnoreCase("Sphere")) {
                 int lines = 600 / Math.round(Math.max((mc.player.getDistance(en)), 1));
                 lines = Math.min(lines, 25);
-                double xPos = (en.lastTickPosX + (en.posX - en.lastTickPosX) * mc.timer.renderPartialTicks)
-                        - mc.getRenderManager().renderPosX;
+                double xPos = (en.lastTickPosX + (en.posX - en.lastTickPosX) * mc.getRenderPartialTicks())
+                        - accessorRenderManager.getRenderPosX();
                 double yPos = en.getEyeHeight()
-                        + (en.lastTickPosY + (en.posY - en.lastTickPosY) * mc.timer.renderPartialTicks)
-                        - mc.getRenderManager().renderPosY;
-                double zPos = (en.lastTickPosZ + (en.posZ - en.lastTickPosZ) * mc.timer.renderPartialTicks)
-                        - mc.getRenderManager().renderPosZ;
+                        + (en.lastTickPosY + (en.posY - en.lastTickPosY) * mc.getRenderPartialTicks())
+                        - accessorRenderManager.getRenderPosY();
+                double zPos = (en.lastTickPosZ + (en.posZ - en.lastTickPosZ) * mc.getRenderPartialTicks())
+                        - accessorRenderManager.getRenderPosZ();
                 float range = 3.5f;
 
                 if (mc.player.getDistance(en) >= range) {
@@ -85,13 +87,12 @@ public class RangeVisualiser extends Module {
                 GlStateManager.disableTexture2D();
                 GlStateManager.enableDepth();
                 GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-                RenderManager renderManager = mc.getRenderManager();
                 float hue = System.currentTimeMillis() % 7200L / 7200.0f;
                 Color color = new Color(Color.HSBtoRGB(hue, 1.0f, 1.0f));
                 ArrayList<Vec3d> hVectors = new ArrayList<>();
-                double x = en.lastTickPosX + (en.posX - en.lastTickPosX) * event.getPartialTicks() - renderManager.renderPosX;
-                double y = en.lastTickPosY + (en.posY - en.lastTickPosY) * event.getPartialTicks() - renderManager.renderPosY;
-                double z = en.lastTickPosZ + (en.posZ - en.lastTickPosZ) * event.getPartialTicks() - renderManager.renderPosZ;
+                double x = en.lastTickPosX + (en.posX - en.lastTickPosX) * event.getPartialTicks() - accessorRenderManager.getRenderPosX();
+                double y = en.lastTickPosY + (en.posY - en.lastTickPosY) * event.getPartialTicks() - accessorRenderManager.getRenderPosY();
+                double z = en.lastTickPosZ + (en.posZ - en.lastTickPosZ) * event.getPartialTicks() - accessorRenderManager.getRenderPosZ();
                 GL11.glLineWidth((float) this.lineWidth.getValDouble());
                 GL11.glBegin(1);
                 for (int i = 0; i <= 360; ++i) {

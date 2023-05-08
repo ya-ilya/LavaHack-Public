@@ -1,6 +1,7 @@
 package com.kisman.cc.module.render;
 
 import com.kisman.cc.event.events.Render2DEvent;
+import com.kisman.cc.mixin.mixins.accessor.AccessorEntityRenderer;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -105,7 +106,7 @@ public class DamageESP extends Module {
             GL11.glEnable(2848);
             GL11.glDisable(3553);
             GL11.glDisable(2929);
-            mc.entityRenderer.setupCameraTransform(event.particalTicks, 0);
+            ((AccessorEntityRenderer) mc.entityRenderer).invokeSetupCameraTransform(event.particalTicks, 0);
             GL11.glTranslated(x, y, z);
             GL11.glNormal3f(0.0f, 1.0f, 0.0f);
             GL11.glRotatef(-mc.getRenderManager().playerViewY, 0.0f, 1.0f, 0.0f);

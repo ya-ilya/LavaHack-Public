@@ -1,6 +1,7 @@
 package com.kisman.cc.module.movement;
 
 import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.mixin.mixins.accessor.AccessorSPacketPlayerPosLook;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -51,9 +52,9 @@ public class NoRotate extends Module {
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (cancelPackets && event.getPacket() instanceof SPacketPlayerPosLook) {
-            SPacketPlayerPosLook packet = (SPacketPlayerPosLook) event.getPacket();
-            packet.yaw = mc.player.rotationYaw;
-            packet.pitch = mc.player.rotationPitch;
+            AccessorSPacketPlayerPosLook accessorSPacketPlayerPosLook = (AccessorSPacketPlayerPosLook) event.getPacket();
+            accessorSPacketPlayerPosLook.setYaw(mc.player.rotationYaw);
+            accessorSPacketPlayerPosLook.setPitch(mc.player.rotationPitch);
         }
     });
 }

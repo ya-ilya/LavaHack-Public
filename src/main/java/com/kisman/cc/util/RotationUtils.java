@@ -2,6 +2,7 @@ package com.kisman.cc.util;
 
 import com.kisman.cc.Kisman;
 import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.mixin.mixins.accessor.AccessorCPacketPlayer;
 import me.zero.alpine.listener.EventHandler;
 import me.zero.alpine.listener.Listener;
 import net.minecraft.client.Minecraft;
@@ -105,7 +106,10 @@ public class RotationUtils {
         packet[0] = event.getPacket();
         if (packet[0] instanceof CPacketPlayer) {
             packetPlayer[0] = (CPacketPlayer) packet[0];
-            if (packetPlayer[0].rotating) this.serverRotation = new Rotation(packetPlayer[0].yaw, packetPlayer[0].pitch);
+            AccessorCPacketPlayer accessorPacketPlayer = (AccessorCPacketPlayer) packetPlayer[0];
+            if (accessorPacketPlayer.isRotating()) {
+                this.serverRotation = new Rotation(accessorPacketPlayer.getYaw(), accessorPacketPlayer.getPitch());
+            }
         }
     });
 

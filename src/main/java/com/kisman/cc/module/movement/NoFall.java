@@ -3,6 +3,7 @@ package com.kisman.cc.module.movement;
 import com.kisman.cc.event.Event;
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
+import com.kisman.cc.mixin.mixins.accessor.AccessorCPacketPlayer;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -31,17 +32,17 @@ public class NoFall extends Module {
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (event.getPacket() instanceof CPacketPlayer) {
-            CPacketPlayer packet = (CPacketPlayer) event.getPacket();
+            AccessorCPacketPlayer accessorPacketPlayer = (AccessorCPacketPlayer) event.getPacket();
             switch(mode.getValString()) {
                 case "Packet":
                     if (mc.player.fallDistance > 3.0F) {
-                        packet.onGround = true;
+                        accessorPacketPlayer.setIsOnGround(true);
                         return;
                     }
                     break;
                 case "Anti":
                     if (mc.player.fallDistance > 3.0F) {
-                        packet.y = mc.player.posY + 0.10000000149011612;
+                        accessorPacketPlayer.setY(mc.player.posY + 0.10000000149011612);
                         return;
                     }
                     break;
@@ -50,7 +51,7 @@ public class NoFall extends Module {
                         mc.player.onGround = true;
                         mc.player.capabilities.isFlying = true;
                         mc.player.capabilities.allowFlying = true;
-                        packet.onGround = true;
+                        accessorPacketPlayer.setIsOnGround(true);
                         mc.player.velocityChanged = true;
                         mc.player.capabilities.isFlying = false;
                         mc.player.jump();

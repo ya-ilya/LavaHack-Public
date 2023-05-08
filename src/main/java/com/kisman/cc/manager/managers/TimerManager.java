@@ -3,7 +3,7 @@ package com.kisman.cc.manager.managers;
 import com.kisman.cc.manager.Manager;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.util.TickRateUtil;
-import net.minecraft.client.Minecraft;
+import com.kisman.cc.util.TimerUtil;
 
 public class TimerManager implements Manager {
     private Module currentModule;
@@ -31,12 +31,15 @@ public class TimerManager implements Manager {
 
     public void onUpdate() {
         if (mc.world == null || mc.player == null) {
-            mc.timer.tickLength = 50;
+            TimerUtil.setTickLength(50);
             return;
         }
-        if (tpsSync && TickRateUtil.INSTANCE.getLatestTickRate() > 0.125D)  // 0.125D check is nessasary to avoid 0tps when joining server
-            Minecraft.getMinecraft().timer.tickLength = Math.min(500, 50F * (20F / TickRateUtil.INSTANCE.getLatestTickRate()));
-        else Minecraft.getMinecraft().timer.tickLength = active ? (50.0f / timerSpeed) : 50.0f;
+
+        if (tpsSync && TickRateUtil.INSTANCE.getLatestTickRate() > 0.125D) { // 0.125D check is nessasary to avoid 0tps when joining server
+            TimerUtil.setTickLength(Math.min(500, 50F * (20F / TickRateUtil.INSTANCE.getLatestTickRate())));
+        } else {
+            TimerUtil.setTickLength(active ? (50.0f / timerSpeed) : 50.0f);
+        }
     }
 
     public boolean isTpsSync() {

@@ -1,5 +1,6 @@
 package com.kisman.cc.module.render;
 
+import com.kisman.cc.mixin.mixins.accessor.AccessorRenderManager;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -40,12 +41,13 @@ public class EyeFinder extends Module {
         GlStateManager.enableDepth();
         GlStateManager.disableTexture2D();
         GlStateManager.disableLighting();
-        double posX = eyes.x - mc.getRenderManager().renderPosX;
-        double posY = eyes.y - mc.getRenderManager().renderPosY;
-        double posZ = eyes.z - mc.getRenderManager().renderPosZ;
-        double posX2 = result.hitVec.x - mc.getRenderManager().renderPosX;
-        double posY2 = result.hitVec.y - mc.getRenderManager().renderPosY;
-        double posZ2 = result.hitVec.z - mc.getRenderManager().renderPosZ;
+        AccessorRenderManager accessorRenderManager = (AccessorRenderManager) mc.getRenderManager();
+        double posX = eyes.x - accessorRenderManager.getRenderPosX();
+        double posY = eyes.y - accessorRenderManager.getRenderPosY();
+        double posZ = eyes.z - accessorRenderManager.getRenderPosZ();
+        double posX2 = result.hitVec.x - accessorRenderManager.getRenderPosX();
+        double posY2 = result.hitVec.y - accessorRenderManager.getRenderPosY();
+        double posZ2 = result.hitVec.z - accessorRenderManager.getRenderPosZ();
         color.getColour().glColor();
         GlStateManager.glLineWidth(1.5f);
         GL11.glBegin(1);

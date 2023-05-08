@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = ItemRenderer.class, priority = 10000)
+@Mixin(ItemRenderer.class)
 public abstract class MixinItemRenderer {
     private final Minecraft mc = Minecraft.getMinecraft();
 

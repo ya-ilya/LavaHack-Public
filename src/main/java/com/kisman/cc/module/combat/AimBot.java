@@ -2,6 +2,7 @@ package com.kisman.cc.module.combat;
 
 import com.kisman.cc.event.Event;
 import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
+import com.kisman.cc.mixin.mixins.accessor.AccessorEntityPlayerSP;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -39,8 +40,9 @@ public class AimBot extends Module {
         event.cancel();
 
         boolean sprint = mc.player.isSprinting();
+        AccessorEntityPlayerSP player = (AccessorEntityPlayerSP) mc.player;
 
-        if (sprint != mc.player.serverSprintState) {
+        if (sprint != player.getServerSprintState()) {
             if (sprint) {
                 mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SPRINTING));
             } else {
@@ -50,7 +52,7 @@ public class AimBot extends Module {
 
         boolean sneak = mc.player.isSneaking();
 
-        if (sneak != mc.player.serverSneakState) {
+        if (sneak != player.getServerSneakState()) {
             if (sneak) {
                 mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_SNEAKING));
             } else {
@@ -78,13 +80,13 @@ public class AimBot extends Module {
             }
 
             AxisAlignedBB axisalignedbb = mc.player.getEntityBoundingBox();
-            double posXDifference = mc.player.posX - mc.player.lastReportedPosX;
-            double posYDifference = axisalignedbb.minY - mc.player.lastReportedPosY;
-            double posZDifference = mc.player.posZ - mc.player.lastReportedPosZ;
-            double yawDifference = (yaw - mc.player.lastReportedYaw);
-            double rotationDifference = (pitch - mc.player.lastReportedPitch);
-            ++mc.player.positionUpdateTicks;
-            boolean movedXYZ = posXDifference * posXDifference + posYDifference * posYDifference + posZDifference * posZDifference > 9.0E-4D || mc.player.positionUpdateTicks >= 20;
+            double posXDifference = mc.player.posX - player.getLastReportedPosX();
+            double posYDifference = axisalignedbb.minY - player.getLastReportedPosY();
+            double posZDifference = mc.player.posZ - player.getLastReportedPosZ();
+            double yawDifference = (yaw - player.getLastReportedYaw());
+            double rotationDifference = (pitch - player.getLastReportedPitch());
+            player.setPositionUpdateTicks(player.getPositionUpdateTicks() + 1);
+            boolean movedXYZ = posXDifference * posXDifference + posYDifference * posYDifference + posZDifference * posZDifference > 9.0E-4D || player.getPositionUpdateTicks() >= 20;
             boolean movedRotation = yawDifference != 0.0D || rotationDifference != 0.0D;
 
             if (mc.player.isRiding()) {
@@ -96,24 +98,24 @@ public class AimBot extends Module {
                 mc.player.connection.sendPacket(new CPacketPlayer.Position(mc.player.posX, axisalignedbb.minY, mc.player.posZ, mc.player.onGround));
             } else if (movedRotation) {
                 mc.player.connection.sendPacket(new CPacketPlayer.Rotation(yaw, pitch, mc.player.onGround));
-            } else if (mc.player.prevOnGround != mc.player.onGround) {
+            } else if (player.getPrevOnGround() != mc.player.onGround) {
                 mc.player.connection.sendPacket(new CPacketPlayer(mc.player.onGround));
             }
 
             if (movedXYZ) {
-                mc.player.lastReportedPosX = mc.player.posX;
-                mc.player.lastReportedPosY = axisalignedbb.minY;
-                mc.player.lastReportedPosZ = mc.player.posZ;
-                mc.player.positionUpdateTicks = 0;
+                player.setLastReportedPosX(mc.player.posX);
+                player.setLastReportedPosY(axisalignedbb.minY);
+                player.setLastReportedPosZ(mc.player.posZ);
+                player.setPositionUpdateTicks(0);
             }
 
             if (movedRotation) {
-                mc.player.lastReportedYaw = yaw;
-                mc.player.lastReportedPitch = pitch;
+                player.setLastReportedYaw(yaw);
+                player.setLastReportedPitch(pitch);
             }
 
-            mc.player.prevOnGround = mc.player.onGround;
-            mc.player.autoJumpEnabled = mc.player.mc.gameSettings.autoJump;
+            player.setPrevOnGround(mc.player.onGround);
+            player.setAutoJumpEnabled(mc.gameSettings.autoJump);
         }
     });
 }

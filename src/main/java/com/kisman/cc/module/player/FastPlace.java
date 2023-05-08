@@ -2,6 +2,7 @@ package com.kisman.cc.module.player;
 
 import com.kisman.cc.event.Event;
 import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
+import com.kisman.cc.mixin.mixins.accessor.AccessorMinecraft;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -50,12 +51,12 @@ public class FastPlace extends Module {
         if (mc.player == null || mc.world == null) return;
 
         try {
-            if (mc.player.inventory.getStackInSlot(mc.player.inventory.currentItem).getItem().equals(Items.EXPERIENCE_BOTTLE) && this.exp.getValBoolean()) mc.rightClickDelayTimer = 0;
-            if (mc.player.inventory.getStackInSlot(mc.player.inventory.currentItem).getItem().equals(Blocks.OBSIDIAN) && this.obby.getValBoolean()) mc.rightClickDelayTimer = 0;
-            if (mc.player.inventory.getStackInSlot(mc.player.inventory.currentItem).getItem().equals(Blocks.ENDER_CHEST) && this.enderChest.getValBoolean()) mc.rightClickDelayTimer = 0;
-            if (mc.player.inventory.getStackInSlot(mc.player.inventory.currentItem).getItem().equals(Items.MINECART) && this.minecart.getValBoolean()) mc.rightClickDelayTimer = 0;
-            if (mc.player.inventory.getStackInSlot(mc.player.inventory.currentItem).getItem().equals(Items.END_CRYSTAL) && (this.crystal.getValBoolean() || this.all.getValBoolean())) mc.rightClickDelayTimer = 0;
-            if (this.all.getValBoolean()) mc.rightClickDelayTimer = 0;
+            if (mc.player.inventory.getStackInSlot(mc.player.inventory.currentItem).getItem().equals(Items.EXPERIENCE_BOTTLE) && this.exp.getValBoolean()) setRightClickDelayTimerZero();
+            if (mc.player.inventory.getStackInSlot(mc.player.inventory.currentItem).getItem().equals(Blocks.OBSIDIAN) && this.obby.getValBoolean()) setRightClickDelayTimerZero();
+            if (mc.player.inventory.getStackInSlot(mc.player.inventory.currentItem).getItem().equals(Blocks.ENDER_CHEST) && this.enderChest.getValBoolean()) setRightClickDelayTimerZero();
+            if (mc.player.inventory.getStackInSlot(mc.player.inventory.currentItem).getItem().equals(Items.MINECART) && this.minecart.getValBoolean()) setRightClickDelayTimerZero();
+            if (mc.player.inventory.getStackInSlot(mc.player.inventory.currentItem).getItem().equals(Items.END_CRYSTAL) && (this.crystal.getValBoolean() || this.all.getValBoolean())) setRightClickDelayTimerZero();
+            if (this.all.getValBoolean()) setRightClickDelayTimerZero();
         } catch (ArrayIndexOutOfBoundsException ignored) {}
 
         if (this.fastCrystal.getValBoolean() && mc.gameSettings.keyBindUseItem.isKeyDown()) {
@@ -89,6 +90,11 @@ public class FastPlace extends Module {
             }
         }
     }
+    
+    private static void setRightClickDelayTimerZero() {
+        ((AccessorMinecraft) mc).setRightClickDelayTimer(0);
+    }
+    
 
     @SuppressWarnings("unused")
     private final Listener<PlayerMotionUpdateEvent> motionUpdateListener = listener(event -> {

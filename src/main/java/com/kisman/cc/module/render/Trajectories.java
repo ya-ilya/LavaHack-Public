@@ -1,5 +1,6 @@
 package com.kisman.cc.module.render;
 
+import com.kisman.cc.mixin.mixins.accessor.AccessorEntityRenderer;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -60,7 +61,7 @@ public class Trajectories extends Module {
 
         boolean bobbing = mc.gameSettings.viewBobbing;
         mc.gameSettings.viewBobbing = false;
-        mc.entityRenderer.setupCameraTransform(event.getPartialTicks(), 0);
+        ((AccessorEntityRenderer) mc.entityRenderer).invokeSetupCameraTransform(event.getPartialTicks(), 0);
         GlStateManager.pushMatrix();
         GlStateManager.disableTexture2D();
         GlStateManager.enableBlend();
@@ -98,7 +99,7 @@ public class Trajectories extends Module {
         GlStateManager.popMatrix();
 
         mc.gameSettings.viewBobbing = bobbing;
-        mc.entityRenderer.setupCameraTransform(event.getPartialTicks(), 0);
+        ((AccessorEntityRenderer) mc.entityRenderer).invokeSetupCameraTransform(event.getPartialTicks(), 0);
 
         if (flightPath.collided) {
             RayTraceResult hit = flightPath.target;

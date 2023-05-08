@@ -184,7 +184,7 @@ public class AutoFirework extends Module {
     private boolean needPause() {
         if (pauseWhileEating.getValBoolean() && PlayerUtil.IsEating()) return true;
         if (minHealthPause.getValBoolean() && mc.player.getHealth() + mc.player.getAbsorptionAmount() < requiredHealth.getValDouble()) return true;
-        return pauseIfHittingBlock.getValBoolean() && mc.playerController.isHittingBlock && mc.player.getHeldItemMainhand().getItem() instanceof ItemTool;
+        return pauseIfHittingBlock.getValBoolean() && mc.playerController.getIsHittingBlock() && mc.player.getHeldItemMainhand().getItem() instanceof ItemTool;
     }
 
     private void doTrap() {

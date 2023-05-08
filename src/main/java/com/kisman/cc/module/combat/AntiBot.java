@@ -88,7 +88,7 @@ public class AntiBot extends Module {
         List<EntityPlayer> list = new ArrayList<>();
         Ordering<NetworkPlayerInfo> ENTRY_ORDERING = AccessorGuiPlayerTabOverlay.getEntryOrdering();
         if (ENTRY_ORDERING == null) return list;
-        List<NetworkPlayerInfo> players = ENTRY_ORDERING.sortedCopy(mc.playerController.connection.getPlayerInfoMap());
+        List<NetworkPlayerInfo> players = ENTRY_ORDERING.sortedCopy(mc.player.connection.getPlayerInfoMap());
         for (NetworkPlayerInfo info : players) {
             if (info == null) continue;
             list.add(mc.world.getPlayerEntityByName(info.getGameProfile().getName()));

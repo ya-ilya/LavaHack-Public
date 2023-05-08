@@ -6,5 +6,6 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(EntityPlayer.class)
 public interface AccessorEntityPlayer {
-    @Accessor(value = "speedInAir") void setSpeedInAir(float value);
+    @Accessor("speedInAir")
+    void setSpeedInAir(float value);
 }

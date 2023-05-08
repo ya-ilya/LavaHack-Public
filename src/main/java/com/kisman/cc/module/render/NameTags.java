@@ -73,15 +73,16 @@ public class  NameTags extends Module {
                         this.damageList.remove(p.getName());
                     }
                 }
-                double pX = p.lastTickPosX + (p.posX - p.lastTickPosX) * mc.timer.renderPartialTicks;
-                double pY = p.lastTickPosY + (p.posY - p.lastTickPosY) * mc.timer.renderPartialTicks;
-                double pZ = p.lastTickPosZ + (p.posZ - p.lastTickPosZ) * mc.timer.renderPartialTicks;
+
+                double pX = p.lastTickPosX + (p.posX - p.lastTickPosX) * mc.getRenderPartialTicks();
+                double pY = p.lastTickPosY + (p.posY - p.lastTickPosY) * mc.getRenderPartialTicks();
+                double pZ = p.lastTickPosZ + (p.posZ - p.lastTickPosZ) * mc.getRenderPartialTicks();
                 Entity renderEntity = mc.getRenderManager().renderViewEntity;
                 if (renderEntity == null) renderEntity = mc.player;
                 if (renderEntity == null) return;
-                double rX = renderEntity.lastTickPosX + (renderEntity.posX - renderEntity.lastTickPosX) * mc.timer.renderPartialTicks;
-                double rY = renderEntity.lastTickPosY + (renderEntity.posY - renderEntity.lastTickPosY) * mc.timer.renderPartialTicks;
-                double rZ = renderEntity.lastTickPosZ + (renderEntity.posZ - renderEntity.lastTickPosZ) * mc.timer.renderPartialTicks;
+                double rX = renderEntity.lastTickPosX + (renderEntity.posX - renderEntity.lastTickPosX) * mc.getRenderPartialTicks();
+                double rY = renderEntity.lastTickPosY + (renderEntity.posY - renderEntity.lastTickPosY) * mc.getRenderPartialTicks();
+                double rZ = renderEntity.lastTickPosZ + (renderEntity.posZ - renderEntity.lastTickPosZ) * mc.getRenderPartialTicks();
                 this.renderNametag(p, pX - rX, pY - rY, pZ - rZ);
             }
             if (this.counter2 == 601 && damageDisplay.getValBoolean()) {
@@ -181,7 +182,7 @@ public class  NameTags extends Module {
         ScaledResolution scaledRes = new ScaledResolution(mc);
         double twoDscale = scaledRes.getScaleFactor() / Math.pow(scaledRes.getScaleFactor(), 2.0);
         double scale = this.scale.getValDouble();
-        return (float)scale * 6.0f * ((float)twoDscale + (float)(player.getDistance(mc.renderViewEntity.posX, mc.getRenderViewEntity().posY, mc.getRenderViewEntity().posZ) / 10.5));
+        return (float)scale * 6.0f * ((float)twoDscale + (float)(player.getDistance(mc.getRenderViewEntity().posX, mc.getRenderViewEntity().posY, mc.getRenderViewEntity().posZ) / 10.5));
     }
 
     public void renderItem(ItemStack stack, int x, int y) {

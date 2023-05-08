@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.awt.*;
 
-@Mixin(value = RenderEnderCrystal.class, priority = 10000)
+@Mixin(RenderEnderCrystal.class)
 public class MixinRenderEnderCrystal {
     @Final @Shadow private ModelBase modelEnderCrystal;
     @Final @Shadow private ModelBase modelEnderCrystalNoBase;
@@ -57,7 +57,7 @@ public class MixinRenderEnderCrystal {
             if (CrystalModifier.instance.mode.getValString().equals(CrystalModifier.Modes.Wireframe.name())) GL11.glPolygonMode(1032, 6913);
 
             //other
-            if (CrystalModifier.instance.texture.getValBoolean()) mc.renderManager.renderEngine.bindTexture(ENDER_CRYSTAL_TEXTURES);
+            if (CrystalModifier.instance.texture.getValBoolean()) mc.getRenderManager().renderEngine.bindTexture(ENDER_CRYSTAL_TEXTURES);
 
             GL11.glDisable(3008);
             GL11.glDisable(3553);

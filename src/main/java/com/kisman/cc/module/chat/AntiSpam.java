@@ -2,6 +2,7 @@ package com.kisman.cc.module.chat;
 
 import com.kisman.cc.event.Event;
 import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.mixin.mixins.accessor.AccessorSPacketChat;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import me.zero.alpine.listener.Listener;
@@ -28,9 +29,9 @@ public class AntiSpam extends Module {
     private final Listener<PacketEvent> packetListener = listener(event -> {
         if (event.getEra().equals(Event.Era.PRE) && event.getPacket() instanceof SPacketChat) {
             if (!((SPacketChat) event.getPacket()).isSystem()) return;
-            String message = ((SPacketChat) event.getPacket()).chatComponent.getFormattedText();
+            String message = ((SPacketChat) event.getPacket()).getChatComponent().getFormattedText();
             for (String str : illegalWords) message = message.replaceAll(str, "");
-            ((SPacketChat) event.getPacket()).chatComponent = new TextComponentString(message);
+            ((AccessorSPacketChat) event.getPacket()).setChatComponent(new TextComponentString(message));
         }
     });
 }

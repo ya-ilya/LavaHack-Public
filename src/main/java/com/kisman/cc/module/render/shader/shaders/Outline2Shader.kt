@@ -1,5 +1,6 @@
 package com.kisman.cc.module.render.shader.shaders
 
+import com.kisman.cc.mixin.mixins.accessor.AccessorRenderManager
 import com.kisman.cc.mixin.mixins.accessor.AccessorShaderGroup
 import com.kisman.cc.module.render.ShaderCharms
 import com.kisman.cc.module.render.shader.ShaderUtil
@@ -83,7 +84,11 @@ object Outline2Shader {
             if (!renderer.shouldRender(entity, camera, x, y, z)) continue
 
             val yaw = entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks
-            val pos = EntityUtil.getInterpolatedPos(entity, partialTicks).subtract(mc.renderManager.renderPosX, mc.renderManager.renderPosY, mc.renderManager.renderPosZ)
+            val pos = EntityUtil.getInterpolatedPos(entity, partialTicks).subtract(
+                (mc.renderManager as AccessorRenderManager).renderPosX,
+                (mc.renderManager as AccessorRenderManager).renderPosY,
+                (mc.renderManager as AccessorRenderManager).renderPosZ
+            )
 
             renderer.setRenderOutlines(true)
             renderer.doRender(entity, pos.x, pos.y, pos.z, yaw, partialTicks)

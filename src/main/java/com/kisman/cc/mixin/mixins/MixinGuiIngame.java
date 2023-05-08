@@ -16,6 +16,7 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHandSide;
+import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -26,13 +27,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.awt.*;
 
-import static net.minecraft.client.gui.GuiIngame.WIDGETS_TEX_PATH;
-
-@Mixin(value = GuiIngame.class, priority = 10000)
+@Mixin(GuiIngame.class)
 public abstract class MixinGuiIngame extends Gui {
-    @Shadow @Final public Minecraft mc;
-    @Shadow protected abstract void renderHotbarItem(int p_184044_1_, int p_184044_2_, float p_184044_3_, EntityPlayer player, ItemStack stack);
-    @Shadow public abstract FontRenderer getFontRenderer();
+    @Shadow @Final protected static ResourceLocation WIDGETS_TEX_PATH;
+    @Shadow @Final protected Minecraft mc;
+
+    @Shadow
+    protected abstract void renderHotbarItem(int p_184044_1_, int p_184044_2_, float p_184044_3_, EntityPlayer player, ItemStack stack);
+
+    @Shadow
+    public abstract FontRenderer getFontRenderer();
 
     @Inject(method = "renderPortal", at = @At("HEAD"), cancellable = true)
     protected void renderPortalHook(float timeInPortal, ScaledResolution scaledRes, CallbackInfo callbackInfo) {

@@ -3,7 +3,6 @@ package com.kisman.cc.mixin.mixins;
 import com.kisman.cc.module.combat.AutoRer;
 import com.kisman.cc.module.combat.KillAura;
 import com.kisman.cc.module.combat.autocrystal.AutoCrystal;
-import com.kisman.cc.module.misc.Optimizer;
 import com.kisman.cc.module.render.Charms;
 import com.kisman.cc.setting.Setting;
 import com.kisman.cc.util.RenderUtil;
@@ -19,27 +18,18 @@ import net.minecraft.util.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import javax.annotation.Nullable;
 import java.awt.*;
 
 import static org.lwjgl.opengl.GL11.*;
 
-@Mixin(value = RenderLivingBase.class, priority = 10000)
+@Mixin(RenderLivingBase.class)
 public abstract class MixinRendererLivingBase<T extends EntityLivingBase> extends Render<T> {
     @Shadow protected ModelBase mainModel;
 
     protected MixinRendererLivingBase(RenderManager renderManager) {
         super(renderManager);
-    }
-
-    @Inject(method = "doRender(Lnet/minecraft/entity/EntityLivingBase;DDDFF)V", at = @At("HEAD"), cancellable = true)
-    private void doRenderHook(T f3, double flag1, double flag, double f, float f1, float f2, CallbackInfo ci) {
-        Minecraft mc = Minecraft.getMinecraft();
-        if (mc.world != null && mc.player != null && Optimizer.instance.isToggled() && Optimizer.instance.customEntityRenderRange.getValBoolean() && mc.player.getDistance(f3) > Optimizer.instance.entityRenderRange.getValInt()) ci.cancel();
     }
 
     /**

@@ -36,7 +36,7 @@ public class Fly extends Module {
                 mc.player.motionZ = 0.0;
             }
         } else if (mode.getValString().equalsIgnoreCase("ReallyWorld")) {
-            if (mc.gameSettings.keyBindJump.pressed) {
+            if (mc.gameSettings.keyBindJump.isPressed()) {
                 if (mc.player.ticksExisted % 3 ==0 ) mc.player.connection.sendPacket(new CPacketEntityAction(mc.player, CPacketEntityAction.Action.START_FALL_FLYING));
                 mc.player.jump();
             }

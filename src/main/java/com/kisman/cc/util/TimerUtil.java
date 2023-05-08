@@ -1,5 +1,9 @@
 package com.kisman.cc.util;
 
+import com.kisman.cc.mixin.mixins.accessor.AccessorMinecraft;
+import com.kisman.cc.mixin.mixins.accessor.AccessorTimer;
+import net.minecraft.client.Minecraft;
+
 public class TimerUtil {
 	private long lastMS = 0L;
 	private long prevMS = 0L;
@@ -105,4 +109,10 @@ public class TimerUtil {
 	public long convertMicroToMillis(long time) { return time / 1000L; }
 	public long convertMicroToSec(long time) { return convertMillisToSec(convertMicroToMillis(time)); }
 	public long convertMillisToSec(long time) { return time / 1000L; }
+
+	public static void setTickLength(float tickLength) {
+		((AccessorTimer) ((AccessorMinecraft) mc).getTimer()).setTickLength(tickLength);
+	}
+
+	private static final Minecraft mc = Minecraft.getMinecraft();
 }

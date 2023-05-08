@@ -23,7 +23,6 @@ import com.kisman.cc.util.RotationUtils;
 import com.kisman.cc.util.ServerManager;
 import com.kisman.cc.util.customfont.CustomFontRenderer;
 import com.kisman.cc.util.glow.ShaderShell;
-import com.kisman.cc.util.improvements.AiImprovements;
 import com.kisman.cc.util.webapi.cape.CapeAPI;
 import me.zero.alpine.bus.EventManager;
 import net.minecraft.client.Minecraft;
@@ -85,14 +84,12 @@ public class Kisman {
     public ServerManager serverManager;
     public Managers managers;
     public CapeAPI capeAPI;
-    public AiImprovements aiImprovements;
     public ConfigManager configManager;
 
     public void init() throws IOException {
         Display.setTitle(NAME + " | " + VERSION);
     	MinecraftForge.EVENT_BUS.register(this);
 
-        aiImprovements = new AiImprovements();
         eventProcessor = new EventProcessor();
 
         mc = Minecraft.getMinecraft();

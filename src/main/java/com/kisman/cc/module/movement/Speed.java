@@ -5,6 +5,9 @@ import com.kisman.cc.event.events.PlayerUpdateEvent;
 import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.manager.Managers;
 import com.kisman.cc.mixin.mixins.accessor.AccessorEntityPlayer;
+import com.kisman.cc.mixin.mixins.accessor.AccessorKeyBinding;
+import com.kisman.cc.mixin.mixins.accessor.AccessorMinecraft;
+import com.kisman.cc.mixin.mixins.accessor.AccessorTimer;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -221,7 +224,7 @@ public class Speed extends Module {
     private void doMatrixBhopSpeed() {
         if (!PlayerUtil.isMoving(mc.player)) return;
 
-        mc.gameSettings.keyBindJump.pressed = false;
+        ((AccessorKeyBinding) mc.gameSettings.keyBindJump).setPressed(false);
 
         if (mc.player.onGround) {
             mc.player.jump();
@@ -243,7 +246,7 @@ public class Speed extends Module {
         if (!PlayerUtil.isMoving(mc.player)) return;
 
         if (mc.player.onGround) {
-            mc.gameSettings.keyBindJump.pressed = false;
+            ((AccessorKeyBinding) mc.gameSettings.keyBindJump).setPressed(false);
             mc.player.jump();
         } else if (mc.player.fallDistance <= 0.1) {
             ((AccessorEntityPlayer) mc.player).setSpeedInAir(0.0202f);
@@ -437,7 +440,7 @@ public class Speed extends Module {
     @SuppressWarnings("unused")
     private final Listener<PlayerUpdateEvent> playerUpdateListener = listener(event -> {
         if (speedMode.getValString().equalsIgnoreCase("Sti")) {
-            mc.timer.tickLength = 50 / getSpeed();
+            ((AccessorTimer) ((AccessorMinecraft) mc).getTimer()).setTickLength(50 / getSpeed());
         }}
     );
 

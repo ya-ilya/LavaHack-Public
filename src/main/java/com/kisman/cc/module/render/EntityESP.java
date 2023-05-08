@@ -65,7 +65,7 @@ public class EntityESP extends Module{
     public void onDisable() {
         if (mc.player == null || mc.world == null) return;
 
-        glowings.forEach(entity -> entity.glowing = false);
+        glowings.forEach(entity -> entity.setGlowing(false));
     }
 
     public void onEnable() {
@@ -85,18 +85,18 @@ public class EntityESP extends Module{
     private void render(Entity entity, String mode, float red, float green, float blue, float ticks) {
         switch (mode) {
             case "None":
-                entity.glowing = false;
+                entity.setGlowing(false);
                 return;
             case "Box1":
                 RenderUtil.drawESP(entity, red, green, blue, 1, ticks);
-                entity.glowing = false;
+                entity.setGlowing(false);
                 break;
             case "Box2":
                 RenderUtil.drawBoxESP(entity.getEntityBoundingBox(), new Color(red, green, blue), 1f, true, true, 100, 255);
-                entity.glowing = false;
+                entity.setGlowing(false);
                 break;
             case "Glow":
-                entity.glowing = true;
+                entity.setGlowing(true);
                 if (!glowings.contains(entity)) glowings.add(entity);
                 break;
         }

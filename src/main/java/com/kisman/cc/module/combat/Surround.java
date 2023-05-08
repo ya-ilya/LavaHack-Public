@@ -2,7 +2,7 @@ package com.kisman.cc.module.combat;
 
 import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.gui.csgo.components.Slider;
-import com.kisman.cc.mixin.mixins.accessor.ICPacketPlayer;
+import com.kisman.cc.mixin.mixins.accessor.AccessorCPacketPlayer;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -174,8 +174,8 @@ public class Surround extends Module {
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (event.getPacket() instanceof CPacketPlayer && !Float.isNaN(surroundRotation.getYaw()) && !Float.isNaN(surroundRotation.getPitch())) {
-            ((ICPacketPlayer) event.getPacket()).setYaw(surroundRotation.getYaw());
-            ((ICPacketPlayer) event.getPacket()).setPitch(surroundRotation.getPitch());
+            ((AccessorCPacketPlayer) event.getPacket()).setYaw(surroundRotation.getYaw());
+            ((AccessorCPacketPlayer) event.getPacket()).setPitch(surroundRotation.getPitch());
         }
     });
 

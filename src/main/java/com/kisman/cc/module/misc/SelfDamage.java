@@ -3,6 +3,7 @@ package com.kisman.cc.module.misc;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
+import com.kisman.cc.util.TimerUtil;
 
 public class SelfDamage extends Module {
     private final Setting jump;
@@ -22,13 +23,13 @@ public class SelfDamage extends Module {
     }
 
     public void onDisable() {
-        mc.timer.tickLength = 1;
+        TimerUtil.setTickLength(1);
     }
 
     public void update() {
         if (mc.player == null || mc.world == null) return;
         if (jumpCount < jump.getValDouble()) {
-            mc.timer.tickLength = (float) timer.getValDouble();
+            TimerUtil.setTickLength((float) timer.getValDouble());
             mc.player.onGround = false;
         }
 
@@ -36,7 +37,9 @@ public class SelfDamage extends Module {
             if (jumpCount < jump.getValDouble()) {
                 mc.player.jump();
                 jumpCount++;
-            } else mc.timer.tickLength = 1;
+            } else {
+                TimerUtil.setTickLength(1);
+            }
         }
     }
 }

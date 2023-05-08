@@ -114,8 +114,8 @@ public class Tracker extends Module {
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (mc.player != null && mc.world != null && event.getPacket() instanceof CPacketPlayerTryUseItemOnBlock) {
             CPacketPlayerTryUseItemOnBlock packet = (CPacketPlayerTryUseItemOnBlock)event.getPacket();
-            if (Tracker.mc.player.getHeldItem(packet.hand).getItem() == Items.END_CRYSTAL && !AntiTrap.instance.placedPos.contains(packet.position) && !AutoRer.instance.placedList.contains(packet.position)) {
-                this.manuallyPlaced.add(packet.position);
+            if (Tracker.mc.player.getHeldItem(packet.getHand()).getItem() == Items.END_CRYSTAL && !AntiTrap.instance.placedPos.contains(packet.getPos()) && !AutoRer.instance.placedList.contains(packet.getPos())) {
+                this.manuallyPlaced.add(packet.getPos());
             }
         }
     });

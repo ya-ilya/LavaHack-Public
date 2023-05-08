@@ -1,5 +1,7 @@
 package com.kisman.cc.module.movement;
 
+import com.kisman.cc.mixin.mixins.accessor.AccessorMinecraft;
+import com.kisman.cc.mixin.mixins.accessor.AccessorTimer;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -21,11 +23,11 @@ public class AirJump extends Module {
         else if (mode.getValString().equalsIgnoreCase("NCP")) {
             mc.player.onGround = true;
             mc.player.isAirBorne = false;
-        } else if (mode.getValString().equalsIgnoreCase("Matrix") && mc.gameSettings.keyBindJump.pressed) {
+        } else if (mode.getValString().equalsIgnoreCase("Matrix") && mc.gameSettings.keyBindJump.isPressed()) {
             mc.player.jump();
             mc.player.motionY -= 0.25f;
-            if (mc.gameSettings.keyBindForward.pressed) {
-                mc.timer.elapsedTicks = (int) 1.05f;
+            if (mc.gameSettings.keyBindForward.isPressed()) {
+                ((AccessorTimer) ((AccessorMinecraft) mc).getTimer()).setElapsedTicks((int) 1.05f);
                 mc.player.motionX *= 1.1f;
                 mc.player.motionZ *= 1.1f;
                 mc.player.onGround = false;

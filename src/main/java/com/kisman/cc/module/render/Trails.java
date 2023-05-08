@@ -1,5 +1,6 @@
 package com.kisman.cc.module.render;
 
+import com.kisman.cc.mixin.mixins.accessor.AccessorRenderManager;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -64,9 +65,10 @@ public class Trails extends Module {
                 bcs.remove(bc);
             }
 
-            double renderPosX = mc.getRenderManager().renderPosX;
-            double renderPosY = mc.getRenderManager().renderPosY;
-            double renderPosZ = mc.getRenderManager().renderPosZ;
+            AccessorRenderManager accessorRenderManager = (AccessorRenderManager) mc.getRenderManager();
+            double renderPosX = accessorRenderManager.getRenderPosX();
+            double renderPosY = accessorRenderManager.getRenderPosY();
+            double renderPosZ = accessorRenderManager.getRenderPosZ();
 
             if (!(lastPosX == 114514.0 && lastPosY == 114514.0 && lastPosZ == 114514.0)) {
                 GL11.glVertex3d(bc.getVector().x - renderPosX, bc.getVector().y - renderPosY, bc.getVector().z - renderPosZ);

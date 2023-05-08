@@ -4,6 +4,7 @@ import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.event.events.PlayerJumpEvent;
 import com.kisman.cc.event.events.PlayerMoveEvent;
 import com.kisman.cc.gui.csgo.components.Slider;
+import com.kisman.cc.mixin.mixins.accessor.AccessorCPacketPlayer;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -72,8 +73,8 @@ public class Scaffold extends Module {
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (event.getPacket() instanceof CPacketPlayer.PositionRotation && rotate.getValBoolean() && rotVec != null) {
             CPacketPlayer.PositionRotation e = (CPacketPlayer.PositionRotation) event.getPacket();
-            e.pitch = rotVec.pitch;
-            e.yaw = rotVec.yaw;
+            ((AccessorCPacketPlayer) e).setPitch(((AccessorCPacketPlayer) rotVec).getPitch());
+            ((AccessorCPacketPlayer) e).setYaw(((AccessorCPacketPlayer) rotVec).getYaw());
         }
     });
 
@@ -91,7 +92,7 @@ public class Scaffold extends Module {
             scaffold = new BlockPos(mc.player.posX + dir[0], mc.player.posY, mc.player.posZ + dir[1]).down();
         }
         newSlot = -1;
-        if (!Block.getBlockFromItem(mc.player.getHeldItemMainhand().item).getDefaultState().isFullBlock()) {
+        if (!Block.getBlockFromItem(mc.player.getHeldItemMainhand().getItem()).getDefaultState().isFullBlock()) {
             for (int i = 0; i < 9; i++) {
                 ItemStack stack = mc.player.inventory.getStackInSlot(i);
                 if (stack == ItemStack.EMPTY || !(stack.getItem() instanceof ItemBlock)) continue;

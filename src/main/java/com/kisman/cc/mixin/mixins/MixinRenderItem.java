@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import java.awt.*;
 
-@Mixin(value = RenderItem.class, priority = 10000)
+@Mixin(RenderItem.class)
 public abstract class MixinRenderItem {
     @Shadow
     protected abstract void renderModel(IBakedModel model, int color, ItemStack stack);

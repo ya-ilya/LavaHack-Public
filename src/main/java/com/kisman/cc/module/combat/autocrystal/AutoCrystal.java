@@ -1,6 +1,8 @@
 package com.kisman.cc.module.combat.autocrystal;
 
 import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.mixin.mixins.accessor.AccessorCPacketPlayer;
+import com.kisman.cc.mixin.mixins.accessor.AccessorCPacketUseEntity;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -186,8 +188,8 @@ public class AutoCrystal extends Module implements Runnable {
         float[] rot = RotationUtils.getRotationToPos(bestCrystalPos.getBlockPos());
         Packet<?> packet = event.getPacket();
         if (packet instanceof CPacketPlayer && rotateMode.checkValString("Spoof")) {
-            ((CPacketPlayer) packet).yaw = rot[0];
-            ((CPacketPlayer) packet).pitch = rot[1];
+            ((AccessorCPacketPlayer) packet).setYaw(rot[0]);
+            ((AccessorCPacketPlayer) packet).setYaw(rot[1]);
         }
     });
 
@@ -201,12 +203,16 @@ public class AutoCrystal extends Module implements Runnable {
                         if (packetBreak.getValBoolean()) {
                             mc.player.connection.sendPacket(new CPacketUseEntity(entity));
                             CPacketUseEntity packet = new CPacketUseEntity();
-                            packet.entityId = entity.entityId;
-                            packet.action = CPacketUseEntity.Action.ATTACK;
+                            ((AccessorCPacketUseEntity) packet).setEntityId(entity.getEntityId());
+                            ((AccessorCPacketUseEntity) packet).setAction(CPacketUseEntity.Action.ATTACK);
                             mc.player.connection.sendPacket(packet);
                         } else mc.playerController.attackEntity(mc.player, entity);
                     }
-                    try {if (clientSide.getValBoolean()) mc.world.removeEntityFromWorld(entity.entityId);} catch (Exception ignored) {}
+                    try {
+                        if (clientSide.getValBoolean()) {
+                            mc.world.removeEntityFromWorld(entity.getEntityId());
+                        }
+                    } catch (Exception ignored) {}
                     breakTimer.reset();
                 }
                 breakTimer.reset();

@@ -1,5 +1,6 @@
 package com.kisman.cc.module.render.shader;
 
+import com.kisman.cc.mixin.mixins.accessor.AccessorEntityRenderer;
 import com.kisman.cc.module.render.shader.shaders.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
@@ -43,7 +44,7 @@ public abstract class FramebufferShader extends Shader {
         FramebufferShader.framebuffer.bindFramebuffer(true);
         entityShadows = mc.gameSettings.entityShadows;
         mc.gameSettings.entityShadows = false;
-        mc.entityRenderer.setupCameraTransform(partialTicks, 0);
+        ((AccessorEntityRenderer) mc.entityRenderer).invokeSetupCameraTransform(partialTicks, 0);
     }
 
     public void stopDraw() {

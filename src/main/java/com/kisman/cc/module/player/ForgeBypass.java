@@ -1,6 +1,7 @@
 package com.kisman.cc.module.player;
 
 import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.mixin.mixins.accessor.AccessorCPacketCustomPayload;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import io.netty.buffer.Unpooled;
@@ -20,8 +21,13 @@ public class ForgeBypass extends Module {
     @SuppressWarnings("unused")
     private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
         if (!mc.isIntegratedServerRunning()) {
-            if (event.getPacket().getClass().getName().equals("net.minecraftforge.fml.common.network.internal.FMLProxyPacket")) event.cancel();
-            else if (event.getPacket() instanceof CPacketCustomPayload) if (((CPacketCustomPayload) event.getPacket()).getChannelName().equalsIgnoreCase("MC|Brand")) ((CPacketCustomPayload) event.getPacket()).data = (new PacketBuffer(Unpooled.buffer()).writeString("vanilla"));
+            if (event.getPacket().getClass().getName().equals("net.minecraftforge.fml.common.network.internal.FMLProxyPacket")) {
+                event.cancel();
+            } else if (event.getPacket() instanceof CPacketCustomPayload) {
+                if (((CPacketCustomPayload) event.getPacket()).getChannelName().equalsIgnoreCase("MC|Brand")) {
+                    ((AccessorCPacketCustomPayload) event.getPacket()).setData(new PacketBuffer(Unpooled.buffer()).writeString("vanilla"));
+                }
+            }
         }
     });
 }

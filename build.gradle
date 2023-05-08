@@ -36,7 +36,6 @@ repositories {
 }
 
 minecraft {
-    accessTransformer = file('src/main/resources/lavahack-public_at.cfg')
     mappings channel: "$mappings_channel", version: "$mappings_version"
 
     runs {
@@ -109,8 +108,7 @@ shadowJar {
                 'TweakOrder': 0,
                 'FMLCorePluginContainsFMLMod': 'true',
                 'FMLCorePlugin': 'com.kisman.cc.mixin.KismanMixinLoader',
-                'ForceLoadAsMod': 'true',
-                'FMLAT': 'lavahack-public_at.cfg'
+                'ForceLoadAsMod': 'true'
         )
     }
 

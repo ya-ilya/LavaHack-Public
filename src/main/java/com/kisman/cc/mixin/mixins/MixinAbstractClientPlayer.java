@@ -16,11 +16,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = AbstractClientPlayer.class, priority = 10000)
+@Mixin(AbstractClientPlayer.class)
 public abstract class MixinAbstractClientPlayer extends EntityPlayer {
-    @Shadow public NetworkPlayerInfo playerInfo;
     private int count = 0;
     private final TimerUtil timer = new TimerUtil();
+
+    @Shadow private NetworkPlayerInfo playerInfo;
 
     public MixinAbstractClientPlayer(World worldIn, GameProfile gameProfileIn) {
         super(worldIn, gameProfileIn);
@@ -28,7 +29,7 @@ public abstract class MixinAbstractClientPlayer extends EntityPlayer {
 
     @Inject(method = "getLocationCape", at = @At("HEAD"), cancellable = true)
     private void getLocationCapeHook(CallbackInfoReturnable<ResourceLocation> cir) {
-        if (Cape.instance.isToggled() && playerInfo == Minecraft.getMinecraft().player.getPlayerInfo() || Kisman.instance.capeAPI.is(playerInfo.getGameProfile().getId())) {
+        if (Cape.instance.isToggled() && playerInfo == (Minecraft.getMinecraft().player.connection.getPlayerInfo(Minecraft.getMinecraft().player.getUniqueID())) || Kisman.instance.capeAPI.is(playerInfo.getGameProfile().getId())) {
             switch(Cape.instance.mode.getValString()) {
                 case "Gif":
                     cir.setReturnValue(getCape());

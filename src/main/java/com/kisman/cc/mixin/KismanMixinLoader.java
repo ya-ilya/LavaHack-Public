@@ -11,36 +11,35 @@ import java.util.Map;
 @IFMLLoadingPlugin.Name("LavaHack")
 @IFMLLoadingPlugin.MCVersion("1.12.2")
 public class KismanMixinLoader implements IFMLLoadingPlugin {
-
-    public KismanMixinLoader(){
+    public KismanMixinLoader() {
         MixinBootstrap.init();
         Mixins.addConfiguration("mixins.lavahack-public.json");
         MixinEnvironment.getDefaultEnvironment().setObfuscationContext("searge");
     }
 
     @Override
-    public String[] getASMTransformerClass(){
+    public String[] getASMTransformerClass() {
         return new String[0];
     }
 
     @Override
-    public String getModContainerClass(){
+    public String getModContainerClass() {
         return null;
     }
 
     @Nullable
     @Override
-    public String getSetupClass(){
+    public String getSetupClass() {
         return null;
     }
 
     @Override
-    public void injectData(Map<String, Object> data){
+    public void injectData(Map<String, Object> data) {
         
     }
 
     @Override
-    public String getAccessTransformerClass(){
+    public String getAccessTransformerClass() {
         return null;
     }
 }

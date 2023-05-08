@@ -67,7 +67,7 @@ public class AutoEZ extends Module {
 
             if (event.getPacket() instanceof CPacketUseEntity) {
                 CPacketUseEntity packet = (CPacketUseEntity) event.getPacket();
-                if (packet.action.equals(CPacketUseEntity.Action.ATTACK)) {
+                if (packet.getAction().equals(CPacketUseEntity.Action.ATTACK)) {
                     Entity entity = packet.getEntityFromWorld(mc.world);
                     if (entity instanceof EntityPlayer) addTargetedPlayer(entity.getName());
                 }

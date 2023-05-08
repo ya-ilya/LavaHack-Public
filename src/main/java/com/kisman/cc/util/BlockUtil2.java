@@ -1,5 +1,6 @@
 package com.kisman.cc.util;
 
+import com.kisman.cc.mixin.mixins.accessor.AccessorMinecraft;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
@@ -80,7 +81,7 @@ public class BlockUtil2 {
         if (!checkAction || action == EnumActionResult.SUCCESS) {
             if (swingArm) {
                 mc.player.swingArm(hand);
-                mc.rightClickDelayTimer = 4;
+                ((AccessorMinecraft) mc).setRightClickDelayTimer(4);
             } else mc.player.connection.sendPacket(new CPacketAnimation(hand));
         }
 

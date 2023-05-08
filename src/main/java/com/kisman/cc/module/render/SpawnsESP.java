@@ -1,6 +1,7 @@
 package com.kisman.cc.module.render;
 
 import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.mixin.mixins.accessor.AccessorRenderManager;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -54,9 +55,10 @@ public class SpawnsESP extends Module {
             Rendering.setup();
 
             ArrayList<Vec3d> vertexes = new ArrayList<>();
-            double deltaX = VecCircle.getVector(circle).x - mc.getRenderManager().renderPosX;
-            double deltaY = VecCircle.getVector(circle).y - mc.getRenderManager().renderPosY;
-            double deltaZ = VecCircle.getVector(circle).z - mc.getRenderManager().renderPosZ;
+            AccessorRenderManager accessorRenderManager = (AccessorRenderManager) mc.getRenderManager();
+            double deltaX = VecCircle.getVector(circle).x - accessorRenderManager.getRenderPosX();
+            double deltaY = VecCircle.getVector(circle).y - accessorRenderManager.getRenderPosY();
+            double deltaZ = VecCircle.getVector(circle).z - accessorRenderManager.getRenderPosZ();
             GL11.glLineWidth((float) width.getValDouble());
             GL11.glEnable(2848);
             GL11.glHint(3154, 4354);

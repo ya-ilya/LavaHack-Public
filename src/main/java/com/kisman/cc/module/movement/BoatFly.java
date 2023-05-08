@@ -34,9 +34,9 @@ public class BoatFly extends Module {
     }
 
     public void update() {
-        if (mc.player == null || mc.world == null || mc.player.ridingEntity == null) return;
+        if (mc.player == null || mc.world == null || mc.player.getRidingEntity() == null) return;
         super.setDisplayInfo("[" + speed.getValInt() + "]");
-        Entity e = mc.player.ridingEntity;
+        Entity e = mc.player.getRidingEntity();
         if (mc.gameSettings.keyBindJump.isKeyDown()) e.motionY = verticalSpeed.getValDouble();
         else if (!downKey.isNoneKey() && Keyboard.isKeyDown(downKey.getKey())) e.motionY = -verticalSpeed.getValDouble();
         else if (staticY.getValBoolean()) e.motionY = 0;
@@ -55,6 +55,10 @@ public class BoatFly extends Module {
             e.motionX = 0;
             e.motionZ = 0;
         }
-        if (bypass.getValBoolean() && mc.player.ticksExisted % 4 == 0) if (mc.player.ridingEntity instanceof EntityBoat) mc.playerController.interactWithEntity(mc.player, mc.player.ridingEntity, EnumHand.MAIN_HAND);
+        if (bypass.getValBoolean() && mc.player.ticksExisted % 4 == 0) {
+            if (mc.player.getRidingEntity() instanceof EntityBoat) {
+                mc.playerController.interactWithEntity(mc.player, mc.player.getRidingEntity(), EnumHand.MAIN_HAND);
+            }
+        }
     }
 }

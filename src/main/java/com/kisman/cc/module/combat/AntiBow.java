@@ -1,6 +1,7 @@
 package com.kisman.cc.module.combat;
 
 import com.kisman.cc.manager.managers.RotationManager;
+import com.kisman.cc.mixin.mixins.accessor.AccessorKeyBinding;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -41,7 +42,7 @@ public class AntiBow extends Module {
 
         if (target == null) {
             if (bool) {
-                mc.gameSettings.keyBindUseItem.pressed = false;
+                ((AccessorKeyBinding) mc.gameSettings.keyBindUseItem).setPressed(false);
 
                 if (oldSlot != -1) InventoryUtil.switchToSlot(oldSlot, true);
 
@@ -69,7 +70,7 @@ public class AntiBow extends Module {
 
             if (!mc.player.getHeldItemMainhand().getItem().equals(Items.SHIELD)) InventoryUtil.switchToSlot(shieldSlot, true);
 
-            mc.gameSettings.keyBindUseItem.pressed = true;
+            ((AccessorKeyBinding) mc.gameSettings.keyBindUseItem).setPressed(true);
             RotationManager.look(target, packet.getValBoolean());
             bool = true;
         }

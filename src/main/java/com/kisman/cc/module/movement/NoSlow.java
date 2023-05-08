@@ -5,6 +5,7 @@ import com.kisman.cc.event.events.PlayerUpdateMoveStateEvent;
 import com.kisman.cc.gui.ClickGui;
 import com.kisman.cc.gui.console.GuiConsole;
 import com.kisman.cc.gui.console.rewrite.ConsoleGui;
+import com.kisman.cc.mixin.mixins.accessor.AccessorEntityPlayerSP;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -85,7 +86,7 @@ public class NoSlow extends Module {
         if (mc.player.isHandActive() && !mc.player.isRiding() && mode.getValString().equals("Sunrise")) {
             mc.player.movementInput.moveStrafe *= 0.2F;
             mc.player.movementInput.moveForward *= 0.2F;
-            mc.player.sprintToggleTimer = 0;
+            ((AccessorEntityPlayerSP) mc.player).setSprintToggleTimer(0);
         }
         if (mc.player.isHandActive() && !mc.player.isRiding()) {
             if (mc.player.ticksExisted % 2 == 0) {
@@ -96,7 +97,6 @@ public class NoSlow extends Module {
                     mc.player.motionX *= 0.9f;
                     mc.player.motionZ *= 0.9f;
                 }
-
             }
         }
     }

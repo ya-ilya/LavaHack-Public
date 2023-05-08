@@ -1,5 +1,6 @@
 package com.kisman.cc.module.render;
 
+import com.kisman.cc.mixin.mixins.accessor.AccessorRenderManager;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.util.RenderUtil;
@@ -22,9 +23,9 @@ public class TrajectoriesRewrite extends Module {
         EntityPlayerSP player = mc.player;
         if (player.inventory.getCurrentItem() != null) {
             if (this.isThrowable(player.inventory.getCurrentItem().getItem())) {
-                double x = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) mc.timer.renderPartialTicks - (double) (MathHelper.cos((float) Math.toRadians(mc.player.rotationYaw)) * 0.16F);
-                double y = mc.player.lastTickPosY + (mc.player.posY - mc.player.lastTickPosY) * (double) mc.timer.renderPartialTicks + (double) mc.player.getEyeHeight() - 0.100149011612D;
-                double z = mc.player.lastTickPosZ + (mc.player.posZ - mc.player.lastTickPosZ) * (double) mc.timer.renderPartialTicks - (double) (MathHelper.sin((float) Math.toRadians(mc.player.rotationYaw)) * 0.16F);
+                double x = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) mc.getRenderPartialTicks() - (double) (MathHelper.cos((float) Math.toRadians(mc.player.rotationYaw)) * 0.16F);
+                double y = mc.player.lastTickPosY + (mc.player.posY - mc.player.lastTickPosY) * (double) mc.getRenderPartialTicks() + (double) mc.player.getEyeHeight() - 0.100149011612D;
+                double z = mc.player.lastTickPosZ + (mc.player.posZ - mc.player.lastTickPosZ) * (double) mc.getRenderPartialTicks() - (double) (MathHelper.sin((float) Math.toRadians(mc.player.rotationYaw)) * 0.16F);
                 float con = 1.0F;
                 if (!(mc.player.inventory.getCurrentItem().getItem() instanceof ItemBow)) con = 0.4F;
 
@@ -67,10 +68,12 @@ public class TrajectoriesRewrite extends Module {
                 GL11.glBegin(GL11.GL_LINE_STRIP);
                 double gravity = this.getGravity(mc.player.inventory.getCurrentItem().getItem());
 
+                AccessorRenderManager accessorRenderManager = (AccessorRenderManager) mc.getRenderManager();
+
                 for (int q = 0; q < 1000; ++q) {
-                    double rx = x - mc.renderManager.renderPosX;
-                    double ry = y - mc.renderManager.renderPosY;
-                    double rz = z - mc.renderManager.renderPosZ;
+                    double rx = x - accessorRenderManager.getRenderPosX();
+                    double ry = y - accessorRenderManager.getRenderPosY();
+                    double rz = z - accessorRenderManager.getRenderPosZ();
                     GL11.glVertex3d(rx, ry, rz);
 
                     x += motionX;
@@ -86,10 +89,10 @@ public class TrajectoriesRewrite extends Module {
 
                 GL11.glEnd();
 
-                GL11.glTranslated(x - mc.renderManager.renderPosX, y - mc.renderManager.renderPosY, z - mc.renderManager.renderPosZ);
-                GL11.glRotatef(mc.player.rotationYaw, 0.0F, (float) (y - mc.renderManager.renderPosY), 0.0F);
-                GL11.glTranslated(-(x - mc.renderManager.renderPosX), -(y - mc.renderManager.renderPosY), -(z - mc.renderManager.renderPosZ));
-                RenderUtil.drawESP(x - 0.35 - mc.renderManager.renderPosX, y - 0.5 - mc.renderManager.renderPosY, z - 0.5 - mc.renderManager.renderPosZ, r, b, g);
+                GL11.glTranslated(x - accessorRenderManager.getRenderPosX(), y - accessorRenderManager.getRenderPosY(), z - accessorRenderManager.getRenderPosZ());
+                GL11.glRotatef(mc.player.rotationYaw, 0.0F, (float) (y - accessorRenderManager.getRenderPosY()), 0.0F);
+                GL11.glTranslated(-(x - accessorRenderManager.getRenderPosX()), -(y - accessorRenderManager.getRenderPosY()), -(z - accessorRenderManager.getRenderPosZ()));
+                RenderUtil.drawESP(x - 0.35 - accessorRenderManager.getRenderPosX(), y - 0.5 - accessorRenderManager.getRenderPosY(), z - 0.5 - accessorRenderManager.getRenderPosZ(), r, b, g);
                 disableDefaults();
                 GL11.glPopMatrix();
             }

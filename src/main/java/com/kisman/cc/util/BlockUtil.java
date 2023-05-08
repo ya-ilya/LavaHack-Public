@@ -1,5 +1,7 @@
 package com.kisman.cc.util;
 
+import com.kisman.cc.mixin.mixins.accessor.AccessorBlock;
+import com.kisman.cc.mixin.mixins.accessor.AccessorMinecraft;
 import net.minecraft.block.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -39,7 +41,7 @@ public class BlockUtil {
     public static boolean canBlockBeBroken(final BlockPos pos) {
         IBlockState blockState = mc.world.getBlockState(pos);
         Block block = blockState.getBlock();
-        return block.blockHardness != -1;
+        return ((AccessorBlock) block).getBlockHardness() != -1;
     }
 
     public static int isPositionPlaceable(final BlockPos pos, final boolean rayTrace) {
@@ -154,7 +156,7 @@ public class BlockUtil {
             mc.player.connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(pos, direction, hand, f, f2, f3));
         } else mc.playerController.processRightClickBlock(mc.player, mc.world, pos, direction, vec, hand);
         mc.player.swingArm(EnumHand.MAIN_HAND);
-        mc.rightClickDelayTimer = 4;
+        ((AccessorMinecraft) mc).setRightClickDelayTimer(4);
     }
 
     public static double getNearestBlockBelow() {
@@ -259,7 +261,7 @@ public class BlockUtil {
         if (rotate) RotationUtils.lookAtVec3d(hitVec);
         rightClickBlock(neighbour, hitVec, hand, opposite, packet);
         mc.player.swingArm(EnumHand.MAIN_HAND);
-        mc.rightClickDelayTimer = 4;
+        ((AccessorMinecraft) mc).setRightClickDelayTimer(4);
         return sneaking || isSneaking;
     }
 

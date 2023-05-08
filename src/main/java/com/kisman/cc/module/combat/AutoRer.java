@@ -4,6 +4,7 @@ import com.kisman.cc.event.events.PacketEvent;
 import com.kisman.cc.event.events.PlayerMotionUpdateEvent;
 import com.kisman.cc.gui.csgo.components.Slider;
 import com.kisman.cc.manager.managers.FriendManager;
+import com.kisman.cc.mixin.mixins.accessor.AccessorCPacketUseEntity;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.module.client.Config;
@@ -468,7 +469,7 @@ public class AutoRer extends Module {
     }
 
     private void doAutoRerLogic(PlayerMotionUpdateEvent event, boolean thread) {
-        if (mc.isGamePaused) return;
+        if (mc.isGamePaused()) return;
 
         if (logic.getValString().equalsIgnoreCase("PlaceBreak")) {
             doPlace(event, thread);
@@ -486,8 +487,8 @@ public class AutoRer extends Module {
             mc.player.rotationPitch = rots[1];
         }
         CPacketUseEntity packet = new CPacketUseEntity();
-        packet.entityId = entityID;
-        packet.action = CPacketUseEntity.Action.ATTACK;
+        ((AccessorCPacketUseEntity) packet).setEntityId(entityID);
+        ((AccessorCPacketUseEntity) packet).setAction(CPacketUseEntity.Action.ATTACK);
         mc.player.connection.sendPacket(packet);
         breakTimer.reset();
         predictTimer.reset();
@@ -566,7 +567,7 @@ public class AutoRer extends Module {
             if (packet.getAction().equals(CPacketUseEntity.Action.ATTACK) && packet.getEntityFromWorld(mc.world) instanceof EntityEnderCrystal) {
                 Objects.requireNonNull(packet.getEntityFromWorld(mc.world)).setDead();
                 try {
-                    mc.world.removeEntityFromWorld(packet.entityId);
+                    mc.world.removeEntityFromWorld(((AccessorCPacketUseEntity) packet).getEntityId());
                 } catch (Exception ignored) {
 
                 }
@@ -958,7 +959,7 @@ public class AutoRer extends Module {
         swing();
         try {
             if (clientSide.getValBoolean()) {
-                mc.world.removeEntityFromWorld(crystal.entityId);
+                mc.world.removeEntityFromWorld(crystal.getEntityId());
             }
         } catch (Exception ignored) {}
         breakTimer.reset();

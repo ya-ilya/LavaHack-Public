@@ -63,7 +63,7 @@ public class EventProcessor {
         if (event.getPacket() instanceof SPacketRespawn && AutoRer.instance.lagProtect.getValBoolean()) disableCa();
         if (event.getPacket() instanceof SPacketChat && !Kisman.allowToConfiguredAnotherClients && Config.instance.configurate.getValBoolean()) {
             SPacketChat packet = (SPacketChat) event.getPacket();
-            String message = packet.chatComponent.getUnformattedText();
+            String message = packet.getChatComponent().getUnformattedText();
             if (message.contains("+")) {
                 String formattedMessage = message.substring(message.indexOf("+"));
                 try {

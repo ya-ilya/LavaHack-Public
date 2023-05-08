@@ -26,9 +26,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mixin(value = EntityRenderer.class, priority = 10000)
-public class MixinEntityRenderer {
-    @Shadow @Final public int[] lightmapColors;
+@Mixin(EntityRenderer.class)
+public abstract class MixinEntityRenderer {
+    @Shadow @Final private int[] lightmapColors;
 
     @Inject(method = "setupFog", at = @At("HEAD"), cancellable = true)
     public void setupHook(int startCoords, float partialTicks, CallbackInfo ci) {

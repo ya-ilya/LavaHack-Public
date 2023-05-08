@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = EntityLivingBase.class, priority = 10000)
+@Mixin(EntityLivingBase.class)
 public abstract class MixinEntityLivingBase extends Entity {
     @Shadow public boolean isPotionActive(Potion potionIn) {return false;}
     @Shadow public PotionEffect getActivePotionEffect(Potion potionIn) {return null;}

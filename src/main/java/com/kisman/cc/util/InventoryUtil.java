@@ -342,7 +342,7 @@ public class InventoryUtil {
         List<ItemStack> mainInventory = mc.player.inventory.mainInventory;
 
         for (int i = 0; i < 36; i++) {
-            if (itemToFind != mainInventory.get(i).item) continue;
+            if (itemToFind != mainInventory.get(i).getItem()) continue;
             slots.add(i);
         }
         return slots;

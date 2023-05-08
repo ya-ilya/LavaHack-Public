@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
-@Mixin(value = ModelEnderCrystal.class, priority = 10000)
+@Mixin(ModelEnderCrystal.class)
 public class MixinModelEnderCrystal {
     @Final @Shadow private ModelRenderer cube;
     @Final @Shadow private ModelRenderer glass;

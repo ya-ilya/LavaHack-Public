@@ -1,5 +1,6 @@
 package com.kisman.cc.module.movement;
 
+import com.kisman.cc.mixin.mixins.accessor.AccessorPlayerControllerMP;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 
@@ -10,6 +11,6 @@ public class NoStepDelay extends Module {
 
     public void update() {
         if (mc.player == null || mc.world == null) return;
-        mc.playerController.stepSoundTickCounter = 0;
+        ((AccessorPlayerControllerMP) mc.playerController).setStepSoundTickCounter(0);
     }
 }

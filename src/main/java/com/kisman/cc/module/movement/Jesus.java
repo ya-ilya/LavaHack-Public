@@ -1,6 +1,7 @@
 package com.kisman.cc.module.movement;
 
 import com.kisman.cc.event.events.PacketEvent;
+import com.kisman.cc.mixin.mixins.accessor.AccessorCPacketPlayer;
 import com.kisman.cc.module.Category;
 import com.kisman.cc.module.Module;
 import com.kisman.cc.setting.Setting;
@@ -95,5 +96,9 @@ public class Jesus extends Module {
     }
 
     @SuppressWarnings("unused")
-    private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {if ((mode.getValString().equalsIgnoreCase("Matrix 6.3") || mode.getValString().equalsIgnoreCase("MatrixPixel")) && event.getPacket() instanceof CPacketPlayer && EntityUtil.isFluid(0.3)) ((CPacketPlayer) event.getPacket()).onGround = false;});
+    private final Listener<PacketEvent.Send> packetSendListener = listener(event -> {
+        if ((mode.getValString().equalsIgnoreCase("Matrix 6.3") || mode.getValString().equalsIgnoreCase("MatrixPixel")) && event.getPacket() instanceof CPacketPlayer && EntityUtil.isFluid(0.3)) {
+            ((AccessorCPacketPlayer) event.getPacket()).setIsOnGround(false);
+        }
+    });
 }

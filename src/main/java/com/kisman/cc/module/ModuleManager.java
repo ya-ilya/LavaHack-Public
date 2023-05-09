@@ -207,6 +207,7 @@ public class ModuleManager {
 		modules.add(new FreeLook());
 		modules.add(new MurderFinder());
 		modules.add(new NameProtect());
+		modules.add(new Optimizer());
 		modules.add(new PigPOV());
 		modules.add(new SelfDamage());
 		modules.add(new SkylightFix());

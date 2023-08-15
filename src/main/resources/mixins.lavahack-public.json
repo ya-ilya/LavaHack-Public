@@ -1,9 +1,10 @@
 {
   "required": true,
+  "minVersion": "0.7",
   "compatibilityLevel": "JAVA_8",
   "package": "com.kisman.cc.mixin.mixins",
   "refmap": "mixins.lavahack-public.refmap.json",
-  "mixins": [
+  "client": [
     "MixinMinecraft",
     "accessor.AccessorEntityPlayer",
     "accessor.AccessorGuiPlayerTabOverlay",

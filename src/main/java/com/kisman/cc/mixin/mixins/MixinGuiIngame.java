@@ -7,7 +7,6 @@ import com.kisman.cc.util.gish.ColorUtil;
 import com.kisman.cc.util.render.objects.AbstractGradient;
 import com.kisman.cc.util.render.objects.Vec4d;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.ScaledResolution;
@@ -29,14 +28,15 @@ import java.awt.*;
 
 @Mixin(GuiIngame.class)
 public abstract class MixinGuiIngame extends Gui {
-    @Shadow @Final protected static ResourceLocation WIDGETS_TEX_PATH;
-    @Shadow @Final protected Minecraft mc;
+    @Shadow
+    @Final
+    protected static ResourceLocation WIDGETS_TEX_PATH;
+    @Shadow
+    @Final
+    protected Minecraft mc;
 
     @Shadow
-    protected abstract void renderHotbarItem(int p_184044_1_, int p_184044_2_, float p_184044_3_, EntityPlayer player, ItemStack stack);
-
-    @Shadow
-    public abstract FontRenderer getFontRenderer();
+    protected abstract void renderHotbarItem(int x, int y, float partialTicks, EntityPlayer player, ItemStack stack);
 
     @Inject(method = "renderPortal", at = @At("HEAD"), cancellable = true)
     protected void renderPortalHook(float timeInPortal, ScaledResolution scaledRes, CallbackInfo callbackInfo) {
@@ -65,29 +65,33 @@ public abstract class MixinGuiIngame extends Gui {
             if (this.mc.getRenderViewEntity() instanceof EntityPlayer) {
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 this.mc.getTextureManager().bindTexture(WIDGETS_TEX_PATH);
-                EntityPlayer entityplayer = (EntityPlayer)this.mc.getRenderViewEntity();
+                EntityPlayer entityplayer = (EntityPlayer) this.mc.getRenderViewEntity();
                 ItemStack itemstack = entityplayer.getHeldItemOffhand();
                 EnumHandSide enumhandside = entityplayer.getPrimaryHand().opposite();
                 int i = sr.getScaledWidth() / 2;
                 float f = this.zLevel;
                 this.zLevel = -90.0F;
                 Render2DUtil.drawRectWH(i - 91, sr.getScaledHeight() - 22, 182, 22, backgroundColor.getRGB());
-                double[] selectedCoords = new double[] {i - 91 + entityplayer.inventory.currentItem * 20, sr.getScaledHeight() - 22, 22, 22};
-                Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {selectedCoords[0], selectedCoords[1]}, new double[] {selectedCoords[0] + selectedCoords[2], selectedCoords[1]}, new double[] {selectedCoords[0] + selectedCoords[2], selectedCoords[1] + selectedCoords[3]}, new double[] {selectedCoords[0], selectedCoords[1] + selectedCoords[3]}), ColorUtil.injectAlpha(backgroundColor, 1), HotbarModifier.getPrimaryColor(), true));
+                double[] selectedCoords = new double[]{i - 91 + entityplayer.inventory.currentItem * 20, sr.getScaledHeight() - 22, 22, 22};
+                Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[]{selectedCoords[0], selectedCoords[1]}, new double[]{selectedCoords[0] + selectedCoords[2], selectedCoords[1]}, new double[]{selectedCoords[0] + selectedCoords[2], selectedCoords[1] + selectedCoords[3]}, new double[]{selectedCoords[0], selectedCoords[1] + selectedCoords[3]}), ColorUtil.injectAlpha(backgroundColor, 1), HotbarModifier.getPrimaryColor(), true));
                 if (!itemstack.isEmpty()) {
                     if (enumhandside == EnumHandSide.LEFT) {
-                        if (!HotbarModifier.instance.offhand.getValBoolean()) this.drawTexturedModalRect(i - 91 - 29, sr.getScaledHeight() - 23, 24, 22, 29, 24);
+                        if (!HotbarModifier.instance.offhand.getValBoolean())
+                            this.drawTexturedModalRect(i - 91 - 29, sr.getScaledHeight() - 23, 24, 22, 29, 24);
                         else {
                             Render2DUtil.drawRectWH(i - 91 - 29, sr.getScaledHeight() - 22, 22, 22, backgroundColor.getRGB());
-                            double[] selectedCoordsOffhand = new double[] {i - 91 - 29, sr.getScaledHeight() - 22, 22, 22};
-                            if (HotbarModifier.instance.offhandGradient.getValBoolean()) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {selectedCoordsOffhand[0], selectedCoordsOffhand[1]}, new double[] {selectedCoordsOffhand[0] + selectedCoordsOffhand[2], selectedCoordsOffhand[1]}, new double[] {selectedCoordsOffhand[0] + selectedCoordsOffhand[2], selectedCoordsOffhand[1] + selectedCoordsOffhand[3]}, new double[] {selectedCoordsOffhand[0], selectedCoordsOffhand[1] + selectedCoordsOffhand[3]}), ColorUtil.injectAlpha(backgroundColor, 1), HotbarModifier.getPrimaryColor(), true));
+                            double[] selectedCoordsOffhand = new double[]{i - 91 - 29, sr.getScaledHeight() - 22, 22, 22};
+                            if (HotbarModifier.instance.offhandGradient.getValBoolean())
+                                Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[]{selectedCoordsOffhand[0], selectedCoordsOffhand[1]}, new double[]{selectedCoordsOffhand[0] + selectedCoordsOffhand[2], selectedCoordsOffhand[1]}, new double[]{selectedCoordsOffhand[0] + selectedCoordsOffhand[2], selectedCoordsOffhand[1] + selectedCoordsOffhand[3]}, new double[]{selectedCoordsOffhand[0], selectedCoordsOffhand[1] + selectedCoordsOffhand[3]}), ColorUtil.injectAlpha(backgroundColor, 1), HotbarModifier.getPrimaryColor(), true));
                         }
                     } else {
-                        if (!HotbarModifier.instance.offhand.getValBoolean()) this.drawTexturedModalRect(i + 91, sr.getScaledHeight() - 23, 53, 22, 29, 24);
+                        if (!HotbarModifier.instance.offhand.getValBoolean())
+                            this.drawTexturedModalRect(i + 91, sr.getScaledHeight() - 23, 53, 22, 29, 24);
                         else {
                             Render2DUtil.drawRectWH(i + 91 + 7, sr.getScaledHeight() - 22, 22, 22, backgroundColor.getRGB());
-                            double[] selectedCoordsOffhand = new double[] {i + 91 + 7, sr.getScaledHeight() - 22, 22, 22};
-                            if (HotbarModifier.instance.offhandGradient.getValBoolean()) Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[] {selectedCoordsOffhand[0], selectedCoordsOffhand[1]}, new double[] {selectedCoordsOffhand[0] + selectedCoordsOffhand[2], selectedCoordsOffhand[1]}, new double[] {selectedCoordsOffhand[0] + selectedCoordsOffhand[2], selectedCoordsOffhand[1] + selectedCoordsOffhand[3]}, new double[] {selectedCoordsOffhand[0], selectedCoordsOffhand[1] + selectedCoordsOffhand[3]}), ColorUtil.injectAlpha(backgroundColor, 1), new Color(255, 255, 255, 152), true));
+                            double[] selectedCoordsOffhand = new double[]{i + 91 + 7, sr.getScaledHeight() - 22, 22, 22};
+                            if (HotbarModifier.instance.offhandGradient.getValBoolean())
+                                Render2DUtil.drawAbstract(new AbstractGradient(new Vec4d(new double[]{selectedCoordsOffhand[0], selectedCoordsOffhand[1]}, new double[]{selectedCoordsOffhand[0] + selectedCoordsOffhand[2], selectedCoordsOffhand[1]}, new double[]{selectedCoordsOffhand[0] + selectedCoordsOffhand[2], selectedCoordsOffhand[1] + selectedCoordsOffhand[3]}, new double[]{selectedCoordsOffhand[0], selectedCoordsOffhand[1] + selectedCoordsOffhand[3]}), ColorUtil.injectAlpha(backgroundColor, 1), new Color(255, 255, 255, 152), true));
                         }
                     }
                 }
@@ -109,7 +113,8 @@ public abstract class MixinGuiIngame extends Gui {
 
                 if (!itemstack.isEmpty()) {
                     l1 = sr.getScaledHeight() - 16 - 3;
-                    if (enumhandside == EnumHandSide.LEFT) this.renderHotbarItem(i - 91 - 26, l1, partialTicks, entityplayer, itemstack);
+                    if (enumhandside == EnumHandSide.LEFT)
+                        this.renderHotbarItem(i - 91 - 26, l1, partialTicks, entityplayer, itemstack);
                     else this.renderHotbarItem(i + 91 + 10, l1, partialTicks, entityplayer, itemstack);
                 }
 
@@ -120,7 +125,7 @@ public abstract class MixinGuiIngame extends Gui {
                         j2 = i + 91 + 6;
                         if (enumhandside == EnumHandSide.RIGHT) j2 = i - 91 - 22;
                         this.mc.getTextureManager().bindTexture(Gui.ICONS);
-                        int k1 = (int)(f1 * 19.0F);
+                        int k1 = (int) (f1 * 19.0F);
                         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                         this.drawTexturedModalRect(j2, i2, 0, 94, 18, 18);
                         this.drawTexturedModalRect(j2, i2 + 18 - k1, 18, 112 - k1, 18, k1);
@@ -135,7 +140,7 @@ public abstract class MixinGuiIngame extends Gui {
             if (this.mc.getRenderViewEntity() instanceof EntityPlayer) {
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 this.mc.getTextureManager().bindTexture(WIDGETS_TEX_PATH);
-                EntityPlayer entityplayer = (EntityPlayer)this.mc.getRenderViewEntity();
+                EntityPlayer entityplayer = (EntityPlayer) this.mc.getRenderViewEntity();
                 ItemStack itemstack = entityplayer.getHeldItemOffhand();
                 EnumHandSide enumhandside = entityplayer.getPrimaryHand().opposite();
                 int i = sr.getScaledWidth() / 2;
@@ -144,7 +149,8 @@ public abstract class MixinGuiIngame extends Gui {
                 this.drawTexturedModalRect(i - 91, sr.getScaledHeight() - 22, 0, 0, 182, 22);
                 this.drawTexturedModalRect(i - 91 - 1 + entityplayer.inventory.currentItem * 20, sr.getScaledHeight() - 22 - 1, 0, 22, 24, 22);
                 if (!itemstack.isEmpty()) {
-                    if (enumhandside == EnumHandSide.LEFT) this.drawTexturedModalRect(i - 91 - 29, sr.getScaledHeight() - 23, 24, 22, 29, 24);
+                    if (enumhandside == EnumHandSide.LEFT)
+                        this.drawTexturedModalRect(i - 91 - 29, sr.getScaledHeight() - 23, 24, 22, 29, 24);
                     else this.drawTexturedModalRect(i + 91, sr.getScaledHeight() - 23, 53, 22, 29, 24);
                 }
 
@@ -165,7 +171,8 @@ public abstract class MixinGuiIngame extends Gui {
 
                 if (!itemstack.isEmpty()) {
                     l1 = sr.getScaledHeight() - 16 - 3;
-                    if (enumhandside == EnumHandSide.LEFT) this.renderHotbarItem(i - 91 - 26, l1, partialTicks, entityplayer, itemstack);
+                    if (enumhandside == EnumHandSide.LEFT)
+                        this.renderHotbarItem(i - 91 - 26, l1, partialTicks, entityplayer, itemstack);
                     else this.renderHotbarItem(i + 91 + 10, l1, partialTicks, entityplayer, itemstack);
                 }
 
@@ -176,7 +183,7 @@ public abstract class MixinGuiIngame extends Gui {
                         j2 = i + 91 + 6;
                         if (enumhandside == EnumHandSide.RIGHT) j2 = i - 91 - 22;
                         this.mc.getTextureManager().bindTexture(Gui.ICONS);
-                        int k1 = (int)(f1 * 19.0F);
+                        int k1 = (int) (f1 * 19.0F);
                         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                         this.drawTexturedModalRect(j2, i2, 0, 94, 18, 18);
                         this.drawTexturedModalRect(j2, i2 + 18 - k1, 18, 112 - k1, 18, k1);

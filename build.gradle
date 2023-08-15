@@ -83,7 +83,6 @@ dependencies {
 
 mixin {
     defaultObfuscationEnv 'searge'
-    add sourceSets.main, 'mixins.lavahack-public.refmap.json'
     sourceSets {
         main {
             ext.refMap = 'mixins.lavahack-public.refmap.json'

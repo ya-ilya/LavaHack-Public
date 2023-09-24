@@ -107,9 +107,9 @@ reobf {
 shadowJar {
     manifest {
         attributes(
+                'Manifest-Version': 1.0,
                 'MixinConfigs': 'mixins.lavahack-public.json',
-                'tweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                'TweakOrder': 0,
+                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
                 'FMLCorePluginContainsFMLMod': 'true',
                 'FMLCorePlugin': 'com.kisman.cc.mixin.KismanMixinLoader',
                 'ForceLoadAsMod': 'true'
@@ -128,7 +128,7 @@ shadowJar {
             'META-INF/*.version'
 
     configurations = [project.configurations.library]
-    classifier = 'release'
+    archiveClassifier.set('release')
 }
 
 build {

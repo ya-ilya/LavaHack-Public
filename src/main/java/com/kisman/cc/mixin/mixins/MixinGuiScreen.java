@@ -14,10 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiScreen.class)
-public class MixinGuiScreen extends Gui implements GuiYesNoCallback {
-    @Override
-    public void confirmClicked(boolean b, int i) {}
-
+public abstract class MixinGuiScreen extends Gui implements GuiYesNoCallback {
     @Inject(method = "drawDefaultBackground", at = @At("HEAD"), cancellable = true)
     public void drawDefaultBackgroundHook(CallbackInfo ci) {
         if (NoRender.instance.guiOverlay.getValBoolean() && Minecraft.getMinecraft().world != null) {
